@@ -74,6 +74,7 @@ group :development do
   gem 'guard-minitest'
   gem 'debase', '>= 0.2.4.1'
   gem 'ruby-debug-ide', '>= 0.7.0'
+  gem 'rb-readline'
 end
 
 group :test do
