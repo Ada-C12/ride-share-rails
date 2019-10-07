@@ -1,3 +1,12 @@
 <h1>ADD DRIVER</h1>
 
-<%= form_with @%>
+<%= form_with model: @driver do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  
+  <%= f.label :vin %>
+  <%= f.text_field :vin %>
+
+  <%= f.submit "GET IT!" %>
+  
+<% end %>
