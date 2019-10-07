@@ -1,0 +1,20 @@
+<h1>Top 5</h1>
+
+ <section>
+   <h2>Some Interesting Driver Data</h2>
+   <p>
+     5 drivers: <% 5.times do |i| %>
+     <%= @drivers[i] %>
+     <% end %>
+   </p>
+
+    <h2>Some Interesting Trip Data</h2>
+     5 trips: <% 5.times do |i| %>
+     <%= @trips[i] %>
+     <% end %>
+
+    <h2>Some Interesting Passenger Data</h2>
+     5 passengers: <% 5.times do |i| %>
+     <%= @passengers[i] %>
+     <% end %>
+ </section>
