@@ -71,6 +71,25 @@ class DriversController < ApplicationController
     end
   end
   
+  def toggle_active
+    driver_id = params[:id].to_i
+    @driver = Driver.find_by(id: driver_id)
+    
+    if @driver.active
+      @driver.active = false
+    else
+      @driver.active = true
+    end
+    
+    if @driver.save
+      redirect_back(fallback_location: driver_path(driver_id))
+      return
+    else
+      redirect_back(fallback_location: driver_path(driver_id), flash: { error: "Could not save completion date" })
+      return
+    end
+  end
+  
   private
   
   def driver_params

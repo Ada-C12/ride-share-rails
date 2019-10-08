@@ -22,6 +22,10 @@
     <% end %>
   </div>
 
+  <div>
+    <%= link_to "Toggle Status", toggle_active_path(@driver.id), method: :patch %>
+  </div>
+
   <%# total earnings %>
   <div>Total Earnings: <%= number_to_currency(@driver.driver_earnings / 100.0) %></div>
 

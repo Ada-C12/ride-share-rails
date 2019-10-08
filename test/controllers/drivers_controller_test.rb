@@ -245,4 +245,35 @@ describe DriversController do
       must_respond_with :not_found
     end
   end
+  
+  describe "toggle active" do
+    it "makes active true if it is false" do
+      # arrange
+      driver = Driver.create(name: "Micky", vin: "777", active: false)
+      driver_id = driver.id
+      
+      # act
+      patch toggle_active_path(driver_id)
+      
+      updated_driver = Driver.find_by(id: driver_id)
+      
+      # assert
+      expect(updated_driver.active).must_equal true
+    end
+    
+    it "makes active false if it is true" do
+      # arrange
+      driver = Driver.create(name: "Micky", vin: "777", active: true)
+      driver_id = driver.id
+      
+      # act
+      patch toggle_active_path(driver_id)
+      
+      updated_driver = Driver.find_by(id: driver_id)
+      
+      # assert
+      expect(updated_driver.active).must_equal false
+    end
+  end
+  
 end
