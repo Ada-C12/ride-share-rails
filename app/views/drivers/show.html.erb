@@ -1,0 +1,51 @@
+<section>
+  <%# name %>
+  <h2><%= @driver.name %></h2>
+
+  <%# average rating %>
+  <div>Average Rating: <%# @driver.rating %></div>
+
+  <%# model %>
+  <div>Model: <%= @driver.vin %></div>
+
+  <%# total earnings %>
+  <div>Total Earnings: <%# @driver.total_earnings %></div>
+
+  <%# trips list %>
+  <section>
+    <h3>Trips</h3>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Driver</th>
+        <th>Passenger</th>
+        <th>Price</th>
+        <th>Rating</th>
+      </tr>
+        <% @driver.trips.each do |trip| %>
+          <tr>
+            <td>
+              <%= trip.id %>
+            </td>
+            <td>
+              <%= trip.date %>
+            </td>
+            <td>
+              <%= trip.driver.name %>
+            </td>
+            <td>
+              <%= trip.passenger.name %>
+            </td>
+            <td>
+              TBA
+            </td>
+            <td>
+              <%= trip.rating %>
+            </td>
+          </tr>
+        <% end %>
+    </table>
+  </section>
+
+</section>
