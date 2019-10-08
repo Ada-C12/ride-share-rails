@@ -1,0 +1,18 @@
+<h1>Driver Details</h1>
+<p>Name: <%= @driver.name %></p>
+<p>Vin: <%= @driver.vin %> </p>
+<p>List of trips:</p>
+
+<ul>
+  <% @driver.trips.each do |t| %>
+    <li> Trip on <%= t.date %> 
+      <%= link_to "View Trip", trip_path(t.id) %> 
+    </li>
+  <% end %>
+  <li>
+  <%= link_to "Add New Trip", new_trip_path %>
+  </li>
+</ul>
+
+<%# <%= link_to "Delete #{@driver.name}", destroy_driver_path %>
+<%= link_to "Edit #{@driver.name}", edit_driver_path %>

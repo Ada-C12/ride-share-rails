@@ -7,4 +7,6 @@ class Driver < ApplicationRecord
   def self.all_in_alpha_order
     return Driver.all.order(name: :asc)
   end
+  
+  
 end
