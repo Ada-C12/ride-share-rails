@@ -2,67 +2,70 @@ require "test_helper"
 
 describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
+  let (:driver) {
+    Driver.create(name: "sample driver", vin: "a sample vin")
+  }
 
   describe "index" do
-    it "responds with success when there are many drivers saved" do
-      # Arrange
-      # Ensure that there is at least one Driver saved
+    it "responds with success when there is at least one Driver saved" do
+      Driver.create(name: "test driver", vin: "test vin")
 
-      # Act
-
-      # Assert
-
+      get drivers_path
+      
+      must_respond_with :success
+      expect(Driver.count).must_be :>, 0
     end
 
     it "responds with success when there are no drivers saved" do
-      # Arrange
-      # Ensure that there are zero drivers saved
-
-      # Act
-
-      # Assert
-
+      get drivers_path
+      
+      must_respond_with :success
+      expect(Driver.count).must_equal 0
     end
   end
 
   describe "show" do
     it "responds with success when showing an existing valid driver" do
-      # Arrange
-      # Ensure that there is a driver saved
-
-      # Act
-
-      # Assert
-
+      get driver_path(driver.id)
+      
+      must_respond_with :success
+      expect(Driver.count).must_be :>, 0
     end
 
     it "responds with 404 with an invalid driver id" do
-      # Arrange
-      # Ensure that there is an id that points to no driver
+      get driver_path(-20)
 
-      # Act
-
-      # Assert
-
+      must_respond_with :not_found
     end
   end
 
   describe "new" do
     it "responds with success" do
+      get new_driver_path
+      
+      must_respond_with :success
     end
   end
 
   describe "create" do
     it "can create a new driver with valid information accurately, and redirect" do
-      # Arrange
-      # Set up the form data
+      driver_hash = {
+        driver: {
+          name: "new driver",
+          vin: "new vin"
+        }
+      }
 
-      # Act-Assert
-      # Ensure that there is a change of 1 in Driver.count
+      expect {
+        post drivers_path, params: driver_hash
+      }.must_change "Driver.count", 1
 
-      # Assert
-      # Find the newly created Driver, and check that all its attributes match what was given in the form data
-      # Check that the controller redirected the user
+      new_driver = Driver.find_by(name: driver_hash[:driver][:name])
+      expect(new_driver.name).must_equal driver_hash[:driver][:name]
+      expect(new_driver.vin).must_equal driver_hash[:driver][:vin]
+      
+      must_respond_with :redirect
+      must_redirect_to driver_path(new_driver.id)
 
     end
 
