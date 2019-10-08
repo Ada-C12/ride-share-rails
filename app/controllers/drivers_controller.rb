@@ -9,6 +9,21 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: driver_id)
   end
   
+  def new
+    @driver = Driver.new
+  end
+  
+  def create
+    @driver = Driver.create(driver_params)
+    if @driver.save
+      redirect_to drivers_path
+      return
+    else
+      render :new
+      return
+    end
+  end
+  
   
   
   

@@ -7,9 +7,27 @@ class PassengersController < ApplicationController
   def show
     passenger_id = params[:id]
     @passenger = Passenger.find_by(id: passenger_id)
+    
+    if @passenger.nil?
+      head :not_found
+      return
+    end
   end
   
+  def new
+    @passenger = Passenger.new
+  end
   
+  def create
+    @passenger = Passenger.create(passenger_params)
+    if @passenger.save
+      redirect_to passengers_path
+      return
+    else
+      render :new
+      return
+    end
+  end
   
   
   private
