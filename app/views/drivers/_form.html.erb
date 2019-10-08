@@ -1,0 +1,15 @@
+<%= form_with model: @driver do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :vin %>
+  <%= f.text_field :vin %>
+  
+  <%= f.submit submit_button_label, class: "driver-form-button" %>
+  
+  <%# <%= f.submit "GET IT!" %> 
+  <%= button_tag "RESET", type: :reset %>
+
+
+<% end %>

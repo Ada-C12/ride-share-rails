@@ -1,2 +1,5 @@
 <h1>PASSENGERS index</h1>
 
+<% @passengers.each do |passenger| %>
+<%= passenger.id%>: <%= passenger.name%><br>
+<%end %>

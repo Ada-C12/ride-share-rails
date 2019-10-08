@@ -1,12 +1,14 @@
 <h1>ADD DRIVER</h1>
 
-<%= form_with model: @driver do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+<%# <%= form_with model: @driver do |f| %>
+  <%# <%= f.label :name %> 
+  <%# <%= f.text_field :name %> 
   
-  <%= f.label :vin %>
-  <%= f.text_field :vin %>
+  <%# <%= f.label :vin %> 
+  <%# <%= f.text_field :vin %> 
 
-  <%= f.submit "GET IT!" %>
-  <%= button_tag "RESET", type: :reset %>
-<% end %>
+  <%# <%= f.submit "GET IT!" %> 
+  <%# <%= button_tag "RESET", type: :reset %> 
+<%# <% end %>
+
+<%= render partial: "form", locals: {submit_button_label: "Edit Driver"} %>
