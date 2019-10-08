@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root to: "passengers#index", as: "root_passengers"
+  # root to: "passengers#index", as: "root_passengers"
   #resources :passengers, except: [:edit]
   # get "/passengers", to: "passengers#index", as: "passengers"
   # get "/passengers/new", to: "passengers#new", as: "new_passenger"
@@ -13,10 +13,10 @@ Rails.application.routes.draw do
   # delete "/passengers/:id", to: "passengers#destroy"
   resources :passengers
 
-  root to: "drivers#index", as: "root_drivers"
+  # root to: "drivers#index", as: "root_drivers"
   resources :drivers
 
-  root to: "trips#index", as: "root_trips"
+  # root to: "trips#index", as: "root_trips"
   resource :trips
 
   root to: "homepages#index"
