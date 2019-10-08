@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+ * {
+  border: 1px dashed rgb(169, 190, 211);
+ }
+
+ h1 {
+   background-color: aqua;
+ }
+
+ .nav {
+   background-color: royalblue;
+ }
+
+ footer {
+   background-color: brown;
+ }
