@@ -9,3 +9,23 @@
 <p>Name: <%= @passenger.name %></p>
 <p>Phone Number: <%= @passenger.phone_num %></p>
 <p>ID: <%= @passenger.id %></p>
+
+<p>
+
+Trips: 
+<br>
+<ul>
+  <% i = 1 %>
+  <% @passenger.trips.each do |trip| %>
+    <li>
+      Trip <%= i %> -
+      Date: <%= trip.date %>
+      Driver ID: <%= trip.driver_id %>
+      Rating: <%= trip.rating %>
+      Cost: <%= trip.cost %>
+    </li>
+    <% i += 1%>
+    <br>
+  <% end %>
+</ul>
+</p>

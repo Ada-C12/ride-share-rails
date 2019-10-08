@@ -8,3 +8,21 @@
 <p>Name: <%= @driver.name %></p>
 <p>VIN: <%= @driver.vin %></p>
 <p>ID: <%= @driver.id %></p>
+
+Trips: 
+<br>
+<ul>
+  <% i = 1 %>
+  <% @driver.trips.each do |trip| %>
+    <li>
+      Trip <%= i %> -
+      Date: <%= trip.date %>
+      Passenger ID: <%= trip.passenger_id %>
+      Rating: <%= trip.rating %>
+      Cost: <%= trip.cost %>
+    </li>
+    <% i += 1%>
+    <br>
+  <% end %>
+</ul>
+</p>
