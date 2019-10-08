@@ -12,9 +12,24 @@
 </p>
 
 <p>
-  <strong>Trips</strong>
-  <%# <%= @driver.vin %>
+  <strong>Status:</strong>
+  <% if @driver.active == true %>
+    <%= "Available" %>
+  <% else %>
+    <%= "NOT Available" %>
+  <% end %>
 </p>
+
+<p>
+  <strong>Car Make:</strong>
+  <%= @driver.car_make %>
+</p>
+
+<p>
+  <strong>Car Model:</strong>
+  <%= @driver.car_model%>
+</p>
+
 
 <%= link_to 'Edit', edit_driver_path(@driver) %> |
 <%= link_to 'Back', drivers_path %>
