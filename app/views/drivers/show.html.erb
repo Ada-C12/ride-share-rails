@@ -9,7 +9,7 @@
   <div>Vin: <%= @driver.vin %></div>
 
   <%# total earnings %>
-  <div>Total Earnings: <%# @driver.total_earnings %></div>
+  <div>Total Earnings: <%= number_to_currency(@driver.total_earnings / 100.0) %></div>
 
   <%# trips list %>
   <section>
@@ -38,7 +38,7 @@
               <%= trip.passenger.name %>
             </td>
             <td>
-              $<%= trip.cost %>
+              <%= number_to_currency(trip.cost / 100.0) %>
             </td>
             <td>
               <%= trip.rating %>

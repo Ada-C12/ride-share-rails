@@ -93,7 +93,37 @@ describe Driver do
     end
     
     describe "total earnings" do
-      # Your code here
+      it "can calculate the total earnings for multiple trips" do
+        # arrange
+        driver = Driver.create(name: "Kari", vin: "123")
+        # create a passenger for the trips
+        passenger = Passenger.create(name: "Nina", phone_num: "560.815.3059")
+        # create two trips
+        trip_one = Trip.create(date: Date.current, rating: 5, cost: 1200, driver_id: driver.id, passenger_id: passenger.id)
+        trip_two = Trip.create(date: Date.current, rating: 3, cost: 1400, driver_id: driver.id, passenger_id: passenger.id)
+        
+        # assert
+        expect(driver.total_earnings).must_equal 2600
+      end
+      
+      it "can calculate the total earnings for one trip" do
+        # arrange
+        driver = Driver.create(name: "Kari", vin: "123")
+        # create a passenger for the trips
+        passenger = Passenger.create(name: "Nina", phone_num: "560.815.3059")
+        # create two trips
+        trip_one = Trip.create(date: Date.current, rating: 5, cost: 1200, driver_id: driver.id, passenger_id: passenger.id)
+        
+        # assert
+        expect(driver.total_earnings).must_equal 1200
+      end
+      
+      it "returns nil for a driver with no trips" do
+        # arrange
+        driver = Driver.create(name: "Kari", vin: "123")
+        # assert
+        expect(driver.total_earnings).must_equal 0
+      end
     end
     
     describe "can go online" do
