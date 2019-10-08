@@ -27,4 +27,32 @@ class PassengersController < ApplicationController
       return
     end
   end
+  
+  def edit
+    @passenger = Passenger.find_by(id: params[:id])
+    
+    if @passenger.nil?
+      head :not_found
+      return
+    end
+  end
+  
+  def update
+    @passenger = Passenger.find_by(id: params[:id])
+    if @passenger.nil?
+      redirect_to passenger_path 
+      return
+    end
+    
+    if @passenger.update(
+      name: params[:passenger][:name], 
+      phone_number: params[:passenger][:phone_number])
+      redirect_to passenger_path  
+      return
+    else  
+      render :edit  
+      return
+    end
+  end
+  
 end
