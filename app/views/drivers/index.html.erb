@@ -1,0 +1,8 @@
+<h1>Drivers Page!<h1>
+
+<% @drivers.each do |driver| %>
+<li>
+<%= link_to driver.name, driver_path(driver) %>
+
+<% end %>
+
