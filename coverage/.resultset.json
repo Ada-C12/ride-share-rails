@@ -1,20 +1,97 @@
 {
   "MiniTest": {
     "coverage": {
-      "/Users/minipaige/ada/projects/ride-share-rails/app/models/application_record.rb": [
+      "/Users/minipaige/ada/projects/ride-share-rails/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/minipaige/ada/projects/ride-share-rails/app/helpers/drivers_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/minipaige/ada/projects/ride-share-rails/app/helpers/passengers_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/minipaige/ada/projects/ride-share-rails/app/helpers/trips_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/minipaige/ada/projects/ride-share-rails/app/controllers/drivers_controller.rb": [
+        1,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        2,
+        null,
+        2,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
         0,
-        0,
-        0
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null
       ],
       "/Users/minipaige/ada/projects/ride-share-rails/app/controllers/application_controller.rb": [
-        0,
-        0
+        1,
+        null
       ],
-      "/Users/minipaige/ada/projects/ride-share-rails/app/helpers/application_helper.rb": [
-        0,
-        0
+      "/Users/minipaige/ada/projects/ride-share-rails/app/controllers/passengers_controller.rb": [
+        1,
+        null
+      ],
+      "/Users/minipaige/ada/projects/ride-share-rails/app/controllers/trips_controller.rb": [
+        1,
+        null
+      ],
+      "/Users/minipaige/ada/projects/ride-share-rails/app/models/driver.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/minipaige/ada/projects/ride-share-rails/app/models/application_record.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/minipaige/ada/projects/ride-share-rails/app/models/passenger.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/minipaige/ada/projects/ride-share-rails/app/models/trip.rb": [
+        1,
+        1,
+        1,
+        null
       ]
     },
-    "timestamp": 1570490304
+    "timestamp": 1570572493
   }
 }
