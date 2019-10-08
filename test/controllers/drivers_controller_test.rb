@@ -69,16 +69,16 @@ describe DriversController do
 
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Set up the form data so that it violates Driver validations
+    it "does not create a driver if the form data violates Driver validations, and responds with a render of new driver page" do
+      new_driver = Driver.create(name: "", vin: "new vin")
 
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      expect(Driver.count).must_equal 0
 
-      # Assert
-      # Check that the controller redirects
+      expect(new_driver.valid?).must_equal false
+
+      # # Assert
+      # # Check that the controller redirects
+      # must_redirect_with :render
 
     end
   end

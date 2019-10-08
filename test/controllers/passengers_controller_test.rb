@@ -66,6 +66,19 @@ describe PassengersController do
       must_respond_with :redirect
       must_redirect_to passenger_path(new_passenger.id)
     end
+
+    it "does not create a passenger if the form data violates Passenger validations, and responds with a render of new passenger page" do
+      new_passenger = Passenger.create(name: "", phone_num: "")
+
+      expect(Passenger.count).must_equal 0
+
+      expect(new_passenger.valid?).must_equal false
+
+
+      # # Assert
+      # # Check that the controller redirects
+      # must_redirect_with :render
+    end
   end
   
   describe "edit" do
