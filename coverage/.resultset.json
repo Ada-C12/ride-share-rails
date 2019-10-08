@@ -1,23 +1,23 @@
 {
   "MiniTest": {
     "coverage": {
-      "/Users/thaole/ada/week10/ride-share-rails/app/helpers/application_helper.rb": [
+      "/Users/minipaige/ada/projects/ride-share-rails/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/thaole/ada/week10/ride-share-rails/app/helpers/drivers_helper.rb": [
+      "/Users/minipaige/ada/projects/ride-share-rails/app/helpers/drivers_helper.rb": [
         1,
         null
       ],
-      "/Users/thaole/ada/week10/ride-share-rails/app/helpers/passengers_helper.rb": [
+      "/Users/minipaige/ada/projects/ride-share-rails/app/helpers/passengers_helper.rb": [
         1,
         null
       ],
-      "/Users/thaole/ada/week10/ride-share-rails/app/helpers/trips_helper.rb": [
+      "/Users/minipaige/ada/projects/ride-share-rails/app/helpers/trips_helper.rb": [
         1,
         null
       ],
-      "/Users/thaole/ada/week10/ride-share-rails/app/controllers/drivers_controller.rb": [
+      "/Users/minipaige/ada/projects/ride-share-rails/app/controllers/drivers_controller.rb": [
         1,
         1,
         2,
@@ -38,39 +38,47 @@
         null,
         null,
         1,
+        6,
+        6,
+        6,
+        6,
+        1,
+        1,
+        null,
+        null,
+        null,
+        5,
+        null,
+        null,
+        null,
+        1,
         2,
         2,
-        2,
-        2,
-        1,
         1,
         null,
-        null,
-        null,
-        1,
         null,
         null,
         null,
         null,
         1,
         1,
-        2,
+        6,
         null,
         null
       ],
-      "/Users/thaole/ada/week10/ride-share-rails/app/controllers/application_controller.rb": [
+      "/Users/minipaige/ada/projects/ride-share-rails/app/controllers/application_controller.rb": [
         1,
         null
       ],
-      "/Users/thaole/ada/week10/ride-share-rails/app/controllers/passengers_controller.rb": [
+      "/Users/minipaige/ada/projects/ride-share-rails/app/controllers/passengers_controller.rb": [
         1,
         null
       ],
-      "/Users/thaole/ada/week10/ride-share-rails/app/controllers/trips_controller.rb": [
+      "/Users/minipaige/ada/projects/ride-share-rails/app/controllers/trips_controller.rb": [
         1,
         null
       ],
-      "/Users/thaole/ada/week10/ride-share-rails/app/models/driver.rb": [
+      "/Users/minipaige/ada/projects/ride-share-rails/app/models/driver.rb": [
         1,
         1,
         null,
@@ -78,23 +86,23 @@
         1,
         null
       ],
-      "/Users/thaole/ada/week10/ride-share-rails/app/models/application_record.rb": [
+      "/Users/minipaige/ada/projects/ride-share-rails/app/models/application_record.rb": [
         1,
         1,
         null
       ],
-      "/Users/thaole/ada/week10/ride-share-rails/app/models/passenger.rb": [
+      "/Users/minipaige/ada/projects/ride-share-rails/app/models/passenger.rb": [
         1,
         1,
         null
       ],
-      "/Users/thaole/ada/week10/ride-share-rails/app/models/trip.rb": [
+      "/Users/minipaige/ada/projects/ride-share-rails/app/models/trip.rb": [
         1,
         1,
         1,
         null
       ]
     },
-    "timestamp": 1570574416
+    "timestamp": 1570577024
   }
 }
