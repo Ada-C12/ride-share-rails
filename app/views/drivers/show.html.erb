@@ -3,10 +3,10 @@
   <h2><%= @driver.name %></h2>
 
   <%# average rating %>
-  <div>Average Rating: <%# @driver.rating %></div>
+  <div>Average Rating: <%= @driver.average_rating %></div>
 
-  <%# model %>
-  <div>Model: <%= @driver.vin %></div>
+  <%# vin %>
+  <div>Vin: <%= @driver.vin %></div>
 
   <%# total earnings %>
   <div>Total Earnings: <%# @driver.total_earnings %></div>
@@ -38,7 +38,7 @@
               <%= trip.passenger.name %>
             </td>
             <td>
-              TBA
+              $<%= trip.cost %>
             </td>
             <td>
               <%= trip.rating %>

@@ -1,32 +1,30 @@
 require "test_helper"
 
 describe Driver do
-  let (:new_driver) {
-    Driver.new(name: "Kari", vin: "123", active: true,
-               car_make: "Cherry", car_model: "DR5")
-  }
+  let (:new_driver) {Driver.new(name: "Kari", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")}
+  
   it "can be instantiated" do
     # Assert
     expect(new_driver.valid?).must_equal true
   end
-
+  
   it "will have the required fields" do
     # Arrange
     new_driver.save
     driver = Driver.first
     [:name, :vin, :active, :car_make, :car_model].each do |field|
-
+      
       # Assert
       expect(driver).must_respond_to field
     end
   end
-
+  
   describe "relationships" do
     it "can have many trips" do
       # Arrange
       new_driver.save
       driver = Driver.first
-
+      
       # Assert
       expect(driver.trips.count).must_be :>=, 0
       driver.trips.each do |trip|
@@ -34,47 +32,78 @@ describe Driver do
       end
     end
   end
-
+  
   describe "validations" do
     it "must have a name" do
       # Arrange
       new_driver.name = nil
-
+      
       # Assert
       expect(new_driver.valid?).must_equal false
       expect(new_driver.errors.messages).must_include :name
       expect(new_driver.errors.messages[:name]).must_equal ["can't be blank"]
     end
-
+    
     it "must have a VIN number" do
       # Arrange
       new_driver.vin = nil
-
+      
       # Assert
       expect(new_driver.valid?).must_equal false
       expect(new_driver.errors.messages).must_include :vin
       expect(new_driver.errors.messages[:vin]).must_equal ["can't be blank"]
     end
   end
-
+  
   # Tests for methods you create should go here
   describe "custom methods" do
+    
     describe "average rating" do
-      # Your code here
+      it "can calculate the average rating of multiple trips" do
+        # arrange
+        driver = Driver.create(name: "Kari", vin: "123")
+        # create a passenger for the trips
+        passenger = Passenger.create(name: "Nina", phone_num: "560.815.3059")
+        # create two trips
+        trip_one = Trip.create(date: Date.current, rating: 5, cost: 1200, driver_id: driver.id, passenger_id: passenger.id)
+        trip_two = Trip.create(date: Date.current, rating: 3, cost: 1400, driver_id: driver.id, passenger_id: passenger.id)
+        
+        # assert
+        expect(driver.average_rating).must_equal 4
+      end
+      
+      it "can calculate the average rating of one trip" do
+        # arrange
+        driver = Driver.create(name: "Kari", vin: "123")
+        # create a passenger for the trips
+        passenger = Passenger.create(name: "Nina", phone_num: "560.815.3059")
+        # create two trips
+        trip_one = Trip.create(date: Date.current, rating: 5, cost: 1200, driver_id: driver.id, passenger_id: passenger.id)
+        
+        # assert
+        expect(driver.average_rating).must_equal 5
+      end
+      
+      it "returns nil for a driver with no trips" do
+        # arrange
+        driver = Driver.create(name: "Kari", vin: "123")
+        # assert
+        expect(driver.average_rating).must_be_nil
+      end
     end
-
+    
     describe "total earnings" do
       # Your code here
     end
-
+    
     describe "can go online" do
       # Your code here
     end
-
+    
     describe "can go offline" do
       # Your code here
     end
-
+    
     # You may have additional methods to test
   end
 end
