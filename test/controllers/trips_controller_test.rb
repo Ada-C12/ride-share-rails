@@ -24,7 +24,57 @@ describe TripsController do
   end
   
   describe "create" do
-    # Your tests go here
+    it "can create a new trip with valid information accurately, and redirect" do
+      # Arrange
+      driver = Driver.create(name: "Bernardo Prosacco", vin: "WBWSS52P9NEYLVDE9")
+      passenger = Passenger.create(name: "test person", phone_num: "1234567")
+      
+      # Set up the form data
+      data_hash = {
+        trip: {
+          date: DateTime.now,
+          rating: 2,
+          cost: 1000,
+          driver_id: driver.id,
+          passenger_id: passenger.id,
+        }
+      }
+      
+      # Act-Assert
+      # Ensure that there is a change of 1 in Trip.count
+      expect {
+        post trips_path, params: data_hash
+      }.must_change 'Trip.count', 1
+      
+      # Assert
+      # Find the newly created Trip, and check that all its attributes match what was given in the form data
+      # Check that the controller redirected the user
+      
+      new_trip = Trip.first
+      expect(new_trip.rating).must_equal data_hash[:trip][:rating]
+      expect(new_trip.cost).must_equal data_hash[:trip][:cost]
+      expect(new_trip.driver_id).must_equal data_hash[:trip][:driver_id]
+      expect(new_trip.passenger_id).must_equal data_hash[:trip][:passenger_id]
+      
+      must_redirect_to passenger_path(new_trip.passenger_id)
+    end
+    
+    it "does not create a trip if the form data violates Trip validations, and responds with a redirect" do
+      # Note: This will not pass until ActiveRecord Validations lesson
+      # Arrange
+      # Set up the form data so that it violates Trip validations
+      data_hash = {}
+      
+      # Act-Assert
+      # Ensure that there is no change in Trip.count
+      expect {
+        post trips_path, params: data_hash
+      }.wont_change 'Trip.count'
+      
+      # Assert
+      # Check that the controller redirects
+      must_redirect_to root_path
+    end
   end
   
   describe "edit" do

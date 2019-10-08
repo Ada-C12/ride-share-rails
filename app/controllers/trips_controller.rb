@@ -8,8 +8,17 @@ class TripsController < ApplicationController
     end
   end
   
-  def create
-    
+  def create   
+    if !(params[:trip].nil?)
+      @trip = Trip.new(trip_params)
+      
+      if @trip.save
+        redirect_to passenger_path(@trip.passenger_id)
+        return
+      end
+    else
+      redirect_to root_path
+    end
   end
   
   def edit
@@ -27,7 +36,7 @@ class TripsController < ApplicationController
   private
   
   def trip_params
-    
+    return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
   end
   
 end
