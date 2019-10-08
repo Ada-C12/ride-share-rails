@@ -29,7 +29,9 @@ describe PassengersController do
       get new_passenger_path
       must_respond_with :success
     end
-    
+  end
+  
+  describe "create" do
     it "can create new Passenger, given correct args, and go to show.html" do
       expect {post passengers_path, params: passenger_hash}.must_change "Passenger.count", 1
       new_passenger = Passenger.last
@@ -43,32 +45,35 @@ describe PassengersController do
       
       bad_names.each do |bad_name|
         bad_params = { passenger: {name: bad_name, phone_num: "4251231234"} } 
-        expect {post passengers_path, params: bad_params }.must_differ, "Task.count", 0
+        expect { post passengers_path, params: bad_params }.must_differ "Passenger.count", 0
         must_respond_with 200
       end
       
-      # bad_phone_nums = ["garbage", "!!!!!", "123"]
+      ### FUTURE IDEA: VALIDATE AGAINST THESE... 
+      # more_bad_phone_nums = ["garbage", "!!!!!", "123"]
+      
+      bad_phone_nums = [nil, "", "    "]
+      bad_phone_nums.each do |bad_phone_num|
+        bad_params = { passenger: {name: "jerky jerkface", phone_num: bad_phone_num} } 
+        expect {post passengers_path, params: bad_params }.must_differ "Passenger.count", 0
+        must_respond_with 200
+      end
+      
     end
   end
   
-  
-  describe "create" do
-    it "will make new Passenger obj correctly with good args" do
-    end
-    
-    it "will not make Passenger obj and give errors with bad args" do
+  describe "edit" do
+    it "" do
     end
   end
   
-  #   describe "edit" do
-  #     # Your tests go here
-  #   end
+  describe "update" do
+    it "" do
+    end
+  end
   
-  #   describe "update" do
-  #     # Your tests go here
-  #   end
-  
-  #   describe "destroy" do
-  #     # Your tests go here
-  #   end
+  describe "destroy" do
+    it "" do
+    end
+  end
 end
