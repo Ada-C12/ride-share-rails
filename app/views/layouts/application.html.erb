@@ -10,6 +10,26 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav>
+      <h1>Rideshare Rails!</h1>
+      <div class="dropdown-container">
+        <div>Drivers</div>
+        <div class="dropdown-content">
+          <div><%= link_to "View Drivers", drivers_path %></div>
+          <div><%= link_to "Add Driver", new_driver_path %></div>
+        </div>
+      </div>
+      <div class="dropdown-container">
+        <div>Passengers</div>
+        <div class="dropdown-content">
+          <div><%= link_to "View Passengers", passengers_path %></div>
+          <div><%= link_to "Add Passenger", new_passenger_path %></div>
+        </div>
+      </div>
+    </nav>
+    
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

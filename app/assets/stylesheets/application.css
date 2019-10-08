@@ -13,3 +13,25 @@
  *= require_tree .
  *= require_self
  */
+
+nav > * {
+  display: inline-block;
+}
+
+/* css dropdown on hover: https://www.w3schools.com/css/css_dropdowns.asp */
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+}
+
+.dropdown-container:hover .dropdown-content {
+  display: block;
+  width: max-content;
+  
+  /* make sure it appears on top of everything else */
+  z-index: 1;
+}
