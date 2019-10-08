@@ -1,6 +1,8 @@
 require "test_helper"
 
 describe PassengersController do
+  let (:passenger1) { Passenger.create (name: "J. G. Wentworth", phone_num: "1-800-cash-now") }
+  
   describe "index" do
     it "can go to Passengers/index" do
       get passengers_path
@@ -10,7 +12,7 @@ describe PassengersController do
   
   describe "show" do
     it "can go to Passengers/:id/show for valid id" do
-      puts "\n\nWTF #{Passenger.all.first.id}"
+      passenger1
       get passenger_path(id: Passenger.first.id)
       must_respond_with :success
     end

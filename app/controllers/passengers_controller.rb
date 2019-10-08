@@ -10,13 +10,12 @@ class PassengersController < ApplicationController
   
   def create
     @passenger = Passenger.new(get_params)
-    if @passenger.valid?
-      x = "success"
-      raise
+    if @passenger.save
+      redirect_to passenger_path(id: @passenger.id)
       return
     else
-      x = "bad args"
-      raise
+      render new_passenger_path
+      # redirect_to nope_path
       return
     end
   end
