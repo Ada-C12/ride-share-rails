@@ -1,11 +1,12 @@
   <h3>Name: <%= @driver.name %></h3>
- 
-  <p> Driver Info:
+ <ul>
+  <p> Driver Info: </p>
 
-  <%= @driver.vin %>
-  <%= @driver.make %>
-  <%= @driver.model %>
-  <%= @driver.active %>
+  <li>Vin #: <%= @driver.vin %></li>
+  <li>Car Make: <%= @driver.make %></li>
+  <li>Car Model: <%= @driver.model %></li>
+  <li>Status: <%= @driver.active %></li>
   </p>
-  
+  <%= link_to "Edit", edit_driver_path(@driver) %>
+  <%= link_to "Delete", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"}%>
   <p><%= link_to "Return to Drivers List", drivers_path %></p>
