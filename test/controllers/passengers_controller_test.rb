@@ -1,7 +1,8 @@
 require "test_helper"
 
 describe PassengersController do
-  let (:passenger1) { Passenger.create(name: "Bart Simpson", phone_num: "1-800-1234-567") }
+  let (:passenger1) { Passenger.create( name: "Ned Flanders", phone_num: "206-123-1234") }
+  let (:passenger_hash) {{ passenger: { name: "Homer Simpson", phone_num: "425-123-1234" } }}
   
   describe "index" do
     it "can go to Passengers/index" do
@@ -29,18 +30,30 @@ describe PassengersController do
       must_respond_with :success
     end
     
-    it "Given bad args, will fail validations, and stay on page" do
-      bad_names = [nil, "", "    "]
-      bad_phone_nums = ["garbage", "!!!!!", "123"]
-      
-      bad_names.each do |bad_name|
-        bad_passenger = Passenger.create(name: bad_name, phone_num: "4251231234")
-        puts bad_passenger
-        refute(bad_passenger)
-        must_respond_with :success
-      end
+    it "can create new Passenger, given correct args, and go to show.html" do
+      expect {post passengers_path, params: passenger_hash}.must_change "Passenger.count", 1
+      new_passenger = Passenger.last
+      must_redirect_to passenger_path(id: new_passenger.id)
+      assert (new_passenger.name == passenger_hash[:passenger][:name])
+      assert (new_passenger.phone_num == passenger_hash[:passenger][:phone_num])
     end
+    
+    it "Given bad args, will fail validations, and stay on page" do
+      # bad_names = [nil, "", "    "]
+      
+      
+      # bad_names.each do |bad_name|
+      #   bad_passenger = Passenger.create(name: bad_name, phone_num: "4251231234")
+      #   # refute(bad_passenger)
+      
+      #   post passengers_path, params: { name: bad_name, phone_num: "4251231234" }
+      #   puts params
+      #   # must_respond_with 200
+      # bad_phone_nums = ["garbage", "!!!!!", "123"]
+    end
+    
   end
+  
   
   describe "create" do
     it "will make new Passenger obj correctly with good args" do
