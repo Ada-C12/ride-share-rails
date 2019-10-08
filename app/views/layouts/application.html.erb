@@ -9,7 +9,23 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
   <body>
+  <nav>
+  <section class="dropdown">
+  <a href="../passengers"><button class="dropbtn">Passengers</button></a>
+  <div class="dropdown-content">
+    <a href="../passengers/new">Add Passenger</a>
+  </div>
+</div>
+
+<section class="dropdown">
+  <a href="../drivers"><button class="dropbtn">Drivers</button></a>
+  <div class="dropdown-content">
+    <a href="../drivers/new">Add Driver</a>
+  </div>
+</div>
+  </nav>
     <%= yield %>
   </body>
 </html>
