@@ -1,9 +1,24 @@
 <h1>PASSENGERS index</h1>
 
-<%= link_to "NEW PASSENGER", new_passenger_path %>
-<%= link_to "EDIT PASSENGER (TEMP!!!)", root_path %>
+<%= link_to "NEW PASSENGER", new_passenger_path %><br>
 <hr>
-<% @passengers.each do |passenger| %>
-<%= passenger.id%>: <%= passenger.name%><br>
-<%end %>
+
+
+
+<section class="passenger_grid">
+  <section class="header_row"><%= "ID" %></section>
+  <section class="header_row"><%= "NAME" %></section>
+  <section class="header_row"><%= "PHONE NUMBER" %></section>
+  <section class="header_row"><%= "EDIT" %></section>
+  <section class="header_row"><%= "DELETE" %></section>
+  
+  
+  <% @passengers.each do |passenger| %>
+    <section><%= passenger.id%></section>
+    <section><%= passenger.name%></section>
+    <section><%= passenger.phone_num%></section>
+    <%= link_to "EDIT (TEMP!!!)", root_path %>
+    <%= link_to "delete (TEMP!!!)", root_path %>
+  <%end %>
+</section>
 
