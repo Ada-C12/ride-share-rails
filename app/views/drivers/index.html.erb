@@ -1,0 +1,12 @@
+<h1>Driver Index Page</h1>
+
+<ol>
+  <% @drivers.each do |driver| %>
+  <li>
+    <%= driver.name %>
+      <li>VIN: <%= driver.vin %></li>
+      <li>Car make: <%= driver.car_make %></li>
+      <li>Car model: <%= driver.car_model %></li>
+  </li>
+  <% end %>
+</ol>
