@@ -22,7 +22,7 @@ class PassengersController < ApplicationController
   def show
     @passenger = Passenger.find_by(id: params[:id])
     if @passenger.nil?
-      redirect_to passenger_path
+      redirect_to root_path
       return 
     end
   end

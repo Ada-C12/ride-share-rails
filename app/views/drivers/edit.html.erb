@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Driver</title>
+  </head>
+
+  <body>
+  <body>
+    <header>
+      <h1>Welcome to Rideshare</h1>
+      <nav>
+        <ul>
+          <%= link_to "Rideshare Rails", root_path %>
+          <%= link_to "Passengers", passengers_path %>
+          <%= link_to "Drivers", drivers_path %>
+        </ul>
+      </nav>
+    </header>
+
+    <%= form_with model: @driver do |f| %>
+      <p>Please provide the following information to update the driver to our database:</p>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :vin %>
+      <%= f.text_field :vin %>
+
+      <%= f.label :carmake, "Car Make" %>
+      <%= f.text_field :carmake %>
+
+      <%= f.label :carmodel, "Car Model" %>
+      <%= f.text_field :carmodel %>
+
+      <%= f.submit "Update Driver" %>
+    <% end %>
+  </body>
+</html>
