@@ -14,5 +14,5 @@
   </li>
 </ul>
 
-<%# <%= link_to "Delete #{@driver.name}", destroy_driver_path %>
+<%= link_to "Delete #{@driver.name}", driver_path, method: :delete, data: { confirm: "Are you sure?" } %>
 <%= link_to "Edit #{@driver.name}", edit_driver_path %>
