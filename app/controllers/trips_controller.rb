@@ -1,4 +1,9 @@
 class TripsController < ApplicationController
+
+  def index
+    @trips = Trip.all
+  end
+
   def create
     if params[:driver_id] && params[:passenger_id]
       @trip = Trip.new(trip_params)

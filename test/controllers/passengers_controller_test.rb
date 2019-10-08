@@ -69,7 +69,17 @@ describe PassengersController do
     end
 
     it "does not create a passenger if the form data violates Passenger validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
+      passenger_hash = {
+        passenger: {
+          phone_num: "XXX-XXX-XXX"
+        }
+      }
+
+      expect {
+        post passengers_path, params: passenger_hash
+      }.wont_change "Passenger.count"
+
+      must_respond_with :success   
     end
   end
 
@@ -138,7 +148,22 @@ describe PassengersController do
 
     it "does not create a passenger if the form data violates Passenger validations, and responds with a redirect" do
       # Note: This will not pass until ActiveRecord Validations lesson
+      existing_passenger = Passenger.create name: "Harry Potter", phone_num: "XXX-XXX-XXXX"
 
+      updated_passenger_hash = {
+        passenger: {
+          name: "Ron Weasley"
+        }
+      }
+
+      expect {
+        patch passenger_path(existing_passenger.id), params: updated_passenger_hash
+      }.wont_change "Passenger.count"
+
+      passenger_id = Passenger.find_by(id: existing_passenger.id)
+
+      must_respond_with :redirect
+      must_redirect_to passenger_path(passenger_id)
     end
   end
 
