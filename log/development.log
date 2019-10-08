@@ -1,0 +1,133 @@
+Started GET "/" for ::1 at 2019-10-07 16:27:37 -0700
+
+PG::ConnectionBad - FATAL:  database "ride-share-rails_development" does not exist
+:
+
+Started POST "/__better_errors/ee8cf9a0e5ff5dc3/variables" for ::1 at 2019-10-07 16:27:37 -0700
+  [1m[35m (461.9ms)[0m  [1m[35mCREATE DATABASE "ride-share-rails_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (326.1ms)[0m  [1m[35mCREATE DATABASE "ride-share-rails_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+Started GET "/" for ::1 at 2019-10-07 16:28:37 -0700
+
+ActiveRecord::PendingMigrationError - Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+:
+
+Started POST "/__better_errors/eb250abc8900fad9/variables" for ::1 at 2019-10-07 16:28:37 -0700
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3304801670023176435)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreatePassengers (20191007223905)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE TABLE "passengers" ("id" bigserial primary key, "name" character varying, "phone_num" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20191007223905_create_passengers.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20191007223905"]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateDrivers (20191007224022)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "drivers" ("id" bigserial primary key, "name" character varying, "vin" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20191007224022_create_drivers.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20191007224022"]]
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateTrips (20191007224522)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "trips" ("id" bigserial primary key, "date" timestamp, "rating" integer, "cost" float, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20191007224522_create_trips.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "trips" ADD "driver_id" bigint[0m
+  ↳ db/migrate/20191007224522_create_trips.rb:10
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE  INDEX  "index_trips_on_driver_id" ON "trips"  ("driver_id")[0m
+  ↳ db/migrate/20191007224522_create_trips.rb:10
+  [1m[35m (2.0ms)[0m  [1m[35mALTER TABLE "trips" ADD CONSTRAINT "fk_rails_e7560abc33"
+FOREIGN KEY ("driver_id")
+  REFERENCES "drivers" ("id")
+[0m
+  ↳ db/migrate/20191007224522_create_trips.rb:10
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "trips" ADD "passenger_id" bigint[0m
+  ↳ db/migrate/20191007224522_create_trips.rb:11
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX  "index_trips_on_passenger_id" ON "trips"  ("passenger_id")[0m
+  ↳ db/migrate/20191007224522_create_trips.rb:11
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "trips" ADD CONSTRAINT "fk_rails_a3e4ffd914"
+FOREIGN KEY ("passenger_id")
+  REFERENCES "passengers" ("id")
+[0m
+  ↳ db/migrate/20191007224522_create_trips.rb:11
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20191007224522"]]
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-10-07 23:30:17.756788"], ["updated_at", "2019-10-07 23:30:17.756788"]]
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(3304801670023176435)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Started GET "/" for ::1 at 2019-10-07 16:30:37 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/monick/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 413ms (Views: 403.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers" for ::1 at 2019-10-07 16:30:47 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  Rendered passengers/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 29ms (Views: 25.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/drivers" for ::1 at 2019-10-07 16:30:49 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  Rendered drivers/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 32ms (Views: 30.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/trips" for ::1 at 2019-10-07 16:30:51 -0700
+Processing by TripsController#index as HTML
+  Rendering trips/index.html.erb within layouts/application
+  Rendered trips/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 46ms (Views: 43.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-07 18:16:33 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 55ms (Views: 52.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-07 21:32:13 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 34ms (Views: 32.3ms | ActiveRecord: 0.0ms)
+
+
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDriver Create (3.0ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 04:50:01.636047"], ["updated_at", "2019-10-08 04:50:01.636047"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m

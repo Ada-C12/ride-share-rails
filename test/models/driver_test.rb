@@ -4,10 +4,12 @@ describe Driver do
   let (:new_driver) {
     Driver.new(name: "Kari", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
   }
-  it "can be instantiated" do
-    # Assert
-    expect(new_driver.valid?).must_equal true
-  end
+  
+  # it "can be instantiated" do
+  #   # Assert
+  #   expect(new_driver.valid?).must_equal true
+  #   expect(new_driver).must_be_instance_of Driver
+  # end
   
   # it "will have the required fields" do
   #   # Arrange
