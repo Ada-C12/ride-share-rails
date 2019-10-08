@@ -2,3 +2,34 @@
 
 <h2><%= @passenger.phone_num %></h2>
 <h2><%= @passenger.total_charges %></h2>
+
+<%= link_to "edit", edit_passenger_path(@passenger.id) %>
+<%= link_to "delete", passenger_path(@passenger.id), method: :delete %>
+
+<table>
+  <p>trips</p>
+  <theader>
+   <tr>
+    <td>id</td>
+    <td>date</td>
+    <td>driver</td>
+    <td>passenger</td>
+    <td>cost</td>
+    <td>rating</td>
+    <td>delete</td>
+   </tr>
+  </theader>
+  <tbody>
+    <% @passenger.trips.each do |trip| %>
+      <tr>
+        <td><%= trip.id %></td>
+        <td><%= trip.date %></td>
+        <td><%= trip.driver.id %></td>
+        <td><%= trip.passenger.id %></td>
+        <td><%= trip.cost %></td>
+        <td><%= trip.rating %></td>
+        <td><%= link_to "delete", trip_path(trip.id), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
