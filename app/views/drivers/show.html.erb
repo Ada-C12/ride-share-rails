@@ -14,7 +14,7 @@
   <%# edit/delete options %>
   <div class="modify-options">
     <div><%= link_to "Edit", edit_driver_path(@driver.id) %></div>
-    <div>Delete</div>
+    <div><%= link_to "Delete", driver_path(@driver.id), method: :delete %></div>
   </div>
 
   <%# trips list %>
