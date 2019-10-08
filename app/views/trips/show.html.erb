@@ -1,0 +1,13 @@
+<h2>Trip ID: <%= @trip.id %></h2>
+<h3>Date: <%= @trip.date %></h3>
+<h3>Driver ID: <%= @trip.driver.id %></h3>
+<h3>Driver: <%= @trip.driver.name %></h3>
+<h3>Passenger ID: <%= @trip.passenger.id %></h3>
+<h3>Passenger: <%= @trip.passenger.name %></h3>
+<h3>Rating: <%= @trip.rating %></h3>
+<h3>Cost: <%= @trip.cost %></h3>
+
+<p><%= link_to "Edit Trip", edit_trip_path %></p>
+<p><%= link_to "Delete", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"}%></p>
+<p><%= link_to "Return to Passenger List", passengers_path %></p>
+<p><%= link_to "Return to Driver List", drivers_path %></p>
