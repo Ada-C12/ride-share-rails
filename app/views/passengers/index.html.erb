@@ -1,5 +1,9 @@
 <h1>PASSENGERS index</h1>
 
+<%= link_to "NEW PASSENGER", new_passenger_path %>
+<%= link_to "EDIT PASSENGER (TEMP!!!)", root_path %>
+<hr>
 <% @passengers.each do |passenger| %>
 <%= passenger.id%>: <%= passenger.name%><br>
 <%end %>
+

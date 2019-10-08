@@ -9,6 +9,8 @@ class PassengersController < ApplicationController
   end
   
   def create
+    @passenger = Passenger.new(get_params)
+    puts @passenger
   end
   
   def show
@@ -21,5 +23,11 @@ class PassengersController < ApplicationController
   end
   
   def delete
+  end
+  
+  
+  private
+  def get_params
+    return params.require[:passenger].permit[:name, :phone_num]
   end
 end

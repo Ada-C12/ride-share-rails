@@ -1,1 +1,12 @@
 <h1>ADD NEW PASSENGER</h1>
+
+<%= form_with model: @passenger do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  
+  <%= f.label :phone_num %>
+  <%= f.text_field :phone_num %>
+
+  <%= f.submit "GET IT!" %>
+  <%= button_tag "RESET", type: :reset %>
+<% end %>
