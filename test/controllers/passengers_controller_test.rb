@@ -61,15 +61,13 @@ describe PassengersController do
     end
     
     it "does not create a passenger if the form data violates Passenger validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Set up the form data so that it violates Driver validations
+      passenger_hash = {}
       
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      expect {
+        post passengers_path, params: passenger_hash
+      }.wont_change 'Passenger.count'
       
-      # Assert
-      # Check that the controller redirects
+      must_redirect_to passengers_path
       
     end
   end
@@ -118,15 +116,15 @@ describe PassengersController do
       must_respond_with :not_found
     end
     
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not create a passenger if the form data violates passenger validations, and responds with a redirect" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      # Set up the form data so that it violates Driver validations
+      # Ensure there is an existing passenger saved
+      # Assign the existing passenger's id to a local variable
+      # Set up the form data so that it violates passenger validations
       
       # Act-Assert
-      # Ensure that there is no change in Driver.count
+      # Ensure that there is no change in passenger.count
       
       # Assert
       # Check that the controller redirects
@@ -135,7 +133,7 @@ describe PassengersController do
   end
   
   describe "destroy" do
-    it "destroys the driver instance in db when driver exists, then redirects" do
+    it "destroys the passenger instance in db when passenger exists, then redirects" do
       test_passenger = Passenger.create(name: "test person", phone_num: "1234567")
       new_passenger = Passenger.find_by(id: test_passenger.id)
       
@@ -145,7 +143,7 @@ describe PassengersController do
       must_redirect_to passengers_path
     end
     
-    it "does not change the db when the driver does not exist, then responds with " do
+    it "does not change the db when the passenger does not exist, then responds with " do
       expect {delete passenger_path(-1)}.wont_change 'Passenger.count'
       
       must_respond_with :redirect
