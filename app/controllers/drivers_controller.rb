@@ -6,7 +6,15 @@ class DriversController < ApplicationController
   
   def create
     @driver = Driver.new( strongs_params )
-    @driver.save
+    if @driver.save
+      redirect_to driver_path(@driver.id)
+    else
+      render new_driver_path
+    end
+  end
+  
+  def new
+    @driver = Driver.new
   end
   
   

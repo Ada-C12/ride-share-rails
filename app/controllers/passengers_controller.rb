@@ -3,7 +3,7 @@ class PassengersController < ApplicationController
   def index
     @passengers = Passenger.all
   end
-    
+  
   def show
     passenger_id = params[:id].to_i
     @passenger = Passenger.find_by(id: passenger_id)
@@ -17,7 +17,15 @@ class PassengersController < ApplicationController
   
   def create
     @passenger = Passenger.new( strongs_params )
-    @passenger.save
+    if @passenger.save
+      redirect_to passenger_path(@pasenger.id)
+    else
+      render new_passenger_path
+    end
+  end
+  
+  def new
+    @passenger = Passenger.new
   end
   
   

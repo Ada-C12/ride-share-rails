@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   root to: "homepages#index"
   
   resources :homepages
-  
+  resources :drivers
   resources :passengers
 end
