@@ -3,7 +3,7 @@
 <p>Trip Rating:
 <% @trip.rating = nil %>
 <% if @trip.rating == nil %>
-  <%= link_to "Add a rating", update_path(@trip.id) %>
+  <%= link_to "Add a rating", edit_trip_path(@trip.id) %>
   <% else %>
   <%= @trip.rating %>
 <% end%>
