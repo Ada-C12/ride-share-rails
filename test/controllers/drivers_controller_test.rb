@@ -120,34 +120,28 @@ describe DriversController do
       driver_hashes.each do |driver_data|
         expect {
           post drivers_path, params: driver_data
-        }.must_change "Driver.count", 0
+        }.must_differ "Driver.count", 0
       end
 
       must_respond_with :redirect
       must_redirect_to new_driver_path
-
     end
   end
   
   describe "edit" do
     it "responds with success when getting the edit page for an existing, valid driver" do
-      # Arrange
-      # Ensure there is an existing driver saved
+      driver_id = Driver.first.id
 
-      # Act
+      get edit_driver_path(driver_id)
 
-      # Assert
-
+      must_respond_with :success
     end
 
     it "responds with redirect when getting the edit page for a non-existing driver" do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
+      get edit_driver_path(-1)
 
-      # Act
-
-      # Assert
-
+      must_respond_with :redirect
+      must_redirect_to drivers_path
     end
   end
 
