@@ -17,7 +17,7 @@ describe PassengersController do
     
     it "redirect to homepage if invalid id" do
       get passenger_path(id: -666)
-      must_redirect_to root_path
+      must_redirect_to nope_path
     end
   end
   
