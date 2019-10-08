@@ -6,22 +6,27 @@ describe DriversController do
   describe "index" do
     it "responds with success when there are many drivers saved" do
       # Arrange
-      # Ensure that there is at least one Driver saved
-
+      Driver.create name: "Meatball Jones", vin: 41225, active: true, car_make: "Honda", car_model: "Accord"
+      Driver.create name: "Number One Benitez", vin: 53246, active: false, car_make: "Toyota", car_model: "Tacoma"
+      Driver.create name: "Fred Boutros", vin: 32960, active: true, car_make: "Volkswagen", car_model: "Eurovan"
       # Act
-
+      get drivers_path
       # Assert
-
+      must_respond_with :success
     end
 
     it "responds with success when there are no drivers saved" do
       # Arrange
       # Ensure that there are zero drivers saved
-
+      if !Drivers.present?
+        Drivers.each do |driver|
+          delete driver_path(driver)
+        end
+      end
       # Act
-
+      get drivers_path
       # Assert
-
+      must_respond_with :success
     end
   end
 
@@ -79,7 +84,7 @@ describe DriversController do
 
     end
   end
-  
+
   describe "edit" do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
