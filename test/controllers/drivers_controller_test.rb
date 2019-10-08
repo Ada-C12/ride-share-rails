@@ -6,49 +6,58 @@ describe DriversController do
   describe "index" do
     it "responds with success when there are many drivers saved" do
       # Arrange
-      # Ensure that there is at least one Driver saved
-
+      Driver.create name: "Meatball Jones", vin: 41225, active: true, car_make: "Honda", car_model: "Accord"
+      Driver.create name: "Number One Benitez", vin: 53246, active: false, car_make: "Toyota", car_model: "Tacoma"
+      Driver.create name: "Fred Boutros", vin: 32960, active: true, car_make: "Volkswagen", car_model: "Eurovan"
       # Act
-
+      get drivers_path
       # Assert
-
+      must_respond_with :success
     end
 
     it "responds with success when there are no drivers saved" do
       # Arrange
       # Ensure that there are zero drivers saved
 
+      @fred = Driver.create name: "Fred Boutros", vin: 32960, active: true, car_make: "Volkswagen", car_model: "Eurovan"
+      delete driver_path(@fred.id)
       # Act
-
+      get drivers_path
       # Assert
-
+      must_respond_with :success
     end
   end
 
   describe "show" do
     it "responds with success when showing an existing valid driver" do
       # Arrange
+      @mb = Driver.create name: "Meatball Jones", vin: 41225, active: true, car_make: "Honda", car_model: "Accord"
       # Ensure that there is a driver saved
-
+      if Driver.count != 1
+        puts 'No driver saved'
+      end
       # Act
-
+      get driver_path(@mb.id)
       # Assert
-
+      must_respond_with :success
     end
 
     it "responds with 404 with an invalid driver id" do
       # Arrange
+
       # Ensure that there is an id that points to no driver
 
       # Act
-
+      get driver_path(99999)
       # Assert
-
+      must_respond_with 404
     end
   end
 
   describe "new" do
     it "responds with success" do
+      get new_driver_path
+      must_respond_with :success
     end
   end
 
@@ -56,11 +65,30 @@ describe DriversController do
     it "can create a new driver with valid information accurately, and redirect" do
       # Arrange
       # Set up the form data
-
+      driver_hash = {
+        driver: {
+          name: "Number One Benitez",
+          vin: "53246",
+          active: false,
+          car_make: "Toyota",
+          car_model: "Tacoma"
+        }
+      }
       # Act-Assert
+      expect {
+        post drivers_path, params: driver_hash
+      }.must_change "Driver.count", 1
       # Ensure that there is a change of 1 in Driver.count
 
       # Assert
+      number_one = Driver.find_by(name: driver_hash[:driver][:name])
+      expect(number_one.vin).must_equal driver_hash[:driver][:vin]
+      expect(number_one.active).must_equal driver_hash[:driver][:active]
+      expect(number_one.car_make).must_equal driver_hash[:driver][:car_make]
+      expect(number_one.car_model).must_equal driver_hash[:driver][:car_model]
+      must_respond_with :redirect
+      must_redirect_to driver_path(number_one.id)
+
       # Find the newly created Driver, and check that all its attributes match what was given in the form data
       # Check that the controller redirected the user
 
@@ -79,7 +107,7 @@ describe DriversController do
 
     end
   end
-  
+
   describe "edit" do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
