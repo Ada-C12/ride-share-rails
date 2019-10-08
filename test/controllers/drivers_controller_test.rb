@@ -18,11 +18,9 @@ describe DriversController do
     it "responds with success when there are no drivers saved" do
       # Arrange
       # Ensure that there are zero drivers saved
-      if !Drivers.present?
-        Drivers.each do |driver|
-          delete driver_path(driver)
-        end
-      end
+     
+      fred = Driver.create name: "Fred Boutros", vin: 32960, active: true, car_make: "Volkswagen", car_model: "Eurovan"
+      delete driver_path(fred.id)
       # Act
       get drivers_path
       # Assert
