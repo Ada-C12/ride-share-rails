@@ -42,8 +42,8 @@ describe DriversController do
 
       # Assert
 
-      must_respond_with :redirect
-      must_redirect_to driver_path(@driver.id)
+      must_respond_with :success
+      # must_redirect_to driver_path(@driver.id)
     end
 
     it "responds with 404 with an invalid driver id" do
@@ -57,8 +57,7 @@ describe DriversController do
       get driver_path(invalid_id)
 
       # Assert
-      must_respond_with :redirect
-      must_redirect_to drivers_path
+      must_respond_with :not_found
     end
   end
 
@@ -153,6 +152,26 @@ describe DriversController do
       # Assign the existing driver's id to a local variable
       # Set up the form data
 
+      existing_driver = Driver.create name: "Harry Potter", vin: "HOGWA4RT$"
+
+      updated_driver_hash = {
+        driver: {
+          name: "Ron Weasley",
+          vin: "ASDASDKJ456",
+        },
+      }
+
+      expect {
+        patch driver_path(existing_driver.id), params: updated_driver_hash
+      }.wont_change "Driver.count"
+
+      updated_driver = Driver.find_by(id: existing_driver.id)
+
+      expect(updated_driver.name).must_equal updated_driver_hash[:driver][:name]
+      expect(updated_driver.vin).must_equal updated_driver_hash[:driver][:vin]
+
+      must_respond_with :redirect
+      must_redirect_to driver_path(updated_driver)
       # Act-Assert
       # Ensure that there is no change in Driver.count
 
@@ -166,6 +185,18 @@ describe DriversController do
       # Arrange
       # Ensure there is an invalid id that points to no driver
       # Set up the form data
+      updated_driver_hash = {
+        driver: {
+          name: "Ron Weasley",
+          vin: "ASDASDKJ456",
+        },
+      }
+
+      invalid_driver_id = -1
+
+      patch driver_path(invalid_driver_id), params: updated_driver_hash
+
+      must_respond_with :not_found
 
       # Act-Assert
       # Ensure that there is no change in Driver.count

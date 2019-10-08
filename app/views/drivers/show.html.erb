@@ -1,4 +1,4 @@
 <h2> Driver name: <%= @driver.name %></h2>
 <p> VIN: <%= @driver.vin %></p>
 <p> Status: <%= @driver.available %></p>
-
+<%= link_to "Edit Driver", edit_driver_path(@driver) %>
