@@ -18,19 +18,21 @@ class DriversController < ApplicationController
   end
   
   def create
-    if !params.nil?
-      @driver = Driver.new(driver_params)
-      
-      if @driver.save
-        redirect_to driver_path(@driver.id)
-        return
-      end
+    # if !params.nil?
+    if params[:driver].nil?
+      redirect_to new_driver_path
     end
     
-    redirect_to new_driver_path
-    # render :new
-    return
+    @driver = Driver.new(driver_params)
     
+    if @driver.save
+      redirect_to driver_path(@driver.id)
+      return
+    else
+      # render :new
+      redirect_to new_driver_path
+      return
+    end
   end
   
   def edit

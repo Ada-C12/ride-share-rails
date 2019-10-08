@@ -2,12 +2,15 @@ require "test_helper"
 
 describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
+  let (:driver) {
+    Driver.create(name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", active: true) 
+  }
   
   describe "index" do
     it "responds with success when there are many drivers saved" do
       # Arrange
       # Ensure that there is at least one Driver saved
-      Driver.create(name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", active: true)
+      one_driver = driver
       
       # Act
       get drivers_path
@@ -32,7 +35,7 @@ describe DriversController do
     it "responds with success when showing an existing valid driver" do
       # Arrange
       # Ensure that there is a driver saved
-      driver = Driver.create(name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", active: true)
+      one_driver = driver
       
       # Act
       get driver_path(driver.id)
@@ -63,10 +66,11 @@ describe DriversController do
   
   describe "create" do
     it "can create a new driver with valid information accurately, and redirect" do
-      skip
       # Arrange
       # Set up the form data
       driver_hash = { driver: { name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", active: true } }
+      
+      test_driver = driver
       
       # Act-Assert
       # Ensure that there is a change of 1 in Driver.count
@@ -84,22 +88,27 @@ describe DriversController do
     end
     
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      skip  
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
-      driver_hash = { driver: { } }
+      
+      test_driver = driver
+      driver_hash = { driver: { name: "Dino" } }
       
       # Act-Assert
       # Ensure that there is no change in Driver.count
       expect { post drivers_path, params: driver_hash }.wont_change "Driver.count"
-      # expect { post drivers_path, params: driver_hash }.must_raise ActionController::ParameterMissing
-      
       
       # Assert
       # Check that the controller redirects
-      # TODO
-      # must_respond_with :redirect
+      must_respond_with :redirect
+    end
+    
+    it "does not create a driver if the form data is empty and it responds with a redirect" do
+      test_driver = driver
+      driver_hash = { driver: { name: "Dino" } }
+      expect { post drivers_path, params: driver_hash }.wont_change "Driver.count"
+      must_respond_with :redirect
     end
   end
   
