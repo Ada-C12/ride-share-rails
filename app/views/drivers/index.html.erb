@@ -1,0 +1,16 @@
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Rating</th>
+    <th>Function</th>
+  </tr>
+
+   <% @drivers.each do |driver| %>
+  <tr>
+    <td><%= link_to driver.name, driver_path( driver.id ) %></td>
+    <td><%= driver.vin %></td>
+    <td>Edit | Delete</td>
+  </tr>
+  <% end %>
+</table>
