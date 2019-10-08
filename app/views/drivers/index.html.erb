@@ -4,9 +4,7 @@
   <% @drivers.each do |driver| %>
   <li>
     <%= driver.name %>
-      <li>VIN: <%= driver.vin %></li>
-      <li>Car make: <%= driver.car_make %></li>
-      <li>Car model: <%= driver.car_model %></li>
+      <ul><li>VIN: <%= driver.vin %></li></ul>
   </li>
   <% end %>
 </ol>

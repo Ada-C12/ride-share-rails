@@ -1,0 +1,10 @@
+<h1>Driver Details</h1>
+<nav>
+  <ul>
+    <li><%= link_to "Edit Driver", edit_driver_path(@driver.id) %></li>
+    <li><%= link_to "Delete Driver", task_path, method: :delete, data: {confirm: "Delete this driver?" } %></li>
+  </ul>
+</nav>
+
+<h3><%= @driver.name %></h3>
+
