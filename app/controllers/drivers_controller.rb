@@ -17,7 +17,7 @@ class DriversController < ApplicationController
     if @driver.save
       redirect_to driver_path(@driver.id)
     else
-      render new_driver_path
+      redirect_to new_driver_path
     end
   end
 
@@ -28,14 +28,14 @@ class DriversController < ApplicationController
   def edit
     @driver = Driver.find_by(id: params[:id])
     if !@driver
-      redirect_to edit_driver_path
+      redirect_to drivers_path
     end
   end
 
   def update
     @driver = Driver.find_by(id: params[:id])
     if !@driver
-      redirect_to edit_driver_path
+      redirect_to drivers_path
       return
     end
     @driver.name = params[:driver][:name]
