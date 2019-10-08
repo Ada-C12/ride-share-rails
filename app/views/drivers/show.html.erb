@@ -5,8 +5,13 @@
   <%# average rating %>
   <div>Average Rating: <%= @driver.average_rating.nil? ? "N/A" : @driver.average_rating %></div>
 
-  <%# vin %>
-  <div>Vin: <%= @driver.vin %></div>
+  <%# car details %>
+  <div class="car details">
+    <%# vin %>
+    <div>Vin: <%= @driver.vin %></div>
+    <%# car make %>
+    <%# car model %>
+  </div>
 
   <%# total earnings %>
   <div>Total Earnings: <%= number_to_currency(@driver.driver_earnings / 100.0) %></div>
@@ -20,6 +25,8 @@
   <%# trips list %>
   <section>
     <h3>Trips</h3>
+    <%# how many rides the driver has given %>
+    <div>Total Trips: <%= @driver.trips.count %></div>
     <table>
       <tr>
         <th>ID</th>
