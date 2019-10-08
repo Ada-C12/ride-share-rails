@@ -25,8 +25,6 @@ describe DriversController do
   describe "show" do
     it "responds with success when showing an existing valid driver" do
       driver = Driver.create(name: "Kari", vin: "123")
-      
-      binding.pry
       get driver_path(driver.id)
 
       must_respond_with :success
