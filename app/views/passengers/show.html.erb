@@ -5,7 +5,8 @@
     Phone Number: <%= @passenger.phone_num %>
   </p>
 
-
+  <div>Total Charged: <%= number_to_currency(@passenger.total_charged / 100.0) %></div>
+  
   <div class="modify-options">
     <div><%= link_to "Edit", edit_passenger_path(@passenger.id) %></div>
     <div><%= link_to "Delete", passenger_path(@passenger.id), method: :delete %></div>
