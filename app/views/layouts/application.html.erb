@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RideShareRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+      <nav>
+      <ul>
+        <li>
+          <%# This is the syntax for defining a link in HTML (More in depth in View Helpers lesson) %>
+          <%= link_to "Home!", root_path %>
+        </li>
+        <li>
+          <%= link_to "Go to the Drivers Index Page", drivers_path %>
+        </li>
+        <li>
+          <%= link_to "Let's make a NEW driver", new_driver_path %>
+        </li>
+         <li>
+          <%= link_to "Go to the Passengers Index Page", passengers_path %>
+        </li>
+        <li>
+          <%= link_to "Let's make a NEW passengers", new_passenger_path %>
+        </li>
+      </ul>
+    </nav>
+
+    <%= yield %>
+  </body>
+</html>
