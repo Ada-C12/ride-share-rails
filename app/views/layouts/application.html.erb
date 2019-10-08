@@ -10,6 +10,17 @@
   </head>
 
   <body>
+  <section>
+      <h1 id='maintitle'>RideShare</h1>
+      <ul class="buttons">
+        <li>
+          <%= link_to "Add Driver", new_driver_path%>
+        </li>
+        <li>
+          <%= link_to "Add Passenger", new_passenger_path%>
+        </li>
+      </ul>
+    </section>
     <%= yield %>
   </body>
 </html>
