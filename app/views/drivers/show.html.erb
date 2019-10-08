@@ -39,7 +39,7 @@
         <% @driver.trips.each do |trip| %>
           <tr>
             <td>
-              <%= trip.id %>
+              <%= link_to trip.id, trip_path(trip.id)%>
             </td>
             <td>
               <%= trip.date %>
