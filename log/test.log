@@ -1,0 +1,2441 @@
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------
+PassengersController::new: test_0001_can go to Passengers/new.html
+------------------------------------------------------------------
+Started GET "/passengers/new" for 127.0.0.1 at 2019-10-08 15:03:30 -0700
+Processing by PassengersController#new as HTML
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (15.0ms)
+  Rendered passengers/new.html.erb within layouts/application (17.3ms)
+Completed 200 OK in 403ms (Views: 384.3ms | ActiveRecord: 3.6ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------
+DriversController::destroy: test_0001_destroys the driver instance in db when driver exists, then redirects
+-----------------------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.9ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Mark"], ["vin", "776"], ["created_at", "2019-10-08 22:03:30.611351"], ["updated_at", "2019-10-08 22:03:30.611351"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started DELETE "/drivers/5" for 127.0.0.1 at 2019-10-08 15:03:30 -0700
+Processing by DriversController#destroy as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mDriver Load (0.5ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Destroy (1.2ms)[0m  [1m[31mDELETE FROM "drivers" WHERE "drivers"."id" = $1[0m  [["id", 5]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 9ms (ActiveRecord: 2.7ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[35m (0.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------------------------------------
+DriversController::create: test_0001_can create a new driver with valid information accurately, and redirect
+------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started POST "/drivers" for 127.0.0.1 at 2019-10-08 15:03:30 -0700
+Processing by DriversController#create as HTML
+  Parameters: {"driver"=>{"name"=>"Home Dawg", "vin"=>"098"}}
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (1.0ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Home Dawg"], ["vin", "098"], ["created_at", "2019-10-08 22:03:30.649159"], ["updated_at", "2019-10-08 22:03:30.649159"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/drivers/6
+Completed 302 Found in 5ms (ActiveRecord: 1.4ms)
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."name" = $1 LIMIT $2[0m  [["name", "Home Dawg"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------
+PassengersController::show: test_0002_redirect to homepage if invalid id
+------------------------------------------------------------------------
+Started GET "/passengers/-666" for 127.0.0.1 at 2019-10-08 15:03:30 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-666"}
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -666], ["LIMIT", 1]]
+Redirected to http://www.example.com/homepages/nope
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------
+PassengersController::show: test_0001_can go to Passengers/:id/show for valid id
+--------------------------------------------------------------------------------
+  [1m[36mPassenger Load (0.4ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" ORDER BY "passengers"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------------------------------
+DriversController::show: test_0001_responds with success when showing an existing valid driver
+----------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.5ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:03:30.672263"], ["updated_at", "2019-10-08 22:03:30.672263"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/7" for 127.0.0.1 at 2019-10-08 15:03:30 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mDriver Load (0.5ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering drivers/show.html.erb within layouts/application
+  Rendered drivers/show.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 14ms (Views: 8.7ms | ActiveRecord: 0.5ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------
+DriversController::show: test_0002_responds with 404 with an invalid driver id
+------------------------------------------------------------------------------
+Started GET "/drivers/40504" for 127.0.0.1 at 2019-10-08 15:03:30 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+DriversController::new: test_0001_responds with success
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------
+PassengersController::index: test_0001_can go to Passengers/index
+-----------------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:03:30 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 5ms (Views: 2.6ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0001_responds with success when getting the edit page for an existing, valid driver
+-----------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:03:30.708203"], ["updated_at", "2019-10-08 22:03:30.708203"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/8/edit" for 127.0.0.1 at 2019-10-08 15:03:30 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering drivers/edit.html.erb within layouts/application
+  Rendered drivers/_form.html.erb (2.0ms)
+  Rendered drivers/edit.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 7ms (Views: 5.2ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0002_responds with redirect when getting the edit page for a non-existing driver
+--------------------------------------------------------------------------------------------------------------
+Started GET "/drivers/40504/edit" for 127.0.0.1 at 2019-10-08 15:03:30 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Redirected to http://www.example.com/
+Completed 302 Found in 1ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------
+DriversController::index: test_0001_responds with success when there are many drivers saved
+-------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.7ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:03:30.725827"], ["updated_at", "2019-10-08 22:03:30.725827"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:03:30 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 4ms (Views: 2.5ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------
+DriversController::index: test_0002_responds with success when there are no drivers saved
+-----------------------------------------------------------------------------------------
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:03:30 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 4ms (Views: 2.4ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------
+PassengersController::create: test_0001_will make new Passenger obj correctly with good args
+--------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------------
+PassengersController::create: test_0002_will not make Passenger obj and give errors with bad args
+-------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------------
+HomepagesController: test_0001_can get the homepage
+---------------------------------------------------
+Started GET "/" for 127.0.0.1 at 2019-10-08 15:03:30 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 6ms (Views: 4.1ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+HomepagesController: test_0002_can get to drivers/index
+-------------------------------------------------------
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:03:30 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.5ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.5ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------
+HomepagesController: test_0004_can get to trips/index
+-----------------------------------------------------
+Started GET "/trips" for 127.0.0.1 at 2019-10-08 15:03:30 -0700
+Processing by TripsController#index as HTML
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  Rendered trips/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 8ms (Views: 4.5ms | ActiveRecord: 1.4ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------
+HomepagesController: test_0003_can get to passengers/index
+----------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:03:30 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 3ms (Views: 1.8ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0001_responds with success when getting the edit page for an existing, valid driver
+-----------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.6ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:05:39.324849"], ["updated_at", "2019-10-08 22:05:39.324849"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/10/edit" for 127.0.0.1 at 2019-10-08 15:05:39 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"10"}
+  [1m[36mDriver Load (0.6ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  Rendering drivers/edit.html.erb within layouts/application
+  Rendered drivers/_form.html.erb (9.8ms)
+  Rendered drivers/edit.html.erb within layouts/application (11.9ms)
+Completed 200 OK in 225ms (Views: 211.4ms | ActiveRecord: 0.8ms)
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0002_responds with redirect when getting the edit page for a non-existing driver
+--------------------------------------------------------------------------------------------------------------
+Started GET "/drivers/40504/edit" for 127.0.0.1 at 2019-10-08 15:05:39 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.4ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Redirected to http://www.example.com/
+Completed 302 Found in 2ms (ActiveRecord: 0.4ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------------------------------
+DriversController::show: test_0001_responds with success when showing an existing valid driver
+----------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.5ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:05:39.574136"], ["updated_at", "2019-10-08 22:05:39.574136"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/11" for 127.0.0.1 at 2019-10-08 15:05:39 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[36mDriver Load (0.4ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  Rendering drivers/show.html.erb within layouts/application
+  Rendered drivers/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 8ms (Views: 3.5ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------
+DriversController::show: test_0002_responds with 404 with an invalid driver id
+------------------------------------------------------------------------------
+Started GET "/drivers/40504" for 127.0.0.1 at 2019-10-08 15:05:39 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------
+PassengersController::show: test_0001_can go to Passengers/:id/show for valid id
+--------------------------------------------------------------------------------
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" ORDER BY "passengers"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------
+PassengersController::show: test_0002_redirect to homepage if invalid id
+------------------------------------------------------------------------
+Started GET "/passengers/-666" for 127.0.0.1 at 2019-10-08 15:05:39 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-666"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -666], ["LIMIT", 1]]
+Redirected to http://www.example.com/homepages/nope
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------
+PassengersController::new: test_0001_can go to Passengers/new.html
+------------------------------------------------------------------
+Started GET "/passengers/new" for 127.0.0.1 at 2019-10-08 15:05:39 -0700
+Processing by PassengersController#new as HTML
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (1.7ms)
+  Rendered passengers/new.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 12ms (Views: 5.9ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------
+DriversController::index: test_0001_responds with success when there are many drivers saved
+-------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:05:39.625291"], ["updated_at", "2019-10-08 22:05:39.625291"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:05:39 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 4ms (Views: 2.5ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------
+DriversController::index: test_0002_responds with success when there are no drivers saved
+-----------------------------------------------------------------------------------------
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:05:39 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------
+PassengersController::index: test_0001_can go to Passengers/index
+-----------------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:05:39 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 6ms (Views: 3.1ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------
+PassengersController::create: test_0001_will make new Passenger obj correctly with good args
+--------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------------
+PassengersController::create: test_0002_will not make Passenger obj and give errors with bad args
+-------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+DriversController::new: test_0001_responds with success
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------------------------------------
+DriversController::create: test_0001_can create a new driver with valid information accurately, and redirect
+------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started POST "/drivers" for 127.0.0.1 at 2019-10-08 15:05:39 -0700
+Processing by DriversController#create as HTML
+  Parameters: {"driver"=>{"name"=>"Home Dawg", "vin"=>"098"}}
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Home Dawg"], ["vin", "098"], ["created_at", "2019-10-08 22:05:39.664943"], ["updated_at", "2019-10-08 22:05:39.664943"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/drivers/13
+Completed 302 Found in 3ms (ActiveRecord: 0.6ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."name" = $1 LIMIT $2[0m  [["name", "Home Dawg"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------
+DriversController::destroy: test_0001_destroys the driver instance in db when driver exists, then redirects
+-----------------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Mark"], ["vin", "776"], ["created_at", "2019-10-08 22:05:39.671448"], ["updated_at", "2019-10-08 22:05:39.671448"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started DELETE "/drivers/14" for 127.0.0.1 at 2019-10-08 15:05:39 -0700
+Processing by DriversController#destroy as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Destroy (0.9ms)[0m  [1m[31mDELETE FROM "drivers" WHERE "drivers"."id" = $1[0m  [["id", 14]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 5ms (ActiveRecord: 1.5ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------------------------------------------------
+DriversController::destroy: test_0002_does not change the db when the driver does not exist, then responds with 
+----------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------
+HomepagesController: test_0003_can get to passengers/index
+----------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:05:39 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------
+HomepagesController: test_0004_can get to trips/index
+-----------------------------------------------------
+Started GET "/trips" for 127.0.0.1 at 2019-10-08 15:05:39 -0700
+Processing by TripsController#index as HTML
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  Rendered trips/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 7ms (Views: 4.1ms | ActiveRecord: 1.4ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------------
+HomepagesController: test_0001_can get the homepage
+---------------------------------------------------
+Started GET "/" for 127.0.0.1 at 2019-10-08 15:05:39 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 5ms (Views: 3.4ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+HomepagesController: test_0002_can get to drivers/index
+-------------------------------------------------------
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:05:39 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------
+PassengersController::new: test_0001_can go to Passengers/new.html
+------------------------------------------------------------------
+Started GET "/passengers/new" for 127.0.0.1 at 2019-10-08 15:05:56 -0700
+Processing by PassengersController#new as HTML
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (10.7ms)
+  Rendered passengers/new.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 232ms (Views: 213.9ms | ActiveRecord: 3.4ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------
+PassengersController::index: test_0001_can go to Passengers/index
+-----------------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:05:57 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.7ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 9ms (Views: 4.6ms | ActiveRecord: 0.7ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+HomepagesController: test_0002_can get to drivers/index
+-------------------------------------------------------
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:05:57 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.4ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 7ms (Views: 3.9ms | ActiveRecord: 1.3ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------
+HomepagesController: test_0003_can get to passengers/index
+----------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:05:57 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------------
+HomepagesController: test_0001_can get the homepage
+---------------------------------------------------
+Started GET "/" for 127.0.0.1 at 2019-10-08 15:05:57 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 5ms (Views: 3.2ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------
+HomepagesController: test_0004_can get to trips/index
+-----------------------------------------------------
+Started GET "/trips" for 127.0.0.1 at 2019-10-08 15:05:57 -0700
+Processing by TripsController#index as HTML
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.5ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  Rendered trips/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 9ms (Views: 5.1ms | ActiveRecord: 1.4ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+DriversController::new: test_0001_responds with success
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------------
+PassengersController::create: test_0002_will not make Passenger obj and give errors with bad args
+-------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------
+PassengersController::create: test_0001_will make new Passenger obj correctly with good args
+--------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0002_responds with redirect when getting the edit page for a non-existing driver
+--------------------------------------------------------------------------------------------------------------
+Started GET "/drivers/40504/edit" for 127.0.0.1 at 2019-10-08 15:05:57 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Redirected to http://www.example.com/
+Completed 302 Found in 5ms (ActiveRecord: 0.5ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0001_responds with success when getting the edit page for an existing, valid driver
+-----------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:05:57.094860"], ["updated_at", "2019-10-08 22:05:57.094860"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/15/edit" for 127.0.0.1 at 2019-10-08 15:05:57 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"15"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  Rendering drivers/edit.html.erb within layouts/application
+  Rendered drivers/_form.html.erb (1.9ms)
+  Rendered drivers/edit.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 10ms (Views: 6.4ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------
+DriversController::index: test_0001_responds with success when there are many drivers saved
+-------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:05:57.111249"], ["updated_at", "2019-10-08 22:05:57.111249"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:05:57 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------
+DriversController::index: test_0002_responds with success when there are no drivers saved
+-----------------------------------------------------------------------------------------
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:05:57 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------
+DriversController::destroy: test_0001_destroys the driver instance in db when driver exists, then redirects
+-----------------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Mark"], ["vin", "776"], ["created_at", "2019-10-08 22:05:57.125098"], ["updated_at", "2019-10-08 22:05:57.125098"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started DELETE "/drivers/17" for 127.0.0.1 at 2019-10-08 15:05:57 -0700
+Processing by DriversController#destroy as HTML
+  Parameters: {"id"=>"17"}
+  [1m[36mDriver Load (0.6ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  [1m[35m (1.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Destroy (0.7ms)[0m  [1m[31mDELETE FROM "drivers" WHERE "drivers"."id" = $1[0m  [["id", 17]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 6ms (ActiveRecord: 2.6ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------------------------------------------------
+DriversController::destroy: test_0002_does not change the db when the driver does not exist, then responds with 
+----------------------------------------------------------------------------------------------------------------
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------
+PassengersController::show: test_0002_redirect to homepage if invalid id
+------------------------------------------------------------------------
+Started GET "/passengers/-666" for 127.0.0.1 at 2019-10-08 15:05:57 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-666"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -666], ["LIMIT", 1]]
+Redirected to http://www.example.com/homepages/nope
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------
+PassengersController::show: test_0001_can go to Passengers/:id/show for valid id
+--------------------------------------------------------------------------------
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" ORDER BY "passengers"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------------------------------
+DriversController::show: test_0001_responds with success when showing an existing valid driver
+----------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:05:57.151034"], ["updated_at", "2019-10-08 22:05:57.151034"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/18" for 127.0.0.1 at 2019-10-08 15:05:57 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"18"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  Rendering drivers/show.html.erb within layouts/application
+  Rendered drivers/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 5ms (Views: 2.7ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------
+DriversController::show: test_0002_responds with 404 with an invalid driver id
+------------------------------------------------------------------------------
+Started GET "/drivers/40504" for 127.0.0.1 at 2019-10-08 15:05:57 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------------------------------------
+DriversController::create: test_0001_can create a new driver with valid information accurately, and redirect
+------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started POST "/drivers" for 127.0.0.1 at 2019-10-08 15:05:57 -0700
+Processing by DriversController#create as HTML
+  Parameters: {"driver"=>{"name"=>"Home Dawg", "vin"=>"098"}}
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Home Dawg"], ["vin", "098"], ["created_at", "2019-10-08 22:05:57.169086"], ["updated_at", "2019-10-08 22:05:57.169086"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/drivers/19
+Completed 302 Found in 3ms (ActiveRecord: 0.6ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."name" = $1 LIMIT $2[0m  [["name", "Home Dawg"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------
+DriversController::destroy: test_0001_destroys the driver instance in db when driver exists, then redirects
+-----------------------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.6ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Mark"], ["vin", "776"], ["created_at", "2019-10-08 22:06:21.947751"], ["updated_at", "2019-10-08 22:06:21.947751"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started DELETE "/drivers/20" for 127.0.0.1 at 2019-10-08 15:06:21 -0700
+Processing by DriversController#destroy as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Destroy (0.8ms)[0m  [1m[31mDELETE FROM "drivers" WHERE "drivers"."id" = $1[0m  [["id", 20]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 16ms (ActiveRecord: 1.7ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------------------------------------------------
+DriversController::destroy: test_0002_does not change the db when the driver does not exist, then responds with 
+----------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started DELETE "/drivers/500098" for 127.0.0.1 at 2019-10-08 15:06:21 -0700
+Processing by DriversController#destroy as HTML
+  Parameters: {"id"=>"500098"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 500098], ["LIMIT", 1]]
+Redirected to http://www.example.com/drivers
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------
+PassengersController::new: test_0001_can go to Passengers/new.html
+------------------------------------------------------------------
+Started GET "/passengers/new" for 127.0.0.1 at 2019-10-08 15:06:21 -0700
+Processing by PassengersController#new as HTML
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (7.6ms)
+  Rendered passengers/new.html.erb within layouts/application (9.9ms)
+Completed 200 OK in 209ms (Views: 199.4ms | ActiveRecord: 2.3ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------
+PassengersController::show: test_0002_redirect to homepage if invalid id
+------------------------------------------------------------------------
+Started GET "/passengers/-666" for 127.0.0.1 at 2019-10-08 15:06:22 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-666"}
+  [1m[36mPassenger Load (0.5ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -666], ["LIMIT", 1]]
+Redirected to http://www.example.com/homepages/nope
+Completed 302 Found in 3ms (ActiveRecord: 0.5ms)
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------
+PassengersController::show: test_0001_can go to Passengers/:id/show for valid id
+--------------------------------------------------------------------------------
+  [1m[36mPassenger Load (0.4ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" ORDER BY "passengers"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------------
+HomepagesController: test_0001_can get the homepage
+---------------------------------------------------
+Started GET "/" for 127.0.0.1 at 2019-10-08 15:06:22 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 9ms (Views: 5.5ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+HomepagesController: test_0002_can get to drivers/index
+-------------------------------------------------------
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:06:22 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 7ms (Views: 4.5ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------
+HomepagesController: test_0004_can get to trips/index
+-----------------------------------------------------
+Started GET "/trips" for 127.0.0.1 at 2019-10-08 15:06:22 -0700
+Processing by TripsController#index as HTML
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  Rendered trips/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 8ms (Views: 4.3ms | ActiveRecord: 1.4ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------
+HomepagesController: test_0003_can get to passengers/index
+----------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:06:22 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 6ms (Views: 2.6ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------------
+PassengersController::create: test_0002_will not make Passenger obj and give errors with bad args
+-------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------
+PassengersController::create: test_0001_will make new Passenger obj correctly with good args
+--------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------
+DriversController::index: test_0001_responds with success when there are many drivers saved
+-------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:06:22.268068"], ["updated_at", "2019-10-08 22:06:22.268068"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:06:22 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 3ms (Views: 2.8ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------
+DriversController::index: test_0002_responds with success when there are no drivers saved
+-----------------------------------------------------------------------------------------
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:06:22 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0001_responds with success when getting the edit page for an existing, valid driver
+-----------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:06:22.283033"], ["updated_at", "2019-10-08 22:06:22.283033"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/22/edit" for 127.0.0.1 at 2019-10-08 15:06:22 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"22"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  Rendering drivers/edit.html.erb within layouts/application
+  Rendered drivers/_form.html.erb (2.4ms)
+  Rendered drivers/edit.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 9ms (Views: 6.9ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0002_responds with redirect when getting the edit page for a non-existing driver
+--------------------------------------------------------------------------------------------------------------
+Started GET "/drivers/40504/edit" for 127.0.0.1 at 2019-10-08 15:06:22 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Redirected to http://www.example.com/
+Completed 302 Found in 1ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+DriversController::new: test_0001_responds with success
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------
+PassengersController::index: test_0001_can go to Passengers/index
+-----------------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:06:22 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------------------------------
+DriversController::show: test_0001_responds with success when showing an existing valid driver
+----------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.5ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:06:22.311304"], ["updated_at", "2019-10-08 22:06:22.311304"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/23" for 127.0.0.1 at 2019-10-08 15:06:22 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"23"}
+  [1m[36mDriver Load (0.4ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  Rendering drivers/show.html.erb within layouts/application
+  Rendered drivers/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------
+DriversController::show: test_0002_responds with 404 with an invalid driver id
+------------------------------------------------------------------------------
+Started GET "/drivers/40504" for 127.0.0.1 at 2019-10-08 15:06:22 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.6ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Completed 404 Not Found in 3ms (ActiveRecord: 0.6ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------------------------------------
+DriversController::create: test_0001_can create a new driver with valid information accurately, and redirect
+------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started POST "/drivers" for 127.0.0.1 at 2019-10-08 15:06:22 -0700
+Processing by DriversController#create as HTML
+  Parameters: {"driver"=>{"name"=>"Home Dawg", "vin"=>"098"}}
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Home Dawg"], ["vin", "098"], ["created_at", "2019-10-08 22:06:22.331737"], ["updated_at", "2019-10-08 22:06:22.331737"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/drivers/24
+Completed 302 Found in 3ms (ActiveRecord: 0.6ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."name" = $1 LIMIT $2[0m  [["name", "Home Dawg"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------
+DriversController::show: test_0002_responds with 404 with an invalid driver id
+------------------------------------------------------------------------------
+Started GET "/drivers/40504" for 127.0.0.1 at 2019-10-08 15:07:21 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.4ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Completed 404 Not Found in 12ms (ActiveRecord: 1.7ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------------------------------
+DriversController::show: test_0001_responds with success when showing an existing valid driver
+----------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.5ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:07:21.134361"], ["updated_at", "2019-10-08 22:07:21.134361"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/25" for 127.0.0.1 at 2019-10-08 15:07:21 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"25"}
+  [1m[36mDriver Load (0.6ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  Rendering drivers/show.html.erb within layouts/application
+  Rendered drivers/show.html.erb within layouts/application (196.4ms)
+Completed 200 OK in 210ms (Views: 206.2ms | ActiveRecord: 0.6ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------
+DriversController::destroy: test_0001_destroys the driver instance in db when driver exists, then redirects
+-----------------------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Mark"], ["vin", "776"], ["created_at", "2019-10-08 22:07:21.353389"], ["updated_at", "2019-10-08 22:07:21.353389"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started DELETE "/drivers/26" for 127.0.0.1 at 2019-10-08 15:07:21 -0700
+Processing by DriversController#destroy as HTML
+  Parameters: {"id"=>"26"}
+  [1m[36mDriver Load (0.4ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Destroy (1.5ms)[0m  [1m[31mDELETE FROM "drivers" WHERE "drivers"."id" = $1[0m  [["id", 26]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 6ms (ActiveRecord: 2.4ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------------------------------------------------
+DriversController::destroy: test_0002_does not change the db when the driver does not exist, then responds with 
+----------------------------------------------------------------------------------------------------------------
+  [1m[36mDriver Load (0.4ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started DELETE "/drivers/500098" for 127.0.0.1 at 2019-10-08 15:07:21 -0700
+Processing by DriversController#destroy as HTML
+  Parameters: {"id"=>"500098"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 500098], ["LIMIT", 1]]
+Redirected to http://www.example.com/drivers
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------------
+HomepagesController: test_0001_can get the homepage
+---------------------------------------------------
+Started GET "/" for 127.0.0.1 at 2019-10-08 15:07:21 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 6ms (Views: 4.0ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------
+HomepagesController: test_0004_can get to trips/index
+-----------------------------------------------------
+Started GET "/trips" for 127.0.0.1 at 2019-10-08 15:07:21 -0700
+Processing by TripsController#index as HTML
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  Rendered trips/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 8ms (Views: 4.6ms | ActiveRecord: 1.5ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+HomepagesController: test_0002_can get to drivers/index
+-------------------------------------------------------
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:07:21 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 5ms (Views: 2.7ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------
+HomepagesController: test_0003_can get to passengers/index
+----------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:07:21 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.4ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 9ms (Views: 4.2ms | ActiveRecord: 1.3ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+DriversController::new: test_0001_responds with success
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------
+PassengersController::index: test_0001_can go to Passengers/index
+-----------------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:07:21 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------------------------------------
+DriversController::create: test_0001_can create a new driver with valid information accurately, and redirect
+------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started POST "/drivers" for 127.0.0.1 at 2019-10-08 15:07:21 -0700
+Processing by DriversController#create as HTML
+  Parameters: {"driver"=>{"name"=>"Home Dawg", "vin"=>"098"}}
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Home Dawg"], ["vin", "098"], ["created_at", "2019-10-08 22:07:21.435975"], ["updated_at", "2019-10-08 22:07:21.435975"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/drivers/27
+Completed 302 Found in 2ms (ActiveRecord: 0.5ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."name" = $1 LIMIT $2[0m  [["name", "Home Dawg"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------
+PassengersController::show: test_0001_can go to Passengers/:id/show for valid id
+--------------------------------------------------------------------------------
+  [1m[36mPassenger Load (0.9ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" ORDER BY "passengers"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------
+PassengersController::show: test_0002_redirect to homepage if invalid id
+------------------------------------------------------------------------
+Started GET "/passengers/-666" for 127.0.0.1 at 2019-10-08 15:07:21 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-666"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -666], ["LIMIT", 1]]
+Redirected to http://www.example.com/homepages/nope
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------
+PassengersController::create: test_0001_will make new Passenger obj correctly with good args
+--------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------------
+PassengersController::create: test_0002_will not make Passenger obj and give errors with bad args
+-------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------
+PassengersController::new: test_0001_can go to Passengers/new.html
+------------------------------------------------------------------
+Started GET "/passengers/new" for 127.0.0.1 at 2019-10-08 15:07:21 -0700
+Processing by PassengersController#new as HTML
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (6.2ms)
+  Rendered passengers/new.html.erb within layouts/application (7.8ms)
+Completed 200 OK in 14ms (Views: 9.1ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------
+DriversController::index: test_0001_responds with success when there are many drivers saved
+-------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:07:21.473043"], ["updated_at", "2019-10-08 22:07:21.473043"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:07:21 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------
+DriversController::index: test_0002_responds with success when there are no drivers saved
+-----------------------------------------------------------------------------------------
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:07:21 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0001_responds with success when getting the edit page for an existing, valid driver
+-----------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:07:21.488593"], ["updated_at", "2019-10-08 22:07:21.488593"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/29/edit" for 127.0.0.1 at 2019-10-08 15:07:21 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"29"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  Rendering drivers/edit.html.erb within layouts/application
+  Rendered drivers/_form.html.erb (1.8ms)
+  Rendered drivers/edit.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 7ms (Views: 4.8ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0002_responds with redirect when getting the edit page for a non-existing driver
+--------------------------------------------------------------------------------------------------------------
+Started GET "/drivers/40504/edit" for 127.0.0.1 at 2019-10-08 15:07:21 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Redirected to http://www.example.com/
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------
+PassengersController::index: test_0001_can go to Passengers/index
+-----------------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:07:44 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.8ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 224ms (Views: 211.1ms | ActiveRecord: 1.9ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------------------------------------------------
+DriversController::destroy: test_0002_does not change the db when the driver does not exist, then responds with 
+----------------------------------------------------------------------------------------------------------------
+  [1m[36mDriver Load (0.7ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started DELETE "/drivers/500098" for 127.0.0.1 at 2019-10-08 15:07:44 -0700
+Processing by DriversController#destroy as HTML
+  Parameters: {"id"=>"500098"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 500098], ["LIMIT", 1]]
+Redirected to http://www.example.com/drivers
+Completed 302 Found in 4ms (ActiveRecord: 0.5ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------
+DriversController::destroy: test_0001_destroys the driver instance in db when driver exists, then redirects
+-----------------------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Mark"], ["vin", "776"], ["created_at", "2019-10-08 22:07:44.554905"], ["updated_at", "2019-10-08 22:07:44.554905"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started DELETE "/drivers/30" for 127.0.0.1 at 2019-10-08 15:07:44 -0700
+Processing by DriversController#destroy as HTML
+  Parameters: {"id"=>"30"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 30], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Destroy (0.9ms)[0m  [1m[31mDELETE FROM "drivers" WHERE "drivers"."id" = $1[0m  [["id", 30]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 6ms (ActiveRecord: 1.5ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------
+PassengersController::create: test_0001_will make new Passenger obj correctly with good args
+--------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------------
+PassengersController::create: test_0002_will not make Passenger obj and give errors with bad args
+-------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------------
+HomepagesController: test_0001_can get the homepage
+---------------------------------------------------
+Started GET "/" for 127.0.0.1 at 2019-10-08 15:07:44 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 5ms (Views: 3.3ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+HomepagesController: test_0002_can get to drivers/index
+-------------------------------------------------------
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:07:44 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 6ms (Views: 4.0ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------
+HomepagesController: test_0004_can get to trips/index
+-----------------------------------------------------
+Started GET "/trips" for 127.0.0.1 at 2019-10-08 15:07:44 -0700
+Processing by TripsController#index as HTML
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  Rendered trips/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 7ms (Views: 4.3ms | ActiveRecord: 1.4ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------
+HomepagesController: test_0003_can get to passengers/index
+----------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:07:44 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------
+PassengersController::show: test_0001_can go to Passengers/:id/show for valid id
+--------------------------------------------------------------------------------
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" ORDER BY "passengers"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------
+PassengersController::show: test_0002_redirect to homepage if invalid id
+------------------------------------------------------------------------
+Started GET "/passengers/-666" for 127.0.0.1 at 2019-10-08 15:07:44 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-666"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -666], ["LIMIT", 1]]
+Redirected to http://www.example.com/homepages/nope
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+DriversController::new: test_0001_responds with success
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0001_responds with success when getting the edit page for an existing, valid driver
+-----------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:07:44.623225"], ["updated_at", "2019-10-08 22:07:44.623225"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/31/edit" for 127.0.0.1 at 2019-10-08 15:07:44 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"31"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 31], ["LIMIT", 1]]
+  Rendering drivers/edit.html.erb within layouts/application
+  Rendered drivers/_form.html.erb (6.8ms)
+  Rendered drivers/edit.html.erb within layouts/application (8.6ms)
+Completed 200 OK in 12ms (Views: 10.0ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0002_responds with redirect when getting the edit page for a non-existing driver
+--------------------------------------------------------------------------------------------------------------
+Started GET "/drivers/40504/edit" for 127.0.0.1 at 2019-10-08 15:07:44 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Redirected to http://www.example.com/
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------
+DriversController::index: test_0001_responds with success when there are many drivers saved
+-------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.6ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:07:44.646126"], ["updated_at", "2019-10-08 22:07:44.646126"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:07:44 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------
+DriversController::index: test_0002_responds with success when there are no drivers saved
+-----------------------------------------------------------------------------------------
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:07:44 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------------------------------------
+DriversController::create: test_0001_can create a new driver with valid information accurately, and redirect
+------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started POST "/drivers" for 127.0.0.1 at 2019-10-08 15:07:44 -0700
+Processing by DriversController#create as HTML
+  Parameters: {"driver"=>{"name"=>"Home Dawg", "vin"=>"098"}}
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.5ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Home Dawg"], ["vin", "098"], ["created_at", "2019-10-08 22:07:44.667053"], ["updated_at", "2019-10-08 22:07:44.667053"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/drivers/33
+Completed 302 Found in 3ms (ActiveRecord: 0.8ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."name" = $1 LIMIT $2[0m  [["name", "Home Dawg"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------
+PassengersController::new: test_0001_can go to Passengers/new.html
+------------------------------------------------------------------
+Started GET "/passengers/new" for 127.0.0.1 at 2019-10-08 15:07:44 -0700
+Processing by PassengersController#new as HTML
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (1.6ms)
+  Rendered passengers/new.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 10ms (Views: 4.5ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------------------------------
+DriversController::show: test_0001_responds with success when showing an existing valid driver
+----------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:07:44.687958"], ["updated_at", "2019-10-08 22:07:44.687958"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/34" for 127.0.0.1 at 2019-10-08 15:07:44 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"34"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 34], ["LIMIT", 1]]
+  Rendering drivers/show.html.erb within layouts/application
+  Rendered drivers/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 4ms (Views: 2.1ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------
+DriversController::show: test_0002_responds with 404 with an invalid driver id
+------------------------------------------------------------------------------
+Started GET "/drivers/40504" for 127.0.0.1 at 2019-10-08 15:07:44 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------
+PassengersController::index: test_0001_can go to Passengers/index
+-----------------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:08:26 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.5ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 232ms (Views: 219.9ms | ActiveRecord: 1.7ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0001_responds with success when getting the edit page for an existing, valid driver
+-----------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (1.4ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:08:26.529789"], ["updated_at", "2019-10-08 22:08:26.529789"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/35/edit" for 127.0.0.1 at 2019-10-08 15:08:26 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"35"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  Rendering drivers/edit.html.erb within layouts/application
+  Rendered drivers/_form.html.erb (9.0ms)
+  Rendered drivers/edit.html.erb within layouts/application (10.6ms)
+Completed 200 OK in 18ms (Views: 13.0ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0002_responds with redirect when getting the edit page for a non-existing driver
+--------------------------------------------------------------------------------------------------------------
+Started GET "/drivers/40504/edit" for 127.0.0.1 at 2019-10-08 15:08:26 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Redirected to http://www.example.com/
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------------------------------------
+DriversController::create: test_0001_can create a new driver with valid information accurately, and redirect
+------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started POST "/drivers" for 127.0.0.1 at 2019-10-08 15:08:26 -0700
+Processing by DriversController#create as HTML
+  Parameters: {"driver"=>{"name"=>"Home Dawg", "vin"=>"098"}}
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Home Dawg"], ["vin", "098"], ["created_at", "2019-10-08 22:08:26.571545"], ["updated_at", "2019-10-08 22:08:26.571545"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/drivers/36
+Completed 302 Found in 4ms (ActiveRecord: 0.7ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."name" = $1 LIMIT $2[0m  [["name", "Home Dawg"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------
+DriversController::destroy: test_0001_destroys the driver instance in db when driver exists, then redirects
+-----------------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Mark"], ["vin", "776"], ["created_at", "2019-10-08 22:08:26.578327"], ["updated_at", "2019-10-08 22:08:26.578327"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started DELETE "/drivers/37" for 127.0.0.1 at 2019-10-08 15:08:26 -0700
+Processing by DriversController#destroy as HTML
+  Parameters: {"id"=>"37"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 37], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Destroy (0.8ms)[0m  [1m[31mDELETE FROM "drivers" WHERE "drivers"."id" = $1[0m  [["id", 37]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 3ms (ActiveRecord: 1.3ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------------------------------------------------
+DriversController::destroy: test_0002_does not change the db when the driver does not exist, then responds with 
+----------------------------------------------------------------------------------------------------------------
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started DELETE "/drivers/1" for 127.0.0.1 at 2019-10-08 15:08:26 -0700
+Processing by DriversController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://www.example.com/drivers
+Completed 302 Found in 1ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------
+PassengersController::create: test_0001_will make new Passenger obj correctly with good args
+--------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------------
+PassengersController::create: test_0002_will not make Passenger obj and give errors with bad args
+-------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------
+PassengersController::show: test_0002_redirect to homepage if invalid id
+------------------------------------------------------------------------
+Started GET "/passengers/-666" for 127.0.0.1 at 2019-10-08 15:08:26 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-666"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -666], ["LIMIT", 1]]
+Redirected to http://www.example.com/homepages/nope
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------
+PassengersController::show: test_0001_can go to Passengers/:id/show for valid id
+--------------------------------------------------------------------------------
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" ORDER BY "passengers"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+DriversController::new: test_0001_responds with success
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------
+DriversController::index: test_0001_responds with success when there are many drivers saved
+-------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:08:26.612259"], ["updated_at", "2019-10-08 22:08:26.612259"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:08:26 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 5ms (Views: 2.7ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------
+DriversController::index: test_0002_responds with success when there are no drivers saved
+-----------------------------------------------------------------------------------------
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:08:26 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------------
+HomepagesController: test_0001_can get the homepage
+---------------------------------------------------
+Started GET "/" for 127.0.0.1 at 2019-10-08 15:08:26 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 8ms (Views: 6.0ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------
+HomepagesController: test_0003_can get to passengers/index
+----------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:08:26 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------
+HomepagesController: test_0004_can get to trips/index
+-----------------------------------------------------
+Started GET "/trips" for 127.0.0.1 at 2019-10-08 15:08:26 -0700
+Processing by TripsController#index as HTML
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  Rendered trips/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 8ms (Views: 4.4ms | ActiveRecord: 1.4ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+HomepagesController: test_0002_can get to drivers/index
+-------------------------------------------------------
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:08:26 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------------------------------
+DriversController::show: test_0001_responds with success when showing an existing valid driver
+----------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.5ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:08:26.664929"], ["updated_at", "2019-10-08 22:08:26.664929"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/39" for 127.0.0.1 at 2019-10-08 15:08:26 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"39"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 39], ["LIMIT", 1]]
+  Rendering drivers/show.html.erb within layouts/application
+  Rendered drivers/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------
+DriversController::show: test_0002_responds with 404 with an invalid driver id
+------------------------------------------------------------------------------
+Started GET "/drivers/40504" for 127.0.0.1 at 2019-10-08 15:08:26 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------
+PassengersController::new: test_0001_can go to Passengers/new.html
+------------------------------------------------------------------
+Started GET "/passengers/new" for 127.0.0.1 at 2019-10-08 15:08:26 -0700
+Processing by PassengersController#new as HTML
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (2.0ms)
+  Rendered passengers/new.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 13ms (Views: 5.2ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------
+PassengersController::index: test_0001_can go to Passengers/index
+-----------------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:11:27 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.5ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 220ms (Views: 207.7ms | ActiveRecord: 1.6ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------
+PassengersController::new: test_0001_can go to Passengers/new.html
+------------------------------------------------------------------
+Started GET "/passengers/new" for 127.0.0.1 at 2019-10-08 15:11:27 -0700
+Processing by PassengersController#new as HTML
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (10.1ms)
+  Rendered passengers/new.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 29ms (Views: 14.6ms | ActiveRecord: 4.6ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------
+DriversController::index: test_0001_responds with success when there are many drivers saved
+-------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.5ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:11:27.494575"], ["updated_at", "2019-10-08 22:11:27.494575"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:11:27 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.6ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 8ms (Views: 5.5ms | ActiveRecord: 0.6ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------
+DriversController::index: test_0002_responds with success when there are no drivers saved
+-----------------------------------------------------------------------------------------
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:11:27 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------------
+HomepagesController: test_0001_can get the homepage
+---------------------------------------------------
+Started GET "/" for 127.0.0.1 at 2019-10-08 15:11:27 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 5ms (Views: 3.5ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+HomepagesController: test_0002_can get to drivers/index
+-------------------------------------------------------
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:11:27 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 6ms (Views: 4.7ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------
+HomepagesController: test_0003_can get to passengers/index
+----------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:11:27 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------
+HomepagesController: test_0004_can get to trips/index
+-----------------------------------------------------
+Started GET "/trips" for 127.0.0.1 at 2019-10-08 15:11:27 -0700
+Processing by TripsController#index as HTML
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.6ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  Rendered trips/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 9ms (Views: 5.0ms | ActiveRecord: 1.6ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+DriversController::new: test_0001_responds with success
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------------
+PassengersController::create: test_0002_will not make Passenger obj and give errors with bad args
+-------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------
+PassengersController::create: test_0001_will make new Passenger obj correctly with good args
+--------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0002_responds with redirect when getting the edit page for a non-existing driver
+--------------------------------------------------------------------------------------------------------------
+Started GET "/drivers/40504/edit" for 127.0.0.1 at 2019-10-08 15:11:27 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Redirected to http://www.example.com/
+Completed 302 Found in 3ms (ActiveRecord: 0.4ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0001_responds with success when getting the edit page for an existing, valid driver
+-----------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:11:27.568959"], ["updated_at", "2019-10-08 22:11:27.568959"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/41/edit" for 127.0.0.1 at 2019-10-08 15:11:27 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"41"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 41], ["LIMIT", 1]]
+  Rendering drivers/edit.html.erb within layouts/application
+  Rendered drivers/_form.html.erb (1.8ms)
+  Rendered drivers/edit.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 7ms (Views: 4.9ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------
+DriversController::destroy: test_0001_destroys the driver instance in db when driver exists, then redirects
+-----------------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Mark"], ["vin", "776"], ["created_at", "2019-10-08 22:11:27.584979"], ["updated_at", "2019-10-08 22:11:27.584979"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started DELETE "/drivers/42" for 127.0.0.1 at 2019-10-08 15:11:27 -0700
+Processing by DriversController#destroy as HTML
+  Parameters: {"id"=>"42"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 42], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Destroy (0.5ms)[0m  [1m[31mDELETE FROM "drivers" WHERE "drivers"."id" = $1[0m  [["id", 42]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 3ms (ActiveRecord: 1.0ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------------------------------------------------
+DriversController::destroy: test_0002_does not change the db when the driver does not exist, then responds with 
+----------------------------------------------------------------------------------------------------------------
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started DELETE "/drivers/1" for 127.0.0.1 at 2019-10-08 15:11:27 -0700
+Processing by DriversController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://www.example.com/drivers
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------
+DriversController::show: test_0002_responds with 404 with an invalid driver id
+------------------------------------------------------------------------------
+Started GET "/drivers/40504" for 127.0.0.1 at 2019-10-08 15:11:27 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------------------------------
+DriversController::show: test_0001_responds with success when showing an existing valid driver
+----------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:11:27.608634"], ["updated_at", "2019-10-08 22:11:27.608634"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/43" for 127.0.0.1 at 2019-10-08 15:11:27 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"43"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 43], ["LIMIT", 1]]
+  Rendering drivers/show.html.erb within layouts/application
+  Rendered drivers/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 6ms (Views: 3.8ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------
+PassengersController::show: test_0002_redirect to homepage if invalid id
+------------------------------------------------------------------------
+Started GET "/passengers/-666" for 127.0.0.1 at 2019-10-08 15:11:27 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-666"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -666], ["LIMIT", 1]]
+Redirected to http://www.example.com/homepages/nope
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------
+PassengersController::show: test_0001_can go to Passengers/:id/show for valid id
+--------------------------------------------------------------------------------
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" ORDER BY "passengers"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------------------------------------
+DriversController::create: test_0001_can create a new driver with valid information accurately, and redirect
+------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started POST "/drivers" for 127.0.0.1 at 2019-10-08 15:11:27 -0700
+Processing by DriversController#create as HTML
+  Parameters: {"driver"=>{"name"=>"Home Dawg", "vin"=>"098"}}
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Home Dawg"], ["vin", "098"], ["created_at", "2019-10-08 22:11:27.631419"], ["updated_at", "2019-10-08 22:11:27.631419"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/drivers/44
+Completed 302 Found in 3ms (ActiveRecord: 0.6ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."name" = $1 LIMIT $2[0m  [["name", "Home Dawg"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0001_responds with success when getting the edit page for an existing, valid driver
+-----------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.7ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:27:50.485616"], ["updated_at", "2019-10-08 22:27:50.485616"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/45/edit" for 127.0.0.1 at 2019-10-08 15:27:50 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"45"}
+  [1m[36mDriver Load (0.4ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 45], ["LIMIT", 1]]
+  Rendering drivers/edit.html.erb within layouts/application
+  Rendered drivers/_form.html.erb (10.3ms)
+  Rendered drivers/edit.html.erb within layouts/application (12.6ms)
+Completed 200 OK in 266ms (Views: 253.2ms | ActiveRecord: 0.7ms)
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0002_responds with redirect when getting the edit page for a non-existing driver
+--------------------------------------------------------------------------------------------------------------
+Started GET "/drivers/40504/edit" for 127.0.0.1 at 2019-10-08 15:27:50 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.4ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Redirected to http://www.example.com/
+Completed 302 Found in 2ms (ActiveRecord: 0.4ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------
+PassengersController::index: test_0001_can go to Passengers/index
+-----------------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:27:50 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.6ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 14ms (Views: 6.2ms | ActiveRecord: 1.5ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------
+PassengersController::show: test_0001_can go to Passengers/:id/show for valid id
+--------------------------------------------------------------------------------
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" ORDER BY "passengers"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------
+PassengersController::show: test_0002_redirect to homepage if invalid id
+------------------------------------------------------------------------
+Started GET "/passengers/-666" for 127.0.0.1 at 2019-10-08 15:27:50 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-666"}
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -666], ["LIMIT", 1]]
+Redirected to http://www.example.com/homepages/nope
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------------------------------------
+DriversController::create: test_0001_can create a new driver with valid information accurately, and redirect
+------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started POST "/drivers" for 127.0.0.1 at 2019-10-08 15:27:50 -0700
+Processing by DriversController#create as HTML
+  Parameters: {"driver"=>{"name"=>"Home Dawg", "vin"=>"098"}}
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Home Dawg"], ["vin", "098"], ["created_at", "2019-10-08 22:27:50.811025"], ["updated_at", "2019-10-08 22:27:50.811025"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/drivers/46
+Completed 302 Found in 3ms (ActiveRecord: 0.5ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."name" = $1 LIMIT $2[0m  [["name", "Home Dawg"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+DriversController::new: test_0001_responds with success
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------
+DriversController::destroy: test_0001_destroys the driver instance in db when driver exists, then redirects
+-----------------------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Mark"], ["vin", "776"], ["created_at", "2019-10-08 22:27:50.822052"], ["updated_at", "2019-10-08 22:27:50.822052"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started DELETE "/drivers/47" for 127.0.0.1 at 2019-10-08 15:27:50 -0700
+Processing by DriversController#destroy as HTML
+  Parameters: {"id"=>"47"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 47], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Destroy (0.8ms)[0m  [1m[31mDELETE FROM "drivers" WHERE "drivers"."id" = $1[0m  [["id", 47]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 3ms (ActiveRecord: 1.2ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------------------------------------------------
+DriversController::destroy: test_0002_does not change the db when the driver does not exist, then responds with 
+----------------------------------------------------------------------------------------------------------------
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started DELETE "/drivers/1" for 127.0.0.1 at 2019-10-08 15:27:50 -0700
+Processing by DriversController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://www.example.com/drivers
+Completed 302 Found in 1ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------
+PassengersController::new: test_0001_can go to Passengers/new.html
+------------------------------------------------------------------
+Started GET "/passengers/new" for 127.0.0.1 at 2019-10-08 15:27:50 -0700
+Processing by PassengersController#new as HTML
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (4.1ms)
+  Rendered passengers/new.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 18ms (Views: 10.3ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------------------------------
+DriversController::show: test_0001_responds with success when showing an existing valid driver
+----------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:27:50.859933"], ["updated_at", "2019-10-08 22:27:50.859933"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/48" for 127.0.0.1 at 2019-10-08 15:27:50 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"48"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 48], ["LIMIT", 1]]
+  Rendering drivers/show.html.erb within layouts/application
+  Rendered drivers/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------
+DriversController::show: test_0002_responds with 404 with an invalid driver id
+------------------------------------------------------------------------------
+Started GET "/drivers/40504" for 127.0.0.1 at 2019-10-08 15:27:50 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.6ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Completed 404 Not Found in 2ms (ActiveRecord: 0.6ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------------
+HomepagesController: test_0001_can get the homepage
+---------------------------------------------------
+Started GET "/" for 127.0.0.1 at 2019-10-08 15:27:50 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 5ms (Views: 3.3ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------
+HomepagesController: test_0003_can get to passengers/index
+----------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:27:50 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.4ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 5ms (Views: 3.4ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+HomepagesController: test_0002_can get to drivers/index
+-------------------------------------------------------
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:27:50 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 4ms (Views: 2.3ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------
+HomepagesController: test_0004_can get to trips/index
+-----------------------------------------------------
+Started GET "/trips" for 127.0.0.1 at 2019-10-08 15:27:50 -0700
+Processing by TripsController#index as HTML
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  Rendered trips/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 11ms (Views: 7.6ms | ActiveRecord: 1.6ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (12.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------
+DriversController::index: test_0001_responds with success when there are many drivers saved
+-------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:27:50.928455"], ["updated_at", "2019-10-08 22:27:50.928455"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:27:50 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.5ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 18ms (Views: 17.3ms | ActiveRecord: 0.5ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------
+DriversController::index: test_0002_responds with success when there are no drivers saved
+-----------------------------------------------------------------------------------------
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:27:50 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------
+PassengersController::create: test_0001_will make new Passenger obj correctly with good args
+--------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------------
+PassengersController::create: test_0002_will not make Passenger obj and give errors with bad args
+-------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------
+PassengersController::create: test_0001_will make new Passenger obj correctly with good args
+--------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------------
+PassengersController::create: test_0002_will not make Passenger obj and give errors with bad args
+-------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+DriversController::new: test_0001_responds with success
+-------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------
+DriversController::show: test_0002_responds with 404 with an invalid driver id
+------------------------------------------------------------------------------
+Started GET "/drivers/40504" for 127.0.0.1 at 2019-10-08 15:34:34 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Completed 404 Not Found in 15ms (ActiveRecord: 0.5ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------------------------------
+DriversController::show: test_0001_responds with success when showing an existing valid driver
+----------------------------------------------------------------------------------------------
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.6ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:34:34.057502"], ["updated_at", "2019-10-08 22:34:34.057502"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/50" for 127.0.0.1 at 2019-10-08 15:34:34 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"50"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 50], ["LIMIT", 1]]
+  Rendering drivers/show.html.erb within layouts/application
+  Rendered drivers/show.html.erb within layouts/application (249.7ms)
+Completed 200 OK in 264ms (Views: 259.9ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------
+DriversController::destroy: test_0001_destroys the driver instance in db when driver exists, then redirects
+-----------------------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.5ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Mark"], ["vin", "776"], ["created_at", "2019-10-08 22:34:34.332685"], ["updated_at", "2019-10-08 22:34:34.332685"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started DELETE "/drivers/51" for 127.0.0.1 at 2019-10-08 15:34:34 -0700
+Processing by DriversController#destroy as HTML
+  Parameters: {"id"=>"51"}
+  [1m[36mDriver Load (0.8ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 51], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Destroy (3.2ms)[0m  [1m[31mDELETE FROM "drivers" WHERE "drivers"."id" = $1[0m  [["id", 51]]
+  [1m[35m (0.9ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 9ms (ActiveRecord: 5.2ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------------------------------------------------
+DriversController::destroy: test_0002_does not change the db when the driver does not exist, then responds with 
+----------------------------------------------------------------------------------------------------------------
+  [1m[35m (13.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started DELETE "/drivers/600" for 127.0.0.1 at 2019-10-08 15:34:34 -0700
+Processing by DriversController#destroy as HTML
+  Parameters: {"id"=>"600"}
+  [1m[36mDriver Load (0.5ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 600], ["LIMIT", 1]]
+Redirected to http://www.example.com/drivers
+Completed 302 Found in 2ms (ActiveRecord: 0.5ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------
+DriversController::index: test_0002_responds with success when there are no drivers saved
+-----------------------------------------------------------------------------------------
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:34:34 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.4ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 6ms (Views: 2.6ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------
+DriversController::index: test_0001_responds with success when there are many drivers saved
+-------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:34:34.396246"], ["updated_at", "2019-10-08 22:34:34.396246"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:34:34 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 3ms (Views: 1.8ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------
+PassengersController::show: test_0001_can go to Passengers/:id/show for valid id
+--------------------------------------------------------------------------------
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" ORDER BY "passengers"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------
+PassengersController::show: test_0002_redirect to homepage if invalid id
+------------------------------------------------------------------------
+Started GET "/passengers/-666" for 127.0.0.1 at 2019-10-08 15:34:34 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-666"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -666], ["LIMIT", 1]]
+Redirected to http://www.example.com/homepages/nope
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------
+PassengersController::index: test_0001_can go to Passengers/index
+-----------------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:34:34 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 6ms (Views: 3.8ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------------------------------------
+DriversController::create: test_0001_can create a new driver with valid information accurately, and redirect
+------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started POST "/drivers" for 127.0.0.1 at 2019-10-08 15:34:34 -0700
+Processing by DriversController#create as HTML
+  Parameters: {"driver"=>{"name"=>"Home Dawg", "vin"=>"098"}}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Home Dawg"], ["vin", "098"], ["created_at", "2019-10-08 22:34:34.434193"], ["updated_at", "2019-10-08 22:34:34.434193"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/drivers/53
+Completed 302 Found in 3ms (ActiveRecord: 0.6ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."name" = $1 LIMIT $2[0m  [["name", "Home Dawg"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+HomepagesController: test_0002_can get to drivers/index
+-------------------------------------------------------
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:34:34 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------
+HomepagesController: test_0003_can get to passengers/index
+----------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:34:34 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------------
+HomepagesController: test_0001_can get the homepage
+---------------------------------------------------
+Started GET "/" for 127.0.0.1 at 2019-10-08 15:34:34 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 5ms (Views: 3.2ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------
+HomepagesController: test_0004_can get to trips/index
+-----------------------------------------------------
+Started GET "/trips" for 127.0.0.1 at 2019-10-08 15:34:34 -0700
+Processing by TripsController#index as HTML
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  Rendered trips/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 11ms (Views: 7.6ms | ActiveRecord: 1.4ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------
+PassengersController::new: test_0001_can go to Passengers/new.html
+------------------------------------------------------------------
+Started GET "/passengers/new" for 127.0.0.1 at 2019-10-08 15:34:34 -0700
+Processing by PassengersController#new as HTML
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (6.7ms)
+  Rendered passengers/new.html.erb within layouts/application (8.3ms)
+Completed 200 OK in 15ms (Views: 9.7ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0001_responds with success when getting the edit page for an existing, valid driver
+-----------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:34:34.494505"], ["updated_at", "2019-10-08 22:34:34.494505"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/54/edit" for 127.0.0.1 at 2019-10-08 15:34:34 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"54"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 54], ["LIMIT", 1]]
+  Rendering drivers/edit.html.erb within layouts/application
+  Rendered drivers/_form.html.erb (1.7ms)
+  Rendered drivers/edit.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 7ms (Views: 4.6ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0002_responds with redirect when getting the edit page for a non-existing driver
+--------------------------------------------------------------------------------------------------------------
+Started GET "/drivers/40504/edit" for 127.0.0.1 at 2019-10-08 15:34:34 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Redirected to http://www.example.com/
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0001_responds with success when getting the edit page for an existing, valid driver
+-----------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.8ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:35:46.165620"], ["updated_at", "2019-10-08 22:35:46.165620"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/55/edit" for 127.0.0.1 at 2019-10-08 15:35:46 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"55"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 55], ["LIMIT", 1]]
+  Rendering drivers/edit.html.erb within layouts/application
+  Rendered drivers/_form.html.erb (8.4ms)
+  Rendered drivers/edit.html.erb within layouts/application (10.7ms)
+Completed 200 OK in 232ms (Views: 216.4ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------------------------
+DriversController::edit: test_0002_responds with redirect when getting the edit page for a non-existing driver
+--------------------------------------------------------------------------------------------------------------
+Started GET "/drivers/40504/edit" for 127.0.0.1 at 2019-10-08 15:35:46 -0700
+Processing by DriversController#edit as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.5ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Redirected to http://www.example.com/
+Completed 302 Found in 2ms (ActiveRecord: 0.5ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------------------------------
+DriversController::show: test_0001_responds with success when showing an existing valid driver
+----------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.5ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:35:46.422296"], ["updated_at", "2019-10-08 22:35:46.422296"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers/56" for 127.0.0.1 at 2019-10-08 15:35:46 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"56"}
+  [1m[36mDriver Load (0.4ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 56], ["LIMIT", 1]]
+  Rendering drivers/show.html.erb within layouts/application
+  Rendered drivers/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 7ms (Views: 2.1ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------
+DriversController::show: test_0002_responds with 404 with an invalid driver id
+------------------------------------------------------------------------------
+Started GET "/drivers/40504" for 127.0.0.1 at 2019-10-08 15:35:46 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"40504"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40504], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------
+PassengersController::show: test_0001_can go to Passengers/:id/show for valid id
+--------------------------------------------------------------------------------
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" ORDER BY "passengers"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------
+PassengersController::show: test_0002_redirect to homepage if invalid id
+------------------------------------------------------------------------
+Started GET "/passengers/-666" for 127.0.0.1 at 2019-10-08 15:35:46 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-666"}
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -666], ["LIMIT", 1]]
+Redirected to http://www.example.com/homepages/nope
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------------
+HomepagesController: test_0001_can get the homepage
+---------------------------------------------------
+Started GET "/" for 127.0.0.1 at 2019-10-08 15:35:46 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 5ms (Views: 3.4ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+HomepagesController: test_0002_can get to drivers/index
+-------------------------------------------------------
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:35:46 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 5ms (Views: 2.9ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------
+HomepagesController: test_0003_can get to passengers/index
+----------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:35:46 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 6ms (Views: 3.7ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------
+HomepagesController: test_0004_can get to trips/index
+-----------------------------------------------------
+Started GET "/trips" for 127.0.0.1 at 2019-10-08 15:35:46 -0700
+Processing by TripsController#index as HTML
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.6ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  Rendered trips/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 10ms (Views: 5.3ms | ActiveRecord: 1.6ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------
+PassengersController::new: test_0001_can go to Passengers/new.html
+------------------------------------------------------------------
+Started GET "/passengers/new" for 127.0.0.1 at 2019-10-08 15:35:46 -0700
+Processing by PassengersController#new as HTML
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (1.9ms)
+  Rendered passengers/new.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 11ms (Views: 5.4ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------------------------
+DriversController::destroy: test_0001_destroys the driver instance in db when driver exists, then redirects
+-----------------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Mark"], ["vin", "776"], ["created_at", "2019-10-08 22:35:46.512952"], ["updated_at", "2019-10-08 22:35:46.512952"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started DELETE "/drivers/57" for 127.0.0.1 at 2019-10-08 15:35:46 -0700
+Processing by DriversController#destroy as HTML
+  Parameters: {"id"=>"57"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 57], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Destroy (0.6ms)[0m  [1m[31mDELETE FROM "drivers" WHERE "drivers"."id" = $1[0m  [["id", 57]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/drivers/57
+Completed 302 Found in 3ms (ActiveRecord: 1.1ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------------------------------------------------
+DriversController::destroy: test_0002_does not change the db when the driver does not exist, then responds with 
+----------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started DELETE "/drivers/600" for 127.0.0.1 at 2019-10-08 15:35:46 -0700
+Processing by DriversController#destroy as HTML
+  Parameters: {"id"=>"600"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 600], ["LIMIT", 1]]
+Redirected to http://www.example.com/
+Completed 302 Found in 1ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------------------------------------------
+DriversController::create: test_0001_can create a new driver with valid information accurately, and redirect
+------------------------------------------------------------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+Started POST "/drivers" for 127.0.0.1 at 2019-10-08 15:35:46 -0700
+Processing by DriversController#create as HTML
+  Parameters: {"driver"=>{"name"=>"Home Dawg", "vin"=>"098"}}
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Home Dawg"], ["vin", "098"], ["created_at", "2019-10-08 22:35:46.537371"], ["updated_at", "2019-10-08 22:35:46.537371"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/drivers/58
+Completed 302 Found in 3ms (ActiveRecord: 0.8ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "drivers"[0m
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."name" = $1 LIMIT $2[0m  [["name", "Home Dawg"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------
+PassengersController::index: test_0001_can go to Passengers/index
+-----------------------------------------------------------------
+Started GET "/passengers" for 127.0.0.1 at 2019-10-08 15:35:46 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  Rendered passengers/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------------
+PassengersController::create: test_0001_will make new Passenger obj correctly with good args
+--------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------------
+PassengersController::create: test_0002_will not make Passenger obj and give errors with bad args
+-------------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------
+DriversController::new: test_0001_responds with success
+-------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------------------------------------
+DriversController::index: test_0001_responds with success when there are many drivers saved
+-------------------------------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("name", "vin", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kari"], ["vin", "123"], ["created_at", "2019-10-08 22:35:46.554584"], ["updated_at", "2019-10-08 22:35:46.554584"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:35:46 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------
+DriversController::index: test_0002_responds with success when there are no drivers saved
+-----------------------------------------------------------------------------------------
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+Started GET "/drivers" for 127.0.0.1 at 2019-10-08 15:35:46 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  Rendered drivers/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
