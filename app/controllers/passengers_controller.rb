@@ -17,7 +17,7 @@ class PassengersController < ApplicationController
   
   
   def create
-    @passenger = Passenger.new( strongs_params )
+    @passenger = Passenger.new( strong_params )
     if @passenger.save
       redirect_to passenger_path(@passenger.id)
     else
@@ -25,11 +25,22 @@ class PassengersController < ApplicationController
     end
   end
   
-  
   def new
     @passenger = Passenger.new
   end
   
+  def edit
+    @passenger = Passenger.find_by(id: params[:id] )
+  end
+  
+  def update
+    @passenger = Passenger.find_by(id: params[:id] )
+    if @passenger.update( strong_params )
+      redirect_to passenger_path(@passenger.id)
+    else
+      render :edit
+    end
+  end
   
   def destroy
     passenger = Passenger.find_by( id: params[:id] )
@@ -46,7 +57,7 @@ class PassengersController < ApplicationController
   
   private
   
-  def strongs_params
+  def strong_params
     return params.require(:passenger).permit(:name, :phone_num)
   end
   
