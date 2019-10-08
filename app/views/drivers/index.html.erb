@@ -1,0 +1,16 @@
+<h1>All Drivers</h1>
+
+<ul>
+  <% @drivers.each do |driver|  %>
+    <li>
+      Name: <%= link_to driver.name, driver_path(driver) %>
+      VIN: <%= %>
+      Active: <%= %>
+      Car Make: <%= %>
+      Car Model: <%= %>
+
+      <%# <%= link_to book.title, book_path(book) %>
+      <%# By: <%= book.author.name <%= link_to "Edit", edit_book_path(book) <%= link_to "Delete", book_path(book), method: :delete, data: {confirm: "Are you sure?"}%>
+    </li>
+  <% end %>
+</ul>
