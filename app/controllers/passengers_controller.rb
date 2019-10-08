@@ -10,10 +10,19 @@ class PassengersController < ApplicationController
   
   def create
     @passenger = Passenger.new(get_params)
-    puts @passenger
+    if @passenger.valid?
+      x = "success"
+      raise
+      return
+    else
+      x = "bad args"
+      raise
+      return
+    end
   end
   
   def show
+    @passenger = Passenger.find_by(id: params[:id])
   end
   
   def edit
@@ -28,6 +37,6 @@ class PassengersController < ApplicationController
   
   private
   def get_params
-    return params.require[:passenger].permit[:name, :phone_num]
+    return params.require(:passenger).permit(:name, :phone_num)
   end
 end

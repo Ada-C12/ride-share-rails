@@ -667,3 +667,509 @@ Processing by PassengersController#index as HTML
 Completed 200 OK in 66ms (Views: 62.9ms | ActiveRecord: 0.5ms)
 
 
+Started GET "/" for ::1 at 2019-10-08 13:40:46 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 30ms (Views: 26.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-08 13:40:49 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 30ms (Views: 27.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers" for ::1 at 2019-10-08 13:41:04 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.5ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:16
+  Rendered passengers/index.html.erb within layouts/application (19.5ms)
+Completed 200 OK in 52ms (Views: 48.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2019-10-08 13:41:06 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 29ms (Views: 25.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers/new" for ::1 at 2019-10-08 13:41:10 -0700
+Processing by PassengersController#new as HTML
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/new.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 29ms (Views: 25.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-08 13:41:54 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 29ms (Views: 25.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/drivers" for ::1 at 2019-10-08 13:41:55 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.7ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  ↳ app/views/drivers/index.html.erb:3
+  Rendered drivers/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 31ms (Views: 27.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2019-10-08 13:41:59 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 36ms (Views: 31.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers" for ::1 at 2019-10-08 13:42:00 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.6ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:16
+  Rendered passengers/index.html.erb within layouts/application (20.5ms)
+Completed 200 OK in 48ms (Views: 44.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/passengers/new" for ::1 at 2019-10-08 13:42:01 -0700
+Processing by PassengersController#new as HTML
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (1.3ms)
+  Rendered passengers/new.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 32ms (Views: 28.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers/new" for ::1 at 2019-10-08 13:45:13 -0700
+
+SyntaxError - syntax error, unexpected ':', expecting keyword_end
+      redirect_to: root_path
+                 ^
+/Users/carolinewu/ADA/week10/ride-share-rails/app/controllers/passengers_controller.rb:17: syntax error, unexpected ':', expecting keyword_end
+      head: not_found
+          ^:
+  app/controllers/passengers_controller.rb:14:in `'
+
+Started POST "/__better_errors/d6be2732422e3e46/variables" for ::1 at 2019-10-08 13:45:14 -0700
+Started GET "/passengers/new" for ::1 at 2019-10-08 13:45:22 -0700
+
+SyntaxError - syntax error, unexpected ':', expecting keyword_end
+      head: not_found
+          ^:
+  app/controllers/passengers_controller.rb:17:in `'
+
+Started POST "/__better_errors/a1c3ad00e721dbe9/variables" for ::1 at 2019-10-08 13:45:22 -0700
+Started GET "/passengers/new" for ::1 at 2019-10-08 13:45:29 -0700
+Processing by PassengersController#new as HTML
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+
+SyntaxError - syntax error, unexpected ':', expecting keyword_end
+  validates: :name, :presence: true
+           ^
+/Users/carolinewu/ADA/week10/ride-share-rails/app/models/passenger.rb:5: syntax error, unexpected ':', expecting keyword_end
+  validates: :phone_num, :presence: true,...
+           ^
+/Users/carolinewu/ADA/week10/ride-share-rails/app/models/passenger.rb:5: Can't assign to true
+...s: :phone_num, :presence: true, numericality: true
+...                              ^:
+  app/models/passenger.rb:4:in `'
+  app/controllers/passengers_controller.rb:8:in `new'
+
+Started POST "/__better_errors/0909663497a2e8fc/variables" for ::1 at 2019-10-08 13:45:29 -0700
+Started GET "/passengers/new" for ::1 at 2019-10-08 13:45:41 -0700
+Processing by PassengersController#new as HTML
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+
+
+SyntaxError - syntax error, unexpected ':', expecting keyword_end
+  validates :name, :presence: true
+                            ^
+/Users/carolinewu/ADA/week10/ride-share-rails/app/models/passenger.rb:5: syntax error, unexpected ':', expecting keyword_end
+...alidates :phone_num, :presence: true, numericality: true
+...                              ^
+/Users/carolinewu/ADA/week10/ride-share-rails/app/models/passenger.rb:5: Can't assign to true
+...es :phone_num, :presence: true, numericality: true
+...                              ^:
+  app/models/passenger.rb:4:in `'
+  app/controllers/passengers_controller.rb:8:in `new'
+
+Started POST "/__better_errors/22b52bd1941fa843/variables" for ::1 at 2019-10-08 13:45:41 -0700
+Started GET "/passengers/new" for ::1 at 2019-10-08 13:45:50 -0700
+Processing by PassengersController#new as HTML
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (1.4ms)
+  Rendered passengers/new.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 42ms (Views: 24.4ms | ActiveRecord: 9.1ms)
+
+
+Started POST "/passengers" for ::1 at 2019-10-08 13:45:52 -0700
+Processing by PassengersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"FLNAf53yerUKZZqU74rzYvThCzfG+4SGOWTuiRTGSvxMaEXEDjugRNJYvqzKkdU22cbZYH7QRFbOwEkXRiaSvQ==", "passenger"=>{"name"=>"", "phone_num"=>""}, "commit"=>"GET IT!"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+
+
+ArgumentError - wrong number of arguments (given 0, expected 1):
+  app/controllers/passengers_controller.rb:37:in `get_params'
+  app/controllers/passengers_controller.rb:12:in `create'
+
+Started POST "/__better_errors/90fa7a9a47095c53/variables" for ::1 at 2019-10-08 13:45:52 -0700
+Started GET "/" for ::1 at 2019-10-08 13:46:43 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 29ms (Views: 26.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/drivers" for ::1 at 2019-10-08 13:46:45 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.5ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  ↳ app/views/drivers/index.html.erb:3
+  Rendered drivers/index.html.erb within layouts/application (14.8ms)
+Completed 200 OK in 45ms (Views: 36.9ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/" for ::1 at 2019-10-08 13:46:46 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 31ms (Views: 27.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers" for ::1 at 2019-10-08 13:46:47 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.5ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:16
+  Rendered passengers/index.html.erb within layouts/application (19.6ms)
+Completed 200 OK in 48ms (Views: 44.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/passengers/new" for ::1 at 2019-10-08 13:46:48 -0700
+Processing by PassengersController#new as HTML
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (1.5ms)
+  Rendered passengers/new.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 32ms (Views: 28.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/passengers" for ::1 at 2019-10-08 13:46:56 -0700
+Processing by PassengersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"n98mBLScukR8WPxj6sS81TDkkv7xltsNoHDERlJoLGWmYygOUmmNAURsWhFQaX26crjw5h0dnGcpmLMp2U97pQ==", "passenger"=>{"name"=>"dfs", "phone_num"=>""}, "commit"=>"GET IT!"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+
+
+ArgumentError - wrong number of arguments (given 0, expected 1):
+  app/controllers/passengers_controller.rb:37:in `get_params'
+  app/controllers/passengers_controller.rb:12:in `create'
+
+Started POST "/__better_errors/9ea0fcace835552d/variables" for ::1 at 2019-10-08 13:46:56 -0700
+Started POST "/passengers" for ::1 at 2019-10-08 13:47:54 -0700
+Processing by PassengersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"n98mBLScukR8WPxj6sS81TDkkv7xltsNoHDERlJoLGWmYygOUmmNAURsWhFQaX26crjw5h0dnGcpmLMp2U97pQ==", "passenger"=>{"name"=>"dfs", "phone_num"=>""}, "commit"=>"GET IT!"}
+Completed 404 Not Found in 11ms (ActiveRecord: 2.6ms)
+
+
+Started GET "/" for ::1 at 2019-10-08 13:47:56 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 28ms (Views: 25.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers" for ::1 at 2019-10-08 13:47:57 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.4ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:16
+  Rendered passengers/index.html.erb within layouts/application (27.0ms)
+Completed 200 OK in 55ms (Views: 50.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/passengers/new" for ::1 at 2019-10-08 13:48:00 -0700
+Processing by PassengersController#new as HTML
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (1.9ms)
+  Rendered passengers/new.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 31ms (Views: 27.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/passengers" for ::1 at 2019-10-08 13:48:04 -0700
+Processing by PassengersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"t42qqbJIcCmr0D07Tacg90Vvq1UUq03KO49f3YmlRWCOMaSjVL1HbJPkm0n3CuGYBzPJTfggCqCyZyiyAoISoA==", "passenger"=>{"name"=>"fds", "phone_num"=>"dsds"}, "commit"=>"GET IT!"}
+Completed 404 Not Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started POST "/passengers" for ::1 at 2019-10-08 13:48:12 -0700
+Processing by PassengersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4l38rsIiCOnY+eStcGNzfmAuzPYCWLB8XO43svE9xQK6hvkVUevSGADEwJVVeFUqTQkeobpzcKyrSpAso90dQw==", "passenger"=>{"name"=>"", "phone_num"=>""}, "commit"=>"GET IT!"}
+Completed 404 Not Found in 3ms (ActiveRecord: 0.0ms)
+
+
+Started POST "/passengers" for ::1 at 2019-10-08 13:48:16 -0700
+Processing by PassengersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4l38rsIiCOnY+eStcGNzfmAuzPYCWLB8XO43svE9xQK6hvkVUevSGADEwJVVeFUqTQkeobpzcKyrSpAso90dQw==", "passenger"=>{"name"=>"y", "phone_num"=>"h"}, "commit"=>"GET IT!"}
+Completed 404 Not Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers/new" for ::1 at 2019-10-08 13:48:38 -0700
+Processing by PassengersController#new as HTML
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (1.4ms)
+  Rendered passengers/new.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 36ms (Views: 25.9ms | ActiveRecord: 2.2ms)
+
+
+Started POST "/passengers" for ::1 at 2019-10-08 13:48:42 -0700
+Processing by PassengersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GNGv+KKv4XobbKu2sbJLPyIf0BNtWtEAUCeotLBZqmxACqpDMWY7i8NRj46UqW1rDzgCRNVxEdCngw8q4rlyLQ==", "passenger"=>{"name"=>"d", "phone_num"=>"f"}, "commit"=>"GET IT!"}
+Completed 404 Not Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-08 13:49:04 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 32ms (Views: 28.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers" for ::1 at 2019-10-08 13:49:04 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.4ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:16
+  Rendered passengers/index.html.erb within layouts/application (41.9ms)
+Completed 200 OK in 80ms (Views: 70.4ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/passengers/new" for ::1 at 2019-10-08 13:49:06 -0700
+Processing by PassengersController#new as HTML
+  Rendering passengers/new.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (1.7ms)
+  Rendered passengers/new.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 31ms (Views: 28.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/passengers" for ::1 at 2019-10-08 13:49:08 -0700
+Processing by PassengersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MAknDZuyBNMDkc+6ukbBvfg0d8DTqw6cXloyQ2dRkb4JtSkHfUczljulacgA6wDSumgV2D8gSfbXskUs7HbGfg==", "passenger"=>{"name"=>"asd", "phone_num"=>"fsd"}, "commit"=>"GET IT!"}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+
+RuntimeError - :
+  app/controllers/passengers_controller.rb:19:in `create'
+
+Started POST "/__better_errors/fed021faecac6554/variables" for ::1 at 2019-10-08 13:49:08 -0700
+Started POST "/__better_errors/fed021faecac6554/eval" for ::1 at 2019-10-08 13:49:11 -0700
+Started POST "/__better_errors/fed021faecac6554/eval" for ::1 at 2019-10-08 13:49:16 -0700
+Started GET "/" for ::1 at 2019-10-08 13:50:46 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 27ms (Views: 24.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/drivers" for ::1 at 2019-10-08 13:50:48 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  ↳ app/views/drivers/index.html.erb:3
+  Rendered drivers/index.html.erb within layouts/application (8.9ms)
+Completed 200 OK in 40ms (Views: 31.6ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/" for ::1 at 2019-10-08 13:50:51 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 29ms (Views: 25.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers" for ::1 at 2019-10-08 13:50:52 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.5ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:16
+  Rendered passengers/index.html.erb within layouts/application (27.1ms)
+Completed 200 OK in 55ms (Views: 51.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2019-10-08 13:50:53 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 30ms (Views: 26.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/trips" for ::1 at 2019-10-08 13:50:54 -0700
+Processing by TripsController#index as HTML
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (2.4ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  ↳ app/views/trips/index.html.erb:3
+  Rendered trips/index.html.erb within layouts/application (34.9ms)
+Completed 200 OK in 64ms (Views: 52.2ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/" for ::1 at 2019-10-08 13:51:04 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 37ms (Views: 33.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/drivers" for ::1 at 2019-10-08 13:57:24 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.7ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  ↳ app/views/drivers/index.html.erb:3
+  Rendered drivers/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 30ms (Views: 25.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2019-10-08 13:58:12 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 27ms (Views: 24.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers" for ::1 at 2019-10-08 13:58:13 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.8ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:16
+  Rendered passengers/index.html.erb within layouts/application (18.2ms)
+Completed 200 OK in 45ms (Views: 41.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/" for ::1 at 2019-10-08 13:58:36 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 37ms (Views: 33.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers" for ::1 at 2019-10-08 13:59:28 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.5ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:16
+  Rendered passengers/index.html.erb within layouts/application (22.8ms)
+Completed 200 OK in 51ms (Views: 46.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2019-10-08 13:59:36 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 32ms (Views: 28.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers" for ::1 at 2019-10-08 13:59:40 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.6ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:16
+  Rendered passengers/index.html.erb within layouts/application (23.3ms)
+Completed 200 OK in 59ms (Views: 54.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for ::1 at 2019-10-08 14:00:00 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 35ms (Views: 31.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-08 14:00:04 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 37ms (Views: 34.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers" for ::1 at 2019-10-08 14:05:49 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.4ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:16
+  Rendered passengers/index.html.erb within layouts/application (34.3ms)
+Completed 200 OK in 69ms (Views: 65.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/passengers/1" for ::1 at 2019-10-08 14:05:54 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"1"}
+Completed 406 Not Acceptable in 119ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::UnknownFormat - PassengersController#show is missing a template for this request format and variant.
+
+request.formats: ["text/html"]
+request.variant: []
+
+NOTE! For XHR/Ajax or API requests, this action would normally respond with 204 No Content: an empty white screen. Since you're loading it in a web browser, we assume that you expected to actually render a template, not nothing, so we're showing an error to be extra-clear. If you expect 204 No Content, carry on. That's what you'll get from an XHR or API request. Give it a shot.:
+
+Started POST "/__better_errors/6a9e42b5321973d9/variables" for ::1 at 2019-10-08 14:05:54 -0700
+Started GET "/passengers/1" for ::1 at 2019-10-08 14:06:58 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering passengers/show.html.erb within layouts/application
+  Rendered passengers/show.html.erb within layouts/application (9.9ms)
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.0ms)
+
+
+
+NoMethodError - undefined method `id' for nil:NilClass:
+  app/views/passengers/show.html.erb:1:in `_app_views_passengers_show_html_erb___3912664018520894545_70099331519700'
+
+Started POST "/__better_errors/2e27e9b845c238f9/variables" for ::1 at 2019-10-08 14:06:59 -0700
+Started GET "/passengers/1" for ::1 at 2019-10-08 14:07:22 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:25
+  Rendering passengers/show.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (2.2ms)
+  Rendered passengers/show.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 62ms (Views: 41.4ms | ActiveRecord: 5.7ms)
+
+
+Started GET "/passengers/1" for ::1 at 2019-10-08 14:07:51 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:25
+  Rendering passengers/show.html.erb within layouts/application
+  Rendered passengers/show.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 35ms (Views: 30.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/passengers/1" for ::1 at 2019-10-08 14:08:00 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:25
+  Rendering passengers/show.html.erb within layouts/application
+  Rendered passengers/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 37ms (Views: 33.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2019-10-08 14:08:08 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 29ms (Views: 25.6ms | ActiveRecord: 0.0ms)
+
+
