@@ -6,6 +6,8 @@
   </p>
 
   <div>Total Charged: <%= number_to_currency(@passenger.total_charged / 100.0) %></div>
+
+  <div>Request trip link<%# link_to "Request Trip", trips_path(@passenger.id), method: :post %></div>
   
   <div class="modify-options">
     <div><%= link_to "Edit", edit_passenger_path(@passenger.id) %></div>
