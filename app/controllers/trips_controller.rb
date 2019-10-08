@@ -8,10 +8,6 @@ class TripsController < ApplicationController
     end
   end
   
-  def new
-    
-  end
-  
   def create
     
   end
@@ -25,11 +21,6 @@ class TripsController < ApplicationController
   end
   
   def destroy
-    
-  end
-  
-  def complete
-    
     
   end
   
