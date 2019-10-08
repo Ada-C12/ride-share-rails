@@ -11,10 +11,10 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2019_10_08_172631) do
-
+  
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
+  
   create_table "drivers", force: :cascade do |t|
     t.string "name"
     t.string "vin"
@@ -24,14 +24,14 @@ ActiveRecord::Schema.define(version: 2019_10_08_172631) do
     t.string "car_make"
     t.string "car_model"
   end
-
+  
   create_table "passengers", force: :cascade do |t|
     t.string "name"
     t.string "phone_num"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
+  
   create_table "trips", force: :cascade do |t|
     t.datetime "date"
     t.integer "rating"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2019_10_08_172631) do
     t.index ["driver_id"], name: "index_trips_on_driver_id"
     t.index ["passenger_id"], name: "index_trips_on_passenger_id"
   end
-
+  
   add_foreign_key "trips", "drivers"
   add_foreign_key "trips", "passengers"
 end
