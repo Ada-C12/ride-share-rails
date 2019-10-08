@@ -15,7 +15,6 @@ class PassengersController < ApplicationController
       return
     else
       render new_passenger_path
-      # redirect_to nope_path
       return
     end
   end

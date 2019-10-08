@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe PassengersController do
-  # let (:passenger1) { Passenger.create (name: "J. G. Wentworth", phone_num: "1-800-cash-now") }
+  let (:passenger1) { Passenger.create(name: "Bart Simpson", phone_num: "1-800-1234-567") }
   
   describe "index" do
     it "can go to Passengers/index" do
@@ -13,7 +13,7 @@ describe PassengersController do
   describe "show" do
     it "can go to Passengers/:id/show for valid id" do
       passenger1
-      get passenger_path(id: Passenger.first.id)
+      get passenger_path(id: passenger1.id)
       must_respond_with :success
     end
     
@@ -34,9 +34,10 @@ describe PassengersController do
       bad_phone_nums = ["garbage", "!!!!!", "123"]
       
       bad_names.each do |bad_name|
-        bad_passenger = Passenger.create(name: bad_name, phone_num: 4251231234)
+        bad_passenger = Passenger.create(name: bad_name, phone_num: "4251231234")
+        puts bad_passenger
         refute(bad_passenger)
-        # must_respond_with :success
+        must_respond_with :success
       end
     end
   end
