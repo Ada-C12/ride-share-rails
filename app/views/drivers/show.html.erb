@@ -1,0 +1,11 @@
+  <h3>Name: <%= @driver.name %></h3>
+ 
+  <p> Driver Info:
+
+  <%= @driver.vin %>
+  <%= @driver.make %>
+  <%= @driver.model %>
+  <%= @driver.active %>
+  </p>
+  
+  <p><%= link_to "Return to Drivers List", drivers_path %></p>
