@@ -8902,3 +8902,10 @@ Processing by DriversController#new as HTML
 Completed 200 OK in 54ms (Views: 51.4ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/drivers/new" for ::1 at 2019-10-08 14:07:25 -0700
+Processing by DriversController#new as HTML
+  Rendering drivers/new.html.erb within layouts/application
+  Rendered drivers/new.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 29ms (Views: 27.4ms | ActiveRecord: 0.0ms)
+
+
