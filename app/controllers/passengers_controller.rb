@@ -6,6 +6,7 @@ class PassengersController < ApplicationController
   def show
     passenger_id = params[:id]
     @passenger = Passenger.find_by(id: passenger_id)
+    
     if @passenger.nil?
       head :not_found
       return
@@ -20,6 +21,7 @@ class PassengersController < ApplicationController
   end
   
   def new
+    @passenger = Passenger.new
   end
   
   def create
@@ -34,4 +36,11 @@ class PassengersController < ApplicationController
       return
     end
   end
+  
+  private
+  
+  def passenger_params
+    return params.require(:passenger).permit(:passenger_id, :name, :phone_num)
+  end
+  
 end
