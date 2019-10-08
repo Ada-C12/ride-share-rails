@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'homepages#index'
+
   get    "/drivers", to: "drivers#index", as: :drivers
   post   "/drivers", to: "drivers#create"
   get    "/drivers/new", to: "drivers#new", as: :new_driver
