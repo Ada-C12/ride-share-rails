@@ -57,7 +57,11 @@
               <%= trip.driver.name %>
             </td>
             <td>
-              <%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %>
+              <% if trip.passenger != nil %>
+                <%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %>
+              <% else %>
+                deleted
+              <% end %>
             </td>
             <td>
               <%= number_to_currency(trip.cost / 100.0) %>
