@@ -133,29 +133,54 @@ describe DriversController do
     it "can update an existing driver with valid information accurately, and redirect" do
       # Arrange
       # Ensure there is an existing driver saved
+      driver = Driver.create(name: "Micky", vin: "777")
       # Assign the existing driver's id to a local variable
+      driver_id = driver.id
       # Set up the form data
+      data_hash = {
+        driver: {
+          name: "Minnie",
+          vin: "888"
+        }
+      }
       
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect {
+        patch driver_path(driver_id), params: data_hash
+      }.wont_change "Driver.count"
       
       # Assert
       # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
-      # Check that the controller redirected the user
+      updated_driver = Driver.find_by(id: driver_id)
+      expect(updated_driver.name).must_equal data_hash[:driver][:name]
+      expect(updated_driver.vin).must_equal data_hash[:driver][:vin]
       
+      # Check that the controller redirected the user
+      must_redirect_to driver_path(updated_driver.id)
     end
     
     it "does not update any driver if given an invalid id, and responds with a 404" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
+      invalid_id = -1
       # Set up the form data
+      data_hash = {
+        driver: {
+          name: "Minnie",
+          vin: "888"
+        }
+      }
       
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect {
+        patch driver_path(invalid_id), params: data_hash
+      }.wont_change "Driver.count"
       
       # Assert
       # Check that the controller gave back a 404
-      
+      must_respond_with :not_found
     end
     
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
