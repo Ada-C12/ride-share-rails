@@ -94,8 +94,18 @@ describe DriversController do
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
+      driver_hash = {
+        driver: {
+          vin: "53246",
+          active: false,
+          car_make: "Toyota",
+          car_model: "Tacoma"
+        }
+      }
       # Set up the form data so that it violates Driver validations
-
+      expect {
+        post drivers_path, params: driver_hash
+      }.wont_change Driver.count
       # Act-Assert
       # Ensure that there is no change in Driver.count
 
