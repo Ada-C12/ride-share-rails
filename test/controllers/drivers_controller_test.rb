@@ -188,15 +188,24 @@ describe DriversController do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Ensure there is an existing driver saved
+      driver = Driver.create(name: "Micky", vin: "777")
       # Assign the existing driver's id to a local variable
+      driver_id = driver.id
       # Set up the form data so that it violates Driver validations
-      
+      data_hash = {
+        driver: {
+          name: nil,
+          vin: "888"
+        }
+      }
       # Act-Assert
       # Ensure that there is no change in Driver.count
-      
+      expect {
+        patch driver_path(driver_id), params: data_hash
+      }.wont_change 'Driver.count'
       # Assert
       # Check that the controller redirects
-      
+      assert_template :edit
     end
   end
   

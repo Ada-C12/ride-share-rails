@@ -1,6 +1,16 @@
 <section>
   <h2>Update this Driver</h2>
 
+  <% if @driver.errors.any? %>
+    <ul class="errors">
+      <% @driver.errors.each do |column, message| %>
+        <li>
+          <strong><%= column.capitalize %></strong> <%= message %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <%= form_with model: @driver, class: "driver-form" do |f| %>
     <h3>Please enter information to update this driver</h3>
 
@@ -9,6 +19,12 @@
 
     <%= f.label :vin %>
     <%= f.text_field :vin %>
+
+    <%= f.label :car_make %>
+    <%= f.text_field :car_make %>
+
+    <%= f.label :car_model %>
+    <%= f.text_field :car_model %>
 
     <%= f.submit "Update Driver", class: "submit-button" %>
   <% end %>
