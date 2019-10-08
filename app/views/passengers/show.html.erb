@@ -10,5 +10,12 @@
   <%= @passenger.phone_num %>
 </p>
 
+<p>
+  <strong>My trips:</strong>
+  <% @passenger.find_passenger_trips.each do |trip| %>
+    <%= link_to 'Trip', trip_path %>
+  <% end%>
+</p>
+
 <%= link_to 'Edit', edit_passenger_path(@passenger) %> |
 <%= link_to 'Back', passengers_path %>
