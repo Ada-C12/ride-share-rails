@@ -1,0 +1,13 @@
+<h1>Drivers List</h1>
+<section>
+  <ol>
+    <% @drivers.each do |driver| %>
+    <li>
+    <%= link_to driver.name, driver_path(id: driver.id)%>
+    <br>
+    <%= link_to driver.vin, driver_path(id: driver.id)%>
+    
+    </li>
+    <% end %>
+  </ol>
+</section>
