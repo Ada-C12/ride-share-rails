@@ -37,60 +37,61 @@ describe DriversController do
     end
   end
 
-  # describe "new" do
-  #   it "responds with success" do
-  #   end
-  # end
+  describe "new" do
+    it "responds with success" do
+      @driver = Driver.new
+    end
+  end
 
-  # describe "create" do
-  #   it "can create a new driver with valid information accurately, and redirect" do
-  #     # Arrange
-  #     # Set up the form data
+  describe "create" do
+    it "can create a new driver with valid information accurately, and redirect" do
+      driver_hash = {
+        driver: {
+          name: "Home Dawg",
+          vin: "098"
+        }
+      }
 
-  #     # Act-Assert
-  #     # Ensure that there is a change of 1 in Driver.count
+      expect {
+        post drivers_path, params: driver_hash
+      }.must_differ 'Driver.count', 1
 
-  #     # Assert
-  #     # Find the newly created Driver, and check that all its attributes match what was given in the form data
-  #     # Check that the controller redirected the user
+      must_redirect_to driver_path(Driver.find_by(name: "Home Dawg"))
+    end
 
-  #   end
+    # it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+      # Note: This will not pass until ActiveRecord Validations lesson
+      # Arrange
+      # Set up the form data so that it violates Driver validations
 
-  #   it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-  #     # Note: This will not pass until ActiveRecord Validations lesson
-  #     # Arrange
-  #     # Set up the form data so that it violates Driver validations
+      # Act-Assert
+      # Ensure that there is no change in Driver.count
 
-  #     # Act-Assert
-  #     # Ensure that there is no change in Driver.count
+      # Assert
+      # Check that the controller redirects
+    # end
+  end
 
-  #     # Assert
-  #     # Check that the controller redirects
+  describe "edit" do
+    it "responds with success when getting the edit page for an existing, valid driver" do
+      # Arrange
+      # Ensure there is an existing driver saved
+      driver = Driver.create(name: "Kari", vin: "123")
+      get edit_driver_path(driver.id)
 
-  #   end
-  # end
+      must_respond_with :success
+    end
 
-  # describe "edit" do
-  #   it "responds with success when getting the edit page for an existing, valid driver" do
-  #     # Arrange
-  #     # Ensure there is an existing driver saved
+    # it "responds with redirect when getting the edit page for a non-existing driver" do
+      # Arrange
+      # Ensure there is an invalid id that points to no driver
 
-  #     # Act
+      # Act
 
-  #     # Assert
+      # Assert
 
-  #   end
-
-  #   it "responds with redirect when getting the edit page for a non-existing driver" do
-  #     # Arrange
-  #     # Ensure there is an invalid id that points to no driver
-
-  #     # Act
-
-  #     # Assert
-
-  #   end
-  # end
+    # end
+  end
 
   # describe "update" do
   #   it "can update an existing driver with valid information accurately, and redirect" do

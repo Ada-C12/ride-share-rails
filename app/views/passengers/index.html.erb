@@ -1,5 +1,6 @@
 <h1>PASSENGERS index</h1>
 
+<<<<<<< HEAD
 <%= link_to "NEW PASSENGER", new_passenger_path %><br>
 <hr>
 
@@ -22,3 +23,8 @@
   <%end %>
 </section>
 
+=======
+<% @passengers.each do |passenger| %>
+<%= passenger.id%>: <%= passenger.name%><br>
+<%end %>
+>>>>>>> drivers_branch

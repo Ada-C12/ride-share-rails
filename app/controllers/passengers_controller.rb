@@ -1,4 +1,5 @@
 class PassengersController < ApplicationController
+<<<<<<< HEAD
   
   def index
     @passengers = Passenger.all
@@ -39,4 +40,10 @@ class PassengersController < ApplicationController
   def get_params
     return params.require(:passenger).permit(:name, :phone_num)
   end
+=======
+
+  def index
+    @passengers = Passenger.all
+  end
+>>>>>>> drivers_branch
 end
