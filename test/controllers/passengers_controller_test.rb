@@ -38,20 +38,17 @@ describe PassengersController do
       assert (new_passenger.phone_num == passenger_hash[:passenger][:phone_num])
     end
     
-    it "Given bad args, will fail validations, and stay on page" do
-      # bad_names = [nil, "", "    "]
+    it "Bad args will fail validations, and user will stay on page" do
+      bad_names = [nil, "", "    "]
       
+      bad_names.each do |bad_name|
+        bad_params = { passenger: {name: bad_name, phone_num: "4251231234"} } 
+        expect {post passengers_path, params: bad_params }.must_differ, "Task.count", 0
+        must_respond_with 200
+      end
       
-      # bad_names.each do |bad_name|
-      #   bad_passenger = Passenger.create(name: bad_name, phone_num: "4251231234")
-      #   # refute(bad_passenger)
-      
-      #   post passengers_path, params: { name: bad_name, phone_num: "4251231234" }
-      #   puts params
-      #   # must_respond_with 200
       # bad_phone_nums = ["garbage", "!!!!!", "123"]
     end
-    
   end
   
   
