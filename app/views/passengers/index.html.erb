@@ -1,1 +1,17 @@
-this is the index_passenger page
+<h1>Here's a list of all your passengers!</h1>
+
+<section>
+  <%= button_to "Create a new passenger profile", new_passenger_path, method: :get %>
+  <ul>
+    <% @passengers.each do |passenger|%>
+      <li>
+        <%= link_to passenger.name, passenger_path(passenger.id)%>
+      </li>
+      <% end %>
+      </ul>
+
+      
+
+      </section>
+
+
