@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :homepages
   resources :drivers
   resources :passengers
+  resources :trips
 end
