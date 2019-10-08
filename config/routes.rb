@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   resources :drivers
   resources :passengers
   
+  
   # 'author/:id', to: 'author#show', as: 'author'
 end
