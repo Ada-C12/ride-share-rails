@@ -1,4 +1,4 @@
-<h2>Passenger</h2>
+<h2>Passenger Details</h2>
 
 <%= link_to "Back to Homepage", root_path %>
 <br>
@@ -10,6 +10,7 @@
 <p>Phone Number: <%= @passenger.phone_num %></p>
 <p>ID: <%= @passenger.id %></p>
 <p> Total Spent: $<%= @passenger.total_amount %> </p>
+<%= link_to "Edit Passenger", edit_passenger_path%>
 
 <p>
 

@@ -29,6 +29,27 @@ class PassengersController < ApplicationController
     end
   end
   
+  def edit
+    passenger_id = params[:id]
+    @passenger = Passenger.find_by(id: passenger_id)
+    
+    if @passenger.nil?
+      head :not_found
+      return
+    end
+  end
+  
+  def update
+    @passenger = Passenger.update(passenger_params)
+    if @passenger.update(passenger_params)
+      redirect_to passengers_path
+      return
+    else
+      render :edit
+      return
+    end
+  end
+  
   
   private
   
