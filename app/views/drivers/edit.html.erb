@@ -11,21 +11,5 @@
     </ul>
   <% end %>
 
-  <%= form_with model: @driver, class: "driver-form" do |f| %>
-    <h3>Please enter information to update this driver</h3>
-
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-
-    <%= f.label :vin %>
-    <%= f.text_field :vin %>
-
-    <%= f.label :car_make %>
-    <%= f.text_field :car_make %>
-
-    <%= f.label :car_model %>
-    <%= f.text_field :car_model %>
-
-    <%= f.submit "Update Driver", class: "submit-button" %>
-  <% end %>
+  <%= render partial: "form", locals: { action_name: "Update", message: "update this" } %>
 </section>
