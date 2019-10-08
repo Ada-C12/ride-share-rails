@@ -1,0 +1,29 @@
+<h1>List of Trips</h1>
+
+<%= link_to "Back to Homepage", root_path %>
+
+<ul>
+<% i = 1 %>
+  <% @trips.each do |trip| %>
+    <li>
+      <%= link_to "Trip #{i}", trip_path(trip) %>
+    </li>
+    <li>
+      Driver ID: <%= trip.driver_id %>
+    </li>
+    <li>
+      Passenger ID: <%= trip.passenger_id %>
+    </li>
+    <li>
+      Date: <%= trip.date %>
+    </li>
+    <li>
+      Rating: <%= trip.rating %>
+    </li>
+    <li>
+      Cost: $<%= '%.2f' % trip.cost %>
+    </li>
+    <% i += 1%>
+    <br>
+  <% end %>
+</ul>
