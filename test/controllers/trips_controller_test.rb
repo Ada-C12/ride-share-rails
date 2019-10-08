@@ -86,6 +86,30 @@ describe TripsController do
   end
   
   describe "destroy" do
-    # Your tests go here
+    it "destroys the trip instance in db when trip exists, then redirects" do
+      driver = Driver.create(name: "Bernardo Prosacco", vin: "WBWSS52P9NEYLVDE9")
+      passenger = Passenger.create(name: "test person", phone_num: "1234567")
+      
+      test_trip = Trip.create(driver_id: driver.id, passenger_id: passenger.id, cost: nil, date: DateTime.now, rating: nil)
+      
+      expect {
+        delete trip_path(test_trip.id)
+      }.must_change "Trip.count", -1
+      
+      new_trip = Trip.find_by(id: test_trip.id)
+      expect(new_trip).must_be_nil
+      
+      must_redirect_to root_path
+    end
+    
+    it "does not change the db when the trip does not exist, then responds with " do
+      invalid_id = -1
+      
+      expect {
+        delete trip_path(invalid_id)
+      }.wont_change "Trip.count"
+      
+      must_respond_with :not_found
+    end
   end
 end
