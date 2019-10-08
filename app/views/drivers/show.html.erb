@@ -1,0 +1,51 @@
+<section>
+  <%# name %>
+  <h2><%= @driver.name %></h2>
+
+  <%# average rating %>
+  <div>Average Rating: <%= @driver.average_rating %></div>
+
+  <%# vin %>
+  <div>Vin: <%= @driver.vin %></div>
+
+  <%# total earnings %>
+  <div>Total Earnings: <%= number_to_currency(@driver.total_earnings / 100.0) %></div>
+
+  <%# trips list %>
+  <section>
+    <h3>Trips</h3>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Driver</th>
+        <th>Passenger</th>
+        <th>Price</th>
+        <th>Rating</th>
+      </tr>
+        <% @driver.trips.each do |trip| %>
+          <tr>
+            <td>
+              <%= trip.id %>
+            </td>
+            <td>
+              <%= trip.date %>
+            </td>
+            <td>
+              <%= trip.driver.name %>
+            </td>
+            <td>
+              <%= trip.passenger.name %>
+            </td>
+            <td>
+              <%= number_to_currency(trip.cost / 100.0) %>
+            </td>
+            <td>
+              <%= trip.rating %>
+            </td>
+          </tr>
+        <% end %>
+    </table>
+  </section>
+
+</section>
