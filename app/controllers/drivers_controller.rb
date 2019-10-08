@@ -12,7 +12,7 @@ class DriversController < ApplicationController
     driver_id = params[:id].to_i
     # Both find and find_by will work... But Dee has a preference for find_by. Why?
     @driver = Driver.find_by(id: driver_id)
-    if @drivere.nil?
+    if @driver.nil?
       head :not_found
       return
     end
