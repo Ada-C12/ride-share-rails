@@ -1,0 +1,38 @@
+<h1>Driver ID: <%= @driver.id %></h1>
+
+<ul>
+    <li>
+      Name: <%= @driver.name %>
+      <ul>
+        <li>VIN: <%= %></li>
+        <li>Active: <%= %></li>
+        <li>Car Make: <%= %></li>
+        <li>Car Model: <%= %></li>
+        <li>Trips: </li>
+
+        <% @driver.trips.each do |trip| %>
+        <ul>
+          <li> ID: <%= trip.id %> </li>
+
+          <ul>
+            <li> Driver: <%= trip.driver.name %> </li>
+            <li> Date: <%= trip.date %> </li>
+            <li> Rating: <%= trip.rating %> </li>
+            <li> Cost: <%= trip.cost %> </li>
+          </ul>
+        </ul>
+        <% end %>
+      </ul>
+</ul>
+
+
+  <%# trip = Trip.new
+  # trip.id = row['id']
+  trip.driver_id = row['driver_id']
+  trip.passenger_id = row['passenger_id']
+  trip.date = Date.strptime(row['date'], '%Y-%m-%d')
+  trip.rating = row['rating']
+  trip.cost = row['cost'] %>
+      <%# <%= link_to book.title, book_path(book) %>
+      <%# By: <%= book.author.name <%= link_to "Edit", edit_book_path(book) <%= link_to "Delete", book_path(book), method: :delete, data: {confirm: "Are you sure?"}%>
+</ul>
