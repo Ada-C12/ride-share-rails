@@ -8,9 +8,36 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: params[:id])
     
     if @driver.nil?
-      redirect_to drivers_path
+      head :not_found
       return
     end
+  end
+  
+  def new
+    @driver = Driver.new
+  end
+  
+  def create
+    @driver = Driver.new(driver_params)
     
+    if @driver.save
+      redirect_to driver_path(@driver.id)
+      return
+    else
+      render :new
+      return
+    end
+  end
+  
+  def edit
+  end
+  
+  def update
+  end
+  
+  private
+  
+  def driver_params
+    return params.require(:driver).permit(:name, :active, :vin, :car_make, :car_model)
   end
 end

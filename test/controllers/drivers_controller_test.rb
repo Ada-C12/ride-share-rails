@@ -46,14 +46,18 @@ describe DriversController do
       # Ensure that there is an id that points to no driver
       
       # Act
+      get driver_path(-1)
       
       # Assert
-      
+      must_respond_with :not_found
     end
   end
   
   describe "new" do
     it "responds with success" do
+      get new_driver_path
+      
+      must_respond_with :success
     end
   end
   
@@ -61,13 +65,20 @@ describe DriversController do
     it "can create a new driver with valid information accurately, and redirect" do
       # Arrange
       # Set up the form data
+      driver_hash = { driver: { name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", active: true } }
       
       # Act-Assert
       # Ensure that there is a change of 1 in Driver.count
+      expect { post drivers_path, params: driver_hash }.must_change "Driver.count", 1
       
       # Assert
       # Find the newly created Driver, and check that all its attributes match what was given in the form data
       # Check that the controller redirected the user
+      new_driver = Driver.find_by(name: driver_hash[:driver][:name])
+      expect(new_driver.car_make).must_equal driver_hash[:driver][:car_make]
+      expect(new_driver.car_model).must_equal driver_hash[:driver][:car_model]
+      expect(new_driver.vin).must_equal driver_hash[:driver][:vin]
+      expect(new_driver.active).must_equal driver_hash[:driver][:active]
       
     end
     
