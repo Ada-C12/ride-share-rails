@@ -1,0 +1,10 @@
+<h1>All Passengers</h1>
+
+<p><%= link_to "Create a new passenger", new_passenger_path %>
+<ul>
+  <% @passengers.alpha_passengers.each do |passenger| %>
+  <li>
+    <%= link_to passenger.name, passenger_path(passenger) %>, <%= passenger.phone_num %>
+  </li>
+  <% end %>
+</ul>
