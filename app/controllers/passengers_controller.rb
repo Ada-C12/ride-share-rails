@@ -55,4 +55,19 @@ class PassengersController < ApplicationController
     end
   end
   
+  def new
+    @passenger = Passenger.new
+  end
+  
+  def create
+    @passenger = Passenger.new(name: params[:passenger][:name], phone_number: params[:passenger][:phone_number]) #instantiate a new passenger
+    if @passenger.save  
+      redirect_to passenger(@passenger.id)  
+      return
+    else 
+      render :new  
+      return
+    end
+  end
+  
 end
