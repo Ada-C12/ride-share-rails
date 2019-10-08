@@ -12,7 +12,8 @@ class DriversController < ApplicationController
   def show
     # @driver
     # @trips = Driver.find_trips
-    @trips = Trip.all
+    # @trips = Trip.all
+    
   end
   
   # GET /drivers/new
