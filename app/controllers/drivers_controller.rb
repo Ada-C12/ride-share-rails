@@ -1,51 +1,64 @@
 class DriversController < ApplicationController
   
   def index
-    @drivers = DriversController.all 
+    @drivers = Driver.all 
   end 
   
   def show
-    DriversController_id = params[:id].to_i
+    driver_id = params[:id].to_i
     
-    @DriversController = DriversController.find_by(id: DriversController_id)
+    @driver = Driver.find_by(id: driver_id)
     
-    if @DriversController.nil?
+    if @driver.nil?
       head :not_found
       return 
     end 
   end 
-  
+
+  def new
+    @driver = Driver.new
+  end 
+
+  def create
+    @driver = Driver.new(driver_params)
+    if @driver.save
+      redirect_to driver_path(@driver.id)
+    else 
+      render new_driver_path
+    end
+  end 
+
   def edit
-    @DriversController = DriversController.find_by(id: params[:id])
+    @driver = Driver.find_by(id: params[:id])
   end 
   
   def update
-    @DriversController = DriversController.find_by(id: params[:id])
+    @driver = Driver.find_by(id: params[:id])
     
-    if @DriversController.update(DriversController_params)
-      redirect_to DriversController_path(@DriversController_id)
+    if @driver.update(driver_params)
+      redirect_to driver_path(@driver_id)
     else 
-      render new_DriversController_path
+      render new_driver_path
     end 
   end 
   
   def destroy
-    valid_DriversController = DriversController.find_by(id:params[:id])
+    selected_driver = Driver.find_by(id:params[:id])
     
-    if valid_DriversController.nil?
-      redirect_to DriversController_path
+    if selected_driver.nil?
+      redirect_to drivers_path
       return
     else 
-      valid_DriversController.destroy
-      redirect_to DriversController_path 
+      selected_driver.destroy
+      redirect_to drivers_path 
       return
     end 
   end
   
   
   private
-  def DriversController_params
-    return params.require(:DriversController).permit(:id, :name, :vin)
+  def driver_params
+    return params.require(:driver).permit(:name, :vin)
   end 
   
 end

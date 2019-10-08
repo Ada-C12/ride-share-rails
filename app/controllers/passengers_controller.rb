@@ -1,6 +1,6 @@
 class PassengersController < ApplicationController
   def index
-    @passengers = Passenger.all 
+    @passengers = Passenger.all_in_alpha_order 
   end 
 
   def show
@@ -46,11 +46,11 @@ class PassengersController < ApplicationController
     valid_passenger = Passenger.find_by(id:params[:id])
 
     if valid_passenger.nil?
-      redirect_to passenger_path
+      redirect_to passengers_path
       return
     else 
       valid_passenger.destroy
-      redirect_to passenger_path 
+      redirect_to passengers_path 
       return
     end 
   end
