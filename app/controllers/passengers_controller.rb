@@ -79,3 +79,4 @@ class PassengersController < ApplicationController
     
   end
   
+end

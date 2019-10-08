@@ -1,10 +1,11 @@
 <h1>All Passengers</h1>
 
 <section>
-  <ul>
+  <ul class="list-all">
     <%@passengers.each do |passenger|%>
     <li>
       <%= link_to passenger.name, passenger_path(passenger.id) %>
     </li>
+    <%end%>
   </ul>
 </section>
