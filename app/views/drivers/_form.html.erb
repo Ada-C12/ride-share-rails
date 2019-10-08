@@ -1,0 +1,20 @@
+<%= form_with model: @driver do |f| %>
+
+<%= f.label 'Name:' %>
+<%= f.text_field :name %>
+<br><br>
+<%= f.label 'VIN:' %>
+<%= f.text_field :vin %>
+<br><br>
+<%= f.label 'Active:' %>
+<%= f.select :active, [false, true] %>
+<br><br>
+<%= f.label 'Car Make: '%>
+<%= f.text_field :car_make %>
+<br><br>
+<%= f.label 'Car Model: '%>
+<%= f.text_field :car_model%>
+
+ <%= f.submit "#{action_name} Driver" %>
+
+<% end %>

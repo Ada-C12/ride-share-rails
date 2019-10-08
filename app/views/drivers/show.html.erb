@@ -1,0 +1,19 @@
+<h2> Details for: <%= @driver.name %> </h2>
+<ul>
+  <li> Total earnings: </li>
+  <li> Average rating: </li>
+  <li> Driver's trips:
+
+  <%# <ul>
+    <% @driver.trips.each do |trip| %>
+    <%# <li> <% link_to trip, trip_path(trip) %> </li>
+    <%# <% end %>
+  </ul>
+</ul>
+
+
+<%= link_to "Edit Driver", edit_driver_path(@driver) %>
+<br><br>
+<%= link_to "Delete Driver", driver_path(@driver), method: :delete, data: {confirm: "Please confirm!"} %>
+<br><br>
+<%= link_to "See All Drivers", drivers_path %>
