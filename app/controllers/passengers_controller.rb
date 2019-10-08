@@ -18,7 +18,7 @@ class PassengersController < ApplicationController
   end
   
   def create
-    @passenger = Passenger.new(book_params) 
+    @passenger = Passenger.new(passenger_params) 
     if @passenger.save 
       redirect_to root_path
       return
