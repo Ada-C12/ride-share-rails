@@ -24,5 +24,14 @@ class PassengersController < ApplicationController
   
   def create
     #Handle Validation Errors
+    
+    @passenger = Passenger.new(passenger_params) #instantiate a new passenger
+    if @passenger.save # save returns true if the database insert succeeds
+      redirect_to passengers_path # go to the index so we can see the passenger in the list
+      return
+    else # save failed :(
+      render :new # show the new book form view again
+      return
+    end
   end
 end

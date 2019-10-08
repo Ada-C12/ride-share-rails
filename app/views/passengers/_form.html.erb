@@ -1,7 +1,6 @@
-
+<p>Please provide the following information to <%= verb_name %> a passenger to our database:</p>
 
 <%= form_with model: @passenger, class: 'create-passenger' do |f| %>
-<p>Please provide the following information to <%= verb_name %> a passenger to our database:</p>
 
 <%= f.label :name, "Name: " %>
 <%= f.text_field :name %>
