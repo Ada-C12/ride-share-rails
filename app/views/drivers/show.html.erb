@@ -11,6 +11,12 @@
   <%# total earnings %>
   <div>Total Earnings: <%= number_to_currency(@driver.total_earnings / 100.0) %></div>
 
+  <%# edit/delete options %>
+  <div class="modify-options">
+    <div><%= link_to "Edit", edit_driver_path(@driver.id) %></div>
+    <div>Delete</div>
+  </div>
+
   <%# trips list %>
   <section>
     <h3>Trips</h3>

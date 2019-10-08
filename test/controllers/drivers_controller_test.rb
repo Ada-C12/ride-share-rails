@@ -113,9 +113,9 @@ describe DriversController do
       # Ensure there is an existing driver saved
       
       # Act
-      
+      get edit_driver_path(driver.id)
       # Assert
-      
+      must_respond_with :success
     end
     
     it "responds with redirect when getting the edit page for a non-existing driver" do
@@ -123,9 +123,9 @@ describe DriversController do
       # Ensure there is an invalid id that points to no driver
       
       # Act
-      
+      get edit_driver_path(-1)
       # Assert
-      
+      must_redirect_to drivers_path
     end
   end
   
