@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Passengers</title>
+  <title>Drivers</title>
 </head>
 
   <body>
@@ -14,16 +14,15 @@
           <%= link_to "Passengers", passengers_path %>
           <%= link_to "Drivers", drivers_path %>
         </ul>
-      </nav>
     </header>
     
     <section>
-      <h1>Passengers</h1>
+      <h1>Drivers</h1>
       <ol>
-        <% @passengers.each do |passenger|  %>
-          <li>Name: <%= link_to passenger.name, passenger_path(passenger) %></li>
-          <%= button_to 'Delete', passenger_path(passenger),method: :delete, data: {confirm: "Are you sure?"} %>
-          <%= button_to 'Edit', edit_passenger_path(passenger.id), method: :get %>
+        <% @drivers.each do |driver|  %>
+          <li>Name: <%= link_to driver.name, driver_path(driver) %></li>
+          <%= button_to 'Delete', driver_path(driver),method: :delete, data: {confirm: "Are you sure?"} %>
+          <%= button_to 'Edit', edit_driver_path(driver.id), method: :get %>
           <hr>
         <% end %>
       </ul>

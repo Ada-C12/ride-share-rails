@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Passengers</title>
+</head>
+
+  <body>
+    <header>
+      <h1>Welcome to Rideshare</h1>
+      <nav>
+        <ul>
+          <%= link_to "Rideshare Rails", root_path %>
+          <%= link_to "Passengers", passengers_path %>
+          <%= link_to "Drivers", drivers_path %>
+        </ul>
+      </nav>
+    </header>
+    
+    <section>
+      <h1>Passenger Information:</h1>
+      <ul>
+        <li>Name: <%=@passenger[:name]%></li>
+        <li>Phone number: <%= @passenger[:phone_number]%></li>
+    </section>
+
+    <section>
+      <h1>Trips:</h1>
+      <ul>
+        <% Trip.where(passenger_id: params[:id]).each do |trip|%>
+          <li>ID: <%= link_to trip.id, trip_path(trip.id), method: :get %></li> 
+          <li>Driver: <%= trip.driver_id %></li>
+          <li>Passenger: <%= trip.passenger_id %></li>
+          <li>Date: <%= trip.date %></li>
+          <li>Rating: <%= trip.rating %></li>
+          <li>Cost: <%= trip.cost %></li>
+          <hr>
+        <%end%>
+      </ul>
+    </section>
+
+
+    <nav>
+      <%= link_to "Edit", edit_passenger_path(@passenger) %>     
+      <%= link_to "Delete", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"}%>
+    </nav>
+  </body>
+</html>

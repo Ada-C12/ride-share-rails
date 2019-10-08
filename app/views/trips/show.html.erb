@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Trips</title>
+</head>
+
+  <body>
+    <header>
+      <h1>Welcome to Rideshare</h1>
+      <nav>
+        <ul>
+          <%= link_to "Rideshare Rails", root_path %>
+          <%= link_to "Passengers", passengers_path %>
+          <%= link_to "Drivers", drivers_path %>
+        </ul>
+      </nav>
+    </header>
+    
+    <section>
+      <h1>Trip #:</h1>
+      <ul>
+          <li>ID: <%= @trip.id %></li> 
+          <li>Driver: <%= @trip.driver_id %></li>
+          <li>Passenger: <%= @trip.passenger_id %></li>
+          <li>Date: <%= @trip.date %></li>
+          <li>Rating: <%= @trip.rating %></li>
+          <li>Cost: <%= @trip.cost %></li>
+      </ul>
+    </section>
+  </body>
+</html>
