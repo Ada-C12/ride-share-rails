@@ -1,0 +1,9 @@
+<%= form_with model: @driver, class: "#{action_name}-driver" do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %> <br>
+
+  <%= f.label :vin %>
+  <%= f.text_field :vin %> <br>
+
+  <%= f.submit "#{action_name.capitalize} Driver", class: "drivers-button" %>
+<% end %>
