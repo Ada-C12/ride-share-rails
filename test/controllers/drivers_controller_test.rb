@@ -104,7 +104,7 @@ describe DriversController do
       
       # Assert
       # Check that the controller redirects
-      must_redirect_to new_driver_path
+      assert_template :new
     end
   end
   
