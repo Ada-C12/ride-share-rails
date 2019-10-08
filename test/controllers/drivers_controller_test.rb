@@ -2,13 +2,12 @@ require "test_helper"
 
 describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
+  before do
+    @driver = Driver.create(name: "Kari", vin: "123", active: true,
+      car_make: "Cherry", car_model: "DR5")
+  end
 
   describe "index" do
-    before do
-      Driver.create(name: "Kari", vin: "123", active: true,
-        car_make: "Cherry", car_model: "DR5")
-    end
-
     it "responds with success when there are many drivers saved" do
       # Act
       get drivers_path
@@ -31,22 +30,21 @@ describe DriversController do
   describe "show" do
     it "responds with success when showing an existing valid driver" do
       # Arrange
-      # Ensure that there is a driver saved
+      existing_driver = Driver.find_by(id: @driver.id)
 
       # Act
+      get driver_path(existing_driver.id) 
 
       # Assert
-
+      must_respond_with :success
     end
 
     it "responds with 404 with an invalid driver id" do
-      # Arrange
-      # Ensure that there is an id that points to no driver
-
       # Act
+      get driver_path(-1) 
 
       # Assert
-
+      must_respond_with :not_found
     end
   end
 
