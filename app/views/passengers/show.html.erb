@@ -12,20 +12,17 @@
 
 <p>
 
-Trips: 
-<br>
-<ul>
-  <% i = 1 %>
-  <% @passenger.trips.each do |trip| %>
-    <li>
-      Trip <%= i %> -
-      Date: <%= trip.date %>
-      Driver ID: <%= trip.driver_id %>
-      Rating: <%= trip.rating %>
-      Cost: <%= trip.cost %>
-    </li>
-    <% i += 1%>
-    <br>
-  <% end %>
-</ul>
+  Trips: 
+  <br>
+  <ul>
+    <% i = 1 %>
+    <% @passenger.trips.each do |trip| %>
+      <li>
+        <%= link_to "Trip #{i}", trip_path(trip) %>
+      </li>
+      <% i += 1%>
+      <br>
+    <% end %>
+  </ul>
+
 </p>
