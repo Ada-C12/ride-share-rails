@@ -4,10 +4,10 @@
   <h2>RideShare Passengers</h2>
   <ul>
     <% @passengers.each do |passenger| %>
-      <li>Passenger name:
+      <li>
         <%= link_to passenger.name, passenger_path(passenger.id)%>
-        <%= button_to "(Edit)", edit_passengers_path(passenger.id), method: :get %>
-        <%= button_to "(Delete)", passenger_path(passenger.id), method: :delete, data: { confirm: "Are YOU sure?" } %>
+        <%= button_to "(Edit)", edit_passenger_path(passenger.id), method: :get %>
+        <%= button_to "(Delete)", passenger_path(passenger.id), method: :delete, data: { confirm: "Are YOU sure?" } %> 
       </li>
     <% end %>
   </ul>
