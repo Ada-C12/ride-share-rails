@@ -17,8 +17,6 @@ class PassengersController < ApplicationController
   end
   
   def create
-    params = passenger_params
-    
     @passenger = Passenger.new(passenger_params) 
     if !params.nil?
       if @passenger.save

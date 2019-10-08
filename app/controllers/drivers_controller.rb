@@ -18,9 +18,8 @@ class DriversController < ApplicationController
   end
   
   def create
-    params = driver_params
     if !params.nil?
-      @driver = Driver.new(params)
+      @driver = Driver.new(driver_params)
       
       if @driver.save
         redirect_to driver_path(@driver.id)
