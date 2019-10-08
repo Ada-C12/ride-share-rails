@@ -2,10 +2,33 @@
 <h2> <%= @driver.total_earnings %> </h2>
 <h2> <%= @driver.average_rating %> </h2>
 
+<%= link_to "edit", edit_driver_path(@driver.id) %>
+<%= link_to "delete", driver_path(@driver.id), method: :delete %>
 
-
-
-
-
-
-<%#(This is where the shared partial stuff will go between passenger and driver)#%>
+<table>
+  <p>trips</p>
+  <theader>
+   <tr>
+    <td>id</td>
+    <td>date</td>
+    <td>driver</td>
+    <td>passenger</td>
+    <td>cost</td>
+    <td>rating</td>
+    <td>delete</td>
+   </tr>
+  </theader>
+  <tbody>
+    <% @driver.trips.each do |trip| %>
+      <tr>
+        <td><%= trip.id %></td>
+        <td><%= trip.date %></td>
+        <td><%= trip.driver.id %></td>
+        <td><%= trip.passenger.id %></td>
+        <td><%= trip.cost %></td>
+        <td><%= trip.rating %></td>
+        <td><%= link_to "delete", trip_path(trip.id), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
