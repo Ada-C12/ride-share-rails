@@ -86,13 +86,18 @@ describe DriversController do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
+      driver_hash = { driver: { } }
       
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect { post drivers_path, params: driver_hash }.wont_change "Driver.count"
+      # expect { post drivers_path, params: driver_hash }.must_raise ActionController::ParameterMissing
+      
       
       # Assert
       # Check that the controller redirects
-      
+      # TODO
+      # must_respond_with :redirect
     end
   end
   
@@ -100,11 +105,13 @@ describe DriversController do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
       # Ensure there is an existing driver saved
+      driver = Driver.create(name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", active: true)
       
       # Act
+      get edit_driver_path(driver.id)
       
       # Assert
-      
+      must_respond_with :success
     end
     
     it "responds with redirect when getting the edit page for a non-existing driver" do
