@@ -10,10 +10,25 @@
   </head>
 
   <body>
-    <section class="nav">
-    NAV BAR HERE!!!!
-    <%= link_to "HOME", root_path %>
-    </section>
+    <nav>
+      <ul>
+        <li>
+          <%= link_to "HOME", root_path %>
+        </li>
+        <li>
+          <%= link_to "Drivers", drivers_path %>
+        </li>
+        <li>
+          <%= link_to "Add new drivers", new_driver_path %>
+        </li>
+        <li>
+          <%= link_to "Passengers", passengers_path %>
+        </li>
+        <li>
+          <%= link_to "Add new passenger", new_passenger_path %>
+        </li>
+      </ul>
+    </nav>
     <%= yield %>
 
 
