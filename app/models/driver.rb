@@ -1,6 +1,14 @@
 class Driver < ApplicationRecord
   has_many :trips
   
+  # validations
+  
+  validates :name, presence: true
+  validates :vin, presence: true
+  
+  
+  # methods
+  
   def average_rating
     if self.trips.empty?
       average = nil
