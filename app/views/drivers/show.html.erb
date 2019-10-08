@@ -30,6 +30,13 @@
   <%= @driver.car_model%>
 </p>
 
+<p>
+  <strong>My trips:</strong>
+  <% @driver.find_driver_trips.each do |trip| %>
+    <%= link_to 'Trip', trip_path %>
+  <% end%>
+</p>
 
-<%= link_to 'Edit', edit_driver_path(@driver) %> |
+
+<%= link_to 'Edit', edit_driver_path(@driver) %> 
 <%= link_to 'Back', drivers_path %>
