@@ -39,8 +39,7 @@ class PassengersController < ApplicationController
       return
     end
     @passenger.name = params[:passenger][:name]
-    @passenger.description = params[:passenger][:description]
-    @passenger.completed = params[:passenger][:completed]
+    @passenger.phone_num = params[:passenger][:phone_num]
 
     if @passenger.save
       redirect_to passenger_path(@passenger.id)
