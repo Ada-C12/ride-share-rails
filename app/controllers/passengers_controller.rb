@@ -43,7 +43,7 @@ class PassengersController < ApplicationController
     @passenger.completed = params[:passenger][:completed]
 
     if @passenger.save
-      redirect_to task_path(@passenger.id)
+      redirect_to passenger_path(@passenger.id)
     else
       render new_passenger_path
     end
