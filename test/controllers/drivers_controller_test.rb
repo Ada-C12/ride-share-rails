@@ -85,6 +85,7 @@ describe DriversController do
       new_driver = Driver.find_by(name: data_hash[:driver][:name])
       expect(new_driver.name).must_equal data_hash[:driver][:name]
       expect(new_driver.vin).must_equal data_hash[:driver][:vin]
+      expect(new_driver.active).must_equal true
       
       must_redirect_to driver_path(new_driver.id)
     end
