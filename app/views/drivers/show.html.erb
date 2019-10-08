@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<h2>Driver Profile</h2>
 
 <p>
   <strong>Name:</strong>
@@ -8,6 +9,11 @@
 <p>
   <strong>Vin:</strong>
   <%= @driver.vin %>
+</p>
+
+<p>
+  <strong>Trips</strong>
+  <%# <%= @driver.vin %>
 </p>
 
 <%= link_to 'Edit', edit_driver_path(@driver) %> |
