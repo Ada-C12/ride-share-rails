@@ -1,3 +1,12 @@
+<% if @passenger.errors.any? %>
+  <h3>You need to fix this...</h3>
+  <ul>
+  <% @passenger.errors.each do |error, msg|%>
+    <li><%= error %>: <%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @passenger do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>

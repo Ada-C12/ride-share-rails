@@ -1,6 +1,8 @@
 require "test_helper"
 
 describe PassengersController do
+  # let (:passenger1) { Passenger.create (name: "J. G. Wentworth", phone_num: "1-800-cash-now") }
+  
   describe "index" do
     it "can go to Passengers/index" do
       get passengers_path
@@ -10,7 +12,7 @@ describe PassengersController do
   
   describe "show" do
     it "can go to Passengers/:id/show for valid id" do
-      puts "\n\nWTF #{Passenger.all.first.id}"
+      passenger1
       get passenger_path(id: Passenger.first.id)
       must_respond_with :success
     end
@@ -25,6 +27,17 @@ describe PassengersController do
     it "can go to Passengers/new.html" do
       get new_passenger_path
       must_respond_with :success
+    end
+    
+    it "Given bad args, will fail validations, and stay on page" do
+      bad_names = [nil, "", "    "]
+      bad_phone_nums = ["garbage", "!!!!!", "123"]
+      
+      bad_names.each do |bad_name|
+        bad_passenger = Passenger.create(name: bad_name, phone_num: 4251231234)
+        refute(bad_passenger)
+        # must_respond_with :success
+      end
     end
   end
   
