@@ -55,7 +55,7 @@ class PassengersController < ApplicationController
       return
     else
       passenger_to_delete.destroy
-      redirect_to root_path
+      redirect_to passengers_path
       return
     end
   end

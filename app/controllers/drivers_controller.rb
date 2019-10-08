@@ -57,7 +57,7 @@ class DriversController < ApplicationController
       return
     else
       driver_to_delete.destroy
-      redirect_to root_path
+      redirect_to drivers_path
       return
     end
   end
