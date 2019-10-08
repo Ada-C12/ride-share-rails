@@ -1,0 +1,19 @@
+<h1>Passenger Details</h1>
+<p>Name: <%= @passenger.name %></p>
+<p>Phone: <%= @passenger.phone_num %> </p>
+<p>Total charges to date: <%= @total_charges %> (pennies?) </p>
+<p>List of trips:</p>
+
+<ul>
+  <% @passenger.trips.each do |t| %>
+    <li> Trip on <%= t.date %> 
+      <%= link_to "View Trip", trip_path(t.id) %> 
+    </li>
+  <% end %>
+  <li>
+  <%= link_to "Add New Trip", homepages_path %> <!-- update path to trips_path -->
+  </li>
+</ul>
+
+<%= link_to "Delete #{@passenger.name}", homepages_path %> <!-- update path to trips_path -->
+<%= link_to "Edit #{@passenger.name}", homepages_path %> <!-- update path to trips_path -->
