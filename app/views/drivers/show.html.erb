@@ -5,7 +5,7 @@
   <li> Driver's trips:
 
 <ul>
-    <%= @driver.trips.each do |trip| %>
+    <% @driver.trips.each do |trip| %>
     <li> <%= link_to trip, trip_path(@driver.trip_ids) %> </li>
     <% end %>
 </ul>

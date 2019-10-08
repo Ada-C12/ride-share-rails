@@ -5,6 +5,8 @@ require 'rails/test_help'
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
-
+  require 'minitest/rails'
+  require 'minitest/autorun'
+  require 'minitest/reporters'
   # Add more helper methods to be used by all tests here...
 end
