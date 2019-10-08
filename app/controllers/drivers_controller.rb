@@ -49,6 +49,18 @@ class DriversController < ApplicationController
     end
   end
 
+  def destroy
+    driver_to_delete = Driver.find_by(id: params[:id])
+    if driver_to_delete.nil?
+      redirect_to drivers_path
+      return
+    else
+      driver_to_delete.destroy
+      redirect_to root_path
+      return
+    end
+  end
+
   private
 
   def driver_params
