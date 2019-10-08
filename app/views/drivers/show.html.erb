@@ -13,6 +13,15 @@
     <%# car model %>
   </div>
 
+  <%# driver status %>
+  <div>
+    <% if @driver.active %>
+      Active
+    <% else %>
+      Inactive
+    <% end %>
+  </div>
+
   <%# total earnings %>
   <div>Total Earnings: <%= number_to_currency(@driver.driver_earnings / 100.0) %></div>
 
