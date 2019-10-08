@@ -10,6 +10,18 @@
   </head>
 
   <body>
+    <header>
+      <h1>Welcome to Ada RideShareRails</h1>
+    </header>
+    <div>
+      <ul>
+        <li>
+          <%= link_to "New Driver", new_driver_path %>
+        </li>
+        <li>
+           <%= link_to "New Passenger", new_passenger_path %>
+        </li>
+    </div>
     <%= yield %>
-  </body>
+  </body> 
 </html>
