@@ -41,6 +41,19 @@ class PassengersController < ApplicationController
     end
   end
 
+  def destroy
+    passenger = Passenger.find_by(id: params[:id])
+
+    if passenger.nil?
+      redirect_to passengers_path
+      return
+    else
+      passenger.destroy
+      redirect_to passengers_path
+      return
+    end
+  end
+
   private
   
   def passenger_params

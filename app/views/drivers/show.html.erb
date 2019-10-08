@@ -4,8 +4,9 @@
 
 <section class="show-details">
   <h2><%=@driver.vin%></h2>
-  <section class="edit-button">
+  <section class="button">
     <%= link_to "Edit", edit_driver_path(@driver.id) %>
+    <%= link_to "Delete", driver_path(@driver.id), method: :delete, data: { confirm: "Are you sure you want to delete this driver?" }, class: "index-delete-link" %>
   </section>
   <p>
     Driver Trips: <%=  %>
