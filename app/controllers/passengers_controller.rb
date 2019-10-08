@@ -14,10 +14,25 @@ class PassengersController < ApplicationController
   end
   
   def edit
+    @passenger = Passenger.find_by(id: params[:id])
+    
+    if @passenger.nil?
+      head :not_found
+      return
+    end
   end
   
   def update
     #Handle Validation Errors
+    
+    @passenger = Passenger.find_by(id: params[:id])
+    if @passenger.update(passenger_params)
+      redirect_to passengers_path # go to the index so we can see the book in the list
+      return
+    else # save failed :(
+      render :edit # show the new book form view again
+      return
+    end
   end
   
   def new
