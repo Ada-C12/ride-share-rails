@@ -34,18 +34,36 @@ class DriversController < ApplicationController
   end
   
   def edit
+    @driver = Driver.find_by(id: params[:id])
+    
+    if @driver.nil?
+      redirect_to drivers_path
+      return
+    end 
   end
   
   def update
+    @driver = Driver.find_by(id: params[:id])
+    
+    if @driver.nil?
+      redirect_to root_path
+      return
+    elsif @driver.update(driver_params)
+      redirect_to driver_path
+      return
+    else
+      render :edit
+      return
+    end
   end
   
   private
   
   def driver_params
-    if !params(:driver).nil?
-      return params.require(:driver).permit(:name, :active, :vin, :car_make, :car_model)
-    else
-      return nil
-    end
+    # if !params(:driver).nil?
+    return params.require(:driver).permit(:name, :active, :vin, :car_make, :car_model)
+    # else
+    #   return nil
+    # end
   end
 end

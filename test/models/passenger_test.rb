@@ -22,6 +22,7 @@ describe Passenger do
   
   describe "relationships" do
     it "can have many trips" do
+      skip
       # Arrange
       new_passenger.save
       passenger = Passenger.first
@@ -46,6 +47,7 @@ describe Passenger do
     end
     
     it "must have a phone number" do
+      skip
       # Arrange
       new_passenger.phone_num = nil
       
