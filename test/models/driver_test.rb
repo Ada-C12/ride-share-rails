@@ -118,11 +118,52 @@ describe Driver do
         expect(driver.total_earnings).must_equal 1200
       end
       
-      it "returns nil for a driver with no trips" do
+      it "returns 0 for a driver with no trips" do
         # arrange
         driver = Driver.create(name: "Kari", vin: "123")
         # assert
         expect(driver.total_earnings).must_equal 0
+      end
+    end
+    
+    describe "driver earnings" do
+      it "can calculate the driver's earnings for multiple trips" do
+        # arrange
+        driver = Driver.create(name: "Kari", vin: "123")
+        # create a passenger for the trips
+        passenger = Passenger.create(name: "Nina", phone_num: "560.815.3059")
+        # create two trips
+        trip_one = Trip.create(date: Date.current, rating: 5, cost: 1200, driver_id: driver.id, passenger_id: passenger.id)
+        trip_two = Trip.create(date: Date.current, rating: 3, cost: 1400, driver_id: driver.id, passenger_id: passenger.id)
+        
+        # 1200 + 1400 = 2600
+        # 2600 - 165 = 2435
+        # 2435 * 0.8 = 1948
+        
+        # assert
+        expect(driver.driver_earnings).must_equal 1948
+      end
+      
+      it "can calculate the driver's earnings for one trip" do
+        # arrange
+        driver = Driver.create(name: "Kari", vin: "123")
+        # create a passenger for the trips
+        passenger = Passenger.create(name: "Nina", phone_num: "560.815.3059")
+        # create two trips
+        trip_one = Trip.create(date: Date.current, rating: 5, cost: 1200, driver_id: driver.id, passenger_id: passenger.id)
+        
+        # 1200 - 165 = 1035
+        # 1035 * 0.8 = 828
+        
+        # assert
+        expect(driver.driver_earnings).must_equal 828
+      end
+      
+      it "returns 0 for a driver with no trips" do
+        # arrange
+        driver = Driver.create(name: "Kari", vin: "123")
+        # assert
+        expect(driver.driver_earnings).must_equal 0
       end
     end
     

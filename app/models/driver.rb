@@ -24,4 +24,20 @@ class Driver < ApplicationRecord
     return total
   end
   
+  # The driver gets 80% of the trip cost after a fee of $1.65 is subtracted
+  def driver_earnings
+    before_fee = self.total_earnings
+    
+    if before_fee == 0
+      return 0
+    end
+    
+    after_fee = (before_fee - 165)
+    
+    percentage = 0.8
+    driver_earnings = after_fee * percentage
+    
+    return driver_earnings
+  end
+  
 end
