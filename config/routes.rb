@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   
   resources :drivers
   
+  # get '/passengers/:id/request', to: 'passengers#request_trip', as: 'request_trip'
   resources :passengers
+  
   
   resources :trips, except: [:index, :new]
 end

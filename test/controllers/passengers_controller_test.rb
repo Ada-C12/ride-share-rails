@@ -154,6 +154,7 @@ describe PassengersController do
   
   describe "request trip" do
     it "creates a new trip" do
+      test_driver = Driver.create(name: "name", vin: "1234")
       test_passenger = Passenger.create(name: "test person", phone_num: "1234567")
       
       expect {
