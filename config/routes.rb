@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   resources :drivers do
     resources :trips, only: [:index, :new]
   end
-
+  
   resources :trips
 end
