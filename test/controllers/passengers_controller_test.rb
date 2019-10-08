@@ -10,6 +10,7 @@ describe PassengersController do
   
   describe "show" do
     it "can go to Passengers/:id/show for valid id" do
+      puts "\n\nWTF #{Passenger.all.first.id}"
       get passenger_path(id: Passenger.first.id)
       must_respond_with :success
     end

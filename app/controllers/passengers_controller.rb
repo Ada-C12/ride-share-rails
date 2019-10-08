@@ -1,5 +1,4 @@
 class PassengersController < ApplicationController
-<<<<<<< HEAD
   
   def index
     @passengers = Passenger.all
@@ -24,6 +23,10 @@ class PassengersController < ApplicationController
   
   def show
     @passenger = Passenger.find_by(id: params[:id])
+    unless @passenger
+      redirect_to root_path
+      return
+    end
   end
   
   def edit
@@ -40,10 +43,4 @@ class PassengersController < ApplicationController
   def get_params
     return params.require(:passenger).permit(:name, :phone_num)
   end
-=======
-
-  def index
-    @passengers = Passenger.all
-  end
->>>>>>> drivers_branch
 end
