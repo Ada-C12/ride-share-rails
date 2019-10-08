@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<h2>Driver Profile</h2>
 
 <p>
   <strong>Name:</strong>
@@ -10,5 +11,32 @@
   <%= @driver.vin %>
 </p>
 
-<%= link_to 'Edit', edit_driver_path(@driver) %> |
+<p>
+  <strong>Status:</strong>
+  <% if @driver.active == true %>
+    <%= "Available" %>
+  <% else %>
+    <%= "NOT Available" %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Car Make:</strong>
+  <%= @driver.car_make %>
+</p>
+
+<p>
+  <strong>Car Model:</strong>
+  <%= @driver.car_model%>
+</p>
+
+<p>
+  <strong>My trips:</strong>
+  <% @driver.find_driver_trips.each do |trip| %>
+    <%= link_to 'Trip', trip_path %>
+  <% end%>
+</p>
+
+
+<%= link_to 'Edit', edit_driver_path(@driver) %> 
 <%= link_to 'Back', drivers_path %>
