@@ -56,8 +56,8 @@ CSV.foreach(TRIP_FILE, :headers => true) do |row|
   trip.driver_id = row['driver_id']
   trip.passenger_id = row['passenger_id']
   trip.date = Date.strptime(row['date'], '%Y-%m-%d')
-  trip.rating = row['rating'].to_i
-  trip.cost = (row['cost'].to_i) / 100
+  trip.rating = row['rating']
+  trip.cost = (row['cost'].to_f) / 100.0
   successful = trip.save
   if !successful
     trip_failures << trip
