@@ -6,11 +6,13 @@ describe Driver do
                car_make: "Cherry", car_model: "DR5")
   }
   it "can be instantiated" do
+    skip
     # Assert
     expect(new_driver.valid?).must_equal true
   end
 
   it "will have the required fields" do
+    skip
     # Arrange
     new_driver.save
     driver = Driver.first
@@ -23,6 +25,7 @@ describe Driver do
 
   describe "relationships" do
     it "can have many trips" do
+      skip
       # Arrange
       new_driver.save
       driver = Driver.first
@@ -37,6 +40,7 @@ describe Driver do
 
   describe "validations" do
     it "must have a name" do
+      skip
       # Arrange
       new_driver.name = nil
 
@@ -47,6 +51,7 @@ describe Driver do
     end
 
     it "must have a VIN number" do
+      skip
       # Arrange
       new_driver.vin = nil
 
