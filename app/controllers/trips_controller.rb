@@ -7,6 +7,8 @@ class TripsController < ApplicationController
       redirect_to root_path
       return
     end
+    
+    # @trip.replaced_deleted
   end
   
   def create

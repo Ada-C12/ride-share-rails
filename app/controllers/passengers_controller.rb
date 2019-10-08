@@ -14,7 +14,7 @@ class PassengersController < ApplicationController
     
     @passenger.destroy
     
-    redirect_to root_path
+    redirect_to passengers_path
     return
   end
   
