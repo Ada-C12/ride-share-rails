@@ -3,8 +3,7 @@
 <ol>
   <% @drivers.each do |driver| %>
   <li>
-    <%= driver.name %>
-      <ul><li>VIN: <%= driver.vin %></li></ul>
+    <%= link_to driver.name, driver_path(driver.id) %>
   </li>
   <% end %>
 </ol>
