@@ -79,7 +79,6 @@ describe DriversController do
         post drivers_path, params: driver_hash
       }.must_change "Driver.count", 1
       # Ensure that there is a change of 1 in Driver.count
-
       # Assert
       number_one = Driver.find_by(name: driver_hash[:driver][:name])
       expect(number_one.vin).must_equal driver_hash[:driver][:vin]
@@ -88,10 +87,8 @@ describe DriversController do
       expect(number_one.car_model).must_equal driver_hash[:driver][:car_model]
       must_respond_with :redirect
       must_redirect_to driver_path(number_one.id)
-
       # Find the newly created Driver, and check that all its attributes match what was given in the form data
       # Check that the controller redirected the user
-
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
