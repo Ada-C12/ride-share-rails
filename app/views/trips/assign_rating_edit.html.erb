@@ -1,0 +1,9 @@
+<%= form_with model: @trip do |f| %>
+  <h2><%= action_name %> Trip</h2>
+
+  <%= f.label :rating %>
+  <%= f.text_field :rating %>
+
+
+  <%= f.submit "Save" %>
+<% end %>

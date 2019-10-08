@@ -1,7 +1,22 @@
 <h2>Trip ID: <%= @trip.id %></h2>
+
 <p>Date: <%= @trip.date %></p>
 <p>Passenger ID: <%= @trip.passenger_id %></p>
 <p>Passenger Name: <%= @trip.passenger.name %></p>
 <p>Driver ID: <%= @trip.driver_id %></p>
 <p>Driver Name: <%= @trip.driver.name %></p>
-<p>Trip Cost <%= @trip.cost %></p>
+<p>Trip Cost: $<%= @trip.cost %></p>
+
+<p>Rating: 
+  <% if @trip.rating == nil%>
+    <%= link_to 'Assign Rating', assign_rating_edit_path %>
+  <% else %>
+    <%= @trip.rating %>
+  <% end %>
+</p>
+
+<p><%= link_to 'View Passenger Details', passenger_path(id: @trip.passenger_id) %></p>
+<p><%= link_to 'View Driver Details', driver_path(id: @trip.driver_id) %></p>
+
+<p><%= link_to 'Edit', edit_trip_path %></p>
+<p><%= link_to 'Delete', trip_path, method: :delete, data: {confirm: "Delete trip"}%></p>

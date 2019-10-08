@@ -41,12 +41,22 @@ class TripsController < ApplicationController
       return
     end
     
-    if @trip.update(trip_params)
-      redirect_to trip_path(@trip.id)
-      return
+    if params[:trip][:rating]
+      if @trip.update(rating: params[:trip][:rating])
+        redirect_to trip_path(@trip.id)
+        return
+      else
+        render :assign_rating_edit
+        return
+      end
     else
-      render :edit
-      return
+      if @trip.update(trip_params)
+        redirect_to trip_path(@trip.id)
+        return
+      else
+        render :edit
+        return
+      end
     end
   end
   
@@ -74,32 +84,28 @@ class TripsController < ApplicationController
     end
   end
   
-  def assign_rating
-    @trip = Trip.find_by(id: params[:id])
-    
-    # might need more work later
-    if @trip.nil?
-      redirect_to root_path
-      return
-    end
-    
-    if @trip.update(rating_params)
-      redirect_to trip_path(@trip.id)
-      return
-    else
-      render :assign_rating_edit
-      return
-    end
-  end
+  # def assign_rating
+  #   @trip = Trip.find_by(id: params[:id])
+  
+  #   # might need more work later
+  #   if @trip.nil?
+  #     redirect_to root_path
+  #     return
+  #   end
+  
+  #   if @trip.update(rating: params[:trip][:rating])
+  #     redirect_to trip_path(@trip.id)
+  #     return
+  #   else
+  #     render :assign_rating_edit
+  #     return
+  #   end
+  # end
   
   private
   
   def trip_params
     return params.require(:trip).permit(:date, :cost, :passenger_id, :driver_id)
-  end
-  
-  def rating_params
-    return params.require(:trip).permit(:rating)
   end
   
 end
