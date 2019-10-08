@@ -3,7 +3,7 @@
   <h2><%= @driver.name %></h2>
 
   <%# average rating %>
-  <div>Average Rating: <%= @driver.average_rating %></div>
+  <div>Average Rating: <%= @driver.average_rating.nil? ? "N/A" : @driver.average_rating %></div>
 
   <%# vin %>
   <div>Vin: <%= @driver.vin %></div>

@@ -13,4 +13,32 @@ class DriversController < ApplicationController
     end
   end
   
+  def new
+    @driver = Driver.new
+  end
+  
+  def create
+    params = driver_params
+    if !params.nil?
+      @driver = Driver.new(params)
+      
+      if @driver.save
+        redirect_to driver_path(@driver.id)
+        return
+      end
+    end
+    redirect_to new_driver_path
+    return 
+  end
+  
+  private
+  
+  def driver_params
+    if !params[:driver].nil?
+      return params.require(:driver).permit(:name, :vin)
+    else
+      return nil
+    end
+  end
+  
 end
