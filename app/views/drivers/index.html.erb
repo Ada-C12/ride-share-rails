@@ -6,6 +6,9 @@
       <li>
         <%= link_to driver.name, driver_path(driver.id) %>
       </li>
+      <li>
+        <%= link_to "Edit", edit_driver_path(driver.id) %>
+      </li>
       <% end %>
   </ul>
 </section>

@@ -3,7 +3,10 @@
 </header>
 
 <section class="show-details">
-<h2><%=@driver.vin%></h2>
+  <h2><%=@driver.vin%></h2>
+  <section class="edit-button">
+    <%= link_to "Edit", edit_driver_path(@driver.id) %>
+  </section>
   <p>
     Driver Trips: <%=  %>
   </p>

@@ -3,7 +3,10 @@
 </header>
 
 <section class="show-details">
-<h2><%=@passenger.phone_num%></h2>
+  <h2><%=@passenger.phone_num%></h2>
+  <section class="edit-button">
+    <%= link_to "Edit", edit_passenger_path(@passenger.id) %>
+  </section>
   <p>
     Passenger Trips: <%=  %>
   </p>
