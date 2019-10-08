@@ -1,0 +1,11 @@
+<h1 class="index-header">Rideshare Drivers</h1>
+
+<section>
+  <ul>
+    <% @drivers.each do |driver| %>
+      <li>
+        <%= link_to driver.name, driver_path(driver.id) %>
+      </li>
+      <% end %>
+  </ul>
+</section>
