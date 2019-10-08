@@ -67,8 +67,7 @@ describe PassengersController do
         post passengers_path, params: passenger_hash
       }.wont_change 'Passenger.count'
       
-      must_redirect_to passengers_path
-      
+      assert_template :new
     end
   end
   
