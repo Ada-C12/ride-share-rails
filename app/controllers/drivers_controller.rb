@@ -18,19 +18,18 @@ class DriversController < ApplicationController
   end
   
   def create
-    if !params.nil?
-      
-      @driver = Driver.new(driver_params)
-      @driver.active = true
-      
-      if @driver.save
-        redirect_to driver_path(@driver.id)
-        return
-      end
+    @driver = Driver.new(driver_params)
+    @driver.active = true
+    
+    if @driver.save
+      redirect_to driver_path(@driver.id)
+      return
+    else 
+      render :new
+      return 
     end
-    render :new
-    return 
   end
+  
   
   def edit
     driver_id = params[:id].to_i

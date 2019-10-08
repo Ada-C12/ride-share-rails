@@ -115,19 +115,19 @@ describe PassengersController do
       must_respond_with :not_found
     end
     
-    it "does not create a passenger if the form data violates passenger validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Ensure there is an existing passenger saved
-      # Assign the existing passenger's id to a local variable
-      # Set up the form data so that it violates passenger validations
+    it "does not create a passenger if the form data violates passenger validations, and responds with a redirect" do   
+      passenger_hash = {
+        passenger: {
+          name: nil,
+          phone_num: nil
+        }
+      }
       
-      # Act-Assert
-      # Ensure that there is no change in passenger.count
+      expect {
+        patch passenger_path(@test_passenger_id), params: passenger_hash
+      }.wont_change 'Passenger.count'
       
-      # Assert
-      # Check that the controller redirects
-      
+      assert_template :new
     end
   end
   
