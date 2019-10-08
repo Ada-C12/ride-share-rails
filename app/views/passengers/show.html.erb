@@ -1,0 +1,9 @@
+<h1> Here's the detail of a passenger.</h1>
+
+<section>
+  <p> <%= @passenger.name %> </p>
+  <p> Phone number: <%=  @passenger.phone_num %> </p>
+
+  <%= link_to "Edit passenger profile", edit_passenger_path(@passenger.id)%>
+</section>
+
