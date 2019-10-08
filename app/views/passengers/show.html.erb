@@ -15,5 +15,5 @@
   </li>
 </ul>
 
-<%= link_to "Delete #{@passenger.name}", destroy_path %>
-<%= link_to "Edit #{@passenger.name}", edit_path %>
+<%= link_to "Delete #{@passenger.name}", passenger_path, method: :delete, data: { confirm: "Are you sure?" } %>
+<%# <%= link_to "Edit #{@passenger.name}", edit_path %> %>
