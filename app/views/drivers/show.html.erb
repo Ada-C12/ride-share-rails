@@ -9,6 +9,9 @@
 <p>VIN: <%= @driver.vin %></p>
 <p>ID: <%= @driver.id %></p>
 <p>Total Earned: $ <%= @driver.total_earned %></p>
+<%= link_to "Edit Driver", edit_driver_path%>
+<br>
+<%= link_to "Delete", driver_path(@driver), method: :delete, data: {confirm: "Are you sure you want to delete this driver?"}%>
 
 <p>
 
