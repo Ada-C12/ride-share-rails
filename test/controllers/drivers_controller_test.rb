@@ -5,45 +5,32 @@ describe DriversController do
 
   describe "index" do
     it "responds with success when there are many drivers saved" do
-      # Arrange
-      # Ensure that there is at least one Driver saved
-
-      # Act
-
-      # Assert
-
+      get drivers_path
+      must_respond_with :sucess
     end
 
     it "responds with success when there are no drivers saved" do
-      # Arrange
-      # Ensure that there are zero drivers saved
-
-      # Act
-
+      get drivers_path
       # Assert
-
+      must_respond_with :sucess
     end
   end
 
   describe "show" do
     it "responds with success when showing an existing valid driver" do
-      # Arrange
-      # Ensure that there is a driver saved
-
-      # Act
-
-      # Assert
+      valid_driver = Driver.create(name: "Valid Driver")
+      get driver_path(valid_driver.id)
+      musty_respond_with :sucess
 
     end
 
     it "responds with 404 with an invalid driver id" do
       # Arrange
       # Ensure that there is an id that points to no driver
-
+      get drivers_path
       # Act
-
       # Assert
-
+      must_respond_with :missing 
     end
   end
 

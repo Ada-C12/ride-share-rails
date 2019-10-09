@@ -1,3 +1,4 @@
+require 'pry'
 class DriversController < ApplicationController
   
   def index
@@ -11,7 +12,7 @@ class DriversController < ApplicationController
     if @driver.nil?
       head :not_found
       return
-    end   
+    end     
   end
 
   def new
@@ -19,6 +20,8 @@ class DriversController < ApplicationController
   end
   
   def create
+    binding.pry
+
     @driver = Driver.new(driver_params) 
     if @driver.save
       redirect_to root_path 
@@ -40,7 +43,7 @@ class DriversController < ApplicationController
   
   def update
     @driver = Driver.find_by(id: params[:id])
-    if @driver.update(book_params)
+    if @driver.update(driver_params)
       redirect_to root_path 
       return
     else 
