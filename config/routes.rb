@@ -7,8 +7,6 @@ Rails.application.routes.draw do
   patch '/drivers/:id/toggle', to: 'drivers#toggle_active', as: 'toggle_active'
   resources :drivers
   
-  resources :passengers
-  
   resources :passengers do
     resources :trips, only: [:create]
   end
