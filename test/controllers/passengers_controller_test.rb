@@ -66,15 +66,15 @@ describe PassengersController do
       must_respond_with :redirect
       must_redirect_to passenger_path(new_passenger.id)
     end
-
+    
     it "does not create a passenger if the form data violates Passenger validations, and responds with a render of new passenger page" do
       new_passenger = Passenger.create(name: "", phone_num: "")
-
+      
       expect(Passenger.count).must_equal 0
-
+      
       expect(new_passenger.valid?).must_equal false
-
-
+      
+      
       # # Assert
       # # Check that the controller redirects
       # must_redirect_with :render
@@ -88,8 +88,8 @@ describe PassengersController do
       must_respond_with :success
       expect(Passenger.count).must_be :>, 0
     end
-
-    it "responds with redirect when getting the edit page for a non-existing driver" do
+    
+    it "responds with redirect when getting the edit page for a non-existing passenger" do
       get edit_passenger_path(-20)
       
       must_respond_with :redirect
@@ -98,8 +98,68 @@ describe PassengersController do
   end
   
   describe "update" do
-    it "" do
-      # Your tests go here
+    it "can update an existing passenger with valid information accurately, and redirect" do
+      passenger_hash = { 
+        passenger: { 
+          name: "Updated name",
+          phone_num: "Updated number"
+        }
+      }
+      
+      passenger_to_update = passenger
+      
+      expect {
+        patch passenger_path(passenger_to_update.id), params: passenger_hash
+      }.must_differ "Passenger.count", 0
+      
+      updated_passenger = Passenger.find_by(id: passenger.id)
+      
+      expect(updated_passenger.name).must_equal passenger_hash[:passenger][:name]
+      expect(updated_passenger.phone_num).must_equal passenger_hash[:passenger][:phone_num]
+      
+      must_respond_with :redirect
+      must_redirect_to passenger_path
+    end
+
+    it "does not update any passenger if given an invalid id, and responds with a 404" do
+      passenger_hash = { 
+        passenger: { 
+          name: "Updated name",
+          phone_num: "Updated number"
+        }
+      }
+      
+      expect {
+        patch passenger_path(-20), params: passenger_hash
+      }.must_differ "Passenger.count", 0
+      
+      must_respond_with :not_found
+    end
+    
+    it "does not update a passenger if the form data violates Passenger validations, and responds with a render of current page" do
+      passenger_hash = { 
+        passenger: { 
+          name: "",
+          phone_num: "Updated number"
+        }
+      }
+
+      passenger_to_update = passenger
+
+      expect {
+        patch passenger_path(passenger_to_update.id), params: passenger_hash
+      }.must_differ "Passenger.count", 0
+
+      validity = passenger_to_update.update(name: "", phone_num: "Updated number")
+
+      expect(validity).must_equal false
+      
+      # # Assert
+      # # Check that the controller redirects
+      # must_redirect_with :render
+      # Note: This will not pass until ActiveRecord Validations lesson
+
+      
     end
   end
   
