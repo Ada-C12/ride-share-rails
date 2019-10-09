@@ -91,8 +91,9 @@ describe DriversController do
       # Check that the controller redirected the user
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not create a driver if the form data violates Driver validations" do
       # Note: This will not pass until ActiveRecord Validations lesson
+      # Note: I deleted that it should redirect because if the validation kicks in, it just stays on the page and waits for valid input
       # Arrange
       driver_hash = {
         driver: {
@@ -106,11 +107,7 @@ describe DriversController do
       expect {
         post drivers_path, params: driver_hash
       }.wont_change Driver.count
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
 
-      # Assert
-      # Check that the controller redirects
 
     end
   end
@@ -118,69 +115,98 @@ describe DriversController do
   describe "edit" do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
+      mb = Driver.create name: "Meatball Jones", vin: 41225, active: true, car_make: "Honda", car_model: "Accord"
       # Ensure there is an existing driver saved
-
+      @driver_hash_with_new_data = {
+        driver: {
+          name: "Spaghetti Jones",
+          vin: 41226, active: false, car_make: "Tesla", car_model: "Model 3"
+        }
+      }
       # Act
-
+      expect {
+        patch driver_path(mb.id), params: @driver_hash_with_new_data
+      }.wont_change "Driver.count"
+      must_respond_with :success
       # Assert
-
+      expect(mb.name).must_equal @driver_hash_with_new_data[:driver][:name]
+      expect(@mb.vin).must_equal @driver_hash_with_new_data[:driver][:vin]
+      expect(mb.active).must_equal @driver_hash_with_new_data[:driver][:active]
+      expect(mb.car_make).must_equal @driver_hash_with_new_data[:driver][:car_make]
+      expect(mb.car_model).must_equal @driver_hash_with_new_data[:driver][:car_model]
     end
 
     it "responds with redirect when getting the edit page for a non-existing driver" do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
-
-      # Act
-
-      # Assert
-
+      patch driver_path(9999), params: @driver_hash_with_new_data
+      must_respond_with :redirect
     end
   end
 
   describe "update" do
     it "can update an existing driver with valid information accurately, and redirect" do
       # Arrange
+      mb = Driver.create name: "Meatball Jones", vin: 41225, active: true, car_make: "Honda", car_model: "Accord"
+      driver_hash = {
+        driver: {
+          vin: "53246",
+          active: false,
+          car_make: "Toyota",
+          car_model: "Tacoma"
+        }
+      }
       # Ensure there is an existing driver saved
+      if Driver.count != 1
+        puts "driver not saved"
+      end
       # Assign the existing driver's id to a local variable
       # Set up the form data
-
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
-
-      # Assert
-      # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
-      # Check that the controller redirected the user
-
-    end
-
-    it "does not update any driver if given an invalid id, and responds with a 404" do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
-      # Set up the form data
-
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
-
-      # Assert
-      # Check that the controller gave back a 404
-
-    end
-
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      # Set up the form data so that it violates Driver validations
-
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
-
-      # Assert
-      # Check that the controller redirects
-
+      expect {patch driver_path(mb.id), params: driver_hash}.wont_change Driver.count
     end
   end
+
+  # Act-Assert
+  # Ensure that there is no change in Driver.count
+
+  # Assert
+  # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
+  # Check that the controller redirected the user
+
+
+
+  it "does not update any driver if given an invalid id, and responds with a 404" do
+    # Arrange
+    # Ensure there is an invalid id that points to no driver
+    # Set up the form data
+    # #bad_book = Book.new (valid data)
+    # bad_book.title = ""
+    # save expect false/failure
+    # bad_book.title = "valid"
+    # bad_book.desc "aaaa"
+    # save expect false/failure
+    #switch valid to invalid. test c
+    # Act-Assert
+    # Ensure that there is no change in Driver.count
+
+    # Assert
+    # Check that the controller gave back a 404
+
+  end
+
+  it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    # Note: This will not pass until ActiveRecord Validations lesson
+    # Arrange
+    # Ensure there is an existing driver saved
+    # Assign the existing driver's id to a local variable
+    # Set up the form data so that it violates Driver validations
+
+    # Act-Assert
+    # Ensure that there is no change in Driver.count
+
+    # Assert
+    # Check that the controller redirects
+
+  end
+
 
   describe "destroy" do
     it "destroys the driver instance in db when driver exists, then redirects" do
