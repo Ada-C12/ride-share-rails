@@ -18,7 +18,7 @@
     <section><%= passenger.name%></section>
     <section><%= passenger.phone_num%></section>
     <%= link_to "FAKE", root_path %>
-    <%= link_to "FAKE", root_path %>
+    <%= link_to "DELETE", passenger_path(id: passenger.id), method: :delete, data: { confirm: "Sure?" } %>
   <%end %>
 </section>
 

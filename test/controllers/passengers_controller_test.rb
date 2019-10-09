@@ -64,16 +64,26 @@ describe PassengersController do
   
   describe "edit" do
     it "" do
+      ###
     end
   end
   
   describe "update" do
     it "" do
+      ###
     end
   end
   
   describe "destroy" do
-    it "" do
+    it "will destroy passenger obj and redirect to passengers index pg" do
+      passenger1
+      expect {delete passenger_path(id: passenger1.id)}.must_differ "Passenger.count", -1
+      must_redirect_to passengers_path
+    end
+    
+    it "will redirect to nope_path if bad id given" do
+      delete passenger_path(id: -666)
+      must_redirect_to nope_path
     end
   end
 end

@@ -34,7 +34,14 @@ class PassengersController < ApplicationController
   def update
   end
   
-  def delete
+  def destroy
+    garbage = Passenger.find_by(id: params[:id])
+    if garbage
+      garbage.destroy
+      redirect_to passengers_path
+    else
+      redirect_to nope_path
+    end
   end
   
   
