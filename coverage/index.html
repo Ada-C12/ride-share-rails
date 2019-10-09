@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2019-10-08T16:23:44-07:00">2019-10-08T16:23:44-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2019-10-08T19:01:40-07:00">2019-10-08T19:01:40-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,15 +25,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.81
+         1.83
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>12</b> files in total.
-    <b>43</b> relevant lines. 
-    <span class="green"><b>43</b> lines covered</span> and
+    <b>50</b> relevant lines. 
+    <span class="green"><b>50</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -63,11 +63,11 @@
       <tr>
         <td class="strong"><a href="#ad2a251b1b03c02aaddba4f6a922e5ebb7f75d0b" class="src_link" title="app/controllers/drivers_controller.rb">app/controllers/drivers_controller.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>47</td>
-        <td>25</td>
-        <td>25</td>
+        <td>63</td>
+        <td>32</td>
+        <td>32</td>
         <td>0</td>
-        <td>2.4</td>
+        <td>2.3</td>
       </tr>
       
       <tr>
@@ -183,15 +183,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.25
+         2.19
        </span>
     </span> hits/line)
   </h2>
   <a name="Controllers"></a>
   <div>
     <b>4</b> files in total.
-    <b>28</b> relevant lines. 
-    <span class="green"><b>28</b> lines covered</span> and
+    <b>35</b> relevant lines. 
+    <span class="green"><b>35</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -221,11 +221,11 @@
       <tr>
         <td class="strong"><a href="#ad2a251b1b03c02aaddba4f6a922e5ebb7f75d0b" class="src_link" title="app/controllers/drivers_controller.rb">app/controllers/drivers_controller.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>47</td>
-        <td>25</td>
-        <td>25</td>
+        <td>63</td>
+        <td>32</td>
+        <td>32</td>
         <td>0</td>
-        <td>2.4</td>
+        <td>2.3</td>
       </tr>
       
       <tr>
@@ -601,8 +601,8 @@
     <h3>app/controllers/drivers_controller.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>25</b> relevant lines. 
-      <span class="green"><b>25</b> lines covered</span> and
+      <b>32</b> relevant lines. 
+      <span class="green"><b>32</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -856,37 +856,133 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="42">
-          
-          
-          <code class="ruby">  </code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="43">
+        <li class="covered" data-hits="1" data-linenumber="42">
           <span class="hits">1</span>
           
-          <code class="ruby">  private</code>
+          <code class="ruby">  def update</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="44">
+        <li class="covered" data-hits="3" data-linenumber="43">
+          <span class="hits">3</span>
+          
+          <code class="ruby">    @driver = Driver.find_by(id: params[:id])</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="44">
+          <span class="hits">3</span>
+          
+          <code class="ruby">    if @driver.nil?</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="45">
           <span class="hits">1</span>
           
-          <code class="ruby">  def driver_params</code>
-        </li>
-      
-        <li class="covered" data-hits="6" data-linenumber="45">
-          <span class="hits">6</span>
-          
-          <code class="ruby">    return params.require(:driver).permit(:name, :vin, :active, :car_make, :car_model)</code>
+          <code class="ruby">      head :not_found</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="46">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">      return</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="47">
+          
+          
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="48">
+          <span class="hits">2</span>
+          
+          <code class="ruby">      if @driver.update(driver_params)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="49">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        redirect_to driver_path(@driver.id)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="50">
+          
+          
+          <code class="ruby">        return</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="51">
+          
+          
+          <code class="ruby">      else</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="52">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        redirect_to drivers_path</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="53">
+          
+          
+          <code class="ruby">        return</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="54">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="55">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="56">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="57">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="58">
+          
+          
+          <code class="ruby">  </code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="59">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  private</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="60">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def driver_params</code>
+        </li>
+      
+        <li class="covered" data-hits="8" data-linenumber="61">
+          <span class="hits">8</span>
+          
+          <code class="ruby">    return params.require(:driver).permit(:name, :vin, :active, :car_make, :car_model)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="62">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="63">
           
           
           <code class="ruby">end</code>
