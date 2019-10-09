@@ -1,0 +1,9 @@
+<%= link_to "Create New trip", new_trip_path %>
+<ul>
+  <h1>All the trips</h1>
+  <% @trips.each do |trip| %>
+    <li>
+    <%= link_to trip.date, trip_path(trip.id) %>
+    </li>
+  <% end %>
+</ul>

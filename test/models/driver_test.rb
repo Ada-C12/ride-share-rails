@@ -13,7 +13,7 @@ describe Driver do
     # Arrange
     new_driver.save
     driver = Driver.first
-    [:name, :vin, :active, :car_make, :car_model].each do |field|
+    [:name, :vin].each do |field|
       
       # Assert
       expect(driver).must_respond_to field

@@ -25,7 +25,7 @@ describe Passenger do
       # Arrange
       new_passenger.save
       passenger = Passenger.first
-
+      
       # Assert
       expect(passenger.trips.count).must_be :>, 0
       passenger.trips.each do |trip|
