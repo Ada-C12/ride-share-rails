@@ -2,14 +2,16 @@
 <h3>Phone Number: <%= @passenger.phone_num %></h3>
 <h3>Total Amount Spent: $<%= @passenger.total_spent %>
 
+<p><%= link_to "Edit Passenger", edit_passenger_path %></p>
+<p><%= link_to "Delete Passenger", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"}%></p>
+
 <% @passenger.trips.each do |trip| %>
 <h2>Trip ID: <%= trip.id %></h2>
 <h3>Date: <%= trip.date %></h3>
 <h3>Driver ID: <%= trip.driver.id %></h3>
 <h3>Rating: <%= trip.rating %></h3>
 <h3>Cost: $<%=(trip.cost * 0.10).round(2) %></h3>
+<p><%= link_to "Edit Trip", edit_trip_path %></p>
 <% end %>
 
-<p><%= link_to "Edit Passenger", edit_passenger_path %></p>
-<p><%= link_to "Delete", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"}%></p>
 <p><%= link_to "Return to Passenger List", passengers_path %></p>
