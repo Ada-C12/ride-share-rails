@@ -1,5 +1,6 @@
 <h1> Trip Details </h1>
 <%= link_to 'Edit', edit_trip_path %>
+<%= link_to 'Delete', trip_path, method: :delete, data: {confirm: "Are you sure?"}%>
 
 <ul>
 
