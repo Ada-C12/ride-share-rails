@@ -766,3 +766,73 @@ Processing by HomepagesController#index as HTML
 Completed 200 OK in 28ms (Views: 25.1ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/passengers/-4" for ::1 at 2019-10-09 11:30:38 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/carolinewu/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-4"}
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -4], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:23
+Redirected to http://localhost:3000/homepages/nope?msg=No+such+passenger+exists%21
+Completed 302 Found in 12ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/homepages/nope?msg=No+such+passenger+exists%21" for ::1 at 2019-10-09 11:30:38 -0700
+Processing by HomepagesController#nope as HTML
+  Parameters: {"msg"=>"No such passenger exists!"}
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 146ms (Views: 143.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-09 11:30:46 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 26ms (Views: 22.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers" for ::1 at 2019-10-09 11:34:16 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.4ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:16
+  Rendered passengers/index.html.erb within layouts/application (56.7ms)
+Completed 200 OK in 88ms (Views: 80.0ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/passengers/1/edit" for ::1 at 2019-10-09 11:34:18 -0700
+Processing by PassengersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:31
+  Rendering passengers/edit.html.erb within layouts/application
+  Rendered passengers/_form.html.erb (6.8ms)
+  Rendered passengers/edit.html.erb within layouts/application (9.3ms)
+Completed 200 OK in 43ms (Views: 37.4ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/passengers/1" for ::1 at 2019-10-09 11:34:29 -0700
+Processing by PassengersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BC3vPOlaxvH8WAjJAOG+o4ub69tv5QlvG6hR4OG8mDpiaDnADRiEtb3OER3xhrX5uvbuhuEz5lqGCzPp8Z03WQ==", "passenger"=>{"name"=>"Nina Hintz SUPER SENIOR", "phone_num"=>"560.815.3059"}, "commit"=>"GET IT!", "id"=>"1"}
+No template found for PassengersController#update, rendering head :no_content
+Completed 204 No Content in 114ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers/-4/edit" for ::1 at 2019-10-09 11:37:07 -0700
+Processing by PassengersController#edit as HTML
+  Parameters: {"id"=>"-4"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -4], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:31
+Redirected to http://localhost:3000/homepages/nope?msg=Cannot+edit+a+non-esistent+passenger%21
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/homepages/nope?msg=Cannot+edit+a+non-esistent+passenger%21" for ::1 at 2019-10-09 11:37:07 -0700
+Processing by HomepagesController#nope as HTML
+  Parameters: {"msg"=>"Cannot edit a non-esistent passenger!"}
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 25ms (Views: 22.3ms | ActiveRecord: 0.0ms)
+
+

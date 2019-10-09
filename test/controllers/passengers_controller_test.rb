@@ -18,9 +18,9 @@ describe PassengersController do
       must_respond_with :success
     end
     
-    it "redirect to homepage if invalid id" do
+    it "redirect to nope_path if invalid id" do
       get passenger_path(id: -666)
-      must_redirect_to nope_path
+      must_redirect_to nope_path(msg: "No such passenger exists!")
     end
   end
   
@@ -32,7 +32,7 @@ describe PassengersController do
   end
   
   describe "create" do
-    it "can create new Passenger, given correct args, and go to show.html" do
+    it "can create new Passenger, given good inputs, and go to show.html" do
       expect {post passengers_path, params: passenger_hash}.must_change "Passenger.count", 1
       new_passenger = Passenger.last
       must_redirect_to passenger_path(id: new_passenger.id)
@@ -40,7 +40,7 @@ describe PassengersController do
       assert (new_passenger.phone_num == passenger_hash[:passenger][:phone_num])
     end
     
-    it "Bad args will fail validations, and user will stay on page" do
+    it "Bad inputs will fail validations, and user will stay on page" do
       bad_names = [nil, "", "    "]
       
       bad_names.each do |bad_name|
@@ -64,7 +64,13 @@ describe PassengersController do
   
   describe "edit" do
     it "" do
-      ###
+      get edit_passenger_path(id: passenger1.id)
+      must_respond_with :success
+    end
+    
+    it "redirects to nope_path if bad id" do
+      get edit_passenger_path(id: -666)
+      must_redirect_to nope_path(msg: "Cannot edit a non-existent passenger!")
     end
   end
   
@@ -83,7 +89,7 @@ describe PassengersController do
     
     it "will redirect to nope_path if bad id given" do
       delete passenger_path(id: -666)
-      must_redirect_to nope_path
+      must_redirect_to nope_path(msg: "Cannot destroy a non-existent passenger record")
     end
   end
 end

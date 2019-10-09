@@ -28,8 +28,10 @@ class PassengersController < ApplicationController
   end
   
   def edit
-    
-    ###
+    @passenger = Passenger.find_by(id: params[:id])
+    if @passenger.nil?
+      redirect_to nope_path(params: {msg: "Cannot edit a non-existent passenger!"})
+    end
   end
   
   def update
@@ -42,10 +44,17 @@ class PassengersController < ApplicationController
       garbage.destroy
       redirect_to passengers_path
     else
-      redirect_to nope_path
+      redirect_to nope_path(params: {msg: "Cannot destroy a non-existent passenger record"})
     end
   end
   
+  def request_trip
+    ###
+  end
+  
+  def rate_trip
+    ###
+  end
   
   private
   def get_params
