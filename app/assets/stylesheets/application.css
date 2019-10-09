@@ -16,8 +16,8 @@
 
  nav ul {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(8, 1fr);
   list-style-type: none;
-  font-size: 1.5em;
+  font-size: 1.25em;
   font-weight: bold
 }

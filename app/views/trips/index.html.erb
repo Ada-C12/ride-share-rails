@@ -1,7 +1,7 @@
 <%= link_to "Create New Trip", new_trip_path %>
 <ul>
   <h1>All the trips</h1>
-  <% @trips.each do |trip| %>
+  <% @trips.all_in_alpha_order.each do |trip| %>
     <li>
     <%= link_to trip.date, trip_path(trip.id) %>
     </li>

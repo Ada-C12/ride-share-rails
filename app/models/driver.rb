@@ -10,11 +10,19 @@ class Driver < ApplicationRecord
   
   def earnings
     earnings = self.trips.map {|t| (t.cost - 165) * 0.8 }
-    return earnings.sum
+    if earnings.length == 0
+      return "No earnings"
+    else
+      return earnings.sum
+    end
   end
   
   def avg_rating
     avg_rating = self.trips.map {|t| t.rating }
-    return avg_rating.sum / avg_rating.count
+    if avg_rating.length == 0
+      return "Not rated"
+    else
+      return avg_rating.sum / avg_rating.count
+    end
   end
 end

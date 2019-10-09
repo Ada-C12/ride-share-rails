@@ -59,11 +59,49 @@ describe Driver do
   # Tests for methods you create should go here
   describe "custom methods" do
     describe "average rating" do
+      let (:new_driver) {
+        Driver.new(name: "Kari", vin: "123")
+      }
       # Your code here
+      it "calculates the average rating of a driver" do
+        passenger = Passenger.new(name: "Friendly Passenger", phone_num: "206-867-5309")
+        passenger.save
+        trip = Trip.create( passenger: Passenger.first, driver: new_driver, rating: 5, cost: 2222, date: Date.today)
+        
+        expect(new_driver.avg_rating).must_equal 5
+      end
+      
+      it "returns a message if the driver has 0 ratings" do
+        expect(new_driver.avg_rating).must_equal "Not rated"
+      end
+      
+      it "returns 0 if the driver has an average rating of 0" do
+        passenger = Passenger.new(name: "Friendly Passenger", phone_num: "206-867-5309")
+        passenger.save
+        trip = Trip.create( passenger: Passenger.first, driver: new_driver, rating: 0, cost: 2222, date: Date.today)
+        
+        expect(new_driver.avg_rating).must_equal 0
+      end
     end
     
     describe "total earnings" do
-      # Your code here
+      let (:new_driver) {
+        Driver.new(name: "Kari", vin: "123")
+      }
+      
+      it "calculates the total earnings of a driver" do
+        passenger = Passenger.new(name: "Friendly Passenger", phone_num: "206-867-5309")
+        passenger.save
+        trip1 = Trip.create( passenger: Passenger.first, driver: new_driver, rating: 4, cost: 2222, date: Date.today)
+        trip2 = Trip.create( passenger: Passenger.first, driver: new_driver, rating: 4, cost: 2222, date: Date.today)
+        
+        expect(new_driver.earnings).must_be_close_to 3291, 1
+      end
+      
+      it "returns a message if the driver has 0 trips" do
+        expect(new_driver.earnings).must_equal "No earnings"
+      end
+      
     end
     
     describe "can go online" do
