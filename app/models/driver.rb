@@ -3,16 +3,16 @@ class Driver < ApplicationRecord
   validates :name, presence: true
   validates :vin, presence: true
 
-  def self.count_rides(driver_id)
-    return Trip.where(driver_id: driver_id).count
+  def count_rides
+    return self.trips.count
   end
 
-  def self.average_rating(driver_id)
-    trip_array = Trip.where(driver_id: driver_id)
+  def average_rating
+    trip_array = self.trips
     rating_sum = 0
     trip_array.each do |trip|
       rating_sum += trip[:rating]
     end
-    average_rating = rating_sum / count_rides(driver_id)
+    average_rating = rating_sum / count_rides
   end
 end
