@@ -94,11 +94,95 @@ describe TripsController do
   end
   
   describe "edit" do
-    # Your tests go here
+
+    let(:current_trip) {
+      driver_id = Driver.create(name: "Jane Doe", vin: "12345678").id
+      passenger_id = Passenger.create(name: "Jane Doe", phone_num: "1234567").id
+      Trip.create(cost: 12.46, date: Date.today, driver_id: driver_id, passenger_id: passenger_id)}
+
+    it "responds with success when getting the edit page for an existing, valid trip" do
+      # Arrange
+      # Ensure there is an existing trip saved
+      get edit_trip_path(current_trip.id)
+      must_respond_with :success
+    end
+    
+    it "responds with redirect when getting the edit page for a non-existing trip" do
+      new_trip = current_trip
+      get edit_trip_path(-1)
+
+      must_respond_with :redirect
+    end
   end
   
   describe "update" do
-    # Your tests go here
+    before do
+      @updated_driver_id = Driver.create(name: "Bob Smith", vin: "9999999").id
+      @updated_passenger_id = Passenger.create(name: "Emily Rad", phone_num: "44444444").id
+      @updated_date = Date.today + 5
+    end
+
+    let(:current_trip) {
+      driver_id = Driver.create(name: "Jane Doe", vin: "12345678").id
+      passenger_id = Passenger.create(name: "John Doe", phone_num: "7654321").id
+      Trip.create(cost: 12.46, date: Date.today, driver_id: driver_id, passenger_id: passenger_id)}
+
+    let(:updates) {{trip: {cost: 13.42, date: @updated_date, passenger_id: @updated_passenger_id, driver_id: @updated_driver_id}}}
+    let(:invalid_updates_1) {{trip: {cost: 13.42, date: @updated_date, passenger_id: @updated_passenger_id, driver_id: -1}}}
+    let(:invalid_updates_2) {{trip: {cost: 13.42, date: @updated_date, passenger_id: -1, driver_id: @updated_driver_id}}}
+    let(:invalid_updates_3) {{trip: {cost: 13.42, passenger_id: @updated_passenger_id, driver_id: @updated_driver_id}}}
+    let(:invalid_updates_4) {{trip: {date: @updated_date, passenger_id: @updated_passenger_id, driver_id: @updated_driver_id}}}
+
+    it "can update an existing Trip with valid information accurately, and redirect" do
+      patch trip_path(current_trip.id), params: updates
+      
+      updated_trip = Trip.find_by(id: current_trip.id)
+      expect(updated_trip.cost).must_equal updates[:trip][:cost]
+      expect(updated_trip.date).must_equal updates[:trip][:date]
+      expect(updated_trip.passenger_id).must_equal updates[:trip][:passenger_id]
+      expect(updated_trip.driver_id).must_equal updates[:trip][:driver_id]
+
+      must_respond_with :redirect
+      must_redirect_to trip_path(updated_trip.id)
+    end
+    
+    it "does not update any trip if given an invalid id, and responds with a 404" do
+      # Arrange
+      # Ensure there is an invalid id that points to no trip
+      # Set up the form data
+      patch trip_path(-1), params: updates
+      
+      # Act-Assert
+      # Ensure that there is no change in trip.count
+      updated_trip = Trip.find_by(id: current_trip.id)
+      expect(updated_trip.cost).must_not_equal updates[:trip][:cost]
+      expect(updated_trip.date).must_not_equal updates[:trip][:date]
+      expect(updated_trip.passenger_id).must_not_equal updates[:trip][:passenger_id]
+      expect(updated_trip.driver_id).must_equal updates[:trip][:driver_id]
+      
+      # Assert
+      # Check that the controller gave back a 404
+      must_respond_with :not_found
+    end
+    
+    it "does not create a passenger if the form data violates passenger validations, and responds with a redirect" do
+      # Note: This will not pass until ActiveRecord Validations lesson
+      # Arrange
+      # Ensure there is an existing passenger saved
+      # Assign the existing passenger's id to a local variable
+      # Set up the form data so that it violates passenger validations
+      
+      # Act-Assert
+      # Ensure that there is no change in passenger.count
+      # Assert
+      # Check that the controller redirects
+      updated_passenger = Passenger.find_by(id: current_passenger.id)
+      expect {patch passenger_path(updated_passenger.id), params: invalid_updates_1}.must_differ 'Passenger.count', 0
+      must_respond_with :redirect
+
+      expect {patch passenger_path(updated_passenger.id), params: invalid_updates_2}.must_differ 'Passenger.count', 0
+      must_respond_with :redirect
+    end
   end
   
   describe "destroy" do

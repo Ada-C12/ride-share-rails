@@ -17,10 +17,39 @@ class TripsController < ApplicationController
     
     if @trip.save
       redirect_to trip_path(@trip.id)
+      return
     else
       redirect_to new_trip_path
+      return
     end
   end
+
+  def edit
+    @trip = Trip.find_by(id: params[:id])
+    
+    if @trip.nil?
+      redirect_to root_path
+      return
+    end
+  end
+
+  def update
+    @trip = Trip.find_by(id: params[:id] )
+    if @trip.nil?
+      head :not_found
+      return
+    end
+
+    if @trip.update(trip_params)
+      redirect_to trip_path(@trip.id)
+      return
+    else
+      redirect_to edit_trip_path
+      return
+    end
+  end
+
+
   
   private
   def trip_params

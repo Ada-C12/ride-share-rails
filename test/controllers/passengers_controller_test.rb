@@ -94,15 +94,79 @@ describe PassengersController do
     end
     
     describe "edit" do
-      # Your tests go here
+      let(:current_passenger) {Passenger.create(name: "Jane Doe", phone_num: "1234567")}
+
+      it "responds with success when getting the edit page for an existing, valid passenger" do
+        # Arrange
+        # Ensure there is an existing passenger saved
+        get edit_passenger_path(current_passenger.id)
+        must_respond_with :success
+      end
+      
+      it "responds with redirect when getting the edit page for a non-existing passenger" do
+        new_passenger = current_passenger
+        get edit_passenger_path(-1)
+  
+        must_respond_with :redirect
+      end
     end
     
     describe "update" do
-      # Your tests go here
+      let(:updates) {{passenger: {name: "Another Name", phone_num:'789987324'}}}
+      let(:current_passenger) {Passenger.create(name: "Jane Doe", phone_num: "12345678")}
+      let(:invalid_updates_1) {{passenger: {name: "Another Name"}}}
+      let(:invalid_updates_2) {{passenger: {phone_num: "789987324"}}}
+
+    it "can update an existing passenger with valid information accurately, and redirect" do
+      patch passenger_path(current_passenger.id), params: updates
+      
+      updated_passenger = Passenger.find_by(id: current_passenger.id)
+      expect(updated_passenger.name).must_equal updates[:passenger][:name]
+      expect(updated_passenger.phone_num).must_equal updates[:passenger][:phone_num]
+
+      must_respond_with :redirect
+      must_redirect_to passenger_path(updated_passenger.id)
     end
     
-    describe "destroy" do
-      # Your tests go here
+    it "does not update any passenger if given an invalid id, and responds with a 404" do
+      # Arrange
+      # Ensure there is an invalid id that points to no passenger
+      # Set up the form data
+      patch passenger_path(-1), params: updates
+      
+      # Act-Assert
+      # Ensure that there is no change in passenger.count
+      updated_passenger = Passenger.find_by(id: current_passenger.id)
+      expect(updated_passenger.name).must_equal current_passenger.name
+      expect(updated_passenger.phone_num).must_equal current_passenger.phone_num
+      
+      # Assert
+      # Check that the controller gave back a 404
+      must_respond_with :not_found
+    end
+    
+    it "does not create a passenger if the form data violates passenger validations, and responds with a redirect" do
+      # Note: This will not pass until ActiveRecord Validations lesson
+      # Arrange
+      # Ensure there is an existing passenger saved
+      # Assign the existing passenger's id to a local variable
+      # Set up the form data so that it violates passenger validations
+      
+      # Act-Assert
+      # Ensure that there is no change in passenger.count
+      # Assert
+      # Check that the controller redirects
+      updated_passenger = Passenger.find_by(id: current_passenger.id)
+      expect {patch passenger_path(updated_passenger.id), params: invalid_updates_1}.must_differ 'Passenger.count', 0
+      must_respond_with :redirect
+
+      expect {patch passenger_path(updated_passenger.id), params: invalid_updates_2}.must_differ 'Passenger.count', 0
+      must_respond_with :redirect
     end
   end
+    
+  describe "destroy" do
+    # Your tests go here
+  end
+end
   
