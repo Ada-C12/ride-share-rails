@@ -43,6 +43,15 @@ nav > * {
 .dropdown-content {
   display: none;
   position: absolute;
+  background: rgb(255,0,191);
+}
+
+.dropdown-content a {
+  color: white;
+}
+
+.dropdown-content a:hover {
+  text-decoration: underline;
 }
 
 .dropdown-container:hover .dropdown-content {
