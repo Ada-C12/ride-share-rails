@@ -18,6 +18,7 @@ class TripsController < ApplicationController
   end 
 
   def new
+    # coming from Passengers/:id, clicking request trip button
     @trip = Trip.new
   end 
 
