@@ -8,7 +8,7 @@ class PassengersController < ApplicationController
     @passenger = Passenger.find_by(id: passenger_id)
     
     if @passenger.nil?
-      head :not_found
+      redirect_to passengers_path
       return
     end   
   end
@@ -20,7 +20,7 @@ class PassengersController < ApplicationController
   def create
     @passenger = Passenger.new(passenger_params) 
     if @passenger.save 
-      redirect_to root_path
+      redirect_to passenger_path(@passenger.id)
       return
     else
       render :new
@@ -32,7 +32,7 @@ class PassengersController < ApplicationController
     @passenger = Passenger.find_by(id: params[:id])
     
     if @passenger.nil?
-      head :not_found
+      redirect_to passengers_path
       return
     end
   end
@@ -59,7 +59,7 @@ class PassengersController < ApplicationController
     
     @passenger.destroy
     
-    redirect_to books_path
+    redirect_to passengers_path
     return
   end
   
