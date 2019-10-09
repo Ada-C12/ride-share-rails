@@ -6,4 +6,8 @@ class TripsController < ApplicationController
     return 
     end
   end
+
+  def new
+    @trip = Trip.new
+  end
 end

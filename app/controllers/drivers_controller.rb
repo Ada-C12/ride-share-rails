@@ -2,75 +2,75 @@ class DriversController < ApplicationController
   def index
     @drivers = Driver.alpha_drivers
   end
-
+  
   def show
     @driver = Driver.find_by(id: params[:id])
     if @driver.nil?
       redirect_to root_path
-    return 
+      return 
     end
   end
-
+  
   def edit
     show #same as show method, so I just called the method for DRY
   end
-
+  
   def update
     @driver = Driver.find_by(id: params[:id])
-
+    
     if @driver.nil?
       redirect_to root_path
       return
     elsif @driver.update(
       name: params[:driver][:name], 
       vin: params[:driver][:vin],
-      car_make: params[:driver][:car_make],
-      car_model: params[:driver][:car_model]
+      car_make: nil,
+      car_model: nil
     )
-      redirect_to drivers_path 
-      return
-    else 
-      render :edit 
-      return
-    end
-  end
-
-  def destroy
-    @driver = Driver.find_by(id: params[:id])
-
-    if @driver.nil?
-      head :not_found
-      return
-    end
-
-    @driver.destroy
-    redirect_to drivers_path
+    redirect_to drivers_path 
+    return
+  else 
+    render :edit 
     return
   end
+end
 
-  def new
-    @driver = Driver.new
+def destroy
+  @driver = Driver.find_by(id: params[:id])
+  
+  if @driver.nil?
+    head :not_found
+    return
   end
+  
+  @driver.destroy
+  redirect_to drivers_path
+  return
+end
 
-  def create
-    @driver = Driver.new(name: params[:driver][:name], vin: params[:driver][:vin], car_make: params[:driver][:car_make], car_model: params[:driver][:car_model], active: false) 
-    if @driver.name != ""
-      @driver.save
-      redirect_to driver_path(@driver.id) 
-      return
-    else 
-      render :new 
-      return
-    end
-  end
+def new
+  @driver = Driver.new
+end
 
-  def active
-    @driver = Driver.find_by(id: params[:id])
-    if @driver.active == false || @driver.active == nil
-      @driver.update(active: true)
-    else
-      @driver.update(active: false)
-    end
-    redirect_to drivers_path
+def create
+  @driver = Driver.new(name: params[:driver][:name], vin: params[:driver][:vin], car_make: nil, car_model: nil, active: false) 
+  if @driver.name != ""
+    @driver.save
+    redirect_to driver_path(@driver.id) 
+    return
+  else 
+    render :new 
+    return
   end
+end
+
+def active
+  @driver = Driver.find_by(id: params[:id])
+  if @driver.active == false || @driver.active == nil
+    @driver.update(active: true)
+  else
+    @driver.update(active: false)
+  end
+  redirect_to drivers_path
+end
 end
