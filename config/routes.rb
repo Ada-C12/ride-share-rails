@@ -7,9 +7,11 @@ Rails.application.routes.draw do
     resources :trips, only: [:index, :new]
   end
 
-  resources :drivers do
-    resources :trips, only: [:index, :new]
+  resources :drivers, only: [:index, :show, :new, :create, :edit] do
+    resources :trips, only: [:index, :new, :create]
   end
+
+  
   
   resources :homepages, only: [:index]
   resources :trips
