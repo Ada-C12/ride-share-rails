@@ -9,7 +9,19 @@ class TripsController < ApplicationController
   end
 
   def create
+    driver_id = Driver.find_by(active: false).id
 
+    head :not_found if driver_id.nil?
+
+    @trip = Trip.new(date: Date.today, rating: nil, cost: 13.00, driver_id: driver_id, passenger_id: params[:passenger_id])
+    
+    if @trip.save
+      redirect_to trip_path(@trip.id)
+      return
+    else
+      redirect_to passenger_path(@trip.passenger_id)
+      return
+    end
   end
 
   def edit
@@ -23,4 +35,10 @@ class TripsController < ApplicationController
   def destroy
 
   end
+
+  # private
+
+  # def trip_params
+  #   return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
+  # end
 end

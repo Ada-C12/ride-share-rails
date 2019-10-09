@@ -9,6 +9,10 @@
     <%= link_to "Delete", passenger_path(@passenger.id), method: :delete, data: { confirm: "Are you sure you want to delete this passenger?" }, class: "index-delete-link" %>
   </section>
 
+  <h3>
+    <%= link_to "Request Ride", passenger_trips_path(@passenger.id), method: :post, data: { confirm: "Are you sure you want to request a trip?" } %>
+  </h3>
+
   <section>
     <% if @passenger.trips.empty? %>
       <h3>Passenger has 0 trips</h3>
