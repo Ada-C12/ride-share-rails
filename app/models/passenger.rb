@@ -7,4 +7,11 @@ class Passenger < ApplicationRecord
   def self.all_in_alpha_order
     return Passenger.all.order(name: :asc)
   end
+  
+  def total_charges
+    total_charges = self.trips.map {|t| t.cost }
+    total_charges.compact!
+    return total_charges.sum
+  end
+  
 end

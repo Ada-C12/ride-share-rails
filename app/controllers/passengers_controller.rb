@@ -11,8 +11,6 @@ class PassengersController < ApplicationController
       redirect_to root_path
       return
     end
-    total_charges = @passenger.trips.map {|t| t.cost }
-    @total_charges = total_charges.sum
   end
   
   
