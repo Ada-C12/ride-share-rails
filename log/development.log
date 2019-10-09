@@ -41,3 +41,4 @@ Processing by HomepagesController#nope as HTML
 Completed 200 OK in 33ms (Views: 30.7ms | ActiveRecord: 0.0ms)
 
 
+  [1m[36mDriver Load (0.4ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" ORDER BY "drivers"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]

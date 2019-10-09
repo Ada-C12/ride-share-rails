@@ -58,17 +58,25 @@ describe DriversController do
       must_redirect_to driver_path(Driver.find_by(name: "Home Dawg"))
     end
 
-    # it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Set up the form data so that it violates Driver validations
+    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+      driver1 = Driver.create(name: "Kari", vin: "123")
+      driver2 = Driver.create(name: "", vin: "123")
 
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      new_driver_hash = {
+        driver: {
+          name: "",
+          vin: "123"
+        }
+      }
+      expect(driver1.valid?).must_equal true
+      expect(driver2.valid?).must_equal false 
 
-      # Assert
-      # Check that the controller redirects
-    # end
+      expect {
+        post drivers_path, params: new_driver_hash
+      }.must_differ 'Driver.count', 0
+
+      must_redirect_to nope_path
+    end
   end
 
   describe "edit" do
