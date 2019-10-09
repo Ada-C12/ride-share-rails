@@ -62,6 +62,9 @@ class PassengersController < ApplicationController
     end
   end
 
+  def total_money_spent
+  end
+
   private
 
   def passenger_params

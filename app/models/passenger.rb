@@ -7,7 +7,7 @@ class Passenger < ApplicationRecord
   #   return passenger.name #Passenger.all
   # end
 
-  # def first_published
+  # def self.total_money_spent
   #   books_with_year = self.books.where.not(publication_date: nil)
   #   first_book = books_with_year.order(publication_date: :asc).first
   #   return first_book.publication_date
