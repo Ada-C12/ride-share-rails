@@ -1,1 +1,22 @@
-<h2>Single Trip</h2>
+<h2>Trip ID: <%= @trip.id %></h2>
+
+<table>
+<th> id </th>
+<th> Date </th>
+<th> Driver ID</th>
+<th> Passenger ID </th>
+<th>Price</th>
+<th>Rating</th>
+<th>Delete</th>
+</tr>
+<td><%= @trip.id %></td>
+<td><%= @trip.date %></td>
+<td><%= @trip.driver_id %></td>
+<td><%= @trip.passenger_id %></td>
+<td><%= @trip.cost %></td>
+<td><%= @trip.rating %></td>
+
+</tr>
+
+
+</table>
