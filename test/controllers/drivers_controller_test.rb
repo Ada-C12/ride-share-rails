@@ -50,9 +50,10 @@ describe DriversController do
       # Ensure that there is an id that points to no driver
       new_driver = Driver.create(vin: "abcdefgvin", name: "geli driver")
       new_driver_id = new_driver.id
-      puts Driver.find_by(id: new_driver_id)
+      assert_not_nil(Driver.find_by(id: new_driver_id))
       # destroy new driver
       Driver.find_by(id: new_driver.id).destroy
+      assert_nil(Driver.find_by(id: new_driver_id))
 
       # Act
       get driver_path(new_driver_id)
@@ -93,7 +94,7 @@ describe DriversController do
 
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds by re-rendering the new view and setting status to 422"
+    it "does not create a driver if the form data violates Driver validations, and responds by re-rendering the new view and setting status to 422" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
@@ -130,20 +131,32 @@ describe DriversController do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
       # Ensure there is an existing driver saved
+      new_driver = Driver.create(vin: "abcdefgvin", name: "geli driver")
+      assert_not_nil(Driver.find_by(id: new_driver.id))
 
       # Act
+      get edit_driver_path(new_driver.id)
 
       # Assert
+      must_respond_with :success
 
     end
 
     it "responds with redirect when getting the edit page for a non-existing driver" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
+      new_driver = Driver.create(vin: "abcdefgvin", name: "geli driver")
+      new_driver_id = new_driver.id
+      assert_not_nil(Driver.find_by(id: new_driver_id))
+      # destroy new driver
+      Driver.find_by(id: new_driver.id).destroy
+      assert_nil(Driver.find_by(id: new_driver_id))
 
       # Act
+      get edit_driver_path(new_driver_id)
 
       # Assert
+      must_respond_with :redirect
 
     end
   end

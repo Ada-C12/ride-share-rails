@@ -1,31 +1,3 @@
 <h1>Add New Driver</h1>
-<section>
-  <fieldset> 
-  <h2>Details</h2>
-
-  <% if @driver.errors.any? %>
-  <ul class="errors">
-    <% @driver.errors.each do |field, message| %>
-      <li>
-        <strong><%= field.capitalize %></strong> <%= message %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
-
-  <%= form_with model: @driver do |f| %>
-    <p>
-      <%= f.label :name, 'Name:' %>
-      <%= f.text_field :name %>
-    </p>
-    <p>
-      <%= f.label :vin, 'VIN:' %>
-      <%= f.text_field :vin %>
-    </p>
-    <p>
-      <%= f.submit "Add Driver" %>
-    </p>
-
-  </fieldset> 
-  <% end %>
-</section>
+<p><%= link_to "Cancel", drivers_path %></p>
+<%= render partial: "form", locals: {submit_button_label: "Add Driver"} %>
