@@ -51,3 +51,47 @@ Processing by DriversController#index as HTML
 Completed 200 OK in 76ms (Views: 65.0ms | ActiveRecord: 5.9ms)
 
 
+Started GET "/" for ::1 at 2019-10-09 12:30:27 -0700
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/monick/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (329.7ms)
+Completed 200 OK in 504ms (Views: 493.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/trips" for ::1 at 2019-10-09 12:30:35 -0700
+
+SyntaxError - syntax error, unexpected ')', expecting tSTRING_CONTENT or tSTRING_DBEG or tSTRING_DVAR or tSTRING_END
+    return params.require(:).permit(:name, :vin)
+                           ^:
+  app/controllers/trips_controller.rb:73:in `'
+
+Started POST "/__better_errors/fbcd87be8543c2d2/variables" for ::1 at 2019-10-09 12:30:35 -0700
+  [1m[36mTrip Load (2.4ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" ORDER BY "trips"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/trips" for ::1 at 2019-10-09 12:46:18 -0700
+
+SyntaxError - syntax error, unexpected ')', expecting tSTRING_CONTENT or tSTRING_DBEG or tSTRING_DVAR or tSTRING_END
+    return params.require(:).permit(:date, :rating, :cost...
+                           ^:
+  app/controllers/trips_controller.rb:73:in `'
+
+Started POST "/__better_errors/ca6d8dac21583015/variables" for ::1 at 2019-10-09 12:46:18 -0700
+Started GET "/trips" for ::1 at 2019-10-09 12:46:31 -0700
+Processing by TripsController#index as HTML
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (3.0ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  ↳ app/views/trips/index.html.erb:3
+  Rendered trips/index.html.erb within layouts/application (44.9ms)
+Completed 200 OK in 76ms (Views: 61.9ms | ActiveRecord: 8.0ms)
+
+
+Started GET "/trips" for ::1 at 2019-10-09 12:47:55 -0700
+Processing by TripsController#index as HTML
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (1.0ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  ↳ app/views/trips/index.html.erb:3
+  Rendered trips/index.html.erb within layouts/application (27.5ms)
+Completed 200 OK in 58ms (Views: 54.4ms | ActiveRecord: 1.0ms)
+
+
