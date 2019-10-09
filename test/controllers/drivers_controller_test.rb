@@ -35,26 +35,38 @@ describe DriversController do
     it "responds with success when showing an existing valid driver" do
       # Arrange
       # Ensure that there is a driver saved
+      new_driver = Driver.create(vin: "abcdefgvin", name: "geli driver")
 
       # Act
+      get driver_path(new_driver.id)
 
       # Assert
+      must_respond_with :success
 
     end
 
     it "responds with 404 with an invalid driver id" do
       # Arrange
       # Ensure that there is an id that points to no driver
+      new_driver = Driver.create(vin: "abcdefgvin", name: "geli driver")
+      new_driver_id = new_driver.id
+      puts Driver.find_by(id: new_driver_id)
+      # destroy new driver
+      Driver.find_by(id: new_driver.id).destroy
 
       # Act
+      get driver_path(new_driver_id)
 
       # Assert
+      must_respond_with :not_found
 
     end
   end
 
   describe "new" do
     it "responds with success" do
+      get new_driver_path
+      must_respond_with :success
     end
   end
 
