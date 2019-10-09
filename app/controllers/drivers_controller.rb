@@ -44,7 +44,23 @@ class DriversController < ApplicationController
     end
 
     @driver.destroy
-    redirect_to tasks_path
+    redirect_to drivers_path
     return
+  end
+
+  def new
+    @driver = Driver.new
+  end
+
+  def create
+    @driver = Driver.new(name: params[:driver][:name], vin: params[:driver][:vin], car_make: params[:driver][:car_make], car_model: params[:driver][:car_model], active: params[:driver][:active]) 
+    if @driver.name != ""
+      @driver.save
+      redirect_to driver_path(@driver.id) 
+      return
+    else 
+      render :new 
+      return
+    end
   end
 end

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Add Driver</title>
+  </head>
+
+  <body>
+    <%= form_with model: @driver do |f| %>
+    <p>Please provide the following information to save your driver to our database:</p>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :vin %>
+      <%= f.text_field :vin %>
+
+      <%= f.label :car_make, "Car Make" %>
+      <%= f.text_field :car_make %>
+
+      <%= f.label :car_model, "Car Model" %>
+      <%= f.text_field :car_model %>
+
+      <%= f.label :active %>
+      <%= f.text_field :active %>
+
+      <%= f.submit "Save Driver"%>
+    <% end %>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Add Passenger</title>
+  </head>
+
+  <body>
+    <%= form_with model: @passenger do |f| %>
+    <p>Please provide the following information to save your passenger to our database:</p>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :phone_num, "Phone Number" %>
+      <%= f.text_field :phone_number %>
+
+      <%= f.submit "Save Passenger"%>
+    <% end %>
+  </body>
+</html>
