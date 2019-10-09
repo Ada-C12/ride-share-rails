@@ -62,7 +62,7 @@ describe PassengersController do
   end
   
   describe "edit" do
-    it "" do
+    it "Given valid id, will respond with http success" do
       get edit_passenger_path(id: passenger1.id)
       must_respond_with :success
     end
@@ -76,15 +76,13 @@ describe PassengersController do
   describe "update" do
     it "Given good input, will update correctly" do
       passenger1
-      good_params = { name: "Lisa Simpson", phone_num: "4255551111" }
+      good_params = { passenger: { name: "Lisa Simpson", phone_num: "4255551111" } }
       patch passenger_path(id: passenger1.id), params: good_params 
-      puts "WTF", passenger1.name
       updated_passenger = Passenger.find_by(id: passenger1.id)
-      puts "HELL NO!", updated_passenger.name
-      # expect{ patch passenger_path(id: passenger1.id), params: good_params }.must_differ "Passenger.count", 0
+      expect{ patch passenger_path(id: passenger1.id), params: good_params }.must_differ "Passenger.count", 0
       updated_passenger = Passenger.find_by(id: passenger1.id)
-      assert(updated_passenger.name == good_params[:name])
-      assert(updated_passenger.phone_num == good_params[:phone_num])
+      assert(updated_passenger.name == good_params[:passenger][:name])
+      assert(updated_passenger.phone_num == good_params[:passenger][:phone_num])
     end
     
     it "Edge Cases: if blank names/phone_nums given, will render and not redirect" do
