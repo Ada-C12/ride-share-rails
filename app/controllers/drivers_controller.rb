@@ -45,7 +45,8 @@ class DriversController < ApplicationController
         @driver = Driver.find_by(id: id)
         @driver[:name] = params[:driver][:name]
         @driver[:vin] = params[:driver][:vin]
-
+        @driver[:car_make] = params[:driver][:car_make]
+        @driver[:car_model] = params[:driver][:car_model]
         if @driver.save
             redirect_to driver_path(@driver.id)
         else

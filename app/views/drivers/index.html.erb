@@ -23,8 +23,13 @@
             <tr>
                 <td><%= link_to driver.name, driver_path(id: driver.id)%></td>
                 <td><%= link_to driver.vin, driver_path(id: driver.id)%></td>
+<<<<<<< HEAD
                 <td><%= button_to "Edit", edit_driver_path(driver.id), method: :get %></td>
                 <td><%= button_to "Delete", driver_path(driver.id), method: :delete, data: { confirm: "Are YOU sure?" } %></td>
+=======
+                <td><%= button_to "(Edit)", edit_driver_path(driver.id), method: :get %></td>
+                <td><%= button_to "(Delete)", driver_path(driver.id), method: :delete, data: { confirm: "Are YOU sure?" } %></td>
+>>>>>>> c5347716811c96e567d8d6bbac0209d87d77c6bc
             </tr>
             
             <% end %>
@@ -32,3 +37,4 @@
         </table>
     </section>
 </main>
+
