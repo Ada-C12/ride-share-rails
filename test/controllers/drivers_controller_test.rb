@@ -141,8 +141,8 @@ describe DriversController do
       # Act-Assert
       # Ensure that there is no change in Driver.count
       updated_driver = Driver.find_by(id: current_driver.id)
-      expect(updated_driver.name).must_equal current_driver.name
-      expect(updated_driver.vin).must_equal current_driver.vin
+      expect(updated_driver.name).wont_equal updates[:driver][:name]
+      expect(updated_driver.vin).wont_equal updates[:driver][:vin]
       
       # Assert
       # Check that the controller gave back a 404

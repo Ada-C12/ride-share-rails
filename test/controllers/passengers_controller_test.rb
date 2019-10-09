@@ -137,8 +137,8 @@ describe PassengersController do
       # Act-Assert
       # Ensure that there is no change in passenger.count
       updated_passenger = Passenger.find_by(id: current_passenger.id)
-      expect(updated_passenger.name).must_equal current_passenger.name
-      expect(updated_passenger.phone_num).must_equal current_passenger.phone_num
+      expect(updated_passenger.name).wont_equal updates[:passenger][:name]
+      expect(updated_passenger.phone_num).wont_equal updates[:passenger][:phone_num]
       
       # Assert
       # Check that the controller gave back a 404

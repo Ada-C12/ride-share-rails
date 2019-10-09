@@ -155,10 +155,10 @@ describe TripsController do
       # Act-Assert
       # Ensure that there is no change in trip.count
       updated_trip = Trip.find_by(id: current_trip.id)
-      expect(updated_trip.cost).must_not_equal updates[:trip][:cost]
-      expect(updated_trip.date).must_not_equal updates[:trip][:date]
-      expect(updated_trip.passenger_id).must_not_equal updates[:trip][:passenger_id]
-      expect(updated_trip.driver_id).must_equal updates[:trip][:driver_id]
+      expect(updated_trip.cost).wont_equal updates[:trip][:cost]
+      expect(updated_trip.date).wont_equal updates[:trip][:date]
+      expect(updated_trip.passenger_id).wont_equal updates[:trip][:passenger_id]
+      expect(updated_trip.driver_id).wont_equal updates[:trip][:driver_id]
       
       # Assert
       # Check that the controller gave back a 404
@@ -176,11 +176,17 @@ describe TripsController do
       # Ensure that there is no change in passenger.count
       # Assert
       # Check that the controller redirects
-      updated_passenger = Passenger.find_by(id: current_passenger.id)
-      expect {patch passenger_path(updated_passenger.id), params: invalid_updates_1}.must_differ 'Passenger.count', 0
+      updated_trip = Trip.find_by(id: current_trip.id)
+      expect {patch trip_path(updated_trip.id), params: invalid_updates_1}.must_differ 'Trip.count', 0
       must_respond_with :redirect
 
-      expect {patch passenger_path(updated_passenger.id), params: invalid_updates_2}.must_differ 'Passenger.count', 0
+      expect {patch trip_path(updated_trip.id), params: invalid_updates_2}.must_differ 'Trip.count', 0
+      must_respond_with :redirect
+
+      expect {patch trip_path(updated_trip.id), params: invalid_updates_3}.must_differ 'Trip.count', 0
+      must_respond_with :redirect
+
+      expect {patch trip_path(updated_trip.id), params: invalid_updates_4}.must_differ 'Trip.count', 0
       must_respond_with :redirect
     end
   end
