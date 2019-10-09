@@ -105,9 +105,8 @@ describe DriversController do
         post drivers_path, params: driver_hash
       }.must_differ "Driver.count", 0
       # Assert
-      # Check that the controller redirects
-      # *****LOOK*****
-      # must_respond_with :redirect
+      # Check that the controller renders successfully
+      must_respond_with :success
       
     end
   end
@@ -213,9 +212,8 @@ describe DriversController do
         patch driver_path(id), params: invalid_updated_driver_hash
       }.must_differ "Driver.count", 0
       # Assert
-      # Check that the controller redirects
-      # *****LOOK*****
-      # must_respond_with :redirect
+      # Check that the controller renders successfully
+      must_respond_with :success
     end
   end
   

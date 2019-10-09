@@ -95,9 +95,8 @@ describe PassengersController do
         post passengers_path, params: passenger_hash
       }.must_differ "Passenger.count", 0
       # Assert
-      # Check that the controller redirects
-      # *****LOOK*****
-      # must_respond_with :redirect
+      # Check that the controller renders successfully
+      must_respond_with :success
       
     end
   end
@@ -172,8 +171,7 @@ describe PassengersController do
       }.wont_change "Passenger.count"
       # Assert
       # Check that the controller redirect
-      # must_respond_with :redirect
-    
+      must_respond_with :redirect
       must_redirect_to passengers_path
     end
     
@@ -196,9 +194,8 @@ describe PassengersController do
         patch passenger_path(id), params: invalid_updated_passenger_hash
       }.must_differ "Passenger.count", 0
       # Assert
-      # Check that the controller redirects
-      # *****LOOK*****
-      # must_redirect_to new_passenger_path
+      # Check that the controller renders successfully
+      must_respond_with :success
     end
   end
   
