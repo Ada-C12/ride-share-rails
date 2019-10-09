@@ -13,6 +13,6 @@ class Passenger < ApplicationRecord
     trip_array.each do |trip|
       charge_sum += trip[:cost]
     end
-    return charge_sum
+    return "%.2f" % charge_sum
   end
 end
