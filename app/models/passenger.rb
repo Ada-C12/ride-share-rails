@@ -3,8 +3,16 @@ class Passenger < ApplicationRecord
   validates :name, presence: true
   validates :phone_num, presence: true
   
+  def self.alpha_order
+    return Passenger.all.order(name: :asc)
+  end
+  
   def all_trips
     return self.trips.order(date: :desc) 
+  end
+  
+  def format_money(money)
+    
   end
   
   def net_expenditures

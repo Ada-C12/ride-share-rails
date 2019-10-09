@@ -1,13 +1,13 @@
 class PassengersController < ApplicationController
   
   def index
-    @passengers = Passenger.all
+    @passengers = Passenger.alpha_order
   end
   
   def show
     @passenger = Passenger.find_by(id: params[:id])
     if @passenger.nil?
-      flash[:error] = "Could not find a passenger with id of #{params[:id]}"
+      flash[:error] = "Could not find passenger"
       redirect_to passengers_path
       return
     end
