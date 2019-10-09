@@ -1,8 +1,30 @@
 <h1>Driver Details</h1>
 
 <section>
-  <ul>
+  <ul class='basic-details-list'>
     <li>Name: <%=@driver.name%></li>
     <li>VIN: <%=@driver.vin%></li>
   </ul>
+
+  <table class='trips-table'>
+    <tr>
+      <th>Date</th>
+      <th>Rating</th>
+      <th>Cost</th>
+      <th>Driver ID</th>
+      <th>Passenger Name</th>
+    </tr>
+    <% @driver.all_trips.each do |trip|%>
+    <tr>
+      <td><%= trip.date %></td>
+      <td><%= trip.rating %></td>
+      <td><%= trip.cost %></td>
+      <td><%= trip.driver.id %></td>
+      <td><%= trip.passenger.name %></td>
+    </tr>
+    <% end %>
+    </table>
+
+
+  </table>
 </section>
