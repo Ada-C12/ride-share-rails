@@ -1,12 +1,9 @@
 class TripsController < ApplicationController
-  
-  def index
-    @trips = Trip.all 
-  end 
 
   def show
     trip_id = params[:id].to_i
-    @trip = Trip.find_by(id: trip_id)
+    @driver_trips = Trip.find_by(id: driver_id)
+    @passenger_trips = Trip.find_by(id: passenger_id)
 
     if @trip.nil?
       head :not_found
@@ -19,7 +16,7 @@ class TripsController < ApplicationController
   end 
 
   def create
-    @trip= Trip.new(trip_params)
+    @trip = Trip.new(trip_params)
 
     if @trip.save
       redirect_to trip_path(@trip.id)

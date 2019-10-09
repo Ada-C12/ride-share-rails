@@ -9,7 +9,7 @@
 
   <li> <%= link_to "Edit driver!", edit_driver_path(@driver.id)%></li>
   <li> <%= link_to "Delete driver!", driver_path(@driver.id), method: :delete, data: {confirm: "are you sure???"}, class: "driver-delete-link" %>
-  <li> <%= link_to "View all driver's trips", trips_path %> </li>
+  <li><%= link_to "View a list of this driver's trips"%>
   <li> <%= link_to "Add a new trip for this driver", new_trip_path %>
 </ul>
 </header>
