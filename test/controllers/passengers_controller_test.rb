@@ -25,7 +25,7 @@ describe PassengersController do
   end
   
   describe "show" do
-    it "responds with success when showing an existing valid driver" do
+    it "responds with success when showing an existing valid passenger" do
       existing_passenger_id = Passenger.first.id
 
       get passenger_path(existing_passenger_id)
@@ -33,7 +33,7 @@ describe PassengersController do
       must_respond_with :success
     end
 
-    it "responds with 404 with an invalid driver id" do
+    it "responds with 404 with an invalid passenger id" do
       get passenger_path(-1)
 
       must_respond_with :not_found
@@ -48,7 +48,60 @@ describe PassengersController do
   end
   
   describe "create" do
-    # Your tests go here
+    it "creates new passenger on database for valid input and redirects" do
+      Passenger.destroy_all
+      expect(Passenger.count).must_equal 0
+
+      passenger_info = {
+          passenger: {
+            name: "Harry Potter",
+            phone_num: "4225-000-000"
+          }
+      }
+      
+      expect { post passengers_path, params: passenger_info}.must_differ "Passenger.count", 1
+      new_passenger = Passenger.first
+      expect (new_passenger.name).must_equal passenger_info[:passenger][:name]
+      expect (new_passenger.phone_num).must_equal passenger_info[:passenger][:phone_num]
+
+      must_respond_with :redirect
+      must_redirect_to passenger_path(new_passenger.id)
+    end
+
+    it "redirects if input is invalid and does not create a passenger" do
+      passenger_hashes = [
+        {
+          passenger: {
+            name: "",
+            phone_num: ""
+          },
+        },
+        {
+          passenger: {
+            name: "      ",
+            phone_num: "     "
+          },
+        },
+        {
+          passenger: {
+            name: nil,
+            phone_num: nil
+          }
+        },
+        {
+          passenger: {
+          }
+        }
+      ]
+
+      passenger_hashes.each do |passenger_info|
+        expect {
+          post passengers_path, params: passenger_info
+        }.must_differ "Passenger.count", 0
+        must_respond_with :redirect
+        must_redirect_to new_passenger_path
+      end
+    end
   end
   
   describe "edit" do
