@@ -11,4 +11,9 @@ class Driver < ApplicationRecord
     end
     return nil
   end
+
+  def total_earnings
+    total_earnings = trips.map {|trip| trip.cost}.sum / 100.0
+    return total_earnings.round(2)
+  end
 end

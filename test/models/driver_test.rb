@@ -103,7 +103,18 @@ describe Driver do
     end
 
     describe "total earnings" do
-      # Your code here
+      it "can accurately calculate the total earnings for a driver" do
+        expect(Trip.count).must_equal 2
+        total_earnings = Trip.all.map {|trip| trip.cost}.sum / 100.0
+
+        expect(@driver.total_earnings).must_equal total_earnings
+        expect(@driver.total_earnings).must_be_close_to 45.80, 0.01
+      end
+
+      it "returns 0 if driver has no trips" do
+        driver = Driver.create(name: "Sarah", vin: "47474636")
+        expect(driver.total_earnings).must_equal 0
+      end
     end
 
     describe "can go online" do
