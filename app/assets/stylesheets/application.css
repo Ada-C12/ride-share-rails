@@ -29,3 +29,8 @@
  footer {
    background-color: brown;
  }
+
+ .msg {
+  font-size: 5em;
+  background-color: red;
+ }
