@@ -11,10 +11,6 @@ class TripsController < ApplicationController
     end
   end
 
-  def new
-    @trip = Trip.new
-  end
-
   def create
     @trip = Trip.new(trip_params)
 

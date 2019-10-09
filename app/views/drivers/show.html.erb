@@ -1,11 +1,11 @@
-<ul>
+<ul></ul>
   <li>Name: <%= @driver.name %></li>
   <li>VIN: <%= @driver.vin %></li>
   <li>Active: <%= @driver.active %></li>
   <li>Car Make: <%= @driver.car_make %></li>
   <li>Car Model: <%= @driver.car_model %></li>
-  <li>Total Earning: </li>
-  <li>Average Rating: </li>
+  <li>Total Earning: <%=@driver.total_earning%></li>
+  <li>Average Rating: <%= @driver.average_rating %></li>
   <li><%= link_to "Edit", edit_driver_path( @driver.id ) %></li>
   <li><%= link_to "Delete", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure? It will be gone forever."} %></li>
 
@@ -24,13 +24,13 @@
 
    <% @driver.trips.each do |trip| %>
   <tr>
-    <td><%= trip.id %></td>
+    <td><%= link_to trip.id, trip_path( trip.id ) %></td>
     <td><%= trip.date %></td>
-    <td><%= trip.passenger %></td>
+    <td><%= link_to trip.passenger.name, passenger_path(trip.passenger_id) %></td>
     <td><%= trip.rating %></td>
     <td><%= trip.cost %></td>
-    <td>Edit</td>
-    <td>Delete</td>
+    <td><%=link_to "Edit", edit_trip_path(trip.id) %></td>
+    <td><%= link_to "Delete", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure? It will be gone forever."} %></td>
   </tr>
   <% end %>
 </table>

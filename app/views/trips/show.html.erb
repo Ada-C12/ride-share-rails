@@ -1,0 +1,25 @@
+<h1>Trip ID #<%= @trip.id %></h1>
+
+<table>
+  <tr>
+    <th>Trip ID</th>
+    <th>Date</th>
+    <th>Passenger</th>
+    <th>Driver</th>
+    <th>Rating</th>
+    <th>Cost</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+
+  <tr>
+    <td><%= @trip.id %></td>
+    <td><%= @trip.date %></td>
+    <td><%= link_to @trip.passenger.name, passenger_path( @trip.passenger_id ) %></td>
+    <td><%= link_to @trip.driver.name, driver_path( @trip.driver_id ) %></td>
+    <td><%= @trip.rating %></td>
+    <td><%= @trip.cost %></td>
+    <td> <%=link_to "Edit", edit_trip_path(@trip.id) %></td>
+    <td><%= link_to "Delete", trip_path(@trip.id), method: :delete, data: {confirm: "Are you sure? It will be gone forever."} %></td>
+  </tr>
+</table>

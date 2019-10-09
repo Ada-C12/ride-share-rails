@@ -21,18 +21,17 @@
     <th> Cost</th>
     <th> Edit </th>
     <th> Delete </th> 
-
   </tr>
 
    <% @passenger.trips.each do |trip| %>
   <tr>
-    <td><%= trip.id%></td>
+    <td><%= link_to trip.id, trip_path( trip.id ) %></td>
     <td><%=trip.date%>
-    <td><%= trip.driver %></td>
+    <td><%=link_to trip.driver.name, driver_path(trip.driver_id) %></td>
     <td><%= trip.rating%> </td>
     <td><%=trip.cost%></td>
-    <td>Edit</td>
-    <td>Delete</td>
+    <td><%=link_to "Edit", edit_trip_path(trip.id) %></td>
+    <td><%= link_to "Delete", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure? It will be gone forever."} %></td>
   </tr>
   <% end %>
 </table>
