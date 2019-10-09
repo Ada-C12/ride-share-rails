@@ -12,17 +12,17 @@ class DriversController < ApplicationController
     end
   end
 
+  def new
+    @driver = Driver.new
+  end
+
   def create
     @driver = Driver.new(driver_params)
     if @driver.save
       redirect_to driver_path(@driver.id)
     else
-      redirect_to new_driver_path
+      render new_driver_path
     end
-  end
-
-  def new
-    @driver = Driver.new
   end
 
   def edit
@@ -46,7 +46,7 @@ class DriversController < ApplicationController
     if @driver.save
       redirect_to driver_path(@driver.id)
     else
-      redirect_to new_driver_path
+      render new_driver_path
     end
   end
 

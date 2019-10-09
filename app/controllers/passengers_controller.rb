@@ -28,14 +28,14 @@ class PassengersController < ApplicationController
   def edit
     @passenger = Passenger.find_by(id: params[:id])
     if !@passenger
-      redirect_to edit_passenger_path
+      redirect_to passengers_path
     end
   end
 
   def update
     @passenger = Passenger.find_by(id: params[:id])
     if !@passenger
-      redirect_to edit_passenger_path
+      redirect_to passengers_path
       return
     end
     @passenger.name = params[:passenger][:name]
