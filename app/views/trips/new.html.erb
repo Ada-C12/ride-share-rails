@@ -1,0 +1,21 @@
+<h1>REQUESTING A TRIP FOR <%= %></h1>
+
+<% if @trip.errors.any? %>
+  <h3>You need to fix this...</h3>
+  <ul>
+  <% @trip.errors.each do |error, msg|%>
+    <li><%= error %>: <%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @trip do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  
+  <%= f.label :phone_num %>
+  <%= f.text_field :phone_num %>
+
+  <%= f.submit "GET IT!" %>
+  <%= button_tag "RESET", type: :reset %>
+<% end %>
