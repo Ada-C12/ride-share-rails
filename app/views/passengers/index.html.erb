@@ -6,12 +6,12 @@
     <% @passengers.each do |passenger|%>
       <li>
         <%= link_to passenger.name, passenger_path(passenger.id)%>
+
+        <%= link_to "(Delete)", passenger_path(passenger.id), method: :delete, data: {confirm: "Are you sure?"}, class: "index-delete-link" %>
       </li>
-      <% end %>
-      </ul>
+    <% end %>
+  </ul>
 
-      
-
-      </section>
+</section>
 
 
