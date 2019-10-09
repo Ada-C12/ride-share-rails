@@ -2,7 +2,7 @@ class Driver < ApplicationRecord
   has_many :trips
   
   validates :name, presence: true
-  validates :vin, presence: true
+  validates :vin, presence: true, uniqueness: true
   
   def average_rating
     total_rating = self.trips.map{|trip| trip.rating }.sum
