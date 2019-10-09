@@ -76,12 +76,12 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: driver_id)
     
     if @driver.active
-      @driver.active = false
+      @driver.go_offline
     else
-      @driver.active = true
+      @driver.go_online
     end
     
-    if @driver.save
+    if @driver.active
       redirect_back(fallback_location: driver_path(driver_id))
       return
     else
