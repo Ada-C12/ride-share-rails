@@ -6,16 +6,32 @@
   </head>
 
   <body>
-    <%= form_with model: @passenger do |f| %>
-    <p>Please provide the following information to save your passenger to our database:</p>
+    <header>
+      <h1>Welcome to Rideshare</h1>
+      <nav>
+        <ul>
+          <%= link_to "Rideshare Rails", root_path %>
+          <%= link_to "Passengers", passengers_path %>
+          <%= link_to "Drivers", drivers_path %>
+          <%= link_to "Add Driver", new_driver_path %>
+          <%= link_to "Add Passenger", new_passenger_path %>
+        </ul>
+      </nav>
+    </header>
 
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+    <section>
+      <h1>Add Passenger</h1>
+      <%= form_with model: @passenger do |f| %>
+      <p>Please provide the following information to save your passenger to our database:</p>
 
-      <%= f.label :phone_num, "Phone Number" %>
-      <%= f.text_field :phone_number %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
 
-      <%= f.submit "Save Passenger"%>
-    <% end %>
+        <%= f.label :phone_num, "Phone Number" %>
+        <%= f.text_field :phone_number %>
+
+        <%= f.submit "Save Passenger"%>
+      <% end %>
+    </section>  
   </body>
 </html>

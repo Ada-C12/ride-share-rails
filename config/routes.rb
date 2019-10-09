@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :passengers
   resources :drivers
   resources :trips
+  put '/drivers/:id/active', to: 'drivers#active', as: 'active_driver'
 end

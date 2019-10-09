@@ -44,7 +44,7 @@ class PassengersController < ApplicationController
       return
     elsif @passenger.update(
       name: params[:passenger][:name], 
-      description: params[:passenger][:description]
+      phone_number: params[:passenger][:phone_number]
     )
       redirect_to passengers_path 
       return

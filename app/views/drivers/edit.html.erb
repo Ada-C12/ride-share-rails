@@ -14,6 +14,8 @@
           <%= link_to "Rideshare Rails", root_path %>
           <%= link_to "Passengers", passengers_path %>
           <%= link_to "Drivers", drivers_path %>
+          <%= link_to "Add Driver", new_driver_path %>
+          <%= link_to "Add Passenger", new_passenger_path %>
         </ul>
       </nav>
     </header>
@@ -30,8 +32,11 @@
       <%= f.label :car_make, "Car Make" %>
       <%= f.text_field :car_make %>
 
-      <%= f.label :car_model, "Car Model" %>
+       <%= f.label :car_model, "Car Model" %>
       <%= f.text_field :car_model %>
+
+      <%= f.label :active, "Active/Inactive" %>
+      <%= f.text_field :active %>
 
       <%= f.submit "Update Driver" %>
     <% end %>

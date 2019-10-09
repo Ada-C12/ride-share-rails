@@ -23,11 +23,17 @@
       <ol>
         <% @drivers.each do |driver|  %>
           <li>Name: <%= link_to driver.name, driver_path(driver) %></li>
+          <% if driver.active == false || driver.active == nil%>
+            Active:<%= driver.active == true %> 
+          <% else%>
+            Active:<%= driver.active == true %>
+          <%end%>
           <%= button_to 'Delete', driver_path(driver),method: :delete, data: {confirm: "Are you sure?"} %>
           <%= button_to 'Edit', edit_driver_path(driver.id), method: :get %>
+          <%= button_to 'Active/Inactive', active_driver_path(driver.id), method: :put %>
           <hr>
         <% end %>
-      </ul>
+      </ol>
     </section>
   </body>
 </html>

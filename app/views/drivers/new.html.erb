@@ -6,6 +6,21 @@
   </head>
 
   <body>
+    <header>
+      <h1>Welcome to Rideshare</h1>
+      <nav>
+        <ul>
+          <%= link_to "Rideshare Rails", root_path %>
+          <%= link_to "Passengers", passengers_path %>
+          <%= link_to "Drivers", drivers_path %>
+          <%= link_to "Add Driver", new_driver_path %>
+          <%= link_to "Add Passenger", new_passenger_path %>
+        </ul>
+      </nav>
+    </header>
+
+    <section>
+      <h1>Add Driver</h1>
     <%= form_with model: @driver do |f| %>
     <p>Please provide the following information to save your driver to our database:</p>
 
@@ -20,9 +35,6 @@
 
       <%= f.label :car_model, "Car Model" %>
       <%= f.text_field :car_model %>
-
-      <%= f.label :active %>
-      <%= f.text_field :active %>
 
       <%= f.submit "Save Driver"%>
     <% end %>
