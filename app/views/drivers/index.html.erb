@@ -1,11 +1,20 @@
 <section>
   <h2>Drivers</h2>
 
-  <ol>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Driver Name</th>
+      <th>VIN</th>
+    </tr>
+  </thead>
+  <tbody>
     <% @drivers.each do |driver| %>
-      <li>
-        <%= link_to driver.name, driver_path(driver.id) %>
-      </li>
+      <tr>
+        <td> <%= link_to driver.name, driver_path(driver.id) %> </td>
+        <td> <%= driver.vin %> </td>
+      </tr>
     <% end %>
-  </ol>
+  </tbody>
+
 </section>
