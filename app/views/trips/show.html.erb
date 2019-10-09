@@ -9,8 +9,9 @@ Click a link to delete the trip %>
 </header>
 
 <section class="show-details">
-  <h2> About this trip:</h2>
+  <%= link_to "Edit this trip!", edit_trip_path(@trip.id)%>
 
+  <h2> About this trip:</h2>
   <ul>
     <li>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver.id)%> </li>
     <li>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id)%> </li>

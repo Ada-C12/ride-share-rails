@@ -8,7 +8,7 @@
 
   <li> <%= link_to "Edit passenger!", edit_passenger_path(@passenger.id)%></li>
   <li> <%= link_to "Delete passenger!", passenger_path(@passenger.id), method: :delete, data: {confirm: "are you sure???"}, class: "passenger-delete-link" %></li>
-  <li> <%= link_to "Add a new trip for this passenger", new_trip_path %></li>
+  <li> <%= link_to "Add a new trip for this passenger", new_passenger_trip_path(@passenger.id) %></li>
 
   <li> 
     <%=@passenger.name%>'s trips
