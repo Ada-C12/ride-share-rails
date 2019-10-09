@@ -1,5 +1,33 @@
 
-<h2><%= @driver.name%></h2>
+<h1><%= @driver.name%></h1>
+
+<h3> Driver Details</h3>
+
+<table>
+<th> Driver ID </th>
+<th> VIN</th>
+<th> Car Make </th>
+<th> Car Model</th>
+<th> # of Rides Given </th>
+<th> Average Rating</th>
+<th> Status</th>
+
+
+
+
+<tr>
+<td><%= @driver.id %></td>
+<td><%= @driver.vin %></td>
+<td><%= @driver.car_make %></td>
+<td><%= @driver.car_model %></td>
+<td><%= @driver.count_rides %></td>
+<td><%= @driver.average_rating %></td>
+<td><%= @driver.active %></td>
+
+
+</tr>
+
+</table>
 
 <p>Rides given:</p>
 <%# Trip.where(driver_id = "#{@driver.id}")%>
@@ -29,8 +57,3 @@
 <%end%>
 
 </table>
-
-<p>total number of rides given:
-<%= @driver.count_rides %></p>
-<p>Driver Average Rating:
-<%= @driver.average_rating%></p>

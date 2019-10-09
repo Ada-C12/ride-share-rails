@@ -1,9 +1,31 @@
-<h2>
+<h1>
 <%= @passenger.name %>
-</h2>
+</h1>
+
+<p><%= link_to '<button type="button">Request New Trip</button>'.html_safe, passenger_path( @passenger.id ), method: :new%></p>
+
+<h3> Passenger Details</h3>
+
+<table>
+<th> Passenger ID </th>
+<th> Phone Number</th>
+<th> # of Rides Taken </th>
+<th>Total Spending</th>
 
 
-<p>Rides taken:</p>
+
+<tr>
+<td><%= @passenger.id %></td>
+<td><%= @passenger.phone_num %></td>
+<td><%= @passenger.count_rides %></td>
+<td><%= @passenger.total_charges %></td>
+
+
+</tr>
+
+</table>
+
+<h3>Rides taken:</h3>
 <%# Trip.where(driver_id = "#{@driver.id}")%>
 <table>
 <th> id </th>
@@ -31,7 +53,3 @@
 
 </table>
 
-<p>total number of rides taken:
-<%= @passenger.count_rides %></p>
-<p>Passenger total spending:
-<%= @passenger.total_charges%></p>
