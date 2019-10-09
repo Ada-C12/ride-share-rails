@@ -92,6 +92,17 @@
       ],
       "/Users/minipaige/ada/projects/ride-share-rails/app/controllers/trips_controller.rb": [
         1,
+        1,
+        2,
+        2,
+        null,
+        2,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/minipaige/ada/projects/ride-share-rails/app/models/driver.rb": [
@@ -119,6 +130,6 @@
         null
       ]
     },
-    "timestamp": 1570588007
+    "timestamp": 1570590256
   }
 }
