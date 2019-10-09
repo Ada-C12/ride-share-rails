@@ -4,7 +4,7 @@ class TripsController < ApplicationController
     
     # might need more work later
     if @trip.nil?
-      redirect_to root_path
+      head :not_found
       return
     end
     
@@ -29,7 +29,7 @@ class TripsController < ApplicationController
     
     # might need more work later
     if @trip.nil?
-      redirect_to root_path
+      head :not_found
       return
     end
   end
@@ -39,11 +39,11 @@ class TripsController < ApplicationController
     
     # might need more work later
     if @trip.nil?
-      redirect_to root_path
+      head :not_found
       return
     end
     
-    if params[:trip][:rating]
+    if !params[:trip][:date]
       if @trip.update(rating: params[:trip][:rating])
         redirect_to trip_path(@trip.id)
         return
@@ -67,7 +67,7 @@ class TripsController < ApplicationController
     
     # might need more work later
     if @trip.nil?
-      redirect_to root_path
+      head :not_found
       return
     end
     
@@ -81,28 +81,38 @@ class TripsController < ApplicationController
     
     # might need more work later
     if @trip.nil?
-      redirect_to root_path
+      head :not_found
       return
     end
   end
   
-  # def assign_rating
-  #   @trip = Trip.find_by(id: params[:id])
-  
-  #   # might need more work later
-  #   if @trip.nil?
-  #     redirect_to root_path
-  #     return
-  #   end
-  
-  #   if @trip.update(rating: params[:trip][:rating])
-  #     redirect_to trip_path(@trip.id)
-  #     return
-  #   else
-  #     render :assign_rating_edit
-  #     return
-  #   end
-  # end
+  def update
+    @trip = Trip.find_by(id: params[:id])
+    
+    # might need more work later
+    if @trip.nil?
+      head :not_found
+      return
+    end
+    
+    if !params[:trip][:date]
+      if @trip.update(rating: params[:trip][:rating])
+        redirect_to trip_path(@trip.id)
+        return
+      else
+        render :assign_rating_edit
+        return
+      end
+    else
+      if @trip.update(trip_params)
+        redirect_to trip_path(@trip.id)
+        return
+      else
+        render :edit
+        return
+      end
+    end
+  end
   
   private
   
