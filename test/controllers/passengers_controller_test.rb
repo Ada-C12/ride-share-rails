@@ -2,8 +2,20 @@ require "test_helper"
 
 describe PassengersController do
   describe "index" do
-    get passengers_path
-    must_respond_with :success
+    it "responds with success when there are many drivers saved" do
+      test_passenger = Passenger.create
+      
+      get passengers_path
+      must_respond_with :success
+      
+    end
+    
+    it "responds with success when there are no passengers saved" do
+      
+      get passengers_path
+      must_respond_with :success
+      
+    end
   end
 
   describe "show" do
