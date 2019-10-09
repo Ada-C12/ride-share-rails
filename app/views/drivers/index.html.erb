@@ -10,7 +10,7 @@
 
   <% @drivers.each do |driver|  %>
     <section><%= driver.id%></section>
-    <section><%= driver.name%></section>
+    <section><%= link_to driver.name, driver_path(driver.id), method: :get%></section>
     <section><%= driver.vin%></section>
     <%= link_to "EDIT", edit_driver_path(driver.id), method: :get %>
     <%= link_to "DELETE", driver_path(driver.id), method: :delete, data: {confirm: "YOU SURE???"}  %>
