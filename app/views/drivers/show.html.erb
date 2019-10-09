@@ -1,3 +1,33 @@
-<h2>
-<%= @driver.name%>
-</h2>
+
+<h2><%= @driver.name%></h2>
+
+<p>Rides given:</p>
+<%# Trip.where(driver_id = "#{@driver.id}")%>
+<table>
+<th> id </th>
+<th> Date</th>
+<th> Rider ID </th>
+<th>Price</th>
+<th>Rating</th>
+<th>Delete</th>
+
+
+
+<% @driver.trips.each do |trip| %>
+<tr>
+<td><%= trip.id %></td>
+<td><%= trip.date %></td>
+<td><%= trip.passenger_id %></td>
+<td><%= trip.cost %></td>
+<td><%= trip.rating %></td>
+
+</tr>
+
+<%end%>
+
+</table>
+
+<p>total number of rides given:
+<%= @driver.count_rides %></p>
+<p>Driver Average Rating:
+<%= @driver.average_rating%></p>
