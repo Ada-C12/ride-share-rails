@@ -5,3 +5,7 @@ Car Make: <%= @driver.car_make %><br>
 Car Model: <%= @driver.car_model %><br>
 VIN: <%= @driver.vin %><br>
 Status: <%= @driver.active %><br>
+
+<%= link_to "Edit", edit_driver_path %><br>
+<%= link_to "Delete", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure you want to delete this driver?"} %><br>
+

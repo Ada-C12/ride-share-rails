@@ -53,8 +53,8 @@ describe Passenger do
       
       # Assert
       expect(new_passenger.valid?).must_equal false
-      expect(new_passenger.errors.messages).must_include :new_passenger
-      expect(new_passenger.errors.messages[:new_passenger]).must_equal ["can't be blank"]
+      expect(new_passenger.errors.messages).must_include :phone_num
+      expect(new_passenger.errors.messages[:phone_num]).must_equal ["can't be blank"]
     end
   end
   

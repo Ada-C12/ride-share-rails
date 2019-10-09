@@ -164,14 +164,17 @@ describe DriversController do
     
     it "does not update any driver if given an invalid id, and responds with a 404" do
       # Arrange
-      # Ensure there is an invalid id that points to no driver
-      # Set up the form data
+      driver_hash = { driver: { name: "Wilma Flintstone", vin: "456", car_make: "bird", car_model: "robin", active: false }}
       
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      patch driver_path(-1), params: driver_hash
+      expect { patch driver_path(-1), params: driver_hash }.wont_change "Driver.count"
       
       # Assert
       # Check that the controller gave back a 404
+      must_respond_with :not_found
+      
       
     end
     
@@ -180,14 +183,16 @@ describe DriversController do
       # Arrange
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
+      driver_id = driver.id
       # Set up the form data so that it violates Driver validations
-      
+      driver_hash = { driver: { name: "Dino" } }
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect { patch driver_path(driver_id), params: driver_hash }.wont_change "Driver.count"
       
       # Assert
       # Check that the controller redirects
-      
+      must_respond_with :redirect
     end
   end
   
@@ -195,12 +200,15 @@ describe DriversController do
     it "destroys the driver instance in db when driver exists, then redirects" do
       # Arrange
       # Ensure there is an existing driver saved
+      test_driver = driver
       
       # Act-Assert
       # Ensure that there is a change of -1 in Driver.count
+      expect{ delete driver_path(test_driver.id)}.must_differ "Driver.count", -1
       
       # Assert
       # Check that the controller redirects
+      must_respond_with :redirect
       
     end
     
@@ -210,10 +218,11 @@ describe DriversController do
       
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect{ delete driver_path(-1)}.wont_change "Driver.count"
       
       # Assert
       # Check that the controller responds or redirects with whatever your group decides
-      
+      must_respond_with :redirect
     end
   end
 end
