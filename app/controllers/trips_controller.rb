@@ -7,7 +7,9 @@ class TripsController < ApplicationController
   def new 
     # coming from Passengers/:id, clicking request trip button
     @passenger = Passenger.find_by(id: params[:passenger_id])
-    @trip = Trip.new(date: Time.now)
+    @trip = Trip.new(date: Time.now, passenger_id:@passenger.id)
+    redirect_to action: "create"
+    raise
   end
   
   def show
@@ -20,17 +22,17 @@ class TripsController < ApplicationController
   end 
   
   def create
-<<<<<<< HEAD
-    @trip = Trip.new(trip_params)
-
-=======
-    @driver = Trip.new(trip_params)
-    
->>>>>>> ee162b2d24c9c80deef8c758791c3f983f868872
+    @trip = Trip.new(date: Time.now, passenger_id:@passenger.id)
+    raise
+    @trip = Trip.new(trip_request_params)
     if @trip.save
+      x= "hahaha"
       redirect_to trip_path(@trip.id)
+      raise
     else
+      x = "wtf"
       redirect_to nope_path
+      raise
     end
   end
   
@@ -74,5 +76,9 @@ class TripsController < ApplicationController
   
   def trip_params
     return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
+  end
+  
+  def trip_request_params
+    return params.require(:trip).permit(:date, :passenger_id)
   end
 end
