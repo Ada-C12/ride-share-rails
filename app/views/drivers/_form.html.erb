@@ -1,0 +1,21 @@
+<nav>
+<a href="/">RideShare Rails!</a>
+<a href="/drivers/">Drivers</a>
+<a href="/passengers">Passengers</a>
+</nav>
+
+<section>
+    <%= link_to "Add driver", new_driver_path, class: 'btn' %>
+    <%= link_to "Add passenger", new_driver_path, class: 'btn' %>
+</section>
+
+<%= form_with model: @driver, class: "driver-from" do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label :vin %>
+  <%= f.text_field :vin %>
+  <br>
+  <%= f.submit "Create", class: "create-driver" %>
+  <%= f.submit "Edit", class: "edit-driver" %>
+<% end %>

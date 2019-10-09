@@ -1,10 +1,2 @@
 
-<%= form_with model: @driver, class: "driver-from" do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <br>
-  <%= f.label :vin %>
-  <%= f.text_field :vin %>
-  <br>
-  <%= f.submit "Create", class: "create-driver" %>
-<% end %>
+<%= render partial: "form", locals: { submit_button_label: "Create", driver_form_class: "Create-driver", task_submit_class: 'create-button' } %>

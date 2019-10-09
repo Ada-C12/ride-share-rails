@@ -1,14 +1,27 @@
-<section>
-    <article>
-        <h1>Driver List</h1>
+<nav>
+<a href="/">RideShare Rails!</a>
+<a href="/drivers/">Drivers</a>
+<a href="/passengers">Passengers</a>
+</nav>
+
+<main>
+    <section class="card">
         <%= link_to "Add driver", new_driver_path, class: 'btn' %>
-        <%= link_to "All driver", driver_path, class: 'btn' %>
-    </article>
-    <article>
-        <h3><%=@driver.name %></h3>
-        <p><%=@driver.vin %> </p>
-        <%= link_to "Edit driver", edit_driver_path(@driver.id), class: 'btn'%>
-    </article>
+        <%= link_to "Add passenger", new_driver_path, class: 'btn' %>
+    </section>
+
+    <section class="card">
+        <article>
+            <h1>Driver List</h1>
+            <%= link_to "Add driver", new_driver_path, class: 'btn' %>
+            <%= link_to "All driver", driver_path, class: 'btn' %>
+        </article>
+        <article>
+            <h3><%=@driver.name %></h3>
+            <p><%=@driver.vin %> </p>
+            <%= link_to "Edit driver", edit_driver_path(@driver.id), class: 'btn'%>
+        </article>
 
 
-</section>
+    </section>
+</main>
