@@ -49,7 +49,7 @@ class PassengersController < ApplicationController
       redirect_to passenger_path
       return
     else
-      render :new
+      render :edit
       return
     end
     
@@ -67,7 +67,7 @@ class PassengersController < ApplicationController
       redirect_to passengers_path
       return
     else
-      render :new
+      redirect_to passenger_path
       return
     end
   end
