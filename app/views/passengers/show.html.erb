@@ -1,6 +1,6 @@
-<h1>SHOWING PASSENGER #<%= @passenger.id %></h1>
+<h1>SHOWING PASSENGER INFO</h1>
 
-<%= link_to "Request Trip!", new_trip_path(params: {passenger_id: @passenger.id}) %>
+<%= link_to "!!!Request Trip!!!", new_trip_path(params: {passenger_id: @passenger.id}) %>
 
 <section class="passenger_grid">
   <section class="header_row"><%= "ID" %></section>
@@ -18,6 +18,25 @@
     <%= link_to "DELETE", passenger_path(id: @passenger.id), method: :delete, data: { confirm: "Sure?" } %>
 </section>
 
+
+<br><hr><br>
+<h1>SHOWING PASSENGER TRIP HISTORY</h1>
+
+
 <section class="trips_grid">
-### DO THIS LATER!!!!
+  <section class="header_row"><%= "TRIP ID" %></section>
+  <section class="header_row"><%= "DATE" %></section>
+  <section class="header_row"><%= "DRIVER ID" %></section>
+  <section class="header_row"><%= "DRIVER NAME" %></section>
+  <section class="header_row"><%= "COST" %></section>
+  <section class="header_row"><%= "RATING" %></section>
+  
+  <% @passenger.trips.each do |trip|%>
+    <section><%= trip.id%></section>
+    <section><%= trip.date%></section>
+    <section><%= trip.driver_id%></section>
+    <section>Driver Name here</section>
+    <section><%= trip.cost%></section>
+    <section><%= trip.rating%></section>
+  <% end %>
 </section>
