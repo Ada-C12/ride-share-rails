@@ -5,8 +5,8 @@
 </nav>
 
 <section>
-    <button>Add a driver</button>
-    <button>Add a passenger</button>
+    <%= link_to "Add driver", new_driver_path, class: 'btn' %>
+    <%= link_to "Add passenger", new_driver_path, class: 'btn' %>
 </section>
 
 <h1><%= link_to "Manage Passengers", passengers_path%>
