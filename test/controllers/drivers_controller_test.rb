@@ -7,20 +7,26 @@ describe DriversController do
     it "responds with success when there are many drivers saved" do
       # Arrange
       # Ensure that there is at least one Driver saved
+      Driver.create(vin: "abcdefgvin", name: "geli driver")
 
       # Act
+      get drivers_path
 
       # Assert
+      must_respond_with :success
 
     end
 
     it "responds with success when there are no drivers saved" do
       # Arrange
       # Ensure that there are zero drivers saved
+      Driver.destroy_all
 
       # Act
+      get drivers_path
 
       # Assert
+      must_respond_with :success
 
     end
   end

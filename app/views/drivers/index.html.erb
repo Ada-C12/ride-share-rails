@@ -1,0 +1,13 @@
+<h1>All Drivers</h1>
+
+<section>
+  <ul class="list-all">
+    <%@drivers.each do |driver|%>
+    <li>
+      <%= link_to driver.name, driver_path(driver.id) %>
+      <%= link_to "Edit Driver Info", edit_driver_path(driver.id) %>
+      <%= link_to "Delete Driver", driver_path(driver.id), method: :delete, data: { confirm: "Are you sure?" }%>
+    </li>
+    <%end%>
+  </ul>
+</section>
