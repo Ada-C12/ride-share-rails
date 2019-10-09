@@ -1,3 +1,35 @@
 <h2>
 <%= @passenger.name %>
 </h2>
+
+
+<p>Rides taken:</p>
+<%# Trip.where(driver_id = "#{@driver.id}")%>
+<table>
+<th> id </th>
+<th> Date</th>
+<th> Driver ID </th>
+<th>Price</th>
+<th>Rating</th>
+<th>Delete</th>
+
+
+
+<% @passenger.trips.each do |trip| %>
+<tr>
+<td><%= link_to trip.id, trip_path( trip.id ) %></td>
+<td><%= trip.date %></td>
+<td><%= trip.driver_id %></td>
+<td><%= trip.cost %></td>
+<td><%= trip.rating %></td>
+
+</tr>
+
+<%end%>
+
+</table>
+
+<p>total number of rides taken:
+<%= @passenger.count_rides %></p>
+<p>Passenger total spending:
+<%= @passenger.total_charges%></p>
