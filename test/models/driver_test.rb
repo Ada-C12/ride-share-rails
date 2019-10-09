@@ -68,8 +68,27 @@ describe Driver do
       # Your code here
     end
 
-    describe "total earnings" do
-      # Your code here
+    describe "total_earnings" do
+      before do
+        @driver = Driver.create
+        @cost = "422.80"
+        @trips = Array.new(10) do |n|
+          Trip.create(cost: (n+50)*100, driver_id: @driver.id, passenger_id: Passenger.create.id)
+        end
+      end
+      
+      it "returns a string" do
+        expect(@driver.total_earnings).must_be_instance_of String
+      end
+      
+      it "can calculate earnings for multiple trips" do
+        expect(@driver.total_earnings).must_equal @cost
+      end
+
+      it "can calculate earnings for no trips" do
+        Trip.delete_all
+        expect(@driver.total_earnings).must_equal "0.00"
+      end
     end
 
     describe "can go online" do
