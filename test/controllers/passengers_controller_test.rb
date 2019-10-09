@@ -11,13 +11,13 @@ describe PassengersController do
       
       must_respond_with :success
     end
-
+    
     it "responds with success when there is no passengers saved" do
       expect (Passenger.count).must_equal 1
       
       Passenger.destroy_all
       expect (Passenger.count).must_equal 0
-
+      
       get passengers_path 
       
       must_respond_with :success
@@ -25,7 +25,19 @@ describe PassengersController do
   end
   
   describe "show" do
-    # Your tests go here
+    it "responds with success when showing an existing valid driver" do
+      existing_passenger_id = Passenger.first.id
+
+      get passenger_path(existing_passenger_id)
+
+      must_respond_with :success
+    end
+
+    it "responds with 404 with an invalid driver id" do
+      get passenger_path(-1)
+
+      must_respond_with :not_found
+    end
   end
   
   describe "new" do
