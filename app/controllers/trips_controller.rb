@@ -43,7 +43,7 @@ class TripsController < ApplicationController
       return
     end
     
-    if params[:trip][:rating]
+    if !params[:trip][:date]
       if @trip.update(rating: params[:trip][:rating])
         redirect_to trip_path(@trip.id)
         return
