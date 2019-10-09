@@ -1,15 +1,18 @@
 class TripsController < ApplicationController
   
   def index
-    @trips = Trip.all
+    @passenger = Passenger.find_by(id: params[:passenger_id])
+    if @passenger.nil?
+      # just showing all Trips table for all passengers
+      @trips = Trip.all
+    else
+      # showing trips for a specific passenger
+      @trips = Trip.where(passenger_id: @passenger.id)
+    end
   end
   
   def new 
-    # coming from Passengers/:id, clicking request trip button
-    @passenger = Passenger.find_by(id: params[:passenger_id])
-    @trip = Trip.new(date: Time.now, passenger_id:@passenger.id)
-    redirect_to action: "create"
-    raise
+    redirect_to nope_path(params: {msg: "Not supposed to be here, all trip requests from a specific passenger goes straight to trip#create!"})
   end
   
   def show
@@ -21,8 +24,12 @@ class TripsController < ApplicationController
     end
   end 
   
+<<<<<<< HEAD
   def create
     @trip = Trip.new(trip_params)
+=======
+  def create   
+>>>>>>> 3ac0c5460eaebb28711cdd33e9628c4088a5b36e
     if @trip.save
       x= "hahaha"
       redirect_to trip_path(@trip.id)
@@ -76,7 +83,4 @@ class TripsController < ApplicationController
     return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
   end
   
-  def trip_request_params
-    return params.require(:trip).permit(:date, :passenger_id)
-  end
 end

@@ -1,6 +1,6 @@
 <h1>SHOWING PASSENGER INFO</h1>
 
-<%= link_to "!!!Request Trip!!!", new_trip_path(params: {passenger_id: @passenger.id}) %>
+
 
 <section class="passenger_grid">
   <section class="header_row"><%= "ID" %></section>
@@ -20,23 +20,6 @@
 
 
 <br><hr><br>
-<h1>SHOWING PASSENGER TRIP HISTORY</h1>
-
-
-<section class="trips_grid">
-  <section class="header_row"><%= "TRIP ID" %></section>
-  <section class="header_row"><%= "DATE" %></section>
-  <section class="header_row"><%= "DRIVER ID" %></section>
-  <section class="header_row"><%= "DRIVER NAME" %></section>
-  <section class="header_row"><%= "COST" %></section>
-  <section class="header_row"><%= "RATING" %></section>
-  
-  <% @passenger.trips.each do |trip|%>
-    <section><%= trip.id%></section>
-    <section><%= trip.date%></section>
-    <section><%= trip.driver_id%></section>
-    <section>Driver Name here</section>
-    <section><%= trip.cost%></section>
-    <section><%= trip.rating%></section>
-  <% end %>
-</section>
+<h1>LINKS</h1>
+<%= link_to "!!!REQUEST TRIP!!!", trips_path(passenger_id: @passenger.id, method: :post) %><br>
+<%= link_to "SHOW TRIP HISTORY", trips_path(passenger_id: @passenger.id) %>
