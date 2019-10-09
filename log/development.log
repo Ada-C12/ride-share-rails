@@ -42,3 +42,12 @@ Completed 200 OK in 33ms (Views: 30.7ms | ActiveRecord: 0.0ms)
 
 
   [1m[36mDriver Load (0.4ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" ORDER BY "drivers"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/drivers" for ::1 at 2019-10-08 23:45:34 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.9ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  ↳ app/views/drivers/index.html.erb:11
+  Rendered drivers/index.html.erb within layouts/application (27.3ms)
+Completed 200 OK in 76ms (Views: 65.0ms | ActiveRecord: 5.9ms)
+
+
