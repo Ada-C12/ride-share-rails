@@ -244,5 +244,15 @@ describe Driver do
     end
     
     # You may have additional methods to test
+    describe "get driver" do
+      it "should select an inactive driver" do
+      end
+      
+      it "should set a selected driver's status to false" do
+      end
+      
+      it "should return nil if there are no inactive drivers" do
+      end
+    end
   end
 end

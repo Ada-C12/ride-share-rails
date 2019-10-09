@@ -71,11 +71,11 @@ class Driver < ApplicationRecord
   end
   
   # select active driver, set status to inactive
-  def get_driver
+  def self.get_driver
     available_driver = Driver.where(active: false)
     
     if available_driver
-      available_driver.go_offline
+      available_driver.go_online
       return available_driver
     else
       return nil
