@@ -1,10 +1,7 @@
 <h2>New Trip Form</h2>
 
-<% form_with model: @trip do |f| %>
-<% f.label :date %>
-<%= f.text_field :date %>
-<%= f.submit %>
-<% end %>
+<%= render partial: "form", locals: { new_trip: true, submit_button_label: "Create Trip" } %>
+
 <% if @trip.errors.any? %>
   <ul class="errors">
     <% @trip.errors.each do |column, message| %>

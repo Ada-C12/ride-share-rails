@@ -1,0 +1,27 @@
+
+<%= form_with model: @trip, class: "trip_form_class" do |f| %>
+
+  <%= f.label :date %>
+  <%= f.text_field :date %>
+  <%= f.label :passenger_id %>
+  <%= f.select :passenger_id, Passenger.all.map{ |auth| [auth.name, auth.id] } %>
+  <% if new_trip == false %>
+  <%= f.label :rating %>
+  <%= f.text_field :rating %>
+  <%= f.label :cost %>
+  <%= f.text_field :cost %>
+  <% end %>
+
+  <%= f.submit "Submit" %>
+
+<% end %>  
+
+<% if @trip.errors.any? %>
+  <ul class="errors">
+    <% @trip.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
