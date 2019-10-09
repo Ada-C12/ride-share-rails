@@ -1,0 +1,53 @@
+<section>
+  <h3>Trips</h3>
+  <%# how many rides the driver has given %>
+  <div>Total Trips: <%= object.trips.count %></div>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Driver</th>
+      <th>Passenger</th>
+      <th>Price</th>
+      <th>Rating</th>
+    </tr>
+      <% object.trips.each do |trip| %>
+        <tr>
+          <td>
+            <%= link_to trip.id, trip_path(trip.id)%>
+          </td>
+          <td>
+            <%= trip.date %>
+          </td>
+          <td>
+            <% if object == @driver %>
+              <%= trip.driver.name %>
+            <% else %>
+              <% if trip.driver != nil %>
+                <%= link_to trip.driver.name, driver_path(trip.driver.id) %>
+              <% else %>
+                deleted
+              <% end %>
+            <% end%>
+          </td>
+          <td>
+            <% if object == @passenger %>
+              <%= trip.passenger.name %>
+            <% else %>
+              <% if trip.passenger != nil %>
+                <%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %>
+              <% else %>
+                deleted
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <%= number_to_currency(trip.cost / 100.0) %>
+          </td>
+          <td>
+            <%= trip.rating %>
+          </td>
+        </tr>
+      <% end %>
+  </table>
+</section>

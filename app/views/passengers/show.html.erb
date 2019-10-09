@@ -28,43 +28,6 @@
   </div>
 
   <%# trips list %>
-  <section>
-    <h3>Trips</h3>
-    <table>
-      <tr>
-        <th>ID</th>
-        <th>Date</th>
-        <th>Driver</th>
-        <th>Passenger</th>
-        <th>Price</th>
-        <th>Rating</th>
-      </tr>
-        <% @passenger.trips.each do |trip| %>
-          <tr>
-            <td>
-              <%= link_to trip.id, trip_path(trip.id)%>
-            </td>
-            <td>
-              <%= trip.date %>
-            </td>
-            <td>
-              <% if trip.driver != nil %>
-                <%= link_to trip.driver.name, driver_path(trip.driver.id) %>
-              <% else %>
-                deleted
-              <% end %>
-            </td>
-            <td>
-              <%= @passenger.name %>
-            </td>
-            <td>
-              <%= number_to_currency(trip.cost / 100.0) %>
-            </td>
-            <td>
-              <%= trip.rating %>
-            </td>
-          </tr>
-        <% end %>
-    </table>
-  </section>
+  <%= render partial: "shared/triptable", locals: { object: @passenger } %>
+
 </section>
