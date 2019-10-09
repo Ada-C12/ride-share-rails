@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # NOTES FOR REFERENCE: 
   # RESTful Routes Include:
   # Rails.application.routes.draw do
-  # get "/books" , to: "books#index", as: :book
+  # get "/drivers" , to: "drivers#index", as: :driver
   # post "/books" , to: "books#create"
   # get "/books/new" , to: "books#new", as: :new_book
   # get "/books/:id" , to: "books#show", as: :book
