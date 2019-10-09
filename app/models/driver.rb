@@ -1,4 +1,5 @@
 class Driver < ApplicationRecord
+<<<<<<< HEAD
 
   def total_earnings
     trips = self.trips
@@ -20,3 +21,7 @@ class Driver < ApplicationRecord
     return avg_rating
   end 
 end
+=======
+  has_many :trips
+end
+>>>>>>> e758e92edfacb8a7e05a7e4f8d02b42f93d4e35c

@@ -1,2 +1,8 @@
 class Passenger < ApplicationRecord
-end
+  has_many :trips
+  
+  def total_amount    
+    trips.
+    
+  end
+  
