@@ -41,7 +41,10 @@ describe PassengersController do
   end
   
   describe "new" do
-    # Your tests go here
+    it "responds with success" do
+      get new_passenger_path
+      must_respond_with :success
+    end
   end
   
   describe "create" do
