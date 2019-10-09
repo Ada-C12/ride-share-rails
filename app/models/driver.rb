@@ -15,6 +15,10 @@ class Driver < ApplicationRecord
   
   def avg_rating
     avg_rating = self.trips.map {|t| t.rating }
-    return avg_rating.sum / avg_rating.count
+    if avg_rating.length == 0
+      return "Not rated"
+    else
+      return avg_rating.sum / avg_rating.count
+    end
   end
 end
