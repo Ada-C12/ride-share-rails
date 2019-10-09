@@ -17,7 +17,9 @@ class TripsController < ApplicationController
     date = DateTime.now
     
     # generate random cost
-    cost = 1000
+    # all costs are four digits
+    # effectively, $10.00-$99.99
+    cost = rand(1000..9999).to_i
     
     data_hash = {
       date: date,
