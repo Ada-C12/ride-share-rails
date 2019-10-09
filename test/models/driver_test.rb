@@ -5,6 +5,7 @@ describe Driver do
     Driver.new(name: "Kari", vin: "123", active: true,
                car_make: "Cherry", car_model: "DR5")
   }
+
   it "can be instantiated" do
     # Assert
     expect(new_driver.valid?).must_equal true
@@ -59,8 +60,46 @@ describe Driver do
 
   # Tests for methods you create should go here
   describe "custom methods" do
+    before do
+      @driver = Driver.create(
+        name: "Sarah",
+        vin: "848485859",
+        car_make: "Ford",
+        car_model: "Escape",
+        active: true
+      )
+      @passenger = Passenger.create(name: "Jane", phone_num: "12345678")
+
+      Trip.create(
+        date: "10-09-2019",
+        rating: 3,
+        cost: 2040,
+        passenger_id: @passenger.id,
+        driver_id: @driver.id
+      )
+
+      Trip.create(
+        date: "09-09-2019",
+        rating: 5,
+        cost: 2540,
+        passenger_id: @passenger.id,
+        driver_id: @driver.id
+      )
+
+    end
+
     describe "average rating" do
-      # Your code here
+      it "can calculate the correct average rating for a driver" do
+        expect(Trip.count).must_equal 2
+        average_rating = ((Trip.all.map {|trip| trip.rating}.sum).to_f / Trip.count).round(1)
+
+        expect(@driver.average_rating).must_equal average_rating
+      end
+
+      it "returns nil if valid driver doesn't have any trip" do  
+        driver = Driver.create(name: "Harry", vin: "0987") 
+        assert_nil (driver.average_rating)
+      end
     end
 
     describe "total earnings" do
