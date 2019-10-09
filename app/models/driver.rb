@@ -8,11 +8,15 @@ class Driver < ApplicationRecord
   end
 
   def average_rating
-    trip_array = self.trips
-    rating_sum = 0
-    trip_array.each do |trip|
-      rating_sum += trip[:rating]
+    if self.count_rides == 0
+      return nil
+    else
+      trip_array = self.trips
+      rating_sum = 0
+      trip_array.each do |trip|
+        rating_sum += trip[:rating]
+      end
+      average_rating = rating_sum / count_rides
     end
-    average_rating = rating_sum / count_rides
   end
 end
