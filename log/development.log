@@ -459,3 +459,310 @@ Processing by PassengersController#index as HTML
 Completed 200 OK in 67ms (Views: 64.1ms | ActiveRecord: 0.4ms)
 
 
+Started GET "/passengers/-4" for ::1 at 2019-10-09 09:21:06 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-4"}
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -4], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:23
+Redirected to http://localhost:3000/homepages/nope
+Completed 302 Found in 7ms (ActiveRecord: 2.9ms)
+
+
+Started GET "/homepages/nope" for ::1 at 2019-10-09 09:21:06 -0700
+Processing by HomepagesController#nope as HTML
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 23ms (Views: 20.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-09 09:21:10 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 29ms (Views: 26.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-09 09:22:04 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 25ms (Views: 22.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers/-4" for ::1 at 2019-10-09 09:22:08 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-4"}
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -4], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:23
+Redirected to http://localhost:3000/homepages/nope
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/homepages/nope" for ::1 at 2019-10-09 09:22:08 -0700
+Processing by HomepagesController#nope as HTML
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 26ms (Views: 23.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-09 09:23:48 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 23ms (Views: 20.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers/-4" for ::1 at 2019-10-09 09:23:51 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-4"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -4], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:23
+Redirected to http://localhost:3000/homepages/nope
+Completed 302 Found in 6ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/homepages/nope" for ::1 at 2019-10-09 09:23:51 -0700
+Processing by HomepagesController#nope as HTML
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (111.7ms)
+Completed 500 Internal Server Error in 121ms (ActiveRecord: 0.0ms)
+
+
+
+NameError - undefined local variable or method `msg' for #<#<Class:0x00007fb5e7ab0c80>:0x00007fb5e28fd960>:
+  app/views/homepages/nope.html.erb:3:in `_app_views_homepages_nope_html_erb___2041371620848706328_70209583458920'
+
+Started POST "/__better_errors/c57adfc5a0e89e17/variables" for ::1 at 2019-10-09 09:23:52 -0700
+Started GET "/homepages/nope" for ::1 at 2019-10-09 09:24:04 -0700
+Processing by HomepagesController#nope as HTML
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 25ms (Views: 22.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-09 09:24:09 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 28ms (Views: 24.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers/-4" for ::1 at 2019-10-09 09:24:11 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-4"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -4], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:23
+Redirected to http://localhost:3000/homepages/nope
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/homepages/nope" for ::1 at 2019-10-09 09:24:11 -0700
+Processing by HomepagesController#nope as HTML
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 24ms (Views: 21.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-09 09:25:11 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 28ms (Views: 25.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-09 09:25:17 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 31ms (Views: 28.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-09 09:25:19 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 30ms (Views: 26.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-09 09:25:20 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 26ms (Views: 23.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers/-4" for ::1 at 2019-10-09 09:25:23 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-4"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -4], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:23
+Redirected to http://localhost:3000/homepages/nope?msg=HOW+DO+I+ADD+THIS%3F%3F%3F+No+such+passenger+exists%21
+Completed 302 Found in 6ms (ActiveRecord: 1.2ms)
+
+
+Started GET "/homepages/nope?msg=HOW+DO+I+ADD+THIS%3F%3F%3F+No+such+passenger+exists%21" for ::1 at 2019-10-09 09:25:23 -0700
+Processing by HomepagesController#nope as HTML
+  Parameters: {"msg"=>"HOW DO I ADD THIS??? No such passenger exists!"}
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 30ms (Views: 27.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-09 09:25:26 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 36ms (Views: 32.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers/-4" for ::1 at 2019-10-09 09:25:51 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-4"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -4], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:23
+Redirected to http://localhost:3000/homepages/nope?msg=HOW+DO+I+ADD+THIS%3F%3F%3F+No+such+passenger+exists%21
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 1.2ms)
+
+
+
+RuntimeError - :
+  app/controllers/passengers_controller.rb:26:in `show'
+
+Started POST "/__better_errors/53452624e3876604/variables" for ::1 at 2019-10-09 09:25:51 -0700
+Started POST "/__better_errors/53452624e3876604/eval" for ::1 at 2019-10-09 09:25:55 -0700
+Started POST "/__better_errors/53452624e3876604/eval" for ::1 at 2019-10-09 09:25:57 -0700
+Started GET "/passengers/-4" for ::1 at 2019-10-09 10:01:25 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-4"}
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -4], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:23
+Redirected to http://localhost:3000/homepages/nope
+Completed 302 Found in 7ms (ActiveRecord: 2.6ms)
+
+
+Started GET "/homepages/nope" for ::1 at 2019-10-09 10:01:25 -0700
+Processing by HomepagesController#nope as HTML
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 22ms (Views: 19.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-09 10:01:28 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 27ms (Views: 23.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers/-4" for ::1 at 2019-10-09 10:01:40 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-4"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -4], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:23
+Redirected to http://localhost:3000/homepages/nope
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 1.2ms)
+
+
+
+RuntimeError - :
+  app/controllers/passengers_controller.rb:27:in `show'
+
+Started POST "/__better_errors/ef70a530a008ba18/variables" for ::1 at 2019-10-09 10:01:41 -0700
+Started POST "/__better_errors/ef70a530a008ba18/eval" for ::1 at 2019-10-09 10:01:44 -0700
+Started POST "/__better_errors/ef70a530a008ba18/eval" for ::1 at 2019-10-09 10:01:46 -0700
+Started GET "/passengers/-4" for ::1 at 2019-10-09 10:02:45 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-4"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -4], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:23
+Redirected to http://localhost:3000/homepages/nope?msg=HOW+DO+I+ADD+THIS%3F%3F%3F+No+such+passenger+exists%21
+Completed 302 Found in 5ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/homepages/nope?msg=HOW+DO+I+ADD+THIS%3F%3F%3F+No+such+passenger+exists%21" for ::1 at 2019-10-09 10:02:45 -0700
+Processing by HomepagesController#nope as HTML
+  Parameters: {"msg"=>"HOW DO I ADD THIS??? No such passenger exists!"}
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 23ms (Views: 20.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/homepages/nope?msg=HOW+DO+I+ADD+THIS%3F%3F%3F+No+such+passenger+exists%21" for ::1 at 2019-10-09 10:03:09 -0700
+Processing by HomepagesController#nope as HTML
+  Parameters: {"msg"=>"HOW DO I ADD THIS??? No such passenger exists!"}
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 27ms (Views: 24.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/homepages/nope?msg=HOW+DO+I+ADD+THIS%3F%3F%3F+No+such+passenger+exists%21" for ::1 at 2019-10-09 10:03:47 -0700
+Processing by HomepagesController#nope as HTML
+  Parameters: {"msg"=>"HOW DO I ADD THIS??? No such passenger exists!"}
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 22ms (Views: 19.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/homepages/nope?msg=HOW+DO+I+ADD+THIS%3F%3F%3F+No+such+passenger+exists%21" for ::1 at 2019-10-09 10:03:49 -0700
+Processing by HomepagesController#nope as HTML
+  Parameters: {"msg"=>"HOW DO I ADD THIS??? No such passenger exists!"}
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 24ms (Views: 20.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-09 10:03:51 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 27ms (Views: 24.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers/-4" for ::1 at 2019-10-09 10:03:54 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-4"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -4], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:23
+Redirected to http://localhost:3000/homepages/nope?msg=No+such+passenger+exists%21
+Completed 302 Found in 6ms (ActiveRecord: 1.2ms)
+
+
+Started GET "/homepages/nope?msg=No+such+passenger+exists%21" for ::1 at 2019-10-09 10:03:54 -0700
+Processing by HomepagesController#nope as HTML
+  Parameters: {"msg"=>"No such passenger exists!"}
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 31ms (Views: 28.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-09 10:03:56 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 31ms (Views: 27.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/passengers/-4" for ::1 at 2019-10-09 10:05:09 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"-4"}
+  [1m[36mPassenger Load (0.4ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", -4], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:23
+Redirected to http://localhost:3000/homepages/nope?msg=No+such+passenger+exists%21
+Completed 302 Found in 2ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/homepages/nope?msg=No+such+passenger+exists%21" for ::1 at 2019-10-09 10:05:09 -0700
+Processing by HomepagesController#nope as HTML
+  Parameters: {"msg"=>"No such passenger exists!"}
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 27ms (Views: 24.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-09 10:05:40 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 28ms (Views: 25.1ms | ActiveRecord: 0.0ms)
+
+
