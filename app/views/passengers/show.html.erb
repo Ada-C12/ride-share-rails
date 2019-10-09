@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<h2>Passenger Profile</h2>
 
 <p>
   <strong>Name:</strong>
@@ -10,5 +11,18 @@
   <%= @passenger.phone_num %>
 </p>
 
-<%= link_to 'Edit', edit_passenger_path(@passenger) %> |
+<p>
+  <strong>My trips:</strong>
+  <% @passenger.find_passenger_trips.each do |trip| %>
+    <%= link_to 'Trip', trip_path %>
+  <% end%>
+</p>
+
+<p>
+  <strong>My charged amount:</strong>
+  <%= @passenger.amount_charged %>
+</p>
+
+
+<%= link_to 'Edit', edit_passenger_path(@passenger) %>
 <%= link_to 'Back', passengers_path %>
