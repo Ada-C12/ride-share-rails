@@ -181,7 +181,6 @@ describe Driver do
     end
     
     describe "can go online" do
-      # Your code here
       it "makes active true if it is false" do
         # arrange
         driver = Driver.create(name: "Micky", vin: "777", active: false)
@@ -196,7 +195,7 @@ describe Driver do
         expect(updated_driver.active).must_equal true
       end
       
-      it "does not make active false if it is true" do
+      it "should be idempotent" do
         # arrange
         driver = Driver.create(name: "Micky", vin: "777", active: false)
         driver_id = driver.id
@@ -214,7 +213,6 @@ describe Driver do
     end
     
     describe "can go offline" do
-      # Your code here
       it "makes active false if it is true" do
         # arrange
         driver = Driver.create(name: "Micky", vin: "777", active: true)
@@ -229,7 +227,7 @@ describe Driver do
         expect(updated_driver.active).must_equal false
       end
       
-      it "does not make active true if it is false" do
+      it "should be idempotent" do
         # arrange
         driver = Driver.create(name: "Micky", vin: "777", active: true)
         driver_id = driver.id
