@@ -116,7 +116,6 @@ describe DriversController do
       # Act-Assert
       # Ensure that there is no change in Driver.count
       bad_new_driver_params.each do |bad_params|
-        puts bad_params
         expect{post drivers_path, params: bad_params}.must_differ "Driver.count", 0
       end
 
@@ -167,13 +166,25 @@ describe DriversController do
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
       # Set up the form data
+      new_driver = Driver.create(name: "Geli Driver", vin: "abcdefgvin")
+      new_driver_id = new_driver.id
+      assert_not_nil(new_driver_id)
+
+      edit_driver_params = { driver: {
+        name: "Saint Geli", 
+        vin: "validervin023"}
+      }
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect{patch driver_path(new_driver_id), params: edit_driver_params}.must_differ "Driver.count", 0
 
       # Assert
       # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
       # Check that the controller redirected the user
+      expect(Driver.find_by(id: new_driver_id).name).must_equal edit_driver_params[:driver][:name]
+      expect(Driver.find_by(id: new_driver_id).vin).must_equal edit_driver_params[:driver][:vin]
+
 
     end
 
@@ -181,27 +192,57 @@ describe DriversController do
       # Arrange
       # Ensure there is an invalid id that points to no driver
       # Set up the form data
+      invalid_id = -1
+      assert_nil(Driver.find_by(id: invalid_id))
+      edit_driver_params = { driver: {
+        name: "Saint Geli", 
+        vin: "validervin023"}
+      }
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      expect{patch driver_path(invalid_id), params: edit_driver_params}.must_differ "Driver.count", 0
 
       # Assert
       # Check that the controller gave back a 404
+      assert_response :not_found
 
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not update a driver if the form data violates Driver validations, and responds by re-rendering the edit view and setting status to 422" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Ensure there is an existing driver saved
+      existing_driver = Driver.create(name: "Geli Gel", vin: "validvin023")
+      existing_driver_id = existing_driver.id
+      assert_not_nil(existing_driver_id)
+
       # Assign the existing driver's id to a local variable
       # Set up the form data so that it violates Driver validations
+      bad_edit_driver_params = [
+        {
+          driver: {
+            name: "Name ButNoVIN", 
+            vin: ""
+          }
+        },
+        {
+          driver: {
+            name: "",
+            vin: "VIN ButNoName"
+          }
+        }
+      ]
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      bad_edit_driver_params.each do |bad_params|
+        expect{patch driver_path(existing_driver.id), params: bad_params}.must_differ "Driver.count", 0
+      end
 
       # Assert
-      # Check that the controller redirects
+      # Check that the controller renders edit view and sets status to 422
+      assert_response :unprocessable_entity
 
     end
   end
@@ -219,7 +260,7 @@ describe DriversController do
 
     end
 
-    it "does not change the db when the driver does not exist, then responds with " do
+    it "does not change the db when the driver does not exist, then responds with redirect to drivers index" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
 

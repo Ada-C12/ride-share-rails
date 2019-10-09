@@ -32,6 +32,33 @@ class DriversController < ApplicationController
     end
   end
 
+  def update
+    @driver = Driver.find_by(id: params[:id])
+    if @driver.nil?
+      head :not_found
+      return
+    elsif @driver.update(driver_params)
+      redirect_to driver_path(@driver.id)
+      return
+    else
+      render :edit, status: :unprocessable_entity
+    end
+
+  end
+
+  def destroy
+    @driver = Driver.find_by(id: params[:id])
+    if @driver.nil?
+      redirect_to drivers_path
+      return
+    elsif @driver.destroy
+      redirect_to drivers_path
+      return
+    else
+      render :index
+    end
+  end
+
   private
 
   def driver_params
