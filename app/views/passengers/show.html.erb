@@ -1,3 +1,23 @@
 <h1>SHOWING PASSENGER #<%= @passenger.id %></h1>
 
-<%=render partial: "individual"%>
+<%= link_to "Request Trip!", new_trip_path(params: {passenger_id: @passenger.id}) %>
+
+<section class="passenger_grid">
+  <section class="header_row"><%= "ID" %></section>
+  <section class="header_row"><%= "NAME" %></section>
+  <section class="header_row"><%= "PHONE NUMBER" %></section>
+  <section class="header_row"><%= "EDIT" %></section>
+  <section class="header_row"><%= "DELETE" %></section>
+  
+
+    <section><%= @passenger.id%></section>
+    <section><%= @passenger.name%></section>
+    <section><%= @passenger.phone_num%></section>
+
+    <%= link_to "EDIT", edit_passenger_path(id: @passenger.id) %>
+    <%= link_to "DELETE", passenger_path(id: @passenger.id), method: :delete, data: { confirm: "Sure?" } %>
+</section>
+
+<section class="trips_grid">
+### DO THIS LATER!!!!
+</section>

@@ -1,0 +1,17 @@
+<h1>REQUESTING A TRIP FOR <%= @passenger.name %></h1>
+
+<% if @trip.errors.any? %>
+  <h3>You need to fix this...</h3>
+  <ul>
+  <% @trip.errors.each do |error, msg|%>
+    <li><%= error %>: <%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @trip do |f| %>
+  <%= f.label :date %>
+  <%= f.text_area :date %>
+
+  <%= f.submit "REQUEST TRIP!" %>
+<% end %>
