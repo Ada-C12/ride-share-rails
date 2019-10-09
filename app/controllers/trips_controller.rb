@@ -8,18 +8,47 @@ class TripsController < ApplicationController
     end
   end
   
-  def create    
-    if !(params[:trip].nil?)
-      @trip = Trip.new(trip_params)
-      
-      if @trip.save
-        redirect_to passenger_path(@trip.passenger_id)
-        return
-      end
+  def create   
+    # if params[:passenger_id] 
+    
+    # call driver to get a driver
+    driver = Driver.all.first
+    
+    date = DateTime.now
+    
+    # generate random cost
+    cost = 1000
+    
+    data_hash = {
+      date: date,
+      driver_id: driver.id,
+      passenger_id: params[:passenger_id],
+      rating: nil,
+      cost: cost,
+    }
+    
+    @trip = Trip.new(data_hash)
+    # end
+    
+    if @trip.save
+      redirect_to passenger_path(@trip.passenger_id)
+      return
     else
       redirect_to root_path
       return
     end
+    
+    # elsif !(params[:trip].nil?)
+    #   @trip = Trip.new(trip_params)
+    
+    #   if @trip.save
+    #     redirect_to passenger_path(@trip.passenger_id)
+    #     return
+    #   end
+    # else
+    #   redirect_to root_path
+    #   return
+    # end
   end
   
   # def request_trip
