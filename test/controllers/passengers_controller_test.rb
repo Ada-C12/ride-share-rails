@@ -3,7 +3,8 @@ require "test_helper"
 describe PassengersController do
   let (:passenger1) { Passenger.create( name: "Ned Flanders", phone_num: "206-123-1234") }
   let (:passenger_hash) {{ passenger: { name: "Homer Simpson", phone_num: "425-123-1234" } }}
-  
+  let (:bad_phone_nums) { [nil, "", "    "] }
+  let (:bad_names) { [nil, "", "    "] }
   describe "index" do
     it "can go to Passengers/index" do
       get passengers_path
@@ -41,7 +42,6 @@ describe PassengersController do
     end
     
     it "Bad inputs will fail validations, and user will stay on page" do
-      bad_names = [nil, "", "    "]
       
       bad_names.each do |bad_name|
         bad_params = { passenger: {name: bad_name, phone_num: "4251231234"} } 
@@ -52,7 +52,6 @@ describe PassengersController do
       ### FUTURE IDEA: VALIDATE AGAINST THESE... 
       # more_bad_phone_nums = ["garbage", "!!!!!", "123"]
       
-      bad_phone_nums = [nil, "", "    "]
       bad_phone_nums.each do |bad_phone_num|
         bad_params = { passenger: {name: "jerky jerkface", phone_num: bad_phone_num} } 
         expect {post passengers_path, params: bad_params }.must_differ "Passenger.count", 0
@@ -75,16 +74,52 @@ describe PassengersController do
   end
   
   describe "update" do
-    it "" do
-      ###
+    it "Given good input, will update correctly" do
+      passenger1
+      good_params = { name: "Lisa Simpson", phone_num: "4255551111" }
+      patch passenger_path(id: passenger1.id), params: good_params 
+      puts "WTF", passenger1.name
+      updated_passenger = Passenger.find_by(id: passenger1.id)
+      puts "HELL NO!", updated_passenger.name
+      # expect{ patch passenger_path(id: passenger1.id), params: good_params }.must_differ "Passenger.count", 0
+      updated_passenger = Passenger.find_by(id: passenger1.id)
+      assert(updated_passenger.name == good_params[:name])
+      assert(updated_passenger.phone_num == good_params[:phone_num])
+    end
+    
+    it "Edge Cases: if blank names/phone_nums given, will render and not redirect" do
+      passenger1
+      bad_names.each do |bad_name|
+        bad_params = { passenger: {name: bad_name, phone_num: "4251231234"} } 
+        expect {patch passenger_path(id: passenger1.id, params: bad_params) }.must_differ "Passenger.count", 0
+        from_db = Passenger.find_by(id: passenger1.id)
+        assert(from_db.name == passenger1.name)
+        must_respond_with :success
+      end
+      
+      bad_phone_nums.each do |bad_phone_num|
+        bad_params = { passenger: {name: "jerky jerkface", phone_num: bad_phone_num} } 
+        expect {patch passenger_path(id: passenger1.id, params: bad_params) }.must_differ "Passenger.count", 0
+        from_db = Passenger.find_by(id: passenger1.id)
+        assert(from_db.phone_num == passenger1.phone_num)
+        must_respond_with :success
+      end
     end
   end
   
   describe "destroy" do
-    it "will destroy passenger obj and redirect to passengers index pg" do
+    it "will destroy passenger obj (if no trips linked) and redirect to passengers index pg" do
       passenger1
       expect {delete passenger_path(id: passenger1.id)}.must_differ "Passenger.count", -1
       must_redirect_to passengers_path
+    end
+    
+    it "will destroy passenger obj (if has trips linked) and redirect to passengers index pg" do
+      passenger1
+      expect {delete passenger_path(id: passenger1.id)}.must_differ "Passenger.count", -1
+      puts "\n\nI'M NOT SURE WHAT'S SUPPOSED OT HAPPEN HERE"
+      assert(false)
+      ############## WHY??########
     end
     
     it "will redirect to nope_path if bad id given" do

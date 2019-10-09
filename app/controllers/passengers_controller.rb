@@ -1,7 +1,7 @@
 class PassengersController < ApplicationController
   
   def index
-    @passengers = Passenger.all
+    @passengers = Passenger.all.order(:id)
   end
   
   def new
@@ -35,7 +35,14 @@ class PassengersController < ApplicationController
   end
   
   def update
-    ###
+    @passenger = Passenger.find_by(id: params[:id])
+    if @passenger.update(get_params)
+      redirect_to passenger_path(id: @passenger.id)
+      return
+    else
+      render action: 'edit', params: { id: @passenger.id }
+      return
+    end
   end
   
   def destroy
