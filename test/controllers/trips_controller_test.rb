@@ -42,6 +42,8 @@ describe TripsController do
 
   describe "create" do
     it "can create a new trip with valid information accurately, and redirect" do
+      Trip.destroy_all
+
       trip_hash = {
         trip: {
           date: "10-11-2019",
@@ -57,8 +59,7 @@ describe TripsController do
       }.must_change "Trip.count", 1
 
       must_respond_with :redirect
-      # redirect to somewhere else?
-      must_redirect_to passenger_path(@passenger.id)
+      must_redirect_to trip_path(Trip.first.id)
     end
 
     it "does not create a trip if the form data violates Trip validations, and responds with a redirect" do
@@ -104,8 +105,8 @@ describe TripsController do
         }.must_differ "Trip.count", 0
       end
 
-      must_respond_with :redirect
-      must_redirect_to new_passenger_trip_path(@passenger.id)
+      must_respond_with :not_found
+      # must_redirect_to new_passenger_trip_path(@passenger.id)
     end
 
   end
