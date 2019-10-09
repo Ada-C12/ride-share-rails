@@ -169,27 +169,38 @@ describe DriversController do
   
   describe "destroy" do
     it "destroys the driver instance in db when driver exists, then redirects" do
-      # Arrange
-      # Ensure there is an existing driver saved
+      id_to_delete = driver.id
       
-      # Act-Assert
-      # Ensure that there is a change of -1 in Driver.count
+      expect {
+        delete driver_path(id_to_delete)
+      }.must_differ "Driver.count", -1
+
+      removed_driver = Driver.find_by(id: driver.id)
+      removed_driver.must_be_nil
       
-      # Assert
-      # Check that the controller redirects
+      must_redirect_to drivers_path
       
     end
     
     it "does not change the db when the driver does not exist, then responds with " do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
+      nonexistent_id = -20
       
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      expect {
+        delete driver_path(nonexistent_id)
+      }.must_differ "Driver.count", 0
       
-      # Assert
-      # Check that the controller responds or redirects with whatever your group decides
+      must_redirect_to drivers_path
+    end
+
+    it "will redirect to driver index page if driver was already deleted" do
+      id_to_delete = driver.id
+      Driver.destroy_all
       
+      expect {
+        delete driver_path(id_to_delete)
+      }.must_differ "Driver.count", 0
+      
+      must_redirect_to drivers_path
     end
   end
 end
