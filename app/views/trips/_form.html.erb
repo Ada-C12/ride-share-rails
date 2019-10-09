@@ -16,7 +16,7 @@
   <%= f.select :passenger_id, Passenger.all.map{ |auth| [auth.name, auth.id] } %>
   <% if new_trip == false %>
   <%= f.label :rating %>
-  <%= f.text_field :rating %>
+  <%= f.select :rating, [1, 2, 3, 4, 5] %>
   <%= f.label :cost %>
   <%= f.text_field :cost %>
   <% end %>

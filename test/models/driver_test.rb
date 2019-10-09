@@ -88,6 +88,7 @@ describe Driver do
       let (:new_driver) {
         Driver.new(name: "Kari", vin: "123")
       }
+      
       it "calculates the total earnings of a driver" do
         passenger = Passenger.new(name: "Friendly Passenger", phone_num: "206-867-5309")
         passenger.save
@@ -96,9 +97,9 @@ describe Driver do
         
         expect(new_driver.earnings).must_be_close_to 3291, 1
       end
-
+      
       it "returns a message if the driver has 0 trips" do
-        
+        expect(new_driver.earnings).must_equal "No earnings"
       end
       
     end

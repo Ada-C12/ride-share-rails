@@ -6,8 +6,8 @@ describe PassengersController do
   end
 
   describe "show" do
-    # Your tests go here
   end
+    # Your tests go here
 
   describe "new" do
     # Your tests go here
