@@ -14,8 +14,25 @@
  *= require_self
  */
 
+
+* {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+a {
+  text-decoration: none;
+}
+nav{
+  background: rgb(255,0,191);
+}
+
+h1 a:visited {
+  color: white;
+}
+
 nav > * {
   display: inline-block;
+  color: white;
 }
 
 /* css dropdown on hover: https://www.w3schools.com/css/css_dropdowns.asp */
@@ -34,4 +51,32 @@ nav > * {
   
   /* make sure it appears on top of everything else */
   z-index: 1;
+}
+
+.table{
+  width: 34rem;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.table tbody{
+  display: block;
+  width: 100%;
+  overflow: auto;
+  height: 30rem;
+}
+
+.table thead tr {
+  display: block;
+}
+
+.table thead {
+  background: rgb(255,0,191);
+  color: white;
+}
+
+.table th, .table td {
+  padding: .2em;
+  text-align: left;
+  width: 15rem;
 }

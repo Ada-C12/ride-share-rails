@@ -40,15 +40,19 @@
     <h3>Trips</h3>
     <%# how many rides the driver has given %>
     <div>Total Trips: <%= @driver.trips.count %></div>
-    <table>
-      <tr>
-        <th>ID</th>
-        <th>Date</th>
-        <th>Driver</th>
-        <th>Passenger</th>
-        <th>Price</th>
-        <th>Rating</th>
-      </tr>
+    <table class ="fixed_header">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Date</th>
+          <th>Driver</th>
+          <th>Passenger</th>
+          <th>Price</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+      <section class="table-body">
         <% @driver.trips.each do |trip| %>
           <tr>
             <td>
@@ -74,6 +78,8 @@
               <%= trip.rating %>
             </td>
           </tr>
+        <tbody>
+        </section>
         <% end %>
     </table>
   </section>
