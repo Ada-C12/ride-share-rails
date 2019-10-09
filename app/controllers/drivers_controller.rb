@@ -54,6 +54,24 @@ class DriversController < ApplicationController
     end
   end
   
+  def destroy
+    driver = Driver.find_by( id: params[:id] )
+
+    # Because find_by will give back nil if the book is not found...
+
+    if driver.nil?
+      # Then the book was not found!
+      redirect_to drivers_path
+      return
+    else
+      # Then we did find it!
+      driver.destroy
+      redirect_to root_path
+      return
+    end
+  end
+
+
   private
   def driver_params
     return params.require(:driver).permit(:name, :vin)

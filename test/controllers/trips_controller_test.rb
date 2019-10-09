@@ -192,6 +192,57 @@ describe TripsController do
   end
   
   describe "destroy" do
-    # Your tests go here
+    let(:current_trip) {
+      driver_id = Driver.create(name: "Jane Doe", vin: "12345678").id
+      passenger_id = Passenger.create(name: "Jane Doe", phone_num: "1234567").id
+      Trip.create(cost: 12.46, date: Date.today, driver_id: driver_id, passenger_id: passenger_id)}
+
+    it "destroys the trip instance in db when trip exists, then redirects" do
+      # Arrange
+      # Ensure there is an existing trip saved
+      exisiting_trip_id = current_trip.id
+      
+      # Act-Assert
+      # Ensure that there is a change of -1 in trip.count
+      
+      # Assert
+      # Check that the controller redirects
+      expect {
+        delete trip_path( exisiting_trip_id )
+      }.must_differ "Trip.count", -1
+
+      must_redirect_to root_path
+    end
+    
+    it "does not change the db when the trip does not exist, then responds with " do
+      # Arrange
+      # Ensure there is an invalid id that points to no trip
+      
+      # Act-Assert
+      # Ensure that there is no change in trip.count
+      
+      # Assert
+      # Check that the controller responds or redirects with whatever your group decides
+
+      Trip.destroy_all
+      invalid_trip_id = 1
+
+      expect {
+        delete trip_path( invalid_trip_id )
+      }.must_differ "Trip.count", 0
+
+      must_redirect_to trips_path
+    end
+
+    it "redirects to trips index page and deletes no trips if deleting a trip with an id that has already been deleted" do
+      exisiting_trip_id = current_trip.id
+      Trip.destroy_all
+
+      expect {
+        delete trip_path( exisiting_trip_id )
+      }.must_differ "Trip.count", 0
+
+      must_redirect_to trips_path
+    end
   end
 end

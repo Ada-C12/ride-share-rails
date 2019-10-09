@@ -171,16 +171,23 @@ describe DriversController do
   end
   
   describe "destroy" do
+    let(:current_driver) {Driver.create(name: "Jane Doe", vin: "12345678")}
+
     it "destroys the driver instance in db when driver exists, then redirects" do
       # Arrange
       # Ensure there is an existing driver saved
+      exisiting_driver_id = current_driver.id
       
       # Act-Assert
       # Ensure that there is a change of -1 in Driver.count
       
       # Assert
       # Check that the controller redirects
-      
+      expect {
+        delete driver_path( exisiting_driver_id )
+      }.must_differ "Driver.count", -1
+
+      must_redirect_to root_path
     end
     
     it "does not change the db when the driver does not exist, then responds with " do
@@ -192,7 +199,26 @@ describe DriversController do
       
       # Assert
       # Check that the controller responds or redirects with whatever your group decides
-      
+
+      Driver.destroy_all
+      invalid_driver_id = 1
+
+      expect {
+        delete driver_path( invalid_driver_id )
+      }.must_differ "Driver.count", 0
+
+      must_redirect_to drivers_path
+    end
+
+    it "redirects to drivers index page and deletes no drivers if deleting a driver with an id that has already been deleted" do
+      exisiting_driver_id = current_driver.id
+      Driver.destroy_all
+
+      expect {
+        delete driver_path( exisiting_driver_id )
+      }.must_differ "Driver.count", 0
+
+      must_redirect_to drivers_path
     end
   end
 end

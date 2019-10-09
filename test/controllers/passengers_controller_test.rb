@@ -166,7 +166,55 @@ describe PassengersController do
   end
     
   describe "destroy" do
-    # Your tests go here
+    let(:current_passenger) {Passenger.create(name: "Jane Doe", phone_num: "1234567")}
+
+    it "destroys the passenger instance in db when passenger exists, then redirects" do
+      # Arrange
+      # Ensure there is an existing passenger saved
+      exisiting_passenger_id = current_passenger.id
+      
+      # Act-Assert
+      # Ensure that there is a change of -1 in passenger.count
+      
+      # Assert
+      # Check that the controller redirects
+      expect {
+        delete passenger_path( exisiting_passenger_id )
+      }.must_differ "Passenger.count", -1
+
+      must_redirect_to root_path
+    end
+    
+    it "does not change the db when the passenger does not exist, then responds with " do
+      # Arrange
+      # Ensure there is an invalid id that points to no passenger
+      
+      # Act-Assert
+      # Ensure that there is no change in passenger.count
+      
+      # Assert
+      # Check that the controller responds or redirects with whatever your group decides
+
+      Passenger.destroy_all
+      invalid_passenger_id = 1
+
+      expect {
+        delete passenger_path( invalid_passenger_id )
+      }.must_differ "Passenger.count", 0
+
+      must_redirect_to passengers_path
+    end
+
+    it "redirects to passengers index page and deletes no passengers if deleting a passenger with an id that has already been deleted" do
+      exisiting_passenger_id = current_passenger.id
+      Passenger.destroy_all
+
+      expect {
+        delete passenger_path( exisiting_passenger_id )
+      }.must_differ "Passenger.count", 0
+
+      must_redirect_to passengers_path
+    end
   end
 end
   

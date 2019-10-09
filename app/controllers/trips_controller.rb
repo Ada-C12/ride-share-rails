@@ -49,6 +49,23 @@ class TripsController < ApplicationController
     end
   end
 
+  def destroy
+    trip = Trip.find_by( id: params[:id] )
+
+    # Because find_by will give back nil if the book is not found...
+
+    if trip.nil?
+      # Then the book was not found!
+      redirect_to trips_path
+      return
+    else
+      # Then we did find it!
+      trip.destroy
+      redirect_to root_path
+      return
+    end
+  end
+
 
   
   private
