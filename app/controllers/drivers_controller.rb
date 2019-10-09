@@ -7,15 +7,15 @@ class DriversController < ApplicationController
     def show
         driver_id = params[:id].to_i
         @driver = Driver.find_by(id:driver_id)
-
         if driver_id < 0
             redirect_to root_path
         end
 
-        if @drive.nil?
+        if @driver.nil?
             redirect_to new_driver_path
-            return
         end
+
+        
     
     end
 
@@ -52,6 +52,12 @@ class DriversController < ApplicationController
         else
             render new_driver_path
         end
+    end
+
+    private
+
+    def driver_params
+        return params.require(:driver).permit(:name, :vin)
     end
 
 
