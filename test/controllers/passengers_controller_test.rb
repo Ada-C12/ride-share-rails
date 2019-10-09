@@ -181,7 +181,7 @@ describe PassengersController do
       # Assert
       # Check that the controller redirects
       # *****LOOK*****
-      # must_respond_with :redirect
+      # must_redirect_to new_passenger_path
     end
   end
   
