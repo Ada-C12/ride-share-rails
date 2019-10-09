@@ -1,0 +1,22 @@
+<h1>Trips Index Page</h1>
+
+<section>
+  <h2>List of all Trips
+  <% if @driver %>
+      driven by <%= @driver.name %>
+  <% else @passenger %>
+      roden by <%= @passenger.name %> 
+  <% end %>
+  </h2>
+  
+  <ul>
+    <% @trips.each do |trip| %>
+      <li>
+        Driven by: <%= trip.driver.name %>
+      </li>
+      <li>
+        Rode by: <%= trip.passenger.name %>
+      </li>
+    <% end %>
+  </ul>
+</section>

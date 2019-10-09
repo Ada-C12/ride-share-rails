@@ -10,3 +10,17 @@
 <ul>
   <li>VIN: <%= @driver.vin %></li>
 </ul>
+
+<p><%= @driver.trips.each do |trip| %>
+<ol>
+  <li><%= trip.date%>
+    <ul>
+      <li>Roden by <%= trip.passenger.name %></li>
+      <li>Driven by <%= trip.driver.name %></li>
+      <li>Cost <%= trip.cost %></li>
+      <li>Rating <%= trip.rating %></li>
+    </ul>
+  </li>
+  <% end %>
+</ol>
+</p>

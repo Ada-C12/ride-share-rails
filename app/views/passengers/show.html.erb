@@ -5,5 +5,7 @@
   <p> Phone number: <%=  @passenger.phone_num %> </p>
 
   <%= link_to "Edit passenger profile", edit_passenger_path(@passenger.id)%>
+
+  <p><%= link_to "Request Trip", new_passenger_trip_path %></p>
 </section>
 

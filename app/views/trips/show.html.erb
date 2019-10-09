@@ -1,0 +1,6 @@
+<header class="show-trip-header">
+  <p><%= @trip.driver_id.name %></p>
+  <p><%= @trip.passenger_id.name %></p>
+  <p><%= link_to "Edit Trip Rating", edit_trip_path(@trip.id) %></p>
+  <p>$<%= @trip.price %></p>
+</header>
