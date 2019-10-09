@@ -22,13 +22,7 @@ class TripsController < ApplicationController
   end 
   
   def create
-<<<<<<< HEAD
     @trip = Trip.new(trip_params)
-=======
-    @trip = Trip.new(date: Time.now, passenger_id:@passenger.id)
-    raise
-    @trip = Trip.new(trip_request_params)
->>>>>>> 9daa6d555a25551d09c2a655065a379f889c34b9
     if @trip.save
       x= "hahaha"
       redirect_to trip_path(@trip.id)
