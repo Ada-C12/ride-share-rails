@@ -4,5 +4,18 @@ Click a link to the detail page for the trip's passenger
 Click a link to the detail page for the trip's driver
 Click a link to edit the trip
 Click a link to delete the trip %>
+<header class= "show-header">
+  <h1> Details for Trip Number # <%= @trip.id%></h2>
+</header>
 
-<h1> Trip Details Page </h2>
+<section class="show-details">
+  <h2> About this trip:</h2>
+
+  <ul>
+    <li>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver.id)%> </li>
+    <li>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id)%> </li>
+    <li>Date: <%= @trip.date%> </li>
+    <li>Rating: <% @trip.rating.times do |star| %> <span>✰</span><%end%></li>
+    <li>Cost: $<%= @trip.cost%> </li>
+    <%# Find a way to display with a decimal so it shows properly? %>
+  </ul>

@@ -3,14 +3,21 @@
 
 <ul>
   <li><strong> Phone number: </strong> <%=@passenger.phone_num%>
-  <li><strong> Total charged: </strong>
+  <li><strong> Total charged: </strong> 
 
 
   <li> <%= link_to "Edit passenger!", edit_passenger_path(@passenger.id)%></li>
-  <li> <%= link_to "Delete passenger!", passenger_path(@passenger.id), method: :delete, data: {confirm: "are you sure???"}, class: "passenger-delete-link" %>
+  <li> <%= link_to "Delete passenger!", passenger_path(@passenger.id), method: :delete, data: {confirm: "are you sure???"}, class: "passenger-delete-link" %></li>
+  <li> <%= link_to "Add a new trip for this passenger", new_trip_path %></li>
 
+  <li> 
+    <%=@passenger.name%>'s trips
+      <ul>
+        <% Trip.where(passenger_id:@passenger.id).each do |trip| %> 
+        <li><%= link_to trip.id, trip_path(trip.id)%></li>
+        <%end%>
+      </ul>
+  </li>
 
-  <li><%= link_to "View a list of this passenger's trips"%>
-  <li> <%= link_to "Add a new trip for this passenger", new_trip_path %>
 </ul>
 </header>

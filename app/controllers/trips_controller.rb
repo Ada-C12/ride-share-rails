@@ -2,8 +2,7 @@ class TripsController < ApplicationController
 
   def show
     trip_id = params[:id].to_i
-    @driver_trips = Trip.find_by(id: driver_id)
-    @passenger_trips = Trip.find_by(id: passenger_id)
+    @trip = Trip.find_by(id: trip_id)
 
     if @trip.nil?
       head :not_found
@@ -51,9 +50,9 @@ class TripsController < ApplicationController
       return
     end 
   end
-
   
   private
+  
   def trip_params
     return params.require(:trip).permit(:date, :rating, :cost)
   end 

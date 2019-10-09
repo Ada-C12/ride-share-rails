@@ -1,6 +1,6 @@
 class PassengersController < ApplicationController
   def index
-    @passengers = Passenger.all_in_alpha_order 
+    @passengers = Passenger.all
   end 
 
   def show
