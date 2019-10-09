@@ -1,30 +1,54 @@
 class TripsController < ApplicationController
   
   def index
-    # @trips = trips.find_by(passenger_id: params[:passenger_id])
+    passenger_id = params[:passenger_id]
+    driver_id = params[:driver_id]
+    if passenger_id.nil? && driver_id.nil?
+      @trips = Trip.all_trips
+    elsif passenger_id
+      @passenger = Passenger.find_by(id: passenger_id)
+      if @passenger
+        @trips = @passenger.trips
+      end
+    elsif driver_id
+      @driver = Driver.find_by(id: driver_id)
+      if @driver
+        @trips = @driver.trips
+      end
+    else
+      head :not_found
+      return
+    end
   end
   
   def show
-    # @passenger = Passenger.find_by(id: params[:id])
-    # if @passenger.nil?
-    #   flash[:error] = "Could not find passenger"
-    #   redirect_to passengers_path
-    #   return
-    # end
+    @trip = Trip.find_by(passenger_id: params[:passenger_id])
+    if @trip.nil?
+      flash[:error] = "Could not find trip"
+      redirect_to trips_path, status: :not_found
+      return
+    end
   end
   
   def new
-    # @passenger = Passenger.new
+    @trip = Trip.new
   end
   
   def create
-    # @passenger = Passenger.new(passenger_params)
-    # if @passenger.save
-    #   redirect_to passenger_path(@passenger.id)
-    #   return
-    # else
-    #   render :new
-    #   return
-    # end
+    @trip = Trip.new(trip_params)
+    if @trip.save
+      redirect_to trip_path(@trip.id)
+      return
+    else
+      render :new
+      return
+    end
   end
+  
+  private
+  
+  def trip_params
+    return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
+  end
+  
 end
