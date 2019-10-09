@@ -84,6 +84,19 @@ describe Driver do
         expect(driver.average_rating).must_equal 5
       end
       
+      it "can calculate the average rating of multiple trips where one is not rated" do
+        # arrange
+        driver = Driver.create(name: "Kari", vin: "123")
+        # create a passenger for the trips
+        passenger = Passenger.create(name: "Nina", phone_num: "560.815.3059")
+        # create two trips
+        trip_one = Trip.create(date: Date.current, rating: 5, cost: 1200, driver_id: driver.id, passenger_id: passenger.id)
+        trip_two = Trip.create(date: Date.current, rating: nil, cost: 1200, driver_id: driver.id, passenger_id: passenger.id)
+        
+        # assert
+        expect(driver.average_rating).must_equal 5
+      end
+      
       it "returns nil for a driver with no trips" do
         # arrange
         driver = Driver.create(name: "Kari", vin: "123")
