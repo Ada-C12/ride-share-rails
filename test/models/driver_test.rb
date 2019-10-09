@@ -66,7 +66,7 @@ describe Driver do
         vin: "848485859",
         car_make: "Ford",
         car_model: "Escape",
-        active: true
+        active: false
       )
       @passenger = Passenger.create(name: "Jane", phone_num: "12345678")
 
@@ -117,12 +117,25 @@ describe Driver do
       end
     end
 
-    describe "can go online" do
-      # Your code here
+    describe "can go active" do
+      it "can update driver's active status to true" do
+        expect(@driver.active).must_equal false
+
+        @driver.toggle_active
+
+        expect(Driver.find_by(id: @driver.id).active).must_equal true
+      end
     end
 
-    describe "can go offline" do
-      # Your code here
+    describe "can go inactive" do
+      it "can update driver's active status to false" do
+        expect(@driver.active).must_equal false
+        @driver.toggle_active
+        expect(Driver.find_by(id: @driver.id).active).must_equal true
+
+        @driver.toggle_active
+        expect(Driver.find_by(id: @driver.id).active).must_equal false
+      end
     end
 
     # You may have additional methods to test
