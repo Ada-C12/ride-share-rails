@@ -41,6 +41,7 @@ describe PassengersController do
   end
   
   describe "create" do
+    
     it "can create a new passenger" do
       passenger_hash = {
         passenger: {
@@ -52,20 +53,66 @@ describe PassengersController do
       expect {
         post passengers_path, params: passenger_hash
       }.must_change "Passenger.count", 1
+      
+      new_passenger = Passenger.find_by(name: passenger_hash[:passenger][:name])
+      expect(new_passenger.name).must_equal passenger_hash[:passenger][:name]
+      must_respond_with :redirect
+      must_redirect_to passenger_path(new_passenger.id)
     end
     
     
   end
   
   describe "edit" do
-    # Your tests go here
+    it "can get the edit page for an existing passenger" do
+      get edit_passenger_path(passenger.id)
+      
+      must_respond_with :success
+    end
+    
+    it "will respond with redirect when attempting to find a nonexistant passenger" do
+      get edit_passenger_path(-13)
+      
+      must_respond_with :redirect
+      expect(flash[:error]).must_equal "Could not find passenger"
+    end
   end
   
   describe "update" do
-    # Your tests go here
+    
+    it "can update an existing passenger" do
+      old_passenger = Passenger.find(passenger.id)
+      
+      passenger_hash = {
+        passenger: {
+          name: "test 2",
+          phone_num: "123456789"
+        }
+      }
+      expect {
+        patch passenger_path(passenger.id), params: passenger_hash
+      }.wont_change "Passenger.count"
+      
+      expect(Passenger.find(old_passenger.id).name).wont_equal old_passenger.name
+      
+    end
+    
+    
   end
   
   describe "destroy" do
-    # Your tests go here
+    
+    it "can destroy an existing passenger" do
+      old_passenger =Passenger.find(passenger.id)
+      
+      expect {delete passenger_path(passenger.id)}.must_change "Passenger.count", -1
+    end
+    
+    it "will respond with a redirect when given a passenger that does not exist" do
+      delete passenger_path(-12)
+      
+      must_respond_with :redirect
+      expect(flash[:error]).must_equal "Could not find passenger"
+    end
   end
 end
