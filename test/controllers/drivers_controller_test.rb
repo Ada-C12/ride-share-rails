@@ -171,8 +171,7 @@ describe DriversController do
         patch driver_path(new_driver_id), params: updated_driver_data
       }.must_differ "Driver.count", 0
 
-      # I was unable to get this test to pass if I asked it to equal updated_driver_data[:driver][:car_make]
-      expect(Driver.find_by(id: new_driver_id).car_make).must_equal "Tesla"
+      expect(Driver.find_by(id: new_driver_id).car_make).must_equal updated_driver_data[:driver][:car_make]
       must_respond_with :redirect
       must_redirect_to driver_path(new_driver_id)
     end
@@ -211,9 +210,8 @@ describe DriversController do
         patch driver_path(driver_id), params: updated_driver_data
       }.must_differ "Driver.count", 0
 
-      # Should we redirect to Drivers index page?
       must_respond_with :redirect
-      must_redirect_to drivers_path
+      must_redirect_to edit_driver_path
     end
   end
 
