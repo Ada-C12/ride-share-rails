@@ -182,10 +182,67 @@ describe Driver do
     
     describe "can go online" do
       # Your code here
+      it "makes active true if it is false" do
+        # arrange
+        driver = Driver.create(name: "Micky", vin: "777", active: false)
+        driver_id = driver.id
+        
+        # act
+        driver.go_online
+        
+        updated_driver = Driver.find_by(id: driver_id)
+        
+        # assert
+        expect(updated_driver.active).must_equal true
+      end
+      
+      it "does not make active false if it is true" do
+        # arrange
+        driver = Driver.create(name: "Micky", vin: "777", active: false)
+        driver_id = driver.id
+        
+        # act
+        driver.go_online
+        driver.go_online
+        
+        updated_driver = Driver.find_by(id: driver_id)
+        
+        # assert
+        expect(updated_driver.active).must_equal true
+      end
+      
     end
     
     describe "can go offline" do
       # Your code here
+      it "makes active false if it is true" do
+        # arrange
+        driver = Driver.create(name: "Micky", vin: "777", active: true)
+        driver_id = driver.id
+        
+        # act
+        driver.go_offline
+        
+        updated_driver = Driver.find_by(id: driver_id)
+        
+        # assert
+        expect(updated_driver.active).must_equal false
+      end
+      
+      it "does not make active true if it is false" do
+        # arrange
+        driver = Driver.create(name: "Micky", vin: "777", active: true)
+        driver_id = driver.id
+        
+        # act
+        driver.go_offline
+        driver.go_offline
+        
+        updated_driver = Driver.find_by(id: driver_id)
+        
+        # assert
+        expect(updated_driver.active).must_equal false
+      end
     end
     
     # You may have additional methods to test

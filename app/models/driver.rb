@@ -50,4 +50,36 @@ class Driver < ApplicationRecord
     return driver_earnings
   end
   
+  def go_online
+    self.active = true
+    
+    if self.save
+      return self
+    else
+      return false
+    end
+  end
+  
+  def go_offline
+    self.active = false
+    
+    if self.save
+      return self
+    else
+      return false
+    end
+  end
+  
+  # select active driver, set status to inactive
+  def get_driver
+    available_driver = Driver.where(active: false)
+    
+    if available_driver
+      toggle_active(available_driver.id)
+      return available_driver
+    else
+      return nil
+    end
+  end
+  
 end
