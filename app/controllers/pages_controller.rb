@@ -1,5 +1,11 @@
 class PagesController < ApplicationController
   
-  def index
-  end
+  # def new
+  #   @driver = Driver.new
+  #   @passenger = Passenger.new
+  # end
+  
+  
+  
+  
 end
