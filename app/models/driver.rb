@@ -12,6 +12,15 @@ class Driver < ApplicationRecord
   end
   
   def average_rating
+    return "0.0" if trips.empty?
+    
+    # ratings = trips.Trip.ratings
+    
+    ratings = trips.map(&:rating)
+    
+    ((ratings.sum)/ratings.length.to_f).round(1).to_s
+    
+    
   end
   
 end
