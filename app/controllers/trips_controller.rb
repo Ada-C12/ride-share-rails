@@ -25,10 +25,6 @@ class TripsController < ApplicationController
   end 
   
   def create   
-    # coming from Passengers/:id, clicking request trip button
-    raise
-    @trip = Trip.new(date: params[:date], passenger_id:params[:passenger_id])
-    raise
     if @trip.save
       x= "hahaha"
       redirect_to trip_path(@trip.id)
