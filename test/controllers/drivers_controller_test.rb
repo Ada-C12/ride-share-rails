@@ -106,12 +106,6 @@ describe DriversController do
         },
         {
           driver: {
-            name: "Another Kari", 
-            vin: "123"
-          }
-        },
-        {
-          driver: {
             car_make: "Hello"
           }
         }

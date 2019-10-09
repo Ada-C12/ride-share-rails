@@ -105,10 +105,15 @@ describe Driver do
     describe "total earnings" do
       it "can accurately calculate the total earnings for a driver" do
         expect(Trip.count).must_equal 2
-        total_earnings = Trip.all.map {|trip| trip.cost}.sum / 100.0
+        earnings = 0
+        Trip.all.map do |trip| 
+          earnings += (trip.cost > 165) ? trip.cost - 165 : trip.cost
+         end
+  
+        total_earnings = earnings * 0.8 / 100
 
-        expect(@driver.total_earnings).must_equal total_earnings
-        expect(@driver.total_earnings).must_be_close_to 45.80, 0.01
+        expect(@driver.total_earnings).must_be_close_to total_earnings
+        expect(@driver.total_earnings).must_be_close_to 34.00, 0.01
       end
 
       it "returns 0 if driver has no trips" do

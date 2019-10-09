@@ -13,7 +13,12 @@ class Driver < ApplicationRecord
   end
   
   def total_earnings
-    total_earnings = self.trips.map {|trip| trip.cost}.sum / 100.0
+    earnings = 0
+    self.trips.map do |trip| 
+        earnings += (trip.cost > 165) ? trip.cost - 165 : trip.cost
+    end
+
+    total_earnings = earnings * 0.8 / 100
     return total_earnings.round(2)
   end
   
