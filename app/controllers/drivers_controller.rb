@@ -11,6 +11,8 @@ class DriversController < ApplicationController
       head :not_found
       return
     end
+    
+    # @driver_trips = @driver.trips
   end
   
   def new
