@@ -15,7 +15,6 @@ class PassengersController < ApplicationController
       return
     else
       render new_passenger_path
-      # redirect_to nope_path
       return
     end
   end
@@ -23,19 +22,28 @@ class PassengersController < ApplicationController
   def show
     @passenger = Passenger.find_by(id: params[:id])
     unless @passenger
-      @msg = "HOW DO I ADD THIS??? No such passenger exists!"
-      redirect_to nope_path
+      redirect_to nope_path(params: {msg: "No such passenger exists!"})
       return
     end
   end
   
   def edit
+    
+    ###
   end
   
   def update
+    ###
   end
   
-  def delete
+  def destroy
+    garbage = Passenger.find_by(id: params[:id])
+    if garbage
+      garbage.destroy
+      redirect_to passengers_path
+    else
+      redirect_to nope_path
+    end
   end
   
   

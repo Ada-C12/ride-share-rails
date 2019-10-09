@@ -1,7 +1,7 @@
 <h1>YOU DONE MESSED UP NOW!!!</h1>
 
-<% if @msg %>
-  <%= @msg %>
+<% if params[:msg] %>
+  <%= params[:msg] %>
 <% end %>
 
 <%= link_to "HOME", root_path %>
