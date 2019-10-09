@@ -7,3 +7,37 @@ Processing by HomepagesController#index as HTML
 Completed 200 OK in 464ms (Views: 448.4ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/drivers" for ::1 at 2019-10-08 22:04:01 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.7ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  ↳ app/views/drivers/index.html.erb:11
+  Rendered drivers/index.html.erb within layouts/application (21.4ms)
+Completed 200 OK in 56ms (Views: 45.2ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/passengers" for ::1 at 2019-10-08 22:07:39 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.7ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers"[0m
+  ↳ app/views/passengers/index.html.erb:16
+  Rendered passengers/index.html.erb within layouts/application (28.9ms)
+Completed 200 OK in 57ms (Views: 49.4ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/passengers/9000" for ::1 at 2019-10-08 22:07:45 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"9000"}
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", 9000], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:24
+Redirected to http://localhost:3000/homepages/nope
+Completed 302 Found in 5ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/homepages/nope" for ::1 at 2019-10-08 22:07:45 -0700
+Processing by HomepagesController#nope as HTML
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 33ms (Views: 30.7ms | ActiveRecord: 0.0ms)
+
+

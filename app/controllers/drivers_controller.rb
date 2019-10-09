@@ -44,7 +44,7 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: params[:id])
 
     if @driver.nil?
-      redirect_to root_path
+      redirect_to nope_path
       return
     elsif @driver.update(driver_params)
       redirect_to driver_path(@driver.id)

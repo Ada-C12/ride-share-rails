@@ -108,18 +108,10 @@ describe DriversController do
       must_redirect_to driver_path(updated_driver.id)
     end
 
-    # it "does not update any driver if given an invalid id, and responds with a 404" do
-    #   # Arrange
-    #   # Ensure there is an invalid id that points to no driver
-    #   # Set up the form data
-
-    #   # Act-Assert
-    #   # Ensure that there is no change in Driver.count
-
-    #   # Assert
-    #   # Check that the controller gave back a 404
-
-    # end
+    it "does not update any driver if given an invalid id, and responds with a 404" do
+      patch driver_path(5000)
+      must_redirect_to nope_path
+    end
 
     # it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
     #   # Note: This will not pass until ActiveRecord Validations lesson
