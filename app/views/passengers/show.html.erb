@@ -15,9 +15,11 @@
     <% else %>
       <h3>Passenger Trips: </h3>
       <h4>Driver(s)</h4>
-      <% @passenger.trips.each do |trip| %>
-        <%= trip.driver.name %><br>
-      <% end %>
+      <ul>
+        <% @passenger.trips.each do |trip| %>
+          <li><%= link_to trip.driver.name, trip_path(trip.id)%></li>
+        <% end %>
+      </ul>
     <% end %>
   </section>
 

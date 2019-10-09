@@ -1,0 +1,37 @@
+<h1>Trip# <%= @trip.id %></h1>
+
+<ul class="trip-header">
+    <li>
+      Date
+    </li>
+    <li>
+      Driver
+    </li>
+    <li>
+      Passenger
+    </li>
+    <li>
+      Cost
+    </li>
+    <li>
+      Rating
+    </li>
+</ul>
+
+<ul class="trip-details">
+    <li>
+      <%= @trip.date %>
+    </li>
+    <li>
+      <%= @trip.driver.name %>
+    </li>
+    <li>
+      <%= @trip.passenger.name %>
+    </li>
+    <li>
+      <%= @trip.cost %>
+    </li>
+    <li>
+      <%= @trip.rating %>
+    </li>
+</ul>
