@@ -1,6 +1,6 @@
 <h1>List of Trips</h1>
 
-<%= link_to "Create a new trip", passengers_path %>
+<%= link_to "Create a new trip", passenger_trips_path(params[:passenger_id]), method: :post %>
 
 <ul>
   <% @trips.each do |trip| %>

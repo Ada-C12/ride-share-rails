@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   # get "/drivers/:id/edit", to: "drivers#edit", as: :edit_driver
 
   resources :passengers do
-    resources :trips, only: [:create]
+    resources :trips, only: [:index, :create]
   end
+
+  resources :trips, except: [:create, :new]
 
   # get "/passengers", to: "passengers#index", as: :passengers
   # post "/passengers", to: "passengers#create"
@@ -22,5 +24,5 @@ Rails.application.routes.draw do
   # delete "/passengers/:id", to: "passengers#destroy"
   # get "/passengers/:id/edit", to: "passengers#edit", as: :edit_passenger
 
-  get "/trips", to: "trips#index", as: :trips
+  # get "/trips", to: "trips#index", as: :trips
 end
