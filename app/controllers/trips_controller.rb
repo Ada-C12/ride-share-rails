@@ -17,8 +17,8 @@ class TripsController < ApplicationController
     if params[:passenger_id]
       # this is the nested route
       #  passengers/:passenger_id/trips/new
-      passenger = Passenger.find_by(id: params[:passenger_id])
-      @trip = passenger.trips.new
+      @passenger = Passenger.find_by(id: params[:passenger_id])
+      @trip = @passenger.trips.new
     else
       # this is the regular route
       # trips/new
@@ -33,19 +33,20 @@ class TripsController < ApplicationController
   
   # POST /trips
   # POST /trips.json
-  def create
-    @trip = Trip.new(trip_params)
-    
-    respond_to do |format|
-      if @trip.save
-        format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
-        format.json { render :show, status: :created, location: @trip }
-      else
-        format.html { render :new }
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def create
+  #   @passenger 
+  
+  #   @trip = Trip.new(trip_params)
+  
+  #   respond_to do |format|
+  #     if @trip.save
+  #       format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @trip.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
   
   # PATCH/PUT /trips/1
   # PATCH/PUT /trips/1.json
@@ -72,12 +73,11 @@ class TripsController < ApplicationController
   end
   
   private
-  # Use callbacks to share common setup or constraints between actions.
+  
   def set_trip
     @trip = Trip.find(params[:id])
   end
   
-  # Never trust parameters from the scary internet, only allow the white list through.
   def trip_params
     params.require(:trip).permit(:driver_id, :passenger_id, :date, :rating, :cost)
   end

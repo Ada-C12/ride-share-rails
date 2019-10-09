@@ -30,4 +30,9 @@ class Driver < ApplicationRecord
     return average_rating
   end
   
+  def self.find_available_driver
+    driver = Driver.find_by(active: true)
+    return driver.id
+  end
+  
 end

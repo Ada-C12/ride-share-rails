@@ -62,6 +62,32 @@ class PassengersController < ApplicationController
     end
   end
   
+  def create_new_trip
+    @passenger = Passenger.find(params[:id])
+    
+    trip_info = {
+      trip: {   
+        driver_id: Driver.find_available_driver,
+        passenger_id: @passenger.id,
+        date: Time.now,
+        rating: nil,
+        cost: 100,}
+      }
+      new_trip = Trip.new(trip_info[:trip])
+      # set the status of the driver as true 
+      # then save the trip
+      new_trip.save
+      p new_trip.errors 
+      
+      if new_trip.save == true
+        flash[:success] = "Trip successfully created." 
+      else 
+        flash[:error] = "Uh Oh! Something went wrong."
+      end
+
+      redirect_to passenger_path(@passenger)
+  end
+  
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_passenger
