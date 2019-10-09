@@ -2,39 +2,36 @@ require "test_helper"
 
 describe Driver do
   let (:new_driver) {
-    Driver.new(name: "Kari", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+    Driver.new(name: "Kari", vin: "123", active: true)
   }
   
-  # it "can be instantiated" do
-  #   # Assert
-  #   expect(new_driver.valid?).must_equal true
-  #   expect(new_driver).must_be_instance_of Driver
-  # end
+  it "can be instantiated" do
+    expect(new_driver.valid?).must_equal true
+    expect(new_driver).must_be_instance_of Driver
+  end
   
-  # it "will have the required fields" do
-  #   # Arrange
-  #   new_driver.save
-  #   driver = Driver.first
-  #   [:name, :vin, :active, :car_make, :car_model].each do |field|
+  it "will have the required fields" do
+    new_driver.save
+    driver = Driver.first
+    [:name, :vin, :active].each do |field|
       
-  #     # Assert
-  #     expect(driver).must_respond_to field
-  #   end
-  # end
+      expect(driver).must_respond_to field
+    end
+  end
   
-  # describe "relationships" do
-  #   it "can have many trips" do
-  #     # Arrange
-  #     new_driver.save
-  #     driver = Driver.first
+  describe "relationships" do
+    it "can have many trips" do
+      # Arrange
+      new_driver.save
+      driver = Driver.first
       
-  #     # Assert
-  #     expect(driver.trips.count).must_be :>=, 0
-  #     driver.trips.each do |trip|
-  #       expect(trip).must_be_instance_of Trip
-  #     end
-  #   end
-  # end
+      # Assert
+      expect(driver.trips.count).must_be :>=, 0
+      driver.trips.each do |trip|
+        expect(trip).must_be_instance_of Trip
+      end
+    end
+  end
   
   # describe "validations" do
   #   it "must have a name" do

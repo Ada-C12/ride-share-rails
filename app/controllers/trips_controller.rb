@@ -20,13 +20,7 @@ class TripsController < ApplicationController
   end 
   
   def create
-<<<<<<< HEAD
     @trip = Trip.new(trip_params)
-
-=======
-    @driver = Trip.new(trip_params)
-    
->>>>>>> ee162b2d24c9c80deef8c758791c3f983f868872
     if @trip.save
       redirect_to trip_path(@trip.id)
     else
