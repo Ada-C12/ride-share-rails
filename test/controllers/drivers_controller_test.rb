@@ -74,27 +74,55 @@ describe DriversController do
     it "can create a new driver with valid information accurately, and redirect" do
       # Arrange
       # Set up the form data
+      new_driver_params = { driver: {
+        name: "Saint Goodname", 
+        vin: "validvin023"}
+      }
 
       # Act-Assert
       # Ensure that there is a change of 1 in Driver.count
+      expect{post drivers_path, params: new_driver_params}.must_differ "Driver.count", 1
 
       # Assert
       # Find the newly created Driver, and check that all its attributes match what was given in the form data
+      new_driver = Driver.find_by(name: new_driver_params[:driver][:name])
+      expect(new_driver.vin).must_equal new_driver_params[:driver][:vin]
+
       # Check that the controller redirected the user
+      must_redirect_to driver_path(new_driver.id)
 
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not create a driver if the form data violates Driver validations, and responds by re-rendering the new view and setting status to 422"
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
+      bad_new_driver_params = [
+        {
+          driver: {
+            name: "Name ButNoVIN", 
+            vin: ""
+          }
+        },
+        {
+          driver: {
+            name: "",
+            vin: "VIN ButNoName"
+          }
+        }
+      ]
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
+      bad_new_driver_params.each do |bad_params|
+        puts bad_params
+        expect{post drivers_path, params: bad_params}.must_differ "Driver.count", 0
+      end
 
       # Assert
-      # Check that the controller redirects
-
+      # Check that the controller re-renders the new view and sets status to ::unprocessable_entity
+      assert_response :unprocessable_entity
+      
     end
   end
   

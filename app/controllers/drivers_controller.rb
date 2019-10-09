@@ -15,4 +15,21 @@ class DriversController < ApplicationController
   def new
     @driver = Driver.new
   end
+
+  def create
+    @driver = Driver.create(driver_params)
+    if @driver.id?
+      redirect_to driver_path(@driver.id)
+    else
+      render new_driver_path, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def driver_params
+    return params.require(:driver).permit(:name, :vin)
+  end
+
+
 end
