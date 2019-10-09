@@ -65,6 +65,33 @@ class DriversController < ApplicationController
     end
   end
   
+  def toggle_status
+    driver_id = params[:id]
+    @driver= Driver.find_by(id: driver_id)
+    if @driver.active == true
+      @driver.active = false
+    elsif @driver.active == false
+      @driver.active = true
+    end
+    @driver.save
+    redirect_to drivers_path
+  end 
+  
+  # def active
+  #   if @driver.update_attribute(:active, true)
+  #     flash[:success] = "Driver has successfully set as active!" 
+  #   else 
+  #     flash[:error] = "Uh Oh! Something went wrong."
+  #   end
+  
+  #   redirect_to driver_path(@driver)
+  # end
+  
+  # def inactive
+  #   if 
+  
+  # end 
+  
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_driver

@@ -30,5 +30,4 @@ class Driver < ApplicationRecord
     return average_rating
   end
   
-  
 end

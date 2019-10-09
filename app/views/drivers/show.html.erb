@@ -14,9 +14,9 @@
 <p>
   <strong>Status:</strong>
   <% if @driver.active == true %>
-    <%= "Available" %>
+    <%= "Active" %>
   <% else %>
-    <%= "NOT Available" %>
+    <%= "Inactive" %>
   <% end %>
 </p>
 
@@ -33,7 +33,7 @@
 <p>
   <strong>My trips:</strong>
   <% @driver.find_driver_trips.each do |trip| %>
-    <%= link_to 'Trip', trip_path %>
+    <%= link_to trip.id, trip_path %>
   <% end%>
 </p>
 
@@ -46,6 +46,8 @@
   <strong>Average Rating</strong>
   <%= @driver.calculate_average_rating%>
 </p>
+
+
 
 <%= link_to 'Edit', edit_driver_path(@driver) %> 
 <%= link_to 'Back to Drivers', drivers_path %>
