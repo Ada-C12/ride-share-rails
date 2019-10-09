@@ -1,7 +1,12 @@
 class TripsController < ApplicationController
   
   def index
-    @trips = Trip.all
+    if params[:passnger_id]
+      passenger = Passenger.find_by(id: params[:passenger_id])
+      @trips = passenger.trips
+    else
+      @trips = Trip.all
+    end
   end
 
   def show
@@ -13,6 +18,41 @@ class TripsController < ApplicationController
       return
     end
   end
+
+  def create
+    passenger = Passenger.find_by(id: params[:passenger_id])
+    trip_hash = {
+    passenger_id: passenger.id,
+    driver_id: 5, #model method that chooses driver that is available
+    date: Date.current,
+    rating: nil,
+    cost: 0
+    }
+    @trip = Trip.new(trip_hash)
+
+    if @trip.save
+      redirect_to passenger_path(id: params[:passenger_id] )
+      return
+    else
+      render :new
+    end
+    
+
+  end
+
+  # def new
+  #   if params[:passnger_id]
+  #     passenger = Passenger.find_by(id: params[:passenger_id])
+  #     driver_id = #model method that chooses driver that is available
+
+  #     @trip = passenger.trips.new()
+
+  #     redirect_to passenger_path
+  #     return
+  #   else
+  #     @trip = Trip.new
+  #   end
+  # end
 
   def edit
     trip_id = params[:id]
