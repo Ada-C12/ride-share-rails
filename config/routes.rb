@@ -7,8 +7,12 @@ Rails.application.routes.draw do
   patch '/drivers/:id/toggle', to: 'drivers#toggle_active', as: 'toggle_active'
   resources :drivers
   
-  # get '/passengers/:id/request', to: 'passengers#request_trip', as: 'request_trip'
   resources :passengers
+  
+  resources :passengers do
+    resources :trips, only: [:create]
+  end
+  # => passenger_trips POST   /passengers/:passenger_id/trips(.:format)   trips#create
   
   
   resources :trips, except: [:index, :new]

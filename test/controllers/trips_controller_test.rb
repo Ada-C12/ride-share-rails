@@ -28,6 +28,7 @@ describe TripsController do
       # Arrange
       driver = Driver.create(name: "Bernardo Prosacco", vin: "WBWSS52P9NEYLVDE9")
       passenger = Passenger.create(name: "test person", phone_num: "1234567")
+      passenger_id = passenger.id
       
       # Set up the form data
       data_hash = {
@@ -36,14 +37,15 @@ describe TripsController do
           rating: 2,
           cost: 1000,
           driver_id: driver.id,
-          passenger_id: passenger.id,
+          passenger_id: passenger_id,
         }
       }
       
       # Act-Assert
       # Ensure that there is a change of 1 in Trip.count
       expect {
-        post trips_path, params: data_hash
+        post passenger_trips_path(passenger_id), params: data_hash
+        # post trips_path, params: data_hash
       }.must_change 'Trip.count', 1
       
       # Assert
@@ -62,13 +64,17 @@ describe TripsController do
     it "does not create a trip if the form data violates Trip validations, and responds with a redirect" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
+      passenger = Passenger.create(name: "test person", phone_num: "1234567")
+      passenger_id = passenger.id
+      
       # Set up the form data so that it violates Trip validations
       data_hash = {}
       
       # Act-Assert
       # Ensure that there is no change in Trip.count
       expect {
-        post trips_path, params: data_hash
+        post passenger_trips_path(passenger_id), params: data_hash
+        # post trips_path, params: data_hash
       }.wont_change 'Trip.count'
       
       # Assert
