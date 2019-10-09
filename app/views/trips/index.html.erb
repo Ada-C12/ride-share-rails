@@ -1,5 +1,5 @@
 <h1>TRIPS index</h1>
 
 <% @trips.each do |trip| %>
-<%= trip.id%>: <%= trip.date%><br>
+<%= trip.id%>: <%= link_to trip.date, trip_path(trip.id)%><br>
 <%end %>

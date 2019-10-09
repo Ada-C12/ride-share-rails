@@ -1,0 +1,11 @@
+<header class="show-header">
+  <h1>Trip date: <%=@trip.date%></h1>
+  <h2></h2>
+</header>
+
+<section class="show-details">
+  <p>Rating: <%= @trip.rating %></p>
+  <p>Cost: <%= @trip.cost %></p>
+  <p>Driver ID: <%= link_to @trip.driver_id, driver_path(@trip.driver_id) %></p>
+  <p>Passenger ID: <%= link_to @trip.passenger_id, passenger_path(@trip.passenger_id) %></p>
+</section>

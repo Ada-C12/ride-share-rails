@@ -16,11 +16,7 @@ class DriversController < ApplicationController
       return
     end
   end 
-
-  def new
-    @driver = Driver.new
-  end 
-
+  
   def create
     @driver = Driver.new(driver_params)
 

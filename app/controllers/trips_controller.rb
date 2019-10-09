@@ -23,7 +23,7 @@ class TripsController < ApplicationController
   end 
 
   def create
-    @driver = Trip.new(trip_params)
+    @trip = Trip.new(trip_params)
 
     if @trip.save
       redirect_to trip_path(@trip.id)
