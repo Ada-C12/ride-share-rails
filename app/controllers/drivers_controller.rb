@@ -46,7 +46,7 @@ class DriversController < ApplicationController
     if @driver.save
       redirect_to driver_path(@driver.id)
     else
-      render new_driver_path
+      redirect_to new_driver_path
     end
   end
 
@@ -65,6 +65,6 @@ class DriversController < ApplicationController
   private
 
   def driver_params
-    return params.require(:driver).permit(:name, :vin)
+    return params.require(:driver).permit(:name, :vin, :active, :car_make, :car_model)
   end
 end

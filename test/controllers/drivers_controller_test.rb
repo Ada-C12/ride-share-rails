@@ -77,9 +77,9 @@ describe DriversController do
       # Check that the controller redirected the user
       new_driver = Driver.find_by(name: driver_hash[:driver][:name])
       expect(new_driver.vin).must_equal driver_hash[:driver][:vin]
-      # *****LOOK*****
-      # expect(new_driver.car_make).must_equal driver_hash[:driver][:car_make]
-      # expect(new_driver.car_model).must_equal driver_hash[:driver][:car_model]
+      expect(new_driver.active).must_equal driver_hash[:driver][:active]
+      expect(new_driver.car_make).must_equal driver_hash[:driver][:car_make]
+      expect(new_driver.car_model).must_equal driver_hash[:driver][:car_model]
       
       must_respond_with :redirect
       must_redirect_to driver_path(new_driver.id)
@@ -165,6 +165,10 @@ describe DriversController do
       updated_driver = Driver.find_by(id: id)
       expect(updated_driver.name).must_equal "new driver"
       expect(updated_driver.vin).must_equal "VH1234SD234F0909"
+      expect(updated_driver.active).must_equal true
+      expect(updated_driver.car_make).must_equal "Toyota"
+      expect(updated_driver.car_model).must_equal "Sedan"
+
       must_respond_with :redirect
     end
     
@@ -191,13 +195,24 @@ describe DriversController do
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
       # Set up the form data so that it violates Driver validations
-      
+      invalid_updated_driver_hash = {
+        driver: {
+          name: "",
+          vin: "VH1",
+          active: true,
+          car_make: "Toyota",
+          car_model: "Sedan"
+        },
+      }
+      id = Driver.first.id
       # Act-Assert
       # Ensure that there is no change in Driver.count
-      
+      expect {
+        patch driver_path(id), params: invalid_updated_driver_hash
+      }.must_differ "Driver.count", 0
       # Assert
       # Check that the controller redirects
-      
+      must_respond_with :redirect
     end
   end
   
@@ -205,25 +220,35 @@ describe DriversController do
     it "destroys the driver instance in db when driver exists, then redirects" do
       # Arrange
       # Ensure there is an existing driver saved
+      Driver.create(name: "sample driver", vin: "VH1234SD234F0909", active: true, car_make: "Fiat", car_model: "POP")
+      existing_driver_id = Driver.find_by(name: "sample driver").id
       
       # Act-Assert
       # Ensure that there is a change of -1 in Driver.count
-      
+      expect {
+        delete driver_path( existing_driver_id )
+      }.must_differ "Driver.count", -1
+
       # Assert
       # Check that the controller redirects
-      
+      must_redirect_to drivers_path
+
     end
     
-    it "does not change the db when the driver does not exist, then responds with " do
+    it "does not change the db when the driver does not exist, then responds with redirect" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
-      
+      Driver.destroy_all
+      invalid_driver_id = 1
       # Act-Assert
       # Ensure that there is no change in Driver.count
-      
+      expect {
+        delete driver_path( invalid_driver_id )
+      }.must_differ "Driver.count", 0
       # Assert
       # Check that the controller responds or redirects with whatever your group decides
-      
+      must_redirect_to drivers_path
+
     end
   end
 end
