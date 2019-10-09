@@ -61,12 +61,15 @@ describe Passenger do
   # Tests for methods you create should go here
   describe "custom methods" do
     describe "request a ride" do
-      # Your code here
+      
+      
     end
 
-    describe "complete trip" do
-      # Your code here
+    describe "total charged method" do
+
+
     end
-    # You may have additional methods to test here
   end
+
+ 
 end
