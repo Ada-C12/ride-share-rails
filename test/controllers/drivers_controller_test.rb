@@ -230,7 +230,7 @@ describe DriversController do
       must_redirect_to drivers_path
     end
 
-    it "does not change the db when the driver does not exist, then responds with " do
+    it "does not change the db when the driver does not exist, then responds with redirect" do
       invalid_id = -1
       expect (Driver.count).must_equal 1
       assert_nil (Driver.find_by(id: invalid_id))
