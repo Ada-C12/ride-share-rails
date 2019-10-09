@@ -2,30 +2,119 @@ require "test_helper"
 
 describe PassengersController do
   describe "index" do
-    # Your tests go here
+    
+    it "gives back a successful response" do
+      
+      get passengers_path
+      must_respond_with :success
+      
+    end
+    
   end
-
+  
   describe "show" do
-    # Your tests go here
+    
+    it 'responds with a success when id given exists' do
+      
+      valid_passenger = Passenger.create(name: "Ada Lovelace", phone_num: "503-569-9987")
+      
+      get passenger_path(valid_passenger.id)
+      must_respond_with :success
+      
+    end
+    
+    it 'responds with a not_found when id given does not exist' do
+      
+      get passenger_path("5000")
+      must_respond_with :not_found
+      
+    end
+    
   end
-
+  
   describe "new" do
-    # Your tests go here
+    it "gives back a successful response" do
+      
+      get new_passenger_path
+      must_respond_with :success
+      
+    end
   end
-
+  
   describe "create" do
-    # Your tests go here
+    
+    it 'creates a new passenger successfully with valid data, and redirects the user to the passenger page' do
+      
+      passenger_hash = {
+        passenger: {
+          name: "Ada Lovelace",
+          phone_num: "503-569-9987"
+        }
+      }
+      
+      expect {
+        post passengers_path, params: passenger_hash
+      }.must_differ 'Passenger.count', 1
+      
+      must_redirect_to passengers_path
+    end
+    
   end
-
+  
   describe "edit" do
-    # Your tests go here
+    it "gives back a successful response" do
+      
+      get new_passenger_path
+      must_respond_with :success
+      
+    end
   end
-
+  
   describe "update" do
-    # Your tests go here
+    before do
+      @valid_passenger = Passenger.create(name: "Ada Lovelace", phone_num: "503-569-9987")
+    end
+    
+    it "updates an existing passenger successfully and redirects to home" do
+      
+      existing_passenger = Passenger.first
+      
+      updated_passenger_hash = {
+        passenger: {
+          name: "Bill Gates",
+          phone_num: "541-569-9987"
+        }
+      }
+      
+      expect {
+        patch passenger_path(existing_passenger.id), params: updated_passenger_hash
+      }.wont_change 'Passenger.count'
+      
+      # Assert
+      expect( Passenger.find_by(id: existing_passenger.id).name ).must_equal "Bill Gates"
+      expect( Passenger.find_by(id: existing_passenger.id).phone_num ).must_equal "541-569-9987"
+    end
   end
-
+  
   describe "destroy" do
-    # Your tests go here
+    
+    it 'deletes a new passenger successfully with valid data, and redirects the user to the passengers page' do
+      
+      passenger_hash = {
+        passenger: {
+          name: "Ada Lovelace",
+          phone_num: "503-569-9987"
+        }
+      }
+      
+      post passengers_path, params: passenger_hash
+      identifier = Passenger.find_by(name: "Ada Lovelace")
+      
+      expect {
+        delete passenger_path(identifier.id)
+      }.must_differ 'Passenger.count', -1
+      
+      must_redirect_to passengers_path
+    end
   end
 end
