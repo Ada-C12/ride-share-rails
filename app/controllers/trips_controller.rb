@@ -6,7 +6,7 @@ class TripsController < ApplicationController
   
   def new 
     # coming from Passengers/:id, clicking request trip button
-    
+    @passenger = Passenger.find_by(id: params[:passenger_id])
     @trip = Trip.new()
   end
   
