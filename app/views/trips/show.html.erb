@@ -1,0 +1,21 @@
+<h1> Trip Id: <%= @trip.id %> </h1>
+
+<h2> Information: </h2>
+ <ul>
+  <li> 
+   Passenger: <%= link_to (Passenger.find_by(id: @trip.passenger_id)).name, passenger_path(Passenger.find_by(id: @trip.passenger_id)) %>
+  </li>
+
+  <li> 
+   Driver: <%= link_to (Driver.find_by(id: @trip.driver_id)).name, driver_path(Driver.find_by(id: @trip.driver_id)) %>
+  </li>
+  <li></li>
+ </ul>
+
+ <h2> Options: </h2>
+ <ul>
+  <li> <%= link_to "edit", edit_trip_path(@trip.id) %> </li>
+  <li> <%= link_to "delete", trip_path(@trip.id), method: :delete %> </li>
+ </ul>
+
+
