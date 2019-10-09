@@ -7,6 +7,34 @@ class TripsController < ApplicationController
   def show
     trip_id = params[:id]
     @trip = Trip.find_by(id: trip_id)
+
+    if @trip.nil?
+      head :not_found
+      return
+    end
+  end
+
+  def edit
+    trip_id = params[:id]
+    @trip = Trip.find_by(id: trip_id)
+
+    if @trip.nil?
+      head :not_found
+      return
+    end
+  end
+
+  def update
+    trip_id = params[:id]
+    @trip = Trip.find_by(id: trip_id)
+
+    if @trip.update(trip_params)
+      redirect_to trip_path
+      return
+    else
+      render :edit
+      return
+    end
   end
 
   private
