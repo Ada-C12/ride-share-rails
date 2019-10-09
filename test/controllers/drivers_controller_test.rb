@@ -147,46 +147,71 @@ describe DriversController do
 
   describe "update" do
     it "can update an existing driver with valid information accurately, and redirect" do
-      # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      # Set up the form data
+      new_driver = Driver.create(
+        name: "Margot", 
+        vin: "2357", 
+        active: true,
+        car_make: "BMW", 
+        car_model: ""
+      )
+      new_driver_id = new_driver.id
+      p new_driver_id
 
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      updated_driver_data = {
+        driver: {
+          name: "Margot", 
+          vin: "2357", 
+          active: true,
+          car_make: "Tesla", 
+          car_model: ""
+        },
+      }
 
-      # Assert
-      # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
-      # Check that the controller redirected the user
+      expect {
+        patch driver_path(new_driver_id), params: updated_driver_data
+      }.must_differ "Driver.count", 0
 
+      expect(Driver.find_by(id: new_driver_id).car_make).must_equal updated_driver_data[:driver][:car_make]
+      must_respond_with :redirect
+      must_redirect_to driver_path(new_driver_id)
     end
 
     it "does not update any driver if given an invalid id, and responds with a 404" do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
-      # Set up the form data
+      updated_driver_data = {
+        driver: {
+          name: "Margot", 
+          vin: "2357", 
+          active: true,
+          car_make: "Tesla", 
+          car_model: ""
+        },
+      }
 
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      expect {
+        patch driver_path(-1), params: updated_driver_data
+      }.must_differ "Driver.count", 0
 
-      # Assert
-      # Check that the controller gave back a 404
-
+      must_respond_with :not_found
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      # Set up the form data so that it violates Driver validations
+      driver_id = @driver.id
+      updated_driver_data = {
+        driver: {
+          name: "", 
+          vin: "", 
+          active: true,
+          car_make: "", 
+          car_model: ""
+        },
+      }
 
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      expect {
+        patch driver_path(driver_id), params: updated_driver_data
+      }.must_differ "Driver.count", 0
 
-      # Assert
-      # Check that the controller redirects
-
+      must_respond_with :redirect
+      must_redirect_to edit_driver_path
     end
   end
 
