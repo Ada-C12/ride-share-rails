@@ -1,7 +1,3 @@
 class Driver < ApplicationRecord
-  
-  def change
-    remove_column :books, :author
-  end
-  
+  has_many :trips
 end
