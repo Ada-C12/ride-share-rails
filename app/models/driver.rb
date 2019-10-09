@@ -75,7 +75,7 @@ class Driver < ApplicationRecord
     available_driver = Driver.where(active: false)
     
     if available_driver
-      toggle_active(available_driver.id)
+      available_driver.go_offline
       return available_driver
     else
       return nil
