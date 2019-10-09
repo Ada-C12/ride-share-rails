@@ -68,15 +68,20 @@ describe PassengersController do
     end
     
     it "does not create a passenger if the form data violates Passenger validations, and responds with a render of new passenger page" do
-      new_passenger = Passenger.create(name: "", phone_num: "")
+      assert Passenger.create(name: "", phone_num: "").valid? == false
       
       expect(Passenger.count).must_equal 0
       
-      expect(new_passenger.valid?).must_equal false
+      passenger_hash = {
+        passenger: {
+          name: "",
+          phone_num: "new number"
+        }
+      }
       
+      post passengers_path, params: passenger_hash
+      must_respond_with :success      
       
-      # # Assert
-      # # Check that the controller redirects
       # must_redirect_with :render
     end
   end
@@ -120,7 +125,7 @@ describe PassengersController do
       must_respond_with :redirect
       must_redirect_to passenger_path
     end
-
+    
     it "does not update any passenger if given an invalid id, and responds with a 404" do
       passenger_hash = { 
         passenger: { 
@@ -143,23 +148,20 @@ describe PassengersController do
           phone_num: "Updated number"
         }
       }
-
+      
       passenger_to_update = passenger
-
+      
       expect {
         patch passenger_path(passenger_to_update.id), params: passenger_hash
       }.must_differ "Passenger.count", 0
-
+      
+      must_respond_with :success
+      
       validity = passenger_to_update.update(name: "", phone_num: "Updated number")
-
+      
       expect(validity).must_equal false
       
-      # # Assert
-      # # Check that the controller redirects
       # must_redirect_with :render
-      # Note: This will not pass until ActiveRecord Validations lesson
-
-      
     end
   end
   
@@ -170,7 +172,7 @@ describe PassengersController do
       expect {
         delete passenger_path(id_to_delete)
       }.must_differ "Passenger.count", -1
-
+      
       removed_passenger = Passenger.find_by(id: passenger.id)
       removed_passenger.must_be_nil
       
@@ -187,7 +189,7 @@ describe PassengersController do
       
       must_redirect_to passengers_path
     end
-
+    
     it "will redirect to passenger index page if passenger was already deleted" do
       id_to_delete = passenger.id
       Passenger.destroy_all

@@ -70,16 +70,19 @@ describe DriversController do
     end
     
     it "does not create a driver if the form data violates Driver validations, and responds with a render of new driver page" do
-      new_driver = Driver.create(name: "", vin: "new vin")
+      assert Driver.create(name: "", vin: "new vin").valid? == false
       
       expect(Driver.count).must_equal 0
       
-      expect(new_driver.valid?).must_equal false
+      driver_hash = {
+        driver: {
+          name: "",
+          vin: "new vin"
+        }
+      }
       
-      # # Assert
-      # # Check that the controller redirects
-      # must_respond_with :success
-      
+      post drivers_path, params: driver_hash
+      must_respond_with :success
     end
   end
   
@@ -107,7 +110,7 @@ describe DriversController do
           vin: "Updated vin"
         }
       }
-
+      
       driver_to_update = driver
       
       expect {
@@ -145,25 +148,20 @@ describe DriversController do
           vin: "Updated vin"
         }
       }
-
+      
       driver_to_update = driver
-
+      
       expect {
         patch driver_path(driver_to_update.id), params: driver_hash
       }.must_differ "Driver.count", 0
-
+      
+      must_respond_with :success
+      
       validity = driver_to_update.update(name: "", vin: "updated vin")
-
+      
       expect(validity).must_equal false
       
-  
-      
-      # # Assert
-      # # Check that the controller redirects
       # must_redirect_with :render
-      # Note: This will not pass until ActiveRecord Validations lesson
-
-      
     end
   end
   
@@ -174,7 +172,7 @@ describe DriversController do
       expect {
         delete driver_path(id_to_delete)
       }.must_differ "Driver.count", -1
-
+      
       removed_driver = Driver.find_by(id: driver.id)
       removed_driver.must_be_nil
       
@@ -191,7 +189,7 @@ describe DriversController do
       
       must_redirect_to drivers_path
     end
-
+    
     it "will redirect to driver index page if driver was already deleted" do
       id_to_delete = driver.id
       Driver.destroy_all
