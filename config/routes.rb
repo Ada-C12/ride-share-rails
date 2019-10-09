@@ -8,6 +8,6 @@ Rails.application.routes.draw do
     resources :trips, only: [:index, :new]
   end
   # add except: [:index, :new] since those actions not needed in app?
-  resources :trips
+  resources :trips, except: :delete
 
 end

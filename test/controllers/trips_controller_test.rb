@@ -2,12 +2,12 @@ require "test_helper"
 
 describe TripsController do
   before do
-    passenger = Passenger.create(
+    @passenger = Passenger.create(
       name: "Jane",
       phone_num: "8675309"
     )
 
-    driver = Driver.create(
+    @driver = Driver.create(
       name: "Sarah",
       vin: "848485859",
       car_make: "Ford",
@@ -19,8 +19,8 @@ describe TripsController do
       date: "10-09-2019",
       rating: 3,
       cost: 20.40,
-      passenger_id: passenger.id,
-      driver_id: driver.id
+      passenger_id: @passenger.id,
+      driver_id: @driver.id
     )
   end
 
@@ -41,6 +41,72 @@ describe TripsController do
   end
 
   describe "create" do
+    it "can create a new trip with valid information accurately, and redirect" do
+      trip_hash = {
+        trip: {
+          date: "10-11-2019",
+          rating: 3,
+          cost: 10.40,
+          passenger_id: @passenger.id,
+          driver_id: @driver.id
+        },
+      }
+
+      expect {
+        post trips_path, params: trip_hash
+      }.must_change "Trip.count", 1
+
+      must_respond_with :redirect
+      # redirect to somewhere else?
+      must_redirect_to passenger_path(@passenger.id)
+    end
+
+    it "does not create a trip if the form data violates Trip validations, and responds with a redirect" do
+      invalid_trip_hashes = [
+        {
+          trip: {
+            date: "",
+            rating: 7,
+            cost: 10.40,
+            passenger_id: @passenger.id,
+            driver_id: @driver.id
+          },
+        },
+        {
+          trip: {
+            date: "10-04-2019",
+            rating: 7,
+            cost: 10.40,
+            passenger_id: @passenger.id,
+            driver_id: nil
+          },
+        },
+        {
+          trip: {
+            date: nil,
+            rating: nil,
+            cost: nil,
+            passenger_id: @passenger.id,
+            driver_id: nil
+          },
+        },
+        {
+          trip: {
+            passenger_id: @passenger.id,
+            driver_id: @driver.id
+          },
+        }
+      ]
+
+      invalid_trip_hashes.each do |trip_data|
+        expect {
+          post trips_path, params: trip_data
+        }.must_differ "Trip.count", 0
+      end
+
+      must_respond_with :redirect
+      must_redirect_to new_passenger_trip_path(@passenger.id)
+    end
 
   end
 
