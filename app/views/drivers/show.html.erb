@@ -6,6 +6,14 @@ Car Model: <%= @driver.car_model %><br>
 VIN: <%= @driver.vin %><br>
 Status: <%= @driver.active %><br>
 
-<%= link_to "Edit", edit_driver_path %><br>
+<h2>Trips</h2>
+
+<% @driver.trips.each do |trip| %>
+<li>
+<%= link_to trip.date, trip_path(trip) %>
+<% end %>
+
+<br><br>
+<%= link_to "Edit", edit_driver_path %>
 <%= link_to "Delete", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure you want to delete this driver?"} %><br>
 
