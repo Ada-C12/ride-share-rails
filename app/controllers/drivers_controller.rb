@@ -1,5 +1,7 @@
 class DriversController < ApplicationController
   
+  require 'pry'
+
   def index
     @drivers = Driver.all
   end
