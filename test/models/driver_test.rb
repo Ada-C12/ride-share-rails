@@ -245,13 +245,25 @@ describe Driver do
     
     # You may have additional methods to test
     describe "get driver" do
-      it "should select an inactive driver" do
-      end
-      
-      it "should set a selected driver's status to false" do
+      it "should select the first available driver" do
+        unavailable_driver = Driver.create(name: "I am unavailable", vin: "unavailable", active: false)
+        driver1 = Driver.create(name: "Bernardo Prosacco", vin: "WBWSS52P9NEYLVDE9", active: true)
+        driver2 = Driver.create(name: "available driver", vin: "13245", active: true)
+        
+        selected_driver = Driver.get_driver
+        
+        expect(selected_driver).must_be_instance_of Driver
+        expect(selected_driver.name).must_equal driver1.name
+        expect(selected_driver.vin).must_equal driver1.vin
+        expect(selected_driver.active).must_equal false
       end
       
       it "should return nil if there are no inactive drivers" do
+        unavailable_driver = Driver.create(name: "I am unavailable", vin: "unavailable", active: false)
+        
+        selected_driver = Driver.get_driver
+        
+        expect(selected_driver).must_be_nil
       end
     end
   end

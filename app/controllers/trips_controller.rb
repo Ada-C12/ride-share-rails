@@ -9,10 +9,14 @@ class TripsController < ApplicationController
   end
   
   def create   
-    # if params[:passenger_id] 
-    
     # call driver to get a driver
-    driver = Driver.all.first
+    driver = Driver.get_driver
+    
+    if driver == nil
+      flash[:notice] = "There are no available drivers."
+      redirect_to passenger_path(params[:passenger_id])
+      return
+    end
     
     date = DateTime.now
     
@@ -22,91 +26,50 @@ class TripsController < ApplicationController
     cost = rand(1000..9999).to_i
     
     data_hash = {
-      date: date,
-      driver_id: driver.id,
-      passenger_id: params[:passenger_id],
-      rating: nil,
-      cost: cost,
-    }
-    
-    @trip = Trip.new(data_hash)
-    # end
-    
-    if @trip.save
-      redirect_to passenger_path(@trip.passenger_id)
-      return
-    else
-      redirect_to root_path
-      return
-    end
-    
-    # elsif !(params[:trip].nil?)
-    #   @trip = Trip.new(trip_params)
-    
-    #   if @trip.save
-    #     redirect_to passenger_path(@trip.passenger_id)
-    #     return
-    #   end
-    # else
-    #   redirect_to root_path
-    #   return
-    # end
+    date: date,
+    driver_id: driver.id,
+    passenger_id: params[:passenger_id],
+    rating: nil,
+    cost: cost,
+  }
+  
+  @trip = Trip.new(data_hash)
+  
+  if @trip.save
+    redirect_to passenger_path(@trip.passenger_id)
+    return
+  else
+    redirect_to root_path
+    return
   end
+end
+
+def edit
   
-  # def request_trip
-  #   passenger_id = params[:id]
-  #   @passenger = Passenger.find_by(id: passenger_id)
+end
+
+def update
   
-  #   if @passenger.nil?
-  #     redirect_to passengers_path
-  #     return
-  #   end
+end
+
+def destroy
+  trip_id = params[:id].to_i
+  @trip = Trip.find_by(id: trip_id)
   
-  #   #call driver to get a driver
-  #   driver = Driver.all.first
-  #   date = DateTime.now
-  
-  #   trip_params = {
-  #     trip: {
-  #       date: date,
-  #       driver_id: driver.id,
-  #       passenger_id: passenger_id,
-  #       rating: nil,
-  #       cost: nil,
-  #     }
-  #   }
-  
-  #   redirect_to trips_path, params: trip_params
-  #   # redirect_to root_path
-  #   return
-  # end
-  
-  def edit
-    
+  if @trip.nil?
+    head :not_found
+    return
+  else
+    @trip.destroy
+    redirect_to root_path
+    return
   end
-  
-  def update
-    
-  end
-  
-  def destroy
-    trip_id = params[:id].to_i
-    @trip = Trip.find_by(id: trip_id)
-    
-    if @trip.nil?
-      head :not_found
-      return
-    else
-      @trip.destroy
-      redirect_to root_path
-      return
-    end
-  end
-  
-  private
-  
-  def trip_params
-    return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
-  end
-  
+end
+
+private
+
+def trip_params
+  return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
+end
+
 end

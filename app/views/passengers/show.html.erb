@@ -1,6 +1,10 @@
 <section>
   <h2>Passenger</h2>
 
+  <% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
+
   <% if @passenger.errors.any? %>
     <ul class="errors">
       <% @passenger.errors.each do |column, message| %>
