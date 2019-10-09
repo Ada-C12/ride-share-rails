@@ -115,29 +115,23 @@ describe DriversController do
   describe "edit" do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
-      mb = Driver.create name: "Meatball Jones", vin: 41225, active: true, car_make: "Honda", car_model: "Accord"
-      # Ensure there is an existing driver saved
-      @driver_hash_with_new_data = {
-        driver: {
-          name: "Spaghetti Jones",
-          vin: 41226, active: false, car_make: "Tesla", car_model: "Model 3"
-        }
-      }
+      #
+      # # Ensure there is an existing driver saved
+      #
+      get driver_path(5)
+      must_respond_with :success
       # Act
       expect {
         patch driver_path(mb.id), params: @driver_hash_with_new_data
       }.wont_change "Driver.count"
       must_respond_with :success
       # Assert
-      expect(mb.name).must_equal @driver_hash_with_new_data[:driver][:name]
-      expect(@mb.vin).must_equal @driver_hash_with_new_data[:driver][:vin]
-      expect(mb.active).must_equal @driver_hash_with_new_data[:driver][:active]
-      expect(mb.car_make).must_equal @driver_hash_with_new_data[:driver][:car_make]
-      expect(mb.car_model).must_equal @driver_hash_with_new_data[:driver][:car_model]
+
     end
 
     it "responds with redirect when getting the edit page for a non-existing driver" do
-      patch driver_path(9999), params: @driver_hash_with_new_data
+
+      get driver_path(9999), params: @driver_hash_with_new_data
       must_respond_with :redirect
     end
   end
@@ -146,32 +140,23 @@ describe DriversController do
     it "can update an existing driver with valid information accurately, and redirect" do
       # Arrange
       mb = Driver.create name: "Meatball Jones", vin: 41225, active: true, car_make: "Honda", car_model: "Accord"
-      driver_hash = {
-        driver: {
-          vin: "53246",
-          active: false,
-          car_make: "Toyota",
-          car_model: "Tacoma"
-        }
-      }
+      # driver_hash_with_new_data = {
+
       # Ensure there is an existing driver saved
-      if Driver.count != 1
-        puts "driver not saved"
-      end
+      # if Driver.count != 1
+      #   puts "driver not saved"
+      # end
       # Assign the existing driver's id to a local variable
       # Set up the form data
-      expect {patch driver_path(mb.id), params: driver_hash}.wont_change Driver.count
+      expect {patch driver_path(mb.id), params: @driver_hash_with_new_data}.wont_change Driver.count
+      expect(mb.name).must_equal @driver_hash_with_new_data[:driver][:name]
+      expect(@mb.vin).must_equal @driver_hash_with_new_data[:driver][:vin]
+      expect(mb.active).must_equal @driver_hash_with_new_data[:driver][:active]
+      expect(mb.car_make).must_equal @driver_hash_with_new_data[:driver][:car_make]
+      expect(mb.car_model).must_equal @driver_hash_with_new_data[:driver][:car_model]
+      must_respond_with :redirect
     end
   end
-
-  # Act-Assert
-  # Ensure that there is no change in Driver.count
-
-  # Assert
-  # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
-  # Check that the controller redirected the user
-
-
 
   it "does not update any driver if given an invalid id, and responds with a 404" do
     # Arrange
