@@ -23,7 +23,7 @@ class PassengersController < ApplicationController
     if @passenger.save
       redirect_to passenger_path(@passenger.id)
     else
-      render new_passenger_path
+      redirect_to new_passenger_path
     end
   end
   

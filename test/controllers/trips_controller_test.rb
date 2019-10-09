@@ -40,13 +40,7 @@ describe TripsController do
       valid_driver = Driver.create(name: "Jane Doe", vin: "12345678")
       valid_passenger = Passenger.create(name: "Bob Smith", phone_num: "7654321")
       
-      trip_hash = { 
-      trip: {
-      date: test_date,
-      cost: 400,
-      driver_id: valid_driver.id,
-      passenger_id: valid_passenger.id,
-      rating: nil}}
+      trip_hash = {trip: {date: test_date, cost: 400, driver_id: valid_driver.id, passenger_id: valid_passenger.id, rating: nil}}
       
       get new_trip_path(trip_hash)
       must_respond_with :success
@@ -60,16 +54,9 @@ describe TripsController do
       valid_driver = Driver.create(name: "Jane Doe", vin: "12345678")
       valid_passenger = Passenger.create(name: "Bob Smith", phone_num: "7654321")
       
-      trip_hash = { 
-      trip: {
-      date: test_date,
-      cost: 400,
-      driver_id: valid_driver.id,
-      passenger_id: valid_passenger.id,
-      rating: nil}}
+      trip_hash = {trip: {date: test_date, cost: 400, driver_id: valid_driver.id, passenger_id: valid_passenger.id, rating: nil}}
       
-      expect {
-      post trips_path, params: trip_hash}.must_differ 'Trip.count', 1
+      expect {post trips_path, params: trip_hash}.must_differ 'Trip.count', 1
       
       new_trip_id = Trip.find_by(date: test_date).id
       must_redirect_to trip_path(new_trip_id)
@@ -78,14 +65,31 @@ describe TripsController do
     it "does not create a trip if the form data violates Trip validations, and responds with a redirect" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
-      # Set up the form data so that it violates Driver validations
+      # Set up the form data so that it violates Trip validations
+      test_date = Date.today
+      valid_driver = Driver.create(name: "Jane Doe", vin: "12345678")
+      valid_passenger = Passenger.create(name: "Bob Smith", phone_num: "7654321")
+      invalid_trip_hash = {trip: {cost: 12.96, date: test_date, driver_id: valid_driver.id}}
+      invalid_trip_hash_2 = {trip: {cost: 12.96, date: test_date, passenger_id: valid_passenger.id}}
+      invalid_trip_hash_3 = {trip: {cost: 12.96, driver_id: valid_driver.id, passenger_id: valid_passenger.id}}
+      invalid_trip_hash_4 = {trip: {date: test_date, driver_id: valid_driver.id, passenger_id: valid_passenger.id}}
       
       # Act-Assert
-      # Ensure that there is no change in Driver.count
+      # Ensure that there is no change in trip.count
+      expect {post trips_path, params: invalid_trip_hash}.must_differ 'Trip.count', 0
       
       # Assert
       # Check that the controller redirects
+      must_redirect_to new_trip_path
       
+      expect {post trips_path, params: invalid_trip_hash_2}.must_differ 'Trip.count', 0
+      must_redirect_to new_trip_path
+      
+      expect {post trips_path, params: invalid_trip_hash_3}.must_differ 'Trip.count', 0
+      must_redirect_to new_trip_path
+      
+      expect {post trips_path, params: invalid_trip_hash_4}.must_differ 'Trip.count', 0
+      must_redirect_to new_trip_path
     end
   end
   

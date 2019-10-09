@@ -55,10 +55,7 @@ describe PassengersController do
   
   describe "new" do
     it "responds with success" do
-      passenger_hash = { 
-      passenger: {
-      name: "Sally Sue",
-      phone_num: "1234556"}}
+      passenger_hash = {passenger: {name: "Sally Sue", phone_num: "1234556"}}
       
       get new_passenger_path(passenger_hash)
       must_respond_with :success
@@ -67,41 +64,45 @@ describe PassengersController do
   
   describe "create" do
     it "can create a new passenger with valid information accurately, and redirect" do
-      passenger_hash = { 
-      passenger: {
-      name: "Sally Sue",
-      phone_num: "12345567"}}
+      passenger_hash = {passenger: {name: "Sally Sue", phone_num: "12345567"}}
       
       expect {
-      post passengers_path, params: passenger_hash}.must_differ 'passenger.count', 1
+        post passengers_path, params: passenger_hash}.must_differ 'Passenger.count', 1
+        
+        new_passenger_id = Passenger.find_by(name:"Sally Sue").id
+        must_redirect_to passenger_path(new_passenger_id)
+      end
       
-      new_passenger_id = Passenger.find_by(name:"Sally Sue").id
-      must_redirect_to passenger_path(new_passenger_id)
+      it "does not create a passenger if the form data violates passenger validations, and responds with a redirect" do
+        # Note: This will not pass until ActiveRecord Validations lesson
+        # Arrange
+        # Set up the form data so that it violates Passenger validations
+        invalid_passenger_hash = {passenger: {phone_num: "12345567"}}
+        invalid_passenger_hash_2 = {passenger: {name: "Sally Sue"}}
+        
+        # Act-Assert
+        # Ensure that there is no change in passenger.count
+        expect {post passengers_path, params: invalid_passenger_hash}.must_differ 'Passenger.count', 0
+        
+        # Assert
+        # Check that the controller redirects
+        must_redirect_to new_passenger_path
+        
+        expect {post passengers_path, params: invalid_passenger_hash_2}.must_differ 'Passenger.count', 0
+        must_redirect_to new_passenger_path
+      end
     end
     
-    it "does not create a passenger if the form data violates passenger validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Set up the form data so that it violates passenger validations
-      
-      # Act-Assert
-      # Ensure that there is no change in passenger.count
-      
-      # Assert
-      # Check that the controller redirects
-      
+    describe "edit" do
+      # Your tests go here
+    end
+    
+    describe "update" do
+      # Your tests go here
+    end
+    
+    describe "destroy" do
+      # Your tests go here
     end
   end
   
-  describe "edit" do
-    # Your tests go here
-  end
-  
-  describe "update" do
-    # Your tests go here
-  end
-  
-  describe "destroy" do
-    # Your tests go here
-  end
-end

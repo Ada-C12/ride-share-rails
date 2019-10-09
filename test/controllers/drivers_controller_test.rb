@@ -59,10 +59,7 @@ describe DriversController do
   
   describe "new" do
     it "responds with success" do
-      driver_hash = { 
-      driver: {
-      name: "Sally Sue",
-      vin: "1234556"}}
+      driver_hash = {driver: {name: "Sally Sue", vin: "1234556"}}
       
       get new_driver_path(driver_hash)
       must_respond_with :success
@@ -71,13 +68,9 @@ describe DriversController do
   
   describe "create" do
     it "can create a new driver with valid information accurately, and redirect" do
-      driver_hash = { 
-      driver: {
-      name: "Sally Sue",
-      vin: "1234556"}}
+      driver_hash = {driver: {name: "Sally Sue", vin: "1234556"}}
       
-      expect {
-      post drivers_path, params: driver_hash}.must_differ 'Driver.count', 1
+      expect {post drivers_path, params: driver_hash}.must_differ 'Driver.count', 1
       
       new_driver_id = Driver.find_by(name:"Sally Sue").id
       must_redirect_to driver_path(new_driver_id)
@@ -87,18 +80,19 @@ describe DriversController do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
-      invalid_driver_hash = { 
-      driver: {
-      vin: "1234556"}}
+      invalid_driver_hash = {driver: {vin: "1234556"}}
+      invalid_driver_hash_2 = {driver: {name: "Bob Smith"}}
       
       # Act-Assert
       # Ensure that there is no change in Driver.count
-      expect {
-      post drivers_path, params: driver_hash}.must_differ 'Driver.count', 0
+      expect {post drivers_path, params: invalid_driver_hash}.must_differ 'Driver.count', 0
       
       # Assert
       # Check that the controller redirects
+      must_redirect_to new_driver_path
       
+      expect {post drivers_path, params: invalid_driver_hash_2}.must_differ 'Driver.count', 0
+      must_redirect_to new_driver_path
       
     end
   end

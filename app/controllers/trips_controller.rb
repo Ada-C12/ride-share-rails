@@ -18,7 +18,7 @@ class TripsController < ApplicationController
     if @trip.save
       redirect_to trip_path(@trip.id)
     else
-      render new_trip_path
+      redirect_to new_trip_path
     end
   end
   
