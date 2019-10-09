@@ -7,6 +7,23 @@ describe PassengersController do
   }
   describe "index" do
     # Your tests go here
+    it "responds with success when there are many drivers saved" do
+      # Arrange
+      # Ensure that there is at least one Driver saved
+      get passenger_path(passenger.id)
+      # Act/Assert
+      must_respond_with :success
+      
+    end
+    
+    it "responds with success when there are no drivers saved" do
+      # Arrange
+      # Ensure that there are zero drivers saved
+      Passenger.destroy_all
+      get passengers_path
+      # Act/Assert
+      must_respond_with :success
+    end
   end
   
   describe "show" do
