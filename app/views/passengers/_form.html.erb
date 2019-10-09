@@ -1,0 +1,17 @@
+<nav>
+  <a id="logo" href="/">RideShare Rails!</a>
+  <a href="/drivers/">Drivers</a>
+  <a href="/passengers">Passengers</a>
+</nav>
+
+<%# form_with is a view helper that will generate the proper form for us and will help us hook into the other controller actions %>
+<%= form_with model: @passenger, class: passenger_form_class do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :phone_num %>
+  <%= f.text_field :phone_num %>
+  
+  <%= f.submit submit_button_label, class: "passenger-form-button" %>
+
+<% end %>
