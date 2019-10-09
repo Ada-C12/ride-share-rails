@@ -45,6 +45,8 @@ describe DriversController do
   
   describe "new" do
     it "responds with success" do
+      get new_driver_path
+      must_respond_with :success
     end
   end
   
@@ -52,13 +54,23 @@ describe DriversController do
     it "can create a new driver with valid information accurately, and redirect" do
       # Arrange
       # Set up the form data
+      driver_hash = {
+        driver: {
+          name: "vince",
+          vin: "fjfjfj34jfis84hgj"
+        }
+      }
       
       # Act-Assert
       # Ensure that there is a change of 1 in Driver.count
+      expect { post drivers_path, params: driver_hash }
+             .must_change "Driver.count", 1
       
       # Assert
       # Find the newly created Driver, and check that all its attributes match what was given in the form data
       # Check that the controller redirected the user
+      new_driver = Driver.find_by(name: "vince")
+      expect(new_driver.vin).must_equal driver_hash[:driver][:vin]
       
     end
     
@@ -147,12 +159,15 @@ describe DriversController do
     it "destroys the driver instance in db when driver exists, then redirects" do
       # Arrange
       # Ensure there is an existing driver saved
+      Driver.create
       
       # Act-Assert
       # Ensure that there is a change of -1 in Driver.count
+      delete driver_path(Driver.first.id)
       
       # Assert
       # Check that the controller redirects
+      must_respond_with :redirect
       
     end
     
