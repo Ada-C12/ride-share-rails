@@ -1,6 +1,6 @@
 class PassengersController < ApplicationController
   def index
-    @passengers = Passenger.all
+    @passengers = Passenger.alpha_passengers
   end
 
   def new
