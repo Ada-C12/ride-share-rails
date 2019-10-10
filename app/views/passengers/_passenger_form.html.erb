@@ -1,3 +1,13 @@
+<% if @passenger.errors.any? %> 
+  <ul class="errors">
+    <% @passenger.errors.each do |column, message| %>
+    <li>
+    <%= column.capitalize %> <%= message %>
+    </li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @passenger, class: "passenger-form" do |f| %>
   <p>Please complete the fields below to <%= action_name.downcase %> passenger. </p>
 
