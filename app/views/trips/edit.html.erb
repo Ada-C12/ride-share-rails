@@ -1,5 +1,15 @@
 <h2>Edit Trip #<%= @trip.id %></h2>
 
+<% if @trip.errors.any? %>
+  <ul class="errors">
+    <% @trip.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @trip, class: "edit_trip_form" do |f| %>
 
   <%= f.label :date %>
