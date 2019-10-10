@@ -19,6 +19,7 @@ class Driver < ApplicationRecord
     ratings = []
     self.trips.each do |trip|
       ratings << trip.rating
+      ratings = ratings.compact
     end
     average = ratings.sum / ratings.count.to_f
     return average.round(2)
@@ -31,4 +32,15 @@ class Driver < ApplicationRecord
     return driver
   end
   
+  # def change_status
+  #   self.trips.each do |trip|
+  #     if trip.rating = nil 
+  #       trip.driver.available = false
+  #     else
+  #       trip.driver.available = true
+  #     end
+  #     trip.driver.save
+  #   end  
+  #   return driver.available
+  # end
 end
