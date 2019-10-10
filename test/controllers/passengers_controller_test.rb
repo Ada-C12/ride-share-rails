@@ -122,7 +122,36 @@ describe PassengersController do
   end
   
   describe "update" do
-    # Your tests go here
+    before do
+      @updated_info = {
+        passenger: {
+          name: "Tofu Le",
+          phone_num: "1234567890"
+        }
+      }
+    end
+
+    it "can update information of an existing passenger with valid information and redirect" do
+      existing_passenger = Passenger.find_by(id: @passenger.id)
+
+      expect {
+          patch passenger_path(existing_passenger.id), params: @updated_info
+      }.must_differ "Passenger.count", 0
+
+      updated_passenger = Passenger.find_by(id: @passenger.id)
+      expect(updated_passenger.name).must_equal @updated_info[:passenger][:name]
+      expect(updated_passenger.phone_num).must_equal @updated_info[:passenger][:phone_num]
+
+      must_respond_with :redirect
+      must_redirect_to passenger_path(@passenger.id)
+    end
+
+    it "cannot update information if given a nonexisting passenger id and respond with a 404" do
+      expect {
+        patch passenger_path(-1), params: @updated_info
+      }.must_differ "Passenger.count", 0
+      must_respond_with :not_found
+    end
   end
   
   describe "destroy" do
