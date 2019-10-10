@@ -19,14 +19,22 @@ class Driver < ApplicationRecord
   end
   
   def calculate_average_rating
+    
     trip_ratings = []
     
     self.trips.all.each do |trip|
       trip_ratings << trip.rating
+      if trip.rating.nil?
+        return
+      end
     end 
     
-    total_rating = trip_ratings.sum
-    average_rating = total_rating.to_f / trip_ratings.length
+    if trip_ratings.nil?
+      return
+    else 
+      total_rating = trip_ratings.sum
+      average_rating = total_rating.to_f / trip_ratings.length
+    end
     return average_rating
   end
   
