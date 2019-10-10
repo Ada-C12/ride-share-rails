@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   root to: "homepages#index"
   
   resources :homepages
+  
   resources :drivers
+  patch '/drivers/:id/status', to: 'drivers#status', as: 'driver_status'
+  
   resources :passengers
   resources :trips
 end

@@ -9,9 +9,12 @@ class Passenger < ApplicationRecord
   end
   
   def total_charges
-    total_charges = self.trips.map {|t| t.cost }
+    total_charges = self.trips.map {|t| convert_to_dollars(t.cost) }
     total_charges.compact!
     return total_charges.sum
   end
   
+  def convert_to_dollars(pennies)
+    (pennies / 100.0).round(2)
+  end
 end

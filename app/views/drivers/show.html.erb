@@ -1,8 +1,20 @@
 <h1>Driver Details</h1>
 <p>Name: <%= @driver.name %></p>
 <p>Vin: <%= @driver.vin %> </p>
-<p>Total earnings: <%= @driver.earnings %> (pennies?) </p>
+<p>Total earnings: $<%= @driver.earnings %> </p>
 <p>Average Rating: <%= @driver.avg_rating %> </p>
+<p>
+  Status: 
+  <% if @driver.active == true %>
+  <%= "Active"%>
+  <%= link_to "Change to Inactive", driver_status_path(@driver.id), method: :patch %>
+  <% else %>
+  <%= "Inactive"%>
+  <%= link_to "Change to Active", driver_status_path(@driver.id), method: :patch %>
+  <% end %>
+
+  </p>
+
 <p>List of trips:</p>
 
 <ul>

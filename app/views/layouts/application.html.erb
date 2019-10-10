@@ -10,30 +10,34 @@
   </head>
 
   <body>
-
     <nav>
       <ul>
         <li>
           <%= link_to "Home", root_path %>
         </li>
         <li>
-          <%= link_to "Drivers", drivers_path %>
-        </li>
+          <div class="dropdown">
+            <button class="dropbtn">Drivers</button>
+            <div class="dropdown-content">
+              <a href="http://localhost:3000/drivers">Drivers List</a>
+              <a href="#">New Driver</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropbtn">Passengers</button>
+            <div class="dropdown-content">
+              <a href="http://localhost:3000/passengers">Passengers List</a>
+              <a href="#">New Passenger</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropbtn">Trips</button>
+            <div class="dropdown-content">
+              <a href="http://localhost:3000/trips">Trips List</a>
+              <a href="#">New Trip</a>
+            </div>
+          </div>
         <li>
-          <%= link_to "Passengers", passengers_path %>
-        </li>
-        <li>
-          <%= link_to "Trips", trips_path %>
-        </li>
-        <li>
-          <%= link_to "New Driver", new_driver_path %>
-        </li>
-        <li>
-          <%= link_to "New Passenger", new_passenger_path %>
-        </li>
-        <li>
-          <%= link_to "New Driver", new_driver_path %>
-        </li>
       </ul>
     </nav>
 

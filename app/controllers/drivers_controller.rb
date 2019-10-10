@@ -51,6 +51,23 @@ class DriversController < ApplicationController
     end
   end
   
+  def status
+    @driver = Driver.find_by(id: params[:id])
+    
+    if @driver.active.nil?
+      @driver.active = true
+    else
+      @driver.active = nil
+    end
+    
+    if @driver.save
+      redirect_to driver_path(@driver.id)
+    else
+      render drivers_path
+    end
+  end
+  
+  
   private
   
   def driver_params

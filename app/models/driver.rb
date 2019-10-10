@@ -9,7 +9,7 @@ class Driver < ApplicationRecord
   end
   
   def earnings
-    earnings = self.trips.map {|t| (t.cost - 165) * 0.8 }
+    earnings = self.trips.map {|t| ((convert_to_dollars(t.cost) - 1.65) * 0.8).round(2) }
     if earnings.length == 0
       return "No earnings"
     else
@@ -24,5 +24,9 @@ class Driver < ApplicationRecord
     else
       return avg_rating.sum / avg_rating.count
     end
+  end
+  
+  def convert_to_dollars(pennies)
+    (pennies / 100.0).round(2)
   end
 end

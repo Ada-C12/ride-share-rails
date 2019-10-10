@@ -9,4 +9,8 @@ class Trip < ApplicationRecord
   def self.all_in_alpha_order
     return Trip.all.order(date: :asc)
   end
+  
+  def convert_to_dollars(pennies)
+    (pennies / 100.0).round(2)
+  end
 end
