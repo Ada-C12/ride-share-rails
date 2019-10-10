@@ -23,6 +23,8 @@ class PassengersController < ApplicationController
     
     @passenger = Passenger.new(passenger_params)
     
+    # @passenger = Passenger.new(name: params[:passenger][:name], phone_num: params[:passenger][:phone_num])
+    
     if @passenger.save
       redirect_to passenger_path(@passenger.id)
       return
