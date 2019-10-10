@@ -31,6 +31,9 @@ class TripsController < ApplicationController
         return
       end
     end 
+    
+    # this way I can use _trips_table.html.erb for single entry too
+    @trips = [@trip]
   end
   
   def create
