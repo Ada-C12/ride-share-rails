@@ -18,18 +18,24 @@
         <h1>Earnings</h1>
         <table>
             <tr>
-                <th>Driver Trips</th>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Drivers</th>
+                <th>Passenger</th>
+                <th>Price</th>
+                <th>Rating</th>
+                <th>Delete</th>
              
             </tr>
-            <% @trip.each do |trip| %>
+            <% @trips.each do |trip| %>
             <tr>
-                <td><%= link_to trip.driver_id, trip_path(id: driver.id)%></td>
-                <td><%= link_to trip.passenger_id, trip_path(id: driver.id)%></td>
-                <td><%= link_to trip.date, trip_path(id: driver.id)%></td>
-                <td><%= link_to trip.rating, trip_path(id: driver.id)%></td>
-                <td><%= link_to trip.cost, trip_path(id: driver.id)%></td>
-                <td><%= button_to "Edit", edit_trip_path(driver.id), method: :get %></td>
-                <td><%= button_to "Delete", trip_path(driver.id), method: :delete, data: { confirm: "Are YOU sure?" } %></td>
+                <td><%= trip.id%></td>
+                <td><%= trip.date%></td>
+                <td><%= trip.driver_id%></td>
+                <td><%= trip.passenger_id%></td>
+                <td><%= trip.cost%></td>
+                <td><%= trip.rating%></td>
+                <td><%= button_to "Delete", trip_path(trip.id), class: 'btn', method: :delete, data: { confirm: "Are YOU sure?" } %></td>
             </tr>
             
             <% end %>
