@@ -28,20 +28,43 @@ class TripsController < ApplicationController
   end
 
   def edit
-
+    @trip = Trip.find_by(id: params[:id])
+    if @trip.nil?
+      redirect_to root_path
+      return
+    end
   end
   
   def update
-
+    @trip = Trip.find_by(id: params[:id])
+    if @trip.nil?
+      redirect_to root_path
+      return
+    elsif @trip.update(trip_params)
+      redirect_to trip_path(@trip.id)
+      return
+    else
+      render edit_trip_path
+      return
+    end
   end
   
   def destroy
+    selected_trip = Trip.find_by(id: params[:id])
 
+    if selected_trip.nil?
+      redirect_to trips_path
+      return
+    else
+      selected_trip.destroy
+      redirect_to trips_path
+      return
+    end
   end
 
-  # private
+  private
 
-  # def trip_params
-  #   return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
-  # end
+  def trip_params
+    return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
+  end
 end
