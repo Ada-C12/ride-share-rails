@@ -11,15 +11,22 @@
   <li>VIN: <%= @driver.vin %></li>
 </ul>
 
-<p><ol><%= @driver.trips.each do |trip| %>
+<p>Total earnings: $<%= @driver.total_earnings %></p>
+<p>Average rating: <%= @driver.average_rating %></p>
 
-  <li><%= trip.date%>
-    <ul>
-      <li>Roden by <%= trip.passenger.name %></li>
-      <li>Driven by <%= trip.driver.name %></li>
-      <li>Cost <%= trip.cost %></li>
-      <li>Rating <%= trip.rating %></li>
-    </ul>
-  </li>
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Rating</th>
+    <th>Cost</th>
+    <th>Roden By</th>
+  </tr>
+  <%@driver.trips.each do |trip|%>
+  <tr>
+    <td><%=trip.date%></td>
+    <td><%=trip.rating%></td>
+    <td><%=trip.cost%></td>
+    <td><%=trip.passenger.name%></td>
+  </tr>
   <% end %>
-</ol></p>
+</table>
