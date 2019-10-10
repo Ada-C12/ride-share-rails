@@ -3,7 +3,7 @@ class TripsController < ApplicationController
   def show
     trip_id = params[:id].to_i
     @trip = Trip.find_by(id: trip_id)
-    
+    print "*#*#*#*#*#  passengers is #{@passengers}" 
     if @trip.nil?
       head :not_found
       return 
@@ -24,9 +24,9 @@ class TripsController < ApplicationController
     @trip = Trip.new(trip_params)
     
     if @trip.save
-      redirect_to trip_path(@trip.id)
+      redirect_to passenger_path(@passenger.id)
     else 
-      render :new
+      redirect_to new_passenger_trip_path(@trip.passenger_id)
     end 
   end 
   
