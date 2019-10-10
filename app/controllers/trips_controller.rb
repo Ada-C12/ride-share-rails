@@ -26,20 +26,7 @@ class TripsController < ApplicationController
   end 
   
   def create
-<<<<<<< HEAD
     @trip = Trip.new(trip_params)
-=======
-    # Find available driver
-    @driver = Driver.find_by(active: false)
-    if @driver 
-      # :passenger_id and :date are carried over when passenger clicks request trip button
-      @trip = Trip.new(date: params[:date], passenger_id: params[:passenger_id], driver_id: @driver.id, rating: nil, cost: "100" )
-    else
-      redirect_to nope_path(params: {msg: "No drivers available, maybe you should walk"})
-      return
-    end
-    
->>>>>>> 5163fd526bab365462ae91cbe955480ee3589176
     if @trip.save
       redirect_to trip_path(@trip.id)
       return

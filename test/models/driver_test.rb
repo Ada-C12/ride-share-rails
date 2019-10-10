@@ -61,7 +61,7 @@ describe Driver do
           passenger_id: 3,
           rating: 5
         )
-        binding.pry
+        # binding.pry
         expect(new_driver.average_rating).must_be_kind_of Float
       end
   
