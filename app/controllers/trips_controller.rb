@@ -61,27 +61,31 @@ class TripsController < ApplicationController
       return
     end
 
-    @trip.name = params[:trip][:name]
-    @trip.phone_num = params[:trip][:phone_num]
-
+    @trip = Trip.find_by(id: id)
+    @trip[:name] = params[:trip][:name]
+    @trip[:date] = params[:trip][:date]
+    @trip[:rateing] = params[:trip][:rating]
+    @trip[:cost] = params[:trip][:cost]
+    
     if @trip.save
-      redirect_to trip_path(@trip.id)
+        redirect_to trip_path(@trip.id)
+    else
+        render new_trip_path
     end
   end
 
   def destroy
-    the_correct_trip = Trip.find_by( id: params[:id] )
-
-    if the_correct_trip.nil?
-      redirect_to trips_path
-      return
+    trip_to_delete = Trip.find_by(id: params[:id])
+    if trip_to_delete.nil?
+        redirect_to trip_path
+        return
     else
-      the_correct_trip.destroy
-      redirect_to root_path
-      return
+        trip_to_delete.destroy
+        redirect_to trips_path
+        return
     end
   end
-
+  
   private
 
   def trip_params
