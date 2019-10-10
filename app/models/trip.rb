@@ -6,6 +6,7 @@ class Trip < ApplicationRecord
     driver = Driver.all.find { |driver| driver.available }
     date = Date.today
     cost = rand(1000..5000)
+    driver.update(available: false)
 
     return { driver_id: driver.id, date: date, cost: cost }
   end
