@@ -76,6 +76,7 @@ group :development do
   gem 'debase', '>= 0.2.4.1'
   gem 'ruby-debug-ide', '>= 0.7.0'
   gem 'rb-readline'
+  gem 'pry-byebug'
 end
 
 group :test do

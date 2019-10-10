@@ -97,6 +97,7 @@ describe PassengersController do
         }
       }
     end
+    
     it "can update an existing passenger with valid information accurately, and redirect" do
       expect {patch passenger_path(@test_passenger.id), params: @passenger_hash}.wont_change "Passenger.count"
       

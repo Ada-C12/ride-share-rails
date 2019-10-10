@@ -72,6 +72,46 @@ describe TripsController do
   end
   
   describe "update" do
+    before do
+      @driver = Driver.create(name: "test driver", vin: "test")
+      @passenger = Passenger.create(name: "test person", phone_num: "1234567")
+      time = DateTime.now
+      tomorrow = DateTime.tomorrow
+      @test_trip = Trip.create(date: time, rating: 2, cost: 1000, driver_id: @driver.id, passenger_id: @passenger.id)
+      @new_driver = Driver.create(name: "new driver", vin: "new")
+      @new_passenger = Passenger.create(name: "new", phone_num: "new")
+      
+      @trip_hash = {
+        trip: {
+          date: tomorrow,
+          rating: 3, 
+          cost: 111,
+          driver_id: @new_driver.id,
+          passenger_id: @new_passenger.id,
+          driver_name: @new_driver.name,
+          passenger_name: @new_passenger.name
+        }
+      }
+    end
+    
+    it "can update an existing trip with valid information accurately, and redirect" do
+      
+      expect {patch trip_path(@test_trip.id), params: @trip_hash}.wont_change "Trip.count"
+      new_trip = Trip.find_by(id: @test_trip.id)
+      #date is not changeable
+      expect(new_trip.date).must_equal @trip_hash[:trip][:date]
+      expect(new_trip.rating).must_equal @trip_hash[:trip][:rating]
+      expect(new_trip.cost).must_equal @trip_hash[:trip][:cost]
+      expect(new_trip.driver_id).must_equal @trip_hash[:trip][:driver_id]
+      expect(new_trip.passenger_id).must_equal @trip_hash[:trip][:passenger_id]
+      
+      must_respond_with :redirect
+      must_redirect_to trip_path(new_trip.id)
+    end
+    
+    it "does not update any trip if given an invalid id, and responds with a 404" do
+      
+    end
     
   end
   
