@@ -100,17 +100,18 @@ describe TripsController do
     end
     
     it "edge: if bad passenger input, send to nope_path" do
-      ### BUGGY!!!
+      # here's an available driver
+      driver1
       trip_count_before = Trip.count
-      post trips_path, params: {trip: trip_hash}
-      
-      # post trips_path, params: {trip: trip_hash_bad_passenger}
-      trip_count_before = Trip.count
-      puts "#{trip_count_before} VS #{trip_count_after}"
+      post trips_path, params: {trip: trip_hash_bad_passenger}
+      trip_count_after = Trip.count
+      assert(trip_count_before == trip_count_after)
       must_redirect_to nope_path(msg: "Trip request unsuccessful, please contact customer service at 1-800-lol-sorry")
       
-      # post trips_path, params: {trip: trip_hash_no_passenger}
-      # must_redirect_to nope_path(msg: "Trip request unsuccessful, please contact customer service at 1-800-lol-sorry")
+      # here's another available driver
+      Driver.create(name: "Mr. Smithers", vin: "987")
+      post trips_path, params: {trip: trip_hash_no_passenger}
+      must_redirect_to nope_path(msg: "Trip request unsuccessful, please contact customer service at 1-800-lol-sorry")
     end
   end
   
