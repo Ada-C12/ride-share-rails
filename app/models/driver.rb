@@ -3,4 +3,12 @@ class Driver < ApplicationRecord
   
   validates :name, presence: true
   validates :vin, presence: true
+  
+  # Average rating
+  
+  # Total earnings
+  
+  # Can go online
+  
+  # Can go offline
 end

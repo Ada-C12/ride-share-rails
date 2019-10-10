@@ -21,6 +21,7 @@ describe DriversController do
     it "responds with success when there are no drivers saved" do
       # Arrange
       # Ensure that there are zero drivers saved
+      expect(Driver.count).must_equal 0
       
       # Act
       get drivers_path
@@ -46,9 +47,10 @@ describe DriversController do
     it "responds with 404 with an invalid driver id" do
       # Arrange
       # Ensure that there is an id that points to no driver
+      invalid_id = -1
       
       # Act
-      get driver_path(-1)
+      get driver_path(invalid_id)
       
       # Assert
       must_respond_with :not_found
@@ -86,8 +88,6 @@ describe DriversController do
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
       # Arrange
       # Set up the form data so that it violates Driver validations
-      
-      test_driver = driver_fred
       driver_hash = { driver: { name: "Dino" } }
       
       # Act-Assert
@@ -116,9 +116,10 @@ describe DriversController do
     it "responds with redirect when getting the edit page for a non-existing driver" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
+      invalid_id = -1
       
       # Act
-      get edit_driver_path(-1)
+      get edit_driver_path(invalid_id)
       
       # Assert
       must_respond_with :redirect
@@ -137,10 +138,11 @@ describe DriversController do
       expect { patch driver_path(original_driver.id), params: changes }.wont_change "Driver.count"
       
       patch driver_path(original_driver.id), params: changes
-      updated_driver = Driver.find_by(id: original_driver.id)
       
       # Assert
       # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
+      updated_driver = Driver.find_by(id: original_driver.id)
+      
       expect(updated_driver.name).must_equal changes[:driver][:name]
       expect(updated_driver.vin).must_equal changes[:driver][:vin]
       expect(updated_driver.car_make).must_equal changes[:driver][:car_make]
@@ -203,10 +205,11 @@ describe DriversController do
     it "does not change the db when the driver does not exist, then responds with redirect" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
+      invalid_id = -1
       
       # Act-Assert
       # Ensure that there is no change in Driver.count
-      expect{ delete driver_path(-1)}.wont_change "Driver.count"
+      expect{ delete driver_path(invalid_id)}.wont_change "Driver.count"
       
       # Assert
       # Check that the controller responds or redirects with whatever your group decides

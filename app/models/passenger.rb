@@ -16,4 +16,8 @@ class Passenger < ApplicationRecord
       return total / 100.0
     end
   end
+  
+  # Request a ride
+  
+  # Complete trip
 end

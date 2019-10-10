@@ -1,9 +1,11 @@
 require "test_helper"
 
 describe Passenger do
-  let (:new_passenger) {
-    Passenger.new(name: "Kari", phone_num: "111-111-1211")
-  }
+  let (:new_passenger) { Passenger.new(name: "Kari", phone_num: "111-111-1211") }
+  let (:new_driver) { Driver.create(name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", available: true) }
+  let (:new_trip) { Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: "2016-04-05", rating: 3, cost: 1250 ) }
+  let (:second_trip) { Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: "2016-04-10", rating: 5, cost: 500 ) }
+  
   it "can be instantiated" do
     # Assert
     expect(new_passenger.valid?).must_equal true
@@ -22,10 +24,10 @@ describe Passenger do
   
   describe "relationships" do
     it "can have many trips" do
-      skip
       # Arrange
       new_passenger.save
       passenger = Passenger.first
+      trip = new_trip
       
       # Assert
       expect(passenger.trips.count).must_be :>, 0
@@ -47,7 +49,6 @@ describe Passenger do
     end
     
     it "must have a phone number" do
-      skip
       # Arrange
       new_passenger.phone_num = nil
       
@@ -67,6 +68,28 @@ describe Passenger do
     describe "complete trip" do
       # Your code here
     end
-    # You may have additional methods to test here
+    
+    describe "total money spent" do
+      it "returns 0 if there are no trips" do
+        new_passenger.save
+        
+        expect(new_passenger.total_money_spent).must_equal 0
+      end
+      
+      it "returns the correct float if there is one trip" do
+        new_passenger.save
+        test_trip = new_trip
+        
+        expect(new_passenger.total_money_spent).must_equal 12.50
+      end
+      
+      it "returns the correct float if there are mutliple trips" do
+        new_passenger.save
+        test_trip = new_trip
+        second_test_trip = second_trip
+        
+        expect(new_passenger.total_money_spent).must_equal 17.50
+      end
+    end
   end
 end
