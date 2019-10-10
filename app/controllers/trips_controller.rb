@@ -40,6 +40,7 @@ class TripsController < ApplicationController
       redirect_to trip_path(@trip.id)
       return
     else
+      # bad passenger_id triggers this
       redirect_to nope_path(params: {msg: "Trip request unsuccessful, please contact customer service at 1-800-lol-sorry"})
       return
     end
