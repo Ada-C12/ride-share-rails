@@ -24,7 +24,6 @@ class Driver < ApplicationRecord
   def average_rating
     trips = self.trips
     filtered_ratings = []
-    ratings = self.ratings
       trips.each do |trip|
         if trip.rating != nil
           filtered_ratings << trip.rating
@@ -36,6 +35,7 @@ class Driver < ApplicationRecord
       else
         return 0
       end
+      avg_rating = avg_rating.round(2)
       return avg_rating
   end 
 

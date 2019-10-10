@@ -6325,3 +6325,299 @@ Processing by TripsController#index as HTML
 Completed 200 OK in 509ms (Views: 446.5ms | ActiveRecord: 51.8ms)
 
 
+Started GET "/" for ::1 at 2019-10-10 13:27:10 -0700
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/monick/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (263.1ms)
+Completed 200 OK in 331ms (Views: 322.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/drivers" for ::1 at 2019-10-10 13:27:13 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (2.1ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" ORDER BY "drivers"."id" ASC[0m
+  ↳ app/views/drivers/index.html.erb:14
+  Rendered drivers/index.html.erb within layouts/application (25.7ms)
+Completed 200 OK in 103ms (Views: 40.8ms | ActiveRecord: 50.6ms)
+
+
+Started GET "/drivers/2" for ::1 at 2019-10-10 13:27:14 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"authenticity_token"=>"zNmraIrzS5zwQm0DXF7bQq/4VKHHLE8gJdP1YTB62BSX70v44IOBMqrrfb+yTRJZ3rxkzUvD891wEzMdpOv3bg==", "id"=>"2"}
+  [1m[36mDriver Load (0.6ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/drivers_controller.rb:13
+  Rendering drivers/show.html.erb within layouts/application
+  Rendered drivers/show.html.erb within layouts/application (25.2ms)
+Completed 500 Internal Server Error in 38ms (ActiveRecord: 0.8ms)
+
+
+
+NoMethodError - undefined method `ratings' for #<Driver:0x00007fcc71dccd60>:
+  app/models/driver.rb:27:in `average_rating'
+  app/views/drivers/show.html.erb:24:in `_app_views_drivers_show_html_erb___2622940996150825844_70258016573920'
+
+Started POST "/__better_errors/e43301947bb3fd41/variables" for ::1 at 2019-10-10 13:27:14 -0700
+  [1m[36mTrip Load (43.5ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."driver_id" = $1 LIMIT $2[0m  [["driver_id", 2], ["LIMIT", 11]]
+  ↳ /Users/monick/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mCACHE Trip Load (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."driver_id" = $1 LIMIT $2[0m  [["driver_id", 2], ["LIMIT", 11]]
+  ↳ /Users/monick/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mCACHE Trip Load (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."driver_id" = $1 LIMIT $2[0m  [["driver_id", 2], ["LIMIT", 11]]
+  ↳ /Users/monick/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Started GET "/drivers/2" for ::1 at 2019-10-10 13:27:50 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/drivers_controller.rb:13
+  Rendering drivers/show.html.erb within layouts/application
+  Rendered drivers/show.html.erb within layouts/application (12.3ms)
+Completed 500 Internal Server Error in 33ms (ActiveRecord: 3.9ms)
+
+
+
+NoMethodError - undefined method `rating' for #<Driver:0x00007fcc735feb68>:
+  app/models/driver.rb:27:in `average_rating'
+  app/views/drivers/show.html.erb:24:in `_app_views_drivers_show_html_erb___2622940996150825844_70258042855580'
+
+Started POST "/__better_errors/e6035dd5adcf1218/variables" for ::1 at 2019-10-10 13:27:51 -0700
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."driver_id" = $1 LIMIT $2[0m  [["driver_id", 2], ["LIMIT", 11]]
+  ↳ /Users/monick/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mCACHE Trip Load (0.1ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."driver_id" = $1 LIMIT $2[0m  [["driver_id", 2], ["LIMIT", 11]]
+  ↳ /Users/monick/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mCACHE Trip Load (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."driver_id" = $1 LIMIT $2[0m  [["driver_id", 2], ["LIMIT", 11]]
+  ↳ /Users/monick/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Started GET "/" for ::1 at 2019-10-10 13:28:05 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 67ms (Views: 65.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/drivers" for ::1 at 2019-10-10 13:28:06 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.5ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" ORDER BY "drivers"."id" ASC[0m
+  ↳ app/views/drivers/index.html.erb:14
+  Rendered drivers/index.html.erb within layouts/application (21.3ms)
+Completed 200 OK in 58ms (Views: 54.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/drivers/1" for ::1 at 2019-10-10 13:28:07 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"authenticity_token"=>"z54X0NxiDWu/FadHh5MSCYOz5N3UebD77TxqgfeoJbeUqPdAthLHxeW8t/tpgNsS8vfUsViWDAa4/Kz9YzkKzQ==", "id"=>"1"}
+  [1m[36mDriver Load (0.4ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/drivers_controller.rb:13
+  Rendering drivers/show.html.erb within layouts/application
+  Rendered drivers/show.html.erb within layouts/application (11.2ms)
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.4ms)
+
+
+
+NoMethodError - undefined method `rating' for #<Driver:0x00007fcc751537b0>:
+  app/models/driver.rb:27:in `average_rating'
+  app/views/drivers/show.html.erb:24:in `_app_views_drivers_show_html_erb___2622940996150825844_70258057188140'
+
+Started POST "/__better_errors/6687716d438422df/variables" for ::1 at 2019-10-10 13:28:07 -0700
+  [1m[36mTrip Load (2.2ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."driver_id" = $1 LIMIT $2[0m  [["driver_id", 1], ["LIMIT", 11]]
+  ↳ /Users/monick/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mCACHE Trip Load (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."driver_id" = $1 LIMIT $2[0m  [["driver_id", 1], ["LIMIT", 11]]
+  ↳ /Users/monick/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mCACHE Trip Load (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."driver_id" = $1 LIMIT $2[0m  [["driver_id", 1], ["LIMIT", 11]]
+  ↳ /Users/monick/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Started POST "/__better_errors/6687716d438422df/eval" for ::1 at 2019-10-10 13:28:13 -0700
+Started POST "/__better_errors/6687716d438422df/eval" for ::1 at 2019-10-10 13:28:17 -0700
+Started GET "/drivers/1" for ::1 at 2019-10-10 13:29:12 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/drivers_controller.rb:13
+  Rendering drivers/show.html.erb within layouts/application
+  [1m[36mTrip Load (0.2ms)[0m  [1m[34mSELECT "trips".* FROM "trips" WHERE "trips"."driver_id" = $1[0m  [["driver_id", 1]]
+  ↳ app/models/driver.rb:10
+  Rendered drivers/show.html.erb within layouts/application (17.0ms)
+Completed 200 OK in 61ms (Views: 40.3ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/drivers/1" for ::1 at 2019-10-10 13:30:24 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/drivers_controller.rb:13
+  Rendering drivers/show.html.erb within layouts/application
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT "trips".* FROM "trips" WHERE "trips"."driver_id" = $1[0m  [["driver_id", 1]]
+  ↳ app/models/driver.rb:28
+  Rendered drivers/show.html.erb within layouts/application (18.9ms)
+Completed 200 OK in 62ms (Views: 41.8ms | ActiveRecord: 6.6ms)
+
+
+Started GET "/drivers/1" for ::1 at 2019-10-10 13:37:04 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDriver Load (0.6ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/drivers_controller.rb:13
+  Rendering drivers/show.html.erb within layouts/application
+  [1m[36mTrip Load (0.5ms)[0m  [1m[34mSELECT "trips".* FROM "trips" WHERE "trips"."driver_id" = $1[0m  [["driver_id", 1]]
+  ↳ app/models/driver.rb:28
+  Rendered drivers/show.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 45ms (Views: 38.8ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/drivers/1" for ::1 at 2019-10-10 13:38:16 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/drivers_controller.rb:13
+  Rendering drivers/show.html.erb within layouts/application
+  [1m[36mTrip Load (0.5ms)[0m  [1m[34mSELECT "trips".* FROM "trips" WHERE "trips"."driver_id" = $1[0m  [["driver_id", 1]]
+  ↳ app/models/driver.rb:28
+  Rendered drivers/show.html.erb within layouts/application (27.8ms)
+Completed 500 Internal Server Error in 52ms (ActiveRecord: 10.7ms)
+
+
+
+NoMethodError - undefined method `rount' for 2.3333333333333335:Float
+Did you mean?  round:
+  app/models/driver.rb:39:in `average_rating'
+  app/views/drivers/show.html.erb:8:in `_app_views_drivers_show_html_erb___2622940996150825844_70258056685360'
+
+Started POST "/__better_errors/ea41ed850af5aa3c/variables" for ::1 at 2019-10-10 13:38:16 -0700
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."driver_id" = $1 LIMIT $2[0m  [["driver_id", 1], ["LIMIT", 11]]
+  ↳ /Users/monick/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Started GET "/drivers/1" for ::1 at 2019-10-10 13:38:52 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/drivers_controller.rb:13
+  Rendering drivers/show.html.erb within layouts/application
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT "trips".* FROM "trips" WHERE "trips"."driver_id" = $1[0m  [["driver_id", 1]]
+  ↳ app/models/driver.rb:28
+  Rendered drivers/show.html.erb within layouts/application (17.7ms)
+Completed 200 OK in 56ms (Views: 37.8ms | ActiveRecord: 5.7ms)
+
+
+Started GET "/drivers/1" for ::1 at 2019-10-10 13:39:52 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/drivers_controller.rb:13
+  Rendering drivers/show.html.erb within layouts/application
+  Rendered drivers/show.html.erb within layouts/application (1.1ms)
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.3ms)
+
+
+
+SyntaxError - syntax error, unexpected ',', expecting ')'
+...ffer.append=( "Average Rating", @driver.average_rating );@ou...
+...                              ^:
+  app/views/drivers/show.html.erb:8:in `'
+
+Started POST "/__better_errors/a832c0211ee3ed47/variables" for ::1 at 2019-10-10 13:39:53 -0700
+Started GET "/drivers/1" for ::1 at 2019-10-10 13:40:51 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/drivers_controller.rb:13
+  Rendering drivers/show.html.erb within layouts/application
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT "trips".* FROM "trips" WHERE "trips"."driver_id" = $1[0m  [["driver_id", 1]]
+  ↳ app/models/driver.rb:28
+  Rendered drivers/show.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 31ms (Views: 26.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/drivers/1" for ::1 at 2019-10-10 13:41:02 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/drivers_controller.rb:13
+  Rendering drivers/show.html.erb within layouts/application
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT "trips".* FROM "trips" WHERE "trips"."driver_id" = $1[0m  [["driver_id", 1]]
+  ↳ app/models/driver.rb:28
+  Rendered drivers/show.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 29ms (Views: 26.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/drivers/1" for ::1 at 2019-10-10 13:41:28 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/drivers_controller.rb:13
+  Rendering drivers/show.html.erb within layouts/application
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT "trips".* FROM "trips" WHERE "trips"."driver_id" = $1[0m  [["driver_id", 1]]
+  ↳ app/models/driver.rb:28
+  Rendered drivers/show.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 30ms (Views: 27.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/drivers/1" for ::1 at 2019-10-10 13:42:10 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/drivers_controller.rb:13
+  Rendering drivers/show.html.erb within layouts/application
+  [1m[36mTrip Load (0.2ms)[0m  [1m[34mSELECT "trips".* FROM "trips" WHERE "trips"."driver_id" = $1[0m  [["driver_id", 1]]
+  ↳ app/models/driver.rb:28
+  Rendered drivers/show.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 30ms (Views: 27.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/trips?driver_id=1" for ::1 at 2019-10-10 13:42:12 -0700
+Processing by TripsController#index as HTML
+  Parameters: {"driver_id"=>"1"}
+  [1m[36mPassenger Load (1.0ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:5
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:6
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT "trips".* FROM "trips" WHERE "trips"."driver_id" = $1[0m  [["driver_id", 1]]
+  ↳ app/views/trips/index.html.erb:13
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:30
+  [1m[36mPassenger Load (0.5ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", 54], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:16
+  [1m[36mCACHE Driver Load (0.0ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:30
+  [1m[36mPassenger Load (0.7ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", 247], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:16
+  [1m[36mCACHE Driver Load (0.0ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:30
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:16
+  [1m[36mCACHE Driver Load (0.0ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:30
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", 201], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:16
+  [1m[36mCACHE Driver Load (0.0ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:30
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", 129], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:16
+  [1m[36mCACHE Driver Load (0.0ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:30
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", 112], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:16
+  [1m[36mCACHE Driver Load (0.0ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:30
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", 146], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:16
+  [1m[36mCACHE Driver Load (0.0ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:30
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", 196], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:16
+  [1m[36mCACHE Driver Load (0.0ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:30
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", 266], ["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:16
+  Rendered trips/index.html.erb within layouts/application (22.7ms)
+Completed 200 OK in 64ms (Views: 47.5ms | ActiveRecord: 7.8ms)
+
+
+Started GET "/trips/124" for ::1 at 2019-10-10 13:42:15 -0700
+Processing by TripsController#show as HTML
+  Parameters: {"id"=>"124"}
+  [1m[36mTrip Load (1.8ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 124], ["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:21
+  Rendering trips/show.html.erb within layouts/application
+  Rendered trips/show.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 37ms (Views: 29.8ms | ActiveRecord: 1.8ms)
+
+
