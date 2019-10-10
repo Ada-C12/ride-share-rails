@@ -11,8 +11,8 @@
   <li>VIN: <%= @driver.vin %></li>
 </ul>
 
-<p><%= @driver.trips.each do |trip| %>
-<ol>
+<p><ol><%= @driver.trips.each do |trip| %>
+
   <li><%= trip.date%>
     <ul>
       <li>Roden by <%= trip.passenger.name %></li>
@@ -22,5 +22,4 @@
     </ul>
   </li>
   <% end %>
-</ol>
-</p>
+</ol></p>
