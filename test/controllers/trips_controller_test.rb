@@ -159,7 +159,7 @@ describe TripsController do
       expect(updated_trip.passenger_id).must_equal existing_trip[:passenger_id]
       expect(updated_trip.driver_id).must_equal existing_trip[:driver_id]
       expect(updated_trip.cost).must_equal existing_trip[:cost] 
-      expect(updated_trip.rating).must_equal existing_trip[:rating]
+      expect(updated_trip.rating).must_be_nil
     end
   end
   
