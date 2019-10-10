@@ -1,75 +1,72 @@
-require "test_helper"
+# require "test_helper"
 
-describe Passenger do
-  let (:new_passenger) {
-    Passenger.new(name: "Kari", phone_num: "111-111-1211")
-  }
-  it "can be instantiated" do
-    # Assert
-    expect(new_passenger.valid?).must_equal true
-  end
+# describe Passenger do
+#   let (:new_passenger) {
+#     Passenger.new(name: "Kari", phone_num: "111-111-1211")
+#   }
+#   it "can be instantiated" do
+#     # Assert
+#     expect(new_passenger.valid?).must_equal true
+#   end
 
-  it "will have the required fields" do
-    # Arrange
-    new_passenger.save
-    passenger = Passenger.first
-    [:name, :phone_num].each do |field|
-      # Assert
-      expect(passenger).must_respond_to field
-    end
-  end
+#   it "will have the required fields" do
+#     # Arrange
+#     new_passenger.save
+#     passenger = Passenger.first
+#     [:name, :phone_num].each do |field|
+#       # Assert
+#       expect(passenger).must_respond_to field
+#     end
+#   end
 
-  describe "relationships" do
-    it "can have many trips" do
-      # Arrange
-      new_passenger.save
-      passenger = Passenger.first
+#   describe "relationships" do
+#     it "can have many trips" do
+#       # Arrange
+#       new_passenger.save
+#       passenger = Passenger.first
 
-      #Note: add instances of trip to passenger
-      # Assert
-      expect(passenger.trips.count).must_be :>, 0
-    
-      passenger.trips.each do |trip|
-        expect(trip).must_be_instance_of Trip
-      end
+#       #Note: add instances of trip to passenger
+#       # Assert
+#       expect(passenger.trips.count).must_be :>, 0
 
-    end
-  end
+#       passenger.trips.each do |trip|
+#         expect(trip).must_be_instance_of Trip
+#       end
 
-  describe "validations" do
-    it "must have a name" do
-      # Arrange
-      new_passenger.name = nil
-    
-      # Assert
-      expect(new_passenger.valid?).must_equal false
-      expect(new_passenger.errors.messages).must_include :name
-      expect(new_passenger.errors.messages[:name]).must_equal ["can't be blank"]
-    end
+#     end
+#   end
 
-    it "must have a phone number" do
-      # Arrange
-      new_passenger.phone_num = nil
+#   describe "validations" do
+#     it "must have a name" do
+#       # Arrange
+#       new_passenger.name = nil
 
-      # Assert
-      expect(new_passenger.valid?).must_equal false
-      expect(new_passenger.errors.messages).must_include :phone_num
-      expect(new_passenger.errors.messages[:phone_num]).must_equal ["can't be blank"]
-    end
-  end
+#       # Assert
+#       expect(new_passenger.valid?).must_equal false
+#       expect(new_passenger.errors.messages).must_include :name
+#       expect(new_passenger.errors.messages[:name]).must_equal ["can't be blank"]
+#     end
 
-  # Tests for methods you create should go here
-  describe "custom methods" do
-    describe "request a ride" do
-      
-      
-    end
+#     it "must have a phone number" do
+#       # Arrange
+#       new_passenger.phone_num = nil
 
-    describe "total charged method" do
+#       # Assert
+#       expect(new_passenger.valid?).must_equal false
+#       expect(new_passenger.errors.messages).must_include :phone_num
+#       expect(new_passenger.errors.messages[:phone_num]).must_equal ["can't be blank"]
+#     end
+#   end
 
+#   # Tests for methods you create should go here
+#   describe "custom methods" do
+#     describe "request a ride" do
 
-    end
-  end
+#     end
 
- 
-end
+#     describe "total charged method" do
+
+#     end
+#   end
+
+# end
