@@ -28,6 +28,9 @@ class PassengersController < ApplicationController
     passenger.destroy
     redirect_to root_path
   end
+
+  
+
   
   private
   def passenger_params

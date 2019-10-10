@@ -81,6 +81,7 @@ describe TripsController do
       trip = Trip.create(driver_id: driver.id, passenger_id: pass.id)
 
       expect{ delete trip_path(trip.id) }.must_change "Trip.count", -1
+      
       assert_nil Trip.find_by(id: trip.id)
       must_respond_with :redirect
     end
