@@ -11,13 +11,6 @@
 
   <div class="modify-options">
     <div><%= link_to "Rate Trip", rate_path %></div>
-    <%# make rate trip button a thing %>
-
-    <%# needs a trips#rate method %>
-    <%# have everything but rating be a hidden field %>
-
-    <%# should go to the update action by PATCHing to trip_path %>
-    <%# PATCH  /trips/:id(.:format)     trips#update %>
     <div><%= link_to "Edit", edit_trip_path(@trip.id) %></div>
     <div><%= link_to "Delete", trip_path(@trip.id), method: :delete %></div>
   </div>

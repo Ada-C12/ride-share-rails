@@ -63,7 +63,7 @@ describe TripsController do
       must_respond_with :success      
     end
     
-    it "responds with redirect when getting the edit page for a non-existing passenger" do
+    it "responds with redirect when getting the edit page for a non-existing trip" do
       get edit_trip_path(-1)
       
       must_respond_with :redirect
@@ -113,6 +113,25 @@ describe TripsController do
       
     end
     
+  end
+  
+  describe "rate" do
+    it "responds with success when getting the rate page for an existing, valid trip" do
+      driver = Driver.create(name: "Bernardo Prosacco", vin: "WBWSS52P9NEYLVDE9", active: true)
+      passenger = Passenger.create(name: "test person", phone_num: "1234567")
+      test_trip = Trip.create(date: DateTime.now, rating: 2, cost: 1000, driver_id: driver.id, passenger_id: passenger.id)
+      
+      get rate_path(test_trip.id)
+      
+      must_respond_with :success      
+    end
+    
+    it "responds with redirect when getting the rate page for a non-existing trip" do
+      get rate_path(-1)
+      
+      must_respond_with :redirect
+      must_redirect_to root_path
+    end
   end
   
   describe "destroy" do
