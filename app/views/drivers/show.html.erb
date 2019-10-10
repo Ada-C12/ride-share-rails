@@ -1,12 +1,12 @@
 <h2> Details for: <%= @driver.name %> </h2>
 <ul>
   <li> Total earnings: </li>
-  <li> Average rating: </li>
+  <li> Average rating: <%= @driver.avg_rating %></li>
   <li> Driver's trips:
 
 <ul>
     <% @driver.trips.each do |trip| %>
-    <li> <%= link_to trip, trip_path(@driver.trip_ids) %> </li>
+    <li> <%= link_to trip, trip_path(trip) %> </li>
     <% end %>
 </ul>
 </li>
