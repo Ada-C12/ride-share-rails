@@ -36,30 +36,20 @@ class TripsController < ApplicationController
   
   def create
     driver = Driver.get_available_driver
+    driver.toggle_available
     
-    date = DateTime.now
-    #DateTime?
+    date = Date.today
     
     cost = rand(1000..9999)
     #to_i?
     
-    
-    p cost
     data_hash = {
       driver_id: driver.id,
       passenger_id: params[:passenger_id],  # passenger_id?
       date: date,
       cost: cost   }  
       
-      
       @trip = Trip.new(data_hash)
-      
-      
-      
-      # if params[:trip].nil?
-      #   redirect_to root_path
-      # end
-      
       
       if @trip.save
         redirect_to passenger_path(params[:passenger_id])
@@ -68,6 +58,7 @@ class TripsController < ApplicationController
         redirect_to passenger_path(params[:passenger_id])
         return
       end
+      
     end
     
     def edit

@@ -1,6 +1,14 @@
 <h1>Driver Details</h1>
 
 Name: <%= @driver.name %><br>
+<% if @driver.available %>
+Status: Available <br>
+<%= link_to "Go-Offline", toggle_path(@driver.id), method: :patch %><br>
+<% else %>
+Status: Unavailable<br>
+<%= link_to "Go-Online", toggle_path(@driver.id), method: :patch %><br>
+<% end %>
+
 VIN: <%= @driver.vin %><br>
 Car Make: <%= @driver.car_make %><br>
 Car Model: <%= @driver.car_model %><br>

@@ -13,7 +13,14 @@ class Driver < ApplicationRecord
   
   # Total earnings
   
-  # Can go online
-  
+  # Can go online 
   # Can go offline
+  def toggle_available
+    if self.available
+      self.available = false
+    else
+      self.available = true
+    end
+    self.save
+  end
 end

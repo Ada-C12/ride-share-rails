@@ -64,6 +64,10 @@ class DriversController < ApplicationController
     redirect_to drivers_path
   end
   
+  def toggle
+    @driver.toggle_available
+  end
+  
   private
   
   def driver_params
