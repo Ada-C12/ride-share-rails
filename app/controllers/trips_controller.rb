@@ -1,13 +1,18 @@
 class TripsController < ApplicationController
   
   def index
+    # Where did the request come from?  Per passenger? or per driver? or per trips index?
     @passenger = Passenger.find_by(id: params[:passenger_id])
-    if @passenger.nil?
-      # just showing all Trips table for all passengers
-      @trips = Trip.all
-    else
+    @driver = Driver.find_by(id: params[:driver_id])
+    if @driver
+      # showing trips for a specific driver
+      @trips = Trip.where(driver_id: @driver.id)
+    elsif @passenger
       # showing trips for a specific passenger
       @trips = Trip.where(passenger_id: @passenger.id)
+    else
+      # just showing all Trips table for all passengers
+      @trips = Trip.all
     end
   end
   
