@@ -1,8 +1,5 @@
-<h1>Drivers Page!<h1>
+<h1>All Drivers<h1>
 
 <% @drivers.each do |driver| %>
-<li>
-<%= link_to driver.name, driver_path(driver) %>
-
+  <li><%= link_to driver.name, driver_path(driver) %>
 <% end %>
-

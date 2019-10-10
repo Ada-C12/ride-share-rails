@@ -1,5 +1,4 @@
 class DriversController < ApplicationController
-  
   def index
     @drivers = Driver.order(:name)
   end
@@ -18,7 +17,6 @@ class DriversController < ApplicationController
   end
   
   def create
-    # if !params.nil?
     if params[:driver].nil?
       redirect_to new_driver_path
     end
@@ -29,7 +27,6 @@ class DriversController < ApplicationController
       redirect_to driver_path(@driver.id)
       return
     else
-      # render :new
       redirect_to new_driver_path
       return
     end
@@ -70,6 +67,6 @@ class DriversController < ApplicationController
   private
   
   def driver_params
-    return params.require(:driver).permit(:name, :available, :vin, :car_make, :car_model)
+    return params.require(:driver).permit(:name, :vin, :car_make, :car_model, :available)
   end
 end

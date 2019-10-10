@@ -1,16 +1,15 @@
 require "test_helper"
 
 describe DriversController do
-  # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
-  let (:driver) {
-    Driver.create(name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", available: true) 
-  }
+  # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. 
+  # For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
+  let (:driver_fred) { Driver.create(name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", available: true) }
   
   describe "index" do
     it "responds with success when there are many drivers saved" do
       # Arrange
       # Ensure that there is at least one Driver saved
-      one_driver = driver
+      test_driver = driver_fred
       
       # Act
       get drivers_path
@@ -29,16 +28,16 @@ describe DriversController do
       # Assert
       must_respond_with :success
     end
-  end
+  end   
   
   describe "show" do
     it "responds with success when showing an existing valid driver" do
       # Arrange
       # Ensure that there is a driver saved
-      one_driver = driver
+      test_driver = driver_fred
       
       # Act
-      get driver_path(driver.id)
+      get driver_path(driver_fred.id)
       
       # Assert
       must_respond_with :success
@@ -67,32 +66,28 @@ describe DriversController do
   describe "create" do
     it "can create a new driver with valid information accurately, and redirect" do
       # Arrange
-      # Set up the form data
-      driver_hash = { driver: { name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", available: true } }
-      
-      test_driver = driver
+      driver_hash = { driver: { name: "Barney Rubble", vin: "456", car_make: "bird", car_model: "robin", available: false } }
       
       # Act-Assert
-      # Ensure that there is a change of 1 in Driver.count
       expect { post drivers_path, params: driver_hash }.must_change "Driver.count", 1
       
       # Assert
       # Find the newly created Driver, and check that all its attributes match what was given in the form data
-      # Check that the controller redirected the user
       new_driver = Driver.find_by(name: driver_hash[:driver][:name])
+      expect(new_driver.vin).must_equal driver_hash[:driver][:vin]
       expect(new_driver.car_make).must_equal driver_hash[:driver][:car_make]
       expect(new_driver.car_model).must_equal driver_hash[:driver][:car_model]
-      expect(new_driver.vin).must_equal driver_hash[:driver][:vin]
       expect(new_driver.available).must_equal driver_hash[:driver][:available]
       
+      # Check that the controller redirected the user
+      must_respond_with :redirect
     end
     
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
       
-      test_driver = driver
+      test_driver = driver_fred
       driver_hash = { driver: { name: "Dino" } }
       
       # Act-Assert
@@ -102,24 +97,17 @@ describe DriversController do
       # Assert
       # Check that the controller redirects
       must_respond_with :redirect
-    end
-    
-    it "does not create a driver if the form data is empty and it responds with a redirect" do
-      test_driver = driver
-      driver_hash = { driver: { name: "Dino" } }
-      expect { post drivers_path, params: driver_hash }.wont_change "Driver.count"
-      must_respond_with :redirect
-    end
+    end  
   end
   
   describe "edit" do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
       # Ensure there is an existing driver saved
-      driver = Driver.create(name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", available: true)
+      test_driver = driver_fred
       
       # Act
-      get edit_driver_path(driver.id)
+      get edit_driver_path(driver_fred.id)
       
       # Assert
       must_respond_with :success
@@ -141,25 +129,25 @@ describe DriversController do
     it "can update an existing driver with valid information accurately, and redirect" do
       # Arrange
       # Ensure there is an existing driver saved
-      original_driver = Driver.create(name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", available: true)
+      original_driver = driver_fred
       changes = { driver: { name: "Wilma Flintstone", vin: "456", car_make: "bird", car_model: "robin", available: false } }
-      
       
       # Act-Assert
       # Ensure that there is no change in Driver.count
       expect { patch driver_path(original_driver.id), params: changes }.wont_change "Driver.count"
       
       patch driver_path(original_driver.id), params: changes
-      
       updated_driver = Driver.find_by(id: original_driver.id)
       
       # Assert
       # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
-      # Check that the controller redirected the user
       expect(updated_driver.name).must_equal changes[:driver][:name]
       expect(updated_driver.vin).must_equal changes[:driver][:vin]
       expect(updated_driver.car_make).must_equal changes[:driver][:car_make]
       expect(updated_driver.car_model).must_equal changes[:driver][:car_model]
+      
+      # Check that the controller redirected the user
+      must_respond_with :redirect
     end
     
     it "does not update any driver if given an invalid id, and responds with a 404" do
@@ -168,27 +156,27 @@ describe DriversController do
       
       # Act-Assert
       # Ensure that there is no change in Driver.count
-      patch driver_path(-1), params: driver_hash
       expect { patch driver_path(-1), params: driver_hash }.wont_change "Driver.count"
+      
+      patch driver_path(-1), params: driver_hash
       
       # Assert
       # Check that the controller gave back a 404
       must_respond_with :not_found
-      
-      
     end
     
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      driver_id = driver.id
+      driver_id = driver_fred.id
+      
       # Set up the form data so that it violates Driver validations
       driver_hash = { driver: { name: "Dino" } }
+      
       # Act-Assert
       # Ensure that there is no change in Driver.count
       expect { patch driver_path(driver_id), params: driver_hash }.wont_change "Driver.count"
+      
+      patch driver_path(driver_id), params: driver_hash
       
       # Assert
       # Check that the controller redirects
@@ -200,7 +188,7 @@ describe DriversController do
     it "destroys the driver instance in db when driver exists, then redirects" do
       # Arrange
       # Ensure there is an existing driver saved
-      test_driver = driver
+      test_driver = driver_fred
       
       # Act-Assert
       # Ensure that there is a change of -1 in Driver.count
@@ -212,7 +200,7 @@ describe DriversController do
       
     end
     
-    it "does not change the db when the driver does not exist, then responds with " do
+    it "does not change the db when the driver does not exist, then responds with redirect" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
       
