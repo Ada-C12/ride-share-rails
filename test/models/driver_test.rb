@@ -67,16 +67,17 @@ describe Driver do
     
     describe "total earnings" do
       before do
-        @new_driver = Driver.create(name: "Robert")      
-        @trip = Trip.new(driver_id: @new_driver.id, passenger_id: 343, rating: 4, cost: 905, date: Date.new(2001,2,3)) 
-         @trip.save
+        @new_driver = Driver.create(name: "Robert", vin: "r45g6")   
+        @new_passenger = Passenger.create(name: "Robert", phone_num: "r45g6")   
+        @trip = Trip.new(driver_id: @new_driver.id, passenger_id: @new_passenger.id, rating: 4, cost: 905, date: Date.new(2001,2,3)) 
+        @trip.save
       end
       
       it "must return the total cost of the driver's trips" do 
         # Arrange
         # new_driver.save
         # driver_id = new_driver.id
-        expect(@new_driver.total_earnings).must_equal 905
+        expect(@new_driver.total_earnings).must_equal((905 - 1.65) * 0.80)
       end
     end
     

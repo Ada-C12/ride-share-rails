@@ -1,4 +1,4 @@
-require 'pry'
+
 class DriversController < ApplicationController
   
   def index
@@ -20,7 +20,7 @@ class DriversController < ApplicationController
   end
   
   def create
-    binding.pry
+    
 
     @driver = Driver.new(driver_params) 
     if @driver.save
