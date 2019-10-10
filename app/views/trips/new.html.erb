@@ -10,7 +10,7 @@
 
   <%= f.label :date %>
   <%# HOW TO SHOW TIME.NOW IN THE TEXT FIELD?%>
-  <%= f.text_field :date%>
+  <%= f.date_field :date, disabled: "true" %>
 
   <%= f.submit "Create a Trip", class: "trip-form-button" %>
 <% end %>
