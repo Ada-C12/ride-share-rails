@@ -125,7 +125,7 @@ describe DriversController do
   
   describe "update" do
     it "can update an existing driver with valid information accurately, and redirect" do
-      mb = Driver.create name: "Meatball Jones", vin: 41225, active: true, car_make: "Honda", car_model: "Accord"
+      @mb = Driver.create name: "Meatball Jones", vin: 41225, active: true, car_make: "Honda", car_model: "Accord"
       driver_hash = {
         driver: {
           name: "Barbara Bush",
@@ -135,51 +135,51 @@ describe DriversController do
           car_model: "Tacoma"
         }
       }
+      expect {patch driver_path(@mb.id), params: driver_hash}.wont_change Driver.count
       expect {
-        patch driver_path(mb.id), params: driver_hash
-      }.wont_change "Driver.count"
-      must_respond_with :redirect
+        patch driver_path(@mb.id), params: driver_hash
+      }.must_respond_with :redirect
       
-      expect {patch driver_path(mb.id), params: driver_hash}.wont_change Driver.count
-      expect(mb.name).must_equal driver_hash[:driver][:name]
+      expect {patch driver_path(@mb.id), params: driver_hash}.wont_change Driver.count
+      expect(@mb.name).must_equal driver_hash[:driver][:name]
       expect(@mb.vin).must_equal driver_hash[:driver][:vin]
-      expect(mb.active).must_equal driver_hash[:driver][:active]
-      expect(mb.car_make).must_equal driver_hash[:driver][:car_make]
-      expect(mb.car_model).must_equal driver_hash[:driver][:car_model]
+      expect(@mb.active).must_equal driver_hash[:driver][:active]
+      expect(@mb.car_make).must_equal driver_hash[:driver][:car_make]
+      expect(@mb.car_model).must_equal driver_hash[:driver][:car_model]
     end
   end
   
   it "does not update any driver if given an invalid id, and responds with a 404" do
+    driver_hash = {
+      driver: {
+        name: "Barbara Bush",
+        vin: "53246",
+        active: false,
+        car_make: "Toyota",
+        car_model: "Tacoma"
+      }
+    }
     expect {
-      patch driver_path(99999), params: @driver_hash
+      patch driver_path(99999), params: driver_hash
     }.wont_change "Driver.count"
-    must_redirect_to driver_path
+    must_redirect_to drivers_path
   end
   
   
   describe "destroy" do
     it "destroys the driver instance in db when driver exists, then redirects" do
-      # Arrange
-      # Ensure there is an existing driver saved
+      num_one = Driver.create name: "Number One Benitez", vin: 53246, active: false, car_make: "Toyota", car_model: "Tacoma"
       
-      # Act-Assert
-      # Ensure that there is a change of -1 in Driver.count
+      expect { delete driver_path(num_one.id) }.must_change 'Driver.count', -1
       
-      # Assert
-      # Check that the controller redirects
-      
+      deleted_driver = Driver.find_by(id: num_one.id)
+      expect(deleted_driver).must_be_nil
+      must_respond_with :redirect
     end
     
-    it "does not change the db when the driver does not exist, then responds with " do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
-      
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
-      
-      # Assert
-      # Check that the controller responds or redirects with whatever your group decides
-      
+    it "does not change the db when the driver does not exist, then responds with not found" do
+      delete driver_path(-1)
+      must_respond_with :not_found
     end
   end
 end
