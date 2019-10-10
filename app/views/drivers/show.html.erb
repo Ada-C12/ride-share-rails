@@ -1,7 +1,7 @@
 <h2> Details for: <%= @driver.name %> </h2>
 <ul>
-  <li> Total earnings: <%= @driver.total_earnings %> </li>
-  <li> Average rating: <%= @driver.avg_rating %></li>
+  <li> Total earnings: <%= sprintf "%.2f",@driver.total_earnings %> </li>
+  <li> Average rating: <%= sprintf "%.2f",@driver.avg_rating %></li>
   <li> Driver's trips:
 
 <ul>
