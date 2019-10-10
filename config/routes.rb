@@ -3,11 +3,8 @@ Rails.application.routes.draw do
   root to: "homepages#index"
   get "/homepages/nope", to: "homepages#nope", as: "nope"
   
-  resources :drivers do 
-    resources :trips, shallow: true
-  end 
-  
-  resources :trips, except: [:new]  
+  resources :drivers
+  resources :trips, except: [:new]
   
   # ADDED THESE BELOW, to allow trip requests per passenger
   resources :passengers do 

@@ -56,6 +56,7 @@ describe TripsController do
       trip_hash_no_passenger,
       trip_hash_no_date,
       trip_hash_no_cost ]
+      
       trip_count_before = Trip.count
       set_of_bad_params.each do |bad|
         @bad_trip = Trip.create(bad)
@@ -68,23 +69,23 @@ describe TripsController do
     end
     
     it "after creating trip object, will send to trip_path" do
-      post trips_path, params: trip_hash
+      post trips_path, params: {trip: trip_hash}
       must_redirect_to trip_path(id: Trip.last.id)
     end
     
     it "edge: if bad driver input, send to nope_path" do
-      post trips_path, params: trip_hash_bad_driver
+      post trips_path, params: {trip: trip_hash_bad_driver}
       must_redirect_to nope_path(msg: "No drivers available, maybe you should walk")
       
-      post trips_path, params: trip_hash_no_driver
+      post trips_path, params: {trip: trip_hash_no_driver}
       must_redirect_to nope_path(msg: "No drivers available, maybe you should walk")
     end
     
     it "edge: if bad passenger input, send to nope_path" do
-      post trips_path, params: trip_hash_bad_passenger
+      post trips_path, params: {trip: trip_hash_bad_passenger}
       must_redirect_to nope_path(msg: "Trip request unsuccessful, please contact customer service at 1-800-lol-sorry")
       
-      post trips_path, params: trip_hash_no_passenger
+      post trips_path, params: {trip: trip_hash_no_passenger}
       must_redirect_to nope_path(msg: "Trip request unsuccessful, please contact customer service at 1-800-lol-sorry")
     end
   end

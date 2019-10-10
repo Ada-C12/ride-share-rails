@@ -1,5 +1,5 @@
 class DriversController < ApplicationController
-
+  
   def index
     @drivers = Driver.all.order(:id)
   end
@@ -16,29 +16,30 @@ class DriversController < ApplicationController
       return
     end
   end 
-
+  
   def create
     @driver = Driver.new(driver_params)
-
+    
     if @driver.save
       redirect_to driver_path(@driver.id)
     else
+      # hey, they want us to render instead, and display error.messages
       redirect_to nope_path
     end
   end
-
+  
   def edit
     @driver = Driver.find_by(id:params[:id])
-
+    
     if @driver.nil?
       redirect_to root_path
       return
     end
   end 
-
+  
   def update
     @driver = Driver.find_by(id: params[:id])
-
+    
     if @driver.nil?
       redirect_to nope_path
       return
@@ -49,10 +50,10 @@ class DriversController < ApplicationController
       redirect_to nope_path
     end
   end 
-
+  
   def destroy
     selected_driver = Driver.find_by(id: params[:id])
-
+    
     if selected_driver.nil?
       redirect_to nope_path
       return
@@ -62,9 +63,9 @@ class DriversController < ApplicationController
       return
     end
   end 
-
+  
   private
-
+  
   def driver_params
     return params.require(:driver).permit(:name, :vin)
   end
