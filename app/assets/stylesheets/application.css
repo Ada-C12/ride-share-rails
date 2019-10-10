@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+
+ nav {
+   background-color: grey;
+   color: white;
+   font-size: 3em;
+   font-family: 'Questrial', sans-serif;
+ }
+
+ body {
+  font-family: 'Questrial', sans-serif;
+ }
+
+ h1 {
+
+ }
+
+
