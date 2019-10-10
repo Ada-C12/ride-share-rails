@@ -6,9 +6,18 @@ class Passenger < ApplicationRecord
   
   def total_charges
     
-    dollars, cents = (trips.map(&:cost)).sum.divmod(100)
+    cents = (trips.map(&:cost)).sum
     
-    "#{dollars}.#{cents}"
+    charge = converter(cents)
     
   end
+  
+  # Method to convert cents to dollars. Brute force. Returns a string with appropriate decimal point. No rounding, just string shuffling. 
+  def converter(integer)
+    integer = integer.to_s
+    cents = integer[-2..-1]
+    dollars = integer[0..-3]
+    return_statement = "#{dollars}.#{cents}"
+  end
+  
 end
