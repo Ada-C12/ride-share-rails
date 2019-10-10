@@ -144,25 +144,16 @@ describe TripsController do
     it "will not update if params hash does not include changes" do
       existing_trip = Trip.find_by(id: @trip.id)
       
-      puts "existing trip"
-      puts existing_trip.id
-      
       expect {
         patch trip_path(existing_trip.id), params: {}
-      }.wont_change "Trip.count"
+      }.must_raise
       
       updated_trip = Trip.find_by(id: @trip.id)
       
-      puts "updated trip"
-      puts updated_trip
-      
-      # expect(updated_trip.date).must_equal existing_trip[:date]
-      # expect(updated_trip.passenger_id).must_equal existing_trip[:passenger_id]
-      # expect(updated_trip.driver_id).must_equal existing_trip[:driver_id]
-      # expect(updated_trip.cost).must_equal existing_trip[:cost] 
-    end
-    
-    it "strong params will prevent updates to completion_date to be passed in" do 
+      expect(updated_trip.date).must_equal existing_trip[:date]
+      expect(updated_trip.passenger_id).must_equal existing_trip[:passenger_id]
+      expect(updated_trip.driver_id).must_equal existing_trip[:driver_id]
+      expect(updated_trip.cost).must_equal existing_trip[:cost] 
     end
   end
   
