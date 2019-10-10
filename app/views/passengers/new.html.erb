@@ -1,0 +1,17 @@
+<h1> This is the page to add a new passener </h1>
+
+<h1> new passenger: </h1>
+
+<%= form_with model: @passenger do |f| %>
+
+<%= f.label :name %>
+<%= f.text_field :name %>
+
+<%= f.label :phone_num %>
+<%= f.text_field :phone_num %>
+
+<%= f.submit "create a new passener" %>
+
+<% end %>
+
+
