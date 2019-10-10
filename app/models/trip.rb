@@ -1,6 +1,6 @@
 class Trip < ApplicationRecord
-    belongs_to :driver
-    belongs_to :passenger
+    belongs_to :driver, dependent: :nullify
+    belongs_to :passenger, dependent: :nullify
 
     validates :date, presence: true
     validates :rating, allow_nil: true, numericality: { less_than_or_equal_to: 5 }

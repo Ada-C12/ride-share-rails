@@ -1,32 +1,4 @@
 class TripsController < ApplicationController
-  def index
-    passenger_id = params[:passenger_id]
-    driver_id = params[:driver_id]
-
-    if passenger_id
-      @passenger = Passenger.find_by(id: passenger_id)
-      if @passenger
-        @trips = @passenger.trips
-        return
-      else
-        head :not_found
-        return
-      end
-    elsif driver_id
-      @driver = Driver.find_by(id: driver_id)
-      if @driver
-        @trips = @driver.trips
-        return
-      else
-        head :not_found
-        return
-      end
-    else
-      @trips = Trip.all
-      return
-    end
-  end
-
   def show
     trip_id = params[:id]
     @trip = Trip.find_by(id: trip_id)
@@ -82,9 +54,16 @@ class TripsController < ApplicationController
     end
   end
 
-  # def delete
-
-  # end
+  def delete
+    trip = Trip.find_by(id: params[:id])
+    if trp.nil?
+      head :not_found
+      return
+    else
+      trip.destroy
+      redirect_to root_path
+      return
+  end
 
   private
   def trip_params
