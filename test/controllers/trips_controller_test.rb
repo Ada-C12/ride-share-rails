@@ -68,8 +68,18 @@ describe TripsController do
   end
   
   describe "edit" do
-    it "" do
-      # Your tests go here 
+    it "responds with success when getting the edit page for an existing, valid driver" do
+      get edit_trip_path(trip.id)
+      
+      must_respond_with :success
+      expect(Trip.count).must_be :>, 0
+    end
+    
+    it "responds with redirect when getting the edit page for a non-existing driver" do
+      get edit_trip_path(-20)
+      
+      must_respond_with :redirect
+      must_redirect_to root_path
     end
   end
   
