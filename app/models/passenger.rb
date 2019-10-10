@@ -7,9 +7,11 @@ class Passenger < ApplicationRecord
   #   return Passenger.all #Passenger.all
   # end
 
-  # def self.total_money_spent
-  #   total_money_spent = self.passengers.where.not(publication_date: nil)
-  #   first_book = books_with_year.order(publication_date: :asc).first
-  #   return first_book.publication_date
-  # end
+  def total_money_spent
+    total_money_spent = 0
+    if self.trips != []
+      total_money_spent = self.trips.sum(:cost).round
+    end
+    return total_money_spent
+  end
 end
