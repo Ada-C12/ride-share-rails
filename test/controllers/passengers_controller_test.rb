@@ -3,7 +3,6 @@ require "test_helper"
 describe PassengersController do
   describe "index" do
     it "responds with success when there are many passengers saved" do
-
       new_passenger = Passenger.create name: "Random name", phone_num: "206-123-3333"
 
       get passengers_path
@@ -48,11 +47,10 @@ describe PassengersController do
 
   describe "create" do
     it "can create a new passenger with valid information accurately, and redirect" do
-
       passenger_hash = {
         passenger: {
           name: "Bob's Burgers",
-          phone_num: "XXX-XXX-XXXX"
+          phone_num: "XXX-XXX-XXXX",
         },
       }
 
@@ -71,21 +69,20 @@ describe PassengersController do
     it "does not create a passenger if the form data violates Passenger validations, and responds with a redirect" do
       passenger_hash = {
         passenger: {
-          phone_num: "XXX-XXX-XXX"
-        }
+          phone_num: "XXX-XXX-XXX",
+        },
       }
 
       expect {
         post passengers_path, params: passenger_hash
       }.wont_change "Passenger.count"
 
-      must_respond_with :success   
+      must_respond_with :success
     end
   end
 
   describe "edit" do
     it "responds with success when getting the edit page for an existing, valid passenger" do
-
       @passenger = Passenger.create name: "Random name", phone_num: "XXX-XXX-XXXX"
 
       get edit_passenger_path(@passenger.id)
@@ -94,7 +91,6 @@ describe PassengersController do
     end
 
     it "responds with redirect when getting the edit page for a non-existing passenger" do
-
       get edit_passenger_path(-1)
 
       must_respond_with :redirect
@@ -104,13 +100,12 @@ describe PassengersController do
 
   describe "update" do
     it "can update an existing passenger with valid information accurately, and redirect" do
-
       existing_passenger = Passenger.create name: "Harry Potter", phone_num: "aaa-aaa-aaaa"
 
       updated_passenger_hash = {
         passenger: {
           name: "Ron Weasley",
-          phone_num: "zzz-zzz-zzzz"
+          phone_num: "zzz-zzz-zzzz",
         },
       }
 
@@ -125,15 +120,13 @@ describe PassengersController do
 
       must_respond_with :redirect
       must_redirect_to passenger_path(updated_passenger)
-
     end
 
     it "does not update any passenger if given an invalid id, and responds with a 404" do
-
       updated_passenger_hash = {
         passenger: {
           name: "Ron Weasley",
-          phone_num: "zzz-zzz-zzzz"
+          phone_num: "zzz-zzz-zzzz",
         },
       }
 
@@ -142,8 +135,6 @@ describe PassengersController do
       patch passenger_path(invalid_passenger_id), params: updated_passenger_hash
 
       must_respond_with :not_found
-
-
     end
 
     it "does not create a passenger if the form data violates Passenger validations, and responds with a redirect" do
@@ -152,8 +143,8 @@ describe PassengersController do
 
       updated_passenger_hash = {
         passenger: {
-          name: "Ron Weasley"
-        }
+          name: "Ron Weasley",
+        },
       }
 
       expect {
@@ -168,6 +159,26 @@ describe PassengersController do
   end
 
   describe "destroy" do
+    before do
+      @passenger_to_be_deleted = Passenger.create!(name: "Freddy Krueger", phone_num: "(206)-111-2222")
+    end
 
+    it "destroys the passenger instance in db when passenger exists, then redirects" do
+      expect {
+        delete passenger_path(@passenger_to_be_deleted.id)
+      }.must_change "Passenger.count", 1
+
+      must_respond_with :redirect
+      must_redirect_to passengers_path
+    end
+
+    it "does not change the db when the passenger does not exist, then responds with redirect" do
+      invalid_passenger_id = -1
+
+      delete passenger_path(invalid_passenger_id)
+
+      must_respond_with :redirect
+      must_redirect_to passengers_path
+    end
   end
 end

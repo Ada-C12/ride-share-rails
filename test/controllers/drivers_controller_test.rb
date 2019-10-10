@@ -54,8 +54,8 @@ describe DriversController do
         driver: {
           name: "Bob's Burgers",
           vin: "FDJSKFJD84938",
-          available: true
-        }
+          available: true,
+        },
       }
 
       expect {
@@ -69,7 +69,6 @@ describe DriversController do
 
       must_respond_with :redirect
       must_redirect_to driver_path(new_driver.id)
-
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
@@ -79,8 +78,8 @@ describe DriversController do
       driver_hash = {
         driver: {
           vin: "FDJSKFJD84938",
-          available: true
-        }
+          available: true,
+        },
       }
 
       expect {
@@ -93,7 +92,6 @@ describe DriversController do
       # Assert
       # Check that the controller redirects
       must_respond_with :success
-
     end
   end
 
@@ -121,7 +119,6 @@ describe DriversController do
 
   describe "update" do
     it "can update an existing driver with valid information accurately, and redirect" do
-
       existing_driver = Driver.create name: "Harry Potter", vin: "HOGWA4RT$"
 
       updated_driver_hash = {
@@ -160,12 +157,11 @@ describe DriversController do
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-
       existing_driver = Driver.create name: "Harry Potter", vin: "HOGWA4RT$"
       updated_driver_hash = {
         driver: {
-          name: "Ron Weasley"
-        }
+          name: "Ron Weasley",
+        },
       }
 
       expect {
@@ -176,33 +172,30 @@ describe DriversController do
 
       must_respond_with :redirect
       must_redirect_to driver_path(driver_id)
-
     end
   end
 
   describe "destroy" do
+    before do
+      @driver_to_be_deleted = Driver.create!(name: "Freddy Krueger", vin: "ASDJ2343")
+    end
+
     it "destroys the driver instance in db when driver exists, then redirects" do
-      # Arrange
-      # Ensure there is an existing driver saved
+      expect {
+        delete driver_path(@driver_to_be_deleted.id)
+      }.must_change "Driver.count", 1
 
-      # Act-Assert
-      # Ensure that there is a change of -1 in Driver.count
-
-      # Assert
-      # Check that the controller redirects
-
+      must_respond_with :redirect
+      must_redirect_to drivers_path
     end
 
     it "does not change the db when the driver does not exist, then responds with " do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
+      invalid_driver_id = -1
 
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      delete driver_path(invalid_driver_id)
 
-      # Assert
-      # Check that the controller responds or redirects with whatever your group decides
-
+      must_respond_with :redirect
+      must_redirect_to drivers_path
     end
   end
 end

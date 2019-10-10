@@ -45,7 +45,7 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: params[:id])
 
     if @trip.nil?
-      redirect_to passenger_path(@trip.passenger.id)
+      redirect_to passengers_path
       return
     end
   end
@@ -68,12 +68,12 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: params[:id])
 
     if @trip.nil?
-      redirect_to passenger_path(@trip.passenger.id)
+      redirect_to passengers_path
       return
     end
 
     @trip.destroy
-    redirect_to passenger_path(@trip.passenger.id)
+    redirect_to passengers_path
     return
   end
 
