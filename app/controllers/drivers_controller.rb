@@ -42,6 +42,7 @@ class DriversController < ApplicationController
     @driver.vin = params[:driver][:vin]
     @driver.car_make = params[:driver][:car_make]
     @driver.car_model = params[:driver][:car_model]
+    @driver.active = params[:driver][:active]
 
     if @driver.save
       redirect_to driver_path(@driver.id)
@@ -59,6 +60,18 @@ class DriversController < ApplicationController
       driver_to_delete.destroy
       redirect_to drivers_path
       return
+    end
+  end
+
+  def toggle_active
+    driver_to_toggle = Driver.find_by(id: params[:id])
+
+    driver_to_toggle.active = !driver_to_toggle.active
+
+    if driver_to_toggle.save
+      redirect_to driver_path(driver_to_toggle.id)
+    else
+      render new_driver_path
     end
   end
 

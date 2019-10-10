@@ -33,4 +33,8 @@ class Driver < ApplicationRecord
       total_earning = (earnings_sum * 0.8)
     end
   end
+
+  def toggle_active
+    self.active = !self.active
+  end
 end

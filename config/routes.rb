@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   resources :drivers, :passengers, :trips
 
+  get "/drivers/:id/toggle", to: "drivers#edit"
+  post "/drivers/:id/toggle", to: "drivers#toggle_active"
   # root to: "drivers#index", as: "root_drivers"
   # resources :drivers
 
