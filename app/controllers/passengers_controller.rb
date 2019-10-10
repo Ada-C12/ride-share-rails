@@ -81,6 +81,7 @@ class PassengersController < ApplicationController
       
       if new_trip.save == true
         flash[:success] = "Trip successfully created." 
+        new_trip.driver.active = false 
       else 
         flash[:error] = "Uh Oh! Something went wrong."
       end
