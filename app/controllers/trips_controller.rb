@@ -21,12 +21,16 @@ class TripsController < ApplicationController
 
   def create
     passenger = Passenger.find_by(id: params[:passenger_id])
+    # @drivers = Driver.all
+    # driver = @drivers.assign_driver
+    
+  
     trip_hash = {
-    passenger_id: passenger.id,
-    driver_id: 5, #model method that chooses driver that is available
-    date: Date.current,
-    rating: nil,
-    cost: 0
+      passenger_id: passenger.id,
+      driver_id: driver.id,
+      date: Date.current,
+      rating: nil,
+      cost: 0
     }
     @trip = Trip.new(trip_hash)
 
@@ -92,6 +96,7 @@ class TripsController < ApplicationController
     return
 
   end
+
 
   private
 

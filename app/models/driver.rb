@@ -14,4 +14,7 @@ class Driver < ApplicationRecord
     end
     return '%.2f' % total
   end
+
+  
+
 end
