@@ -71,7 +71,7 @@ class DriversController < ApplicationController
   
   def driver_params
     # if !params(:driver).nil?
-    return params.require(:driver).permit(:name, :active, :vin, :car_make, :car_model)
+    return params.require(:driver).permit(:name, :available, :vin, :car_make, :car_model)
     # else
     #   return nil
     # end

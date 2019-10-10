@@ -3,7 +3,7 @@ require "test_helper"
 describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
   let (:driver) {
-    Driver.create(name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", active: true) 
+    Driver.create(name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", available: true) 
   }
   
   describe "index" do
@@ -68,7 +68,7 @@ describe DriversController do
     it "can create a new driver with valid information accurately, and redirect" do
       # Arrange
       # Set up the form data
-      driver_hash = { driver: { name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", active: true } }
+      driver_hash = { driver: { name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", available: true } }
       
       test_driver = driver
       
@@ -83,7 +83,7 @@ describe DriversController do
       expect(new_driver.car_make).must_equal driver_hash[:driver][:car_make]
       expect(new_driver.car_model).must_equal driver_hash[:driver][:car_model]
       expect(new_driver.vin).must_equal driver_hash[:driver][:vin]
-      expect(new_driver.active).must_equal driver_hash[:driver][:active]
+      expect(new_driver.available).must_equal driver_hash[:driver][:available]
       
     end
     
@@ -116,7 +116,7 @@ describe DriversController do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
       # Ensure there is an existing driver saved
-      driver = Driver.create(name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", active: true)
+      driver = Driver.create(name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", available: true)
       
       # Act
       get edit_driver_path(driver.id)
@@ -141,8 +141,8 @@ describe DriversController do
     it "can update an existing driver with valid information accurately, and redirect" do
       # Arrange
       # Ensure there is an existing driver saved
-      original_driver = Driver.create(name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", active: true)
-      changes = { driver: { name: "Wilma Flintstone", vin: "456", car_make: "bird", car_model: "robin", active: false } }
+      original_driver = Driver.create(name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", available: true)
+      changes = { driver: { name: "Wilma Flintstone", vin: "456", car_make: "bird", car_model: "robin", available: false } }
       
       
       # Act-Assert
@@ -164,7 +164,7 @@ describe DriversController do
     
     it "does not update any driver if given an invalid id, and responds with a 404" do
       # Arrange
-      driver_hash = { driver: { name: "Wilma Flintstone", vin: "456", car_make: "bird", car_model: "robin", active: false }}
+      driver_hash = { driver: { name: "Wilma Flintstone", vin: "456", car_make: "bird", car_model: "robin", available: false }}
       
       # Act-Assert
       # Ensure that there is no change in Driver.count
