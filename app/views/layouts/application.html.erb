@@ -13,6 +13,8 @@
   <body>
   <nav>
   <%= link_to "Rails Ride Share", root_path, class:"link" %>
+  <%= link_to "Drivers", drivers_path, class:"link", id:"drivers" %>
+  <%= link_to "Passengers", passengers_path, class:"link", id:"passengers" %>
   </nav>
     <%= yield %>
   </body>
