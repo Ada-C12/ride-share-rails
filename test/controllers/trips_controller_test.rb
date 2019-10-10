@@ -13,9 +13,10 @@ describe TripsController do
   let (:trip1) { Trip.create(trip_hash)}
   
   describe "show, via trips/:id" do
+    # Hey Momo!! This feels kinda short, am I forgetting something?
     it "Can show individual trip page if trip id valid" do
-      # get trip_path(id: trip1.id)
-      # must_redirect_to trip_path
+      get trip_path(id: trip1.id)
+      must_respond_with :success
     end
     
     it "Redirects if trip id invalid" do
