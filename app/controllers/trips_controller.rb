@@ -55,7 +55,7 @@ class TripsController < ApplicationController
     end   
     
     # make new trip
-    @trip = Trip.new(date: params[:date], rating: nil, cost: 100, driver_id: @driver.id, passenger_id: params[:passenger_id])
+    @trip = Trip.new(date: params[:date], rating: nil, cost: 1000, driver_id: @driver.id, passenger_id: params[:passenger_id])
     if @trip.save
       redirect_to trip_path(@trip.id)
       return
@@ -107,8 +107,7 @@ class TripsController < ApplicationController
   end 
   
   def destroy
-    # Only passengers can delete their own trips
-    
+    # Only passengers can delete their own trips via links
     selected_trip = Trip.find_by(id: params[:id])
     
     if selected_trip.nil?
@@ -116,9 +115,10 @@ class TripsController < ApplicationController
       return
     else
       selected_trip.destroy
-      redirect_to trip_path
+      redirect_to passenger_path(id: selected_trip.passenger_id)
       return
     end
   end 
   
 end
+
