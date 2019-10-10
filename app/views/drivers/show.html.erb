@@ -4,6 +4,12 @@
 <p> Total Earnings: <%= @driver.total_earnings %></p>
 <p> Average Rating: <%= @driver.average_rating %></p>
 
+<% if @driver.available %>
+  <%= link_to "Make Unavailable", make_unavailable_path(@driver.id), method: :patch %> <br>
+<% else %>
+  <%= link_to "Make Available", make_available_path(@driver.id), method: :patch %> <br>
+<%end%>
+
 <%= link_to "Edit Driver", edit_driver_path(@driver) %> <br>
 <%= link_to "Delete Driver", driver_path(@driver), method: :delete, data: { confirm: "Are you sure you want to delete this driver?" } %> <br>
 
