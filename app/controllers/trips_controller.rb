@@ -3,7 +3,7 @@ class TripsController < ApplicationController
   def show
     trip_id = params[:id].to_i
     @trip = Trip.find_by(id: trip_id)
-
+    
     if @trip.nil?
       head :not_found
       return 
@@ -13,6 +13,13 @@ class TripsController < ApplicationController
   def new
     passenger_id = params[:passenger_id]
     @trip = Trip.new(passenger_id: passenger_id) 
+    
+    # If we are going through /passengers/2/trips/new, then it is for the route /passengers/:passenger_id/trips/new
+    if Passenger.find_by(id: passenger_id).nil?
+      redirect_to passengers_path
+      # Instead of raise, maybe do something like redirect_to
+    end
+    
     if passenger_id.nil?
       @passengers = Passenger.all
     else

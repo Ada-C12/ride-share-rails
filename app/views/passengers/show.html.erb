@@ -8,11 +8,12 @@
 
   <li> <%= link_to "Edit passenger!", edit_passenger_path(@passenger.id)%></li>
   <li> <%= link_to "Delete passenger!", passenger_path(@passenger.id), method: :delete, data: {confirm: "are you sure???"}, class: "passenger-delete-link" %></li>
-  <li> <%= link_to "Add a new trip for this passenger", new_passenger_trip_path(@passenger.id) %></li>
+  <li><%= button_to "Add a new trip for this passenger", passenger_trips_path(@passenger.id)%></li>
+
 </ul>
 
 <h2><%=@passenger.name%>'s trips:</h2>
-<table style="width100%">
+<table style=width100%>
   <tr>
     <th>Date</th>
     <th>Rating</th>
