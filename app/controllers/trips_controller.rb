@@ -24,12 +24,8 @@ class TripsController < ApplicationController
     end
   end 
   
-<<<<<<< HEAD
   def create
     @trip = Trip.new(trip_params)
-=======
-  def create   
->>>>>>> 3ac0c5460eaebb28711cdd33e9628c4088a5b36e
     if @trip.save
       x= "hahaha"
       redirect_to trip_path(@trip.id)

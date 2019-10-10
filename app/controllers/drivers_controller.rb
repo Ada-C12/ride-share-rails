@@ -1,7 +1,7 @@
 class DriversController < ApplicationController
 
   def index
-    @drivers = Driver.all
+    @drivers = Driver.all.order(:id)
   end
   
   def new
@@ -10,13 +10,13 @@ class DriversController < ApplicationController
   
   def show
     driver_id = params[:id].to_i
-    @driver = Driver.find_by(id: driver_id)
+    @driver = Driver.find_by(id:params[:id])
     if @driver.nil?
-      head :not_found
+      redirect_to nope_path
       return
     end
   end 
-  
+
   def create
     @driver = Driver.new(driver_params)
 
@@ -54,7 +54,7 @@ class DriversController < ApplicationController
     selected_driver = Driver.find_by(id: params[:id])
 
     if selected_driver.nil?
-      redirect_to root_path
+      redirect_to nope_path
       return
     else
       selected_driver.destroy
