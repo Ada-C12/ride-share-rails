@@ -2,3 +2,10 @@
 1. radio buttons or something<br>
 2. after rating, remember to flip driver.active back to false!!!<br>
 <%= params %>
+
+<%= form_with %>
+<%= radio_button_tag(:age, "child") %>
+<%= label_tag(:age_child, "I am younger than 21") %>
+<%= radio_button_tag(:age, "adult") %>
+<%= label_tag(:age_adult, "I am over 21") %>
+<% end %>

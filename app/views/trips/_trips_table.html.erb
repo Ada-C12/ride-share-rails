@@ -19,8 +19,10 @@
     <section>
       <% if trip.rating %>
         <%= trip.rating%>
-      <% else %>
+      <% elsif @can_rate %>
         <%= link_to "RATE!", edit_trip_path(id: trip.id) %>
+      <% else %>
+        Pending
       <% end %>
     </section>
   <% end %>

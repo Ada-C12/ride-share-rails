@@ -10,6 +10,7 @@ class TripsController < ApplicationController
     elsif @passenger
       # showing trips for a specific passenger
       @trips = Trip.where(passenger_id: @passenger.id)
+      @can_rate = true
     else
       # just showing all Trips table for all passengers
       @trips = Trip.all
