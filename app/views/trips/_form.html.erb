@@ -44,8 +44,8 @@ Date: <%= @trip.date %>
 <%= f.select :rating, [' ', '1', '2', '3', '4', '5']%>
 
 
-  <%= f.label :cost, "Cost: $" %>
-  <%= f.number_field :cost %>
+<%= f.label :cost, "Cost: $" %>
+<%= f.number_field :cost %>
 
 
 <%= f.submit "Save Trip", class: "trip-save" %>

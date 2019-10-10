@@ -36,7 +36,6 @@ class TripsController < ApplicationController
     end
   end
   
-  
   def new
     if params[:passenger_id]
       # This is the nested route, /author/:author_id/books/new
@@ -80,6 +79,6 @@ class TripsController < ApplicationController
   private
   
   def trip_params
-    return params.require(:trip).permit(:trip_id, :date, :passenger_id, :driver_id, :price, :rating)
+    return params.require(:trip).permit(:trip_id, :date, :passenger_id, :driver_id, :cost, :rating)
   end
 end
