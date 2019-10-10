@@ -4,4 +4,9 @@ class Trip < ApplicationRecord
   
   #Validation Code
   
+  def trip_cost
+    random_cost = (rand(100.00..500.99)).round(2)
+    return random_cost
+  end
+  
 end
