@@ -34,7 +34,7 @@
 <p>
   <strong>My trips:</strong>
   <% @driver.find_driver_trips.each do |trip| %>
-    <%= link_to trip.id, trip_path %>
+    <%= link_to trip.id, trip_path(trip.id) %>
   <% end%>
 </p>
 

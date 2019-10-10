@@ -23,9 +23,10 @@ class Driver < ApplicationRecord
     trip_ratings = []
     
     self.trips.all.each do |trip|
-      trip_ratings << trip.rating
       if trip.rating.nil?
-        return
+        trip_ratings << 0
+      else
+        trip_ratings << trip.rating
       end
     end 
     
