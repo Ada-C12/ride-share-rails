@@ -2,12 +2,12 @@
 <h2>Trip Info</h2>
 <p>
   <strong>Driver:</strong>
-  <%= @trip.driver.name %>
+  <%= link_to @trip.driver.name, driver_path(@trip.driver.id) %>
 </p>
 
 <p>
   <strong>Passenger:</strong>
-  <%= @trip.passenger.name%>
+  <%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id) %>
 </p>
 
 <p>
