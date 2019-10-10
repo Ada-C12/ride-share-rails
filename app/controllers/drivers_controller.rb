@@ -45,7 +45,7 @@ class DriversController < ApplicationController
       #anytime we do a head or render or redirect
     end
     if @driver.update(driver_params)
-      redirect_to driver_path(params)
+      redirect_to driver_path(@driver.id)
       return
     else
       render driver_path
