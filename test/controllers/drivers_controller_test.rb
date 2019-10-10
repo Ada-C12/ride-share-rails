@@ -98,7 +98,7 @@ describe DriversController do
     
   end
   
-  it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+  it "does not create a driver if the form data violates  Driver validations, and responds with a redirect" do
     # Note: This will not pass until ActiveRecord Validations lesson
     # Arrange
     driver_hash = { driver: {
@@ -112,13 +112,8 @@ describe DriversController do
     expect {
     post drivers_path, params: driver_hash}.wont_change "Driver.count"
     
-    <<<<<<< HEAD
-    if @driver
-      must_render_template :new
-    end
-    =======
     must_respond_with :success
-    >>>>>>> a6f580a672f8051be458907903ea20ac0a126f49
+    
     # Assert
     # Check that the controller redirects
     
@@ -229,34 +224,52 @@ describe "update" do
     
     # Check that the controller redirects
     
-    must_render_template :edit
+    if @driver = nil  
+      must_respond_with :redirect
+    end
     
   end
 end
 
 describe "destroy" do
+  before do
+    @destroy_driver = Driver.create(name: "Kari", vin: "123", active: false, car_make: "Cherry", car_model: "DR5")
+  end
+  
   it "destroys the driver instance in db when driver exists, then redirects" do
     # Arrange
     # Ensure there is an existing driver saved
-    
+    expect{ 
+    delete driver_path(@destroy_driver.id).must_change "Driver.count", -1}
     # Act-Assert
     # Ensure that there is a change of -1 in Driver.count
     
     # Assert
     # Check that the controller redirects
+    if @driver
+      must_respond_with :redirect
+      must_redirect_to drivers_path
+    end
     
   end
   
-  it "does not change the db when the driver does not exist, then responds with " do
+  it "does not change the db when the driver does not exist, then responds with redirect" do
     # Arrange
     # Ensure there is an invalid id that points to no driver
-    
-    # Act-Assert
-    # Ensure that there is no change in Driver.count
-    
-    # Assert
-    # Check that the controller responds or redirects with whatever your group decides
-    
+    expect{
+    delete driver_path(-1).wont_change "Driver.count"
+  }
+  # Act-Assert
+  # Ensure that there is no change in Driver.count
+  
+  # Assert
+  # Check that the controller responds or redirects with whatever your group decides
+  
+  if @driver = nil
+    must_respond_with :redirect
   end
+  
+  
+end
 end
 end
