@@ -1,7 +1,6 @@
 require "test_helper"
 
 describe DriversController do
-  # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
 
   describe "index" do
     it "responds with success when there are many drivers saved" do
@@ -28,7 +27,6 @@ describe DriversController do
       get driver_path(@driver.id)
 
       must_respond_with :success
-      # must_redirect_to driver_path(@driver.id)
     end
 
     it "responds with 404 with an invalid driver id" do
@@ -198,4 +196,40 @@ describe DriversController do
       must_redirect_to drivers_path
     end
   end
+
+  describe "can change driver status" do
+    before do
+      @new_driver = Driver.create!(name: "Ghost Driver", vin: "ASDJ2343")
+    end
+
+    it "can go online" do
+      @new_driver.update(available: false)
+
+      patch make_available_path(@new_driver.id)
+
+      expect((Driver.find(@new_driver.id)).available).must_equal true
+      must_respond_with :redirect
+      must_redirect_to driver_path(@new_driver.id)
+    end
+
+    it "can go offline" do
+      @new_driver.update(available: true)
+
+      patch make_unavailable_path(@new_driver.id)
+
+      expect((Driver.find(@new_driver.id)).available).must_equal false
+      must_respond_with :redirect
+      must_redirect_to driver_path(@new_driver.id)
+    end
+
+    it "if driver not specified, redirects to drivers list" do
+      invalid_driver_id = -1
+
+      patch make_available_path(invalid_driver_id)
+
+      must_respond_with :redirect
+      must_redirect_to drivers_path
+    end
+  end
+
 end
