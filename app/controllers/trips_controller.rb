@@ -24,12 +24,12 @@ class TripsController < ApplicationController
     end
     
     if @trip.save
-      # You need to call a method that will toggle driver status to inactive
+      # TIFFANY IMPORTANT You need to call a method that will toggle driver status to inactive
       redirect_to trip_path(@trip.id)
       return
     else
-      # might not be render :new
-      render :new
+      # TIFF YOU NEED CLARITY ON HOW TO SEND AN ERROR MESSAGE
+      redirect_to passenger_path(@trip.passenger_id)
       return
     end
   end

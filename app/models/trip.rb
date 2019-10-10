@@ -4,12 +4,4 @@ class Trip < ApplicationRecord
   
   validates :date, presence: true
   validates :cost, presence: true
-  
-  # def replaced_deleted
-  #   if @trip.passenger.nil?
-  #     @trip.passenger = "[deleted]"
-  #   elsif @trip.driver.nil?
-  #     @trip.driver = "[deleted]"
-  #   end
-  # end
 end
