@@ -25,7 +25,19 @@ describe TripsController do
   end
   
   describe "create" do
-    # Your tests go here
+    it "can create a new trip for a given passenger for today with a driver"do
+      Driver.create
+      pass = Passenger.create
+      
+      expect { post new_trip_path(pass.id) }.must_change "Trip.count", 1
+      
+      expect(Trip.first.passenger.id).must_equal pass.id
+
+      refute_nil Trip.first.driver
+      refute_nil Trip.first.date
+      
+      must_respond_with :redirect
+    end
   end
   
   describe "edit" do

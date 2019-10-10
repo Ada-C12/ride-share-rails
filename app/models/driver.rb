@@ -16,7 +16,7 @@ class Driver < ApplicationRecord
     
     # ratings = trips.Trip.ratings
     
-    ratings = trips.map(&:rating)
+    ratings = trips.map(&:rating).compact
     
     ((ratings.sum)/ratings.length.to_f).round(1).to_s
     
