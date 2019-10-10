@@ -1,6 +1,8 @@
 <header class="show-header">
   <h1><%=@driver.name%></h1>
   <%= link_to "Edit this driver!", edit_driver_path(@driver.id) %>
+  <%= link_to "(Delete this driver!)", driver_path(@driver.id), method: :delete, data: { confirm: "Are YOU sure?" }, class: "index-delete-link" %>
+
 </header>
 
 <section class="show-details">
