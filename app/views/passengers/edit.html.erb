@@ -1,4 +1,4 @@
-<%= form_with model: @passenger, class: 'edit-passenger' do |f| %>
+<%= form_with model: @passenger do |f| %>
 <p>Please provide the following information to edit the passenger selected:</p>
 
   <%= f.label :name %>
@@ -7,6 +7,6 @@
   <%= f.label :phone_number %>
   <%= f.text_field :phone_number %>
 
-  <%= f.submit "Update Passenger", class: "passenger-button" %>
+  <%= f.submit "Update Passenger" %>
 
 <% end %>
