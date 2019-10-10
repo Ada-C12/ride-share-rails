@@ -1,11 +1,16 @@
 <h2>List of all passengers</h2>
 <section>
-  <ul>
+  <table>                         
+    <tr>                          
+      <th>Passenger Name</th>
+    </tr>
     <% @passengers.each do |passenger| %>
-      <li>
-        <%= link_to passenger.name, passenger_path(passenger.id) %>
-        <%= link_to "(Delete)", passenger_path(passenger.id), method: :delete, data: { confirm: "Are YOU sure?" }, class: "index-delete-link" %>
-      </li>
-    <% end %>
-  </ul>
+      <tr>
+        <td> 
+          <%= link_to passenger.name, passenger_path(passenger.id) %>
+          <%= link_to "(Delete)", passenger_path(passenger.id), method: :delete, data: { confirm: "Are YOU sure?" }, class: "index-delete-link" %>
+        </td>       
+      </tr>
+    <% end %>                    
+  </table> 
 </section>

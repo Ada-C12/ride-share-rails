@@ -1,11 +1,16 @@
  <h2>List of all drivers</h2>
 <section>
-  <ul>
+    <table>                         
+    <tr>                          
+      <th>Driver Name</th>
+    </tr>
     <% @drivers.each do |driver| %>
-      <li>
-        <%= link_to driver.name, driver_path(driver.id) %>
-        <%= link_to "(Delete)", driver_path(driver.id), method: :delete, data: { confirm: "Are YOU sure?" }, class: "index-delete-link" %>
-      </li>
-    <% end %>
-  </ul>
+      <tr>
+        <td> 
+          <%= link_to driver.name, driver_path(driver.id) %>
+          <%= link_to "(Delete)", driver_path(driver.id), method: :delete, data: { confirm: "Are YOU sure?" }, class: "index-delete-link" %>
+        </td>       
+      </tr>
+    <% end %>                    
+  </table> 
 </section>

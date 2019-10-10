@@ -24,10 +24,22 @@
 
 
   <p>List of trips</p>
-  <ul>
-        <%@driver.trips.each do |trip|%>
-        <li> ID#<%= link_to trip.id, trip_path(trip.id) %> Trip date: <%=trip.date%> -- Cost: <%=trip.cost%> -- Rating: <%=trip.rating%> </li>
-        <%end%>
-  </ul>
+  <table>                         
+    <tr>                          
+      <th>Trip ID</th>
+      <th>Trip Date</th>
+      <th>Trip Cost</th>
+      <th>Rating</th>
+    </tr>
+
+    <%@driver.trips.each do |trip|%>
+      <tr>
+        <td><%= link_to trip.id, trip_path(trip.id) %></td>
+        <td><%= trip.date %></td>
+        <td>$<%= sprintf('%.2f', trip.cost_to_dollars) %></td>
+        <td><%= trip.rating %></td>
+      </tr>
+    <% end %>                    
+  </table> 
 
 </section>
