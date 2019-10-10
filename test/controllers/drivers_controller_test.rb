@@ -32,7 +32,7 @@ describe DriversController do
   
   describe "show" do
     before do
-      new_driver = Driver.create(name: "Kari", vin: "123", active: false, car_make: "Cherry", car_model: "DR5")}
+      @new_driver = Driver.create(name: "Kari", vin: "123", active: false, car_make: "Cherry", car_model: "DR5")
     end
     
     it "responds with success when showing an existing valid driver" do
@@ -40,7 +40,7 @@ describe DriversController do
       # Ensure that there is a driver saved
       
       # Act
-      get driver_path(new_driver.id)
+      get driver_path(@new_driver.id)
       
       # Assert
       must_respond_with :success
