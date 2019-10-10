@@ -1,16 +1,21 @@
 <h1>All Drivers</h1>
 
+<%= link_to "Add a new driver", new_driver_path %> 
+
 <ul>
   <% @drivers.each do |driver|  %>
     <li>
       Name: <%= link_to driver.name, driver_path(driver) %>
-      VIN: <%= %>
-      Active: <%= %>
-      Car Make: <%= %>
-      Car Model: <%= %>
+      <ul>
+        <li>VIN: <%= driver.vin %></li>
+        <li>Active: <%= driver.active %></li>
+        <li>Car Make: <%= driver.car_make %></li>
+        <li>Car Model: <%= driver.car_model %></li>
+      </ul>
 
-      <%# <%= link_to book.title, book_path(book) %>
-      <%# By: <%= book.author.name <%= link_to "Edit", edit_book_path(book) <%= link_to "Delete", book_path(book), method: :delete, data: {confirm: "Are you sure?"}%>
+      <%= link_to "Edit", edit_driver_path(driver) %> 
+      <%= link_to "Delete", driver_path(driver), method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
+
     </li>
   <% end %>
 </ul>

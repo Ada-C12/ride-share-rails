@@ -4,10 +4,10 @@
     <li>
       Name: <%= @driver.name %>
       <ul>
-        <li>VIN: <%= %></li>
-        <li>Active: <%= %></li>
-        <li>Car Make: <%= %></li>
-        <li>Car Model: <%= %></li>
+        <li>VIN: <%= @driver.vin %></li>
+        <li>Active: <%= @driver.active %></li>
+        <li>Car Make: <%= @driver.car_make %></li>
+        <li>Car Model: <%= @driver.car_model %></li>
         <li>Trips: </li>
 
         <% @driver.trips.each do |trip| %>
