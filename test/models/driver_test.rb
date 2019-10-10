@@ -95,7 +95,7 @@ describe Driver do
         trip1 = Trip.create( passenger: Passenger.first, driver: new_driver, rating: 4, cost: 2222, date: Date.today)
         trip2 = Trip.create( passenger: Passenger.first, driver: new_driver, rating: 4, cost: 2222, date: Date.today)
         
-        expect(new_driver.earnings).must_be_close_to 3291, 1
+        expect(new_driver.earnings).must_be_close_to 32.91, 0.02
       end
       
       it "returns a message if the driver has 0 trips" do

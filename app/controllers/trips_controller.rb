@@ -26,7 +26,7 @@ class TripsController < ApplicationController
       @trip.cost = 0
     end
     
-    @drivers = Driver.all
+    @drivers = Driver.where(active: false)
     @trip.driver_id = @drivers[rand(0...@drivers.length)].id
     
     if @trip.save

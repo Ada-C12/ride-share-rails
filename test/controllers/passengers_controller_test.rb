@@ -47,7 +47,7 @@ describe PassengersController do
         passenger: {
           name: "created passenger",
           phone_num: "111-111-1111"
-        },
+        }
       }
       
       expect {
@@ -55,10 +55,7 @@ describe PassengersController do
       }.must_change "Passenger.count", 1
       
       new_passenger = Passenger.find_by(name: passenger_hash[:passenger][:name])
-      puts new_passenger.id
       expect(new_passenger.phone_num).must_equal passenger_hash[:passenger][:phone_num]
-      
-      puts new_passenger.id
       
       must_respond_with :redirect
       must_redirect_to passenger_path(new_passenger.id)

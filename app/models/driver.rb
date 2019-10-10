@@ -18,7 +18,12 @@ class Driver < ApplicationRecord
   end
   
   def avg_rating
-    avg_rating = self.trips.map {|t| t.rating }
+    avg_rating = []
+    self.trips.each do |trip|
+      if trip.rating != nil
+        avg_rating.push(trip.rating)
+      end
+    end
     if avg_rating.length == 0
       return "Not rated"
     else
