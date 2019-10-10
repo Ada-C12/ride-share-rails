@@ -26,6 +26,30 @@ describe Passenger do
       new_passenger.save
       passenger = Passenger.first
 
+      driver = Driver.create(
+        name: "Sarah",
+        vin: "848485859",
+        car_make: "Ford",
+        car_model: "Escape",
+        active: true
+      )
+  
+      trip_1 = Trip.create(
+        date: "10-09-2019",
+        rating: 3,
+        cost: 2040,
+        passenger_id: passenger.id,
+        driver_id: driver.id
+      )
+
+      trip_2 = Trip.create(
+        date: "10-19-2019",
+        rating: 4,
+        cost: 1140,
+        passenger_id: passenger.id,
+        driver_id: driver.id
+      )
+
       # Assert
       expect(passenger.trips.count).must_be :>, 0
       passenger.trips.each do |trip|
