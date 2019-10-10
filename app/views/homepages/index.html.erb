@@ -1,8 +1,12 @@
 <h1>Super Happy Rideshare Fun Time App!!!</h1>
-<%= link_to "GO TO DRIVERS", drivers_path%>
-<br>
-<%= link_to "GO TO PASSENGERS", passengers_path%>
-<br>
-<%= link_to "GO TO TRIPS", trips_path%>
-<br>
-<%= image_tag ("roadtrip.jpg"), alt: "jeep" %> 
+
+<section id="homepage-buttons">
+  <button class="list-button"><%= link_to "GO TO DRIVERS", drivers_path%></button>
+
+  <button class="list-button"><%= link_to "GO TO PASSENGERS", passengers_path%></button>
+
+  <button class="list-button"><%= link_to "GO TO TRIPS", trips_path%></button>
+</section>
+
+<section id="homepage-photo"><%= image_tag ("roadtrip.jpg"), alt: "jeep" %> </section>
+

@@ -22,12 +22,27 @@
    background-color: aqua;
  }
 
- .nav {
-   background-color: royalblue;
+ nav {
+   background-color: rgba(93, 188, 243, 0.897);
  }
 
+ nav ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 1rem;
+  text-align: center;
+}
+
+nav ul a {
+
+  text-decoration: none;
+}
+
  footer {
-   background-color: brown;
+   background-color: burlywood;
+   text-align: center;
+   margin: 1.5rem 0;
  }
 
  .msg {
