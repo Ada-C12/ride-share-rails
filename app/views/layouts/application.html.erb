@@ -10,18 +10,32 @@
   </head>
 
   <body>
-    <header>
-      <h1>Welcome to Ada RideShareRails</h1>
-    </header>
-    <div>
-      <ul>
-        <li>
-          <%= link_to "New Driver", new_driver_path %>
-        </li>
-        <li>
-           <%= link_to "New Passenger", new_passenger_path %>
-        </li>
-    </div>
+    
+      <%# <h1>Welcome to Ada RideShareRails</h1> %>
+      <header>
+      <div class= "nav">
+      <div class ="logo">RideShareRails!</div>
+      <div class= "menu">
+        <ul>
+           <button class= "top"><li><%=link_to"Manage Drivers", drivers_path %></li>
+           <li><%= link_to"Manage Passengers", passengers_path %></li></button>
+        </ul>
+      </div>
+      <div class= "list">
+        <ul>
+          <button class= "down"><li><%=link_to "Add New Driver", new_driver_path %></li>
+          <li><%=link_to "Add New Passenger", new_passenger_path %></li></button>
+        </ul>
+      </div>
+      </header> 
+      
+   
     <%= yield %>
+    <footer>
+    <p>2019 Samantha & Yasmin</p>
+    <p>Contact: <a href="mailto:Yasmin@example.com">
+        Yasmin@example.com</a></p>
+  </footer>
   </body> 
+
 </html>

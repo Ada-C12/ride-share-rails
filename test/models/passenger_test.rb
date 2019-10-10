@@ -62,9 +62,9 @@ describe Passenger do
       # Your code here
     end
 
-    describe "complete trip" do
-      # Your code here
-    end
-    # You may have additional methods to test here
+  #   describe "complete trip" do
+  #     # Your code here
+  #   end
+  #   # You may have additional methods to test here
   end
 end
