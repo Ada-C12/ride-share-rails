@@ -20,7 +20,7 @@ class TripsController < ApplicationController
       new_driver_id = Driver.find_available.id
       @trip = Trip.new(date: new_date, cost: new_cost, passenger_id: new_passenger_id, driver_id: new_driver_id)
     elsif creation_params
-      @trip = Trip.new(creation_params)
+      # @trip = Trip.new(creation_params)
     end
     
     if @trip.save
@@ -108,9 +108,9 @@ class TripsController < ApplicationController
   
   private
   
-  def creation_params
-    return params.require(:trip).permit(:date, :cost, :passenger_id, :driver_id)
-  end
+  # def creation_params
+  #   return params.require(:trip).permit(:date, :cost, :passenger_id, :driver_id)
+  # end
   
   def changes_params
     return params.require(:trip).permit(:date, :cost, :passenger_id, :driver_id, :rating)
