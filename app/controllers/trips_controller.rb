@@ -1,8 +1,7 @@
 class TripsController < ApplicationController
-    class DriversController < ApplicationController
 
         def index
-            @trips = Driver.all
+            @trips = Trip.all
         end
     
         def show
@@ -43,7 +42,7 @@ class TripsController < ApplicationController
                 redirect_to root_path
             end
 
-            id,driver_id,passenger_id,date,rating,cost
+            # id,driver_id,passenger_id,date,rating,cost
 
             @trip = Trip.find_by(id: id)
             @trip[:name] = params[:trip][:name]
@@ -64,7 +63,7 @@ class TripsController < ApplicationController
                 return
             else
                 trip_to_delete.destroy
-                redirect_to root_path
+                redirect_to trips_path
                 return
             end
         end
@@ -75,7 +74,5 @@ class TripsController < ApplicationController
             return params.require(:trip).permit(:date, :driver_id, :passenger_id, :rating, :cost)
         end
     
-    
-    end
     
 end
