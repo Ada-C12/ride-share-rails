@@ -1,0 +1,23 @@
+  <%= form_with model: @trip, class: "trip-from" do |f| %>
+    <%= f.label :id %>
+    <%= f.text_field :id %>
+    <br>
+    <%= f.label :date %>
+    <%= f.text_field :date %>
+    <br>
+    <%= f.label :driver %>
+    <%= f.text_field :driver %>
+    <br>
+    <%= f.label :passenger %>
+    <%= f.text_field :passenger %>
+    <br>
+    <%= f.label :rating %>
+    <%= f.text_field :rating %>
+    <br>
+    <%= f.label :cost %>
+    <%= f.text_field :cost %>
+    <br>
+    <%= f.submit "Create", class: "create-trip btn"  %>
+
+  <% end %>
+
