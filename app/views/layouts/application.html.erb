@@ -10,6 +10,19 @@
   </head>
 
   <body>
+      <nav>
+      <ul>
+        <li>
+          <%= link_to "Home!", root_path %>
+        </li>
+        <li>
+          <%= link_to "Go to the Drivers Index Page", drivers_path %>
+        </li>
+        <li>
+          <%= link_to "Add new driver", new_driver_path %>
+        </li>
+      </ul>
+    </nav>
     <%= yield %>
   </body>
 </html>

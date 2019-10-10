@@ -1,1 +1,31 @@
-<h2>Driver</h2>
+<header class="show-header">
+  <h1><%=@driver.name%></h1>
+  <%= link_to "Edit this driver!", edit_driver_path(@driver.id) %>
+</header>
+
+<section class="show-details">
+
+  <p>
+    VIN number: <%=@driver.vin%>
+
+    <% if @driver.car_make %>
+        -- Car make: <%= @driver.car_make %>
+    <% end %>
+
+    <% if @driver.car_model %>
+        -- Car model: <%= @driver.car_model %>
+    <% end %>
+    
+    -- Average rating: <%=@driver.average_rating%>
+    -- Total earnings: $<%=@driver.total_earnings%>
+  </p>
+
+
+  <p>List of trips</p>
+  <ul>
+        <%@driver.trips.each do |trip|%>
+        <li> Trip date: <%=trip.date%> -- Cost: <%=trip.cost%> -- Rating: <%=trip.rating%> </li>
+        <%end%>
+  </ul>
+
+</section>
