@@ -11,34 +11,30 @@
 
   <body>
     <nav>
-      <ul>
-        <li>
-          <%= link_to "Home", root_path %>
-        </li>
-        <li>
-          <div class="dropdown">
-            <button class="dropbtn">Drivers</button>
-            <div class="dropdown-content">
-              <a href="http://localhost:3000/drivers">Drivers List</a>
-              <a href="#">New Driver</a>
-            </div>
+        <div class="dropdown">
+          <button class="dropbtn" id="home"><a href="http://localhost:3000">Home</a></button>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Drivers</button>
+          <div class="dropdown-content">
+            <a href="http://localhost:3000/drivers">Drivers List</a>
+            <a href="http://localhost:3000/drivers/new">New Driver</a>
           </div>
-          <div class="dropdown">
-            <button class="dropbtn">Passengers</button>
-            <div class="dropdown-content">
-              <a href="http://localhost:3000/passengers">Passengers List</a>
-              <a href="#">New Passenger</a>
-            </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Passengers</button>
+          <div class="dropdown-content">
+            <a href="http://localhost:3000/passengers">Passengers List</a>
+            <a href="http://localhost:3000/passengers/new">New Passenger</a>
           </div>
-          <div class="dropdown">
-            <button class="dropbtn">Trips</button>
-            <div class="dropdown-content">
-              <a href="http://localhost:3000/trips">Trips List</a>
-              <a href="#">New Trip</a>
-            </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Trips</button>
+          <div class="dropdown-content">
+            <a href="http://localhost:3000/trips">Trips List</a>
+            <a href="http://localhost:3000/trips/new">New Trip</a>
           </div>
-        <li>
-      </ul>
+        </div>
     </nav>
 
     <%= yield %>

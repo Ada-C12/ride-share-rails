@@ -14,9 +14,9 @@
  *= require_self
  */
 
- nav ul {
+ nav div {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   list-style-type: none;
   font-size: 1.25em;
   font-weight: bold
@@ -56,10 +56,22 @@
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+#home, #home a, #home a:visited {
+  text-decoration: none;
+  background-color: #4CAF50;
+  color: white;
+}
