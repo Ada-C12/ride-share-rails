@@ -66,9 +66,10 @@ describe Driver do
     describe "custom methods" do
       before do
         @driver = Driver.create
+        @passenger = Passenger.create(name: "test_passenger", phone_num: "4385902")
         @cost = "422.80"
         @trips = Array.new(10) do |n|
-          Trip.create(cost: (n+50)*100, driver_id: @driver.id, passenger_id: Passenger.create.id, rating: (n%5))
+          Trip.create(cost: (n+50)*100, driver_id: @driver.id, passenger_id: @passenger.id, rating: (n%5))
         end
       end
       

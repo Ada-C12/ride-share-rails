@@ -3,7 +3,7 @@ require "test_helper"
 describe PassengersController do
   describe "index" do
     it "responds with success when there are many drivers saved" do
-      test_passenger = Passenger.create
+      test_passenger = Passenger.create(name: "test_passenger", phone_num: "4385902")
       get passengers_path
       must_respond_with :success
     end
@@ -15,7 +15,7 @@ describe PassengersController do
   
   describe "show" do
     before do
-      @test_passenger = Passenger.create
+      @test_passenger = Passenger.create(name: "test_passenger", phone_num: "4385902")
     end
     it "responds with success when showing an existing valid passenger" do
       get passenger_path(@test_passenger.id) 
@@ -48,7 +48,7 @@ describe PassengersController do
   
   describe "edit" do
     before do
-      @test_passenger = Passenger.create
+      @test_passenger = Passenger.create(name: "test_passenger", phone_num: "4385902")
     end
     
     it "reponds with success when editing the profile of a valid passenger" do
@@ -64,7 +64,7 @@ describe PassengersController do
   
   describe "update" do
     it "can update an existing passenger's profile with accurate information" do
-      test_passenger = Passenger.create
+      test_passenger = Passenger.create(name: "test_passenger", phone_num: "4385902")
       id = test_passenger.id
       updated_phone_num = "333-8888"
       updated_name = "Everyone Is"
@@ -88,7 +88,7 @@ describe PassengersController do
   describe "destroy" do
     
     it "destroys passenger and redirects" do
-      passenger = Passenger.create
+      passenger = Passenger.create(name: "test_passenger", phone_num: "4385902")
       passenger_id = Passenger.first.id
       expect { delete passenger_path(passenger_id) }.must_change "Passenger.count", -1
       must_respond_with :redirect

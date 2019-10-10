@@ -27,7 +27,7 @@ describe TripsController do
   describe "create" do
     it "can create a new trip for a given passenger for today with a driver"do
       Driver.create
-      pass = Passenger.create
+      pass = Passenger.create(name: "test_passenger", phone_num: "4385902")
       
       expect { post new_trip_path(pass.id) }.must_change "Trip.count", 1
       
@@ -42,7 +42,7 @@ describe TripsController do
   
   describe "edit" do
     it "resonds with success for editing an existing trip" do
-      pass = Passenger.create
+      pass = Passenger.create(name: "test_passenger", phone_num: "4385902")
       driver = Driver.create
       trip = Trip.create(driver_id: driver.id, passenger_id: pass.id)
 
@@ -58,7 +58,7 @@ describe TripsController do
   
   describe "update" do
     it "can update an existing trip accurately and redirect" do
-      pass = Passenger.create
+      pass = Passenger.create(name: "test_passenger", phone_num: "4385902")
       driver = Driver.create
       trip = Trip.create(driver_id: driver.id, passenger_id: pass.id)
       params = { trip: { rating: -1 } }
@@ -76,7 +76,7 @@ describe TripsController do
   
   describe "destroy" do
     it "destroys trip and redirects" do
-      pass = Passenger.create
+      pass = Passenger.create(name: "test_passenger", phone_num: "4385902")
       driver = Driver.create
       trip = Trip.create(driver_id: driver.id, passenger_id: pass.id)
 

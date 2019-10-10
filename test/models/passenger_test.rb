@@ -37,7 +37,6 @@ describe Passenger do
   
   describe "validations" do
     it "must have a name" do
-      skip
       # Arrange
       new_passenger.name = nil
       
@@ -48,7 +47,6 @@ describe Passenger do
     end
     
     it "must have a phone number" do
-      skip
       # Arrange
       new_passenger.phone_num = nil
       
@@ -62,7 +60,7 @@ describe Passenger do
   # Tests for methods you create should go here
   describe "custom methods" do
     before do
-      @passenger = Passenger.create
+      @passenger = Passenger.create(name: "test_passenger", phone_num: "4385902")
       @cost = "545.0"
       @trips = Array.new(10) do |n|
         Trip.create(cost: (n+50)*100, passenger_id: @passenger.id, driver_id: Driver.create.id)
