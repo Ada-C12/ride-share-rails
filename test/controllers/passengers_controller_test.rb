@@ -39,7 +39,7 @@ describe PassengersController do
   end
 
   describe "new" do
-    it "will can get the new passenger page" do
+    it "will get the new passenger page" do
       get new_passenger_path
 
       must_respond_with :success
@@ -47,11 +47,33 @@ describe PassengersController do
   end
 
   describe "create" do
-    # Your tests go here
+    it "will create a new instance of passenger" do
+      # Arrange 
+      passenger_hash = {
+        passenger: {
+          name: "Victoria",
+          phone_num: "456-654-9076"
+        }
+      }
+
+      # Act
+      expect {
+        post passengers_path, params: passenger_hash
+      }.must_differ "Passenger.count", 1
+
+
+      # Act
+      must_redirect_to passengers_path
+    end 
   end
 
   describe "edit" do
-    # Your tests go here
+    it "can get the edit page for an existing passenger" do
+      #Act
+      get edit_passenger_path(passenger.id)
+
+      must_respond_with :success
+    end 
   end
 
   describe "update" do
