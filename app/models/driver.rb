@@ -19,7 +19,7 @@ class Driver < ApplicationRecord
     end
 
     if count == 0
-      return "This driver has no ratings"
+      return 0
     else
       return total_rating.to_f / count
     end

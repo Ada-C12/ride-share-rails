@@ -46,10 +46,12 @@ class DriversController < ApplicationController
       return
     end
 
-    @driver.update(driver_params)
-
-    redirect_to driver_path(@driver)
-    return
+    if @driver.update(driver_params)
+      redirect_to driver_path(@driver)
+      return
+    else
+      render "new"
+    end
   end
 
   def destroy

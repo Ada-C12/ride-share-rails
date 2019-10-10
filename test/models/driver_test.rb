@@ -94,7 +94,7 @@ describe Driver do
 
       it "returns 'driver has no rating' for driver without ratings" do
         driver_no_trips = Driver.create(name: "It", vin: "123")
-        expect(driver_no_trips.average_rating).must_equal "This driver has no ratings"
+        expect(driver_no_trips.average_rating).must_equal 0
       end
     end
 
