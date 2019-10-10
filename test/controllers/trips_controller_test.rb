@@ -44,34 +44,6 @@ describe TripsController do
   #     must_respond_with :redirect
   #     must_redirect_to trip_path(created_trip.id)
   #   end
-  
-  #   it "raises an error when trip creation form does not include date" do
-  #     trip_hash = {
-  #       trip: {
-  #         passenger_id: Passenger.first.id,
-  #         driver_id: Driver.first.id,
-  #         cost: "1234"
-  #       },
-  #     }
-  
-  #     expect {
-  #       post trips_path, params: trip_hash
-  #     }.must_raise
-  #   end
-  
-  #   it "raises an error when trip creation form does not include cost" do
-  #     trip_hash = {
-  #       trip: {
-  #         date: Date.new(2019,2,3),
-  #         passenger_id: Passenger.first.id,
-  #         driver_id: Driver.first.id,
-  #       },
-  #     }
-  
-  #     expect {
-  #       post trips_path, params: trip_hash
-  #     }.must_raise
-  #   end
   # end
   
   describe "edit" do
