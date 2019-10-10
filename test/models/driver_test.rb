@@ -33,46 +33,41 @@ describe Driver do
     end
   end
   
-  # describe "validations" do
-  #   it "must have a name" do
-  #     # Arrange
-  #     new_driver.name = nil
+  describe "validations" do
+    it "must have a name" do
+      new_driver.name = nil
       
-  #     # Assert
-  #     expect(new_driver.valid?).must_equal false
-  #     expect(new_driver.errors.messages).must_include :name
-  #     expect(new_driver.errors.messages[:name]).must_equal ["can't be blank"]
-  #   end
+      expect(new_driver.valid?).must_equal false
+      expect(new_driver.errors.messages).must_include :name
+      expect(new_driver.errors.messages[:name]).must_equal ["can't be blank"]
+    end
     
-  #   it "must have a VIN number" do
-  #     # Arrange
-  #     new_driver.vin = nil
+    it "must have a VIN number" do
+      new_driver.vin = nil
       
-  #     # Assert
-  #     expect(new_driver.valid?).must_equal false
-  #     expect(new_driver.errors.messages).must_include :vin
-  #     expect(new_driver.errors.messages[:vin]).must_equal ["can't be blank"]
-  #   end
-  # end
+      expect(new_driver.valid?).must_equal false
+      expect(new_driver.errors.messages).must_include :vin
+      expect(new_driver.errors.messages[:vin]).must_equal ["can't be blank"]
+    end
+  end
   
-  # Tests for methods you create should go here
-  # describe "custom methods" do
-  #   describe "average rating" do
-  #     # Your code here
-  #   end
+  describe "custom methods" do
+    describe "average rating" do
+      # Your code here
+    end
     
-  #   describe "total earnings" do
-  #     # Your code here
-  #   end
+    describe "total earnings" do
+      # Your code here
+    end
     
-  #   describe "can go online" do
-  #     # Your code here
-  #   end
+    # describe "can go online" do
+    #   # Your code here
+    # end
     
-  #   describe "can go offline" do
-  #     # Your code here
-  #   end
+    # describe "can go offline" do
+    #   # Your code here
+    # end
     
-  #   # You may have additional methods to test
-  # end
+    # You may have additional methods to test
+  end
 end

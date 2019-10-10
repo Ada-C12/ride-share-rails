@@ -20,7 +20,7 @@ class TripsController < ApplicationController
     end
   end 
   
-  def create   
+  def create
     raise
     if @trip.save
       x= "hahaha"
