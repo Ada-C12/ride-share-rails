@@ -14,6 +14,7 @@ class Driver < ApplicationRecord
     else
       true
     end
+  end
 
   
   def total_earnings
