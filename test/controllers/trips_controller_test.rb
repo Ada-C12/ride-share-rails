@@ -2,7 +2,7 @@ require "test_helper"
 
 describe TripsController do
   before do
-    @driver = Driver.create name: "Meatball Jones", vin: "1234", active: true, car_make: "Honda", car_model: "Accord"
+    @driver = Driver.create name: "Meatball Jones", vin: "1234", active: false, car_make: "Honda", car_model: "Accord"
     @passenger = Passenger.create name: "Squidward Squid", phone_number: "123-456-7890"
     
     @trip = Trip.create date: Date.new(2019,10,8), passenger_id: Passenger.first.id, driver_id: Driver.first.id, cost: "2310"
@@ -14,37 +14,39 @@ describe TripsController do
       must_respond_with :success
     end
     
-    it "will redirect for an invalid trip id" do
+    it "will redirect to not_found for an invalid trip id" do
       get trip_path("carrot")
       must_respond_with :not_found
     end
   end
   
-  # describe "create" do
-  #   it "can create a new trip with valid information accurately, and redirect" do
-  #     trip_hash = {
-  #       trip: {
-  #         date: Date.new(2019,2,3),
-  #         passenger_id: Passenger.first.id,
-  #         driver_id: Driver.first.id,
-  #         cost: "1234"
-  #       },
-  #     }
-  
-  #     expect {
-  #       post trips_path, params: trip_hash
-  #     }.must_change "Trip.count", 1
-  
-  #     created_trip = Trip.last
-  #     expect(created_trip.date).must_equal trip_hash[:trip][:date]
-  #     expect(created_trip.passenger_id).must_equal trip_hash[:trip][:passenger_id]
-  #     expect(created_trip.driver_id).must_equal trip_hash[:trip][:driver_id]
-  #     expect(created_trip.cost).must_equal trip_hash[:trip][:cost]
-  
-  #     must_respond_with :redirect
-  #     must_redirect_to trip_path(created_trip.id)
-  #   end
-  # end
+  describe "create" do
+    it "can create a new trip with valid passenger_id, toggles driver status, and redirect" do
+      expect(Driver.count).must_equal 1
+      expect(Driver.first.active).must_equal false
+      
+      id = Passenger.first.id
+      
+      expect {
+        post passenger_trips_path(passenger_id: id)
+      }.must_change "Trip.count", 1
+      
+      created_trip = Trip.last
+      expect(created_trip.passenger_id).must_equal id
+      expect(created_trip.driver.active).must_equal true
+      
+      must_respond_with :redirect
+      must_redirect_to trip_path(created_trip.id)
+    end
+    
+    it "will redirect for an invalid passenger id" do
+      expect {
+        post passenger_trips_path(passenger_id: "carrot")
+      }.wont_change "Trip.count"
+      
+      must_respond_with :not_found
+    end
+  end
   
   describe "edit" do
     it "responds with success when getting the edit page for an existing, valid trip" do
@@ -174,7 +176,7 @@ describe TripsController do
       must_respond_with :redirect
     end
     
-    it "does not change the db when the driver does not exist, then responds with a 404" do
+    it "does not change the db when the trip does not exist, then responds with a 404" do
       delete trip_path(-1)
       must_respond_with :not_found
     end

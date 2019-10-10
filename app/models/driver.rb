@@ -26,4 +26,12 @@ class Driver < ApplicationRecord
   def self.find_available
     return self.find_by(active: false)
   end
+  
+  def active_toggle
+    if self.active
+      return self.update(active: false)
+    else
+      return self.update(active: true)
+    end
+  end
 end

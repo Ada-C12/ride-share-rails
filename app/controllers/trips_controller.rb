@@ -12,19 +12,19 @@ class TripsController < ApplicationController
   end
   
   def create
-    if params[:passenger_id]
-      # :date, :cost, :passenger_id, :driver_id
-      new_date = Time.now
-      new_cost = rand(10..80)
-      new_passenger_id = params[:passenger_id]
-      new_driver_id = Driver.find_available.id
-      @trip = Trip.new(date: new_date, cost: new_cost, passenger_id: new_passenger_id, driver_id: new_driver_id)
-    elsif creation_params
-      # @trip = Trip.new(creation_params)
+    if Passenger.find_by(id: params[:passenger_id]).nil?
+      head :not_found
+      return
     end
     
+    new_date = Time.now
+    new_cost = rand(10..80)
+    new_passenger_id = params[:passenger_id]
+    new_driver_id = Driver.find_available.id
+    @trip = Trip.new(date: new_date, cost: new_cost, passenger_id: new_passenger_id, driver_id: new_driver_id)
+    
     if @trip.save
-      # TIFFANY IMPORTANT You need to call a method that will toggle driver status to inactive
+      @trip.driver.active_toggle
       redirect_to trip_path(@trip.id)
       return
     else
