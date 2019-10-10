@@ -1,5 +1,5 @@
 class Passenger < ApplicationRecord
-  has_many :trips
+  has_many :trips, dependent: :destroy
   # add validations here
   validates :name, :phone_num, presence: true
 

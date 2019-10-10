@@ -25,6 +25,14 @@ describe Passenger do
       # Arrange
       new_passenger.save
       passenger = Passenger.first
+      driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+      trip = Trip.new(driver_id: driver.id, 
+        passenger_id: passenger.id,
+        date: Time.now,
+        rating: nil,
+        cost: 100,)
+
+        trip.save
 
       # Assert
       expect(passenger.trips.count).must_be :>, 0
@@ -57,10 +65,7 @@ describe Passenger do
 
   # Tests for methods you create should go here
   describe "custom methods" do
-    describe "request a ride" do
-      # Your code here
-    end
-    
+
     describe "complete trip" do
       # Your code here
     end
@@ -78,46 +83,22 @@ describe Passenger do
         trip.save
 
         expect(passenger.find_passenger_trips.count).must_equal 1
-
-        # trip_info = {
-        #   trip: {   
-        #     driver_id: driver.id,
-        #     passenger_id: passenger.id,
-        #     date: Time.now,
-        #     rating: nil,
-        #     cost: 100,}
-        #   }
-        
-        # expect {
-        #   post "/passengers/#{passenger.id}/create_new_trip", params: trip_info
-        # }.must_change "Trip.count", 1
-
-        # expect(passenger.id.find_passenger_trips).must_be :>, 0  
       end
     end
     
     describe "amount_charged" do
       it "returns the total amount charged to a passenger" do
-        # @passenger.add_trip(RideShare::Trip.new(
-        #   id: 8,
-        #   driver: @driver,
-        #   passenger_id: 6,
-        #   start_time: "2016-08-08",
-        #   end_time: "2016-08-09",
-        #   rating: 5,
-        #   cost: 12,
-        # ))
-  
-        # @dpassenger.add_trip(RideShare::Trip.new(
-        #   id: 5,
-        #   driver: @driver,
-        #   passenger_id: 3,
-        #   start_time: "2016-08-08",
-        #   end_time: "2016-08-09",
-        #   rating: 5,
-        #   cost: 25,
-        # ))
-        # expect(@driver.total_revenue).must_equal 28.28
+        passenger = Passenger.create(name: "Georgina", phone_num: "111-111-1211")
+        driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+        trip = Trip.new(driver_id: driver.id, 
+          passenger_id: passenger.id,
+          date: Time.now,
+          rating: nil,
+          cost: 100,)
+
+        trip.save
+
+        expect(passenger.amount_charged).must_equal 100
       end
     
     end
