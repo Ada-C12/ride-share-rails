@@ -13,7 +13,5 @@ class TripsController < ApplicationController
     else
       head :server_error
     end
-    
   end
-  
 end
