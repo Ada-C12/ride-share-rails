@@ -7,6 +7,11 @@ class PassengersController < ApplicationController
   def show
     passenger_id = params[:id]
     @passenger = Passenger.find_by(id: passenger_id)
+
+    if @passenger.nil?
+      head :not_found
+      return
+    end 
   end 
 
   def new
@@ -19,14 +24,27 @@ class PassengersController < ApplicationController
 
   def create
     @passenger = Passenger.new(name: params[:passenger][:name], phone_num: params[:passenger][:phone_num])
-    @passenger.save
-    redirect_to passengers_path
-    return
-    # if @driver.name == " "
-    #   redirect_to drivers_path
-    #   return
-    # end 
+    
+    if @passenger.save
+      redirect_to passengers_path
+      return
+    else 
+      render :new
+      return
+    end 
   end
+
+  def update
+    @passenger = Passenger.find_by(id: params[:id])
+
+    if @passenger.update(name: params[:passenger][:name], phone_num: params[:passenger][:phone_num])
+      redirect_to passengers_path
+      return
+    else
+      render :edit
+      return
+    end 
+  end 
 
   def destroy
     @passenger = Passenger.find_by(id: params[:id])

@@ -1,6 +1,9 @@
 class Driver < ApplicationRecord
   has_many :trips
 
+  validates :name, presence: true
+
+
   def average_rating
     # driver_trips = self.trips
     rating = 0
