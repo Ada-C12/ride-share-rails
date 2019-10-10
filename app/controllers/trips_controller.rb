@@ -31,9 +31,24 @@ class TripsController < ApplicationController
 
   def edit
     @trip = Trip.find_by(id: params[:id])
+    driver_id = params[:driver_id]
+    passenger_id = params[:passenger_id]
+
     if @trip.nil?
       redirect_to root_path
       return
+    else
+      if driver_id.nil?
+        @drivers = Driver.all
+      else
+        @drivers = [Driver.find_by(id: driver_id)]
+      end
+
+      if passenger_id.nil?
+        @passengers = Passenger.all
+      else
+        @passengers = [Passenger.find_by(id: passenger_id)]
+      end
     end
   end
 
