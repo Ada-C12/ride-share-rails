@@ -5,7 +5,7 @@
 <p>Passenger Name: <%= @trip.passenger.name %></p>
 <p>Driver ID: <%= @trip.driver_id %></p>
 <p>Driver Name: <%= @trip.driver.name %></p>
-<p>Trip Cost: $<%= @trip.cost %></p>
+<p>Trip Cost: $<%= number_with_precision(@trip.cost, :precision => 2) %></p>
 
 <p>Rating: 
   <% if @trip.rating == nil%>
