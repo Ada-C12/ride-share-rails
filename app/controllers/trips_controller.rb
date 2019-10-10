@@ -11,10 +11,6 @@ class TripsController < ApplicationController
     end
   end
   
-  def new 
-    redirect_to nope_path(params: {msg: "Not supposed to be here, all trip requests from a specific passenger goes straight to trip#create!"})
-  end
-  
   def show
     trip_id = params[:id].to_i
     @trip = Trip.find_by(id: trip_id)
@@ -25,6 +21,7 @@ class TripsController < ApplicationController
   end 
   
   def create   
+    raise
     if @trip.save
       x= "hahaha"
       redirect_to trip_path(@trip.id)

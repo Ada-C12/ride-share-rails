@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get "/homepages/nope", to: "homepages#nope", as: "nope"
   
   resources :drivers
-  resources :trips
+  resources :trips, except: [:new]
   
   # ADDED THESE BELOW, to allow trip requests per passenger
   resources :passengers do 
