@@ -1,7 +1,7 @@
 <nav>
-<a href="/">RideShare Rails!</a>
-<a href="/drivers/">Drivers</a>
-<a href="/passengers">Passengers</a>
+    <a id="logo"href="/">RideShare Rails!</a>
+    <a href="/drivers/">Drivers</a>
+    <a href="/passengers">Passengers</a>
 </nav>
 
 <main>
@@ -11,15 +11,42 @@
     </section>
 
     <section class="card">
-        <article>
-            <h1>Driver List</h1>
-            <%= link_to "Add driver", new_driver_path, class: 'btn' %>
-            <%= link_to "All driver", driver_path, class: 'btn' %>
+            <article>
+                <h3>Name: <%= @driver.name %></h3>
+                <h3>Average Rating</h3>
+                <h3>Model: <%= @driver.car_model %></h3>
+                <h3>Total Earnings: <% @total_earnings %></h3>
         </article>
         <article>
-            <h3><%=@driver.name %></h3>
-            <p><%=@driver.vin %> </p>
-            <%= link_to "Edit driver", edit_driver_path(@driver.id), class: 'btn'%>
+            <h1>Driver Trips</h1>
+            <table>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Drivers</th>
+                <th>Passenger</th>
+                <th>Price</th>
+                <th>Rating</th>
+                <th>View</th>
+                <th>Delete</th>
+             
+            </tr>
+            <% @trips.each do |trip| %>
+            <tr>
+            
+                <td><%= trip.id%></td>
+                <td><%= trip.date%></td>
+                <td><%= trip.driver_id%></td>
+                <td><%= trip.passenger_id%></td>
+                <td><%= trip.cost%></td>
+                <td><%= trip.rating%></td>
+                <td><%= link_to "View", trip_path(trip.id), class: 'btn'%></td>
+                <td><%= button_to "Delete", trip_path(trip.id), class: 'btn', method: :delete, data: { confirm: "Are YOU sure?" } %></td>
+            </tr>
+            
+            <% end %>
+
+        </table>
         </article>
     </section>
 </main>
