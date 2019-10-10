@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :trips, only: [:show]
   
   resources :passengers, only: [:index, :show] do
-    resources :trips, only: [:index, :new]
+    resources :trips, only: [:create, :new]
   end
   
   put '/drivers/:id/active', to: 'drivers#active', as: 'active_driver'
