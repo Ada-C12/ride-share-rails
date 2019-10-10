@@ -59,10 +59,12 @@ class TripsController < ApplicationController
   def edit
     # individual passenger uses this to update ratings
     @trip = Trip.find_by(id:params[:id])
-    
     if @trip.nil?
-      redirect_to root_path
+      redirect_to nope_path(params: {msg: "No such trip exists!"})
       return
+    else
+      #### STOPPED HERE
+      # pass on info to the radio button page
     end
   end 
   

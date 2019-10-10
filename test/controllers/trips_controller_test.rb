@@ -91,14 +91,14 @@ describe TripsController do
   end
   
   describe "edit" do
-    # Your tests go here
+    # WORKING ON IT!
   end
   
   describe "update" do
-    # Your tests go here
+    # WORKING ON IT!
   end
   
   describe "destroy" do
-    # Your tests go here
+    # ARE WE EVEN SUPPOSED TO BE DOING THIS?
   end
 end
