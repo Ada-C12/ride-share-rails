@@ -6,7 +6,7 @@ describe TripsController do
   let (:trip) { Trip.create(driver_id: driver.id, passenger_id: passenger.id, date: "2016-04-05", rating: 3, cost: 1250 ) }
   
   describe "index" do
-    it "responds with 404 not found" do
+    it "redirects to root" do
       # Arrange
       test_driver = trip
       
@@ -14,7 +14,7 @@ describe TripsController do
       get trips_path
       
       # Assert
-      must_respond_with :not_found    
+      must_redirect_to :root 
     end
   end
   
