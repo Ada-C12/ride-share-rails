@@ -1,7 +1,7 @@
 <header class="show-header">
 
 <h1><%=@driver.name%></h1>
-
+</header>
 <ul>
   <li><strong>VIN:</strong><%=@driver.vin%>
   <li><strong>total earnings:</strong></li>
@@ -9,15 +9,21 @@
 
   <li> <%= link_to "Edit driver!", edit_driver_path(@driver.id)%></li>
   <li> <%= link_to "Delete driver!", driver_path(@driver.id), method: :delete, data: {confirm: "are you sure???"}, class: "driver-delete-link" %></li>
-  <li> <%= link_to "Add a new trip for this driver", new_trip_path %></li>
-
-    <li> 
-    <%=@driver.name%>'s trips
-      <ul>
-        <% Trip.where(driver_id:@driver.id).each do |trip| %> 
-        <li><%= link_to trip.id, trip_path(trip.id)%></li>
-        <%end%>
-      </ul>
-  </li>
 </ul>
-</header>
+
+<h2><%=@driver.name%>'s trips:</h2>
+<table style="width100%">
+  <tr>
+    <th>Date</th>
+    <th>Rating</th>
+    <th>Cost</th>
+  </tr>
+  <% Trip.where(driver_id:@driver.id).each do |trip| %> 
+  <tr>
+      <td><%= link_to trip.date, trip_path(trip.id)%></td>
+      <td><%= trip.rating %>
+      <td><%= trip.cost %>
+  </tr>
+  <%end%>
+</table>
+

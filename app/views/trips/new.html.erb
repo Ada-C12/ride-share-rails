@@ -12,4 +12,15 @@
 <% end %>
 
 
-<%= render partial: "form", locals: { submit_button_label: "Create Trip", trip_form_class: "new-trip-form" } %>
+<%= form_with model: @trip, class: 'trip_form_class' do |f| %>
+
+  <%= f.label :driver%> <%= @trip.driver %>
+
+  <%= f.label :passenger %>
+  <%= f.label :passenger_id, @passengers.map{|pass| [pass.name, pass.id]}%>
+  <% %>
+  <%= f.label :date%>
+  <%= f.text_field :date%>
+
+  <%= f.submit submit_button_label, class: "trip-form-button"%>
+<% end %>
