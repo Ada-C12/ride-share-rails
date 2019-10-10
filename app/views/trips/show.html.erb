@@ -5,24 +5,24 @@
 <% if @trip.passenger_id.nil? %>
   <p>Passenger ID: [deleted]</p>
 <% else %>
-  <p>Passenger ID: <%= link_to @trip.passenger_id, passenger_path(id: @trip.passenger_id) %></p>
-<% end %> 
+  <p>Passenger ID: <%= link_to @trip.passenger_id, passenger_path(id: @trip.passenger_id), class:"link" %></p>
+<% end %>
 
 <% if @trip.driver_id.nil? %>
   <p>Driver ID: [deleted]</p>
 <% else %>
-  <p>Driver ID: <%= link_to @trip.driver_id, driver_path(id: @trip.driver_id) %></p>
-<% end %> 
+  <p>Driver ID: <%= link_to @trip.driver_id, driver_path(id: @trip.driver_id), class:"link" %></p>
+<% end %>
 
 <p>Trip Cost: $<%= number_with_precision(@trip.cost, :precision => 2) %></p>
 
-<p>Rating: 
+<p>Rating:
   <% if @trip.rating == nil%>
-    <%= link_to 'Assign Rating', assign_rating_edit_path %>
+    <%= link_to 'Assign Rating', assign_rating_edit_path, class:"link" %>
   <% else %>
     <%= @trip.rating %>
   <% end %>
 </p>
 
-<p><%= link_to 'Edit', edit_trip_path %></p>
-<p><%= link_to 'Delete', trip_path, method: :delete, data: {confirm: "Delete trip"}%></p>
+<p><%= link_to 'Edit', edit_trip_path, class:"link" %></p>
+<p><%= link_to 'Delete', trip_path, method: :delete, data: {confirm: "Delete trip"}, class:"link" %></p>

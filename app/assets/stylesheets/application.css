@@ -25,6 +25,22 @@
   font-family: 'Questrial', sans-serif;
  }
 
+.link {
+  color:black;
+  text-decoration: none;
+}
+.link:visited {
+  color: black;
+  text-decoration: none;
+}
+.link:hover {
+  color: darkblue;
+  text-decoration: underline
+}
+.link:active {
+  color: darkgrey;
+  text-decoration: none;
+}
  h1 {
 
  }
