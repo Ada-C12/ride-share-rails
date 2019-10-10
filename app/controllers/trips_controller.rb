@@ -42,7 +42,14 @@ class TripsController < ApplicationController
     if @driver.nil?
       redirect_to nope_path(params: {msg: "No drivers available, maybe you should walk"})
       return
-    end      
+    else
+      # flip @driver.active to true.  
+      unless @driver.update(active: true)
+        redirect_to nope_path(params: {msg: "Unexpected error, please call customer service at 1-800-LOL-SORRY"})
+      end   
+      # When do we flip it back to false? Normally we'd do that when GPS hits destination...
+      # For this project, we'll flip it when passenger rates the trip.
+    end   
     
     # make new trip
     @trip = Trip.new(date: params[:date], rating: nil, cost: 100, driver_id: @driver.id, passenger_id: params[:passenger_id])

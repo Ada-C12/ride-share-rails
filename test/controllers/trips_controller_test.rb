@@ -73,6 +73,24 @@ describe TripsController do
       must_redirect_to trip_path(id: Trip.last.id)
     end
     
+    it "after creating trip object, will flip @driver.active to true" do
+      post trips_path, params: trip_hash
+      trip = Trip.last
+      driver = Driver.find_by(id: trip.driver_id)
+      assert (driver.active)
+    end
+    
+    it "in legit cases of no available drivers, will not create trip and send to nope_path" do
+      # only 1 available driver in db
+      post trips_path, params: trip_hash
+      trip_count_before = Trip.count
+      # no available driver left in db
+      post trips_path, params: trip_hash
+      trip_count_after = Trip.count
+      assert(trip_count_after == trip_count_before)
+      must_redirect_to nope_path(msg: "No drivers available, maybe you should walk")
+    end
+    
     it "edge: if bad driver input, send to nope_path" do
       post trips_path, params: {trip: trip_hash_bad_driver}
       must_redirect_to nope_path(msg: "No drivers available, maybe you should walk")
@@ -82,11 +100,17 @@ describe TripsController do
     end
     
     it "edge: if bad passenger input, send to nope_path" do
-      post trips_path, params: {trip: trip_hash_bad_passenger}
+      ### BUGGY!!!
+      trip_count_before = Trip.count
+      post trips_path, params: {trip: trip_hash}
+      
+      # post trips_path, params: {trip: trip_hash_bad_passenger}
+      trip_count_before = Trip.count
+      puts "#{trip_count_before} VS #{trip_count_after}"
       must_redirect_to nope_path(msg: "Trip request unsuccessful, please contact customer service at 1-800-lol-sorry")
       
-      post trips_path, params: {trip: trip_hash_no_passenger}
-      must_redirect_to nope_path(msg: "Trip request unsuccessful, please contact customer service at 1-800-lol-sorry")
+      # post trips_path, params: {trip: trip_hash_no_passenger}
+      # must_redirect_to nope_path(msg: "Trip request unsuccessful, please contact customer service at 1-800-lol-sorry")
     end
   end
   
