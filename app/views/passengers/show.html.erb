@@ -1,7 +1,15 @@
-<h1>Passenger: <%= @passenger[:name] %></h1>
-<h2>Contact: <%= @passenger[:phone_number] %></h2>
-      <%= link_to "<button>Edit</button>".html_safe, edit_passenger_path(@passenger) %>
-      <%= link_to "<button>Delete</button>".html_safe, passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure you want to delete this passenger?"}%>
+<h1>Passenger: <%= @passenger.name %></h1>
+<h2>Contact: <%= @passenger.phone_number %></h2>
+<h2>Total Amount Charged: $<%= @passenger.total_charged %></h2>
+
+<ul>
+    <% @passenger.trips.each do |trip| %>
+    <li> <%= link_to trip, trip_path(trip.id) %> </li>
+    <% end %>
+</ul>
+
+<%= link_to "<button>Edit</button>".html_safe, edit_passenger_path(@passenger) %>
+<%= link_to "<button>Delete</button>".html_safe, passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure you want to delete this passenger?"}%>
 
 
 <p><%= link_to "Return to Passengers", passengers_path %></p>

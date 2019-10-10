@@ -32,9 +32,5 @@
   <%= f.radio_button :rating, "5"%>
   <%= f.label :rating, "5", :value => "5" %>
 
-  <%# This is problematic %>
-  <%= f.radio_button :rating, nil %>
-  <%= f.label :rating, "remove rating", :value => nil %>
-
   <%= f.submit "Save" %>
 <% end %>
