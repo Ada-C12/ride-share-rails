@@ -4,20 +4,16 @@ describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
   
   describe "index" do
-    
     it "responds with success when there are many drivers saved" do
       test_driver = Driver.create
       
       get drivers_path
       must_respond_with :success
-      
     end
     
     it "responds with success when there are no drivers saved" do
-      
       get drivers_path
       must_respond_with :success
-      
     end
   end
   
@@ -27,25 +23,22 @@ describe DriversController do
     end
     
     it "responds with success when showing an existing valid driver" do
-      
       get driver_path(@test_driver.id) 
       
       must_respond_with :success
-      
     end
     
     it "responds with 404 with an invalid driver id" do
-      
       get driver_path(-1)
       
       must_respond_with :not_found
-      
     end
   end
   
   describe "new" do
     it "responds with success" do
       get new_driver_path
+      
       must_respond_with :success
     end
   end
@@ -75,6 +68,7 @@ describe DriversController do
     end
     
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+      skip
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
@@ -104,9 +98,10 @@ describe DriversController do
     it "responds with redirect when getting the edit page for a non-existing driver" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
-      
+      id = -1
+      assert_nil Driver.find_by(id: id)
       # Act
-      get edit_driver_path(-1)
+      get edit_driver_path(id)
       # Assert
       must_respond_with :redirect
     end
@@ -134,16 +129,19 @@ describe DriversController do
       # Arrange
       # Ensure there is an invalid id that points to no driver
       # Set up the form data
-      
+      id = -1
+      assert_nil Driver.find_by(id: id)
+      params = { driver: { vin: -1 } }
       # Act-Assert
       # Ensure that there is no change in Driver.count
-      
+      expect{ patch driver_path(id), params: params }.wont_change "Driver.count"
       # Assert
       # Check that the controller gave back a 404
-      
+      must_respond_with :not_found
     end
     
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+      skip
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Ensure there is an existing driver saved
@@ -178,13 +176,14 @@ describe DriversController do
     it "does not change the db when the driver does not exist, then responds with " do
       # Arrange
       # Ensure there is an invalid id that points to no driver
-      
+      id = -1
+      assert_nil Driver.find_by(id: id)
       # Act-Assert
       # Ensure that there is no change in Driver.count
-      
+      expect{ delete driver_path(id) }.wont_change "Driver.count" 
       # Assert
       # Check that the controller responds or redirects with whatever your group decides
-      
+      must_respond_with :redirect
     end
   end
 end

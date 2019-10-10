@@ -19,6 +19,8 @@ class DriversController < ApplicationController
 
  def destroy
    driver = Driver.find_by(id: params[:id])
+   return redirect_to drivers_path unless driver
+   
    driver.destroy
    redirect_to drivers_path
  end
@@ -30,6 +32,8 @@ class DriversController < ApplicationController
 
  def update
    driver = Driver.find_by(id: params[:id])
+   return head :not_found unless driver
+   
    driver.update(driver_params)
    redirect_to driver_path(driver.id)
  end
