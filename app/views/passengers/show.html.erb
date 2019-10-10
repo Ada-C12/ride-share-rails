@@ -16,16 +16,34 @@
 <br>
 <%= link_to 'New Trip', passenger_trips_path(@passenger), method: :create %>
 
+<%# <p>
+Trip Needs Rating:
+<br>
+<ul>
+
+  <% if trip.rating.nil? %>
+
+  <%# <% end %>
+<%# </ul>
+</p> %> 
+
 <p>
 
-  Trips: 
+   
   <br>
   <ul>
     <% i = 1 %>
     <% @passenger.trips.each do |trip| %>
-      <li>
-        <%= link_to "Trip #{i}", trip_path(trip) %>
-      </li>
+      <% if trip.rating.nil? %>
+        Needs Rating:
+        <li>
+          <%= link_to "Trip #{i}", trip_path(trip) %>
+        </li>
+      <% else %> 
+        <li>
+          <%= link_to "Trip #{i}", trip_path(trip) %>
+        </li>
+        <% end %>
       <% i += 1%>
       <br>
     <% end %>

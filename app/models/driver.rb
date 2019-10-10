@@ -22,7 +22,13 @@ class Driver < ApplicationRecord
     end
     average = ratings.sum / ratings.count.to_f
     return average.round(2)
-    
+  end
+  
+  def self.assign_driver
+    driver = Driver.find_by(available: true)
+    driver.available = false
+    driver.save
+    return driver
   end
   
 end

@@ -9,6 +9,15 @@
 <p>VIN: <%= @driver.vin %></p>
 <p>ID: <%= @driver.id %></p>
 <p>Total Earned: $ <%= @driver.total_earned %></p>
+<p>Status: 
+  <% if @driver.available %> 
+  Available
+  <% else %>                            
+  Unavailable
+  <%end%>
+</p>
+ 
+
 <%= link_to "Edit Driver", edit_driver_path%>
 <br>
 <br>

@@ -14,8 +14,19 @@
     Date: <%= @trip.date %>
   </li>
   <li>
-    Rating: <%= @trip.rating %>
+    Rating: 
+    <% if @trip.rating.nil? %>
+      <%= form_with model: @trip do |f| %>
+        <%= f.label :rating %>
+        <%= f.select :rating, [1, 2, 3, 4, 5]%>
+          <%# <% f.update(@trip) %>
+         <%= f.submit "Submit Rating" %>
+      <% end %> 
+    <% else %>
+    <%= @trip.rating %>
+    <%end%>
   </li>
+
   <li>
     Cost: $<%= '%.2f' % @trip.cost %>
   </li>
