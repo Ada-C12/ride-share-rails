@@ -43,9 +43,16 @@ Date: <%= @trip.date %>
 <%= f.label :rating, "Rating: " %>
 <%= f.select :rating, [' ', '1', '2', '3', '4', '5']%>
 
-
-<%= f.label :cost, "Cost: $" %>
-<%= f.number_field :cost %>
+<% if @trip.cost.nil?%>
+  <%  random_cost = rand(100..500) %>
+  <%= f.hidden_field :cost, :value => random_cost %></p> 
+  <%= hidden_field_tag 'cost', random_cost %>
+  Cost: $<%= random_cost %>
+<% else %>
+  <%= f.hidden_field :cost %>
+  <%= hidden_field_tag 'cost', @trip.cost %>
+  Cost: $<%= @trip.cost %>
+<% end %>
 
 
 <%= f.submit "Save Trip", class: "trip-save" %>
