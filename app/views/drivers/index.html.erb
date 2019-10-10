@@ -1,6 +1,7 @@
 
 <table>
   <tr>
+    <th>Driver_id</th>
     <th>Name</th>
     <th>Rating</th>
     <th>Function</th>
@@ -8,6 +9,7 @@
 
    <% @drivers.each do |driver| %>
   <tr>
+    <td><%= link_to driver.id, driver_path( driver.id ) %></td>
     <td><%= link_to driver.name, driver_path( driver.id ) %></td>
     <td><%= driver.vin %></td>
     <td>
