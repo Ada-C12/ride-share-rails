@@ -1,3 +1,15 @@
+<h1> new driver: </h1>
+
+<% if @driver.errors.any? %>
+  <ul>
+    <% @driver.errors.each do |column, message| %>
+    <li>
+      <strong><%= column.capitalize %> </strong><%= message %>
+    </li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @driver do |f| %>
   <fieldset>
     <%= f.label :name %>

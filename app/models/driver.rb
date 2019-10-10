@@ -1,4 +1,7 @@
 class Driver < ApplicationRecord
+  validates :name, presence: true
+  validates :vin, presence: true
+  
   has_many :trips
   
   def total_earnings
@@ -19,7 +22,6 @@ class Driver < ApplicationRecord
     ratings = trips.map(&:rating).compact
     
     ((ratings.sum)/ratings.length.to_f).round(1).to_s
-    
     
   end
   

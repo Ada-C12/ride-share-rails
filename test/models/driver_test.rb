@@ -65,7 +65,7 @@ describe Driver do
     # Tests for methods you create should go here
     describe "custom methods" do
       before do
-        @driver = Driver.create
+        @driver = Driver.create(name: "Popeye Sailor", vin: "8FH204KDLFURNM385")
         @passenger = Passenger.create(name: "test_passenger", phone_num: "4385902")
         @cost = "422.80"
         @trips = Array.new(10) do |n|

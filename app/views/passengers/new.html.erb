@@ -1,17 +1,14 @@
-<h1> This is the page to add a new passener </h1>
-
 <h1> new passenger: </h1>
 
 <% if @passenger.errors.any? %>
  <ul> 
   <% @passenger.errors.each do |column, message| %>
   <li>
-   <strong><%= @passenger.name %> <%= column.capitalize %> </strong><%= message %>
+   <strong><%= column.capitalize %> </strong><%= message %>
   </li>
   <% end %>
  </ul>
 <% end %>
-
 
 <%= form_with model: @passenger do |f| %>
  <fieldset>

@@ -5,8 +5,8 @@ describe DriversController do
   
   describe "index" do
     it "responds with success when there are many drivers saved" do
-      test_driver = Driver.create
-      
+      test_driver = Driver.create(name: "Popeye Sailor", vin: "8FH204KDLFURNM385")
+
       get drivers_path
       must_respond_with :success
     end
@@ -19,7 +19,7 @@ describe DriversController do
   
   describe "show" do
     before do
-      @test_driver = Driver.create
+      @test_driver = Driver.create(name: "Popeye Sailor", vin: "8FH204KDLFURNM385")
     end
     
     it "responds with success when showing an existing valid driver" do
@@ -86,7 +86,7 @@ describe DriversController do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
       # Ensure there is an existing driver saved
-      driver = Driver.create
+      driver = Driver.create(name: "Popeye Sailor", vin: "8FH204KDLFURNM385")
       
       # Act
       get edit_driver_path(driver.id)
@@ -113,7 +113,9 @@ describe DriversController do
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
       # Set up the form data
-      id = Driver.create.id
+      driver = Driver.create(name: "Popeye Sailor", vin: -1)
+
+      id = driver.id
       params = { driver: { vin: -1 } }
       # Act-Assert
       # Ensure that there is no change in Driver.count
@@ -161,7 +163,7 @@ describe DriversController do
     it "destroys the driver instance in db when driver exists, then redirects" do
       # Arrange
       # Ensure there is an existing driver saved
-      Driver.create
+      Driver.create(name: "Popeye Sailor", vin: "8FH204KDLFURNM385")
       
       # Act-Assert
       # Ensure that there is a change of -1 in Driver.count
