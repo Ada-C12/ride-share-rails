@@ -9,6 +9,10 @@
   <li> 
    Driver: <%= link_to (Driver.find_by(id: @trip.driver_id)).name, driver_path(Driver.find_by(id: @trip.driver_id)) %>
   </li>
+
+  <li>date: <%= @trip.date %></li>
+
+  <li>rating: <%= @trip.rating %></li>
  </ul>
 
  <h2> Options: </h2>

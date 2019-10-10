@@ -41,14 +41,53 @@ describe TripsController do
   end
   
   describe "edit" do
-    # Your tests go here
+    it "resonds with success for editing an existing trip" do
+      pass = Passenger.create
+      driver = Driver.create
+      trip = Trip.create(driver_id: driver.id, passenger_id: pass.id)
+
+      get edit_trip_path(trip.id)
+      must_respond_with :success
+    end
+
+    it "responds with redirect for an invalid trip" do
+      get edit_trip_path(-1)
+      must_respond_with :redirect
+    end
   end
   
   describe "update" do
-    # Your tests go here
+    it "can update an existing trip accurately and redirect" do
+      pass = Passenger.create
+      driver = Driver.create
+      trip = Trip.create(driver_id: driver.id, passenger_id: pass.id)
+      params = { trip: { rating: -1 } }
+
+      expect{ patch trip_path(trip.id), params: params }.wont_change "Trip.count"
+      expect(Trip.find(trip.id).rating.to_i).must_equal params.dig(:trip, :rating)
+      must_respond_with :redirect
+    end
+
+    it "responds 404 rather than update an invalid trip" do
+      patch trip_path(-1)
+      must_respond_with :not_found
+    end
   end
   
   describe "destroy" do
-    # Your tests go here
+    it "destroys trip and redirects" do
+      pass = Passenger.create
+      driver = Driver.create
+      trip = Trip.create(driver_id: driver.id, passenger_id: pass.id)
+
+      expect{ delete trip_path(trip.id) }.must_change "Trip.count", -1
+      assert_nil Trip.find_by(id: trip.id)
+      must_respond_with :redirect
+    end
+
+    it "wont_change for invalid trip, responds 404" do
+      expect{ delete trip_path(-1) }.wont_change "Trip.count"
+      must_respond_with :not_found
+    end
   end
 end

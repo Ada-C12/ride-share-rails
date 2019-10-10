@@ -18,4 +18,29 @@ class TripsController < ApplicationController
      redirect_to passenger_path(params[:passenger_id])
    end
  end
+
+ def edit
+   @trip = Trip.find_by(id: params[:id])
+   redirect_to trips_path unless @trip
+ end
+
+ def update
+   trip = Trip.find_by(id: params[:id])
+   return head :not_found unless trip
+
+   trip.update(trip_params)
+   redirect_to trip_path(trip.id)
+ end
+
+ def destroy
+   trip = Trip.find_by(id: params[:id])
+   return head :not_found unless trip
+   trip.delete
+   redirect_to root_path
+ end
+
+ private
+ def trip_params
+   params.require(:trip).permit(:date, :rating, :cost)
+ end
 end
