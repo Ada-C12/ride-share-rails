@@ -65,9 +65,21 @@ class TripsController < ApplicationController
     end
     
     if params[:trip][:driver_name].blank? || params[:trip][:passenger_name].blank? || params[:trip][:cost].blank?
-      flash[:notice] = "You must enter a value for all fields."
-      render :edit
-      return
+      if params[:trip][:rating]
+        @trip.rating = params[:trip][:rating]
+        if @trip.save
+          redirect_to trip_path(@trip.id)
+          return
+        else
+          flash[:notice] = "Unable to save rating."
+          render :rate
+          return
+        end
+      else
+        flash[:notice] = "You must enter a value for all fields."
+        render :edit
+        return
+      end
     end 
     
     driver = Driver.find_by(name: params[:trip][:driver_name])
@@ -111,9 +123,14 @@ class TripsController < ApplicationController
     end
   end
   
-  # def add_rating
-  #add drop down if can
-  # end
+  def rate
+    @trip = Trip.find_by(id: params[:id])
+    
+    if @trip.nil?
+      redirect_to root_path
+      return
+    end
+  end
   
   private
   

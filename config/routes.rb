@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
   # => passenger_trips POST   /passengers/:passenger_id/trips(.:format)   trips#create
   
+  get '/trips/:id/rate', to: 'trips#rate', as: 'rate'
   
   resources :trips, except: [:index, :new]
 end

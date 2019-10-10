@@ -1,0 +1,8 @@
+<%= form_with model: @trip do |f|  %>
+  <p>Trip: <%= @trip.id %></p>
+
+  <%= f.label :rating %>
+  <%= f.select :rating, [5, 4, 3, 2, 1] %>
+
+  <%= f.submit "Save Rating", class: "submit-button" %>
+<% end %>
