@@ -1,0 +1,7 @@
+<%= form_with model: @passenger, class: rating_form_class do |f| %>
+  <%= f.label :rating %>
+  <%= f.text_field :rating %>
+  
+  <%= f.submit "Add Rating" %>
+
+<% end %>

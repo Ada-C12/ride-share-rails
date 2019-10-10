@@ -1,0 +1,50 @@
+<main>
+  <header class="show-header">
+    <h1><%=@passenger.name%></h1>
+    <%= link_to "Edit this passenger", edit_passenger_path(@passenger.id) %>
+    <%= link_to "Delete this passenger", passenger_path(@passenger.id), method: :delete, data: { confirm: "Are you sure?" }, class: "show-delete-link" %>
+    <%= link_to "Request a Trip", passenger_trips_path(@passenger.id), method: :post %>
+  </header>
+
+  <section class="show-details">
+    <ul>
+      <li> ID:<%= @passenger.id %></li>
+      <li> PHONE NUMBER: <%= @passenger.phone_num %></li>
+      <li> Passenger Since: <%= @passenger.created_at %></li>
+    </ul>
+  </section>
+
+  <h2>Passenger's Trips</h2>
+  <section id="passengers-trips-list">
+    <% if @passenger.trips == [] || @passenger.trips == nil%>
+      <p><%=@passenger.name%> has no trips yet!<p>
+      <%else%>
+        <table>
+          <tr class='table-header'>
+            <td>ID</td>
+            <td>DATE</td>
+            <td>DRIVER</td>
+            <td>PRICE</td>
+            <td>RATING</td>
+            <td>EDIT</td>
+            <td>DELETE</td>
+          </tr>
+          <% @passenger.trips.each do |trip| %>
+              <tr>
+                <td><%= trip.id%></td>
+                <td><%= trip.date%></td>
+                <td><%= trip.driver.name%></td>
+                <td><%= trip.cost%></td>
+                <td><% if trip.rating == nil %>
+                  <%= link_to "PLACEHOLDER - LINK TO UPDATE RATING", add_rating_path %>
+                <% else %>
+                  <%= trip.rating%></td>
+                <% end %>
+                <td><%= link_to "Edit", edit_trip_path(trip.id) %></td>
+                <td><%= link_to "Delete", trip_path(trip.id), method: :delete, data: { confirm: "Are you sure?" }, class: "show-delete-link" %></td>
+              </tr>
+          <% end %>
+        </table>
+      <%end%>
+  </section>
+</main>

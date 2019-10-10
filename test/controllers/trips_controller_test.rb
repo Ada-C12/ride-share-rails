@@ -83,16 +83,16 @@ describe TripsController do
       
       # Assert
       # Check that the controller redirects
-      must_redirect_to new_trip_path
+      must_redirect_to root_path
       
       expect {post trips_path, params: invalid_trip_hash_2}.must_differ 'Trip.count', 0
-      must_redirect_to new_trip_path
+      must_redirect_to root_path
       
       expect {post trips_path, params: invalid_trip_hash_3}.must_differ 'Trip.count', 0
-      must_redirect_to new_trip_path
+      must_redirect_to root_path
       
       expect {post trips_path, params: invalid_trip_hash_4}.must_differ 'Trip.count', 0
-      must_redirect_to new_trip_path
+      must_redirect_to root_path
     end
   
   end

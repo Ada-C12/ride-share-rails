@@ -9,21 +9,31 @@ class TripsController < ApplicationController
   end
   
   def new
-    @trip = Trip.new
+      @trips = Trip.new
   end
   
-  def create
-    @trip = Trip.new(trip_params)
-    
+  def create  
+    if params[:passenger_id]
+      default_trip_details = {
+        passenger_id: params[:passenger_id],
+        driver_id: 1,
+        date: Date.current,
+        cost: rand(1..1000)
+      }
+
+      @trip = Trip.new(default_trip_details)
+    else
+      @trip = Trip.new(trip_params)
+    end
+
     if @trip.save
     else
-      redirect_to new_trip_path
+      redirect_to root_path
       return
     end
     
     if @trip.driver.update({active: true})
       redirect_to trip_path(@trip.id)
-      puts "Here is update time I print #{@trip.driver.active}"
       return
     else
       raise ArgumentError.new("Trip saved, but Driver status not updated to active")
