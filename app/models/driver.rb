@@ -11,4 +11,15 @@ class Driver < ApplicationRecord
     end
     return sum / self.trips.count
   end
+
+  def total_earnings
+    sum = 0
+    self.trips.each do |trip|
+      sum += trip.cost.to_f
+    end
+    if sum < 1.65
+      return 0
+    else return 0.8 * (sum - 1.65)
+    end
+  end
 end

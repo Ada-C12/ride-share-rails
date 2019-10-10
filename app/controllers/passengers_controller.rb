@@ -3,27 +3,27 @@ class PassengersController < ApplicationController
     @passengers = Passenger.all 
   end
   
-  def destroy
-    passenger_id = params[:id]
-    @passenger = Passenger.find_by(id: passenger_id)
+  def show
+    @passenger = Passenger.find_by(id: params[:id])
     
     if @passenger.nil?
       head :not_found
       return
     end
-    
-    @passenger.destroy
-    
-    redirect_to passengers_path
-    return
   end
   
-  def show
-    passenger_id = params[:id]
-    @passenger = Passenger.find_by(id: passenger_id)
+  def new
+    @passenger = Passenger.new
+  end
+  
+  def create
+    @passenger = Passenger.new(passenger_params)
     
-    if @passenger.nil?
-      redirect_to passenger_path
+    if @passenger.save  
+      redirect_to passenger_path(@passenger.id)  
+      return
+    else 
+      render :new  
       return
     end
   end
@@ -39,15 +39,14 @@ class PassengersController < ApplicationController
   
   def update
     @passenger = Passenger.find_by(id: params[:id])
+    
     if @passenger.nil?
-      redirect_to passenger_path 
+      head :not_found
       return
     end
     
-    if @passenger.update(
-      name: params[:passenger][:name], 
-      phone_number: params[:passenger][:phone_number])
-      redirect_to passenger_path  
+    if @passenger.update(passenger_params)
+      redirect_to passenger_path(@passenger.id)  
       return
     else  
       render :edit  
@@ -55,19 +54,23 @@ class PassengersController < ApplicationController
     end
   end
   
-  def new
-    @passenger = Passenger.new
-  end
-  
-  def create
-    @passenger = Passenger.new(name: params[:passenger][:name], phone_number: params[:passenger][:phone_number]) #instantiate a new passenger
-    if @passenger.save  
-      redirect_to passenger(@passenger.id)  
-      return
-    else 
-      render :new  
+  def destroy
+    @passenger = Passenger.find_by(id: params[:id])
+    
+    if @passenger.nil?
+      head :not_found
       return
     end
+    
+    @passenger.destroy
+    
+    redirect_to passengers_path
+    return
   end
   
+  private
+  
+  def passenger_params
+    return params.require(:passenger).permit(:name, :phone_number)
+  end
 end
