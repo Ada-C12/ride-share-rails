@@ -155,6 +155,29 @@ describe PassengersController do
   end
   
   describe "destroy" do
-    # Your tests go here
+    it "destroys the passenger instance in db when passenger exists, then redirects" do
+      existing_passenger = Passenger.first
+      existing_passenger_id = existing_passenger.id
+      expect (Passenger.count).must_equal 1
+
+      expect {
+        delete passenger_path(existing_passenger_id)
+      }.must_differ "Passenger.count", -1
+      
+      assert_nil (Passenger.find_by(id: existing_passenger_id))
+      must_respond_with :redirect
+      must_redirect_to passengers_path
+    end
+
+    it "does not change the db when the passenger does not exist, then responds with redirect" do
+      invalid_id = -1
+      expect (Passenger.count).must_equal 1
+      assert_nil (Passenger.find_by(id: invalid_id))
+
+      expect { delete passenger_path(invalid_id) }.must_differ "Passenger.count", 0
+      
+      must_respond_with :redirect
+      must_redirect_to passengers_path
+    end
   end
 end

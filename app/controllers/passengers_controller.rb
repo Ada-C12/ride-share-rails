@@ -52,6 +52,18 @@ class PassengersController < ApplicationController
       end
     end
   end
+
+  def destroy
+    selected_passenger = Passenger.find_by(id: params[:id])
+    if selected_passenger
+      # Look into setting dependency to nullify in Trip Model
+      selected_passenger.trips.each {|trip| trip.passenger_id = nil }
+      selected_passenger.destroy
+    end
+
+    redirect_to passengers_path
+    return
+  end
   
   private 
   
