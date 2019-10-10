@@ -69,7 +69,7 @@ describe TripsController do
     end
     
     it "after creating trip object, will send to trip_path" do
-      post trips_path, params: {trip: trip_hash}
+      post trips_path, params: trip_hash
       must_redirect_to trip_path(id: Trip.last.id)
     end
     

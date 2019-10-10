@@ -34,7 +34,15 @@ class TripsController < ApplicationController
   end
   
   def create
-    @trip = Trip.new(trip_params)
+    # find available driver
+    @driver = Driver.find_by(active: false)
+    if @driver.nil?
+      redirect_to nope_path(params: {msg: "No drivers available, maybe you should walk"})
+      return
+    end      
+    
+    # make new trip
+    @trip = Trip.new(date: params[:date], rating: nil, cost: 100, driver_id: @driver.id, passenger_id: params[:passenger_id])
     if @trip.save
       redirect_to trip_path(@trip.id)
       return
@@ -62,7 +70,7 @@ class TripsController < ApplicationController
     if @trip.nil?
       redirect_to nope_path
       return
-    elsif @trip.update(trip_params)
+    elsif @trip.update(trip_params) ########
       redirect_to trip_path(@trip.id)
       return
     else
@@ -84,10 +92,16 @@ class TripsController < ApplicationController
     end
   end 
   
-  private
   
-  def trip_params
-    return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
-  end
+  
+  ################ MOMO CHECK IT OUT ################
+  # private
+  ### I DON'T THINK WE WILL NEED THIS B/C ...
+  # 1. RATING AND COST ARE DEFAULTED VALUES
+  # 2. DRIVER_ID IS HAS TO BE DETERMINED HERE, NOT FROM params
+  # 3. ONLY DATE AND PASSENGER_ID ARE FROM PARAMS, AND I THINK MIXING 2 DIFF ORIGINS OF PARAMS IS GONNA BE A MESS FOR US
+  # def trip_params
+  #   return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
+  # end
   
 end
