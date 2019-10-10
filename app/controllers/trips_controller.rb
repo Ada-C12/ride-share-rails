@@ -50,7 +50,13 @@ class TripsController < ApplicationController
   
   def create
     #Handle Validation Errors
-    @trip = Trip.new(trip_params) #instantiate a new book
+    generated_trips_params = {
+      date: Time.now, 
+      passenger_id: params[:passenger_id], 
+      driver_id: 1,
+      cost: 5
+    }
+    @trip = Trip.new(generated_trips_params) #instantiate a new book
     if @trip.save # save returns true if the database insert succeeds
       redirect_to passenger_path(params[:passenger_id]) # go to the index so we can see the book in the list
       return

@@ -44,9 +44,9 @@ Date: <%= @trip.date %>
 <%= f.select :rating, [' ', '1', '2', '3', '4', '5']%>
 
 <% if @trip.cost.nil?%>
-  <%  random_cost = rand(100..500) %>
+  <% random_cost = @trip.trip_cost %>
   <%= f.hidden_field :cost, :value => random_cost %></p> 
-  <%= hidden_field_tag 'cost', random_cost %>
+  <%= hidden_field_tag 'cost', @trip.cost %>
   Cost: $<%= random_cost %>
 <% else %>
   <%= f.hidden_field :cost %>
