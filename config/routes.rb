@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: 'pages#index'
   resources :trips, except: [:new]
   resources :drivers
+    # resources :trips, only: [:show]
   resources :passengers 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :passengers do
