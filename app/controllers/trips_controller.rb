@@ -35,6 +35,8 @@ class TripsController < ApplicationController
     @trip = Trip.new(trip_hash)
     
     if @trip.save
+      driver.available = false
+      driver.save
       redirect_to passenger_path(id: params[:passenger_id] )
       return
     else
@@ -73,6 +75,8 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: trip_id)
     
     if @trip.update(trip_params)
+      @trip.driver.available = true
+      @trip.driver.save
       redirect_to trip_path
       return
     else

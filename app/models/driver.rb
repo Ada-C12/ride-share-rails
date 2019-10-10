@@ -32,6 +32,20 @@ class Driver < ApplicationRecord
     return driver
   end
   
+  #approach 1 - looking through all the trip statuses
+  # approach 2- changes status of driver when trip changes -- approach in code  
+  # def check_status
+  #   self.trips.each do |trip|
+  #     if trip.rating = nil 
+  #       trip.driver.available = false
+  #     else
+  #       trip.driver.available = true
+  #     end
+  #     trip.driver.save
+  #   end
+  #   return trip.driver.available
+  # end
+  
   # def change_status
   #   self.trips.each do |trip|
   #     if trip.rating = nil 

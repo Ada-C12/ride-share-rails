@@ -10,10 +10,10 @@
 <p>ID: <%= @driver.id %></p>
 <p>Total Earned: $ <%= @driver.total_earned %></p>
 <p>Status: 
-  <% if @driver.available %> 
-  Available
+  <% if @driver.available%> 
+    <p>Available</p>
   <% else %>                          
-  Unavailable
+    <p>Unavailable</p>
   <% end %>
 </p>
  
