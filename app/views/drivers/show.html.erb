@@ -1,7 +1,14 @@
 <ul></ul>
   <li>Name: <%= @driver.name %></li>
   <li>VIN: <%= @driver.vin %></li>
-  <li>Active: <%= @driver.active %></li>
+  <li>Active:
+  <% if @driver.active.nil? %>
+     <%= link_to '<button type="button">Deactivate</button>'.html_safe, deactivate_path( @driver.id ), method: :patch %>
+  <% else%>
+    <%= link_to '<button type="button">Activate</button>'.html_safe, activate_path( @driver.id ), method: :patch %>
+  <% end %> 
+ 
+  </li>
   <li>Car Make: <%= @driver.car_make %></li>
   <li>Car Model: <%= @driver.car_model %></li>
   <li>Total Earning: <%=@driver.total_earning%></li>

@@ -10,7 +10,9 @@
   <tr>
     <td><%= link_to driver.name, driver_path( driver.id ) %></td>
     <td><%= driver.vin %></td>
-    <td>Edit | Delete</td>
+    <td>
+    <%= link_to "Edit", edit_driver_path( driver.id ) %> | <%= link_to "Delete", driver_path(driver.id), method: :delete, data: {confirm: "Are you sure? It will be gone forever."} %>
+  </td>
   </tr>
   <% end %>
 </table>

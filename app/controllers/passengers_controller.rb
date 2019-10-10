@@ -2,19 +2,19 @@ class PassengersController < ApplicationController
   def index
     @passengers = Passenger.all
   end
-
+  
   def show
     @passenger = Passenger.find_by(id: params[:id])
     if @passenger.nil?
-      redirect_to root_path
+      head :not_found 
       return
     end
   end
-
+  
   def new
     @passenger = Passenger.new
   end
-
+  
   def create
     @passenger = Passenger.new(passenger_params)
     if @passenger.save
@@ -25,7 +25,7 @@ class PassengersController < ApplicationController
       return
     end
   end
-
+  
   def edit
     @passenger = Passenger.find_by(id: params[:id])
     if @passenger.nil?
@@ -33,7 +33,7 @@ class PassengersController < ApplicationController
       return
     end
   end
-
+  
   def update
     @passenger = Passenger.find_by(id: params[:id])
     if @passenger.update(passenger_params)
@@ -44,7 +44,7 @@ class PassengersController < ApplicationController
       return
     end
   end
-
+  
   def destroy
     found_passenger = Passenger.find_by(id: params[:id])
     if found_passenger.nil?
@@ -56,9 +56,9 @@ class PassengersController < ApplicationController
       return
     end
   end
-
+  
   private
-
+  
   def passenger_params
     return params.require(:passenger).permit(:name, :phone_num)
   end

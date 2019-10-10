@@ -20,5 +20,6 @@ describe Trip do
   # Tests for methods you create should go here
   describe "custom methods" do
     # Your tests here
+    
   end
 end
