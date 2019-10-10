@@ -28,13 +28,14 @@ class TripsController < ApplicationController
     
     @trip = Trip.find_by(id: params[:id])
     if @trip.update(trip_params)
-      redirect_to trips_path # go to the index so we can see the book in the list
+      redirect_to passenger_path(@trip.passenger_id) # go to the index so we can see the book in the list
       return
     else # save failed :(
       render :edit # show the new book form view again
       return
     end
   end
+  
   
   def new
     if params[:passenger_id]
@@ -52,12 +53,28 @@ class TripsController < ApplicationController
     #Handle Validation Errors
     @trip = Trip.new(trip_params) #instantiate a new book
     if @trip.save # save returns true if the database insert succeeds
-      redirect_to passenger_path(trip_params.passenger_id) # go to the index so we can see the book in the list
+      redirect_to passenger_path(params[:passenger_id]) # go to the index so we can see the book in the list
       return
     else # save failed :(
       render :new # show the new book form view again
       return
     end
+  end
+  
+  def destroy
+    trip_id = params[:id]
+    passenger_id = params[:passenger_id]
+    @trip = Trip.find_by(id: trip_id)
+    
+    if @trip.nil?
+      head :not_found
+      return
+    end
+    
+    @trip.destroy
+    
+    redirect_to passenger_path(@trip.passenger_id)
+    return
   end
   
   private
