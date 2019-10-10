@@ -27,6 +27,10 @@
     </section>
 
     <section>
+  <%= button_to 'Request Trip', passenger_trips_path, method: :post %>
+    </section>
+
+    <section>
       <h1>Trips:</h1>
       <ul>
         <% Trip.where(passenger_id: params[:id]).each do |trip|%>
