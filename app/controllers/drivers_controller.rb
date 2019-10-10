@@ -11,9 +11,9 @@ class DriversController < ApplicationController
         @trips = Trip.where(driver_id: driver_id)
 
         # locals total_earnings: 100#@trips.sum(:cost)
-        render locals: {
-            total_earnings:  100
-          }
+        # render locals: {
+        #     total_earnings:  100
+        #   }
 
         if driver_id < 0
             redirect_to root_path
