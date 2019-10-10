@@ -10,6 +10,16 @@
   </head>
 
   <body>
+    <nav>
+      <%= link_to 'Rideshare Rails!', root_path %>
+      <%= link_to 'Drivers', drivers_path %>
+      <%= link_to 'Passengers', passengers_path %>
+      <%= link_to 'New Driver', new_driver_path %>
+      <%= link_to 'New Passenger', new_passenger_path %>
+    </nav>
     <%= yield %>
+    <footer>
+      <p>©2019 Michaela & Emily Inc.</p>
+    </footer>
   </body>
 </html>

@@ -1,0 +1,24 @@
+<main>
+  <h2>List of all Drivers</h2>
+
+  <section id="drivers-trips-list">
+    <table>
+      <tr class='table-header'>
+        <td>DRIVER</td>
+        <td>TOTAL EARNINGS</td>
+        <td>AVG RATING</td>
+        <td>EDIT</td>
+        <td>DELETE</td>
+      </tr>
+      <% @drivers.each do |driver| %>
+          <tr>
+            <td><%= link_to driver.name, driver_path(driver.id) %></td>
+            <td> Earnings METHOD NEEDED</td>
+            <td> Rating METHOD NEEDED</td>
+            <td><%= link_to "Edit", edit_driver_path(driver.id) %></td>
+            <td><%= link_to "Delete", driver_path(driver.id), method: :delete, data: { confirm: "Are you sure?" }, class: "index-delete-link" %></td>
+          </tr>
+      <% end %>
+    </table>
+  </section>
+</main>

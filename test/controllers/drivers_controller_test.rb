@@ -70,10 +70,13 @@ describe DriversController do
     it "can create a new driver with valid information accurately, and redirect" do
       driver_hash = {driver: {name: "Sally Sue", vin: "1234556"}}
       
+
       expect {post drivers_path, params: driver_hash}.must_differ 'Driver.count', 1
       
       new_driver_id = Driver.find_by(name:"Sally Sue").id
       must_redirect_to driver_path(new_driver_id)
+
+      expect(Driver.find_by(id: new_driver_id).active).must_equal false
     end
     
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do

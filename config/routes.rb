@@ -7,4 +7,7 @@ Rails.application.routes.draw do
   resources :passengers
   
   resources :trips
+
+  patch '/drivers/:id/toggle', to: 'drivers#toggle_active', as: 'toggle'
+  patch '/trips/:id/rating', to: 'trips#add_rating', as: 'add_rating'
 end

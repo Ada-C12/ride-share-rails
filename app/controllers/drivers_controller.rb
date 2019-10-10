@@ -21,10 +21,16 @@ class DriversController < ApplicationController
     @driver = Driver.new(driver_params)
     
     if @driver.save
+    else
+      redirect_to new_driver_path
+      return
+    end
+
+    if @driver.update({active: false})
       redirect_to driver_path(@driver.id)
       return
     else
-      redirect_to new_driver_path
+      raise ArgumentError.new("Driver saved, but active status was not updated to false")
       return
     end
   end
@@ -68,6 +74,21 @@ class DriversController < ApplicationController
       driver.destroy
       redirect_to root_path
       return
+    end
+  end
+
+  def toggle_active
+    @driver = Driver.find_by( id: params[:id] )
+    if @driver.nil?
+      # Then the book was not found!
+      redirect_to drivers_path
+      return
+    end
+
+    if @driver.active
+      @driver.active = false
+    else
+      @driver.active = true
     end
   end
 

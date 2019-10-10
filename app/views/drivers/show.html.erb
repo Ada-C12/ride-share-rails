@@ -1,0 +1,47 @@
+<main>
+  <header class="show-header">
+    <h1><%=@driver.name%></h1>
+    <%= link_to "Edit this driver", edit_driver_path(@driver.id) %>
+    <%= link_to "Delete this driver", driver_path(@driver.id), method: :delete, data: { confirm: "Are you sure?" }, class: "show-delete-link" %>
+  </header>
+
+  <section class="show-details">
+    <ul>
+      <li> ID:<%= @driver.id %></li>
+      <li> VIN: <%= @driver.vin %></li>
+      <li> Driver Since: <%= @driver.created_at %></li>   
+      <li> Total Earnings: METHOD NEEDED</li>
+      <li> Average Rating: METHOD NEEDED</li>
+    </ul>
+  </section>
+
+  <h2>Drivers Trips</h2>
+  <section id="drivers-trips-list">
+    <% if @driver.trips == [] || @driver.trips == nil%>
+      <p><%=@driver.name%> has no trips yet!<p>
+      <%else%>
+        <table>
+          <tr class='table-header'>
+            <td>ID</td>
+            <td>DATE</td>
+            <td>PASSENGER</td>
+            <td>PRICE</td>
+            <td>RATING</td>
+            <td>EDIT</td>
+            <td>DELETE</td>
+          </tr>
+          <% @driver.trips.each do |trip| %>
+              <tr>
+                <td><%= trip.id%></td>
+                <td><%= trip.date%></td>
+                <td><%= trip.passenger.name%></td>
+                <td><%= trip.cost%></td>
+                <td><%= trip.rating%></td>
+                <td><%= link_to "Edit", edit_trip_path(trip.id) %></td>
+                <td><%= link_to "Delete", trip_path(trip.id), method: :delete, data: { confirm: "Are you sure?" }, class: "show-delete-link" %></td>
+              </tr>
+          <% end %>
+        </table>
+      <%end%>
+  </section>
+</main>

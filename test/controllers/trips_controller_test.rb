@@ -53,13 +53,16 @@ describe TripsController do
       test_date = Date.today
       valid_driver = Driver.create(name: "Jane Doe", vin: "12345678")
       valid_passenger = Passenger.create(name: "Bob Smith", phone_num: "7654321")
+      expect(valid_driver.active).must_be_nil
       
       trip_hash = {trip: {date: test_date, cost: 400, driver_id: valid_driver.id, passenger_id: valid_passenger.id, rating: nil}}
       
       expect {post trips_path, params: trip_hash}.must_differ 'Trip.count', 1
-      
+   
       new_trip_id = Trip.find_by(date: test_date).id
       must_redirect_to trip_path(new_trip_id)
+      valid_driver = Driver.find_by(id: valid_driver.id)
+      expect(valid_driver.active).must_equal true
     end
     
     it "does not create a trip if the form data violates Trip validations, and responds with a redirect" do
@@ -91,6 +94,7 @@ describe TripsController do
       expect {post trips_path, params: invalid_trip_hash_4}.must_differ 'Trip.count', 0
       must_redirect_to new_trip_path
     end
+  
   end
   
   describe "edit" do
@@ -245,4 +249,37 @@ describe TripsController do
       must_redirect_to trips_path
     end
   end
+
+  describe "add_rating" do
+    let(:current_trip) {
+      post drivers_path, params: {driver: {name: "Jane Doe", vin: "12345678"}}
+      driver_id = Driver.find_by(name:"Jane Doe").id
+      passenger_id = Passenger.create(name: "John Doe", phone_num: "7654321").id
+      post trips_path, params: {trip: {cost: 12.46, date: Date.today, driver_id: driver_id, passenger_id: passenger_id}}
+      Trip.find_by(driver_id: driver_id)}
+
+    it "successfully updates the rating" do
+      expect(current_trip.rating).must_be_nil
+      patch add_rating_path(current_trip.id), params: {trip: {rating: 5}}
+      current_trip.reload
+      expect(current_trip.rating).must_equal 5
+    end
+
+    it "redirects to trip index page if the given trip does not exist" do
+      patch add_rating_path(-1), params: {trip: {rating: 5}}
+      current_trip.reload
+      must_redirect_to trip_path(current_trip.id)
+    end
+
+    it "successfully updates the driver's active status to false and redirects to the trip show page" do
+      current_trip.reload
+      puts "here is isssss #{current_trip.driver}"
+      expect(current_trip.driver.active).must_equal true
+      patch add_rating_path(current_trip.id), params: {trip: {rating: 5}}
+      must_redirect_to trip_path(current_trip.id)
+      current_trip.reload
+      expect(current_trip.driver.active).must_equal false
+    end
+  end
+
 end

@@ -13,3 +13,33 @@
  *= require_tree .
  *= require_self
  */
+
+nav {
+  background-color: darkgrey;
+  padding: 3%;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  margin-right: 2%;
+}
+
+nav a:hover {
+  color: black;
+}
+
+footer {
+  text-align: center;
+  background-color: darkgrey;
+  color: white;
+  padding: 3%;
+}
+
+ul {
+  list-style-type: none;
+}
+
+main {
+  min-height: 100vh;
+}
