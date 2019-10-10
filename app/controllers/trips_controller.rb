@@ -37,6 +37,15 @@ class TripsController < ApplicationController
   end
   
   def new
+    if params[:passenger_id]
+      # This is the nested route, /author/:author_id/books/new
+      passenger = Passenger.find_by(id: params[:passenger_id])
+      @trip = passenger.trips.new
+      
+    else
+      # This is the 'regular' route, /books/new
+      @trip = Trip.new
+    end
   end
   
   def create
