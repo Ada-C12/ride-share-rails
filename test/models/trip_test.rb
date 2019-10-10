@@ -49,17 +49,31 @@ describe Trip do
 
   describe "validations" do
     it "must have a date" do
+      new_trip = @trip
+      new_trip.date = nil
 
+      expect(new_trip.valid?).must_equal false
+      expect(new_trip.errors.messages).must_include :date
+      expect(new_trip.errors.messages[:date]).must_equal ["can't be blank"]
     end
 
     it "must have a cost" do
+      new_trip = @trip
+      new_trip.cost = nil
+
+      expect(new_trip.valid?).must_equal false
+      expect(new_trip.errors.messages).must_include :cost
+      expect(new_trip.errors.messages[:cost]).must_equal ["can't be blank"]
     end
 
     it "may not have a rating greater than 5" do
+      new_trip = @trip
+      new_trip.rating = 7
 
+      expect(new_trip.valid?).must_equal false
+      expect(new_trip.errors.messages).must_include :rating
+      expect(new_trip.errors.messages[:rating]).must_equal ["must be between 1 and 5"]
     end
-
-    #will need to update mode to allow passenger/driver id to allow nil
   end
 
   # Tests for methods you create should go here
