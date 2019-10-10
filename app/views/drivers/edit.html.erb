@@ -1,0 +1,9 @@
+<%=form_with model: @driver do |driver|%>
+  <p>Please provide the following information to edit the selected driver.</p>
+  <%=driver.label :name%>
+  <%=driver.text_field :name%>
+  <%=driver.label :vin%>
+  <%=driver.text_field :vin%>
+
+  <%= driver.submit "Update"%>
+<%end%>

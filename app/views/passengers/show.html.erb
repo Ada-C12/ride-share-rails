@@ -1,0 +1,15 @@
+<h1>Passenger Details</h2>
+
+<p>Total Charges: $<%=@passenger.total_amount%></p>
+
+
+  
+  <%@passenger.trips.each do |trip|%>
+  <%= link_to "Trip Details", trip_path(trip)%>
+    <p>Trip_id: <%=trip.id%>
+    <p>Driver_id: <%=trip.driver_id%></p>
+    <p>Passenger_id:<%=trip.passenger_id%></p>
+    <p>Date: <%=trip.date%></p>
+    <p>Rating: <%=trip.rating%></p>
+    <p>Cost: <%=trip.cost%></p>
+  <%end%>

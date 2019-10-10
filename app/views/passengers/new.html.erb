@@ -1,0 +1,10 @@
+
+<%=form_with model: @passenger do |passenger|%>
+  <p>Please provide the following information to add a new passenger.</p>
+  <%=passenger.label :name%>
+  <%=passenger.text_field :name%>
+  <%=passenger.label :phone%>
+  <%=passenger.text_field :phone_num%>
+
+  <%= passenger.submit "Create"%>
+<%end%>
