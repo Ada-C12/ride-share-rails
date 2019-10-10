@@ -3,12 +3,6 @@
   <% @drivers.all_in_alpha_order.each do |driver| %>
     <li>
     <%= link_to driver.name, driver_path(driver.id) %>
-      Status: 
-    <% if driver.active == true %>
-    <%= "Active"%>
-    <% else %>
-    <%= "Inactive"%>
-    <% end %>
     </li>
   <% end %>
 </ul>
