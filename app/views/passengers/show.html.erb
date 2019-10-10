@@ -15,7 +15,11 @@
                 <h3>Name: <%= @passenger.name %></h3>
                 <h3>Passenger Number: <%= @passenger.phone_num %></h3>
                 <h3>Total Money Spent : <%=  @passenger.total_money_spent %></h3>
+
         </article>
+
+        <%= link_to "Request Ride", new_passenger_trip_path(:passenger_id), class: 'btn' %>
+
         <article>
   <h1>Passenger Trips</h1>
    <table>

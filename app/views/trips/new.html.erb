@@ -14,7 +14,23 @@
 
     <section class="card">
         <h2>New Trip details</h2>
-        <%= render partial: "form", locals: { submit_button_label: "Create", trip_form_class: "Create-trip", trip_submit_class: 'create-button' } %>
+        <%= form_with model: @trip, class: "trip-from" do |f| %>
+        <%= f.label :passenger %>
+        <%= f.text_field :passenger %>
+        <br>
+        <%= f.submit "Create", class: "create-trip btn"  %>
+    <% end %>
+    <% if @trip.errors.any?%>
+        <ul class="errors">
+            <% @trip.errors.each do |column, message|%>
+                <li>
+                    <strong><%= column.capitalize%>
+                    <%= message%>
+                </li>
+                <% end%>
+            </ul>
+    <% end %>
+ 
     </section>
     
 </main>
