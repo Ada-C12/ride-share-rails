@@ -14,22 +14,22 @@
 
     <section class="card">
         <h1>Passengers List</h1>
-        <table>
+
+ <table>
             <tr>
-                <th>Passenger Name</th>
-                <th>Phone Number</th>
+                <th>Passengers Name</th>
+                <th>Passengers Number</th>
             </tr>
             <% @passengers.each do |passenger| %>
             <tr>
                 <td><%= link_to passenger.name, passenger_path(id: passenger.id)%></td>
                 <td><%= link_to passenger.phone_num, passenger_path(id: passenger.id)%></td>
-                <td><%= button_to "(Edit)", edit_passenger_path(passenger.id), method: :get %></td>
-                <td><%= button_to "(Delete)", passenger_path(passenger.id), method: :delete, data: { confirm: "Are YOU sure?" } %></td>
+                <td><%= link_to "Edit", edit_passenger_path(passenger.id), class: 'btn' %></td>
+                <td><%= button_to "Delete", passenger_path(passenger.id), class: 'btn', method: :delete, data: { confirm: "Are YOU sure?" } %></td>
             </tr>
-
+            
             <% end %>
 
         </table>
     </section>
 </main>
-

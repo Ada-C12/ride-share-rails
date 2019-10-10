@@ -11,9 +11,9 @@ class DriversController < ApplicationController
         @trips = Trip.where(driver_id: driver_id)
 
         # locals total_earnings: 100#@trips.sum(:cost)
-        render locals: {
-            total_earnings:  100
-          }
+        # render locals: {
+        #     total_earnings:  100
+        #   }
 
         if driver_id < 0
             redirect_to root_path
@@ -41,6 +41,10 @@ class DriversController < ApplicationController
     def edit
         id = params[:id].to_i
         @driver = Driver.find_by(id: id)
+
+        if @driver == nil
+            redirect_to driver_path
+          end
         
     end
 
@@ -74,13 +78,13 @@ class DriversController < ApplicationController
         end
     end
 
+    def total_money_spent
+    end
+
     private
 
     def driver_params
         return params.require(:driver).permit(:name, :vin)
     end
-
-
-
 
 end

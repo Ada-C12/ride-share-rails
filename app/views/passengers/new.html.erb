@@ -1,2 +1,18 @@
+<nav>
+    <a id="logo"href="/">RideShare Rails!</a>
+    <a href="/drivers/">Drivers</a>
+    <a href="/passengers">Passengers</a>
+</nav>
 
-<%= render partial: "form", locals: { submit_button_label: "Create", passenger_form_class: "Create-passenger", passenger_submit_class: 'create-button' } %>
+<main>
+    <section class="card">
+      <%= link_to "Add driver", new_driver_path, class: 'btn' %>
+      <%= link_to "Add passenger", new_passenger_path, class: 'btn' %>
+    </section>
+    <section class="card">
+<%# This is how we render a partial with the name _form.html.erb ! %>
+<%# Sometimes we want to pass a local variable to the partial. That's the locals part! %>
+<%# For every local variable that we want to define for our partial, we put it in locals (Just as a reminder, locals is a hash) %>
+<%= render partial: "form", locals: { submit_button_label: "Create", book_form_class: "Create-passenger", task_submit_class: 'create-button' } %>
+    </section>
+</main>

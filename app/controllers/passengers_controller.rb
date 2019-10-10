@@ -1,14 +1,20 @@
 class PassengersController < ApplicationController
   def index
-    @passengers = Passenger.all
+    @passengers = Passenger.all.order(:id)
   end
 
   def show
-    passenger_id = params[:id]
+    passenger_id = params[:id].to_i
     @passenger = Passenger.find_by(id: passenger_id)
+
+    @trips = Trip.where(passenger_id: passenger_id)
+
+    if passenger_id < 0
+      redirect_to root_path
+    end
+
     if @passenger.nil?
-      redirect_to passengers_path
-      return
+      redirect_to new_passenger_path
     end
   end
 
@@ -27,25 +33,30 @@ class PassengersController < ApplicationController
   end
 
   def edit
-    @passenger = Passenger.find_by(id: params[:id])
+
+    id = params[:id].to_i
+    @passenger = Passenger.find_by(id: id)
     if @passenger == nil
       redirect_to passenger_path
     end
   end
 
   def update
-    @passenger = Passenger.find_by(id: params[:id])
 
-    if @passenger == nil
-      redirect_to passengers_path
-      return
+    id = params[:id].to_i
+    if id < 0
+        redirect_to root_path
     end
 
-    @passenger.name = params[:passenger][:name]
-    @passenger.phone_num = params[:passenger][:phone_num]
+    @passenger = Passenger.find_by(id: id)
+
+    @passenger[:name]= params[:passenger][:name]
+    @passenger[:phone_num] = params[:passenger][:phone_num]
 
     if @passenger.save
       redirect_to passenger_path(@passenger.id)
+    else
+      render new_passenger_path
     end
   end
 
@@ -57,7 +68,7 @@ class PassengersController < ApplicationController
       return
     else
       the_correct_passenger.destroy
-      redirect_to root_path
+      redirect_to passengers_path
       return
     end
   end
