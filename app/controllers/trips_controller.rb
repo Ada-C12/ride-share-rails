@@ -11,8 +11,9 @@ class TripsController < ApplicationController
       return
     end
   end
+
   def new
-    @trip = trip.new
+    @trip = Trip.new
   end
 
   def create
