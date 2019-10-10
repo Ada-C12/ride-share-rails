@@ -299,7 +299,7 @@ describe DriversController do
 
       # Assert
       expect(Driver.find_by(id: new_inactive_driver_id).active).must_equal true
-      must_respond_with :success
+      must_redirect_to driver_path(new_inactive_driver_id)
 
     end
     it "changes an active driver's :active value from 'true' to 'false' and redirects to drivers path" do
@@ -318,7 +318,7 @@ describe DriversController do
       
       # Assert
       expect(Driver.find_by(id: active_driver_id).active).must_equal false
-      must_respond_with :success
+      must_redirect_to driver_path(new_inactive_driver_id)
 
     end
   end

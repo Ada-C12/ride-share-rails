@@ -66,7 +66,7 @@ class DriversController < ApplicationController
       redirect_to root_path, status: :not_found
     else
       @driver.toggle!(:active)
-      render :show
+      redirect_to driver_path(@driver.id)
       return
     end
   end
