@@ -57,11 +57,20 @@ class TripsController < ApplicationController
     end
   end
 
-  # def edit
+  def edit
+    @trip = Trip.find_by(id: params[:id])
+    if @trip.nil?
+      # change to root_path once homepage update is merged
+      redirect_to trips_path
+      return
+    end
+  end
+
+  # def update
 
   # end
 
-  # def update
+  # def delete
 
   # end
 
