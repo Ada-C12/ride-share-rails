@@ -1,20 +1,65 @@
 require "test_helper"
 
 describe Trip do
+  before do
+    @passenger = Passenger.create(
+      name: "Alexa",
+      phone_num: "865309"
+    )
+
+    @driver = Driver.create(
+      name: "Sarah",
+      vin: "848485859",
+      car_make: "Ford",
+      car_model: "Escape",
+      active: true
+    )
+
+    @trip = Trip.new(
+      date: "08-09-2019",
+      rating: 4,
+      cost: 740,
+      passenger_id: @passenger.id,
+      driver_id: @driver.id
+    )
+  end
+
   it "can be instantiated" do
-    # Your code here
+    expect(@trip.valid?).must_equal true
   end
 
   it "will have the required fields" do
-    # Your code here
+    Trip.destroy_all
+    @trip.save
+    trip = Trip.first
+    [:date, :rating, :cost, :passenger_id, :driver_id].each do |field|
+      expect(trip).must_respond_to field
+    end
   end
 
   describe "relationships" do
-    # Your tests go here
+    it "can have one driver and one passenger" do
+      @trip.save
+      trip = Trip.first
+
+      expect(trip.driver).must_be_instance_of Driver
+      expect(trip.passenger).must_be_instance_of Passenger
+    end
   end
 
   describe "validations" do
-    # Your tests go here
+    it "must have a date" do
+
+    end
+
+    it "must have a cost" do
+    end
+
+    it "may not have a rating greater than 5" do
+
+    end
+
+    #will need to update mode to allow passenger/driver id to allow nil
   end
 
   # Tests for methods you create should go here
