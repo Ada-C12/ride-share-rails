@@ -88,7 +88,7 @@ describe Driver do
           driver_id: new_driver.id,
           passenger_id: passenger.id,
           rating: 5,
-          cost: 1
+          cost: 10
         )
 
         Trip.create(
@@ -96,7 +96,7 @@ describe Driver do
           driver_id: new_driver.id,
           passenger_id: passenger.id,
           rating: 3,
-          cost: 1
+          cost: 12
         )
   
         expect(new_driver.average_rating).must_be_close_to (5.0 + 3.0) / 2.0, 0.01
@@ -113,7 +113,7 @@ describe Driver do
           driver_id: new_driver.id,
           passenger_id: passenger.id,
           rating: 5,
-          cost: 3
+          cost: 10
         )
 
         Trip.create(
@@ -121,23 +121,55 @@ describe Driver do
           driver_id: new_driver.id,
           passenger_id: passenger.id,
           rating: 3,
-          cost: 5
+          cost: 12
         )
 
-        expect(new_driver.earnings).must_equal 4.00
+        expect(new_driver.earnings).must_equal 14.96
       end 
 
       it "should return average of trips with in-progress trips" do
-        Trip.new(
-          id: 8,
-          driver: new_driver.id,
+        new_driver.save
+        passenger = Passenger.create(name:"Coolio Foolio", phone_num: "206-800-5000")
+
+        Trip.create(
+          date: "2019-09-01",
+          driver_id: new_driver.id,
           passenger_id: passenger.id,
-          rating: nil,
-          cost: 3
+          rating: 5,
+          cost: 10
         )
 
-        expect(new_driver.total_revenue).must_equal 9.36
+        Trip.create(
+          date: "2019-09-02",
+          driver_id: new_driver.id,
+          passenger_id: passenger.id,
+          rating: 3,
+          cost: 12
+        )
+
+        Trip.create(
+          date: "2019-09-02",
+          driver_id: new_driver.id,
+          passenger_id: passenger.id,
+          rating: nil,
+          cost: 12
+        )
+        expect(new_driver.earnings).must_equal 14.96
       end 
     end 
+
+    describe "can go online" do
+      it "should go online and active status is true" do
+        expect(new_driver.go_online).must_equal true
+      end 
+      
+    end
+  
+    describe "can go offline" do
+      it "should go offline and active status is false" do
+        undecided_driver = new_driver.go_online
+        expect(undecided_driver.go_offline).must_equal false
+      end 
+    end
   end
 end
