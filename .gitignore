@@ -22,7 +22,8 @@
 
 /public/assets
 .byebug_history  
-  /coverage
+  /coverage.data
+  /coverage  
   .DS_Store
 
 
