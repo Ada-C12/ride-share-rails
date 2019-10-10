@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   resources :drivers
   patch '/drivers/:id/status', to: 'drivers#status', as: 'driver_status'
   
-  resources :passengers
+  resources :passengers do
+    resources :trips, only: [:new, :create]
+  end
+  
   resources :trips
+  
 end

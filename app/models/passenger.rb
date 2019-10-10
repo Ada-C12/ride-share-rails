@@ -15,6 +15,10 @@ class Passenger < ApplicationRecord
   end
   
   def convert_to_dollars(pennies)
-    (pennies / 100.0).round(2)
+    if pennies.nil? || pennies == 0
+      0.00
+    else
+      (pennies / 100.0).round(2)
+    end
   end
 end
