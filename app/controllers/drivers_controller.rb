@@ -65,7 +65,10 @@ class DriversController < ApplicationController
   end
   
   def toggle
+    @driver = Driver.find_by(id: params[:id])
     @driver.toggle_available
+    
+    redirect_back(fallback_location: root_path)
   end
   
   private
