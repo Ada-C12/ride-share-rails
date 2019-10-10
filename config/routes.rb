@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   root 'homepages#index'
   #root 'passengers#index'
   resources :drivers
-  resources :passengers
+  resources :passengers do
   
   
-  # 'author/:id', to: 'author#show', as: 'author'
+  end
 end

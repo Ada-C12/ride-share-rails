@@ -21,8 +21,8 @@ class Driver < ApplicationRecord
     completed_trips = trips.select {|trip| !trip.rating.nil?}
     rating = completed_trips.sum {|trip| trip.cost} 
 
-    completed_trips = trips.select {|t| !t.rating.nil?}
-    rating = completed_trips.sum {|t| t.cost} 
+    completed_trips = trips.select {|trip| !trip.rating.nil?}
+    rating = completed_trips.sum {|trip| trip.cost} 
     avg_rating = rating / completed_trips.length
     return avg_rating
   end 
