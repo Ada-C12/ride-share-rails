@@ -64,6 +64,7 @@ def create
   end
 end
 
+
 def active
   @driver = Driver.find_by(id: params[:id])
   if @driver.active == false || @driver.active == nil
