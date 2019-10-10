@@ -127,12 +127,25 @@ describe PassengersController do
   end
   
   describe "total_spent" do
-    it "will return correct $ total for valid passenger" do
-      assert(false)
+    let (:driver1) { Driver.create(name: "Kari", vin: "123") }
+    let (:passenger1) { Passenger.create( name: "Ned Flanders", phone_num: "206-123-1234") }
+    let (:trip_hash1) { {date: Time.now, rating: 4, driver_id: driver1.id, passenger_id: passenger1.id, cost: 1000} }
+    let (:trip_hash2) { {date: Time.now, rating: 5, driver_id: driver1.id, passenger_id: passenger1.id, cost: 2000} }
+    let (:trip1) { Trip.create(trip_hash1)}
+    let (:trip2) { Trip.create(trip_hash2)}
+    
+    it "will send to total_spent.html and return correct $ total for valid passenger" do
+      passenger1
+      trip1
+      trip2
+      get total_spent_path(id: passenger1.id)
+      must_respond_with :success
+      
+      ##### HOW DO I GET THE ACTUAL VALUE TO COMPARE????
     end
     
     it "edge case" do
-      assert(false)
+      ####### TODO
     end
   end
   

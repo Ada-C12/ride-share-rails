@@ -58,7 +58,6 @@ class PassengersController < ApplicationController
   def total_spent
     @passenger = Passenger.find_by(id: params[:id])
     @total_spent = @passenger.trips.sum(:cost)
-    return @total_spent
   end
   
   private
