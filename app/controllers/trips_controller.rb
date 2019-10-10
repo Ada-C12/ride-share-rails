@@ -43,15 +43,18 @@ class TripsController < ApplicationController
   
   def create 
     # will not set params for price, rating. by leaving it blank, it'll default to nil
-    driver_id = params[:driver_id]
-    passenger_id = params[:passenger_id]
+    puts "meow trip create method"
+    driver_id = params[:trip][:driver_id]
+    passenger_id = params[:trip][:passenger_id]
     @trip = Trip.new( driver_id: driver_id, passenger_id: passenger_id, date: Time.now )
-    
+    puts params
     if @trip.save
-      redirect_to trip_path(@trip.id)
+      puts "trip save successful #{@trip.id}"
+      redirect_to passengers_path(passenger_id)
       return
     else
-      render new_trip_path
+      puts "trip save unsuccessful #{@trip.id}"
+      redirect_to new_passenger_trip_path(passenger_id)
       return
     end
   end
