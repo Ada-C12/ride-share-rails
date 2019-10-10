@@ -66,5 +66,8 @@ describe Passenger do
       # Your code here
     end
     # You may have additional methods to test here
+    describe "alpha passenger" do 
+      #how do we test alpha passenger
+    end 
   end
 end
