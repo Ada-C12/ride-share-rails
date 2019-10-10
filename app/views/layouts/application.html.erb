@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>RideShareRails</title>
+    <title>Goober Ride Share</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,23 @@
   </head>
 
   <body>
+    <nav>
+      <ul class="nav">
+        <li>Goober Ride Share</li>
+        <li><%=link_to "Drivers", drivers_path %>
+          <ul>
+            <li><%=link_to "View Drivers", drivers_path %>
+            <li><%=link_to "Add Driver", new_driver_path %>
+          </ul>
+        </li>
+        <li><%=link_to "Passengers", passengers_path %>
+          <ul>
+            <li><%=link_to "View Passengers", passengers_path %>
+            <li><%=link_to "Add Passenger", new_passenger_path %>
+          </ul>
+        </li>
+      </ul>
+    </nav>
     <%= yield %>
   </body>
 </html>
