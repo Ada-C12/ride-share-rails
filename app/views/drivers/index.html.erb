@@ -2,12 +2,31 @@
 
 <%= link_to "Create a new Driver", new_driver_path %>
 
-<ul>
-  <% @drivers.each do |driver| %>
-    <li>
-      <%= link_to driver.name, driver_path(driver) %> <br>
-      <%= driver.vin %> <br>
-      <%= driver.available %>
-    </li>
-  <% end %>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <table class="table table-sm">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">VIN</th>
+          <th scope="col">Status</th>
+        </tr>
+        <% @drivers.each do |driver| %>
+        <tr>
+          <td><%= driver.id %> </td>
+          <td><%= link_to driver.name, driver_path(driver) %> </td>
+          <td><%= driver.vin %></td>
+          <td>
+            <% if driver.available %>
+              Available
+            <% else %>
+              Unavailable
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

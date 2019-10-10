@@ -5,26 +5,26 @@
 <div class="container">
   <div class="row">
     <div class="col-sm">
-<table class="table table-sm">
-  <tr>
-    <th scope="col">ID</th>
-    <th scope="col">Date</th>
-    <th scope="col">Passenger Name</th>
-    <th scope="col">Driver Name</th>
-    <th scope="col">Rating</th>
-    <th scope="col">Cost</th>
-  </tr>
-  <% @trips.each do |trip| %>
-      <tr>
-      <td><%= link_to trip.id, trip_path(trip.id) %> </td>
-      <td><%= trip.date %> </td>
-      <td><%= link_to trip.passenger.name, passenger_path(trip.passenger) %></td>
-      <td><%= link_to trip.driver.name, driver_path(trip.driver) %></td>
-      <td><%= trip.rating %></td>
-      <td><%= trip.cost %></td>
-      </tr>
-  <% end %>
-</table>
-</div>
-</div>
+      <table class="table table-sm">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Date</th>
+          <th scope="col">Passenger Name</th>
+          <th scope="col">Driver Name</th>
+          <th scope="col">Rating</th>
+          <th scope="col">Cost</th>
+        </tr>
+        <% @trips.each do |trip| %>
+        <tr>
+          <td><%= link_to trip.id, trip_path(trip.id) %> </td>
+          <td><%= trip.date %> </td>
+          <td><%= link_to trip.passenger.name, passenger_path(trip.passenger) %></td>
+          <td><%= link_to trip.driver.name, driver_path(trip.driver) %></td>
+          <td><%= trip.rating %></td>
+          <td><%= trip.cost %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
 </div>
