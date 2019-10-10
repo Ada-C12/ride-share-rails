@@ -3,7 +3,7 @@ class Driver < ApplicationRecord
   
   validates :name, presence: true
   validates :vin, presence: true
-  validates :active, presence: true
+  # validates :active, presence: true
   validates :car_make, presence: true
   validates :car_model, presence: true
   

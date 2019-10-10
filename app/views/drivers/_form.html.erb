@@ -1,3 +1,13 @@
+<% if @driver.errors.any? %>
+  <ul class="errors">
+    <% @driver.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
 <p>Please provide the following information to <%= verb_name %> a driver:</p>
 
 <%= form_with model: @driver do |f| %>
@@ -7,8 +17,8 @@
   <%= f.label :vin %>
   <%= f.text_field :vin %>
 
-  <%= f.label :active %>
-  <%= f.text_field :active %>
+  <%# <%= f.label :active %>
+  <%# <%= f.text_field :active %>
 
   <%= f.label :car_make %>
   <%= f.text_field :car_make %>
