@@ -1,14 +1,35 @@
-<h1>Passengers Landing Page</h1>
 
-<section>
-  <h2>RideShare Passengers</h2>
-  <ul>
-    <% @passengers.each do |passenger| %>
-      <li>
-        <%= link_to passenger.name, passenger_path(passenger.id)%>
-        <%= button_to "(Edit)", edit_passenger_path(passenger.id), method: :get %>
-        <%= button_to "(Delete)", passenger_path(passenger.id), method: :delete, data: { confirm: "Are YOU sure?" } %> 
-      </li>
-    <% end %>
-  </ul>
-</section>
+<nav>
+<a id="logo" href="/">RideShare Rails!</a>
+<a href="/drivers/">Drivers</a>
+<a href="/passengers">Passengers</a>
+</nav>
+
+
+<main>
+    <section class="card">
+        <%= link_to "Add driver", new_driver_path, class: 'btn' %>
+        <%= link_to "Add passenger", new_passenger_path, class: 'btn' %>
+    </section>
+
+    <section class="card">
+        <h1>Passengers List</h1>
+        <table>
+            <tr>
+                <th>Passenger Name</th>
+                <th>Phone Number</th>
+            </tr>
+            <% @passengers.each do |passenger| %>
+            <tr>
+                <td><%= link_to passenger.name, passenger_path(id: passenger.id)%></td>
+                <td><%= link_to passenger.phone_num, passenger_path(id: passenger.id)%></td>
+                <td><%= button_to "(Edit)", edit_passenger_path(passenger.id), method: :get %></td>
+                <td><%= button_to "(Delete)", passenger_path(passenger.id), method: :delete, data: { confirm: "Are YOU sure?" } %></td>
+            </tr>
+
+            <% end %>
+
+        </table>
+    </section>
+</main>
+
