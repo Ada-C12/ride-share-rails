@@ -3,6 +3,27 @@ class TripsController < ApplicationController
   def index
   end
   
+  def new
+    @trip = Trip.new
+  end
+  
+  def create
+    if params[:trip].nil?
+      redirect_to new_trip_path
+    end
+    
+    @trip = Trip.new(trip_params)
+    
+    if @trip.save
+      redirect_to trip_path(@trip.id)
+      return
+    else
+      redirect_to new_trip_path
+      return
+    end
+  end
+  
+  
   def show
     @trip = Trip.find_by(id: params[:id])
     
@@ -11,6 +32,8 @@ class TripsController < ApplicationController
       return
     end
   end
+  
+  
   
   def edit
     @trip = Trip.find_by(id: params[:id])
@@ -32,6 +55,6 @@ class TripsController < ApplicationController
   private
   
   def trip_params
-    return params.require(:trip).permit(:date, :rating, :cost, :driver, :passenger)
+    return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
   end
 end

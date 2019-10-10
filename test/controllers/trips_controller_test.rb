@@ -9,7 +9,7 @@ describe TripsController do
   }
   
   let (:trip) {
-    Trip.create(driver_id: 1, passenger_id: 1, date: "2016-04-05", rating: 3, cost: 1250 ) 
+    Trip.create(driver_id: driver.id, passenger_id: passenger.id, date: "2016-04-05", rating: 3, cost: 1250 ) 
   }
   
   describe "show" do
@@ -20,8 +20,9 @@ describe TripsController do
       test_passenger = passenger
       test_trip = trip
       
+      
       # Act
-      get trip_path(id: test_trip.id)
+      get trip_path(test_trip.id)
       
       # Assert
       must_respond_with :success
