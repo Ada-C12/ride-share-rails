@@ -6,7 +6,7 @@ describe DriversController do
   describe "index" do
     it "responds with success when there are many drivers saved" do
       test_driver = Driver.create(name: "Popeye Sailor", vin: "8FH204KDLFURNM385")
-
+      
       get drivers_path
       must_respond_with :success
     end
@@ -57,7 +57,7 @@ describe DriversController do
       # Act-Assert
       # Ensure that there is a change of 1 in Driver.count
       expect { post drivers_path, params: driver_hash }
-             .must_change "Driver.count", 1
+      .must_change "Driver.count", 1
       
       # Assert
       # Find the newly created Driver, and check that all its attributes match what was given in the form data
@@ -68,17 +68,16 @@ describe DriversController do
     end
     
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      skip
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Set up the form data so that it violates Driver validations
+      driver_hash = {
+        driver: {
+          name: "vince",
+        }
+      }
+      expect { post drivers_path, params: driver_hash }
+      .wont_change "Driver.count"
       
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
-      
-      # Assert
-      # Check that the controller redirects
-      
+      must_respond_with :success
+      # response of "success" expected because redirect should be successful 
     end
   end
   
@@ -114,7 +113,7 @@ describe DriversController do
       # Assign the existing driver's id to a local variable
       # Set up the form data
       driver = Driver.create(name: "Popeye Sailor", vin: -1)
-
+      
       id = driver.id
       params = { driver: { vin: -1 } }
       # Act-Assert
@@ -143,18 +142,14 @@ describe DriversController do
     end
     
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      skip
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      # Set up the form data so that it violates Driver validations
       
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      driver = Driver.create(name: "Popeye Sailor", vin: "JD74HGJK245DLJR93")
       
-      # Assert
-      # Check that the controller redirects
+      id = driver.id
+      params = { driver: { vin: "" } }
+      
+      expect{ patch driver_path(id), params: params }.wont_change "Driver.count"
+      must_respond_with :redirect
       
     end
   end
