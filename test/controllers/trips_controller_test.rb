@@ -122,4 +122,6 @@ describe TripsController do
   describe "destroy" do
     # Your tests go here
   end
+
+  # do we want/need index test?
 end

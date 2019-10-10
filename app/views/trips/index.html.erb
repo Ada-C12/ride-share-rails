@@ -1,0 +1,21 @@
+<h2>
+  <% if @passenger %>
+    Passenger
+  <% elsif @driver %>
+    Driver
+  <% else %>
+    All
+  <% end %>
+Trips</h2>
+
+<section>
+<ul>
+  <% @trips.each do |trip| %>
+    <li>
+      <%# Need to figure out method to display cost in dollars, not cents! %>
+      Date: <%= trip.date %> Driver: <%= trip.driver.name %> Passenger: <%= trip.passenger.name %> Cost: $<%= trip.cost %> Rating: <%= trip.rating %>
+    </li>
+  <% end %>
+</ul>
+
+</section>
