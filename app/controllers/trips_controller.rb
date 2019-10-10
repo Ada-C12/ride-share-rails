@@ -84,15 +84,18 @@ class TripsController < ApplicationController
   def update
     # individual passenger uses this to update ratings
     @trip = Trip.find_by(id: params[:id])
+    
+    if @trip.nil?
+      redirect_to nope_path(params: {msg: "No such trip exists!"})
+      return
+    end
+    
     driver_id = @trip.driver_id
     passenger_id = @trip.passenger_id
     rating = params[:rating].to_i
     
     if rating.nil?
       redirect_to nope_path(params: {msg: "No rating given!"})
-      return
-    elsif @trip.nil?
-      redirect_to nope_path(params: {msg: "No such trip exists!"})
       return
     elsif @trip.update(rating: rating)
       # need to flip driver.active back to false, so they can work again

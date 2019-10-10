@@ -156,15 +156,22 @@ describe TripsController do
         # end
       end
       
-      it "" do
+      it "edge case" do
+        ###########
       end
     end
     
-    describe "cannot update from main Trip index page" do
+    it "cannot update from main Trip index page" do
       # links are not given for edit.html if at main Trip index page
       # but what about sneaky urls???
       
-      ######
+      # bogus trip id
+      patch trip_path(id: -666)
+      must_redirect_to nope_path(msg: "No such trip exists!")
+      
+      # other bogus parameters?
+      # not necessary, b/c new Trip instance will never get made if any of its inputs are bogus
+      # see test up above for trips#create
     end
   end
   
