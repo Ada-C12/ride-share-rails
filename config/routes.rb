@@ -4,12 +4,14 @@ Rails.application.routes.draw do
   # RESTful routes:
   root 'homepages#index'
   
-  #this route works, but is not following rails conventions -- fix this!
+  # this route works, but is not following rails conventions -- fix this... Make it nested.
   post 'passengers/:id/trips', to: 'trips#create', as: 'passenger_trips'
   
   #root 'passengers#index'
   resources :drivers
-  resources :passengers
-  
-  # 'author/:id', to: 'author#show', as: 'author'
+  resources :passengers do
+    
+  end
 end
+
+# 'author/:id', to: 'author#show', as: 'author'
