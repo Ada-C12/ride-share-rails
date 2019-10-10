@@ -11,7 +11,9 @@ class Driver < ApplicationRecord
     # iterate and determine total for each trip grab the total cost and do math
     trips_total_cost = 0
     driver_trips.each do |trip|
-      trips_total_cost += ((trip.cost - (1.65*100))*0.8)
+      if trip.cost != nil
+        trips_total_cost += ((trip.cost - (1.65*100))*0.8)
+      end
     end
     
     trips_total_cost /= 100
@@ -23,7 +25,11 @@ class Driver < ApplicationRecord
     driver_trips = self.trips
     all_ratings = []
     driver_trips.each do |trip|
-      all_ratings << trip.rating
+      if trip.rating == nil
+        all_ratings << 0
+      else
+        all_ratings << trip.rating
+      end
     end
     return all_ratings.sum/all_ratings.length
   end
