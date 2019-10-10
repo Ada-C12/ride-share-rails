@@ -21,7 +21,6 @@ describe DriversController do
     it "responds with success when there are no drivers saved" do
       # Arrange
       # Ensure that there are zero drivers saved
-
       # Act
       get drivers_path
       # Assert
@@ -33,7 +32,6 @@ describe DriversController do
     it "responds with success when showing an existing valid driver" do
       # Arrange
       # Ensure that there is a driver saved
-
       # Act
       get driver_path(driver.id)
       # Assert
@@ -43,7 +41,6 @@ describe DriversController do
     it "responds with 404 with an invalid driver id" do
       # Arrange
       # Ensure that there is an id that points to no driver
-
       # Act
       get driver_path("-1")
       # Assert
@@ -83,10 +80,8 @@ describe DriversController do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Set up the form data so that it violates Driver validations
-
       # Act-Assert
       # Ensure that there is no change in Driver.count
-
       # Assert
       expect {
         post drivers_path, params: { driver: { name: "", vin: "" } }
@@ -110,7 +105,6 @@ describe DriversController do
     it "responds with redirect when getting the edit page for a non-existing driver" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
-
       # Act
       get edit_driver_path(-1)
       # Assert
