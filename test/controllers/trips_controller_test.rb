@@ -1,6 +1,16 @@
 require "test_helper"
 
 describe TripsController do
+  let (:driver) {
+    Driver.create name: "sample driver", vin: "VH1234SD234F0909", active: true, car_make: "Fiat", car_model: "POP"
+  }
+  let (:passenger) {
+    Passenger.create name: "Jon Snow", phone_num: "123.345.6789"
+  }
+  let (:trip) {
+    Trip.create date: 2019-10-10, driver_id: driver.id, passenger_id: passenger.id, cost: 123.0, rating: 4.0
+  }
+
   describe "index" do
     it "can get the index path" do
       get trips_path
@@ -9,23 +19,22 @@ describe TripsController do
     end
   end
   
-  # *****LOOK******
   describe "show" do
     # Your tests go here
     it "responds with success when showing an existing valid trip" do
       # # Act
-      # get trip_path(trip.id)
+      get trip_path(trip.id)
       # # Assert
-      # must_respond_with :success
+      must_respond_with :success
       
     end
     
     it "will redirect with an invalid trip id" do
-      # id = -1
+      id = -1
       # # Act
-      # get trip_path(id)
+      get trip_path(id)
       # # Assert
-      # must_respond_with :redirect
+      must_respond_with :redirect
     end
   end
   
@@ -33,8 +42,8 @@ describe TripsController do
   describe "new" do
     # Your tests go here
     it "responds with success" do
-      # get new_trip_path
-      # must_respond_with :success
+      get new_trip_path
+      must_respond_with :success
     end
   end
   
@@ -45,35 +54,38 @@ describe TripsController do
       # Set up the form data
       trip_hash = {
         trip: {
-          date: 2019-10-10,
-          driver_id: 12,
-          passenger_id: 11,
+          date: 2019-10-12,
+          driver_id: driver.id,
+          passenger_id: passenger.id,
           cost: 123.0,
           rating: 4.0
         },
       }
       # Act-Assert
       # Ensure that there is a change of 1 in trip.count
-      # expect {
-      #   post trips_path, params: trip_hash
-      # }.must_differ "trip.count", 1
+      expect {
+        post trips_path, params: trip_hash
+      }.must_differ "Trip.count", 1
       # Assert
       # Find the newly created trip, and check that all its attributes match what was given in the form data
       # Check that the controller redirected the user
-      # new_trip = Trip.find_by(date: trip_hash[:trip][:date])
-      # expect(new_trip.driver_id).must_equal trip_hash[:trip][:driver_id]
-      # expect(new_trip.driver_id).must_equal trip_hash[:trip][:passenger_id]
-      # expect(new_trip.driver_id).must_equal trip_hash[:trip][:cost]
-      # expect(new_trip.driver_id).must_equal trip_hash[:trip][:rating]
+      new_trip = Trip.find_by(date: trip_hash[:trip][:date])
+      expect(new_trip.driver_id).must_equal trip_hash[:trip][:driver_id]
+      expect(new_trip.passenger_id).must_equal trip_hash[:trip][:passenger_id]
+      expect(new_trip.cost).must_equal trip_hash[:trip][:cost]
+      expect(new_trip.rating).must_equal trip_hash[:trip][:rating]
       
-      # must_respond_with :redirect
-      # must_redirect_to trip_path(new_trip.id)
+      must_respond_with :redirect
+      must_redirect_to trip_path(new_trip.id)
     end
     
   end
   
   describe "edit" do
     # Your tests go here
+    # get edit_trip_path(trip.id)
+      
+    # must_respond_with :success
   end
   
   describe "update" do
