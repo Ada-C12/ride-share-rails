@@ -101,7 +101,6 @@ class PassengersController < ApplicationController
       # set the status of the driver as true 
       # then save the trip
       new_trip.save
-      p new_trip.errors 
       
       if new_trip.save == true
         flash[:success] = "Trip successfully created." 
@@ -114,9 +113,8 @@ class PassengersController < ApplicationController
   end
   
   private
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def passenger_params
-      params.require(:passenger).permit(:name, :phone_num)
-    end
+  
+  def passenger_params
+    params.require(:passenger).permit(:name, :phone_num)
+  end
 end

@@ -1,11 +1,17 @@
 class DriversController < ApplicationController
-  before_action :set_driver, only: [:show, :edit, :update, :destroy]
-  
+
   def index
     @drivers = Driver.all
   end
   
   def show
+    driver_id = params[:id]
+    @pdriver = Driver.find_by(id: driver_id)
+    
+    if @driver.nil?
+      head :not_found
+      return
+    end
   end
   
   def new
@@ -77,10 +83,6 @@ class DriversController < ApplicationController
   # end 
   
   private
-  
-  def set_driver
-    @driver = Driver.find(params[:id])
-  end
   
   def driver_params
     params.require(:driver).permit(:name, :vin, :active, :car_make, :car_model)
