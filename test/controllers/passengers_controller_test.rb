@@ -63,8 +63,8 @@ describe "update" do
 expect { patch passenger_path(ursula.id), params: updated_passenger_data }.wont_change 'Passenger.count'
 must_respond_with :redirect
 
-expect (Passenger.find(ursula.id).name).must_equal "Updated name"
-expect (Passenger.find(ursula.id).phone_num).must_equal "999-999-9999"
+expect _(Passenger.find(ursula.id).name).must_equal "Updated name"
+expect _(Passenger.find(ursula.id).phone_num).must_equal "999-999-9999"
 end 
 end 
 
