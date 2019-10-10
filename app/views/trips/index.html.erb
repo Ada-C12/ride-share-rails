@@ -17,7 +17,7 @@
     <section>Driver Name here</section>
     <section><%= trip.passenger_id%></section>
     <section>Passenger Name here</section>
-    <section><%= trip.cost%></section>
+    <section><%= usd(trip.cost)%></section>
     <section><%= trip.rating%></section>
   <% end %>
 </section>

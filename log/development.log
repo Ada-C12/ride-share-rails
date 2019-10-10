@@ -1007,3 +1007,141 @@ Processing by TripsController#index as HTML
 Completed 200 OK in 41ms (Views: 29.2ms | ActiveRecord: 3.4ms)
 
 
+Started GET "/drivers" for ::1 at 2019-10-09 22:28:39 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  ↳ app/views/drivers/index.html.erb:11
+  Rendered drivers/index.html.erb within layouts/application (16.7ms)
+Completed 200 OK in 43ms (Views: 39.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/drivers/14" for ::1 at 2019-10-09 22:28:41 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"authenticity_token"=>"3ID+ATMWCX/n1Vp9wFOfapyudBgGucFJXI7MOACAnobFX6CvV116Z+qyNcSE2wj8HCIUvxV9oPRc8x3xpsvYaA==", "id"=>"14"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/drivers_controller.rb:13
+  Rendering drivers/show.html.erb within layouts/application
+  Rendered drivers/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 32ms (Views: 22.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/trips?driver_id=14" for ::1 at 2019-10-09 22:28:42 -0700
+Processing by TripsController#index as HTML
+  Parameters: {"driver_id"=>"14"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:5
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:6
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.2ms)[0m  [1m[34mSELECT "trips".* FROM "trips" WHERE "trips"."driver_id" = $1[0m  [["driver_id", 14]]
+  ↳ app/views/trips/index.html.erb:13
+  Rendered trips/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 30ms (Views: 24.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/trips" for ::1 at 2019-10-09 22:30:19 -0700
+Processing by TripsController#index as HTML
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:5
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:6
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (1.1ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  ↳ app/views/trips/index.html.erb:13
+  Rendered trips/index.html.erb within layouts/application (33.1ms)
+Completed 200 OK in 60ms (Views: 54.0ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/trips" for ::1 at 2019-10-09 22:33:37 -0700
+Processing by TripsController#index as HTML
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:5
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:6
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.7ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  ↳ app/views/trips/index.html.erb:13
+  Rendered trips/index.html.erb within layouts/application (35.4ms)
+Completed 200 OK in 68ms (Views: 52.7ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/trips" for ::1 at 2019-10-09 22:33:46 -0700
+Processing by TripsController#index as HTML
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:5
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:6
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.9ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  ↳ app/views/trips/index.html.erb:13
+  Rendered trips/index.html.erb within layouts/application (42.7ms)
+Completed 200 OK in 76ms (Views: 60.5ms | ActiveRecord: 5.3ms)
+
+
+Started GET "/passengers" for ::1 at 2019-10-09 22:33:51 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.6ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers" ORDER BY "passengers"."id" ASC[0m
+  ↳ app/views/passengers/index.html.erb:16
+  Rendered passengers/index.html.erb within layouts/application (58.6ms)
+Completed 200 OK in 83ms (Views: 77.5ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/passengers/1" for ::1 at 2019-10-09 22:33:52 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPassenger Load (0.4ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:23
+  Rendering passengers/show.html.erb within layouts/application
+  Rendered passengers/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 31ms (Views: 25.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/trips?passenger_id=1" for ::1 at 2019-10-09 22:33:53 -0700
+Processing by TripsController#index as HTML
+  Parameters: {"passenger_id"=>"1"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:5
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:6
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.4ms)[0m  [1m[34mSELECT "trips".* FROM "trips" WHERE "trips"."passenger_id" = $1[0m  [["passenger_id", 1]]
+  ↳ app/views/trips/index.html.erb:13
+  Rendered trips/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 32ms (Views: 26.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/drivers" for ::1 at 2019-10-09 22:33:56 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  ↳ app/views/drivers/index.html.erb:11
+  Rendered drivers/index.html.erb within layouts/application (20.5ms)
+Completed 200 OK in 47ms (Views: 41.5ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/drivers/3" for ::1 at 2019-10-09 22:33:57 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"authenticity_token"=>"Aete11rgpdRI6wKvUJVf3H9u94uMMRUaDwhP3CVdsW8YNAB5PqvWzEWMbRYUHchK/+KXLJ/1dKcPdZ4Vgxb3gQ==", "id"=>"3"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/drivers_controller.rb:13
+  Rendering drivers/show.html.erb within layouts/application
+  Rendered drivers/show.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 29ms (Views: 25.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/trips?driver_id=3" for ::1 at 2019-10-09 22:34:00 -0700
+Processing by TripsController#index as HTML
+  Parameters: {"driver_id"=>"3"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:5
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:6
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT "trips".* FROM "trips" WHERE "trips"."driver_id" = $1[0m  [["driver_id", 3]]
+  ↳ app/views/trips/index.html.erb:13
+  Rendered trips/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 40ms (Views: 34.0ms | ActiveRecord: 0.8ms)
+
+
