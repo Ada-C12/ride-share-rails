@@ -58,8 +58,6 @@ class DriversController < ApplicationController
   def destroy
     selected_driver = Driver.find_by(id: params[:id])
     if selected_driver
-      # Maybe consider moving this to Driver Model
-      selected_driver.trips.each {|trip| trip.driver_id = nil }
       selected_driver.destroy
     end
 
