@@ -16,6 +16,23 @@
 <%= f.label :date, "Date: " %>
 <%= f.date_field :date %>
 
+<% if @trip.passenger.nil? %>
+  <%= f.label :passenger_id %>
+  <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
+<% else %>
+  <%= f.hidden_field :passenger_id %>
+  <%= hidden_field_tag 'passenger_id', @trip.passenger.id  %>
+  Passenger: <%= @trip.passenger.name %>
+<% end %>
+
+<% if @trip.driver.nil? %>
+  <%= f.label :driver_id %>
+  <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id] } %>
+<% else %>
+  <%= f.hidden_field :driver_id %>
+  <%= hidden_field_tag 'driver_id', @trip.driver.id  %>
+  Driver: <%= @trip.driver.name %>
+<% end %>
 
 <%= f.label :rating, "Rating: " %>
 <%= f.select :rating, [' ', '1', '2', '3', '4', '5']%>
