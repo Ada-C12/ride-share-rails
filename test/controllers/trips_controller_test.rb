@@ -25,6 +25,18 @@ describe TripsController do
     end
   end
   
+  describe "new" do
+    it "making new trip via individual passenger" do
+      # skipped this and went straight ahead to trip#create b/c don't need further form input
+      assert(true)
+    end
+    
+    it "edge: what if someone tries to sneak in via /trips/new?" do
+      get '/trips/new'
+      must_redirect_to nope_path(msg: "Only passengers can request/create trips!")
+    end
+  end
+  
   describe "create" do
     
     it "can create correct trip object given good input" do

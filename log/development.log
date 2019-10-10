@@ -1342,3 +1342,400 @@ Processing by TripsController#show as HTML
 Completed 200 OK in 28ms (Views: 24.9ms | ActiveRecord: 0.3ms)
 
 
+Started GET "/passengers" for ::1 at 2019-10-09 23:27:57 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.6ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers" ORDER BY "passengers"."id" ASC[0m
+  ↳ app/views/passengers/index.html.erb:16
+  Rendered passengers/index.html.erb within layouts/application (56.5ms)
+Completed 200 OK in 83ms (Views: 73.5ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/passengers/1" for ::1 at 2019-10-09 23:27:59 -0700
+Processing by PassengersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/passengers_controller.rb:23
+  Rendering passengers/show.html.erb within layouts/application
+  Rendered passengers/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 31ms (Views: 25.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/trips?passenger_id=1" for ::1 at 2019-10-09 23:28:00 -0700
+Processing by TripsController#index as HTML
+  Parameters: {"passenger_id"=>"1"}
+  [1m[36mPassenger Load (0.3ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:5
+  [1m[36mDriver Load (0.8ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:6
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.6ms)[0m  [1m[34mSELECT "trips".* FROM "trips" WHERE "trips"."passenger_id" = $1[0m  [["passenger_id", 1]]
+  ↳ app/views/trips/index.html.erb:13
+  Rendered trips/index.html.erb within layouts/application (9.3ms)
+Completed 200 OK in 47ms (Views: 30.7ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/trips/601" for ::1 at 2019-10-09 23:28:02 -0700
+Processing by TripsController#show as HTML
+  Parameters: {"id"=>"601"}
+  [1m[36mTrip Load (0.4ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 601], ["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:21
+  Rendering trips/show.html.erb within layouts/application
+  Rendered trips/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 28ms (Views: 23.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/passengers" for ::1 at 2019-10-09 23:28:21 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.6ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers" ORDER BY "passengers"."id" ASC[0m
+  ↳ app/views/passengers/index.html.erb:16
+  Rendered passengers/index.html.erb within layouts/application (61.9ms)
+Completed 200 OK in 87ms (Views: 83.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/drivers" for ::1 at 2019-10-09 23:28:26 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.4ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  ↳ app/views/drivers/index.html.erb:11
+  Rendered drivers/index.html.erb within layouts/application (20.1ms)
+Completed 200 OK in 46ms (Views: 40.4ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/passengers" for ::1 at 2019-10-09 23:28:29 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (0.6ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers" ORDER BY "passengers"."id" ASC[0m
+  ↳ app/views/passengers/index.html.erb:16
+  Rendered passengers/index.html.erb within layouts/application (57.9ms)
+Completed 200 OK in 84ms (Views: 79.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for ::1 at 2019-10-09 23:28:31 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 28ms (Views: 25.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/drivers" for ::1 at 2019-10-09 23:28:54 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.6ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers"[0m
+  ↳ app/views/drivers/index.html.erb:11
+  Rendered drivers/index.html.erb within layouts/application (17.4ms)
+Completed 200 OK in 46ms (Views: 41.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/drivers/3" for ::1 at 2019-10-09 23:28:57 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"authenticity_token"=>"5TcBDPUb/WP8fv140WOmjg50yZEU2ztytM+r2d/g3BH86F+ikVCOe/EZksGV6zEYjvipNgcfWs+0snoQeaua/w==", "id"=>"3"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/drivers_controller.rb:13
+  Rendering drivers/show.html.erb within layouts/application
+  Rendered drivers/show.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 35ms (Views: 31.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/trips?driver_id=3" for ::1 at 2019-10-09 23:28:59 -0700
+Processing by TripsController#index as HTML
+  Parameters: {"driver_id"=>"3"}
+  [1m[36mPassenger Load (0.4ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:5
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:6
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.2ms)[0m  [1m[34mSELECT "trips".* FROM "trips" WHERE "trips"."driver_id" = $1[0m  [["driver_id", 3]]
+  ↳ app/views/trips/index.html.erb:13
+  Rendered trips/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 33ms (Views: 26.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/trips/601" for ::1 at 2019-10-09 23:29:04 -0700
+Processing by TripsController#show as HTML
+  Parameters: {"id"=>"601"}
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 601], ["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:21
+  Rendering trips/show.html.erb within layouts/application
+  Rendered trips/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 30ms (Views: 24.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/trips" for ::1 at 2019-10-09 23:30:00 -0700
+Processing by TripsController#index as HTML
+  [1m[36mPassenger Load (0.1ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:5
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:6
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.8ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  ↳ app/views/trips/index.html.erb:13
+  Rendered trips/index.html.erb within layouts/application (64.6ms)
+Completed 200 OK in 96ms (Views: 80.2ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/trips/6" for ::1 at 2019-10-09 23:30:03 -0700
+Processing by TripsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mTrip Load (0.6ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:21
+  Rendering trips/show.html.erb within layouts/application
+  Rendered trips/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 30ms (Views: 24.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/trips/6/edit" for ::1 at 2019-10-09 23:30:07 -0700
+Processing by TripsController#edit as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:50
+Completed 406 Not Acceptable in 115ms (ActiveRecord: 0.3ms)
+
+
+
+ActionController::UnknownFormat - TripsController#edit is missing a template for this request format and variant.
+
+request.formats: ["text/html"]
+request.variant: []
+
+NOTE! For XHR/Ajax or API requests, this action would normally respond with 204 No Content: an empty white screen. Since you're loading it in a web browser, we assume that you expected to actually render a template, not nothing, so we're showing an error to be extra-clear. If you expect 204 No Content, carry on. That's what you'll get from an XHR or API request. Give it a shot.:
+
+Started POST "/__better_errors/8566d02accaa9bf8/variables" for ::1 at 2019-10-09 23:30:08 -0700
+Started GET "/trips/new" for ::1 at 2019-10-09 23:30:22 -0700
+Processing by TripsController#show as HTML
+  Parameters: {"id"=>"new"}
+  [1m[36mTrip Load (0.2ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:21
+Redirected to http://localhost:3000/homepages/nope?msg=No+such+trip+exists%21
+Completed 302 Found in 5ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/homepages/nope?msg=No+such+trip+exists%21" for ::1 at 2019-10-09 23:30:22 -0700
+Processing by HomepagesController#nope as HTML
+  Parameters: {"msg"=>"No such trip exists!"}
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 25ms (Views: 22.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-09 23:30:27 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 27ms (Views: 23.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/trips" for ::1 at 2019-10-09 23:30:30 -0700
+Processing by TripsController#index as HTML
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:5
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:6
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (1.0ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  ↳ app/views/trips/index.html.erb:13
+  Rendered trips/index.html.erb within layouts/application (65.3ms)
+Completed 200 OK in 103ms (Views: 81.5ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/trips/new" for ::1 at 2019-10-09 23:30:33 -0700
+Processing by TripsController#show as HTML
+  Parameters: {"id"=>"new"}
+  [1m[36mTrip Load (0.2ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:21
+Redirected to http://localhost:3000/homepages/nope?msg=No+such+trip+exists%21
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/homepages/nope?msg=No+such+trip+exists%21" for ::1 at 2019-10-09 23:30:33 -0700
+Processing by HomepagesController#nope as HTML
+  Parameters: {"msg"=>"No such trip exists!"}
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 24ms (Views: 21.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/trips/-33" for ::1 at 2019-10-09 23:31:00 -0700
+Processing by TripsController#show as HTML
+  Parameters: {"id"=>"-33"}
+  [1m[36mTrip Load (0.2ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", -33], ["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:21
+Redirected to http://localhost:3000/homepages/nope?msg=No+such+trip+exists%21
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/homepages/nope?msg=No+such+trip+exists%21" for ::1 at 2019-10-09 23:31:00 -0700
+Processing by HomepagesController#nope as HTML
+  Parameters: {"msg"=>"No such trip exists!"}
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 33ms (Views: 30.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/trips/new" for ::1 at 2019-10-09 23:31:05 -0700
+Processing by TripsController#show as HTML
+  Parameters: {"id"=>"new"}
+  [1m[36mTrip Load (0.2ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:21
+Redirected to http://localhost:3000/homepages/nope?msg=No+such+trip+exists%21
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/homepages/nope?msg=No+such+trip+exists%21" for ::1 at 2019-10-09 23:31:06 -0700
+Processing by HomepagesController#nope as HTML
+  Parameters: {"msg"=>"No such trip exists!"}
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 26ms (Views: 23.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/homepages/nope?msg=No+such+trip+exists%21" for ::1 at 2019-10-09 23:32:08 -0700
+Processing by HomepagesController#nope as HTML
+  Parameters: {"msg"=>"No such trip exists!"}
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 25ms (Views: 22.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-10-09 23:32:09 -0700
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 28ms (Views: 24.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/trips" for ::1 at 2019-10-09 23:32:11 -0700
+Processing by TripsController#index as HTML
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:5
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:6
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (1.0ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  ↳ app/views/trips/index.html.erb:13
+  Rendered trips/index.html.erb within layouts/application (68.8ms)
+Completed 200 OK in 109ms (Views: 91.0ms | ActiveRecord: 5.6ms)
+
+
+Started GET "/trips/new" for ::1 at 2019-10-09 23:32:14 -0700
+Processing by TripsController#show as HTML
+  Parameters: {"id"=>"new"}
+  [1m[36mTrip Load (0.2ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:21
+Redirected to http://localhost:3000/homepages/nope?msg=No+such+trip+exists%21
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/homepages/nope?msg=No+such+trip+exists%21" for ::1 at 2019-10-09 23:32:14 -0700
+Processing by HomepagesController#nope as HTML
+  Parameters: {"msg"=>"No such trip exists!"}
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 26ms (Views: 23.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/trips/new" for ::1 at 2019-10-09 23:32:33 -0700
+Processing by TripsController#show as HTML
+  Parameters: {"id"=>"new"}
+  [1m[36mTrip Load (0.1ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:21
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 1.2ms)
+
+
+
+RuntimeError - :
+  app/controllers/trips_controller.rb:22:in `show'
+
+Started POST "/__better_errors/cf98d00d2fd710c2/variables" for ::1 at 2019-10-09 23:32:33 -0700
+Started POST "/__better_errors/cf98d00d2fd710c2/eval" for ::1 at 2019-10-09 23:32:37 -0700
+Started GET "/trips/new" for ::1 at 2019-10-09 23:33:41 -0700
+Processing by TripsController#show as HTML
+  Parameters: {"id"=>"new"}
+  [1m[36mTrip Load (0.1ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:21
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 1.0ms)
+
+
+
+RuntimeError - :
+  app/controllers/trips_controller.rb:22:in `show'
+
+Started POST "/__better_errors/3dad045dffd8c511/variables" for ::1 at 2019-10-09 23:33:41 -0700
+Started GET "/trips/new" for ::1 at 2019-10-09 23:33:47 -0700
+Processing by TripsController#show as HTML
+  Parameters: {"id"=>"new"}
+  [1m[36mTrip Load (0.1ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:21
+Redirected to http://localhost:3000/homepages/nope?msg=Only+passengers+can+request%2Fcreate+trips%21
+Completed 302 Found in 5ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/homepages/nope?msg=Only+passengers+can+request%2Fcreate+trips%21" for ::1 at 2019-10-09 23:33:47 -0700
+Processing by HomepagesController#nope as HTML
+  Parameters: {"msg"=>"Only passengers can request/create trips!"}
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 22ms (Views: 19.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/trips" for ::1 at 2019-10-09 23:33:50 -0700
+Processing by TripsController#index as HTML
+  [1m[36mPassenger Load (0.2ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:5
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:6
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (1.0ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  ↳ app/views/trips/index.html.erb:13
+  Rendered trips/index.html.erb within layouts/application (65.2ms)
+Completed 200 OK in 95ms (Views: 80.1ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/trips" for ::1 at 2019-10-09 23:33:52 -0700
+Processing by TripsController#index as HTML
+  [1m[36mPassenger Load (0.4ms)[0m  [1m[34mSELECT  "passengers".* FROM "passengers" WHERE "passengers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:5
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:6
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.9ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  ↳ app/views/trips/index.html.erb:13
+  Rendered trips/index.html.erb within layouts/application (61.0ms)
+Completed 200 OK in 84ms (Views: 78.5ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/trips/-33" for ::1 at 2019-10-09 23:33:54 -0700
+Processing by TripsController#show as HTML
+  Parameters: {"id"=>"-33"}
+  [1m[36mTrip Load (0.2ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", -33], ["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:21
+Redirected to http://localhost:3000/homepages/nope?msg=No+such+trip+exists%21
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/homepages/nope?msg=No+such+trip+exists%21" for ::1 at 2019-10-09 23:33:54 -0700
+Processing by HomepagesController#nope as HTML
+  Parameters: {"msg"=>"No such trip exists!"}
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 24ms (Views: 21.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/trips/new" for ::1 at 2019-10-09 23:34:00 -0700
+Processing by TripsController#show as HTML
+  Parameters: {"id"=>"new"}
+  [1m[36mTrip Load (0.2ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/trips_controller.rb:21
+Redirected to http://localhost:3000/homepages/nope?msg=Only+passengers+can+request%2Fcreate+trips%21
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/homepages/nope?msg=Only+passengers+can+request%2Fcreate+trips%21" for ::1 at 2019-10-09 23:34:00 -0700
+Processing by HomepagesController#nope as HTML
+  Parameters: {"msg"=>"Only passengers can request/create trips!"}
+  Rendering homepages/nope.html.erb within layouts/application
+  Rendered homepages/nope.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 24ms (Views: 21.4ms | ActiveRecord: 0.0ms)
+
+
