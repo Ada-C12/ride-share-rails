@@ -47,11 +47,42 @@ describe PassengersController do
   end
   
   describe "edit" do
-    # Your tests go here
+    before do
+      @test_passenger = Passenger.create
+    end
+    
+    it "reponds with success when editing the profile of a valid passenger" do
+      get edit_passenger_path(@test_passenger.id)
+      must_respond_with :success
+    end
+    
+    it "responds with redirect when editing the profile of an invalid passenger" do 
+      get edit_passenger_path(-9)
+      must_respond_with :redirect
+    end
   end
   
   describe "update" do
-    # Your tests go here
+    it "can update an existing passenger's profile with accurate information" do
+      test_passenger = Passenger.create
+      id = test_passenger.id
+      updated_phone_num = "333-8888"
+      updated_name = "Everyone Is"
+      
+      found_test_passenger = Passenger.find_by(id: id)
+      found_test_passenger.phone_num = updated_phone_num
+      found_test_passenger.name = updated_name
+      found_test_passenger.save
+      
+      expect(Passenger.find_by(id: id).phone_num).must_equal updated_phone_num
+      
+      expect(Passenger.find_by(id: id).name).must_equal updated_name
+      
+    end
+    
+    it "if passenger id is invalid, does not update anything and responds with 404" do
+      #this test makes no sense as this page could only be accessed through the edit action, which already accounts for an invalid ID being passed in. 
+    end
   end
   
   describe "destroy" do
