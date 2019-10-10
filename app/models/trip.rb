@@ -3,5 +3,5 @@ class Trip < ApplicationRecord
   belongs_to :driver
   
   validates :date, presence: true
-  validates :cost, presence: true
+  validates :cost, presence: true, numericality: true
 end

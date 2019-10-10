@@ -62,12 +62,6 @@ class PassengersController < ApplicationController
       return
     end
     
-    # orphaned_trips = @passenger.trips
-    
-    # orphaned_trips.each do |orphaned_trip|
-    #   orphaned_trip.change_passenger_to_deleted
-    # end
-    
     @passenger.destroy
     
     redirect_to passengers_path
