@@ -224,4 +224,28 @@ describe DriversController do
       must_redirect_to drivers_path
     end
   end
+  
+  describe 'toggle active' do
+    let(:current_driver) {
+      post drivers_path, params: {driver: {name: "Jane Doe", vin: "12345678"}}
+      Driver.find_by(name:"Jane Doe")}
+
+    it 'updates driver active status to true if false and false if true' do
+      patch toggle_path(current_driver.id)
+      current_driver.reload
+      expect(current_driver.active).must_equal true
+      
+      patch toggle_path(current_driver.id)
+      current_driver.reload
+      expect(current_driver.active).must_equal false
+    end
+
+    it 'redirects to drivers index page if given id doesnt exist' do
+      patch toggle_path(-1)
+      must_redirect_to drivers_path
+    end
+  end
+
 end
+
+

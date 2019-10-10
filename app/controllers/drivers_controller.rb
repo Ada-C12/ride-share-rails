@@ -80,7 +80,6 @@ class DriversController < ApplicationController
   def toggle_active
     @driver = Driver.find_by( id: params[:id] )
     if @driver.nil?
-      # Then the book was not found!
       redirect_to drivers_path
       return
     end
@@ -90,7 +89,14 @@ class DriversController < ApplicationController
     else
       @driver.active = true
     end
+  
+    if @driver.save
+    else
+      raise ArgumentError.new("Error! Driver status did not save successfully")
+    end
+  
   end
+
 
 
   private
