@@ -106,7 +106,7 @@ describe DriversController do
         },
         {
           driver: {
-            name: "Another Kari", 
+            name: "Another Kari",
             vin: "123"
           }
         },
