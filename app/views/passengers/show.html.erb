@@ -1,1 +1,21 @@
-<h2>This is a Passenger</h2>
+<header class="show-header">
+  <h1><%=@passenger.name%></h1>
+  <%= link_to "Edit this passenger!", edit_passenger_path(@passenger.id) %>
+  <%= link_to "(Delete this passenger!)", passenger_path(@passenger.id), method: :delete, data: { confirm: "Are YOU sure?" }, class: "index-delete-link" %>
+</header>
+
+<section class="show-details">
+
+  <p>
+    Phone number: <%=@passenger.phone_num%>
+  </p>
+
+
+  <p>List of trips</p>
+  <ul>
+    <%@passenger.trips.each do |trip|%>
+    <li> Trip date: <%=trip.date%> -- Cost: <%=trip.cost%> -- Rating: <%=trip.rating%> </li>
+    <%end%>
+  </ul>
+
+</section>

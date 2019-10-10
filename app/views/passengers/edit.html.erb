@@ -1,1 +1,13 @@
-<h2>This is a passenger</h2>
+<h2>Edit Passenger Form</h2>
+
+<% if @passenger.errors.any? %>
+  <ul class="errors">
+    <% @passenger.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render partial: "form", locals: { submit_button_label: "Update passenger", book_form_class: "edit-passenger-form" } %>
