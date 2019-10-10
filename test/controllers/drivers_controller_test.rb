@@ -88,6 +88,7 @@ describe DriversController do
       # Find the newly created Driver, and check that all its attributes match what was given in the form data
       new_driver = Driver.find_by(name: new_driver_params[:driver][:name])
       expect(new_driver.vin).must_equal new_driver_params[:driver][:vin]
+      expect(new_driver.active).must_equal false
 
       # Check that the controller redirected the user
       must_redirect_to driver_path(new_driver.id)
@@ -278,6 +279,46 @@ describe DriversController do
       # Assert
       # Check that the controller responds or redirects with whatever your group decides
       must_redirect_to drivers_path
+
+    end
+  end
+
+  describe "toggle_active" do
+    it "changes a new driver's 'inactive' value from default 'false' to 'true' and redirects to drivers path" do
+      # Arrange
+      new_inactive_driver = Driver.create(name: "Geli Gel", vin: "validvin023")
+      new_inactive_driver_id = new_inactive_driver.id
+      assert_not_nil(new_inactive_driver_id)
+      expect(new_inactive_driver.active).must_equal false
+      test_params = {
+        id: new_inactive_driver_id
+      }
+
+      # Act
+      patch toggle_active_path(new_inactive_driver_id), params: test_params
+
+      # Assert
+      expect(Driver.find_by(id: new_inactive_driver_id).active).must_equal true
+      must_respond_with :success
+
+    end
+    it "changes an active driver's :active value from 'true' to 'false' and redirects to drivers path" do
+      # Arrange
+      active_driver = Driver.create(name: "Geli Gel", vin: "validvin023", active: true)
+      active_driver_id = active_driver.id
+      assert_not_nil(active_driver_id)
+      expect(Driver.find_by(id: active_driver_id).active).must_equal true
+      test_params = {
+        id: active_driver_id
+      }
+
+      # Act
+      # Toggle from True to False
+      patch toggle_active_path(active_driver_id), params: test_params
+      
+      # Assert
+      expect(Driver.find_by(id: active_driver_id).active).must_equal false
+      must_respond_with :success
 
     end
   end

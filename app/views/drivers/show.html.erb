@@ -6,6 +6,18 @@
     <li>VIN: <%=@driver.vin%></li>
   </ul>
 
+<section id="status">
+  <% status_text = @driver.active ? "Active" : "Inactive"  %>
+  <p><%= status_text %></p>
+  <% active_toggle_text = @driver.active ? "Set to Inactive" : "Set to Active"  %>
+  <%= link_to active_toggle_text, toggle_active_path(@driver.id), method: :patch %>
+</section>
+
+  <ul class='advanced-details-list'>
+    <li>Average Rating: NOT HERE YET </li>
+    <li>Total Earnings: NOT HERE YET </li>
+  </ul>
+
   <table class='trips-table'>
     <tr>
       <th>Date</th>

@@ -59,6 +59,18 @@ class DriversController < ApplicationController
     end
   end
 
+  def toggle_active
+    @driver = Driver.find_by(id: params[:id])
+
+    if @driver.nil?
+      redirect_to root_path, status: :not_found
+    else
+      @driver.toggle!(:active)
+      render :show
+      return
+    end
+  end
+
   private
 
   def driver_params
