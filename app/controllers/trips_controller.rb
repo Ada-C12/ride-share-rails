@@ -15,6 +15,7 @@ class TripsController < ApplicationController
   
   def new
     @trip = Trip.new
+    
   end
   
   def create
@@ -22,13 +23,11 @@ class TripsController < ApplicationController
       redirect_to new_trip_path
     end
     
-    @trip = Trip.new(trip_params)
-    
     if @trip.save
-      redirect_to trip_path(@trip.id)
+      redirect_to passenger_path(params[:id])
       return
     else
-      redirect_to new_trip_path
+      redirect_to passenger_path(params[:id])
       return
     end
   end
