@@ -5,7 +5,7 @@ describe PassengersController do
   Passenger.create(name: "Ursula Le Guin", phone_num: "320-444-5555") 
 }
 describe "index" do
-  it "gives back a successful response" do 
+  it "responds with success when there are many passengers saved" do 
     get passengers_path
     must_respond_with :success
     
