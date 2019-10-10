@@ -51,7 +51,7 @@ describe PassengersController do
       get passenger_path(invalid_id)
       
       # Assert
-      must_respond_with :not_found
+      must_redirect_to passengers_path
     end
   end
   
@@ -159,7 +159,7 @@ describe PassengersController do
       
       # Assert
       # Check that the controller gave back a 404
-      must_respond_with :not_found
+      must_redirect_to passengers_path
     end
     
     it "does not create a passenger if the form data violates Passenger validations, and responds with a redirect" do

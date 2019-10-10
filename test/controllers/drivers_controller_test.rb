@@ -44,7 +44,7 @@ describe DriversController do
       must_respond_with :success
     end
     
-    it "responds with 404 with an invalid driver id" do
+    it "redirects to drivers path if given invalid driver id" do
       # Arrange
       # Ensure that there is an id that points to no driver
       invalid_id = -1
@@ -53,7 +53,7 @@ describe DriversController do
       get driver_path(invalid_id)
       
       # Assert
-      must_respond_with :not_found
+      must_redirect_to drivers_path
     end
   end
   
@@ -164,7 +164,7 @@ describe DriversController do
       
       # Assert
       # Check that the controller gave back a 404
-      must_respond_with :not_found
+      must_redirect_to drivers_path
     end
     
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do

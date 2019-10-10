@@ -22,11 +22,65 @@ describe Trip do
   end
   
   describe "relationships" do
-    # Your tests go here
+    it "has a driver object" do
+      # Arrange
+      new_trip.save
+      trip = Trip.first
+      
+      # Assert
+      expect(trip.driver).must_be_instance_of Driver
+    end
+    
+    it "has a passenger object" do
+      # Arrange
+      new_trip.save
+      trip = Trip.first
+      
+      # Assert
+      expect(trip.passenger).must_be_instance_of Passenger
+    end
   end
   
   describe "validations" do
-    # Your tests go here
+    it "must have a driver_id" do
+      # Arrange
+      bad_trip = Trip.create(driver_id: nil, passenger_id: new_passenger.id, date: "2016-04-05", rating: 3, cost: 1250 )
+      
+      # Assert
+      expect(bad_trip.valid?).must_equal false
+      expect(bad_trip.errors.messages).must_include :driver_id
+      expect(bad_trip.errors.messages[:driver_id]).must_equal ["can't be blank"]
+    end
+    
+    it "must have a passenger_id" do
+      # Arrange
+      bad_driver = Trip.create(driver_id: new_driver.id, passenger_id: nil, date: "2016-04-05", rating: 3, cost: 1250 )
+      
+      # Assert
+      expect(bad_driver.valid?).must_equal false
+      expect(bad_driver.errors.messages).must_include :passenger_id
+      expect(bad_driver.errors.messages[:passenger_id]).must_equal ["can't be blank"]
+    end
+    
+    it "must have a date" do
+      # Arrange
+      bad_driver = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: nil, rating: 3, cost: 1250 )
+      
+      # Assert
+      expect(bad_driver.valid?).must_equal false
+      expect(bad_driver.errors.messages).must_include :date
+      expect(bad_driver.errors.messages[:date]).must_equal ["can't be blank"]
+    end
+    
+    it "must have a cost" do
+      # Arrange
+      bad_driver = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: "2016-04-05", rating: 3, cost: nil )
+      
+      # Assert
+      expect(bad_driver.valid?).must_equal false
+      expect(bad_driver.errors.messages).must_include :cost
+      expect(bad_driver.errors.messages[:cost]).must_equal ["can't be blank"]
+    end
   end
   
   # Tests for methods you create should go here
