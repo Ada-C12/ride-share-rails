@@ -5,6 +5,7 @@ describe Driver do
     Driver.new(name: "Kari", vin: "123", active: true,
                car_make: "Cherry", car_model: "DR5")
   }
+
   it "can be instantiated" do
     # Assert
     expect(new_driver.valid?).must_equal true
@@ -59,20 +60,87 @@ describe Driver do
 
   # Tests for methods you create should go here
   describe "custom methods" do
+    before do
+      @driver = Driver.create(
+        name: "Sarah",
+        vin: "848485859",
+        car_make: "Ford",
+        car_model: "Escape",
+        active: false
+      )
+      @passenger = Passenger.create(name: "Jane", phone_num: "12345678")
+
+      Trip.create(
+        date: "10-09-2019",
+        rating: 3,
+        cost: 2040,
+        passenger_id: @passenger.id,
+        driver_id: @driver.id
+      )
+
+      Trip.create(
+        date: "09-09-2019",
+        rating: 5,
+        cost: 2540,
+        passenger_id: @passenger.id,
+        driver_id: @driver.id
+      )
+
+    end
+
     describe "average rating" do
-      # Your code here
+      it "can calculate the correct average rating for a driver" do
+        expect(Trip.count).must_equal 2
+        average_rating = ((Trip.all.map {|trip| trip.rating}.sum).to_f / Trip.count).round(1)
+
+        expect(@driver.average_rating).must_equal average_rating
+      end
+
+      it "returns nil if valid driver doesn't have any trip" do  
+        driver = Driver.create(name: "Harry", vin: "0987") 
+        assert_nil (driver.average_rating)
+      end
     end
 
     describe "total earnings" do
-      # Your code here
+      it "can accurately calculate the total earnings for a driver" do
+        expect(Trip.count).must_equal 2
+        earnings = 0
+        Trip.all.map do |trip| 
+          earnings += (trip.cost > 165) ? trip.cost - 165 : trip.cost
+         end
+  
+        total_earnings = earnings * 0.8 / 100
+
+        expect(@driver.total_earnings).must_be_close_to total_earnings
+        expect(@driver.total_earnings).must_be_close_to 34.00, 0.01
+      end
+
+      it "returns 0 if driver has no trips" do
+        driver = Driver.create(name: "Sarah", vin: "47474636")
+        expect(driver.total_earnings).must_equal 0
+      end
     end
 
-    describe "can go online" do
-      # Your code here
+    describe "can go active" do
+      it "can update driver's active status to true" do
+        expect(@driver.active).must_equal false
+
+        @driver.toggle_active
+
+        expect(Driver.find_by(id: @driver.id).active).must_equal true
+      end
     end
 
-    describe "can go offline" do
-      # Your code here
+    describe "can go inactive" do
+      it "can update driver's active status to false" do
+        expect(@driver.active).must_equal false
+        @driver.toggle_active
+        expect(Driver.find_by(id: @driver.id).active).must_equal true
+
+        @driver.toggle_active
+        expect(Driver.find_by(id: @driver.id).active).must_equal false
+      end
     end
 
     # You may have additional methods to test

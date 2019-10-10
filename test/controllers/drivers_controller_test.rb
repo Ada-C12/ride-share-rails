@@ -84,7 +84,7 @@ describe DriversController do
       must_redirect_to driver_path(new_driver.id)
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not create a driver if the form data violates Driver validations, and responds with a render" do
       driver_hashes = [
         {
           driver: {
@@ -106,7 +106,7 @@ describe DriversController do
         },
         {
           driver: {
-            name: "Another Kari", 
+            name: "Another Kari",
             vin: "123"
           }
         },
@@ -123,8 +123,7 @@ describe DriversController do
         }.must_differ "Driver.count", 0
       end
 
-      must_respond_with :redirect
-      must_redirect_to new_driver_path
+      must_respond_with :success
     end
   end
   
@@ -194,7 +193,7 @@ describe DriversController do
       must_respond_with :not_found
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not create a driver if the form data violates Driver validations, and responds with a render" do
       driver_id = @driver.id
       updated_driver_data = {
         driver: {
@@ -210,8 +209,7 @@ describe DriversController do
         patch driver_path(driver_id), params: updated_driver_data
       }.must_differ "Driver.count", 0
 
-      must_respond_with :redirect
-      must_redirect_to edit_driver_path
+      must_respond_with :success
     end
   end
 

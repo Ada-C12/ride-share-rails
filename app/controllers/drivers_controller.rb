@@ -27,7 +27,7 @@ class DriversController < ApplicationController
       end
     end
     
-    redirect_to new_driver_path
+    render :new
     return
   end
   
@@ -49,7 +49,7 @@ class DriversController < ApplicationController
         redirect_to driver_path(@driver.id)
         return
       else
-        redirect_to edit_driver_path
+        render :edit
         return
       end
     end
@@ -58,6 +58,7 @@ class DriversController < ApplicationController
   def destroy
     selected_driver = Driver.find_by(id: params[:id])
     if selected_driver
+      # Maybe consider moving this to Driver Model
       selected_driver.trips.each {|trip| trip.driver_id = nil }
       selected_driver.destroy
     end
