@@ -1,5 +1,7 @@
 <section>
-  <h2>Passenger</h2>
+  <%# <h2>Passenger</h2> %>
+  <%# name %>
+  <h2><%= @passenger.name %></h2>
 
   <% if flash[:notice] %>
     <div class="notice"><%= flash[:notice] %></div>
@@ -15,18 +17,20 @@
     </ul>
   <% end %>
 
-  <p>
-    Name: <%= @passenger.name %> <br>
-    Phone Number: <%= @passenger.phone_num %>
-  </p>
+  <div class="details">
+    <p>
+      <%# Name: <%= @passenger.name %> <%# <br> %>
+      Phone Number: <%= @passenger.phone_num %>
+    </p>
 
-  <div>Total Charged: <%= number_to_currency(@passenger.total_charged / 100.0) %></div>
+    <div>Total Charged: <%= number_to_currency(@passenger.total_charged / 100.0) %></div>
 
-  <div><%= link_to "Request Trip", passenger_trips_path(@passenger.id), method: :post %></div>
-  
-  <div class="modify-options">
-    <div><%= link_to "Edit", edit_passenger_path(@passenger.id) %></div>
-    <div><%= link_to "Delete", passenger_path(@passenger.id), method: :delete %></div>
+    <div><%= link_to "Request Trip", passenger_trips_path(@passenger.id), method: :post %></div>
+    
+    <div class="modify-options">
+      <div><%= link_to "Edit", edit_passenger_path(@passenger.id) %></div>
+      <div><%= link_to "Delete", passenger_path(@passenger.id), method: :delete %></div>
+    </div>
   </div>
 
   <%# trips list %>
