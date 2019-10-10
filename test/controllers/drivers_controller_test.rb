@@ -34,7 +34,7 @@ describe DriversController do
     it "responds with 404 with an invalid driver id" do
       get driver_path(777)
 
-      must_respond_with :not_found
+      must_redirect_to nope_path
     end
   end
 
@@ -163,7 +163,7 @@ describe DriversController do
         delete driver_path(777)
       }.must_differ "Driver.count", 0
 
-      must_redirect_to root_path
+      must_redirect_to nope_path
     end
   end
 end
