@@ -3,11 +3,9 @@ class HomepagesController < ApplicationController
 
   end
 
-
   def show
     
   end
-
 
 
 end
