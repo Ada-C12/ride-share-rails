@@ -1,5 +1,16 @@
 <h3>Add a New Passenger</h3>
 
+<% if @passenger.errors.any? %>
+  <ul class="errors">
+    <% @passenger.errors.each do |column, message| %>
+      <li>
+       <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+
 <%= form_with model: @passenger do |f| %>
   <%= f.label "Name:"%>
   <%= f.text_field :name %>

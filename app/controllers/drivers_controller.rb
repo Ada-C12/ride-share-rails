@@ -61,12 +61,12 @@ class DriversController < ApplicationController
   end
   
   
-  
+  # Added make and model to permit below
   
   private
   
   def driver_params
-    return params.require(:driver).permit(:name, :vin)
+    return params.require(:driver).permit(:name, :vin, :make, :model)
   end
   
 end
