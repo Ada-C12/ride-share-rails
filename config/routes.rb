@@ -13,5 +13,5 @@ Rails.application.routes.draw do
     resources :trips, only: [:index, :create]
   end
 
-  resources :trips, except: [:create, :new]
+  resources :trips, except: [:create, :new, :index]
 end

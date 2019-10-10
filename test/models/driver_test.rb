@@ -66,7 +66,7 @@ describe Driver do
       @trip1 = Trip.create(
         passenger_id: new_passenger.id,
         date: Date.today,
-        cost: 1000,
+        cost: 10.00,
         rating: 5,
         driver_id: new_driver.id,
       )
@@ -74,7 +74,7 @@ describe Driver do
       @trip2 = Trip.create(
         passenger_id: new_passenger.id,
         date: Date.today,
-        cost: 1500,
+        cost: 15.00,
         rating: 4, 
         driver_id: new_driver.id,
       )
@@ -82,7 +82,7 @@ describe Driver do
       @trip3 = Trip.create(
         passenger_id: new_passenger.id,
         date: Date.today,
-        cost: 1500,
+        cost: 15.00,
         rating: 3, 
         driver_id: new_driver.id,
       )
@@ -100,7 +100,7 @@ describe Driver do
 
     describe "total earnings" do
       it "totals earnings for driver" do
-        expect(new_driver.total_earnings).must_equal (( @trip1.cost + @trip2.cost + @trip3.cost - ( 3 * 165 )) * 0.8 ) / 100
+        expect(new_driver.total_earnings).must_equal ( @trip1.cost + @trip2.cost + @trip3.cost - ( 3 * 1.65 )) * 0.8 
       end
 
       it "returns 0 when no earnings" do

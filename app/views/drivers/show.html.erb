@@ -1,8 +1,8 @@
 <h2> Driver name: <%= @driver.name %></h2>
 <p> VIN: <%= @driver.vin %></p>
 <p> Status: <%= @driver.available %></p>
-<p> Total Earnings: <%= @driver.total_earnings %></p>
-<p> Average Rating: <%= @driver.average_rating %></p>
+<p> Total Earnings: $<%= "%.2f" % @driver.total_earnings %></p>
+<p> Average Rating: <%= "%.2f" % @driver.average_rating %></p>
 
 <% if @driver.available %>
   <%= link_to "Make Unavailable", make_unavailable_path(@driver.id), method: :patch %> <br>
