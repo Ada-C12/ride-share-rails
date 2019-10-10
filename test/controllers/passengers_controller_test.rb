@@ -90,7 +90,6 @@ describe PassengersController do
   describe "update" do
     before do
       @test_passenger = Passenger.create(name: "test person", phone_num: "1234567")
-      @test_passenger_id = @test_passenger.id
       @passenger_hash = {
         passenger: {
           name: "changed passenger name",
@@ -99,7 +98,7 @@ describe PassengersController do
       }
     end
     it "can update an existing passenger with valid information accurately, and redirect" do
-      expect {patch passenger_path(@test_passenger_id), params: @passenger_hash}.wont_change "Passenger.count"
+      expect {patch passenger_path(@test_passenger.id), params: @passenger_hash}.wont_change "Passenger.count"
       
       new_passenger = Passenger.find_by(name: @passenger_hash[:passenger][:name])
       expect(new_passenger.name).must_equal @passenger_hash[:passenger][:name]
@@ -124,7 +123,7 @@ describe PassengersController do
       }
       
       expect {
-        patch passenger_path(@test_passenger_id), params: passenger_hash
+        patch passenger_path(@test_passenger.id), params: passenger_hash
       }.wont_change 'Passenger.count'
       
       assert_template :new
