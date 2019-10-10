@@ -5,4 +5,8 @@ class Trip < ApplicationRecord
   validates :passenger, presence: true
   
   
+  
+  
+  
+  
 end

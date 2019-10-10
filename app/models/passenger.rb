@@ -6,7 +6,7 @@ class Passenger < ApplicationRecord
   def find_passenger_trips
     return self.trips.all
   end
-
+  
   def amount_charged
     total = 0
     self.trips.all.each do |trip|
@@ -14,4 +14,5 @@ class Passenger < ApplicationRecord
     end
     return total
   end
+  
 end

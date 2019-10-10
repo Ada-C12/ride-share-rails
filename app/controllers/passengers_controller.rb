@@ -1,10 +1,9 @@
 class PassengersController < ApplicationController
-
   # GET /passengers
   def index
     @passengers = Passenger.all
   end
-
+  
   # GET /passengers/1
   def show
     passenger_id = params[:id]
@@ -15,12 +14,13 @@ class PassengersController < ApplicationController
       return
     end
   end
-
+  
   # GET /passengers/new
   def new
     @passenger = Passenger.new
+    
   end
-
+  
   # GET /passengers/1/edit
   def edit
     @passenger = Passenger.find_by(id: params[:id])
@@ -30,12 +30,12 @@ class PassengersController < ApplicationController
       return
     end
   end
-
+  
   # POST /passengers
   # POST /passengers.json
   def create
     @passenger = Passenger.new(passenger_params)
-
+    
     respond_to do |format|
       if @passenger.save
         format.html { redirect_to @passenger, notice: 'Passenger was successfully created.' }
@@ -46,7 +46,7 @@ class PassengersController < ApplicationController
       end
     end
   end
-
+  
   # PATCH/PUT /passengers/1
   # PATCH/PUT /passengers/1.json
   def update
@@ -66,7 +66,7 @@ class PassengersController < ApplicationController
       end
     end
   end
-
+  
   # DELETE /passengers/1
   # DELETE /passengers/1.json
   def destroy
@@ -81,7 +81,34 @@ class PassengersController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def create_new_trip
+    @passenger = Passenger.find(params[:id])
+    
+    trip_info = {
+      trip: {   
+        driver_id: Driver.find_available_driver,
+        passenger_id: @passenger.id,
+        date: Time.now,
+        rating: nil,
+        cost: 100,}
+      }
+      new_trip = Trip.new(trip_info[:trip])
+      # set the status of the driver as true 
+      # then save the trip
+      new_trip.save
+      p new_trip.errors 
+      
+      if new_trip.save == true
+        flash[:success] = "Trip successfully created." 
+        new_trip.driver.active = false 
+      else 
+        flash[:error] = "Uh Oh! Something went wrong."
+      end
 
+      redirect_to passenger_path(@passenger)
+  end
+  
   private
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -23,7 +23,7 @@
         <td><%= link_to 'Destroy', driver, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td>
         <%= form_with model: driver, url: "/drivers/#{driver.id}/toggle_status", method: :patch do |f| %>
-          <%= f.label "Available" %>
+          <%= f.label "Active" %>
           <%= f.check_box :active, { onchange: 'this.form.submit();' , checked: driver.active != false } %>
         <% end %></td>
       </tr>
