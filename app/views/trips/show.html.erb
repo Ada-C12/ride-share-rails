@@ -1,1 +1,8 @@
-<h2>Trips Show Page</h2>
+<h2>Trip #<%= @trip.id %> Details</h2>
+
+<section>
+  <p>
+      <%# Need to figure out method to display cost in dollars, not cents! Also, this could be a table...%>
+    Date: <%= @trip.date %> Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver) %> Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger) %> Cost: $<%= @trip.cost %> Rating: <%= @trip.rating %>
+  </p>
+</section>

@@ -1,8 +1,8 @@
 <h2>
   <% if @passenger %>
-    Passenger
+    <%= @passenger.name %>'s
   <% elsif @driver %>
-    Driver
+    <%= @driver.name %>'s
   <% else %>
     All
   <% end %>
@@ -10,10 +10,10 @@ Trips</h2>
 
 <section>
 <ul>
-  <% @trips.each do |trip| %>
+  <% @trips.order(date: :desc).each do |trip| %>
     <li>
       <%# Need to figure out method to display cost in dollars, not cents! %>
-      Date: <%= trip.date %> Driver: <%= trip.driver.name %> Passenger: <%= trip.passenger.name %> Cost: $<%= trip.cost %> Rating: <%= trip.rating %>
+      <%= link_to trip.date, trip_path(trip.id) %>
     </li>
   <% end %>
 </ul>
