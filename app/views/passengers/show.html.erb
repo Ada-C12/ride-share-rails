@@ -14,7 +14,7 @@
   <p>List of trips</p>
   <ul>
     <%@passenger.trips.each do |trip|%>
-    <li> Trip date: <%=trip.date%> -- Cost: <%=trip.cost%> -- Rating: <%=trip.rating%> </li>
+    <li> ID#<%= link_to trip.id, trip_path(trip.id) %> Trip date: <%=trip.date%> -- Cost: <%=trip.cost%> -- Rating: <%=trip.rating%> </li>
     <%end%>
   </ul>
 
