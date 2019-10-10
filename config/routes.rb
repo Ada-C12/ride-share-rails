@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root "homepages#index"
   
   resources :drivers
   resources :passengers do
@@ -6,7 +7,5 @@ Rails.application.routes.draw do
   end
   
   resources :trips
-  
-  root "homepages#index"
   
 end
