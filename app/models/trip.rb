@@ -3,7 +3,7 @@ class Trip < ApplicationRecord
   belongs_to :passenger
 
   def self.create_new_trip
-    driver = Driver.all.find{ |driver| driver.available }
+    driver = Driver.all.find { |driver| driver.available }
     date = Date.today
     cost = rand(1000..5000)
 

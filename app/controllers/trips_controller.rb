@@ -1,5 +1,4 @@
 class TripsController < ApplicationController
-
   def index
     if params[:passenger_id]
       passenger = Passenger.find_by(id: params[:passenger_id])
@@ -9,14 +8,23 @@ class TripsController < ApplicationController
     end
   end
 
+  def show
+    @trip = Trip.find_by(id: params[:id])
+
+    if @trip.nil?
+      head :not_found
+      return
+    end
+  end
+
   def create
     if params[:passenger_id]
       trip_parameters = Trip.create_new_trip
       @trip = Trip.new(
-        passenger_id: params[:passenger_id],  
+        passenger_id: params[:passenger_id],
         date: trip_parameters[:date],
         cost: trip_parameters[:cost],
-        driver_id: trip_parameters[:driver_id]
+        driver_id: trip_parameters[:driver_id],
       )
       if @trip.save
         redirect_to passenger_path(params[:passenger_id])
@@ -28,6 +36,42 @@ class TripsController < ApplicationController
     else
       redirect_to trips_path
     end
+  end
+
+  def edit
+    @trip = Trip.find_by(id: params[:id])
+
+    if @trip.nil?
+      redirect_to passenger_trips_path
+      return
+    end
+  end
+
+  def update
+    @trip = Trip.find_by(id: params[:id])
+
+    if @trip.nil?
+      head :not_found
+      return
+    end
+
+    @trip.update(trip_params)
+
+    redirect_to passenger_trips_path
+    return
+  end
+
+  def destroy
+    @trip = Trip.find_by(id: params[:id])
+
+    if @trip.nil?
+      redirect_to passenger_trips_path
+      return
+    end
+
+    @trip.destroy
+    redirect_to passenger_trips_path
+    return
   end
 
   private
