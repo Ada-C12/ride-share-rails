@@ -8,4 +8,12 @@ class Driver < ApplicationRecord
     end
     return avg_rating
   end
+
+  def total_earnings
+    total_earnings = 0
+    if self.trips != []
+      total_earnings = self.trips.sum(:cost).round
+    end
+    return total_earnings
+  end
 end
