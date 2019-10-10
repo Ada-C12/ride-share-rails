@@ -3,6 +3,7 @@
   <h2>Vin: <%=@driver.vin%></h2>
 </header>
 
+<<<<<<< HEAD
 <section class="driver_grid">
   <section class="header_row"><%= "ID" %></section>
   <section class="header_row"><%= "NAME" %></section>
@@ -13,6 +14,11 @@
   <section><%= @driver.id%></section>
   <section><%= @driver.name%></section>
   <section><%= @driver.vin%></section>
+=======
+<section class="show-details">
+  <%= link_to "SHOW TRIP HISTORY", trips_path(driver_id: @driver.id) %>
+  <%= image_tag "driver-photo.jpg", alt: "Private chauffer nodding", class: "driver-photo" %>
+>>>>>>> 5163fd526bab365462ae91cbe955480ee3589176
 
   <%= link_to "EDIT", edit_driver_path(@driver.id), method: :get %>
   <%= link_to "DELETE", driver_path(@driver.id), method: :delete, data: {confirm: "YOU SURE???"}  %>
