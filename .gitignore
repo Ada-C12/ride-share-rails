@@ -21,10 +21,12 @@
 /yarn-error.log
 
 /public/assets
-.byebug_history  
-  /coverage.data
-  /coverage  
-  .DS_Store
+.byebug_history 
+ 
+# Ignore simplecov and test data in simplecov report
+/coverage.data
+/coverage  
+.DS_Store
 
 
 # Ignore master key for decrypting credentials and more.
