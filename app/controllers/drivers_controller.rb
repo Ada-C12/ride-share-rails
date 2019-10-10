@@ -30,7 +30,8 @@ class DriversController < ApplicationController
   def edit
     @driver = Driver.find_by(id: params[:id])
     if @driver.nil?
-      head :not_found
+      redirect_to driver_path
+      # head :not_found
       return
     end
   end
@@ -38,11 +39,16 @@ class DriversController < ApplicationController
   def update
     #Handle Validation Errors
     @driver = Driver.find_by(id: params[:id])
+    if @driver.nil? 
+      head :not_found
+      return
+      #anytime we do a head or render or redirect
+    end
     if @driver.update(driver_params)
-      redirect_to driver_path
+      redirect_to driver_path(params)
       return
     else
-      render :edit
+      render driver_path
     end
   end
   
