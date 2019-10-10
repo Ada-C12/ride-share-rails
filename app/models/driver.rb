@@ -39,4 +39,11 @@ class Driver < ApplicationRecord
       return avg_rating
   end 
 
+  describe "can go online" do
+    # Your code here
+  end
+
+  describe "can go offline" do
+    # Your code here
+  end
 end

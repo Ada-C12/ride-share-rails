@@ -3,7 +3,7 @@ require "pry"
 
 describe Driver do
   let (:new_driver) {
-    Driver.new(name: "Kari", vin: "123", active: true)
+    Driver.new(name: "Kari", vin: "123", active: false)
   }
   
   it "can be instantiated" do
@@ -53,69 +53,91 @@ describe Driver do
   describe "custom methods" do
     describe "average_rating" do
   
-      it "returns a float" do
+      it "returns a float and within range 1.0-5.0" do
         new_driver.save
-        trip = Trip.create(
-          date: "2019-09-02",
+        passenger = Passenger.create(name:"Coolio Foolio", phone_num: "206-800-5000")
+
+        Trip.create(
+          date: "2019-09-01",
           driver_id: new_driver.id,
-          passenger_id: 3,
-          rating: 5
+          passenger_id: passenger.id,
+          rating: 5,
+          cost: 1
         )
-        # binding.pry
+
         expect(new_driver.average_rating).must_be_kind_of Float
+        expect(new_driver.average_rating).must_be :>=, 1.0
+        expect(new_driver.average_rating).must_be :<=, 5.0
       end
   
-      # it "returns a float within range of 1.0 to 5.0" do
-      #   average = @driver.average_rating
-      #   expect(average).must_be :>=, 1.0
-      #   expect(average).must_be :<=, 5.0
-      # end
+      it "returns zero if no driven trips" do
+        driver = Driver.new(
+          name: "Rogers Kool",
+          vin: "1DZ0"
+        )
+        driver.save
+        expect(driver.average_rating).must_equal 0
+      end
   
-      # it "returns zero if no driven trips" do
-      #   driver = Driver.new(
-      #     name: "Rogers Kool",
-      #     vin: "1DZ0"
-      #   )
-      #   expect(driver.average_rating).must_equal 0
-      # end
+      it "correctly calculates the average rating" do
+        new_driver.save
+        passenger = Passenger.create(name:"Coolio Foolio", phone_num: "206-800-5000")
+
+        Trip.create(
+          date: "2019-09-01",
+          driver_id: new_driver.id,
+          passenger_id: passenger.id,
+          rating: 5,
+          cost: 1
+        )
+
+        Trip.create(
+          date: "2019-09-02",
+          driver_id: new_driver.id,
+          passenger_id: passenger.id,
+          rating: 3,
+          cost: 1
+        )
   
-      # it "correctly calculates the average rating" do
-      #   trip2 = Trip.new(
-      #     date: "2019-09-01",
-      #     driver: @driver,
-      #     passenger_id: 3,
-      #     rating: 1
-      #   )
-      #   @driver.add_trip(trip2)
-  
-      #   expect(@driver.average_rating).must_be_close_to (5.0 + 1.0) / 2.0, 0.01
-      # end
-  
-      # it "should return average of trips with in-progress trips" do
-      #   trip3 = RideShare::Trip.new(
-      #     driver: @driver,
-      #     passenger_id: 3,
-      #     start_time: Time.new.to_s,
-      #     end_time: nil,
-      #     rating: nil
-      #   )
-      #   @driver.add_trip(trip3)
-  
-      #   expect(@driver.average_rating).must_be_close_to (5.0) / 1.0, 5.0
-      # end 
+        expect(new_driver.average_rating).must_be_close_to (5.0 + 3.0) / 2.0, 0.01
+      end
     end
     
-    # describe "total earnings" do
-      
-    # end
-    
-    # describe "can go online" do
-    #   # Your code here
-    # end
-    
-    # describe "can go offline" do
-    #   # Your code here
-    # end
-    
+    describe "total earnings" do
+      it "returns total revenue of driver" do 
+        new_driver.save
+        passenger = Passenger.create(name:"Coolio Foolio", phone_num: "206-800-5000")
+
+        Trip.create(
+          date: "2019-09-01",
+          driver_id: new_driver.id,
+          passenger_id: passenger.id,
+          rating: 5,
+          cost: 3
+        )
+
+        Trip.create(
+          date: "2019-09-02",
+          driver_id: new_driver.id,
+          passenger_id: passenger.id,
+          rating: 3,
+          cost: 5
+        )
+
+        expect(new_driver.earnings).must_equal 4.00
+      end 
+
+      it "should return average of trips with in-progress trips" do
+        Trip.new(
+          id: 8,
+          driver: new_driver.id,
+          passenger_id: passenger.id,
+          rating: nil,
+          cost: 3
+        )
+
+        expect(new_driver.total_revenue).must_equal 9.36
+      end 
+    end 
   end
 end
