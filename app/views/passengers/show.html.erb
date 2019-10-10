@@ -11,3 +11,20 @@
   <p>Total amount charged by greedy rideshare people: $<%= sprintf('%.2f', @passenger.total_charged)%></p>
 </section>
 
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Rating</th>
+    <th>Cost</th>
+    <th>Driven By</th>
+  </tr>
+  <%@passenger.trips.each do |trip|%>
+  <tr>
+    <td><%=trip.date%></td>
+    <td><%=trip.rating%></td>
+    <td><%=trip.cost%></td>
+    <td><%=trip.driver.name%></td>
+  </tr>
+  <% end %>
+</table>
+
