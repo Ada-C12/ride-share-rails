@@ -51,13 +51,14 @@ class TripsController < ApplicationController
   
   def destroy
     selected_trip = Trip.find_by(id: params[:id])
+    trip_passenger = selected_trip.passenger
 
     if selected_trip.nil?
-      redirect_to trips_path
+      redirect_to passenger_path(trip_passenger.id)
       return
     else
       selected_trip.destroy
-      redirect_to trips_path
+      redirect_to passenger_path(trip_passenger.id)
       return
     end
   end
