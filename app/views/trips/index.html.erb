@@ -12,7 +12,7 @@
   
   <% @trips.each do |trip|%>
     <section><%= trip.id%></section>
-    <section><%= trip.date%></section>
+    <section><%= display_date(trip.date.getlocal)%></section>
     <section><%= trip.driver_id%></section>
     <section>Driver Name here</section>
     <section><%= trip.passenger_id%></section>

@@ -15,21 +15,28 @@ class TripsController < ApplicationController
     trip_id = params[:id].to_i
     @trip = Trip.find_by(id: trip_id)
     if @trip.nil?
-      head :not_found
+      redirect_to nope_path(params: {msg: "No such trip exists!"})
       return
     end
   end 
   
   def create
-    raise
-    if @trip.save
-      x= "hahaha"
-      redirect_to trip_path(@trip.id)
-      raise
+    # Find available driver
+    @driver = Driver.find_by(active: false)
+    if @driver 
+      # :passenger_id and :date are carried over when passenger clicks request trip button
+      @trip = Trip.new(date: params[:date], passenger_id: params[:passenger_id], driver_id: @driver.id, rating: nil, cost: "100" )
     else
-      x = "wtf"
-      redirect_to nope_path
-      raise
+      redirect_to nope_path(params: {msg: "No drivers available, maybe you should walk"})
+      return
+    end
+    
+    if @trip.save
+      redirect_to trip_path(@trip.id)
+      return
+    else
+      redirect_to nope_path(params: {msg: "Trip request unsuccessful, please contact customer service at 1-800-lol-sorry"})
+      return
     end
   end
   
@@ -43,6 +50,7 @@ class TripsController < ApplicationController
   end 
   
   def update
+    # Use this to update ratings
     @trip = Trip.find_by(id: params[:id])
     
     if @trip.nil?
@@ -57,13 +65,14 @@ class TripsController < ApplicationController
   end 
   
   def destroy
+    ### DO WE EVEN NEED TO DO THIS?
     selected_trip = Trip.find_by(id: params[:id])
     
     if selected_trip.nil?
-      redirect_to root_path
+      redirect_to nope_path(params: {msg: "No such trip exists!"})
       return
     else
-      selected_triip.destroy
+      selected_trip.destroy
       redirect_to trip_path
       return
     end
