@@ -13,18 +13,19 @@
   <body>
   <nav>
   <section class="dropdown">
-  <a href="../passengers"><button class="dropbtn">Passengers</button></a>
-  <div class="dropdown-content">
-    <a href="../passengers/new">Add Passenger</a>
-  </div>
-</div>
+    <%= button_to "Passengers", passengers_path, :method => "get" %>
+      <section class="dropdown-content">
+        <%= button_to "Add Passenger", new_passenger_path, :method => "get" %>
+      </section>
+  </section>
 
-<section class="dropdown">
-  <a href="../drivers"><button class="dropbtn">Drivers</button></a>
-  <div class="dropdown-content">
-    <a href="../drivers/new">Add Driver</a>
-  </div>
-</div>
+  <section class="dropdown">
+  <%= button_to "Drivers", drivers_path, :method => "get" %>
+    <section class="dropdown-content">
+      <%= button_to "Add Driver", new_driver_path, :method => "get" %>
+    </section>
+  </section>
+  
   </nav>
     <%= yield %>
   </body>
