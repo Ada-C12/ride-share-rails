@@ -17,7 +17,7 @@ describe PassengersController do
       
     end
   end
-
+  
   describe "show" do
     before do
       @test_passenger = Passenger.create
@@ -39,24 +39,65 @@ describe PassengersController do
       
     end
   end
-
+  
   describe "new" do
-    # Your tests go here
+    it "can get the new passenger path" do
+      get new_passenger_path
+      must_respond_with :success
+    end
   end
-
+  
   describe "create" do
-    # Your tests go here
+    
+    it "can can create a new instance of passenger " do
+      passenger_hash = {
+        passenger: {
+          name: "test_passenger",
+          phone_num: "1-888-975-5309",
+        },
+      }
+      
+      expect {
+        post passengers_path, params: passenger_hash }.must_change "Passenger.count", 1
+        
+        new_passenger = Passenger.find_by(name: passenger_hash[:passenger][:name])
+        
+        
+      end
+      
+    end
+    
   end
-
+  
   describe "edit" do
     # Your tests go here
   end
-
+  
   describe "update" do
     # Your tests go here
   end
-
+  
   describe "destroy" do
-    # Your tests go here
+    before do
+      # Comes pre-built with 16 passengers
+      @test_passenger_id = Passenger.first.id
+    end
+    
+    it "destroys passenger and redirects" do
+      expect {
+        delete passenger_path(@test_passenger_id)
+      }.must_differ "Passenger.count", -1
+      
+      must_respond_with :redirect
+    end
+    
+    it "will respond with 404 if attempting to delete invalid passenger and trip count will be unaffected" do
+      expect { delete passenger_path(-9) }.must_change "Passenger.count", 0
+      
+      must_respond_with :not_found
+    end
+    
+    
+    
+    
   end
-end
