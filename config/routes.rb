@@ -7,9 +7,7 @@ Rails.application.routes.draw do
     resources :trips, shallow: true
   end 
   
-  resources :trips
-  # resources :drivers
-  # resources :trips, except: [:new]  
+  resources :trips, except: [:new]  
   
   # ADDED THESE BELOW, to allow trip requests per passenger
   resources :passengers do 
