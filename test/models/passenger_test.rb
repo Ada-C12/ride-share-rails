@@ -8,24 +8,27 @@ describe Passenger do
     # Assert
     expect(new_passenger.valid?).must_equal true
   end
-
+  
   it "will have the required fields" do
     # Arrange
     new_passenger.save
     passenger = Passenger.first
     [:name, :phone_num].each do |field|
-    
+      
       # Assert
       expect(passenger).must_respond_to field
     end
   end
-
+  
   describe "relationships" do
     it "can have many trips" do
       # Arrange
       new_passenger.save
       passenger = Passenger.first
-    
+      
+      driver = Driver.create(name: "sample driver", vin: "a sample vin", active: false)
+      Trip.create(date: Date.today, rating: 4, cost: 23.00, driver_id: driver.id, passenger_id: passenger.id)
+      
       # Assert
       expect(passenger.trips.count).must_be :>, 0
       passenger.trips.each do |trip|
@@ -59,12 +62,16 @@ describe Passenger do
   # Tests for methods you create should go here
   describe "custom methods" do
     describe "request a ride" do
-      # Your code here
+      it "can select an available driver" do
+        passenger = Passenger.create(name: "sample passenger", phone_num: "sample number")
+        trip = Trip.create(date: Date.today, rating: 4, cost: 23.00, driver_id: passenger.find_driver, passenger_id: passenger.id)
+
+        expect(trip).wont_be_nil
+      end
     end
     
     describe "complete trip" do
       # Your code here
     end
-    # You may have additional methods to test here
   end
 end

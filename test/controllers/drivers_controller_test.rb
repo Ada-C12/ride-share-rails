@@ -160,8 +160,6 @@ describe DriversController do
       validity = driver_to_update.update(name: "", vin: "updated vin")
       
       expect(validity).must_equal false
-      
-      # must_redirect_with :render
     end
   end
   
@@ -177,10 +175,9 @@ describe DriversController do
       removed_driver.must_be_nil
       
       must_redirect_to drivers_path
-      
     end
     
-    it "does not change the db when the driver does not exist, then responds with " do
+    it "does not change the db when the driver does not exist, then responds with redirect" do
       nonexistent_id = -20
       
       expect {

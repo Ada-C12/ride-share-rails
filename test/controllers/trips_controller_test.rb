@@ -84,14 +84,86 @@ describe TripsController do
   end
   
   describe "update" do
-    it "" do
-      # Your tests go here
+    it "can update an existing trip accurately, and redirect" do
+      new_driver = Driver.create(name: "updated driver", vin: "updated vin", active: false)
+      new_passenger = Passenger.create(name: "updated passenger", phone_num: "updated number")
+
+      new_trip = Trip.create(date: Date.today, rating: 4, cost: 23.00, driver_id: driver.id, passenger_id: passenger.id)
+
+
+      p driver
+      p passenger
+
+      p new_driver
+      p new_passenger
+      p new_trip
+
+      trip_hash = { 
+        trip: { 
+          date: Date.today + 1,
+          rating: 1,
+          cost: 10.00,
+          driver_id: new_driver,
+          passenger_id: new_passenger
+        }
+      }
+      
+      # trip_to_update = trip
+      
+      expect {
+        patch trip_path(new_trip.id), params: trip_hash
+      }.must_differ "Trip.count", 0
+      
+      # updated_trip = Trip.find_by(id: new_trip.id)
+      
+      # expect(new_trip.date).must_equal trip_hash[:trip][:date]
+      # expect(new_trip.rating).must_equal trip_hash[:trip][:rating]
+      
+      must_respond_with :redirect
+      must_redirect_to trip_path
+    end
+    
+    it "does not update any trip if given an invalid id, and responds with a 404" do
+      trip_hash = { 
+        trip: { 
+          date: Date.today + 1,
+          rating: 1,
+          cost: 10.00,
+          driver_id: 1,
+          passenger_id: 1
+        }
+      }
+      
+      expect {
+        patch trip_path(-20), params: trip_hash
+      }.must_differ "Trip.count", 0
+      
+      must_respond_with :not_found
     end
   end
   
   describe "destroy" do
-    it "" do
-      # Your tests go here
+    it "destroys the trip instance in db when trip exists, then redirects" do
+      id_to_delete = trip.id
+      
+      expect {
+        delete trip_path(id_to_delete)
+      }.must_differ "Trip.count", -1
+      
+      removed_trip = Trip.find_by(id: trip.id)
+      removed_trip.must_be_nil
+      
+      must_respond_with :redirect
+    end
+    
+    it "does not change the db when the trip does not exist, then responds with not found" do
+      nonexistent_id = -20
+      
+      expect {
+        delete trip_path(nonexistent_id)
+      }.must_differ "Trip.count", 0
+      
+      must_respond_with :not_found
     end
   end
 end

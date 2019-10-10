@@ -80,9 +80,7 @@ describe PassengersController do
       }
       
       post passengers_path, params: passenger_hash
-      must_respond_with :success      
-      
-      # must_redirect_with :render
+      must_respond_with :success
     end
   end
   
@@ -160,8 +158,6 @@ describe PassengersController do
       validity = passenger_to_update.update(name: "", phone_num: "Updated number")
       
       expect(validity).must_equal false
-      
-      # must_redirect_with :render
     end
   end
   
@@ -180,7 +176,7 @@ describe PassengersController do
       
     end
     
-    it "does not change the db when the passenger does not exist, then responds with " do
+    it "does not change the db when the passenger does not exist, then responds with redirect" do
       nonexistent_id = -20
       
       expect {

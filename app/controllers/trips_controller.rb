@@ -9,14 +9,15 @@ class TripsController < ApplicationController
   end
 
   def create
-    driver = Driver.find_by(active: false)
+    passenger = Passenger.find_by(id: params[:passenger_id])
+    driver = passenger.find_driver
 
     if driver.nil?
       head :not_found 
       return
     end
 
-    @trip = Trip.new(date: Date.today, rating: nil, cost: 13.00, driver_id: driver.id, passenger_id: params[:passenger_id])
+    @trip = Trip.new(date: Date.today, rating: nil, cost: 13.00, driver_id: driver.id, passenger_id: passenger.id)
     
     if @trip.save
       redirect_to trip_path(@trip.id)
@@ -37,28 +38,30 @@ class TripsController < ApplicationController
   
   def update
     @trip = Trip.find_by(id: params[:id])
+    
     if @trip.nil?
-      redirect_to root_path
+      head :not_found
       return
     elsif @trip.update(trip_params)
+      puts "trip updated"
       redirect_to trip_path(@trip.id)
       return
     else
-      render edit_trip_path
+      render :edit
+      puts "trip not updated"
       return
     end
   end
   
   def destroy
     selected_trip = Trip.find_by(id: params[:id])
-    trip_passenger = selected_trip.passenger
 
     if selected_trip.nil?
-      redirect_to passenger_path(trip_passenger.id)
+      head :not_found
       return
     else
       selected_trip.destroy
-      redirect_to passenger_path(trip_passenger.id)
+      redirect_to passenger_path(selected_trip.passenger.id)
       return
     end
   end

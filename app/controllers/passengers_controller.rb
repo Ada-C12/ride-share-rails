@@ -22,8 +22,10 @@ class PassengersController < ApplicationController
     
     if @passenger.save
       redirect_to passenger_path(@passenger.id)
+      return
     else
       render new_passenger_path
+      return
     end
   end
 
@@ -43,8 +45,10 @@ class PassengersController < ApplicationController
       return
     elsif @passenger.update(passenger_params)
       redirect_to passenger_path(@passenger.id)
+      return
     else
-      render new_passenger_path
+      render :edit
+      return
     end
   end
 
