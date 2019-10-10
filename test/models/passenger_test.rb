@@ -60,23 +60,11 @@ describe Passenger do
   describe "custom methods" do
     describe "total_amount_charged" do
     end
-<<<<<<< HEAD
-
-  #   describe "complete trip" do
-  #     # Your code here
-  #   end
-  #   # You may have additional methods to test here
-=======
     
     describe "request a ride" do
       # Your code here
     end
     
-    # describe "complete trip" do
-    #   # We were told to ignore this test.
-    # end
-    
     # You may have additional methods to test here
->>>>>>> 4e2b59d8876ef942382ab7c5948581545965adfb
   end
-end
+end 
