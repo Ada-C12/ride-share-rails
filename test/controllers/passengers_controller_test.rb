@@ -29,12 +29,12 @@ describe PassengersController do
       
       must_respond_with :success
     end
+
     it "responds with 404 with an invalid passenger id" do
       
       get passenger_path(-1)
       
-      must_respond_with :not_found
-      
+      must_respond_with :not_found  
     end
   end
   
@@ -89,7 +89,6 @@ describe PassengersController do
       get edit_passenger_path(1)
 
       must_respond_with :found
-      
     end
     
     it "responds with redirect when getting the edit page for a non-existing passenger" do
@@ -97,7 +96,6 @@ describe PassengersController do
 
       must_respond_with :redirect
     end
-    
   end
   
   describe "update" do
@@ -113,6 +111,7 @@ describe PassengersController do
         }
       }
     }
+
     it "can update an existing passenger with valid information accurately, and redirect" do
     
       id = Passenger.first.id
@@ -128,37 +127,26 @@ describe PassengersController do
     end
     
     it "does not update any passenger if given an invalid id, and responds with a 404" do
-      # Arrange
-      # Ensure there is an invalid id that points to no passenger
-      # Set up the form data
-      
-      # Act-Assert
-      # Ensure that there is no change in passenger.count
-      
-      # Assert
-      # Check that the controller gave back a 404
-      
-    end
-    
-    it "does not create a passenger if the form data violates passenger validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Ensure there is an existing passenger saved
-      # Assign the existing passenger's id to a local variable
-      # Set up the form data so that it violates passenger validations
-      
-      # Act-Assert
-      # Ensure that there is no change in passenger.count
-      
-      # Assert
-      # Check that the controller redirects
-      
+      id = -1
+
+      expect {
+        patch passenger_path(id), params: new_passenger_hash
+      }.wont_change "Passenger.count"
+
+      must_respond_with :redirect
     end
   end
   
   describe "destroy" do
-    
+    it "deletes an existing instance of a passenger and redirects to the root page" do
+      Passenger.create(name: "a name", phone_num: "new number")
+      existing_passenger_id = Passenger.find_by(name: "a name").id
+  
+      expect {
+        delete passenger_path( existing_passenger_id)
+      }.must_differ "Passenger.count", -1
+  
+      must_redirect_to root_path
+    end
   end
 end
-
-
