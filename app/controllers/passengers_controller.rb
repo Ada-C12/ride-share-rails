@@ -84,7 +84,11 @@ class PassengersController < ApplicationController
   
   def create_new_trip
     @passenger = Passenger.find(params[:id])
-    
+    if @passenger.nil?
+      redirect_to passengers_path
+      return
+    end 
+
     trip_info = {
       trip: {   
         driver_id: Driver.find_available_driver,
