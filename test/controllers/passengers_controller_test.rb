@@ -62,7 +62,9 @@ describe PassengersController do
         
         new_passenger = Passenger.find_by(name: passenger_hash[:passenger][:name])
         
+        
       end
+      
     end
     
   end
@@ -76,6 +78,26 @@ describe PassengersController do
   end
   
   describe "destroy" do
-    # Your tests go here
+    before do
+      # Comes pre-built with 16 passengers
+      @test_passenger_id = Passenger.first.id
+    end
+    
+    it "destroys passenger and redirects" do
+      expect {
+        delete passenger_path(@test_passenger_id)
+      }.must_differ "Passenger.count", -1
+      
+      must_respond_with :redirect
+    end
+    
+    it "will respond with 404 if attempting to delete invalid passenger and trip count will be unaffected" do
+      expect { delete passenger_path(-9) }.must_change "Passenger.count", 0
+      
+      must_respond_with :not_found
+    end
+    
+    
+    
+    
   end
-  # end

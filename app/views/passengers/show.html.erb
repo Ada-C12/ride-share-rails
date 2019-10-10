@@ -5,6 +5,7 @@
 
 <%= link_to "edit", edit_passenger_path(@passenger.id) %>
 <%= link_to "delete", passenger_path(@passenger.id), method: :delete %>
+<%= link_to "create a new trip", new_trip_path(@passenger.id), method: :delete %>
 
 <table>
   <p>trips</p>
