@@ -10,7 +10,7 @@ describe TripsController do
   let (:trip) {
     Trip.create date: 2019-10-10, driver_id: driver.id, passenger_id: passenger.id, cost: 123.0, rating: 4.0
   }
-
+  
   describe "index" do
     it "can get the index path" do
       get trips_path
@@ -52,9 +52,24 @@ describe TripsController do
     it "can create a new trip with valid information accurately, and redirect" do
       # Arrange
       # Set up the form data
+      # driver_hash = {
+      #   driver: {
+      #     name: "new driver",
+      #     vin: "VH1234SD234F0909",
+      #     active: true,
+      #     car_make: "Toyota",
+      #     car_model: "Sedan"
+      #   },
+      # }
+      # passenger_hash = {
+      #   passenger: {
+      #     name: "",
+      #     phone_num: "234.456.2345"
+      #   },
+      # }
       trip_hash = {
         trip: {
-          date: 2019-10-12,
+          date: Date.today,
           driver_id: driver.id,
           passenger_id: passenger.id,
           cost: 123.0,
@@ -84,7 +99,7 @@ describe TripsController do
   describe "edit" do
     # Your tests go here
     # get edit_trip_path(trip.id)
-      
+    
     # must_respond_with :success
   end
   

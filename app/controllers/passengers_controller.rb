@@ -12,6 +12,10 @@ class PassengersController < ApplicationController
     end
   end
 
+  def new
+    @passenger = Passenger.new
+  end
+
   def create
     @passenger = Passenger.new(passenger_params)
     if @passenger.save
@@ -19,10 +23,6 @@ class PassengersController < ApplicationController
     else
       render new_passenger_path
     end
-  end
-
-  def new
-    @passenger = Passenger.new
   end
 
   def edit
