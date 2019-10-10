@@ -15,7 +15,7 @@
 
 <% if @trip.date.nil? %>
   <%= f.label :date %>
-  <%= f.date_field :date %>
+  <%= f.date_field :date, :value => Time.now.strftime('%Y-%m-%d') %>
 <% else %>
 <%= hidden_field_tag 'date', @trip.date%>
 <%= f.hidden_field :date %>
