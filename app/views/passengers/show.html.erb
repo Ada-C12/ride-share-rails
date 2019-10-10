@@ -4,13 +4,13 @@
 
 <ul>
     <% @passenger.trips.each do |trip| %>
-    <li> <%= link_to trip, trip_path(trip.id) %> </li>
+    <li> <%= link_to trip.id, trip_path(trip.id), class:"link" %> </li>
     <% end %>
 </ul>
 
-<%= link_to "<button>Edit</button>".html_safe, edit_passenger_path(@passenger.id) %>
-<%= link_to "<button>Delete</button>".html_safe, passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure you want to delete this passenger?"}%>
+<%= link_to "<button>Edit</button>".html_safe, edit_passenger_path(@passenger.id), class:"link" %>
+<%= link_to "<button>Delete</button>".html_safe, passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure you want to delete this passenger?"}, class:"link" %>
 
-<p><%= link_to "See All Passengers", passengers_path %></p>
+<p><%= link_to "See All Passengers", passengers_path, class:"link" %></p>
 
-<p><%= link_to "Add Trip", passenger_trips_path(@passenger.id), method: :post %></p>
+<p><%= link_to "Add Trip", passenger_trips_path(@passenger.id), method: :post, class:"link" %></p>

@@ -6,7 +6,7 @@
 
 <ul>
     <% @driver.trips.each do |trip| %>
-    <li> <%= link_to trip, trip_path(trip) %> </li>
+    <li> <%= link_to trip.id, trip_path(trip), class:"link" %> </li>
     <% end %>
 </ul>
 </li>
@@ -18,10 +18,10 @@
      </li>
 </ul>
 
-<%= link_to "Edit Driver", edit_driver_path(@driver) %>
+<%= link_to "Edit Driver", edit_driver_path(@driver), class:"link" %>
 <br><br>
-<%= link_to "Delete Driver", driver_path(@driver), method: :delete, data: {confirm: "Please confirm!"} %>
+<%= link_to "Delete Driver", driver_path(@driver), class:"link", method: :delete, data: {confirm: "Please confirm!"} %>
 <br><br>
 <%= button_to 'Change Active Status', toggle_active_path(@driver), method: :put, data: {confirm: "Are you sure?"} %>
 <br><br>
-<%= link_to "See All Drivers", drivers_path %>
+<%= link_to "See All Drivers", drivers_path, class:"link" %>

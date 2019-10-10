@@ -20,13 +20,13 @@
 
 <p>Trip Cost: $<%= number_with_precision(@trip.cost, :precision => 2) %></p>
 
-<p>Rating: 
+<p>Rating:
   <% if @trip.rating == nil%>
-    <%= link_to 'Assign Rating', assign_rating_edit_path %>
+    <%= link_to 'Assign Rating', assign_rating_edit_path, class:"link" %>
   <% else %>
     <%= @trip.rating %>
   <% end %>
 </p>
 
-<p><%= link_to 'Edit', edit_trip_path %></p>
-<p><%= link_to 'Delete', trip_path, method: :delete, data: {confirm: "Delete trip"}%></p>
+<p><%= link_to 'Edit', edit_trip_path, class:"link" %></p>
+<p><%= link_to 'Delete', trip_path, method: :delete, data: {confirm: "Delete trip"}, class:"link" %></p>

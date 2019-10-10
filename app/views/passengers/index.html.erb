@@ -3,7 +3,7 @@
 <ul>
   <% @passengers.sort.each do |passenger|  %>
     <li>
-      <%= link_to passenger.name, passenger_path(passenger) %>
+      <%= link_to passenger.name, passenger_path(passenger), class:"link" %>
     </li>
   <% end %>
 </ul>
