@@ -144,8 +144,9 @@ describe PassengersController do
       ##### HOW DO I GET THE ACTUAL VALUE TO COMPARE????
     end
     
-    it "edge case" do
-      ####### TODO
+    it "will not send to total_spent.html if bogus passenger id" do
+      get total_spent_path(id: -666)
+      must_redirect_to nope_path(msg: "Passenger does not exist")
     end
   end
   

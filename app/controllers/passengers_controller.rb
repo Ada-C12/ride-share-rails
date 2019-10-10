@@ -57,7 +57,11 @@ class PassengersController < ApplicationController
   
   def total_spent
     @passenger = Passenger.find_by(id: params[:id])
-    @total_spent = @passenger.trips.sum(:cost)
+    if @passenger
+      @total_spent = @passenger.trips.sum(:cost)
+    else
+      redirect_to nope_path(params: {msg: "Passenger does not exist"})
+    end
   end
   
   private
