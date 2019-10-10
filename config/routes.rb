@@ -11,4 +11,5 @@ Rails.application.routes.draw do
     resources :trips, shallow: true
   end
   
+  get '/passengers/:id/total_spent', to: "passengers#total_spent", as: "total_spent"
 end

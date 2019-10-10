@@ -125,4 +125,15 @@ describe PassengersController do
       must_redirect_to nope_path(msg: "Cannot destroy a non-existent passenger record")
     end
   end
+  
+  describe "total_spent" do
+    it "will return correct $ total for valid passenger" do
+      assert(false)
+    end
+    
+    it "edge case" do
+      assert(false)
+    end
+  end
+  
 end

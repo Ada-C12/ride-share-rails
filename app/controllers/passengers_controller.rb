@@ -55,12 +55,10 @@ class PassengersController < ApplicationController
     end
   end
   
-  def request_trip
-    ###
-  end
-  
-  def rate_trip
-    ###
+  def total_spent
+    @passenger = Passenger.find_by(id: params[:id])
+    @total_spent = @passenger.trips.sum(:cost)
+    return @total_spent
   end
   
   private
