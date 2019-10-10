@@ -71,24 +71,39 @@ class TripsController < ApplicationController
       redirect_to nope_path(params: {msg: "No such trip exists!"})
       return
     else
-      #### STOPPED HERE
-      # pass on info to the radio button page
+      @trips = [@trip]
+      @rating = nil
     end
   end 
   
   def update
     # individual passenger uses this to update ratings
     @trip = Trip.find_by(id: params[:id])
+    driver_id = @trip.driver_id
+    passenger_id = @trip.passenger_id
+    rating = params[:rating].to_i
     
-    if @trip.nil?
-      redirect_to nope_path
+    if rating.nil?
+      redirect_to nope_path(params: {msg: "No rating given!"})
       return
-    elsif @trip.update(trip_params) ########
-      redirect_to trip_path(@trip.id)
+    elsif @trip.nil?
+      redirect_to nope_path(params: {msg: "No such trip exists!"})
       return
+    elsif @trip.update(rating: rating)
+      # need to flip driver.active back to false, so they can work again
+      driver = Driver.find_by(id: driver_id)
+      if driver.update(active: false)
+        redirect_to passenger_trips_path(passenger_id: passenger_id)
+        return
+      else
+        redirect_to nope_path(params: {msg: "Unable to switch driver.active back to false, please call customer service at 1-800-LOL-SORRY"})
+      end
     else
-      redirect_to nope_path
+      redirect_to nope_path(params: {msg: "Unable to update rating, please call customer service at 1-800-LOL-SORRY"})
+      return
     end
+    
+    
   end 
   
   def destroy
