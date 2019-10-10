@@ -188,7 +188,33 @@ describe TripsController do
   end
 
   describe "destroy" do
-    # Your tests go here
+    it "destroys the trip instance in the db when the trip exists, and redirects" do
+      trip = Trip.first
+      trip_id = trip.id
+      expect(Trip.count).must_be :>, 0
+
+      expect {
+        delete trip_path(trip_id)
+      }.must_differ "Trip.count", -1
+
+      assert_nil (Trip.find_by(id: trip_id))
+      must_respond_with :redirect
+      must_redirect_to root_path
+    end 
+
+    it "does not change the db when the trip does not exist, then responds with a 404" do
+      invalid_id = -1
+      expect(Trip.count).must_be :>, 0
+      assert_nil (Trip.find_by(id: invalid_id))
+
+      expect {
+        delete trip_path(invalid_id)
+      }.must_differ "Trip.count", 0
+
+      must_respond_with :not_found
+    end
+
+
   end
 
 end
