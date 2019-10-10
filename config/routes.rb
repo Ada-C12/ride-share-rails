@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'drivers#index', as: 'root'
-  # resources :passengers
+  root 'homepages#index'
+  get '/homepage', to: 'homepages#index', as: 'homepages'
   
-  # root 'homepage'
+  resources :passengers
   resources :drivers
+  resources :trips
   
   # get '/drivers', to: 'drivers#index', as: 'drivers'
   # get '/drivers/new', to: 'drivers#new', as: 'new_driver'
