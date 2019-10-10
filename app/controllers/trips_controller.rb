@@ -25,27 +25,37 @@ class TripsController < ApplicationController
   
   def new
     passenger_id = params[:passenger_id]
+    driver_id = params[:driver_id]
     @trip = Trip.new
+    
     if passenger_id.nil?
       @passengers = Passenger.all
     else
       @passengers = [Passenger.find_by(id: passenger_id)]
     end
-  end
-
-  def create 
-    # will not set params for price, rating. by leaving it blank, it'll default to nil
-
-    @trip = Trip.new( driver_id: driver_id, passenger_id: passenger_id, date: Time.now )
-
-    if @trip.save
-      redirect_to trip_path(@trip.id)
+    
+    if driver_id.nil? 
+      @drivers = Driver.all
     else
-      
-      render new_trip_path
+      @drivers = [Driver.find_by(active: nil)]
     end
   end
-
+  
+  def create 
+    # will not set params for price, rating. by leaving it blank, it'll default to nil
+    driver_id = params[:driver_id]
+    passenger_id = params[:passenger_id]
+    @trip = Trip.new( driver_id: driver_id, passenger_id: passenger_id, date: Time.now )
+    
+    if @trip.save
+      redirect_to trip_path(@trip.id)
+      return
+    else
+      render new_trip_path
+      return
+    end
+  end
+  
   private
   def trip_params
     return params.require(:trip).permit(:date, :cost, :rating, :driver_id, :passenger_id)

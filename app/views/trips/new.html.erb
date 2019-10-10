@@ -2,7 +2,7 @@
 
 <%= form_with model: @trip, class: "new-trip-form" do |f|%>
   <%= f.label :driver_id %>
-  <%= f.text_field :driver_id %>
+  <%= f.select :driver_id, @drivers.map{ |driver| [driver.name, driver.id]} %>
 
   <%= f.label :passenger_id %>
   <%= f.select :passenger_id, @passengers.map{ |passenger| [passenger.name, passenger.id]}%>
