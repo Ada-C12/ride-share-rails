@@ -67,7 +67,32 @@ describe Passenger do
 
     describe "find_passenger_trips" do
       it "returns all the trips from a specific passenger" do
+        passenger = Passenger.create(name: "Georgina", phone_num: "111-111-1211")
+        driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+        trip = Trip.new(driver_id: driver.id, 
+          passenger_id: passenger.id,
+          date: Time.now,
+          rating: nil,
+          cost: 100,)
+
+        trip.save
+
+        expect(passenger.find_passenger_trips.count).must_equal 1
+
+        # trip_info = {
+        #   trip: {   
+        #     driver_id: driver.id,
+        #     passenger_id: passenger.id,
+        #     date: Time.now,
+        #     rating: nil,
+        #     cost: 100,}
+        #   }
         
+        # expect {
+        #   post "/passengers/#{passenger.id}/create_new_trip", params: trip_info
+        # }.must_change "Trip.count", 1
+
+        # expect(passenger.id.find_passenger_trips).must_be :>, 0  
       end
     end
     
