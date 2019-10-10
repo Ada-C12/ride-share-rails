@@ -29,18 +29,19 @@ class PassengersController < ApplicationController
   def edit
     @passenger = Passenger.find_by(id: params[:id])
     if @passenger.nil?
-      redirect_to root_path
+      redirect_to passengers_path
       return
     end
   end
   
   def update
     @passenger = Passenger.find_by(id: params[:id])
-    if @passenger.update(passenger_params)
+    if @passenger 
+      @passenger.update(passenger_params)
       redirect_to passenger_path(@passenger.id)
       return
     else
-      redirect_to root_path
+      head :not_found 
       return
     end
   end
@@ -48,11 +49,11 @@ class PassengersController < ApplicationController
   def destroy
     found_passenger = Passenger.find_by(id: params[:id])
     if found_passenger.nil?
-      redirect_to root_path
+      redirect_to passengers_path
       return
     else
       found_passenger.destroy
-      redirect_to root_path
+      redirect_to passengers_path
       return
     end
   end
