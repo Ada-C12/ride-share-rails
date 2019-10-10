@@ -10,6 +10,7 @@ Phone Number: <%= @passenger.phone_num %><br>
 <%= link_to trip.date, trip_path(trip) %>
 <% end %>
 
+<%= @passenger.total_money_spent%>
 <br><br>
 <%= link_to "Edit", edit_passenger_path %>
 <%= link_to "Delete", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure you want to delete this passenger?"} %><br>
