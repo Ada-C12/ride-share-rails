@@ -1,0 +1,42 @@
+<section>
+  <h2>Update this Trip</h2>
+
+  <% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
+
+  <% if @trip.errors.any? %>
+    <ul class="errors">
+      <% @trip.errors.each do |column, message| %>
+        <li>
+          <strong><%= column.capitalize %></strong> <%= message %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= form_with model: @trip, class: "trip-form" do |f| %>
+    <h3>Please enter information to edit trip: </h3>
+
+    ID: <%= @trip.id %>
+
+    <%= f.hidden_field :date %>
+    <%= hidden_field_tag 'date', @trip.date  %>
+    Date: <%= @trip.date %>
+
+    <%= f.label :driver_name %>
+    <%= f.text_field :driver_name %>
+
+    <%= f.label :passenger_name %>
+    <%= f.text_field :passenger_name %>
+
+    <%= f.label :price %>
+    <%= f.number_field :price %>
+
+    <%= f.label :rating %>
+    <%= f.number_field :rating, in: 1..5 %>
+
+    <%= f.submit "Update Trip", class: "submit-button" %>
+  <% end %>
+
+</section>

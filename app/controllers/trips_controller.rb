@@ -45,11 +45,50 @@ class TripsController < ApplicationController
 end
 
 def edit
+  @trip = Trip.find_by(id: params[:id])
   
+  if @trip.nil?
+    redirect_to root_path
+    return
+  end
 end
 
 def update
+  @trip = Trip.find_by(id: params[:id])
   
+  if @trip.nil?
+    head :not_found
+    return
+  end
+  
+  if params[:driver_name].nil? || params[:passenger_name].nil? || params[:cost].nil?
+    flash[:notice] = "You must enter a value for all fields."
+    render :edit
+    return
+  end 
+  
+  driver = Driver.find_by(name: params[:driver_name])
+  passenger = Passenger.find_by(name: params[:passenger_name])
+  
+  if driver.nil?
+    flash[:notice] = "This driver is not in our system."
+    render :edit
+    return
+  end
+  
+  if passenger.nil?
+    flash[:notice] = "This passenger is not in our system."
+    render :edit
+    return
+  end
+  
+  if @trip.update(trip_params)
+    redirect_to trip_path(@trip.id)
+    return
+  else
+    render :edit
+    return
+  end
 end
 
 def destroy
@@ -65,6 +104,10 @@ def destroy
     return
   end
 end
+
+# def add_rating
+#add drop down if can
+# end
 
 private
 

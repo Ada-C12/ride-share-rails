@@ -65,7 +65,7 @@ describe TripsController do
       driver = Driver.create(name: "Bernardo Prosacco", vin: "WBWSS52P9NEYLVDE9")
       passenger = Passenger.create(name: "test person", phone_num: "1234567")
       
-      test_trip = Trip.create(driver_id: driver.id, passenger_id: passenger.id, cost: nil, date: DateTime.now, rating: nil)
+      test_trip = Trip.create(driver_id: driver.id, passenger_id: passenger.id, cost: 500, date: DateTime.now, rating: nil)
       
       expect {delete trip_path(test_trip.id)}.must_change "Trip.count", -1
       
