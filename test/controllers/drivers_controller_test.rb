@@ -71,19 +71,19 @@ describe DriversController do
       # Ensure there is an existing driver saved
       
       # Act
-      
+      get edit_driver_path(driver.id)
       # Assert
-      
+      must_respond_with :success
     end
     
     it "responds with redirect when getting the edit page for a non-existing driver" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
-      
+      driver_id = -1
       # Act
-      
+      get edit_driver_path(driver.id)
       # Assert
-      
+      must_respond_with :redirect
     end
   end
   
@@ -127,7 +127,7 @@ describe DriversController do
     must_redirect_to drivers_path
   end
   
-  it "does not create a driver If the form data violates Driver validations, and responds with a redirect" do
+  xit "does not create a driver If the form data violates Driver validations, and responds with a redirect" do
     # Note: This will not pass Until ActiveRecord Validations lesson
     # Arrange
     # Ensure there is an existing driver saved
@@ -146,16 +146,17 @@ describe "destroy" do
   it "destroys the driver instance in db when driver exists, then redirects" do
     # Arrange
     # Ensure there is an existing driver saved
-    
+    new_driver = Driver.create(name: "Bill Gates", vin: "234834978", make: "Toyota", model: "Prius")
     # Act-Assert
     # Ensure that there is a change of -1 in Driver.count
-    
+    expect { delete_driver_path(new_driver.id) }.must_change "Driver Count", -1
     # Assert
     # Check that the controller redirects
-    
+    must_respond_with :redirect
+    must_redirect_to drivers_path
   end
   
-  it "does not change the db when the driver does not exist, then responds with " do
+  xit "does not change the db when the driver does not exist, then responds with " do
     # Arrange
     # Ensure there is an invalid id that points to no driver
     
