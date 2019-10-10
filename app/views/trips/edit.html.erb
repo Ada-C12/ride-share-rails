@@ -1,0 +1,24 @@
+<h1>Edit this Trip</h1>
+
+<%= form_with model: @trip, class: "trip-form" do |f| %>
+  <p>Please complete the fields below to edit a trip. </p>
+
+  <%= f.label :date %>
+  <%= f.text_field :date%>
+  <br>
+  <%= f.label :rating %>
+  <%= f.text_field :rating %>
+  <br>
+  <%= f.label :cost %>
+  <%= f.text_field :cost %>
+  <br>
+  <%= f.label :passenger %>
+  <%= f.text_field :passenger %>
+  <br>
+  <%= @trip.driver.name %>
+  <br>
+  <%= f.label :driver %>
+  <%= f.text_field :driver %>
+  <br>
+  <%= f.submit "Update Trip", class: "trip-button" %>
+<% end %>

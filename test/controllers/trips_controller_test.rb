@@ -21,7 +21,7 @@ describe TripsController do
       test_trip = trip
       
       # Act
-      get trip_path(trip.id)
+      get trip_path(id: test_trip.id)
       
       # Assert
       must_respond_with :success
@@ -52,6 +52,32 @@ describe TripsController do
   end
   
   describe "destroy" do
-    # Your tests go here
+    it "destroys the trip instance in db when trip exists, then redirects" do
+      # Arrange
+      # Ensure there is an existing trip saved
+      test_trip = trip
+      
+      # Act-Assert
+      # Ensure that there is a change of -1 in Driver.count
+      expect{ delete trip_path(test_trip.id)}.must_differ "Trip.count", -1
+      
+      # Assert
+      # Check that the controller redirects
+      must_respond_with :redirect
+      
+    end
+    
+    it "does not change the db when the trip does not exist, then responds with " do
+      # Arrange
+      # Ensure there is an invalid id that points to no trip
+      
+      # Act-Assert
+      # Ensure that there is no change in Driver.count
+      expect{ delete trip_path(-1)}.wont_change "Trip.count"
+      
+      # Assert
+      # Check that the controller responds or redirects with whatever your group decides
+      must_respond_with :redirect
+    end
   end
 end
