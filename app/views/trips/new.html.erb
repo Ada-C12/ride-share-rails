@@ -1,1 +1,15 @@
 <h2>New Trip Form</h2>
+
+<%= form_with model: @trip, class: "new-trip-form" do |f|%>
+  <%= f.label :driver_id %>
+  <%= f.text_field :driver_id %>
+
+  <%= f.label :passenger_id %>
+  <%= f.select :passenger_id, @passengers.map{ |passenger| [passenger.name, passenger.id]}%>
+
+  <%= f.label :date %>
+  <%# HOW TO SHOW TIME.NOW IN THE TEXT FIELD?%>
+  <%= f.text_field :date%>
+
+  <%= f.submit "Create a Trip", class: "trip-form-button" %>
+<% end %>
