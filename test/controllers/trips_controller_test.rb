@@ -135,9 +135,12 @@ describe TripsController do
       it "will update rating AND switch driver back to active:false" do
         # verify starting conditions
         assert(driver1.active == false)
+        puts "WTF..."
         trip1
         updated_driver1 = Driver.find_by(id: driver1.id)
+        puts trip1.attributes
         puts updated_driver1.attributes
+        puts "WTF!!!"
         assert(updated_driver1.active)
         # assert(trip1.rating == nil)
         

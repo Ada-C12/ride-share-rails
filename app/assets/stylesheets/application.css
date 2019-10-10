@@ -40,9 +40,9 @@ nav ul a {
 }
 
  footer {
-   background-color: burlywood;
-   text-align: center;
-   margin: 1.5rem 0;
+  background-color: burlywood;
+  text-align: center;
+  margin: 1.5rem 0;
  }
 
  .msg {
@@ -51,7 +51,11 @@ nav ul a {
  }
 
  .trips_grid {
-   display: grid;
-   grid-template-columns: 1fr 2fr 1fr 2fr 1fr 2fr 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 2fr 1fr 2fr 1fr 1fr;
  }
  
+ .trips_grid_with_delete {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 2fr 1fr 2fr 1fr 1fr 1fr;
+}

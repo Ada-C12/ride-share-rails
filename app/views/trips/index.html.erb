@@ -1,4 +1,14 @@
-<h1>TRIPS index</h1>
+<% if @passenger %>
+  <h1>TRIPS for <%= @passenger.name.titleize %></h1>
+  <%= render partial: "trips_table_with_delete" %>
+<% else %>
+  <% if @driver %>
+  <h1>TRIPS for <%= @driver.name.titleize %></h1>
+  <% else %>
+  <h1>ALL TRIPS</h1>
+  <% end %>
+  <%= render partial: "trips_table" %>
+<% end %>
 
-<%= render partial: "trips_table" %>
+
 

@@ -43,12 +43,13 @@ class TripsController < ApplicationController
     if @driver.nil?
       redirect_to nope_path(params: {msg: "No drivers available, maybe you should walk"})
       return
-    elsif @driver.active == false
-      
+    else
       # flip @driver.active to true.  
       unless @driver.update(active: true)
         redirect_to nope_path(params: {msg: "Unexpected error, please call customer service at 1-800-LOL-SORRY"})
+        return
       end   
+      puts "DOUBLE CHECK flipped to true? #{@driver.active}"
       # When do we flip it back to false? Normally we'd do that when GPS hits destination...
       # For this project, we'll flip it when passenger rates the trip.
     end   
@@ -78,7 +79,6 @@ class TripsController < ApplicationController
   end 
   
   def update
-    puts "DID THIS RUN?"
     # individual passenger uses this to update ratings
     @trip = Trip.find_by(id: params[:id])
     driver_id = @trip.driver_id
@@ -95,7 +95,6 @@ class TripsController < ApplicationController
       # need to flip driver.active back to false, so they can work again
       driver = Driver.find_by(id: driver_id)
       if driver.update(active: false)
-        puts "SHOULD HAVE UPDATED HERE: #{@trip.rating}"
         redirect_to passenger_trips_path(passenger_id: passenger_id)
         return
       else
