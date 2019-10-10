@@ -47,7 +47,7 @@ describe DriversController do
     end
   end
 
-       # Arrange
+  # Arrange
       # Ensure that there is an id that points to no driver
       # get passenger_path(-1)
       # # Act
@@ -88,7 +88,6 @@ describe DriversController do
       # Find the newly created Driver, and check that all its attributes match what was given in the form data
       # Check that the controller redirected the user
     end
-  end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
       # Note: This will not pass until ActiveRecord Validations lesson
@@ -199,3 +198,4 @@ describe DriversController do
     end
   end
 end
+

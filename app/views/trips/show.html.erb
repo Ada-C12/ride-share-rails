@@ -30,7 +30,7 @@
                 <td><%= @trip.date%></td>
                 <td><%= @trip.driver_id%></td>
                 <td><%= @trip.passenger_id%></td>
-                <td><%= @trip.cost%></td>
+                <td><%= sprintf('%.2f', @trip.cost * 0.01)%></td>
                 <td><%= @trip.rating%></td>
                 <td><%= button_to "Delete", trip_path(@trip.id), class: 'btn', method: :delete, data: { confirm: "Are YOU sure?" } %></td>
             </tr>
