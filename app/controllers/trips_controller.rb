@@ -61,16 +61,16 @@ def update
     return
   end
   
-  if params[:driver_name].nil? || params[:passenger_name].nil? || params[:cost].nil?
+  if params[:trip][:driver_name].blank? || params[:trip][:passenger_name].blank? || params[:trip][:cost].blank?
     flash[:notice] = "You must enter a value for all fields."
     render :edit
     return
   end 
   
-  driver = Driver.find_by(name: params[:driver_name])
-  passenger = Passenger.find_by(name: params[:passenger_name])
+  driver = Driver.find_by(name: params[:trip][:driver_name])
+  passenger = Passenger.find_by(name: params[:trip][:passenger_name])
   
-  if driver.nil?
+  if driver.nil? 
     flash[:notice] = "This driver is not in our system."
     render :edit
     return
@@ -81,6 +81,9 @@ def update
     render :edit
     return
   end
+  
+  @trip.driver_id = driver.id
+  @trip.passenger_id = passenger.id
   
   if @trip.update(trip_params)
     redirect_to trip_path(@trip.id)
