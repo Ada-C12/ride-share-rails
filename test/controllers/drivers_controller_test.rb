@@ -112,9 +112,13 @@ describe DriversController do
     expect {
     post drivers_path, params: driver_hash}.wont_change "Driver.count"
     
+    <<<<<<< HEAD
     if @driver
       must_render_template :new
     end
+    =======
+    must_respond_with :success
+    >>>>>>> a6f580a672f8051be458907903ea20ac0a126f49
     # Assert
     # Check that the controller redirects
     
@@ -199,11 +203,9 @@ describe "update" do
     
     # Assert
     # Check that the controller gave back a 404
-    # must_redirect_to :redirect
     if @driver = nil
       must_respond_with :not_found
     end
-    
   end
   
   it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do

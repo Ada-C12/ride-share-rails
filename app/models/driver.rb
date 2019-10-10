@@ -10,4 +10,9 @@ class Driver < ApplicationRecord
   def self.alpha_drivers
     return Driver.order(name: :asc)
   end 
+  
+  def self.find_available
+    return rand(Driver.all.select { |driver| 
+    driver.active == false} )
+  end 
 end

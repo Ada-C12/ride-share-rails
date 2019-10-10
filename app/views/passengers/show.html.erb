@@ -2,7 +2,7 @@
 
 <h3>Trips Taken</h3>
 <% @passenger.trips.each do |trip| %>
-  Date: <%= trip.date %>, Rating: <%= trip.rating %>, Cost: <%= trip.cost %>, Driver: <%= trip.driver.name %>
+  Date: <%= trip.date %>, Rating: <%= "⭐" * trip.rating.to_i %> Cost: <%= trip.cost %>, Driver: <%= trip.driver.name %>
   <br>
 <% end %>
 

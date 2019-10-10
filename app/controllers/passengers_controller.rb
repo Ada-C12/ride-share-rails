@@ -1,6 +1,10 @@
 class PassengersController < ApplicationController
   def index
     @passengers = Passenger.all
+    if @passengers.nil?
+      head :not_found
+      return
+    end 
   end 
   
   def show
@@ -20,7 +24,7 @@ class PassengersController < ApplicationController
   def create 
     @passenger = Passenger.new(passenger_params)
     if @passenger.save 
-      redirect_to root_path
+      redirect_to passengers_path
       return 
     else 
       render :new
@@ -53,7 +57,7 @@ class PassengersController < ApplicationController
     passenger_id = params[:id]
     @passenger = Passenger.find_by(id: passenger_id)
     
-    if passenger.nil? 
+    if @passenger.nil? 
       head :not_found
       return
     end 
