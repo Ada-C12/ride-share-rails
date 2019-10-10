@@ -1,22 +1,24 @@
 <h1>Trips Index Page</h1>
 
-<section>
-  <h2>List of all Trips
-  <% if @driver %>
-      driven by <%= @driver.name %>
-  <% else @passenger %>
-      roden by <%= @passenger.name %> 
+<h2>List of all Trips</h2>
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Rating</th>
+    <th>Cost</th>
+    <th>Roden By</th>
+    <th>Droven By</th>
+    <th>Edit</th>
+  </tr>
+  <%@trips.each do |trip|%>
+  <tr>
+    <td><%=trip.date%></td>
+    <td><%=trip.rating%></td>
+    <td><%=trip.cost%></td>
+    <td><%=trip.passenger.name%></td>
+    <td><%=trip.driver.name%></td>
+    <th><%= link_to "Edit Trip", edit_trip_path(trip.id) %></th>
+  </tr>
   <% end %>
-  </h2>
-  
-  <ul>
-    <% @trips.each do |trip| %>
-      <li>
-        Driven by: <%= trip.driver.name %>
-      </li>
-      <li>
-        Rode by: <%= trip.passenger.name %>
-      </li>
-    <% end %>
-  </ul>
-</section>
+</table>
