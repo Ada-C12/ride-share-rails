@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :drivers, except: [:update]
   patch '/drivers/:id', to: 'drivers#update'
+  put '/drivers/:id/active', to: 'drivers#toggle_active', as: 'toggle_active'
 
   resources :passengers, except: [:update] do
     resources :trips, only: [:create]
