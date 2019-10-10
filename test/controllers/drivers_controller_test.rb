@@ -115,6 +115,7 @@ describe DriversController do
       get edit_driver_path(-1)
       # Assert
       must_respond_with :redirect
+      must_redirect_to drivers_path
     end
   end
 
@@ -144,6 +145,7 @@ describe DriversController do
 
       # Check that the controller redirected the user
       must_respond_with :redirect
+      must_redirect_to driver_path(find_driver.id)
     end
 
     it "does not update any driver if given an invalid id, and responds with a 404" do
@@ -190,6 +192,7 @@ describe DriversController do
       # Assert
       # Check that the controller redirects
       must_respond_with :redirect
+      must_redirect_to drivers_path
     end
   end
 
@@ -208,6 +211,7 @@ describe DriversController do
       # Assert
       # Check that the controller redirects
       must_respond_with :redirect
+      must_redirect_to drivers_path
     end
 
     it "does not change the db when the driver does not exist, then responds with " do
@@ -238,6 +242,7 @@ describe DriversController do
       find_driver_again = Driver.find_by(id: driver.id)
       expect(find_driver_again.active).must_be_nil
       must_respond_with :redirect
+      must_redirect_to driver_path(driver.id)
     end
 
     it "doesn't change the driver's status if giving an invalid id and redirect" do
@@ -250,6 +255,7 @@ describe DriversController do
       find_driver_again = Driver.find_by(id: driver.id)
       expect(find_driver_again.active).must_equal true
       must_respond_with :redirect
+      must_redirect_to drivers_path
     end
   end
 
@@ -264,6 +270,7 @@ describe DriversController do
       find_driver_again = Driver.find_by(id: driver.id)
       expect(find_driver_again.active).must_equal true
       must_respond_with :redirect
+      must_redirect_to driver_path(driver.id)
     end
 
     it "doesn't change the driver's status if giving an invalid id and redirect" do
@@ -276,6 +283,7 @@ describe DriversController do
       find_driver_again = Driver.find_by(id: driver.id)
       expect(find_driver_again.active).must_be_nil
       must_respond_with :redirect
+      must_redirect_to drivers_path
     end
   end
 end
