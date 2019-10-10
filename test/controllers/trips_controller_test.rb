@@ -69,7 +69,7 @@ describe TripsController do
   
   describe "edit" do
     it "" do
-      # Your tests go here
+      # Your tests go here 
     end
   end
   
