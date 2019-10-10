@@ -1,3 +1,4 @@
+<div class="form-input">
 <h3>Add a New Driver</h3>
 
 <% if @driver.errors.any? %>
@@ -17,13 +18,14 @@
   <%= f.label "VIN:" %>
   <%= f.text_field :vin %>
   <br>
-  <%= f.label "Car Make:" %>
-  <%= f.text_field :car_make %>
+  <%# <%= f.label "Car Make:" %>
+  <%# <%= f.text_field :car_make %> 
   <br>
-  <%= f.label "Car Model:" %>
-  <%= f.text_field :car_model %>
+  <%# <%= f.label "Car Model:" %> 
+  <%# <%= f.text_field :car_model %> 
   <br>
   <%= f.submit "Create New Driver"%>
 <% end %>
-
+<br>
 <%= link_to "Back to Driver List", drivers_path%>
+</div>
