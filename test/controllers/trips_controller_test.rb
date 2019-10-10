@@ -116,11 +116,29 @@ describe TripsController do
   end
   
   describe "edit" do
-    # WORKING ON IT!
+    it "Will send to edit page for valid trip_id" do
+      get edit_trip_path(id: trip1.id)
+      must_respond_with :success
+    end
+    
+    it "Will send to nope_path for invalid trip_id" do
+      get edit_trip_path(id: -666)
+      must_redirect_to nope_path(msg: "No such trip exists!")
+    end
   end
   
   describe "update" do
     # WORKING ON IT!
+    describe "only passengers get to update" do
+      it "will update rating AND switch driver back to active:false" do
+      end
+      
+      it "" do
+      end
+    end
+    
+    describe "cannot update from main Trip index page" do
+    end
   end
   
   describe "destroy" do
