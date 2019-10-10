@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :drivers
   resources :trips
   
-  root 'books#index'
+  #root 'books#index'
   
   # resources :books #, except: [:index]
   
