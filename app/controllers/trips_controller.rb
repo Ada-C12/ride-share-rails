@@ -19,11 +19,19 @@ class TripsController < ApplicationController
   def show
     trip_id = params[:id].to_i
     @trip = Trip.find_by(id: trip_id)
-    if @trip.nil?
-      redirect_to nope_path(params: {msg: "No such trip exists!"})
-      return
-    end
-  end 
+    
+    if @trip.nil? 
+      if params[:id] == "new"
+        # trying to request new trips via /trips/new? even though routes blocked? nice try!
+        redirect_to nope_path(params: {msg: "Only passengers can request/create trips!"})
+        return
+      else
+        # trying to request new trips 
+        redirect_to nope_path(params: {msg: "No such trip exists!"})
+        return
+      end
+    end 
+  end
   
   def create
     @trip = Trip.new(trip_params)
@@ -31,6 +39,7 @@ class TripsController < ApplicationController
       redirect_to trip_path(@trip.id)
       return
     else
+      # bad passenger_id triggers this
       redirect_to nope_path(params: {msg: "Trip request unsuccessful, please contact customer service at 1-800-lol-sorry"})
       return
     end

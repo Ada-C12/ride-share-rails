@@ -11,7 +11,7 @@
   <section class="header_row"><%= "RATING" %></section>
   
   <% @trips.each do |trip|%>
-    <section><%= trip.id%></section>
+    <section><%= link_to trip.id, trip_path(id: trip.id) %></section>
     <section><%= display_date(trip.date.getlocal)%></section>
     <section><%= trip.driver_id%></section>
     <section>Driver Name here</section>
