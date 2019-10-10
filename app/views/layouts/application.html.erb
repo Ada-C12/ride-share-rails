@@ -10,6 +10,20 @@
   </head>
 
   <body>
+      <nav>
+      <ul>
+        <li>
+          <%# update this later to go to root_path instead after homepage is merged %>
+          <%= link_to "Home!", drivers_path %>
+        </li>
+        <li>
+          <%= link_to "Go to the Drivers Index Page", drivers_path %>
+        </li>
+        <li>
+          <%= link_to "Add new driver", new_driver_path %>
+        </li>
+      </ul>
+    </nav>
     <%= yield %>
   </body>
 </html>
