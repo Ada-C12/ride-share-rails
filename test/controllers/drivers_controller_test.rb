@@ -92,11 +92,13 @@ describe DriversController do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
       # Ensure there is an existing driver saved
+      driver = Driver.create
       
       # Act
+      get edit_driver_path(driver.id)
       
       # Assert
-      
+      must_respond_with :success
     end
     
     it "responds with redirect when getting the edit page for a non-existing driver" do
@@ -104,9 +106,9 @@ describe DriversController do
       # Ensure there is an invalid id that points to no driver
       
       # Act
-      
+      get edit_driver_path(-1)
       # Assert
-      
+      must_respond_with :redirect
     end
   end
   
@@ -116,14 +118,16 @@ describe DriversController do
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
       # Set up the form data
-      
+      id = Driver.create.id
+      params = { driver: { vin: -1 } }
       # Act-Assert
       # Ensure that there is no change in Driver.count
-      
+      expect{ patch driver_path(id), params: params }.wont_change "Driver.count"
       # Assert
       # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
       # Check that the controller redirected the user
-      
+      expect(Driver.find(id).vin.to_i).must_equal params.dig(:driver, :vin)
+      must_respond_with :redirect
     end
     
     it "does not update any driver if given an invalid id, and responds with a 404" do

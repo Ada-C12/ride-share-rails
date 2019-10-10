@@ -13,13 +13,25 @@ class DriversController < ApplicationController
  end
 
  def create
-   Driver.create(driver_params)
+   driver = Driver.create(driver_params)
+   redirect_to driver_path(driver.id)
  end
 
  def destroy
    driver = Driver.find_by(id: params[:id])
    driver.destroy
    redirect_to drivers_path
+ end
+
+ def edit
+   @driver = Driver.find_by(id: params[:id])
+   return redirect_to drivers_path unless @driver
+ end
+
+ def update
+   driver = Driver.find_by(id: params[:id])
+   driver.update(driver_params)
+   redirect_to driver_path(driver.id)
  end
 
  private

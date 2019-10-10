@@ -1,0 +1,11 @@
+<%= form_with model: @driver do |f| %>
+  <fieldset>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :vin %>
+    <%= f.text_field :vin %>
+
+    <%= f.submit "update driver" %>
+  </fieldset>
+<% end %>
