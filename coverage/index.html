@@ -14,26 +14,26 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2019-10-09T21:26:19-07:00">2019-10-09T21:26:19-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2019-10-09T22:19:04-07:00">2019-10-09T22:19:04-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">78.05%</span></span>
+    (<span class="covered_percent"><span class="red">79.78%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.6
+         1.61
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>8</b> files in total.
-    <b>82</b> relevant lines. 
-    <span class="green"><b>64</b> lines covered</span> and
+    <b>89</b> relevant lines. 
+    <span class="green"><b>71</b> lines covered</span> and
     <span class="red"><b>18</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -82,12 +82,12 @@
       
       <tr>
         <td class="strong"><a href="#2be20d9442e544c6129752cbf1de76832dfe115c" class="src_link" title="app/controllers/trips_controller.rb">app/controllers/trips_controller.rb</a></td>
-        <td class="red strong">52.63 %</td>
-        <td>81</td>
-        <td>38</td>
-        <td>20</td>
+        <td class="red strong">60.0 %</td>
+        <td>93</td>
+        <td>45</td>
+        <td>27</td>
         <td>18</td>
-        <td>1.1</td>
+        <td>1.2</td>
       </tr>
       
       <tr>
@@ -139,19 +139,19 @@
           <div class="file_list_container" id="Controllers">
   <h2>
     <span class="group_name">Controllers</span>
-    (<span class="covered_percent"><span class="red">76.92%</span></span>
+    (<span class="covered_percent"><span class="red">78.82%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.63
+         1.64
        </span>
     </span> hits/line)
   </h2>
   <a name="Controllers"></a>
   <div>
     <b>4</b> files in total.
-    <b>78</b> relevant lines. 
-    <span class="green"><b>60</b> lines covered</span> and
+    <b>85</b> relevant lines. 
+    <span class="green"><b>67</b> lines covered</span> and
     <span class="red"><b>18</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -200,12 +200,12 @@
       
       <tr>
         <td class="strong"><a href="#2be20d9442e544c6129752cbf1de76832dfe115c" class="src_link" title="app/controllers/trips_controller.rb">app/controllers/trips_controller.rb</a></td>
-        <td class="red strong">52.63 %</td>
-        <td>81</td>
-        <td>38</td>
-        <td>20</td>
+        <td class="red strong">60.0 %</td>
+        <td>93</td>
+        <td>45</td>
+        <td>27</td>
         <td>18</td>
-        <td>1.1</td>
+        <td>1.2</td>
       </tr>
       
     </tbody>
@@ -1007,10 +1007,10 @@
         <div class="source_table" id="2be20d9442e544c6129752cbf1de76832dfe115c">
   <div class="header">
     <h3>app/controllers/trips_controller.rb</h3>
-    <h4><span class="red">52.63 %</span> covered</h4>
+    <h4><span class="red">60.0 %</span> covered</h4>
     <div>
-      <b>38</b> relevant lines. 
-      <span class="green"><b>20</b> lines covered</span> and
+      <b>45</b> relevant lines. 
+      <span class="green"><b>27</b> lines covered</span> and
       <span class="red"><b>18</b> lines missed.</span>
     </div>
   </div>
@@ -1426,79 +1426,151 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="69">
+        <li class="covered" data-hits="1" data-linenumber="69">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  # def update</code>
+          <code class="ruby">  def update</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="70">
+        <li class="covered" data-hits="3" data-linenumber="70">
+          <span class="hits">3</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">    @trip = Trip.find_by(id: params[:id])</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="71">
+        <li class="covered" data-hits="3" data-linenumber="71">
+          <span class="hits">3</span>
           
-          
-          <code class="ruby">  # end</code>
+          <code class="ruby">    if @trip.nil?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="72">
+        <li class="covered" data-hits="1" data-linenumber="72">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">      head :not_found</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="73">
           
           
-          <code class="ruby">  # def delete</code>
+          <code class="ruby">      return</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="74">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    else</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="75">
+        <li class="covered" data-hits="2" data-linenumber="75">
+          <span class="hits">2</span>
           
-          
-          <code class="ruby">  # end</code>
+          <code class="ruby">      if @trip.update(trip_params)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="76">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="77">
+        <li class="covered" data-hits="1" data-linenumber="76">
           <span class="hits">1</span>
           
-          <code class="ruby">  private</code>
+          <code class="ruby">        redirect_to trip_path(@trip.id)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="78">
+        <li class="never" data-hits="" data-linenumber="77">
+          
+          
+          <code class="ruby">        return</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="78">
+          
+          
+          <code class="ruby">      else</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="79">
           <span class="hits">1</span>
           
-          <code class="ruby">  def trip_params</code>
-        </li>
-      
-        <li class="covered" data-hits="5" data-linenumber="79">
-          <span class="hits">5</span>
-          
-          <code class="ruby">    return params.require(:trip).permit(:date, :rating, :cost, :passenger_id, :driver_id)</code>
+          <code class="ruby">        render :edit</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="80">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">        return</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="81">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="82">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="83">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="84">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="85">
+          
+          
+          <code class="ruby">  # def delete</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="86">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="87">
+          
+          
+          <code class="ruby">  # end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="88">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="89">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  private</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="90">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def trip_params</code>
+        </li>
+      
+        <li class="covered" data-hits="7" data-linenumber="91">
+          <span class="hits">7</span>
+          
+          <code class="ruby">    return params.require(:trip).permit(:date, :rating, :cost, :passenger_id, :driver_id)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="92">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="93">
           
           
           <code class="ruby">end</code>

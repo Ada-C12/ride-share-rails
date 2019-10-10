@@ -13,7 +13,7 @@ Trips</h2>
   <% @trips.order(date: :desc).each do |trip| %>
     <li>
       <%# Need to figure out method to display cost in dollars, not cents! %>
-      <%= link_to trip.date, trip_path(trip.id) %>
+      ID# <%= link_to trip.id, trip_path(trip.id) %> | Date: <%= trip.date %>
     </li>
   <% end %>
 </ul>

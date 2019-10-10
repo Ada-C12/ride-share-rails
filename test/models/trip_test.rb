@@ -64,6 +64,14 @@ describe Trip do
 
   # Tests for methods you create should go here
   describe "custom methods" do
-    # Your tests here
+    describe "convert_cost_to_dollars" do
+      it "accurately converts cost from cents to dollars" do
+        @trip.save
+        trip = Trip.find_by(id: @trip.id)
+
+        expect(trip.cost_to_dollars).must_be_close_to 7.40, 0.01
+      end
+    end
+
   end
 end

@@ -66,9 +66,21 @@ class TripsController < ApplicationController
     end
   end
 
-  # def update
-
-  # end
+  def update
+    @trip = Trip.find_by(id: params[:id])
+    if @trip.nil?
+      head :not_found
+      return
+    else
+      if @trip.update(trip_params)
+        redirect_to trip_path(@trip.id)
+        return
+      else
+        render :edit
+        return
+      end
+    end
+  end
 
   # def delete
 
