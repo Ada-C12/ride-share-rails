@@ -3,7 +3,7 @@
 </header>
 
 <section class="show-details">
-  <h2><%=@passenger.phone_num%></h2>
+  <h2>Phone #<%=@passenger.phone_num%></h2>
   <section class="button">
     <%= link_to "Edit", edit_passenger_path(@passenger.id) %>
     <%= link_to "Delete", passenger_path(@passenger.id), method: :delete, data: { confirm: "Are you sure you want to delete this passenger?" }, class: "index-delete-link" %>
@@ -18,10 +18,18 @@
       <h3>Passenger has 0 trips</h3>
     <% else %>
       <h3>Passenger Trips: </h3>
-      <h4>Driver(s)</h4>
+      <ul>
+        <li><h4>Date</h4></li>
+        <li><h4>Driver</h4></li>
+        <li><h4>Cost</h4></li>
+        <li><h4>Rating</h4></li>
+      </ul>
       <ul>
         <% @passenger.trips.each do |trip| %>
-          <li><%= link_to trip.driver.name, trip_path(trip.id)%></li>
+          <li><%=link_to trip.date, trip_path(trip.id)%></li>
+          <li><%=link_to trip.driver.name, driver_path(trip.driver.id)%></li>
+          <li><%=trip.cost%></li>
+          <li><%=trip.rating%></li>
         <% end %>
       </ul>
     <% end %>
