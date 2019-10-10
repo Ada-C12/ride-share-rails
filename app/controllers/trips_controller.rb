@@ -10,6 +10,7 @@ class TripsController < ApplicationController
     elsif @passenger
       # showing trips for a specific passenger
       @trips = Trip.where(passenger_id: @passenger.id)
+      @can_rate = true
     else
       # just showing all Trips table for all passengers
       @trips = Trip.all
@@ -31,10 +32,28 @@ class TripsController < ApplicationController
         return
       end
     end 
+    
+    # this way I can use _trips_table.html.erb for single entry too
+    @trips = [@trip]
   end
   
   def create
-    @trip = Trip.new(trip_params)
+    # find available driver
+    @driver = Driver.find_by(active: false)
+    if @driver.nil?
+      redirect_to nope_path(params: {msg: "No drivers available, maybe you should walk"})
+      return
+    else
+      # flip @driver.active to true.  
+      unless @driver.update(active: true)
+        redirect_to nope_path(params: {msg: "Unexpected error, please call customer service at 1-800-LOL-SORRY"})
+      end   
+      # When do we flip it back to false? Normally we'd do that when GPS hits destination...
+      # For this project, we'll flip it when passenger rates the trip.
+    end   
+    
+    # make new trip
+    @trip = Trip.new(date: params[:date], rating: nil, cost: 100, driver_id: @driver.id, passenger_id: params[:passenger_id])
     if @trip.save
       redirect_to trip_path(@trip.id)
       return
@@ -48,10 +67,12 @@ class TripsController < ApplicationController
   def edit
     # individual passenger uses this to update ratings
     @trip = Trip.find_by(id:params[:id])
-    
     if @trip.nil?
-      redirect_to root_path
+      redirect_to nope_path(params: {msg: "No such trip exists!"})
       return
+    else
+      #### STOPPED HERE
+      # pass on info to the radio button page
     end
   end 
   
@@ -62,7 +83,7 @@ class TripsController < ApplicationController
     if @trip.nil?
       redirect_to nope_path
       return
-    elsif @trip.update(trip_params)
+    elsif @trip.update(trip_params) ########
       redirect_to trip_path(@trip.id)
       return
     else
@@ -84,10 +105,16 @@ class TripsController < ApplicationController
     end
   end 
   
-  private
   
-  def trip_params
-    return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
-  end
+  
+  ################ MOMO CHECK IT OUT ################
+  # private
+  ### I DON'T THINK WE WILL NEED THIS B/C ...
+  # 1. RATING AND COST ARE DEFAULTED VALUES
+  # 2. DRIVER_ID IS HAS TO BE DETERMINED HERE, NOT FROM params
+  # 3. ONLY DATE AND PASSENGER_ID ARE FROM PARAMS, AND I THINK MIXING 2 DIFF ORIGINS OF PARAMS IS GONNA BE A MESS FOR US
+  # def trip_params
+  #   return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
+  # end
   
 end
