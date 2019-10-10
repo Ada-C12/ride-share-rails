@@ -14,9 +14,9 @@
     <section><%= link_to trip.id, trip_path(id: trip.id) %></section>
     <section><%= display_date(trip.date.getlocal)%></section>
     <section><%= trip.driver_id%></section>
-    <section>Driver Name here</section>
+    <section><%= get_driver_name_from_id(trip.driver_id)%></section>
     <section><%= trip.passenger_id%></section>
-    <section>Passenger Name here</section>
+    <section><%= get_passenger_name_from_id(trip.passenger_id)%></section>
     <section><%= usd(trip.cost)%></section>
     <section><%= trip.rating%></section>
   <% end %>

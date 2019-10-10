@@ -55,6 +55,7 @@ class TripsController < ApplicationController
   end
   
   def edit
+    # individual passenger uses this to update ratings
     @trip = Trip.find_by(id:params[:id])
     
     if @trip.nil?
@@ -64,7 +65,7 @@ class TripsController < ApplicationController
   end 
   
   def update
-    # Use this to update ratings
+    # individual passenger uses this to update ratings
     @trip = Trip.find_by(id: params[:id])
     
     if @trip.nil?
