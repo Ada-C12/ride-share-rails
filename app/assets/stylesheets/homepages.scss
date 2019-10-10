@@ -1,3 +1,56 @@
 // Place all the styles related to the Homepages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// BASE
+
+$pink: rgb(255,0,191);
+
+.homepage {
+  height: 60vh;
+  width: 100%;
+  margin: auto;
+  margin-top: 2rem;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.homepage > a {
+  text-align: center;
+  font-size: 3em;
+  color: white;
+
+  background-color: $pink;
+  padding: 2rem;
+  width: max-content;
+  margin: auto;
+
+  // shades of $pink from: https://www.htmlcsscolor.com/hex/FF00BF
+  box-shadow: 0.05em 0.05em 0.05em #FF7DDE inset, 0.05em 0.05em 0.05em #CC0099;
+}
+
+@media only screen and (max-width: 600px) {
+  .homepage > a {
+    font-size: 2em;
+    margin: 2em;
+  }
+}
+
+// EFFECTS
+
+.homepage > *:hover {
+  color: $pink;
+
+  background-color: white;
+  border: 0.2em solid $pink;
+
+  box-shadow: 0 0.1em 0.3em #CC0099;
+}
+
+.homepage > *:active {
+  transform: translateY(0.5rem);
+}
