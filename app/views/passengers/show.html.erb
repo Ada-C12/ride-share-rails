@@ -8,7 +8,7 @@
 <% @passenger.trips.each do |trip| %>
 <h2>Trip ID: <%= trip.id %></h2>
 <h3>Date: <%= trip.date %></h3>
-<h3>Driver ID: <%= trip.driver.id %></h3>
+<h3>Driver: <%= trip.driver.name %></h3>
 <h3>Rating: <%= trip.rating %></h3>
 <h3>Cost: $<%= trip.cost%></h3>
 <p><%= link_to "Edit Trip Rating", edit_trip_path(trip.id) %></p>
