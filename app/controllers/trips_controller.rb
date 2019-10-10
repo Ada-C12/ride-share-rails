@@ -50,7 +50,7 @@ class TripsController < ApplicationController
     puts params
     if @trip.save
       puts "trip save successful #{@trip.id}"
-      redirect_to passengers_path(passenger_id)
+      redirect_to passenger_path(passenger_id)
       return
     else
       puts "trip save unsuccessful #{@trip.id}"
