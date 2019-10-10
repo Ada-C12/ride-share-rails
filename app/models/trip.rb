@@ -6,4 +6,7 @@ class Trip < ApplicationRecord
   validates :driver_id, presence: true 
   validates :date, presence: true 
 
+  def find_driver
+    #Here is where we fid the driver
+  end 
 end

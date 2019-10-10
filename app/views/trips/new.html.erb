@@ -1,12 +1,11 @@
 <h2>Request a Trip for Passenger: <%=@trip.passenger.name %></h2>
 
+<p> You will be assigned the first available driver. </p>
 
-<%= form_with model: @trip, class: 'new_trip_form_class' do |f| %>
+<%= form_with model: @trip, url: passenger_trips_path(params[:passenger_id]), class: 'new_trip_form_class' do |f| %>
   <%= f.label :passenger %>
-  <%= f.select :passenger_id, @passengers.map{|pass| [pass.name, pass.id]}%>
+  <%= f.text_field :passenger_id %>
   <% %>
-  <%= f.label :date%>
-  <%= f.text_field :date%>
 
   <%= f.submit "Create Trip", class: "new-trip-form-button"%>
 <% end %>
