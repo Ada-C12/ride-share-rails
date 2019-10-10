@@ -72,15 +72,50 @@ describe PassengersController do
       #Act
       get edit_passenger_path(passenger.id)
 
-      must_respond_with :success
+      must_redirect_to passenger_path
+    end 
+
+    it "will respond with a redirect when attempting to edit a non-existing passenger" do
+      #Act
+      get edit_passenger_path(id: 5000)
+
+      #Assert
+      must_redirect_to passengers_path
     end 
   end
 
   describe "update" do
-    # Your tests go here
+    it "can update an existing passenger" do 
+
+
+
+    passenger_hash = {
+      passenger: {
+        name: "Victoria",
+        phone_num: "456-654-9076"
+      }
+    }
+
+      # Act-Assert
+      # task_hash info is being sent to server and stored in params via the patch request
+      patch passenger_path(id: passenger.id), params: passenger_hash
+
+      # finding it in the database and assigning it to new variable
+      updated_passenger = Passenger.find_by(id: passenger.id)
+
+      expect(updated_passenger.name).must_equal passenger_hash[:passenger][:name]
+      expect(updated_passenger.phone_num).must_equal passenger_hash[:passenger][:phone_num]
+    end
   end
 
   describe "destroy" do
-    # Your tests go here
+    it "will delete a task from the database" do
+
+      passenger
+
+      expect {
+        delete passenger_path(id: passenger.id) 
+      }.must_differ 'Passenger.count', -1
+    end
   end
 end
