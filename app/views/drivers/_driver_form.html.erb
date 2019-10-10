@@ -1,3 +1,14 @@
+
+<% if @driver.errors.any? %> 
+  <ul class="errors">
+    <% @driver.errors.each do |column, message| %>
+    <li>
+    <%= column.capitalize %> <%= message %>
+    </li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @driver, class: "driver-form" do |f| %>
   <p>Please complete the fields below to <%= action_name.downcase %> driver.</p>
 

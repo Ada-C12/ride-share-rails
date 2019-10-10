@@ -82,7 +82,7 @@ describe DriversController do
       expect(new_driver.available).must_equal driver_hash[:driver][:available]
       
       # Check that the controller redirected the user
-      must_respond_with :redirect
+      must_respond_with :success
     end
     
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
