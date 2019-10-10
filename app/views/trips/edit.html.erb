@@ -2,10 +2,10 @@
 
 <%= form_with model: @trip, class: 'trip_form_class' do |f| %>
 
-  <%= f.label :driver%> <%= @trip.driver %>
+  <%= f.label :driver%> <%= @trip.driver.name %>
 
   <%= f.label :passenger %>
-  <%= f.label :passenger_id, @passengers.map{|pass| [pass.name, pass.id]}%>
+  <%= f.label :passenger_id, @trip.passenger_id%>
   <% %>
   <%= f.label :date%>
   <%= f.text_field :date%>
@@ -14,5 +14,5 @@
   <%= f.label :cost%>
   <%= f.text_field :cost%>
 
-  <%= f.submit submit_button_label, class: "trip-form-button"%>
+  <%= f.submit "Edit Trip"%>
 <% end %>

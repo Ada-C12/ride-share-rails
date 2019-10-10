@@ -10,13 +10,19 @@ Click a link to delete the trip %>
 
 <section class="show-details">
   <%= link_to "Edit this trip!", edit_trip_path(@trip.id)%>
-
+  <%= link_to "Delete this trip!", trip_path(@trip.id), method: :delete, data: {confirm: "Really delete?"}%>
   <h2> About this trip:</h2>
   <ul>
     <li>Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver.id)%> </li>
     <li>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id)%> </li>
     <li>Date: <%= @trip.date%> </li>
-    <li>Rating: <% @trip.rating.times do |star| %> <span>✰</span><%end%></li>
+    <li>Rating: 
+    <% if @trip.rating 
+    @trip.rating.times do |star| %> 
+    <span>✰</span>
+    <%end%>
+    <%end%>
+    </li>
     <li>Cost: $<%= @trip.cost%> </li>
     <%# Find a way to display with a decimal so it shows properly? %>
   </ul>

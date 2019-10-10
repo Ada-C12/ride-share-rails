@@ -55,10 +55,6 @@ class DriversController < ApplicationController
     end 
   end
   
-  def busy
-    Driver.where(id: params[:driver_id]).update(status:"busy")
-  end 
-  
   private
   def driver_params
     return params.require(:driver).permit(:name, :vin)

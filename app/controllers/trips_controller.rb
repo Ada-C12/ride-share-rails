@@ -21,12 +21,14 @@ class TripsController < ApplicationController
   end
   
   def create
-    @trip = Trip.new(trip_params)
+    passenger = Passenger.find_by(id:params[:passenger_id])
+    trip_params = passenger.request_trip
+    @trip = Trip.create(trip_params)
     
-    if @trip.save
-      redirect_to passenger_path(@passenger_id), notice: 'Trip was successfully created.'
+    if @trip
+      redirect_to trip_path(@trip.id), notice: 'Trip was successfully created.'
     else 
-      redirect_to new_passenger_trip_path(@trip.passenger_id), :flash => { :error => @trip.errors.full_messages.join(', ') }
+      render new_trip_path
     end 
   end 
   
@@ -38,7 +40,7 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: params[:id])
     
     if @trip.update(trip_params)
-      redirect_to trip_path(@trip_id)
+      redirect_to trip_path(@trip.id)
     else 
       render new_trip_path
     end 
@@ -46,13 +48,14 @@ class TripsController < ApplicationController
   
   def destroy
     selected_trip = Trip.find_by(id:params[:id])
-    
+    selected_passenger = selected_trip.passenger_id
+    passenger = Passenger.find_by(id:params[:passenger_id])
     if selected_trip.nil?
       redirect_to trip_path
       return
     else 
       selected_trip.destroy
-      redirect_to trip_path 
+      redirect_to passenger_path(id:selected_passenger)
       return
     end 
   end
