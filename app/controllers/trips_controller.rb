@@ -43,7 +43,8 @@ class TripsController < ApplicationController
     if @driver.nil?
       redirect_to nope_path(params: {msg: "No drivers available, maybe you should walk"})
       return
-    else
+    elsif @driver.active == false
+      
       # flip @driver.active to true.  
       unless @driver.update(active: true)
         redirect_to nope_path(params: {msg: "Unexpected error, please call customer service at 1-800-LOL-SORRY"})
@@ -71,28 +72,44 @@ class TripsController < ApplicationController
       redirect_to nope_path(params: {msg: "No such trip exists!"})
       return
     else
-      #### STOPPED HERE
-      # pass on info to the radio button page
+      @trips = [@trip]
+      @rating = nil
     end
   end 
   
   def update
+    puts "DID THIS RUN?"
     # individual passenger uses this to update ratings
     @trip = Trip.find_by(id: params[:id])
+    driver_id = @trip.driver_id
+    passenger_id = @trip.passenger_id
+    rating = params[:rating].to_i
     
-    if @trip.nil?
-      redirect_to nope_path
+    if rating.nil?
+      redirect_to nope_path(params: {msg: "No rating given!"})
       return
-    elsif @trip.update(trip_params) ########
-      redirect_to trip_path(@trip.id)
+    elsif @trip.nil?
+      redirect_to nope_path(params: {msg: "No such trip exists!"})
       return
+    elsif @trip.update(rating: rating)
+      # need to flip driver.active back to false, so they can work again
+      driver = Driver.find_by(id: driver_id)
+      if driver.update(active: false)
+        puts "SHOULD HAVE UPDATED HERE: #{@trip.rating}"
+        redirect_to passenger_trips_path(passenger_id: passenger_id)
+        return
+      else
+        redirect_to nope_path(params: {msg: "Unable to switch driver.active back to false, please call customer service at 1-800-LOL-SORRY"})
+      end
     else
-      redirect_to nope_path
+      redirect_to nope_path(params: {msg: "Unable to update rating, please call customer service at 1-800-LOL-SORRY"})
+      return
     end
   end 
   
   def destroy
-    ### DO WE EVEN NEED TO DO THIS?
+    # Only passengers can delete their own trips
+    
     selected_trip = Trip.find_by(id: params[:id])
     
     if selected_trip.nil?
@@ -104,17 +121,5 @@ class TripsController < ApplicationController
       return
     end
   end 
-  
-  
-  
-  ################ MOMO CHECK IT OUT ################
-  # private
-  ### I DON'T THINK WE WILL NEED THIS B/C ...
-  # 1. RATING AND COST ARE DEFAULTED VALUES
-  # 2. DRIVER_ID IS HAS TO BE DETERMINED HERE, NOT FROM params
-  # 3. ONLY DATE AND PASSENGER_ID ARE FROM PARAMS, AND I THINK MIXING 2 DIFF ORIGINS OF PARAMS IS GONNA BE A MESS FOR US
-  # def trip_params
-  #   return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
-  # end
   
 end

@@ -3,12 +3,12 @@ require "test_helper"
 describe TripsController do
   let (:driver1) { Driver.create(name: "Kari", vin: "123") }
   let (:passenger1) { Passenger.create( name: "Ned Flanders", phone_num: "206-123-1234") }
-  let (:trip_hash) { {date: Time.now, rating: 5, driver_id: driver1.id, passenger_id: passenger1.id, cost: 100} }
-  let (:trip_hash_bad_driver) { {date: Time.now, rating: 5, driver_id: -666, passenger_id: passenger1.id, cost: 100} }
-  let (:trip_hash_no_driver) { {date: Time.now, rating: 5, driver_id: nil, passenger_id: passenger1.id, cost: 100} }
-  let (:trip_hash_bad_passenger) { {date: Time.now, rating: 5, driver_id: driver1.id, passenger_id: -666, cost: 100} }
-  let (:trip_hash_no_passenger) { {date: Time.now, rating: 5, driver_id: driver1.id, passenger_id: nil, cost: 100} }
-  let (:trip_hash_no_date) { {date: nil, rating: nil, driver_id: driver1.id, passenger_id: passenger1.id, cost: 100} }
+  let (:trip_hash) { {date: Time.now, rating: nil, driver_id: driver1.id, passenger_id: passenger1.id, cost: 1000} }
+  let (:trip_hash_bad_driver) { {date: Time.now, rating: 5, driver_id: -666, passenger_id: passenger1.id, cost: 1000} }
+  let (:trip_hash_no_driver) { {date: Time.now, rating: 5, driver_id: nil, passenger_id: passenger1.id, cost: 1000} }
+  let (:trip_hash_bad_passenger) { {date: Time.now, rating: 5, driver_id: driver1.id, passenger_id: -666, cost: 1000} }
+  let (:trip_hash_no_passenger) { {date: Time.now, rating: 5, driver_id: driver1.id, passenger_id: nil, cost: 1000} }
+  let (:trip_hash_no_date) { {date: nil, rating: nil, driver_id: driver1.id, passenger_id: passenger1.id, cost: 1000} }
   let (:trip_hash_no_cost) { {date: Time.now, rating: nil, driver_id: driver1.id, passenger_id: passenger1.id, cost: nil} }
   let (:trip1) { Trip.create(trip_hash)}
   
@@ -74,10 +74,13 @@ describe TripsController do
     end
     
     it "after creating trip object, will flip @driver.active to true" do
+      driver1
+      db_driver1 = Driver.find_by(id: driver1.id)
+      assert(db_driver1.active == false)
       post trips_path, params: trip_hash
       trip = Trip.last
-      driver = Driver.find_by(id: trip.driver_id)
-      assert (driver.active)
+      updated_driver = Driver.find_by(id: trip.driver_id)
+      assert (updated_driver.active)
     end
     
     it "in legit cases of no available drivers, will not create trip and send to nope_path" do
@@ -100,29 +103,71 @@ describe TripsController do
     end
     
     it "edge: if bad passenger input, send to nope_path" do
-      ### BUGGY!!!
+      # here's an available driver
+      driver1
       trip_count_before = Trip.count
-      post trips_path, params: {trip: trip_hash}
-      
-      # post trips_path, params: {trip: trip_hash_bad_passenger}
-      trip_count_before = Trip.count
-      puts "#{trip_count_before} VS #{trip_count_after}"
+      post trips_path, params: {trip: trip_hash_bad_passenger}
+      trip_count_after = Trip.count
+      assert(trip_count_before == trip_count_after)
       must_redirect_to nope_path(msg: "Trip request unsuccessful, please contact customer service at 1-800-lol-sorry")
       
-      # post trips_path, params: {trip: trip_hash_no_passenger}
-      # must_redirect_to nope_path(msg: "Trip request unsuccessful, please contact customer service at 1-800-lol-sorry")
+      # here's another available driver
+      Driver.create(name: "Mr. Smithers", vin: "987")
+      post trips_path, params: {trip: trip_hash_no_passenger}
+      must_redirect_to nope_path(msg: "Trip request unsuccessful, please contact customer service at 1-800-lol-sorry")
     end
   end
   
   describe "edit" do
-    # WORKING ON IT!
+    it "Will send to edit page for valid trip_id" do
+      get edit_trip_path(id: trip1.id)
+      must_respond_with :success
+    end
+    
+    it "Will send to nope_path for invalid trip_id" do
+      get edit_trip_path(id: -666)
+      must_redirect_to nope_path(msg: "No such trip exists!")
+    end
   end
   
   describe "update" do
-    # WORKING ON IT!
+    describe "only passengers get to update" do
+      it "will update rating AND switch driver back to active:false" do
+        # verify starting conditions
+        assert(driver1.active == false)
+        trip1
+        updated_driver1 = Driver.find_by(id: driver1.id)
+        puts updated_driver1.attributes
+        assert(updated_driver1.active)
+        # assert(trip1.rating == nil)
+        
+        # ratings = [1,2,3,4,5]
+        # ratings.each do |num|
+        #   patch trip_path(id: trip1.id), params: {rating: num}
+        #   updated_trip1 = Trip.find_by(id: trip1.id)
+        #   assert(updated_trip1.rating == num) 
+        
+        #   updated_driver1 = Driver.find_by(id: driver1.id)
+        #   puts updated_driver1.attributes
+        #   # assert(updated_driver1.active)
+        # end
+      end
+      
+      it "" do
+      end
+    end
+    
+    describe "cannot update from main Trip index page" do
+      # links are not given for edit.html if at main Trip index page
+      # but what about sneaky urls???
+      
+      ######
+    end
   end
   
   describe "destroy" do
-    # ARE WE EVEN SUPPOSED TO BE DOING THIS?
+    # Only passengers can delete their own trips
+    
+    
   end
 end
