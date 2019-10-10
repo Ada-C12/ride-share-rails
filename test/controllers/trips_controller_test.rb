@@ -7,9 +7,8 @@ describe TripsController do
   let (:passenger) {
     Passenger.create(name: "Barney Rubble", phone_num: "123-456-7890") 
   }
-  
   let (:trip) {
-    Trip.create(driver_id: 1, passenger_id: 1, date: "2016-04-05", rating: 3, cost: 1250 ) 
+    Trip.create(driver_id: driver.id, passenger_id: passenger.id, date: "2016-04-05", rating: 3, cost: 1250 ) 
   }
   
   describe "show" do
@@ -27,15 +26,16 @@ describe TripsController do
       must_respond_with :success
     end
     
-    it "responds with 404 with an invalid trip id" do
+    it "responds with redirect if given invalid trip id" do
       # Arrange
       # Ensure that there is an id that points to no trip
+      invalid_id = (-1)
       
       # Act
-      get trip_path(-1)
+      get trip_path(invalid_id)
       
       # Assert
-      must_respond_with :not_found
+      must_respond_with :redirect
     end
   end
   
