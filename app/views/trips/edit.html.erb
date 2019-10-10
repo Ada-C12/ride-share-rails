@@ -25,13 +25,13 @@
     Date: <%= @trip.date %>
 
     <%= f.label :driver_name %>
-    <%= f.text_field :driver_name %>
+    <%= f.text_field :driver_name, value: @trip.driver.name %>
 
     <%= f.label :passenger_name %>
-    <%= f.text_field :passenger_name %>
+    <%= f.text_field :passenger_name, value: @trip.passenger.name %>
 
-    <%= f.label :price %>
-    <%= f.number_field :price %>
+    <%= f.label :cost %>
+    <%= f.number_field :cost %>
 
     <%= f.label :rating %>
     <%= f.number_field :rating, in: 1..5 %>
