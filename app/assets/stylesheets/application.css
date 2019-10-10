@@ -22,7 +22,10 @@
 a {
   text-decoration: none;
 }
-nav{
+
+/* nav */
+
+nav {
   background: rgb(255,0,191);
 }
 
@@ -32,6 +35,7 @@ h1 a:visited {
 
 nav > * {
   display: inline-block;
+  padding: 1rem;
   color: white;
 }
 
@@ -44,14 +48,26 @@ nav > * {
   display: none;
   position: absolute;
   background: rgb(255,0,191);
+
+  margin-top: 1rem;
+}
+
+.dropdown-content > div {
+  padding: 1rem;
 }
 
 .dropdown-content a {
   color: white;
 }
 
-.dropdown-content a:hover {
-  text-decoration: underline;
+/* nav effects */
+
+.dropdown-container:hover {
+  background-color: #CC0099;
+}
+
+.dropdown-content div:hover {
+  background-color: #CC0099;
 }
 
 .dropdown-container:hover .dropdown-content {
@@ -61,6 +77,8 @@ nav > * {
   /* make sure it appears on top of everything else */
   z-index: 1;
 }
+
+/* table */
 
 .table{
   width: 34rem;
