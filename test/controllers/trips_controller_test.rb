@@ -87,8 +87,6 @@ describe TripsController do
 
   describe "update" do
     # Your tests go here
-    # need to add passengers/drivers? getting caught in the trips show view
-
     it "updates an existing trips successfully and reloads page" do
       input_trip = Trip.create(date: Date.today, rating: nil, cost: 1000, driver_id: 3, passenger_id: 5)
       input_updates = {trip: {rating: 5}}

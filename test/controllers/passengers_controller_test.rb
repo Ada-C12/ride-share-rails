@@ -27,7 +27,7 @@ describe PassengersController do
       get passenger_path(-1)
 
       # Assert
-      must_respond_with :redirect
+      must_respond_with :not_found
     end
   end
 

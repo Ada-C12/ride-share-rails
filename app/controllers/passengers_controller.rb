@@ -14,7 +14,8 @@ class PassengersController < ApplicationController
     end
 
     if @passenger.nil?
-      redirect_to new_passenger_path
+      head :not_found
+      return
     end
   end
 
