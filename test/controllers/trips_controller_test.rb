@@ -144,7 +144,7 @@ describe TripsController do
         assert(db_driver.active)
         assert(db_trip.rating == nil)
         
-        # now update trip, which should update rating & switch driver.active to false
+        # Act:now update trip, which should update rating & switch driver.active to false
         ratings = [1,2,3,4,5]
         ratings.each do |num|
           patch trip_path(id: db_trip.id), params: {rating: num}
@@ -176,46 +176,51 @@ describe TripsController do
   end
   
   describe "destroy" do
+    
     # Only passengers can delete their own trips
     it "can delete legit trips from legit passengers" do
       delete trip_path(id: trip1.id)
       must_redirect_to passenger_path(id: trip1.passenger_id)
     end
     
-    it "deleted trips must NOT affect total $ earned/spent per user!" do
-      ### manually checked via website, it works!  but test not working
+    it "after trip deletion, can no longer access that trip's show page" do
+      # Act
+      passenger1  
+      driver1
+      post trips_path, params:{ date: Time.now, passenger_id: passenger1.id }
+      db_trip = Trip.first
+      # now delete that trip
+      delete trip_path(id: db_trip.id)
       
-      driver = Driver.create(name: "Kari", vin: "123", active: false)
-      passenger = Passenger.create(name: "Homer", phone_num: "209-990-9890")
-      
-      # trip_hash1 = {
-      #   trip: {
-      #     date: "2019-09-01",
-      #     driver_id: driver.id,
-      #     passenger_id: passenger.id, 
-      #     cost: 1500,
-      #     rating: 4
-      #   }
-      # }
-      post trips_path, params: {date: "2019-09-01", passenger_id: passenger.id}
-
-      # trip_hash2 = {
-      #   trip: {
-      #     date: "2019-09-01",
-      #     driver_id: driver.id,
-      #     passenger_id: passenger.id, 
-      #     cost: 1500,
-      #     rating: 4
-      #   }
-      # }
-      post trips_path, params: {date: "2019-09-02", passenger_id: passenger.id}
-
-      # binding.pry
-      expect(driver.total_earned).must_equal 2136
-      delete trip_path(trip1.id)
+      # Assert: show page for deleted trip now goes to nope_path
+      get trip_path(id: db_trip.id)
+      must_redirect_to nope_path(msg: "No such trip exists!")
+    end
     
-      expect(driver.total_earned).must_equal 2136
-      expect(passenger.total_spent).must_equal 3000
+    it "deleted trips must NOT affect total $ earned/spent for driver or passenger" do
+      # Act
+      passenger1  
+      driver1
+      post trips_path, params:{ date: Time.now, passenger_id: passenger1.id }
+      db_trip = Trip.first
+      db_driver = Driver.find_by(id: db_trip.driver_id)
+      db_passenger = Passenger.find_by(id: db_trip.passenger_id)
+      cost = db_trip.cost
+      expected_earning = (cost-165)*0.8
+      
+      # Preliminary Assert: initial conditions match expectations
+      assert(db_driver.total_earned == expected_earning)
+      assert(db_passenger.total_spent == cost)
+      
+      # Act: now delete trip from database
+      delete trip_path(id: db_trip.id)
+      
+      # Assert: reload driver & passenger from database
+      db_driver = Driver.find_by(id: db_trip.driver_id)
+      db_passenger = Passenger.find_by(id: db_trip.passenger_id)
+      assert(db_driver.total_earned == expected_earning)
+      assert(db_passenger.total_spent == cost)
+      
     end
     
     it "if deleting nonexistent trip id, send to nope path" do
