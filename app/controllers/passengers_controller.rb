@@ -25,6 +25,7 @@ class PassengersController < ApplicationController
       redirect_to nope_path(params: {msg: "No such passenger exists!"})
       return
     end
+    @total_spent = @passenger.total_spent_model
   end
   
   def edit
@@ -52,15 +53,6 @@ class PassengersController < ApplicationController
       redirect_to passengers_path
     else
       redirect_to nope_path(params: {msg: "Cannot destroy a non-existent passenger record"})
-    end
-  end
-  
-  def total_spent
-    @passenger = Passenger.find_by(id: params[:id])
-    if @passenger
-      @total_spent = @passenger.trips.sum(:cost)
-    else
-      redirect_to nope_path(params: {msg: "Passenger does not exist"})
     end
   end
   
