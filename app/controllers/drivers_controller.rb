@@ -48,7 +48,7 @@ class DriversController < ApplicationController
   def update_trips
     @trips = Trip.where(driver_id: @driver.id)
     @trips.each do |trip|
-      trip.driver_id = 101
+      trip.driver_id = 0
       trip.save
     end
   end

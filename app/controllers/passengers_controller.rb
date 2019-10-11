@@ -49,7 +49,7 @@ class PassengersController < ApplicationController
   def update_trips
     @trips = Trip.where(passenger_id: @passenger.id)
     @trips.each do |trip|
-      trip.passenger_id = 301
+      trip.passenger_id = 0
       trip.save
     end
   end
