@@ -88,6 +88,7 @@ describe PassengersController do
   describe "destroy" do
     
     it "destroys passenger and redirects" do
+      other_passenger = Passenger.create(name: "test_passenger", phone_num: "4385902")
       passenger = Passenger.create(name: "test_passenger", phone_num: "4385902")
       passenger_id = Passenger.first.id
       expect { delete passenger_path(passenger_id) }.must_change "Passenger.count", -1
