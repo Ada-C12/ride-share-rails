@@ -87,6 +87,7 @@ nav > ul {
   grid-row: 1 / span 2;
   margin-left: auto;
   margin-right: 3em;
+  width: 200px;
 }
 
 #homepage-title {
