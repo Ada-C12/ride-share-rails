@@ -109,3 +109,7 @@ nav ul a {
 .details h3{
   background-color: chartreuse;
 }
+
+.msg {
+  text-align: center;
+}
