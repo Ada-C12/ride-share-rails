@@ -34146,3 +34146,51 @@ FOREIGN KEY ("passenger_id")
   ↳ db/seeds.rb:117
   [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
   ↳ db/seeds.rb:117
+Started GET "/" for ::1 at 2019-10-11 09:59:01 -0700
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/monick/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by HomepagesController#index as HTML
+  Rendering homepages/index.html.erb within layouts/application
+  Rendered homepages/index.html.erb within layouts/application (330.0ms)
+Completed 200 OK in 396ms (Views: 384.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/drivers" for ::1 at 2019-10-11 09:59:06 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.9ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" ORDER BY "drivers"."id" ASC[0m
+  ↳ app/views/drivers/index.html.erb:14
+  Rendered drivers/index.html.erb within layouts/application (24.6ms)
+Completed 200 OK in 58ms (Views: 42.6ms | ActiveRecord: 6.5ms)
+
+
+Started GET "/passengers" for ::1 at 2019-10-11 09:59:08 -0700
+Processing by PassengersController#index as HTML
+  Rendering passengers/index.html.erb within layouts/application
+  [1m[36mPassenger Load (1.0ms)[0m  [1m[34mSELECT "passengers".* FROM "passengers" ORDER BY "passengers"."id" ASC[0m
+  ↳ app/views/passengers/index.html.erb:16
+  Rendered passengers/index.html.erb within layouts/application (93.8ms)
+Completed 200 OK in 132ms (Views: 117.1ms | ActiveRecord: 6.4ms)
+
+
+Started GET "/drivers" for ::1 at 2019-10-11 10:59:36 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (1.1ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" ORDER BY "drivers"."id" ASC[0m
+  ↳ app/views/drivers/index.html.erb:14
+  Rendered drivers/index.html.erb within layouts/application (28.7ms)
+Completed 200 OK in 60ms (Views: 56.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/drivers/1" for ::1 at 2019-10-11 10:59:37 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"authenticity_token"=>"ycUVFBQrn4Hw9SGG7vo7LAG+Q8zYtsj/adhQ9LljJ2jKMAiQIdTMDFaRClDdEFTfjr9AQ354JyWIRvuWNHnCQg==", "id"=>"1"}
+  [1m[36mDriver Load (0.8ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/drivers_controller.rb:13
+  Rendering drivers/show.html.erb within layouts/application
+  [1m[36mTrip Load (0.6ms)[0m  [1m[34mSELECT "trips".* FROM "trips" WHERE "trips"."driver_id" = $1[0m  [["driver_id", 1]]
+  ↳ app/models/driver.rb:15
+  Rendered drivers/show.html.erb within layouts/application (65.3ms)
+Completed 200 OK in 119ms (Views: 98.3ms | ActiveRecord: 12.3ms)
+
+

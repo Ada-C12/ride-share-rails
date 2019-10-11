@@ -116,6 +116,8 @@ describe DriversController do
       updated_driver = Driver.find_by(id: existing_driver.id)
       expect(updated_driver.name).must_equal updated_driver_data[:driver][:name]
       expect(updated_driver.vin).must_equal updated_driver_data[:driver][:vin]
+
+      expect(updated_driver.valid?).must_equal true
       
       must_redirect_to driver_path(updated_driver.id)
     end
@@ -130,7 +132,8 @@ describe DriversController do
       updated_driver_data = {
         driver: {
           name: "",
-          vin: "123"
+          vin: "",
+          active: false,
         }
       }
     
@@ -141,7 +144,7 @@ describe DriversController do
       patch driver_path(id: existing_driver.id), params: updated_driver_data
 
       updated_driver = Driver.find_by(id: existing_driver.id)
-      binding.pry
+      # binding.pry
       expect(updated_driver.valid?).must_equal false 
       
       must_redirect_to nope_path
