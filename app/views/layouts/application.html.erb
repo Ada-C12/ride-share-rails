@@ -12,7 +12,9 @@
   <body>
     <nav>
         <div class="dropdown">
-          <button class="dropbtn" id="home"><%= link_to "Rideshare Rails!", root_path, class:"drop-down-link" %></button>
+          <button class="dropbtn" id="home">
+            <%= link_to "Rideshare Rails!", root_path, id: "home" %>
+          </button>
         </div>
         <div class="dropdown">
           <button class="dropbtn">Drivers</button>
