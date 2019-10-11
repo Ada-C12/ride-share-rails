@@ -54,9 +54,10 @@ class TripsController < ApplicationController
       date: Time.now, 
       passenger_id: params[:passenger_id], 
       driver_id: 1,
-      cost: 5
+      cost: rand(4..99)
     }
     @trip = Trip.new(generated_trips_params) #instantiate a new book
+    
     if @trip.save # save returns true if the database insert succeeds
       redirect_to passenger_path(params[:passenger_id]) # go to the index so we can see the book in the list
       return
@@ -67,19 +68,16 @@ class TripsController < ApplicationController
   end
   
   def destroy
-    trip_id = params[:id]
-    passenger_id = params[:passenger_id]
-    @trip = Trip.find_by(id: trip_id)
-    
-    if @trip.nil?
-      head :not_found
-      return
-    end
-    
-    @trip.destroy
-    
-    redirect_to passenger_path(@trip.passenger_id)
-    return
+    # Arrange
+    # Ensure there is an existing driver saved
+    new_trip = Trip.create(date: Time.now, passenger_id: "4", driver_id: "5", cost: 8)
+    # Act-Assert
+    #Ensure that there is a change of -1 in Driver.count
+    expect {delete trip_path(new_trip.id)}.must_differ 'Trip.count', -1
+    # Assert
+    # Check that the controller redirects
+    must_respond_with :redirect
+    must_redirect_to trips_path
   end
   
   private
