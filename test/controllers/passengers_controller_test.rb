@@ -1,6 +1,11 @@
 require "test_helper"
 
 describe PassengersController do
+  before do
+    deleted_passenger = Passenger.new(id: 0, name: "previously deleted", phone_num: "000-000-0000")
+    deleted_passenger.save
+  end
+  
   describe "index" do
     it "responds with success when there are many drivers saved" do
       test_passenger = Passenger.create(name: "test_passenger", phone_num: "4385902")

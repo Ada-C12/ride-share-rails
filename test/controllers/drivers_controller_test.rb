@@ -2,7 +2,11 @@ require "test_helper"
 
 describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
-  
+  before do
+    deleted_driver = Driver.new(id: 0, name: "previously deleted", vin: "00000000000000000")
+    deleted_driver.save
+  end
+
   describe "index" do
     it "responds with success when there are many drivers saved" do
       test_driver = Driver.create(name: "Popeye Sailor", vin: "8FH204KDLFURNM385")
