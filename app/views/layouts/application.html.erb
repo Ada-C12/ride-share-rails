@@ -4,37 +4,41 @@
     <title>RideShareRails</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link href="https://fonts.googleapis.com/css?family=Cardo|Fredoka+One|Nunito&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
 
   <body>
-  <nav>
-  <section class="dropdown">
-    <%= button_to "Passengers", passengers_path, :method => "get" %>
-      <section class="dropdown-content">
-        <%= button_to "Add Passenger", new_passenger_path, :method => "get" %>
-      </section>
-  </section>
-
-  <section class="dropdown">
-  <%= button_to "Drivers", drivers_path, :method => "get" %>
-    <section class="dropdown-content">
-      <%= button_to "Add Driver", new_driver_path, :method => "get" %>
+  <nav class="grid-container">
+    <section class="nav_img_text">
+    <%= link_to image_tag("top_corner_logo.png"), root_path %>
     </section>
-  </section>
+    <section class="dropdown_p">
+      <%= button_to "Passengers", passengers_path, :method => "get" %>
+        <section class="dropdown-content">
+          <%= button_to "Add Passenger", new_passenger_path, :method => "get" %>
+        </section>
+    </section>
 
-    <section class="dropdown">
-    <%= button_to "Trip", trips_path, :method => "get" %>
+    <section class="dropdown_d">
+    <%= button_to "Drivers", drivers_path, :method => "get" %>
       <section class="dropdown-content">
-        <%= button_to "Add Trip", new_trip_path, :method => "get" %>
+        <%= button_to "Add Driver", new_driver_path, :method => "get" %>
       </section>
-  </section>
+    </section>
+
+      <section class="dropdown_t">
+      <%= button_to "Trip", trips_path, :method => "get" %>
+        <section class="dropdown-content">
+          <%= button_to "Add Trip", new_trip_path, :method => "get" %>
+        </section>
+    </section>
 
   
   </nav>
+  <hr>
     <%= yield %>
   </body>
 </html>
