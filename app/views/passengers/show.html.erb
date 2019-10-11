@@ -14,7 +14,7 @@
             <article>
                 <h3>Name: <%= @passenger.name %></h3>
                 <h3>Passenger Number: <%= @passenger.phone_num %></h3>
-                <h3>Total Money Spent: $<%= @passenger.total_money_spent %></h3>
+                <h3>Total Money Spent: $<%= sprintf('%.2f', @passenger.total_money_spent) %></h3>
 
         </article>
 
