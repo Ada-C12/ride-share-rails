@@ -105,11 +105,21 @@ describe Driver do
     end
     
     describe "can go online" do
-      # Your code here
+      it "sets a new driver to inactive" do
+        driver = Driver.create(name: "Rideshare Driver", vin: "5678")
+        
+        expect(driver.active).must_equal false
+      end
     end
     
     describe "can go offline" do
-      # Your code here
+      it "sets a driver to active" do
+        driver = Driver.create(name: "Kari", vin: "123")
+        driver.active = true
+        expect(driver.active).must_equal true
+        # Although this test template is in the Model, we added our method in the Controller.
+        # Please refer to controllers/drivers_controller_test.rb:193
+      end
     end
     
     # You may have additional methods to test

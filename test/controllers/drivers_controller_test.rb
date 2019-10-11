@@ -56,122 +56,156 @@ describe DriversController do
   
   describe "create" do
     it "can create a new driver with valid information accurately, and redirect" do
-      # Arrange
-      # Set up the form data
+      driver_params = {
+        driver: {
+          name: "Bad Driver",
+          vin: "1877KARS4KIDS"
+        }
+      }
       
-      # Act-Assert
-      # Ensure that there is a change of 1 in Driver.count
+      expect{ post drivers_path, params: driver_params }.must_differ "Driver.count", 1
       
-      # Assert
-      # Find the newly created Driver, and check that all its attributes match what was given in the form data
-      # Check that the controller redirected the user
+      bad_driver = Driver.first
+      expect(bad_driver.name).must_equal driver_params[:driver][:name]
+      expect(bad_driver.vin).must_equal driver_params[:driver][:vin]
       
+      must_respond_with :redirect
+      must_redirect_to driver_path(bad_driver.id)      
     end
     
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Set up the form data so that it violates Driver validations
+      new_driver = {
+        driver: {
+          vin: "VinWithNoName"
+        }
+      }
       
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      expect{ post drivers_path, params: new_driver }.must_differ "Driver.count", 0
       
       # Assert
       # Check that the controller redirects
-      
+      must_respond_with :success # our controller does not redirect, it renders the same page with the errors displayed.
     end
   end
   
   describe "edit" do
+    let (:new_driver) {
+      Driver.create(name: "Kari", vin: "123")
+    }
     it "responds with success when getting the edit page for an existing, valid driver" do
-      # Arrange
-      # Ensure there is an existing driver saved
+      new_driver
       
-      # Act
+      expect(Driver.count).must_equal 1
       
-      # Assert
-      
+      get edit_driver_path(new_driver.id)
+      must_respond_with :success      
     end
     
     it "responds with redirect when getting the edit page for a non-existing driver" do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
+      bad_id = "bad-id"
       
-      # Act
-      
-      # Assert
-      
+      get edit_driver_path(bad_id)
+      must_respond_with :redirect
+      must_redirect_to drivers_path
     end
   end
   
   describe "update" do
+    let (:new_driver) {
+      Driver.create(name: "Kari", vin: "123")
+    }
+    
     it "can update an existing driver with valid information accurately, and redirect" do
-      # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      # Set up the form data
+      new_driver
+      expect(Driver.first).must_equal new_driver
+      id = new_driver.id
+      updates = { name: "Vin Diesel" }
       
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      expect{ patch driver_path(id), params: {driver: updates}}.must_differ "Driver.count", 0
       
-      # Assert
-      # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
-      # Check that the controller redirected the user
+      new_driver.reload
+      updated_driver = Driver.find(id)
       
+      expect(updated_driver.name).must_equal new_driver.name
+      
+      must_redirect_to driver_path(id)
     end
     
     it "does not update any driver if given an invalid id, and responds with a 404" do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
-      # Set up the form data
       
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      bad_id = "bad-id"
+      updates = { name: "Vin Diesel" }
       
-      # Assert
-      # Check that the controller gave back a 404
+      expect{ patch driver_path(bad_id), params: {driver: updates}}.must_differ "Driver.count", 0
       
+      must_respond_with 404
     end
     
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not update a driver if the form data violates Driver validations, and responds with a redirect" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
       # Set up the form data so that it violates Driver validations
+      driver = new_driver
+      updates = { name: "Vin Diesel", vin: nil }
       
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      expect{ patch driver_path(driver.id), params: {driver: updates}}.must_differ "Driver.count", 0
       
-      # Assert
-      # Check that the controller redirects
+      must_respond_with :success # our controller does not redirect, it renders the same page with the errors displayed.
+      driver.reload
+      expect(driver.vin).must_equal new_driver.vin      
       
     end
   end
   
   describe "destroy" do
+    let (:new_driver) {
+      Driver.create(name: "Kari", vin: "123")
+    }
     it "destroys the driver instance in db when driver exists, then redirects" do
-      # Arrange
-      # Ensure there is an existing driver saved
+      expect(new_driver).must_be_instance_of Driver
       
-      # Act-Assert
-      # Ensure that there is a change of -1 in Driver.count
+      expect {
+        delete driver_path( new_driver.id )
+      }.must_differ "Driver.count", -1
       
-      # Assert
-      # Check that the controller redirects
-      
+      must_redirect_to drivers_path
     end
     
     it "does not change the db when the driver does not exist, then responds with " do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
+      bad_id = "bad-id"
       
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      expect {
+        delete driver_path( bad_id )
+      }.must_differ "Driver.count", 0
       
-      # Assert
-      # Check that the controller responds or redirects with whatever your group decides
+      must_redirect_to drivers_path      
       
+    end
+  end
+  
+  describe "custom methods" do
+    describe "can go online" do
+      it "sets a new driver to inactive" do
+        driver = Driver.create(name: "Rideshare Driver", vin: "5678")
+        
+        expect(driver.active).must_equal false
+      end
+    end
+    
+    describe "can go offline" do
+      it "sets a driver to active" do
+        driver = Driver.create(name: "Rideshare Driver", vin: "5678")
+        id = driver.id
+        
+        expect{ patch driver_status_path(id) }.must_differ "Driver.count", 0
+        must_redirect_to driver_path(id)
+        
+        driver.reload
+        
+        expect(driver.active).must_equal true
+      end
     end
   end
 end

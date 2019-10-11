@@ -34,4 +34,13 @@ class Driver < ApplicationRecord
   def convert_to_dollars(pennies)
     (pennies / 100.0).round(2)
   end
+  
+  def toggle_status
+    if self.active == true
+      self.update( active: false )
+    else
+      self.update( active: true )
+    end
+  end
+  
 end
