@@ -9,12 +9,35 @@ class Driver < ApplicationRecord
     return first_available
   end
   
-  # Average rating
+  def average_rating
+    ratings = []
+    
+    self.trips.each do |trip|
+      ratings.push(trip.rating) if trip.rating
+    end
+    
+    return nil if ratings.length == 0
+    
+    average_rating = ratings.sum / ratings.length.to_f
+    return average_rating.round(2)
+  end
   
-  # Total earnings
+  def total_earnings
+    total_revenue = 0
+    
+    self.trips.each do |trip|
+      if trip.cost && trip.cost > 165
+        net_cost = trip.cost - 165
+        total_revenue += (net_cost * 0.8).round(2)
+      end
+    end
+    
+    converted_earnings = total_revenue / 100.0
+    rounded_earnings = converted_earnings.round(2)
+    
+    return rounded_earnings
+  end
   
-  # Can go online 
-  # Can go offline
   def toggle_available
     if self.available
       self.available = false
