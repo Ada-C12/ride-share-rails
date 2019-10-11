@@ -31,9 +31,11 @@ class TripsController < ApplicationController
     end
     
     @drivers = Driver.where(active: false)
-    @trip.driver_id = @drivers[rand(0...@drivers.length)].id
+    @selected_driver = @drivers[rand(0...@drivers.length)]
+    @trip.driver_id = @selected_driver.id
     
     if @trip.save
+      @selected_driver.update(active: true)
       redirect_to trip_path(@trip.id)
       return
     else
