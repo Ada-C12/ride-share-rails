@@ -3,8 +3,6 @@
 <%# <h3>Total earnings: <% @driver.total_earnings %> </h3>
 <%# <h3>Average Rating: <% @driver.avg_rating %> </h3>
 
-<p><%=link_to "Return to Driver List", drivers_path %></p>
-
 <h3>Trips made by this driver:<h3>
 
 <% @driver.trips.each do |trip|%>
@@ -15,3 +13,5 @@
 <li> Rating: <%= trip.rating %></li>
 </br>
 <% end %>
+
+<p><%=link_to "Return to Driver List", drivers_path %></p>

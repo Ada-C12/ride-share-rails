@@ -14,10 +14,9 @@
 <%# Fix link to Edit %>
 <%= link_to "Edit", edit_trip_path(trip.id) %> 
 <%= link_to "Delete", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure?"} %>
-
 </br>
 </br>
 <% end %>
 
-
 <p><%= link_to "Return to Passenger List", passengers_path %></p>
+
