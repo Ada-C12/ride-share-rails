@@ -48,7 +48,7 @@
     <% end %>
   </p>
   <p>$<%= number_with_precision(trip.cost, :precision => 2) %></p>
-  <p><%= link_to trip.rating, driver_path(id: trip.id) %></p>
+  <p><%= trip.rating %></p>
   </div>
 <% end %>
 </article>
