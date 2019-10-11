@@ -20,6 +20,10 @@ Rails.application.routes.draw do
   end
   resources :trips
 
+  post "passengers/:id/trips/new", to: "trips#create"
+  # Attempting to write a path to submit a rating for a trip from passenger show
+  # post "passengers/:id", to: "passengers#"
+
   get "/drivers/:id/toggle", to: "drivers#edit"
   post "/drivers/:id/toggle", to: "drivers#toggle_active"
   # root to: "drivers#index", as: "root_drivers"
@@ -31,7 +35,6 @@ Rails.application.routes.draw do
   # get "/trips/new", to: "trips#new", as: "new_trip"
   # post "/trips", to: "trips#create"
   # get "/trips/:id", to: "trips#show", as: "trip"
-  post "passengers/:id/trips/new", to: "trips#create"
   # get "/trips/:id/edit", to: "trips#edit", as: "edit_trip"
   # patch "/trips/:id", to: "trips#update"
   # delete "/trips/:id", to: "trips#destroy"

@@ -43,7 +43,19 @@
 <td><%= trip.date %></td>
 <td><%= trip.driver_id %></td>
 <td><%= trip.cost %></td>
+ <% if trip.rating %>
 <td><%= trip.rating %></td>
+<% else %>
+<td><%= form_with model: @driver, class: "driver_form_class" do |f| %>
+<%= f.select(:rating, options_for_select(['5', '4', '3', '2', '1']), 
+                        {}, 
+                        class: "chzn-select")
+
+                        %>
+                                                      <%= f.submit button: "Submit", class: "driver-form-button" %>
+<%end%></td>
+                        
+<%end%>
 <td><%= link_to '<button type="button">Delete</button>'.html_safe, trip_path( trip.id ), method: :delete, data: { confirm: "Are you sure you want to delete this trip?"}%></td>
 
 
