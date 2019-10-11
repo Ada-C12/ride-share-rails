@@ -110,7 +110,9 @@ describe TripsController do
     end
     
     it "does not update any trip if given an invalid id, and responds with a 404" do
+      expect{patch trip_path(-1)}.wont_change "Trip.count"
       
+      must_respond_with :not_found
     end
     
   end
