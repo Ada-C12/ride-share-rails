@@ -1,28 +1,28 @@
 require "test_helper"
 
 describe Driver do
-  let (:new_driver) {
-    Driver.new(name: "Kari", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
-  }
   it "can be instantiated" do
     # Assert
+    new_driver = Driver.new(name: "Kari", vin: "123", active: false, car_make: "Cherry", car_model: "DR5")
     expect(new_driver.valid?).must_equal true
   end
 
   it "will have the required fields" do
     # Arrange
+    new_driver = Driver.new(name: "Kari", vin: "123", active: false, car_make: "Cherry", car_model: "DR5")
     new_driver.save
     driver = Driver.first
     [:name, :vin, :active, :car_make, :car_model].each do |field|
 
-      # Assert
-      expect(driver).must_respond_to field
+    # Assert
+    expect(driver).must_respond_to field
     end
   end
 
   describe "relationships" do
     it "can have many trips" do
       # Arrange
+      new_driver = Driver.new(name: "Kari", vin: "123", active: false, car_make: "Cherry", car_model: "DR5")
       new_driver.save
       driver = Driver.first
 
@@ -37,6 +37,7 @@ describe Driver do
   describe "validations" do
     it "must have a name" do
       # Arrange
+      new_driver = Driver.new(name: "Kari", vin: "123", active: false, car_make: "Cherry", car_model: "DR5")
       new_driver.name = nil
 
       # Assert
@@ -47,6 +48,7 @@ describe Driver do
 
     it "must have a VIN number" do
       # Arrange
+      new_driver = Driver.new(name: "Kari", vin: "123", active: false, car_make: "Cherry", car_model: "DR5")
       new_driver.vin = nil
 
       # Assert
@@ -116,10 +118,10 @@ describe Driver do
     end
 
     describe "find_available_driver" do
-      it "will find the first driver that is available" do
+      it "will find a driver that is available" do
         driver_1 = Driver.create(name: "Milly Bobbie Brown", vin: "10000023", active: true, car_make: "Cherry", car_model: "DR5")
         driver_2 = Driver.create(name: "Elvis Presley", vin: "1212323", active: false, car_make: "Cherry", car_model: "DR5")
-        # p driver_1.id
+
         expect(Driver.find_available_driver).must_equal driver_1.id
       end
     end
