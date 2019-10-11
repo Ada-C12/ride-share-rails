@@ -160,7 +160,7 @@ describe DriversController do
       end
   end
 
-     it "does not change the db when the driver does not exist, then responds with " do
+    it "does not change the db when the driver does not exist, then responds with " do
     #   # Arrange
     #   # Ensure there is an invalid id that points to no driver
     driver.save
@@ -172,5 +172,5 @@ describe DriversController do
     must_respond_with :redirect
  end
   
-end
-
+    end
+  end

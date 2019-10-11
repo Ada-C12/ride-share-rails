@@ -27,7 +27,7 @@ describe PassengersController do
       get passenger_path(-1)
 
       # Assert
-      must_respond_with :redirect
+      must_respond_with :not_found
     end
   end
 
@@ -67,7 +67,7 @@ describe PassengersController do
   end
 
   describe "edit" do
-    it "can get the edit page for an existing task" do
+    it "responds with success" do
       # skip
       get edit_passenger_path(passenger.id)
 
@@ -75,7 +75,6 @@ describe PassengersController do
       must_respond_with :success
       
     end
-
     it "will respond with redirect when attempting to edit a nonexistant passenger" do
       # Your code here
       invalid_id = -500
@@ -110,6 +109,16 @@ describe PassengersController do
       }.must_differ "Passenger.count", -1
 
       must_redirect_to passengers_path
+    end
+
+    it "does not change the db when the passenger does not exist, then responds with 404" do
+      passenger.save
+
+      expect {
+        delete passenger_path(-1)
+    }.must_differ "Passenger.count", 0
+    
+    must_respond_with :redirect
     end
 
     # it "redirects to passenger index page and deletes no books if no books exist" do
