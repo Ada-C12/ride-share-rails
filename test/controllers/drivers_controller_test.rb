@@ -106,7 +106,7 @@ describe DriversController do
           vin: "987"
         }
       }
-      binding.pry
+      # binding.pry
       expect {
         patch driver_path(id: existing_driver.id), params: updated_driver_data
       }.must_differ 'Driver.count', 0
