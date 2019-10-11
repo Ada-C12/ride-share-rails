@@ -61,19 +61,31 @@ end
 # Tests for methods you create should go here
 describe "custom methods" do
   describe "average rating" do
-    # Your code here
-    @driver = Driver.create(name: "Kari", vin: "123", active: false, car_make: "Cherry", car_model: "DR5")
-    # @driver.add_trip 
-    # add a few trips, calculate avg rating
-    # expect(@driver.avg_rating).must_equal 
+    it "can calculate the average rating for a driver" do
+      @driver = Driver.create(name: "Kari", vin: "123", active: false, car_make: "Cherry", car_model: "DR5")
+      
+      @passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+      
+      Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, rating: 3, date: Date.today, cost: 250)
+      Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, rating: 4, date: Date.today, cost: 250)
+      Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, rating: 5, date: Date.today, cost: 250)
+      
+      expect(@driver.avg_rating).must_equal 4.00
+    end
   end
   
   describe "total earnings" do
-    # Your code here
-    @driver = Driver.create(name: "Kari", vin: "123", active: false, car_make: "Cherry", car_model: "DR5")
-    # @driver.add_trip
-    # add a few trips, calculate total earnings
-    # expect(@driver.total_earnings).must_equal
+    it "can calculate total earnings for a driver" do
+      @driver = Driver.create(name: "Kari", vin: "123", active: false, car_make: "Cherry", car_model: "DR5")
+      
+      @passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+      
+      Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, rating: 3, date: Date.today, cost: 250)
+      Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, rating: 4, date: Date.today, cost: 300)
+      Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, rating: 5, date: Date.today, cost: 200.25)
+      
+      expect(@driver.total_earnings).must_equal 750.25
+    end
   end
   
   describe "can go online" do
