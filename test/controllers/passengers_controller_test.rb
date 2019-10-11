@@ -82,7 +82,7 @@ describe PassengersController do
       must_respond_with :redirect
     end
     
-    it "does not create a passenger if the form data violates Passenger validations, and responds with a redirect" do
+    it "does not create a passenger if the form data violates Passenger validations" do
       # Arrange
       # Set up the form data so that it violates Passenger validations
       passenger_hash = { passenger: { name: "Dino" } }
@@ -91,9 +91,7 @@ describe PassengersController do
       # Ensure that there is no change in Passenger.count
       expect { post passengers_path, params: passenger_hash }.wont_change "Passenger.count"
       
-      # Assert
-      # Check that the controller redirects
-      must_respond_with :redirect
+      
     end
   end
   

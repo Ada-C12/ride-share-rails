@@ -19,6 +19,7 @@ class DriversController < ApplicationController
   def create
     if params[:driver].nil?
       redirect_to new_driver_path
+      return
     end
     
     @driver = Driver.new(driver_params)
