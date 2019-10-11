@@ -14,26 +14,12 @@
  *= require_self
  */
 
-nav {
-  background-color: darkgrey;
-  padding: 3%;
-}
-
-nav a {
-  text-decoration: none;
-  color: white;
-  margin-right: 2%;
-}
-
-nav a:hover {
-  color: black;
-}
-
 footer {
   text-align: center;
-  background-color: darkgrey;
+  background-color: #282a2b;
   color: white;
   padding: 3%;
+  font-family: 'Roboto', sans-serif;
 }
 
 ul {
@@ -42,4 +28,116 @@ ul {
 
 main {
   min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
 }
+
+
+/* https://www.w3schools.com/howto/howto_css_dropdown_navbar.asp */
+.navbar {
+  overflow: hidden;
+  background-color: #282a2b;
+  font-family: serif;
+  padding: 2%;
+  size: 1rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.navbar #homepage_link {
+  font-size: 2rem;
+  font-family: 'Pacifico', cursive;
+}
+
+.navbar #homepage_link a:hover {
+  color:#7287a8
+}  
+
+
+.navbar a {
+  float: left;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: white;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  border: none;
+  outline: none;
+  padding: 14px 16px;
+  margin: 0;
+  color: white;
+  background-color: inherit;
+  font-family: inherit;
+  font-size: 1rem
+}
+
+.dropdown a:hover, .dropbtn {
+  background-color: #7287a8;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  z-index: 1;
+  background-color: #282a2b;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+  float: none;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.homepage-links a {
+  padding: 5%;
+  border: 1px solid black;
+  border-radius: 20px;
+  background-color: #282a2b;
+  color: white;
+}
+
+.homepage-links {
+  margin: 1%;
+  margin-left: 10%;
+  width: 15%;
+  text-align: center;
+}
+
+#homepage-links-container {
+  display: flex;
+  flex-direction: column
+}
+
+table {
+  margin-left: 5%;
+  margin-bottom: 5%;
+}
+
+.table-header {
+  font-weight: bolder;
+  background-color: #5b687d;
+  color:white;
+  font-size: 1.5rem
+}
+
+.edit-passenger-form, .new-passenger-form, .edit-driver-form, .new-driver-form, .edit_form_class {
+  padding-left: 5%;
+}
+.new-passenger-form, .new-driver-form, .edit_form_class  {
+  padding-top: 5%;
+}
+

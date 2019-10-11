@@ -67,5 +67,24 @@ describe Passenger do
       # Your code here
     end
     # You may have additional methods to test here
+    
+    describe 'total_spent' do
+      it 'accurately calcuates and returns total spent' do
+        current_driver = Driver.create(name: "Jane Doe", vin: "12345678")
+        passenger = Passenger.create(name: "John Doe", phone_num: "7654321")
+        first_trip = Trip.create(cost: 10, date: Date.today, driver_id: current_driver.id, passenger_id: passenger.id, rating: 5)
+        second_trip = Trip.create(cost: 10, date: Date.today, driver_id: current_driver.id, passenger_id: passenger.id, rating: 3)
+
+        expect(passenger.total_spent).must_equal 20
+      end
+      it 'returns 0 if passenger hasnt taken any trips' do
+        passenger = Passenger.create(name: "John Doe", phone_num: "7654321")
+        expect(passenger.total_spent).must_equal 0
+      end
+    end
+
   end
+
+
+  
 end

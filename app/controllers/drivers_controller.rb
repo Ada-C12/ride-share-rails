@@ -22,7 +22,7 @@ class DriversController < ApplicationController
     
     if @driver.save
     else
-      redirect_to new_driver_path
+      render new_driver_path
       return
     end
 

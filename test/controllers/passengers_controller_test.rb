@@ -86,10 +86,10 @@ describe PassengersController do
         
         # Assert
         # Check that the controller redirects
-        must_redirect_to new_passenger_path
+        must_respond_with :success
         
         expect {post passengers_path, params: invalid_passenger_hash_2}.must_differ 'Passenger.count', 0
-        must_redirect_to new_passenger_path
+        must_respond_with :success
       end
     end
     

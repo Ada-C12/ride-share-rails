@@ -10,8 +10,8 @@
       <li> ID:<%= @driver.id %></li>
       <li> VIN: <%= @driver.vin %></li>
       <li> Driver Since: <%= @driver.created_at %></li>   
-      <li> Total Earnings: METHOD NEEDED</li>
-      <li> Average Rating: METHOD NEEDED</li>
+      <li> TOTAL EARNINGS: $<%=  sprintf("%.2f", @driver.total_earnings) %></li>
+      <li> AVERAGE RATING: <%= (@driver.average_rating).round(2) unless @driver.average_rating.nil?  %></li>
     </ul>
   </section>
 
@@ -32,11 +32,11 @@
           </tr>
           <% @driver.trips.each do |trip| %>
               <tr>
-                <td><%= trip.id%></td>
+                <td><%= link_to trip.id, trip_path(trip.id) %></td>
                 <td><%= trip.date%></td>
-                <td><%= trip.passenger.name%></td>
-                <td><%= trip.cost%></td>
-                <td><%= trip.rating%></td>
+                <td><%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></td>
+                <td>$<%=sprintf("%.2f", trip.cost)%></td>
+                <td><%= (trip.rating).round(2) unless @driver.average_rating.nil? %></td>
                 <td><%= link_to "Edit", edit_trip_path(trip.id) %></td>
                 <td><%= link_to "Delete", trip_path(trip.id), method: :delete, data: { confirm: "Are you sure?" }, class: "show-delete-link" %></td>
               </tr>

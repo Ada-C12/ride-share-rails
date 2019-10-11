@@ -24,7 +24,7 @@ class PassengersController < ApplicationController
       redirect_to passenger_path(@passenger.id)
       return
     else
-      redirect_to new_passenger_path
+      render new_passenger_path
       return
     end
   end

@@ -20,4 +20,40 @@ class Driver < ApplicationRecord
     return nil
   end
 
+  def average_rating
+    ratings = self.trips.map do |trip|
+      trip.rating
+    end
+
+    if ratings.include?(nil) || ratings.empty?
+      return nil
+    else
+      return ratings.sum / ratings.length
+    end
+  end
+
+  def trip_count
+    return self.trips.count
+  end
+
+  def total_earnings
+    if self.trips == nil
+      return 0
+    end
+
+    earnings = self.trips.map do |trip|
+      if trip.cost <= 1.65
+        0
+      else
+        (trip.cost - 1.65) * 0.8
+      end
+    end
+
+    return earnings.sum
+  end
+
+  def self.all_in_alpha_order
+    return Driver.all.order(name: :asc)
+  end
+
 end

@@ -91,11 +91,11 @@ describe DriversController do
       expect {post drivers_path, params: invalid_driver_hash}.must_differ 'Driver.count', 0
       
       # Assert
-      # Check that the controller redirects
-      must_redirect_to new_driver_path
+      # Check that the controller renders page
+      must_respond_with :success
       
       expect {post drivers_path, params: invalid_driver_hash_2}.must_differ 'Driver.count', 0
-      must_redirect_to new_driver_path
+      must_respond_with :success
       
     end
   end

@@ -273,7 +273,6 @@ describe TripsController do
 
     it "successfully updates the driver's active status to false and redirects to the trip show page" do
       current_trip.reload
-      puts "here is isssss #{current_trip.driver}"
       expect(current_trip.driver.active).must_equal true
       patch add_rating_path(current_trip.id), params: {trip: {rating: 5}}
       must_redirect_to trip_path(current_trip.id)
