@@ -128,7 +128,7 @@ table {
   margin: 20px;
 }
 
-td{
+td, .table-header {
   text-align: center;
 }
 
