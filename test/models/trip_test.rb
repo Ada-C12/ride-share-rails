@@ -11,11 +11,21 @@ describe Trip do
     Trip.create(date: Date.today, rating: 4, cost: 2300, driver_id: driver.id, passenger_id: passenger.id)
   }
   it "can be instantiated" do
-    # Your code here
+    expect(trip.valid?).must_equal true
+    expect(trip).must_be_instance_of Trip
+    expect(trip).wont_be_nil
   end
   
   it "will have the required fields" do
-    # Your code here
+    expect(trip.date).wont_be_nil
+    expect(trip.rating).wont_be_nil
+    expect(trip.cost).wont_be_nil
+    expect(trip.driver_id).wont_be_nil
+    expect(trip.passenger_id).wont_be_nil
+
+    [:date, :rating, :cost, :driver_id, :passenger_id].each do |field|
+      expect(trip).must_respond_to field
+    end
   end
   
   describe "relationships" do
@@ -26,14 +36,16 @@ describe Trip do
   end
   
   describe "validations" do
-    it "won't create a trip if driver or passenger are invalid" do
-      invalid_trip = Trip.create(date: Date.today, rating: 4, cost: 2300, driver_id: nil, passenger_id: nil)
+    it "must have a driver" do
+      invalid_trip = Trip.create(date: Date.today, rating: 4, cost: 2300, driver_id: nil, passenger_id: passenger.id)
       expect(invalid_trip.id).must_be_nil
+      expect(invalid_trip.valid?).must_equal false
     end
-  end
-  
-  # Tests for methods you create should go here
-  describe "custom methods" do
-    # Your tests here
+
+    it "must have a passenger" do
+      invalid_trip = Trip.create(date: Date.today, rating: 4, cost: 2300, driver_id: driver.id, passenger_id: nil)
+      expect(invalid_trip.id).must_be_nil
+      expect(invalid_trip.valid?).must_equal false
+    end
   end
 end
