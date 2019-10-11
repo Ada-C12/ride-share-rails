@@ -12,7 +12,7 @@ describe TripsController do
       vin: "848485859",
       car_make: "Ford",
       car_model: "Escape",
-      active: true
+      active: false
     )
 
     @trip = Trip.create(
@@ -59,17 +59,16 @@ describe TripsController do
       }.must_change "Trip.count", 1
 
       must_respond_with :redirect
-      must_redirect_to trip_path(Trip.first.id)
+      must_redirect_to passenger_path(@passenger.id)
     end
 
-    it "does not create a trip if the form data violates Trip validations, and responds with a redirect" do
+    it "does not create a trip if the form data violates Trip validations, and responds with a redirect to homepage" do
       invalid_trip_hashes = [
         {
           trip: {
             date: "",
             rating: 7,
             cost: 1040,
-            passenger_id: @passenger.id,
             driver_id: @driver.id
           },
         },
@@ -78,7 +77,6 @@ describe TripsController do
             date: "10-04-2019",
             rating: 7,
             cost: 1040,
-            passenger_id: @passenger.id,
             driver_id: nil
           },
         },
@@ -87,15 +85,8 @@ describe TripsController do
             date: nil,
             rating: nil,
             cost: nil,
-            passenger_id: @passenger.id,
             driver_id: nil
-          },
-        },
-        {
-          trip: {
-            passenger_id: @passenger.id,
-            driver_id: @driver.id
-          },
+          }
         }
       ]
 
@@ -106,7 +97,8 @@ describe TripsController do
       end
 
       # Test that edit page will render, per Jared's slack msg
-      must_respond_with :success
+      must_respond_with :redirect
+      must_redirect_to root_path
     end
   end
 
