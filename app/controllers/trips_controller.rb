@@ -34,7 +34,7 @@ class TripsController < ApplicationController
 
   def new
     passenger_id = params[:passenger_id]
-    driver_id = params[:driver_id]
+
     @trip = Trip.new
     
     if passenger_id.nil?
@@ -43,27 +43,23 @@ class TripsController < ApplicationController
       @passengers = [Passenger.find_by(id: passenger_id)]
     end
     
-    if driver_id.nil? 
-      @drivers = Driver.all
-    else
-      @drivers = [Driver.find_by(active: nil)]
-    end
+      # @drivers = Driver.all
+      @drivers = Driver.where(active: nil)
   end
   
   def create 
-    # will not set params for price, rating. by leaving it blank, it'll default to nil
-    puts "meow trip create method"
-    driver_id = params[:trip][:driver_id]
-    passenger_id = params[:trip][:passenger_id]
-    @trip = Trip.new( driver_id: driver_id, passenger_id: passenger_id, date: Time.now )
-    puts params
+    new_passenger_id = params[:trip][:passenger_id]
+    new_driver_id = params[:trip][:driver_id]
+
+    @trip = Trip.new( passenger_id: new_passenger_id,driver_id: new_driver_id)
+ 
     if @trip.save
-      puts "trip save successful #{@trip.id}"
-      redirect_to passenger_path(passenger_id)
+      @trip.driver.active = true
+      @trip.driver.save
+      redirect_to trip_path(@trip.id)
       return
     else
-      puts "trip save unsuccessful #{@trip.id}"
-      redirect_to new_passenger_trip_path(passenger_id)
+      redirect_to passengers_path
       return
     end
   end

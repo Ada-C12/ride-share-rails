@@ -7,13 +7,15 @@ class Driver < ApplicationRecord
   def active
       # returns true if driver is on a trip
       # returns false if driver is available
-    drivers_on_trip = self.trip.where.not(passenger_id: nil)
+    drivers_available = self.trip.where.(passenger_id: nil)
 
-    if drivers_on_trip.length == 0
-      return false 
-    else
-      return true
-    end
+    return drivers_available
+
+    # if drivers_on_trip.length == 0
+    #   return false 
+    # else
+    #   return true
+    # end
   end
 
   

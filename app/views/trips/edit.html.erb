@@ -2,7 +2,7 @@
 
 <p>Driven by: <%= @trip.driver.name %></p>
 <p>Ridden by: <%= @trip.passenger.name %></p>
-<p>Trip cost: $ <%= '%.02f' % @trip.price %></p>
+<p>Trip cost: $ <%= '%.02f' % @trip.cost %></p>
 
 <%= form_with model: @trip,class:"edit-trip-form" do |f| %>
   <%= f.label :rating %>
