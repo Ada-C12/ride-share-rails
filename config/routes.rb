@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :trips
   
   
-  
+  # post '/drivers/:id/active', to: 'drivers#active', as: 'active_driver'
   # resources :books #, except: [:index]
   
   
