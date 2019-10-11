@@ -25,31 +25,12 @@ class TripsController < ApplicationController
         return
       end 
     end 
-    
-    # def edit
-    #   @trip = Trip.find_by(id: params[:id])
-    #   if @trip.nil? 
-    #     head :not_found
-    #     return
-    #   end 
-    # end 
-    
-    # def update 
-    #   @trip = Trip.find_by(id: params[:id])
-    #   if @trip.update(trip_params)
-    #     #experiment
-    #     redirect_to trips_path
-    #     return
-    #   else 
-    #     render :edit
-    #     return
-    #   end 
-    # end 
 
     def complete_trip
       @trip = Trip.find_by(id: params[:id])
-      @trip.assign_rating
+      @trip.rating = trip_params[:rating]
       @trip.driver.toggle_status
+      @trip.save
       redirect_to passenger_path(@trip.passenger.id)
     end 
     

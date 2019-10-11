@@ -1,12 +1,16 @@
 <h1>Passenger Details: <%= @passenger.name%></h1>
 
 <h3>Trips Taken</h3>
-<% @passenger.trips.each do |trip| %>
+<% @passenger.trips.chrono_trips.each do |trip| %>
   Date: <%= trip.date %>, Rating: <%= "⭐" * trip.rating.to_i %> Cost: $<%= '%.2f' % trip.cost %>, Driver: <%= trip.driver.name %> 
     <% if trip.rating.nil? %>
-      <%= link_to "Complete Trip", complete_trip_path(trip), method: :patch %>
-    <% end %>
-  <br>
+      <%= form_with model: trip, url: complete_trip_path(trip), method: :patch do |f| %>
+      <%= f.label :rating, "Rating" %>
+      <%= f.select :rating, [1,2,3,4,5] %>
+      <%= f.submit "Complete Trip" %>
+      <% end %>
+<% end %>
+ <br>
 <% end %>
 
 <%= link_to "Create a New Trip", passenger_trips_path(@passenger), method: :post %>
@@ -16,3 +20,4 @@
 <%= link_to "Delete Passenger", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"} %>
 <%= link_to "Passenger List", passengers_path %>
 </div>
+

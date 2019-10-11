@@ -35,12 +35,12 @@ describe TripsController do
     
     it "does not create a trip from invalid form data, and responds with not_found" do 
       example_pass = Passenger.create(name: "Snoopy", phone_num: "4")
+      example_driver = Driver.create(name: "Charlie Brown", vin: "22", car_make: "doghouse", car_model: "backyard")
       bad_trip = { 
         trip: { 
-          passenger_id: nil, 
-          driver_id: nil, 
+          passenger_id: example_pass.id, 
+          driver_id: example_driver.id, 
           rating: nil, 
-          date: nil, 
           cost: 225
         }
       }
