@@ -9,9 +9,8 @@ Rails.application.routes.draw do
   
   #root 'passengers#index'
   resources :drivers
-  resources :passengers do
-    
-  end
+  resources :passengers
+  resources :trip 
 end
 
 # 'author/:id', to: 'author#show', as: 'author'

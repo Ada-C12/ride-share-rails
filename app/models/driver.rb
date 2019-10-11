@@ -27,8 +27,17 @@ class Driver < ApplicationRecord
   end 
   
   # Change driver to other kind of Driver... this is testing...
+  # Update the database for available driver!
+  # I'm stil, working on this logic...
   def self.find_a_driver
+    # driver = nil
+    # driver = Driver.find_by(available: true)
+    
+    # if driver = nil
+    #   return "error"
+    # else 
     driver = Driver.first.id
     return driver
   end
 end
+
