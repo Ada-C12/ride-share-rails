@@ -96,6 +96,22 @@ describe PassengersController do
       input_passenger.reload
       expect(input_passenger.name).must_equal "Updated Passenger"
     end
+
+    it "does not update a passenger if the form violates Passenger validations, and responds with redirect" do
+      old_passenger = passenger
+      updated_passenger = {
+        passenger: {
+          name: "",
+          phone_num: ""
+        },
+      }
+
+      expect {
+        patch passenger_path(old_passenger.id), params: updated_passenger
+      }.must_differ "Passenger.count", 0
+
+      must_redirect_to passenger_path(old_passenger.id)
+    end
   end
 
   describe "destroy" do
@@ -120,28 +136,5 @@ describe PassengersController do
     
     must_respond_with :redirect
     end
-
-    # it "redirects to passenger index page and deletes no books if no books exist" do
-    #   Book.destroy_all
-    #   invalid_book_id = 1
-
-    #   expect {
-    #     delete book_path( invalid_book_id )
-    #   }.must_differ "Book.count", 0
-
-    #   must_redirect_to books_path
-    # end
-
-    # it "redirects to books index page and deletes no books if deleting a book with an id that has already been deleted" do
-    #   Book.create(title: "Valid Book", author: valid_author, description: "Valid Description")
-    #   book_id = Book.find_by(title: "Valid Book").id
-    #   Book.destroy_all
-
-    #   expect {
-    #     delete book_path( book_id )
-    #   }.must_differ "Book.count", 0
-
-    #   must_redirect_to books_path
-    # end
   end
 end
