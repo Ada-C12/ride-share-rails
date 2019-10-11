@@ -67,7 +67,7 @@ describe PassengersController do
   end
 
   describe "edit" do
-    it "can get the edit page for an existing task" do
+    it "responds with success" do
       # skip
       get edit_passenger_path(passenger.id)
 
@@ -75,7 +75,6 @@ describe PassengersController do
       must_respond_with :success
       
     end
-
     it "will respond with redirect when attempting to edit a nonexistant passenger" do
       # Your code here
       invalid_id = -500

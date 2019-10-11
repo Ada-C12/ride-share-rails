@@ -154,7 +154,7 @@ describe DriversController do
   
         expect {
           delete driver_path( existing_driver_id )
-        }.must_differ "driver.count", -1
+        }.must_differ "Driver.count", -1
   
         must_redirect_to drivers_path
       end
