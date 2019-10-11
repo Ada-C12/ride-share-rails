@@ -3,12 +3,11 @@ require "test_helper"
 describe TripsController do
   
   describe "show" do
-    driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9") 
-    trip = Trip.create driver_id: driver.id, passenger_id: 2, date: Date.today, rating: 5, cost: 1234
     
     it "can get a valid trip" do
-      
-      get trip_path(trip.id)
+      show_driver = Driver.create(name: "Show Driver", vin: "ALWSS52P9NEYLVDE9") 
+      show_trip = Trip.create driver_id: show_driver.id, passenger_id: 2, date: Date.today, rating: 5, cost: 1234
+      get trip_path(show_trip.id)
       
       must_respond_with :success
     end
@@ -66,9 +65,9 @@ describe TripsController do
   end
   
   describe "update" do
-    new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
+    update_new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
     updated_driver = Driver.create(name: "George", vin: "ALWSS52P9SDS4LVDE9")
-    existing_trip = Trip.create(driver_id: new_driver.id, passenger_id: 2, date: Date.today, rating: 5, cost: 1234)
+    existing_trip = Trip.create(driver_id: update_new_driver.id, passenger_id: 2, date: Date.today, rating: 5, cost: 1234)
     
     update_info = {
       trip: {
