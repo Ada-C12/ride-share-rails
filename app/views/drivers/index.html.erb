@@ -4,7 +4,7 @@
 <div class="view-all">
   <% @drivers.each do |driver| %>
     <div class="individual">
-      <%= image_tag "http://api.adorable.io/avatars/285/#{driver.id}.png", alt: "User photo" %>
+      <%= image_tag "http://api.adorable.io/avatars/285/#{driver.id}.png", alt: "Driver photo" %>
       <%= link_to driver.name, driver_path(driver) %>
     </div>
   <% end %>

@@ -23,7 +23,7 @@
 
       <br>
       <div class="buttons">
-        <%= link_to "Edit", edit_driver_path %>
+        <div class="button"><%= link_to "Edit", edit_driver_path %></>
         <%= link_to "Delete", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure you want to delete this driver?"} %><br>
       </div>
       </li>
