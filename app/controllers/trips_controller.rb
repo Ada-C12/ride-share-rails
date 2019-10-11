@@ -11,7 +11,6 @@ class TripsController < ApplicationController
   end
   
   def create   
-    # call driver to get a driver
     driver = Driver.get_driver
     
     if driver == nil
@@ -22,9 +21,7 @@ class TripsController < ApplicationController
     
     date = DateTime.now
     
-    # generate random cost
-    # all costs are four digits
-    # effectively, $10.00-$99.99
+    # all costs are four digits ($10.00-$99.99)
     cost = rand(1000..9999).to_i
     
     data_hash = {
