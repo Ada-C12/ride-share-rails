@@ -15,8 +15,14 @@
  */
 .trip-table {
   width: 75%;
-  border: 2px solid black;
+  border: 4px solid black;
 
+}
+
+.trip-table tr td {
+  padding: 1em;
+  border: 2px solid black;
+  text-align: center;
 }
 
 .list-all {
@@ -24,9 +30,9 @@
   margin: 0;
   padding: 0;
 }
-.list-all li {
-  border-style: dashed
-} 
+/* .list-all li {
+  border-style: solid
+}  */
 
 nav ul {
   list-style-type: none;
