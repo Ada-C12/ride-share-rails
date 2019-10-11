@@ -3,12 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 10% 1fr 1fr 10% 1fr 1fr;
+  margin-top: 5em;
 }
 
 .detail-card {
+  margin-left: 27%;
   grid-column: 2 / 4;
   grid-row: 2 / 4;
   background-color: lightgrey;
