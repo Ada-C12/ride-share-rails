@@ -95,7 +95,7 @@ nav > * {
   display: block;
   width: 100%;
   overflow: auto;
-  height: 35rem;
+  height: max-content;
 }
 
 .table thead tr {
