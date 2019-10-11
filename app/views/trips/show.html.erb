@@ -1,0 +1,22 @@
+<h1>Trip Details</h1>
+
+  <table class='trips-table'>
+    <tr>
+      <th>Date</th>
+      <th>Rating</th>
+      <th>Cost</th>
+      <th>Driver ID</th>
+      <th>Passenger Name</th>
+    </tr>
+    <tr>
+      <td><%= @trip.date %></td>
+      <td><%= @trip.rating %></td>
+      <td><%= @trip.cost %></td>
+      <td><%= @trip.driver.id %></td>
+      <td><%= @trip.passenger.name %></td>
+    </tr>
+    </table>
+
+
+  </table>
+</section>

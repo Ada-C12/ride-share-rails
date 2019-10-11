@@ -12,4 +12,19 @@ class Driver < ApplicationRecord
     return self.trips.order(date: :desc) 
   end
 
+  def self.available_driver
+    available_drivers = Driver.where(active: false)
+    if available_drivers.empty?
+      return nil
+    else
+    available_driver = available_drivers.sample
+    end
+
+    return available_driver
+  end
+
+  def toggle_active
+    self.toggle!(:active)
+  end
+
 end

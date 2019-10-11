@@ -9,6 +9,10 @@
 </section>
 
 <section>
+  <p><%= link_to "Request a Trip", passenger_trips_path(@passenger.id), method: :post %></p>
+</section>
+
+<section>
   <h2>Trips</h2>
   <ul>
   <%@passenger.all_trips.each do |trip|%>

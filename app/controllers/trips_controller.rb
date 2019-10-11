@@ -35,12 +35,22 @@ class TripsController < ApplicationController
   end
   
   def create
-    @trip = Trip.new(trip_params)
-    if @trip.save
+    passenger_id = params[:passenger_id]
+    @passenger = Passenger.find_by(id: passenger_id)
+
+    # get trip_params from Passenger.request_trip (making fake trips!)
+    request_trip_params = @passenger.request_trip_params
+
+    @trip = Trip.create(request_trip_params)
+    @trip.passenger = @passenger
+    @trip.save
+
+    if @trip.id?
+      @trip.driver.toggle_active
       redirect_to trip_path(@trip.id)
       return
     else
-      render :new
+      redirect_to passenger_path(@passenger.id)
       return
     end
   end
@@ -49,6 +59,10 @@ class TripsController < ApplicationController
   
   def trip_params
     return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
+  end
+
+  def create_trip_params
+    return
   end
   
 end
