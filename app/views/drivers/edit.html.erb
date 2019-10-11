@@ -7,6 +7,9 @@
   <%= f.label :vin %>
   <%= f.text_field :vin %>
 
+  <%= f.label :status %>
+  <%= f.select :status, options_for_select(["available", "unavailable"], @driver.status) %>
+
   
 
   <%= f.submit "Update Driver", class: "driver-button" %>

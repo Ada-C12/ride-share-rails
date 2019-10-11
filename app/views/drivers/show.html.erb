@@ -1,5 +1,6 @@
 <h1>Driver</h1>
 
+<%=link_to "Edit Driver", edit_driver_path(@driver) %>
 <p>Name: <%= @driver.name%></p>
 <p>Average Rating:
  <% if @driver.avg_rating.nil?%>
