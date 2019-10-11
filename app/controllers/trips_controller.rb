@@ -3,7 +3,7 @@ class TripsController < ApplicationController
   def show
     trip_id = params[:id].to_i
     @trip = Trip.find_by(id: trip_id)
-
+    
     if @trip.nil?
       head :not_found
       return 
@@ -24,6 +24,9 @@ class TripsController < ApplicationController
     passenger = Passenger.find_by(id:params[:passenger_id])
     trip_params = passenger.request_trip
     @trip = Trip.create(trip_params)
+    
+    # @trip.passenger = (Passenger_params)
+    # @tripdriver = (Driver_params)
     
     if @trip
       redirect_to trip_path(@trip.id), notice: 'Trip was successfully created.'

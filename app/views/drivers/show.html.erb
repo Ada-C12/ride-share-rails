@@ -4,8 +4,8 @@
 </header>
 <ul>
   <li><strong>VIN:</strong><%=@driver.vin%>
-  <li><strong>total earnings:</strong></li>
-  <li><strong>average rating:</strong></li>
+  <li><strong>total earnings:  $</strong><%= @driver.total_earnings %></li>
+  <li><strong>average rating:  </strong></li>
 
   <li> <%= link_to "Edit driver!", edit_driver_path(@driver.id)%></li>
   <li> <%= link_to "Delete driver!", driver_path(@driver.id), method: :delete, data: {confirm: "are you sure???"}, class: "driver-delete-link" %></li>
