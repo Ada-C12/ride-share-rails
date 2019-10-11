@@ -71,18 +71,19 @@ class TripsController < ApplicationController
     end
     
     if params[:trip][:driver_name].blank? || params[:trip][:passenger_name].blank? || params[:trip][:cost].blank?
-      if params[:trip][:rating]
+      prev = Rails.application.routes.recognize_path(request.referrer)
+      if prev[:action] == "rate"
         @trip.rating = params[:trip][:rating]
         if @trip.save
           redirect_to trip_path(@trip.id)
           return
         else
-          flash[:notice] = "Unable to save rating."
+          flash.now[:notice] = "Unable to save rating."
           render :rate
           return
         end
       else
-        flash[:notice] = "You must enter a value for all fields."
+        flash.now[:notice] = "You must enter a value for all fields."
         render :edit
         return
       end
@@ -92,13 +93,13 @@ class TripsController < ApplicationController
     passenger = Passenger.find_by(name: params[:trip][:passenger_name])
     
     if driver.nil? 
-      flash[:notice] = "This driver is not in our system."
+      flash.now[:notice] = "This driver is not in our system."
       render :edit
       return
     end
     
     if passenger.nil?
-      flash[:notice] = "This passenger is not in our system."
+      flash.now[:notice] = "This passenger is not in our system."
       render :edit
       return
     end
