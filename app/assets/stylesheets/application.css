@@ -122,3 +122,25 @@ table, th, td {
   padding-right: 30px;
   opacity: 0.9
 }
+
+
+table {
+  margin: 20px;
+}
+
+td{
+  text-align: center;
+}
+
+.edit-passenger, .create-passenger, .edit-driver, .create-driver {
+  display: grid;
+  grid-template-columns: 200px 400px;
+  row-gap: 0.5em;
+  column-gap: 0.3em;
+}
+
+.edit-trip {
+  display: grid;
+  grid-template-columns: 200px;
+  row-gap: -0.2em;
+}

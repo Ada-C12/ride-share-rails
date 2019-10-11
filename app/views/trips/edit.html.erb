@@ -1,7 +1,7 @@
 <div class="page-container">
   <%= form_with model: @trip, class: "edit-trip" do |f| %>
     <%= f.label :date %>
-    <%= f.text_field :date %> <br>
+    <%= f.date_field :date, value: f.object.try(:strftime,"%Y-%m-%d") %> <br>
 
     <%= f.label :cost %>
     <%= f.text_field :cost %> <br>

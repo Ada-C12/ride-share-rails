@@ -9,6 +9,8 @@
   </ul>
 <% end %>
 
+<p>Please provide the following information to <%="#{action_name}"%> the passenger in our database: </p>
+
 <%= form_with model: @passenger, class: "#{action_name}-passenger" do |f| %>
   <%= f.label :name %> <br>
   <%= f.text_field :name %> <br>

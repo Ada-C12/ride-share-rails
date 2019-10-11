@@ -9,6 +9,8 @@
   </ul>
 <% end %>
 
+<p>Please provide the following information to <%="#{action_name}"%> the driver in our database: </p>
+
 <%= form_with model: @driver, class: "#{action_name}-driver" do |f| %>
   <%= f.label :name %> <br>
   <%= f.text_field :name %> <br>
