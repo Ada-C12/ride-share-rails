@@ -18,12 +18,15 @@ class TripsController < ApplicationController
   end
   
   def create
-    @trip = Trip.new(trip_params)
+    @trip = Trip.new(passenger_id: params[:id])
+    driver = Driver.where(:active => false).first
     @trip.date = Date.today
     @trip.cost = rand(5..500).to_f
     @trip.rating = nil
+    @trip.driver_id = driver.id
     if @trip.save
       redirect_to passenger_trips_path(@trip.passenger.id)
+      driver.update(active: true)
     else
       new_passenger_trip_path(id: trip_params[:passenger_id])
       
