@@ -12,7 +12,7 @@
 <p>Car Make: <%= @driver.car_make %></p>
 <p>Car Model: <%= @driver.car_model %></p>
 <p>Total Earnings: $<%= sprintf "%.2f",@driver.total_earnings %></p>
-<p>Average Rating: <%= sprintf "%.2f",@driver.total_earnings %></p>
+<p>Average Rating: <%= sprintf "%.2f",@driver.avg_rating %></p>
 
 <div class='button-container'>
 <%= button_to "Edit Driver", edit_driver_path(@driver), class:"button", method: :get %>
