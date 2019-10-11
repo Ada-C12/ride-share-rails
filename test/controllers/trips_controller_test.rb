@@ -44,11 +44,9 @@ describe TripsController do
       # Arrange
       passenger_test_2.save
       driver_test_2.save
-      first_driver = Driver.first
-      first_passenger = Passenger.first
 
       trip_hash = {
-          passenger_id: passenger_test_2
+          passenger_id: passenger_test_2.id
         }
 
       # Act-Assert
@@ -57,7 +55,7 @@ describe TripsController do
       }.must_differ "Trip.count", 1
 
       # must_respond_with :redirect
-      must_redirect_to trip_path(Trip.find_by(passenger_id: first_passenger.id).id)
+      must_redirect_to passenger_path(passenger_test_2.id)
     end
   end
 
