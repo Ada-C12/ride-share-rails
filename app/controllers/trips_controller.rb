@@ -20,20 +20,12 @@ class TripsController < ApplicationController
   end
 
   def create
-    first_available_driver = Driver.find_by(active: false)
     passenger_id = params[:trip][:passenger_id]
-
-    @trip = Trip.new(
-      date: Date.today,
-      rating: nil,
-      cost: rand(165..4000),
-      passenger_id: passenger_id,
-      driver_id: first_available_driver.id
-    )
+    @trip = Passenger.find_by(id: passenger_id).request_trip
 
     if @trip.save
-      first_available_driver.toggle_active
-      redirect_to passenger_path(passenger_id)
+      @trip.driver.toggle_active
+      redirect_to passenger_path(@trip.passenger_id)
       return
     else
       redirect_to root_path
