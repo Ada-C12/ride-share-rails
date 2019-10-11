@@ -5,8 +5,6 @@ describe Driver do
   let (:new_driver) {
     Driver.new(name: "Kari", vin: "123", active: false)
   }
-
-  #ERRORS ABOUT INCORRECT ROUTES ARE DUE TO NEW_DRIVER NOT AUTOMATICALLY GENERATING AN ID ANYMORE. NOT SURE WHY DB ISN'T DOING THIS ANYMORE...
   
   it "can be instantiated" do
     expect(new_driver.valid?).must_equal true
@@ -30,7 +28,7 @@ describe Driver do
 
       trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
       trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
-      binding.pry
+      
       expect(new_passenger.trips.count).must_equal 2
       new_passenger.trips.each do |trip|
         expect(trip).must_be_instance_of Trip
@@ -163,23 +161,5 @@ describe Driver do
         expect(new_driver.total_earned).must_equal 1496
       end 
     end 
-
-    # MADE THIS BEFORE CREATED CUSTOM ROUTE TO CHANGE ACTIVE STATUS ON VIEW FREELY
-    # describe "can go online" do
-    #   it "should go online and active status is true" do
-    #     new_driver.save
-    #     new_driver.go_online
-    #     expect(new_driver.active).must_equal true
-    #   end 
-    # end
-  
-    # describe "can go offline" do
-    #   it "should go offline and active status is false" do
-    #     new_driver.save
-    #     new_driver.go_online
-    #     new_driver.go_offline
-    #     expect(new_driver.active).must_equal false
-    #   end 
-    # end
   end
 end

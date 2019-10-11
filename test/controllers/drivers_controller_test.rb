@@ -106,7 +106,7 @@ describe DriversController do
           vin: "987"
         }
       }
-      # binding.pry
+      
       expect {
         patch driver_path(id: existing_driver.id), params: updated_driver_data
       }.must_differ 'Driver.count', 0
@@ -137,10 +137,11 @@ describe DriversController do
       expect {
         patch driver_path(id: existing_driver.id), params: updated_driver_data
       }.must_differ 'Driver.count', 0
-      # binding.pry
+      
       patch driver_path(id: existing_driver.id), params: updated_driver_data
 
       updated_driver = Driver.find_by(id: existing_driver.id)
+      binding.pry
       expect(updated_driver.valid?).must_equal false 
       
       must_redirect_to nope_path
@@ -170,19 +171,18 @@ describe DriversController do
 
   describe "active" do
     it "should mark driver.active to true or false" do
-      existing_driver = Driver.create(name: "Kari", vin: "123")
+      driver = Driver.create(name: "Kari", vin: "123")
 
       updated_active_status = {
         driver: {
           active: true
         }
       }
-      patch driver_active_path(existing_driver.id), params: updated_active_status
+      patch driver_active_path(driver.id), params: updated_active_status
       
       updated_driver = Driver.find_by(id:driver.id)
       
       expect(updated_driver.active).must_equal true
-      expect(updated_driver.active).must_be_kind_of Boolean 
       must_redirect_to driver_path(@driver.id)
     end 
   end

@@ -4,7 +4,6 @@ class Driver < ApplicationRecord
   validates :name, presence: true
   validates :vin, uniqueness: true, presence: true
   
-  
   def net_earning(trip_cost)
     # Remember trip cost is in number of cents, as in 100 = $1.00, so $1.65 fee deduction is 165.
     return ((trip_cost-165)*0.8).round
@@ -27,21 +26,6 @@ class Driver < ApplicationRecord
     avg_rating = avg_rating.round(2)
     return avg_rating
   end 
-  
-  # MADE THIS BEFORE CREATED CUSTOM ROUTE TO CHANGE ACTIVE STATUS ON VIEW FREELY
-  # def go_offline
-  #   if self.active == true
-  #     self.active = false
-  #     self.save
-  #   end 
-  # end 
-  
-  # def go_online
-  #   if self.active == false
-  #     self.active = true
-  #     self.save
-  #   end 
-  # end 
 end
 
 
