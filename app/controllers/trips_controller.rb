@@ -7,19 +7,20 @@ class TripsController < ApplicationController
       return
     end
   end
-
+  
   def create
     passenger = Passenger.find_by(id: params[:passenger_id])
     driver = passenger.find_driver
-
+    
     if driver.nil?
       head :not_found 
       return
     end
-
-    @trip = Trip.new(date: Date.today, rating: nil, cost: 13.00, driver_id: driver.id, passenger_id: passenger.id)
+    
+    @trip = Trip.new(date: Date.today, rating: nil, cost: 1300, driver_id: driver.id, passenger_id: passenger.id)
     
     if @trip.save
+      @trip.driver.toggle_active
       redirect_to trip_path(@trip.id)
       return
     else
@@ -27,7 +28,7 @@ class TripsController < ApplicationController
       return
     end
   end
-
+  
   def edit
     @trip = Trip.find_by(id: params[:id])
     if @trip.nil?
@@ -46,7 +47,7 @@ class TripsController < ApplicationController
       puts "trip updated"
       redirect_to trip_path(@trip.id)
       return
-    else
+    else      
       render :edit
       puts "trip not updated"
       return
@@ -55,7 +56,7 @@ class TripsController < ApplicationController
   
   def destroy
     selected_trip = Trip.find_by(id: params[:id])
-
+    
     if selected_trip.nil?
       head :not_found
       return
@@ -65,9 +66,9 @@ class TripsController < ApplicationController
       return
     end
   end
-
+  
   private
-
+  
   def trip_params
     return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
   end

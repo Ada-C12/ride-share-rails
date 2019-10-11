@@ -8,7 +8,7 @@ describe TripsController do
     Passenger.create(name: "sample passenger", phone_num: "sample number")
   }
   let (:trip) {
-    Trip.create(date: Date.today, rating: 4, cost: 23.00, driver_id: driver.id, passenger_id: passenger.id)
+    Trip.create(date: Date.today, rating: 4, cost: 2300, driver_id: driver.id, passenger_id: passenger.id)
   }
   describe "show" do
     it "can get a valid trip" do
@@ -35,7 +35,7 @@ describe TripsController do
       new_trip = Trip.first
       expect(new_trip.date).must_equal Date.today
       expect(new_trip.rating).must_be_nil
-      expect(new_trip.cost).must_equal 13.00
+      expect(new_trip.cost).must_equal 1300
       expect(new_trip.driver_id).must_equal available_driver.id
       expect(new_trip.passenger_id).must_equal passenger.id
       
@@ -84,40 +84,30 @@ describe TripsController do
   end
   
   describe "update" do
-    it "can update an existing trip accurately, and redirect" do
-      new_driver = Driver.create(name: "updated driver", vin: "updated vin", active: false)
-      new_passenger = Passenger.create(name: "updated passenger", phone_num: "updated number")
-
+    it "can update an existing trip accurately, and redirect" do      
       new_trip = Trip.create(date: Date.today, rating: 4, cost: 23.00, driver_id: driver.id, passenger_id: passenger.id)
-
-
-      p driver
-      p passenger
-
-      p new_driver
-      p new_passenger
-      p new_trip
-
+      
       trip_hash = { 
         trip: { 
           date: Date.today + 1,
           rating: 1,
           cost: 10.00,
-          driver_id: new_driver,
-          passenger_id: new_passenger
+          driver_id: driver.id,
+          passenger_id: passenger.id,
         }
       }
-      
-      # trip_to_update = trip
       
       expect {
         patch trip_path(new_trip.id), params: trip_hash
       }.must_differ "Trip.count", 0
       
-      # updated_trip = Trip.find_by(id: new_trip.id)
+      new_trip.reload
       
-      # expect(new_trip.date).must_equal trip_hash[:trip][:date]
-      # expect(new_trip.rating).must_equal trip_hash[:trip][:rating]
+      expect(new_trip.date).must_equal trip_hash[:trip][:date]
+      expect(new_trip.rating).must_equal trip_hash[:trip][:rating]
+      expect(new_trip.cost).must_equal trip_hash[:trip][:cost]
+      expect(new_trip.driver_id).must_equal trip_hash[:trip][:driver_id]
+      expect(new_trip.passenger_id).must_equal trip_hash[:trip][:passenger_id]
       
       must_respond_with :redirect
       must_redirect_to trip_path

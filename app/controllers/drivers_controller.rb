@@ -68,7 +68,7 @@ class DriversController < ApplicationController
   def toggle_active
     @driver = Driver.find_by(id: params[:id])
 
-    @driver.toggle
+    @driver.toggle_active
     redirect_to driver_path(@driver.id)
     
     # if @driver.nil?
