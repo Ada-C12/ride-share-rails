@@ -14,8 +14,8 @@
     <% end %>
   <% end %>
   </h3>
-  <% if @trip.driver.active && @trip.rating %>
-    <h3><%= link_to "Complete Trip", toggle_active_path(@trip.driver.id), method: :patch %></h3>
+  <% if @trip.rating && @trip.driver.active %>
+    <h3><%= link_to "Complete Trip", make_inactive_path(@trip.driver.id), method: :patch %></h3>
   <% end %>
 <ul class="trip-header">
     <li><h4>Date</h4></li>

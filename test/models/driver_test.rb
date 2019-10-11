@@ -81,7 +81,7 @@ describe Driver do
       it "can go online - available (active:false)" do
         test_driver = Driver.create(name: "Kari", vin: "123", active: true)
         
-        test_driver.toggle_active
+        test_driver.make_inactive
         
         expect (test_driver.active).must_equal false
       end
@@ -89,7 +89,7 @@ describe Driver do
       it "can go offline - unavailable (active:true)" do
         test_driver = Driver.create(name: "Kari", vin: "123", active: false)
         
-        test_driver.toggle_active
+        test_driver.make_active
         
         expect (test_driver.active).must_equal true
       end

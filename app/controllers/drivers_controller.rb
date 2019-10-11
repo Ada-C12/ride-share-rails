@@ -65,10 +65,17 @@ class DriversController < ApplicationController
     end
   end
   
-  def toggle_active
+  def make_active
     @driver = Driver.find_by(id: params[:id])
 
-    @driver.toggle_active
+    @driver.make_active
+    redirect_to driver_path(@driver.id)
+  end
+
+  def make_inactive
+    @driver = Driver.find_by(id: params[:id])
+
+    @driver.make_inactive
     redirect_to driver_path(@driver.id)
   end
   

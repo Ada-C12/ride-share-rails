@@ -30,8 +30,13 @@ class Driver < ApplicationRecord
     return total / 100
   end
   
-  def toggle_active
-    self.active = self.active ? false : true
+  def make_active
+    self.active = true
+    self.save
+  end
+
+  def make_inactive
+    self.active = false
     self.save
   end
 end

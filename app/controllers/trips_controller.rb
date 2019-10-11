@@ -20,7 +20,7 @@ class TripsController < ApplicationController
     @trip = Trip.new(date: Date.today, rating: nil, cost: rand(500..5000), driver_id: driver.id, passenger_id: passenger.id)
     
     if @trip.save
-      @trip.driver.toggle_active unless @trip.driver.active
+      @trip.driver.make_active
       redirect_to trip_path(@trip.id)
       return
     else
