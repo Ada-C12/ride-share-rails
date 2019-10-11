@@ -21,7 +21,7 @@ class Driver < ApplicationRecord
           counter += 1
         end
       end
-      average = (total_rating / counter)
+      average = (total_rating.to_f / counter).round(2)
     end
     return average
   end
