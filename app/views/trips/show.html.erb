@@ -1,0 +1,12 @@
+<h3>Trips details:<h3>
+
+  <li> Trip ID: <%= @trip.id %></li>
+  <li> Date: <%= @trip.date %></li>
+  <li> Driver: <%= @trip.driver.name %></li>
+  <li> Cost: $<%= (@trip.cost)/100.0 %></li>
+  <li> Rating: <%= @trip.rating %></li>
+
+</br>
+</br>
+
+<p><%= link_to "Return to Passenger List", passenger_path %></p>

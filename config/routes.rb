@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end 
   
   resources :passengers do 
-    resources :trips, only: [:create]
+    resources :trips, only: [:create, :edit, :update, :show]
   end
   
   resources :trips

@@ -12,8 +12,8 @@
   <li> Rating: <%= trip.rating %></li>
 
 <%# Fix link to Edit or ger rid of link?%>
-<%= link_to "Edit", edit_trip_path(trip.id) %> 
-<%= link_to "Delete", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure?"} %>
+<%= link_to "Edit", edit_trip_path(trip), method: :get %> 
+<%= link_to "Delete", trip_path(trip), method: :delete, data: {confirm: "Are you sure?"} %>
 </br>
 </br>
 <% end %>
