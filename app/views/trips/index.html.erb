@@ -1,0 +1,13 @@
+<h1>All Trips</h1>
+
+<section>
+  <ul class="list-all">
+    <%@trips.each do |trip|%>
+    <li>
+      <%= link_to trip.date, trip_path(trip.id) %>
+      <%= link_to "Edit Trip Info", edit_trip_path(trip.id) %>
+      <%= link_to "Delete Trip", trip_path(trip.id), method: :delete, data: { confirm: "Are you sure?" }%>
+    </li>
+    <%end%>
+  </ul>
+</section>

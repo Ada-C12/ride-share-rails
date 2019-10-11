@@ -11,6 +11,12 @@
 <% end %>
 
 <%= form_with model: @trip, class: 'create' do |f| %>
+  <%= f.label :date %>
+  <%= f.text_field :date, @date %>
+  <%= f.label :cost %>
+  <%= f.text_field :cost, @cost %>
+  <%= f.label :driver_id%>
+  <%= f.text_field :driver_id, @driver %>
   <%= f.select :passenger_id, @passengers.map{ |passenger| [passenger.name, passenger.id]} %>
   <%= f.submit "Request Trip", class: "button" %>
 <% end %>
