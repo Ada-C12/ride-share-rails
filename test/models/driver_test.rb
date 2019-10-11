@@ -5,6 +5,8 @@ describe Driver do
   let (:new_driver) {
     Driver.new(name: "Kari", vin: "123", active: false)
   }
+
+  #ERRORS ABOUT INCORRECT ROUTES ARE DUE TO NEW_DRIVER NOT AUTOMATICALLY GENERATING AN ID ANYMORE. NOT SURE WHY DB ISN'T DOING THIS ANYMORE...
   
   it "can be instantiated" do
     expect(new_driver.valid?).must_equal true
@@ -23,11 +25,12 @@ describe Driver do
   describe "relationships" do
     it "can have many trips" do
       new_driver.save
+      # driver = Driver.create(name: "Kari", vin: "123", active: false)
       new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
 
       trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
       trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
-
+      binding.pry
       expect(new_passenger.trips.count).must_equal 2
       new_passenger.trips.each do |trip|
         expect(trip).must_be_instance_of Trip
