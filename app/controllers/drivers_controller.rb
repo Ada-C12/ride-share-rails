@@ -12,7 +12,7 @@ class DriversController < ApplicationController
     driver_id = params[:id].to_i
     @driver = Driver.find_by(id:params[:id])
     if @driver.nil?
-      redirect_to nope_path
+      redirect_to nope_path(params: {msg: "Driver does not exist"})
       return
     end
   end 
@@ -23,7 +23,7 @@ class DriversController < ApplicationController
     if @driver.save
       redirect_to driver_path(@driver.id)
     else
-      redirect_to nope_path
+      render new_driver_path
     end
   end
   
