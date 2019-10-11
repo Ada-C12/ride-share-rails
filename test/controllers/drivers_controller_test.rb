@@ -184,8 +184,7 @@ describe DriversController do
       updated_driver = Driver.find_by(id:driver.id)
       
       expect(updated_driver.active).must_equal true
-      must_redirect_to driver_path(@driver.id)
+      must_redirect_to driver_path(driver.id)
     end 
   end
-
 end
