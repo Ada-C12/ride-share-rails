@@ -66,10 +66,6 @@ describe Passenger do
   # Tests for methods you create should go here
   describe "custom methods" do
 
-    describe "complete trip" do
-      # Your code here
-    end
-
     describe "find_passenger_trips" do
       it "returns all the trips from a specific passenger" do
         passenger = Passenger.create(name: "Georgina", phone_num: "111-111-1211")

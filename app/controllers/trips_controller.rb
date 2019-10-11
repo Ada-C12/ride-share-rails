@@ -15,11 +15,15 @@ class TripsController < ApplicationController
   end
   
   def new
-    if params[:passenger_id]
-      @passenger = Passenger.find_by(id: params[:passenger_id])
-      @trip = @passenger.trips.new
+    if (params[:trip][:rating]).to_i > 5
+      flash[:error] = "The rating can't be higher than 5"
     else
-      @trip = Trip.new
+      if params[:passenger_id]
+        @passenger = Passenger.find_by(id: params[:passenger_id])
+        @trip = @passenger.trips.new
+      else
+        @trip = Trip.new
+      end
     end 
   end
   
@@ -33,15 +37,19 @@ class TripsController < ApplicationController
   end
   
   def update
-    @trip = Trip.find_by(id: params[:id])
-    if @trip.nil?
-      head :not_found
-      return
-    end
-    
-    respond_to do |format|
-      if @trip.update(trip_params)
-        format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
+    if (params[:trip][:rating]).to_i > 5
+      flash[:error] = "The rating can't be higher than 5"
+    else
+      @trip = Trip.find_by(id: params[:id])
+      if @trip.nil?
+        head :not_found
+        return
+      end
+      
+      respond_to do |format|
+        if @trip.update(trip_params)
+          format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
+        end
       end
     end
   end
