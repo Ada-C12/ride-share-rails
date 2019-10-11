@@ -2,13 +2,11 @@ class TripsController < ApplicationController
   def show
     @trip = Trip.find_by(id: params[:id])
     
-    # might need more work later
     if @trip.nil?
       head :not_found
       return
     end
     
-    # @trip.replaced_deleted
   end
   
   def create
@@ -28,7 +26,6 @@ class TripsController < ApplicationController
       redirect_to trip_path(@trip.id)
       return
     else
-      # TIFF YOU NEED CLARITY ON HOW TO SEND AN ERROR MESSAGE
       redirect_to passenger_path(@trip.passenger_id)
       return
     end
@@ -37,7 +34,6 @@ class TripsController < ApplicationController
   def edit
     @trip = Trip.find_by(id: params[:id])
     
-    # might need more work later
     if @trip.nil?
       head :not_found
       return
@@ -47,7 +43,6 @@ class TripsController < ApplicationController
   def update
     @trip = Trip.find_by(id: params[:id])
     
-    # might need more work later
     if @trip.nil?
       head :not_found
       return
@@ -67,7 +62,6 @@ class TripsController < ApplicationController
   def destroy
     @trip = Trip.find_by(id: params[:id])
     
-    # might need more work later
     if @trip.nil?
       head :not_found
       return
@@ -77,11 +71,9 @@ class TripsController < ApplicationController
     redirect_to passenger_path(@trip.passenger_id)
   end
   
-  # Can you just use normal edit's code
   def assign_rating_edit
     @trip = Trip.find_by(id: params[:id])
     
-    # might need more work later
     if @trip.nil?
       head :not_found
       return
@@ -91,7 +83,6 @@ class TripsController < ApplicationController
   def assign_rating_update
     @trip = Trip.find_by(id: params[:id])
     
-    # might need more work later
     if @trip.nil?
       head :not_found
       return
@@ -107,10 +98,6 @@ class TripsController < ApplicationController
   end
   
   private
-  
-  # def creation_params
-  #   return params.require(:trip).permit(:date, :cost, :passenger_id, :driver_id)
-  # end
   
   def changes_params
     return params.require(:trip).permit(:date, :cost, :passenger_id, :driver_id, :rating)
