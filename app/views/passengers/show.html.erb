@@ -1,13 +1,12 @@
 <h1>Rideshare Rails</h1>
 
-
-<div id="nav" class="grid">
+<div id="nav" class="flex">
   <%= link_to "All Passengers", passengers_path %>
   <%= link_to "Add a new passenger", new_passenger_path %>
   <%= link_to "All Drivers", drivers_path %>
   <%= link_to "Add a new driver", new_driver_path %>
   <%= link_to "Homepage", root_path %>
-<div>
+</div>
 
 <h2>Passenger Details: <%= @passenger.name%></h2>
 
