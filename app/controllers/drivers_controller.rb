@@ -51,10 +51,10 @@ class DriversController < ApplicationController
       return
     end
 
-    if @driver.update(driver_params)
-      redirect_to driver_path(@driver)
+    if @driver.save
+      redirect_to driver_path(@driver.id)
     else
-      render :edit
+      redirect_to driver_path(@driver)
     end
   end
 

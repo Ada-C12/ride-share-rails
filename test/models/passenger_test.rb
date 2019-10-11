@@ -48,10 +48,12 @@ describe Passenger do
     let (:trip) {
       Trip.create(date: Date.today, rating: 5, cost: 1050, passenger_id: passenger_test.id, driver_id: driver_test.id)
     }
-    
+
     describe "total_money_spent" do
       # Your code here
+      it "calculates the total money spent per passenger" do
+        
+      end
     end
-    # You may have additional methods to test here
   end
 end

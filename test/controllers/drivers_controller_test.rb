@@ -1,5 +1,5 @@
 require "test_helper"
-
+require "pry"
 describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
   let (:driver) {
@@ -120,17 +120,16 @@ describe DriversController do
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      # Set up the form data so that it violates Driver validations
+      input_driver = Driver.create(name: "Input driver", vin: "1111111111")
+      input_updates = {driver: {name: "", vin: "", available: true}}
 
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+      expect {
+        patch driver_path(id:input_driver.id), params: input_updates
+      }.must_differ "Driver.count", 0
 
-      # Assert
-      # Check that the controller redirects
+      new_driver_updated = Driver.find_by(id: input_driver.id)
+
+      must_redirect_to driver_path(new_driver_updated.id)
 
     end
   end

@@ -2,7 +2,7 @@
   <ul class="errors">
     <% @trip.errors.each do |column, message| %>
       <li>
-        <strong><%= column.capitalize %></strong> <%= Trip failed to be added! %>
+        <strong><%= column.capitalize %></strong> <%= message  %>
       </li>
     <% end %>
   </ul>

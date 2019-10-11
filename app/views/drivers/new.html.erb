@@ -8,7 +8,7 @@
   <ul class="errors">
     <% @driver.errors.each do |column, message| %>
       <li>
-        <strong><%= column.capitalize %></strong> <%= Driver failed to be added! %>
+        <strong><%= column.capitalize %></strong> <%= message %>
       </li>
     <% end %>
   </ul>
