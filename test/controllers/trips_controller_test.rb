@@ -1,8 +1,14 @@
 require "test_helper"
 
 describe TripsController do
+  let (:passenger_test) {
+    Passenger.create(name: "Test Passenger!", phone_num: "555-555-5555")
+  }
+  let (:driver_test) {
+    Driver.create(name: "Test Driver!", vin: "FSD34534SLDK", available: true)
+  }
   let (:trip) {
-    Trip.create(date: Date.today, rating: 5, cost: 1050, passenger_id: 1, driver_id: 1)
+    Trip.create(date: Date.today, rating: 5, cost: 1050, passenger_id: passenger_test.id, driver_id: driver_test.id)
   }
 
   describe "show" do
@@ -24,25 +30,34 @@ describe TripsController do
   end
 
   describe "create" do
+    let (:passenger_test_2) {
+      Passenger.create(name: "Test Passenger!", phone_num: "555-555-5555")
+    }
+    let (:driver_test_2) {
+      Driver.create(name: "Test Driver!", vin: "FSD34534SLDK", available: true)
+    }
+    let (:trip) {
+      Trip.create(date: Date.today, rating: nil, cost: 1000, passenger_id: passenger_test_2, driver_id: driver_test_2)
+    }
+
     it "can create a new trip" do
       # Arrange
 
+
       trip_hash = {
-        trip: {
           date: Date.today,
-          rating: 5,
+          rating: nil,
           cost: 1000,
-          trip_id: 3,
-          passenger_id: 5
-        },
-      }
+          driver_id: driver_test_2,
+          passenger_id: passenger_test_2
+        }
 
       # Act-Assert
       expect {
         post trips_path, params: trip_hash
-      }.must_change "trip.count", 1
+      }.must_change "Trip.count", 1
 
-      new_trip = Trip.find_by(id: trip_hash[:trip][:id])
+      new_trip = Trip.find_by(id: trip_hash.passenger_id)
       expect(new_trip.passenger_id).must_equal trip_hash[:trip][:passenger_id]
 
       must_respond_with :redirect
