@@ -124,7 +124,7 @@ describe DriversController do
 
   describe "update" do
     it "can update an existing driver with valid information accurately, and redirect" do
-      @mb = Driver.create name: "Meatball Jones", vin: 41225, active: true, car_make: "Honda", car_model: "Accord"
+      @mb = Driver.create name: "Meatball Jones", vin: "41225", active: true, car_make: "Honda", car_model: "Accord"
       driver_hash = {
         driver: {
           name: "Barbara Bush",
@@ -137,7 +137,6 @@ describe DriversController do
       expect {patch driver_path(@mb.id), params: driver_hash}.wont_change Driver.count
       must_respond_with :redirect
 
-      expect {patch driver_path(@mb.id), params: driver_hash}.wont_change Driver.count
       expect(@mb.name).must_equal driver_hash[:driver][:name]
       expect(@mb.vin).must_equal driver_hash[:driver][:vin]
       expect(@mb.active).must_equal driver_hash[:driver][:active]
