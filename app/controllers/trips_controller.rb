@@ -66,8 +66,7 @@ class TripsController < ApplicationController
       return
     end
 
-    @trip = Trip.find_by(id: id)
-    @trip[:name] = params[:trip][:name]
+    @trip = Trip.find_by(id: params[:id])
     @trip[:date] = params[:trip][:date]
     @trip[:rating] = params[:trip][:rating]
     @trip[:cost] = params[:trip][:cost]
