@@ -1,5 +1,6 @@
 <h1>Passenger Details: <%= @passenger.name%></h1>
 
+<h4>Total spent from trips: $<%= @passenger.total_spent %></h4>
 <h3>Trips Taken</h3>
 <% @passenger.trips.each do |trip| %>
   Date: <%= trip.date %>, Rating: <%= "⭐" * trip.rating.to_i %> Cost: $<%= '%.2f' % trip.cost %>, Driver: <%= trip.driver.name %> 

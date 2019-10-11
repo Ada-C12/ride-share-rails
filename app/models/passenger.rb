@@ -8,5 +8,11 @@ class Passenger < ApplicationRecord
     return Passenger.order(name: :asc)
   end 
   
-
+  def total_spent
+    total = 0
+    self.trips.each do |trip|
+      total = total + trip.cost
+    end
+    return '%.2f' % total
+  end
 end
