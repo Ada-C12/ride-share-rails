@@ -20,7 +20,7 @@ class TripsController < ApplicationController
     @trip = Trip.new(date: Date.today, rating: nil, cost: rand(500..5000), driver_id: driver.id, passenger_id: passenger.id)
     
     if @trip.save
-      @trip.driver.toggle_active
+      @trip.driver.active
       redirect_to trip_path(@trip.id)
       return
     else
@@ -44,12 +44,10 @@ class TripsController < ApplicationController
       head :not_found
       return
     elsif @trip.update(trip_params)
-      puts "trip updated"
       redirect_to trip_path(@trip.id)
       return
     else      
       render :edit
-      puts "trip not updated"
       return
     end
   end
@@ -71,7 +69,7 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: params[:id])
     
     unless @trip.driver
-      @trip.driver.toggle_active
+      @trip.driver.inactive
       redirect_to trip_path(@trip.id)
       return
     end

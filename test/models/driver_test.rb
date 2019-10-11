@@ -73,7 +73,7 @@ describe Driver do
     
     describe "total earnings" do
       it "calculates accurate cost total" do
-        expect(@test_driver.total_earnings).must_equal 36.00
+        expect(@test_driver.total_earnings).must_equal 26.16
       end
     end
     

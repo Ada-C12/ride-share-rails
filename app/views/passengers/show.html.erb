@@ -12,6 +12,9 @@
   <h3>
     <%= link_to "Request Ride", passenger_trips_path(@passenger.id), method: :post, data: { confirm: "Are you sure you want to request a trip?" } %>
   </h3>
+  <h3>
+    Total Paid: $<%= @passenger.total_paid %>
+  </h3>
 
   <section>
     <% if @passenger.trips.empty? %>
