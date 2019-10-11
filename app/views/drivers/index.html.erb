@@ -1,10 +1,15 @@
-<h2> Drivers: </h2>
+<div id='index'>
+  <h2> Drivers </h2>
 
-<ul>
-<% @drivers.each do |driver| %>
-<li>
-<%= link_to driver.name, driver_path(driver), class:"link" %>
-<%= button_to 'Change Active Status', toggle_active_path(driver), method: :put, data: {confirm: "Are you sure?"} %>
-</li>
-<% end %>
-</ul>
+  <ul id='d-index'>
+    <% @drivers.each do |driver| %>
+      <li>
+        <span class='id'>ID  <%= driver.id%></span>
+        <span class='name'>NAME:  <%= link_to driver.name, driver_path(driver), class:"link" %></span>
+        <span class='index-toggle'>
+          <%= button_to 'Change Active Status', toggle_active_path(driver), method: :put, data: {confirm: "Are you sure?"} %>
+        </span>
+      </li>
+    <% end %>
+  </ul>
+</div>

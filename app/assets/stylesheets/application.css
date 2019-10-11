@@ -112,6 +112,7 @@ nav .link:active {
 
 main {
   margin-top: 10em;
+  display: flex;
 }
 
 h1 {
@@ -128,4 +129,29 @@ h1 {
 
 #homepage h1 {
   display: inline-block;
+}
+
+#index {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+#index li { 
+  display: grid;
+  max-width: 50vw;
+  grid-template-columns: 1fr 3fr;
+  /* margin-top: 0.1em;
+  margin-bottom: 0.1em; */
+  line-height: 2;
+}
+
+#index .id {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+#index .name {
+  grid-column-start: 2;
+  grid-column-end: 3;
 }
