@@ -81,18 +81,16 @@ table, th, td {
   border: 1px solid black;
 }
 
-.create-button {
+.button {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  padding-bottom: 25px;
 }
 
 .welcome-background {
   background-image: url("https://images.pexels.com/photos/336948/pexels-photo-336948.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=624&w=390")
 }
 
-.create-button a {
+.button a {
   border: 2px solid lightgrey;
   background-color: #4CAF50;
   color: white;
