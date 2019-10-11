@@ -18,7 +18,7 @@
         </ul>
       </nav>
     </header>
-    
+  
     <section>
       <h1>Trip #:</h1>
       <ul>
@@ -30,5 +30,10 @@
           <li>Cost: <%= @trip.cost %></li>
       </ul>
     </section>
+
+    <section>
+      <%= button_to 'Update Rating', trip_path(@trip.id), method: :put %>
+    </section>
+
   </body>
 </html>
