@@ -188,33 +188,16 @@ describe TripsController do
       driver = Driver.create(name: "Kari", vin: "123", active: false)
       passenger = Passenger.create(name: "Homer", phone_num: "209-990-9890")
       
-      # trip_hash1 = {
-      #   trip: {
-      #     date: "2019-09-01",
-      #     driver_id: driver.id,
-      #     passenger_id: passenger.id, 
-      #     cost: 1500,
-      #     rating: 4
-      #   }
-      # }
       post trips_path, params: {date: "2019-09-01", passenger_id: passenger.id}
 
-      # trip_hash2 = {
-      #   trip: {
-      #     date: "2019-09-01",
-      #     driver_id: driver.id,
-      #     passenger_id: passenger.id, 
-      #     cost: 1500,
-      #     rating: 4
-      #   }
-      # }
       post trips_path, params: {date: "2019-09-02", passenger_id: passenger.id}
 
       # binding.pry
+      driver.reload
       expect(driver.total_earned).must_equal 2136
       delete trip_path(trip1.id)
     
-      expect(driver.total_earned).must_equal 2136
+      expect(Driver.find_by(name: "Kari").total_earned).must_equal 2136
       expect(passenger.total_spent).must_equal 3000
     end
     
