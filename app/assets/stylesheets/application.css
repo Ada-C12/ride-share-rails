@@ -35,6 +35,7 @@
   display: inline;
   padding-right: 50px;
 }
+
 .dropbtn {
   background-color: #4CAF50;
   color: white;
@@ -87,9 +88,13 @@ table, th, td {
   padding-bottom: 25px;
 }
 
+.welcome-background {
+  background-image: url("https://images.pexels.com/photos/336948/pexels-photo-336948.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=624&w=390")
+}
+
 .create-button a {
   border: 2px solid lightgrey;
-  background-color: #3e8e41;
+  background-color: #4CAF50;
   color: white;
   padding: 18px 32px;
   text-align: center;
@@ -98,4 +103,20 @@ table, th, td {
   font-size: 16px;
   border-radius: 12px;
   margin-bottom: 0;
+}
+
+.container {
+  position: relative;
+}
+
+.text-block {
+  position: absolute;
+  top: 270px;
+  left: 80%;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  opacity: 0.8;
 }

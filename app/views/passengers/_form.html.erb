@@ -10,10 +10,10 @@
 <% end %>
 
 <%= form_with model: @passenger, class: "#{action_name}-passenger" do |f| %>
-  <%= f.label :name %>
+  <%= f.label :name %> <br>
   <%= f.text_field :name %> <br>
 
-  <%= f.label "Phone Number" %>
+  <%= f.label "Phone Number" %> <br>
   <%= f.text_field :phone_num %> <br>
 
   <%= f.submit "#{action_name.capitalize} Passenger", class: "passenger-button" %>
