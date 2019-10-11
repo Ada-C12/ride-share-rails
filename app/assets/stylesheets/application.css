@@ -27,11 +27,17 @@
 .list-all li {
   border-style: dashed
 } 
+nav {
 
+}
 nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  font-size: larger;
+
 }
 
 
