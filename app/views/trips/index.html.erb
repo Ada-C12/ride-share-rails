@@ -11,6 +11,7 @@
     <th>Roden By</th>
     <th>Droven By</th>
     <th>Edit</th>
+    <th>Delete Trip</th>
   </tr>
   <%@trips.each do |trip|%>
   <tr>
@@ -27,6 +28,7 @@
     <td><%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></td>
     <td><%= link_to trip.driver.name, driver_path(trip.driver.id) %></td>
     <th><%= link_to "Edit Trip", edit_trip_path(trip.id) %></th>
+    <th><%= link_to "Delete Trip", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure?"}, class: "index-delete-link" %></th>
   </tr>
   <% end %>
 </table>

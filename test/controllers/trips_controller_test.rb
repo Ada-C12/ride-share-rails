@@ -130,13 +130,26 @@ describe TripsController do
     end
   end
 
+  describe "destroy" do
+    it "deletes an existing instance of trip and redirects to root page" do
+
+      driver = Driver.create(name:"driver1", vin: "12356")
+      passenger = Passenger.create(name:"Passe", phone_num: "23234242340")
+
+      Trip.create(driver_id: driver.id, passenger_id: passenger.id)
+
+      existing_trip_id = Trip.last
+
+      expect {
+        delete trip_path(existing_trip_id)
+      }.must_differ "Trip.count", -1
+
+      must_redirect_to root_path
+    end
+  end
+
 end
 
-
-# describe "destroy" do
-#   # Your tests go here
-# end
-# end
 
 
 #   describe "driver trip availability" do

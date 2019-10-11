@@ -62,3 +62,7 @@ nav ul li {
   border: black solid 1px;
   background: orange; 
 }
+
+body {
+  padding: 2.0rem;
+}
