@@ -45,32 +45,34 @@ describe TripsController do
         trip: {
         passenger_id: passenger.id,
         driver_id: driver.id
-      }
+        }
       }
       puts "trip passenger id #{trip_hash[:trip][:passenger_id]}"
-    
       expect {
-      post trips_path, params: trip_hash
+        post trips_path, params: trip_hash
       }.must_change "Trip.count", 1
 
-      new_trip = Trip.find_by(trip_hash[:trip][:id])
-      puts "new trip passenger #{new_trip.passenger.id}"
-      expect(new_trip.passenger.id).must_equal trip_hash[:trip][:passenger_id]
+      expect(Trip.last.passenger.id).must_equal trip_hash[:trip][:passenger_id]
 
       must_respond_with :redirect
-      must_redirect_to trip_path(new_trip.id)
+      must_redirect_to trip_path(Trip.last.id)
     end
   end
 
   describe "edit" do
     it "responds with success when getting the edit page for an existing, valid trip" do
-      get edit_trip_path(1)
+      driver = Driver.create(name:"driver", vin: "1235")
+      passenger = Passenger.create(name:"Pass", phone_num: "2323424234")
+      
+      trip = Trip.create(driver_id: driver.id, passenger_id: passenger.id)
 
-      must_respond_with :found
+      get edit_trip_path(trip.id)
+
+      must_respond_with :success
     end
 
     it "responds with redirect when getting the edit page for a non-existing passenger" do
-      get edit_passenger_path(-50)
+      get edit_trip_path(-50)
 
       must_respond_with :redirect
     end
@@ -84,24 +86,52 @@ describe TripsController do
     end
 
     let (:new_trip_hash) {
-      trip: {
-        driver_id: driver.id,
-        passenger_id: passenger.id
+      {
+        trip: {
+          rating: 5
+        }
       }
     }
+    it "can update an existing trip's rating with valid information and redirect" do
+      id = Trip.last.id
+      expect {
+        patch trip_path(id), params: new_trip_hash
+      }.wont_change "Trip.count"
 
-    it "can update an existing trip with valid information and redirect" do
-      
+      must_respond_with :redirect
+
+      trip = Trip.find_by(id: id)
+      expect(trip.rating).must_equal new_trip_hash[:trip][:rating]
     end
 
+    it "will respond with not_found for invalid ids" do
+      id = -10
+
+      expect {
+        patch trip_path(id), params: new_trip_hash
+      }.wont_change "Trip.count"
+
+      must_respond_with :redirect
+    end
+
+    it "will not update if params " do
+      id = Trip.last.id
+      original_trip = Trip.find_by(id: id)
+
+      expect {
+        patch trip_path(id), params: {}
+      }.must_raise
+
+      trip = Trip.find_by(id: id)
+      expect(trip.id).must_equal original_trip.id
+      expect(trip.cost).must_equal original_trip.cost
+      expect(trip.passenger_id).must_equal original_trip.passenger_id
+      expect(trip.driver_id).must_equal original_trip.driver_id
+    end
   end
 
 end
 
-
-# describe "update" do
-#   # Your tests go here
-# end
 
 # describe "destroy" do
 #   # Your tests go here

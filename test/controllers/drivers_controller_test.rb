@@ -223,19 +223,18 @@ describe DriversController do
     end
     
     it "does not change the db when the driver does not exist, then responds with redirect" do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
-      Driver.destroy_all
-      invalid_driver_id = 1
+
+      Driver.create(name: "driver name", vin:"driver vin")
+
+      existing_driver_id = Driver.find_by(name: "driver name").id
       
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+ 
       expect {
-        delete driver_path( invalid_driver_id )
-      }.must_differ "Driver.count", 0
+        delete driver_path( existing_driver_id )
+      }.must_differ "Driver.count", -1
       # Assert
       # Check that the controller responds or redirects with whatever your group decides
-      must_redirect_to drivers_path
+      must_redirect_to root_path
     end
   end
 end

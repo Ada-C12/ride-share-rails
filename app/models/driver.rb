@@ -46,7 +46,12 @@ class Driver < ApplicationRecord
         all_ratings << trip.rating
       end
     end
-    return all_ratings.sum/all_ratings.length
+
+    if all_ratings.length == 0
+      return 0
+    else
+      return all_ratings.sum/all_ratings.length
+    end
   end
   
   
