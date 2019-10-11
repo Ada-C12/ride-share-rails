@@ -107,3 +107,19 @@ nav > * {
   text-align: left;
   width: 15rem;
 }
+
+.errors {
+  color: #D8000C;
+  background-color: #FFD2D2;
+  display: table;
+  padding: 1em;
+  margin: 1em;
+}
+
+.notice {
+  color: #D8000C;
+  background-color: #FFD2D2;
+  display: table;
+  padding: 1em;
+  margin: 1em;
+}
