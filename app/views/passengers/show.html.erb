@@ -3,7 +3,7 @@
 
 <ul>
   <li><strong> Phone number: </strong> <%=@passenger.phone_num%>
-  <li><strong> Total charged: </strong> 
+  <li><strong> Total charged:   $</strong><%=@passenger.total_charged%> 
 
 
   <li> <%= link_to "Edit passenger!", edit_passenger_path(@passenger.id)%></li>
@@ -22,7 +22,7 @@
   <tr>
       <td><%= link_to trip.date, trip_path(trip.id)%></td>
       <td><%= trip.rating %>
-      <td><%= trip.cost %>
+      <td> $<%= trip.cost * 0.01 %>
   </tr>
   <%end%>
 </header>

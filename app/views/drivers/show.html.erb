@@ -22,7 +22,7 @@
   <tr>
       <td><%= link_to trip.date, trip_path(trip.id)%></td>
       <td><%= trip.rating %>
-      <td><%= trip.cost %>
+      <td> $<%= trip.cost * 0.01 %>
   </tr>
   <%end%>
 </table>
