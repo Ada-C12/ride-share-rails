@@ -1,35 +1,35 @@
-<h1>Driver ID: <%= @driver.id %></h1>
+<h1>Name: <%= @driver.name %></h1>
 
 <ul>
-    <li>
-      Name: <%= @driver.name %>
-      <ul>
-        <li>VIN: <%= @driver.vin %></li>
-        <% if @driver.active == false %>
-        <li> Status: available </li>
-        <%= link_to "Mark as unavailable", toggle_status_driver_path(@driver), method: :patch %>
-        <% else %>
-        <li> Status: not available </li>
-        <%= link_to "Mark as available", toggle_status_driver_path(@driver), method: :patch %>
-        <% end %>
-        <li>Car Make: <%= @driver.car_make %></li>
-        <li>Car Model: <%= @driver.car_model %></li>
-        <li>Trips: </li>
+  <li>Driver ID: <%= @driver.id %></li>
+  <li>VIN: <%= @driver.vin %></li>
+  <% if @driver.active == false %>
+  <li> Status: available </li>
+  <%= link_to "Mark as unavailable", toggle_status_driver_path(@driver), method: :patch %>
+  <% else %>
+  <li> Status: not available </li>
+  <%= link_to "Mark as available", toggle_status_driver_path(@driver), method: :patch %>
+  <% end %>
+  <li>Car Make: <%= @driver.car_make %></li>
+  <li>Car Model: <%= @driver.car_model %></li>
+  <li>Total Earnings from trips: $<%= @driver.total_earnings %></li>
+  <li>Average Rating: <%= @driver.avg_rating %></li>
+  <li>Trips: </li>
 
-        <% @driver.trips.each do |trip| %>
-        <ul>
-          <li> ID: <%= trip.id %> </li>
+  <% @driver.trips.each do |trip| %>
+  <ul>
+    <li> ID: <%= trip.id %> </li>
 
-          <ul>
-            <li> Driver: <%= trip.driver.name %> </li>
-            <li> Date: <%= trip.date %> </li>
-            <li> Rating: <%= trip.rating %> </li>
-            <li> Cost: <%= trip.cost %> </li>
-          </ul>
-        </ul>
-        <% end %>
-      </ul>
+    <ul>
+      <%# <li> Driver: <%= trip.driver.name </li> %>
+      <li> Date: <%= trip.date %> </li>
+      <li> Rating: <%= trip.rating %> </li>
+      <li> Cost: <%= trip.cost %> </li>
+    </ul>
+  </ul>
+  <% end %>
 </ul>
+
 
 
   <%# trip = Trip.new
