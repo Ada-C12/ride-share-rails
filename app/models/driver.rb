@@ -46,4 +46,6 @@ class Driver < ApplicationRecord
     end
     return all_ratings.sum/all_ratings.length
   end
+
+
 end

@@ -2,7 +2,7 @@ class TripsController < ApplicationController
   
   def index
     driver_id = params[:driver_id]
-    passenger_id = params[passenger_id]
+    passenger_id = params[:passenger_id]
     
     if driver_id.nil? && passenger_id.nil?
       @trips = Trip.all
@@ -23,6 +23,15 @@ class TripsController < ApplicationController
     end
   end
   
+  def show
+    @trip = Trip.find_by(id: params[:id])
+
+    if @trip.nil?
+      redirect_to tasks_path
+      return
+    end
+  end
+
   def new
     passenger_id = params[:passenger_id]
     driver_id = params[:driver_id]
@@ -58,7 +67,25 @@ class TripsController < ApplicationController
       return
     end
   end
-  
+
+  def edit
+    @trip = Trip.find_by(id: params[:id])
+  end
+
+  def update
+    @trip = Trip.find_by(id: params[:id])
+
+
+    if @trip.nil?
+      redirect_to root_path
+      return
+    else
+      @trip.update(rating: params[:trip][:rating] )
+      redirect_to trip_path(@trip.id)
+      return
+    end
+  end
+
   private
   def trip_params
     return params.require(:trip).permit(:date, :cost, :rating, :driver_id, :passenger_id)
