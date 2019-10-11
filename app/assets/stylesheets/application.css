@@ -136,7 +136,7 @@ form {
   align-items: center;
 }
 
-.driver-form-button, .passenger-form-button {
+.driver-form-button, .passenger-form-button, .trip-form-button {
   margin-top: 20px;
   padding: 10px 15px;
   text-align: center;
@@ -169,7 +169,7 @@ button {
   margin: 10px;
 }
 
-.driver-form-button:hover, .passenger-form-button:hover, .table button:hover {
+.driver-form-button:hover, .passenger-form-button:hover, .table button:hover, .trip-form-button:hover {
   background-color:  rgb(30, 85, 72);
   color: white;
 }
