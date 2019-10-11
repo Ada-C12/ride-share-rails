@@ -2,8 +2,7 @@ require "test_helper"
 
 describe Driver do
   let (:new_driver) {
-    Driver.new(name: "Kari", vin: "123", active: true,
-               car_make: "Cherry", car_model: "DR5")
+    Driver.new(name: "Kari", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
   }
   it "can be instantiated" do
     # Assert
@@ -60,37 +59,69 @@ describe Driver do
   # Tests for methods you create should go here
   describe "custom methods" do
     describe "find_driver_trips" do
-      # Arrange
+      it "returns all the trips from a specific driver" do
+        passenger = Passenger.create(name: "Georgina", phone_num: "111-111-1211")
+        driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+        trip = Trip.new(driver_id: driver.id, 
+          passenger_id: passenger.id,
+          date: Time.now,
+          rating: nil,
+          cost: 100,)
 
-      # Act
+        trip.save
 
-      # Assert
+        expect(driver.find_driver_trips.count).must_equal 1
+      end
     end
 
     describe "calculate_total_earnings" do
-      # Arrange
+      it "returns the total amount a driver made" do
+        passenger = Passenger.create(name: "Georgina", phone_num: "111-111-1211")
+        driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+        trip = Trip.new(driver_id: driver.id, 
+          passenger_id: passenger.id,
+          date: Time.now,
+          rating: nil,
+          cost: 100,)
 
-      # Act
+        trip.save
 
-      # Assert
+        expect(driver.calculate_total_earnings).must_equal 78.68
+      end
     end
 
 
     describe "calculate_average_rating" do
-      # Arrange
+      it "returns a driver's average rating" do
+        driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+        passenger_1 = Passenger.create(name: "Georgina", phone_num: "111-111-1211")
+        trip_1 = Trip.new(driver_id: driver.id, 
+          passenger_id: passenger_1.id,
+          date: Time.now,
+          rating: 5,
+          cost: 100,)
+        trip_1.save
 
-      # Act
+        passenger_2 = Passenger.create(name: "Kristina", phone_num: "757-111-1281")
+        trip_2 = Trip.new(driver_id: driver.id, 
+          passenger_id: passenger_2.id,
+          date: Time.now,
+          rating: 4,
+          cost: 100,)
 
-      # Assert
+        trip_2.save
+
+        expect(driver.calculate_average_rating).must_equal 4.5
+      end
     end
 
-
     describe "find_available_driver" do
-      # Arrange
-
-      # Act
-
-      # Assert
+      it "will find the first driver that is available" do
+        driver_1 = Driver.create(name: "Milly Bobbie Brown", vin: "10000023", active: true, car_make: "Cherry", car_model: "DR5")
+        driver_2 = Driver.create(name: "Elvis Presley", vin: "1212323", active: false, car_make: "Cherry", car_model: "DR5")
+        # p driver_1.id
+        expect(Driver.find_available_driver).must_equal driver_1.id
+      end
     end
   end
 end
