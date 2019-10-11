@@ -20,7 +20,6 @@
   <% end %>
 </p>
 
-
 <p>
   <strong>Car Make:</strong>
   <%= @driver.car_make %>
@@ -47,8 +46,6 @@
   <strong>Average Rating</strong>
   <%= @driver.calculate_average_rating%>
 </p>
-
-
 
 <%= link_to 'Edit', edit_driver_path(@driver) %> 
 <%= link_to 'Back to Drivers', drivers_path %>

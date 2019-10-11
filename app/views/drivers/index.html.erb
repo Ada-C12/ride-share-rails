@@ -2,7 +2,6 @@
 <%= link_to 'Home', root_path %>
 <h1>Drivers</h1>
 <%= link_to 'New Driver', new_driver_path %>
-<%# display data in table %>
 <table>
   <thead>
     <tr>
@@ -13,7 +12,6 @@
   </thead>
 
   <tbody>
-  <%# view the list of all drivers %>
     <% @drivers.each do |driver| %>
       <tr>
         <td><%= driver.name %></td>
@@ -27,8 +25,6 @@
           <%= f.check_box :active, { onchange: 'this.form.submit();' , checked: driver.active != false } %>
         <% end %></td>
       </tr>
-
-
     <% end %>
   </tbody>
 </table>
