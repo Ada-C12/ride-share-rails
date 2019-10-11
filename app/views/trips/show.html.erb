@@ -19,7 +19,7 @@
  <%= form_with model: @trip do |f| %>
   <fieldset>
     <%= f.label :rating %>
-    <%= f.select :rating, Array.new(5){ |i| [i+1, i+1] }.prepend(nil) %> 
+    <%= f.select :rating, (1..5).to_a.prepend(nil) %> 
     <%= f.submit "add rating" %>
   </fieldset>
  <% end %>
