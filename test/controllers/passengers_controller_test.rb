@@ -1,6 +1,10 @@
 require "test_helper"
 
 describe PassengersController do
+  let (:passenger) {
+    Passenger.create name: "Johnny Appleseed", phone_num: "541-433-7865"
+  }
+  
   describe "index" do
     
     it "gives back a successful response" do
@@ -62,11 +66,18 @@ describe PassengersController do
   end
   
   describe "edit" do
-    it "gives back a successful response" do
-      
-      get new_passenger_path
+    it "can get the edit page for an existing task" do
+      #skip
+      # Your code here
+      get edit_passenger_path(passenger.id)
       must_respond_with :success
-      
+    end
+    
+    it "will respond with redirect when attempting to edit a nonexistant task" do
+      #skip
+      # Your code here
+      get edit_passenger_path(9999)
+      must_respond_with :not_found
     end
   end
   
