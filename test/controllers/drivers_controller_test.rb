@@ -60,8 +60,8 @@ describe DriversController do
     it "can't update an existing driver giving wrong parameters" do
       wrong_driver_form_data = {
         driver: {
-          names: "Becca",
-          vims: "345920292",
+          name: 6,
+          vin: 345920292,
         }
       }
       patch driver_path(@existing_driver.id), params: wrong_driver_form_data
