@@ -12,8 +12,8 @@
       Phone Number: <%= @passenger.phone_num %><br>
       Total spent: $<%= sprintf('%.2f', @passenger.total_money_spent) %><br>
       <div class="buttons">
-      <%= link_to "Edit", edit_passenger_path %><br>
-      <%= link_to "Delete", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure you want to delete this passenger?"} %><br>
+      <span class="button"><%= link_to "Edit", edit_passenger_path %></span><br>
+      <span class="button"><%= link_to "Delete", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure you want to delete this passenger?"} %></span>
       </div>
       </li>
     </ul>
@@ -49,7 +49,7 @@
       <% end %>
   </table>
   <br>
-  <%= link_to "Trip Request", passenger_trips_path(@passenger.id), method: :post %>
+  <span id="trip-button"><%= link_to "Trip Request", passenger_trips_path(@passenger.id), method: :post %></span>
 
   </div>
 </div>
