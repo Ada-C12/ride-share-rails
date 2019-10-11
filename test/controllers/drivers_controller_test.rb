@@ -124,7 +124,8 @@ describe DriversController do
 
   describe "update" do
     it "can update an existing driver with valid information accurately, and redirect" do
-      @mb = Driver.create name: "Meatball Jones", vin: "41225", active: true, car_make: "Honda", car_model: "Accord"
+      mb = Driver.create name: "Meatball Jones", vin: "41225", active: true, car_make: "Honda", car_model: "Accord"
+
       driver_hash = {
         driver: {
           name: "Barbara Bush",
@@ -132,16 +133,20 @@ describe DriversController do
           active: false,
           car_make: "Toyota",
           car_model: "Tacoma"
-        }
+        },
       }
-      expect {patch driver_path(@mb.id), params: driver_hash}.wont_change Driver.count
-      must_respond_with :redirect
 
-      expect(@mb.name).must_equal driver_hash[:driver][:name]
-      expect(@mb.vin).must_equal driver_hash[:driver][:vin]
-      expect(@mb.active).must_equal driver_hash[:driver][:active]
-      expect(@mb.car_make).must_equal driver_hash[:driver][:car_make]
-      expect(@mb.car_model).must_equal driver_hash[:driver][:car_model]
+      expect {patch driver_path(mb.id), params: driver_hash}.wont_change 'Driver.count'
+
+      bb = Driver.find_by(id: mb.id)
+
+      expect(bb.name).must_equal driver_hash[:driver][:name]
+      expect(bb.vin).must_equal driver_hash[:driver][:vin]
+      expect(bb.active).must_equal driver_hash[:driver][:active]
+      expect(bb.car_make).must_equal driver_hash[:driver][:car_make]
+      expect(bb.car_model).must_equal driver_hash[:driver][:car_model]
+
+      must_respond_with :redirect
     end
   end
 
