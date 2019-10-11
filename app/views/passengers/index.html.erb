@@ -2,13 +2,13 @@
 <% link_to "Add New Passenger", %>
 
 <section>
-  <ul class="list-all">
+  <table class="trip-table">
     <%@passengers.each do |passenger|%>
-    <li>
-      <%= link_to passenger.name, passenger_path(passenger.id) %>
-      <%= link_to "Edit Passenger Info", edit_passenger_path(passenger.id) %>
-      <%= link_to "Delete Passenger", passenger_path(passenger.id), method: :delete, data: { confirm: "Are you sure?" }%>
-    </li>
+    <tr>
+      <td><%= link_to passenger.name, passenger_path(passenger.id) %></td>
+      <td><%= link_to "Edit Passenger Info", edit_passenger_path(passenger.id) %></td>
+      <td><%= link_to "Delete Passenger", passenger_path(passenger.id), method: :delete, data: { confirm: "Are you sure?" }%></td>
+    </tr>
     <%end%>
-  </ul>
+  </table>
 </section>
