@@ -12,7 +12,7 @@
       <li> Driver Since: <%= @driver.created_at %></li>   
       <li> TOTAL EARNINGS: $<%=  sprintf("%.2f", @driver.total_earnings) %></li>
       <li> AVERAGE RATING: <%= (@driver.average_rating).round(2) unless @driver.average_rating.nil?  %></li>
-      <li> ACTIVE: <%= @driver.active %></li>
+      <li> ACTIVE: <%= link_to (@driver.active).to_s, toggle_path(@driver.id), method: :patch %></li>
     </ul>
   </section>
 

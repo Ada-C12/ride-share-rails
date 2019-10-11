@@ -158,6 +158,14 @@ describe TripsController do
       expect(current_trip.rating).must_equal 5
     end
 
+    it "successfully updates the driver's active status to false if given a rating and redirects to the trip show page" do
+      current_trip.reload
+      patch trip_path(current_trip.id), params: {trip: {rating: 5}}
+      must_redirect_to trip_path(current_trip.id)
+      current_trip.reload
+      expect(current_trip.driver.active).must_equal false
+    end
+
     it "does not update any trip if given an invalid id, and responds with a 404" do
       # Arrange
       # Ensure there is an invalid id that points to no trip
@@ -282,14 +290,6 @@ describe TripsController do
       must_redirect_to trip_path(current_trip.id)
     end
 
-    # it "successfully updates the driver's active status to false and redirects to the trip show page" do
-    #   current_trip.reload
-    #   expect(current_trip.driver.active).must_equal true
-    #   patch add_rating_path(current_trip.id), params: {trip: {rating: 5}}
-    #   must_redirect_to trip_path(current_trip.id)
-    #   current_trip.reload
-    #   expect(current_trip.driver.active).must_equal false
-    # end
   end
 
 end

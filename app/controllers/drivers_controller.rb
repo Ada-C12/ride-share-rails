@@ -91,6 +91,7 @@ class DriversController < ApplicationController
     end
   
     if @driver.save
+      redirect_to drivers_path
     else
       raise ArgumentError.new("Error! Driver status did not save successfully")
     end
