@@ -61,34 +61,33 @@ describe TripsController do
       @driver = Driver.create(name: "Dr. Ken Berge", vin: "SXMMLZX8XGDN7L7TM", available: true)
     end
     it "can create a new trip" do
-      trip = {
-        new_trip: {
-          driver_id: @driver.id, 
-          passenger_id: @passenger.id, 
-          date: Date.current, 
-          rating: 3, 
-          cost: 0.00
-        }
-      }
-      # Arrang
       
-      #     # Act-Assert
-      #     expect {
-      #       post trips_path, params: trip
-      #     }.must_change "Trip.count", 1
+      # trip_hash = {
+      #   trip: {
+      #     driver_id: @driver.id, 
+      #     passenger_id: @passenger.id, 
+      #     date: Date.current, 
+      #     rating: nil, 
+      #     cost: 0.00
+      #   }
+      # }
+      p @passenger.id
+      # Act-Assert
+      expect {
+        post trips_path, params: trip_hash
+      }.must_change "Trip.count", 1
       
-      #     new_trip = Trip.find_by(name: trip[:new_trip][:driver_id])
-      #     expect(new_trip.description).must_equal trip[:new_trip][:description]
-      #     # expect(new_task.due_date.to_time.to_i).must_equal task_hash[:task][:due_date].to_i
-      #     # expect(new_task.completion_date).must_equal task_hash[:task][:completion_date]
-      #     expect(new_task.completion_date).must_be_nil task_hash[:task][:completion_date]
+      new_trip = Trip.find_by(name: trip_hash[:trip][:name])
+      expect(new_trip.driver_id).must_equal trip_hash[:trip][:driver_id]
+      expect(new_trip.passenger_id).must_equal trip_hash[:trip][:passenger_id]
+      expect(new_trip.date).must_equal trip_hash[:trip][:date]
+      expect(new_trip.rating).must_equal trip_hash[:trip][:rating]
+      expect(new_trip.cost).must_equal trip_hash[:trip][:cost]
       
-      #     must_respond_with :redirect
-      #     must_redirect_to root_path
-      #   end
-      # end
-    end 
+      must_respond_with :redirect
+    end
   end
+  
   
   describe "edit" do
     before do 
@@ -112,39 +111,51 @@ describe TripsController do
     end
   end
   
-  # describe "update" do
-  #   before do 
-  #     @new_passenger = Passenger.create(name: "Emmanlle Breiterg", phone_num: "(707) 341-7157")
-  #     @new_driver = Driver.create(name: "Dr. Ken Berge", vin: "SXMMLZX8XGDN7L7TM", available: true)
-  #     @new_trip = Trip.create(driver_id: @new_driver.id, passenger_id: @new_passenger.id, date: Date.today, cost: 10.00)
-  #   end
-  
-  #   updated_trip_form_data = {
-  #     trip: {
-  #       driver_id: @driver.id, 
-  #       passenger_id: @passenger.id, 
-  #       date: Date.today, 
-  #       rating: 3, 
-  #       cost: 10.00
-  #     }
-  #   }
-  #   it "can update an existing trip" do
-  #     expect {
-  #       patch trip_path(@new_trip.id), params: updated_trip_form_data
-  #     }.wont_change "Trip.count"
-  
-  #     @new_trip.reload
-  
-  #     expect(@new_trip.rating).must_equal 3
-  #   end
-  
-  #   it "will redirect to the root page if given an invalid id" do
-  
-  #     patch trip_path(2348734)
-  #     must_respond_with :redirect
-  #     must_redirect_to root_path
-  #   end
-  # end
+  describe "update" do
+    before do 
+      @new_passenger = Passenger.create(name: "Emmanlle Breiterg", phone_num: "(707) 341-7157")
+      @new_driver = Driver.create(name: "Dr. Ken Berge", vin: "SXMMLZX8XGDN7L7TM", available: true)
+      @new_trip = Trip.create(driver_id: @new_driver.id, passenger_id: @new_passenger.id, date: Date.today, rating:nil, cost: 10.00)
+    end
+    
+    it "can update an existing trip" do
+      updated_trip_form_data = {
+        trip: {
+          driver_id: @new_driver.id, 
+          passenger_id: @new_passenger.id, 
+          date: Date.today, 
+          rating: 3, 
+          cost: 10.00
+        }
+      }
+      
+      expect {  
+        patch trip_path(@new_trip.id), params: updated_trip_form_data
+      }.wont_change "Trip.count"
+      
+      @new_trip.reload
+      
+      expect(@new_trip.rating).must_equal 3
+    end
+    
+    it "will redirect to the root page if given an invalid id" do
+      updated_trip_form_data = {
+        trip: {
+          driver_id: @new_driver.id, 
+          passenger_id: @new_passenger.id, 
+          date: Date.today, 
+          rating: 3, 
+          cost: 10.00
+        }
+      }
+      
+      expect {
+        patch trip_path(2348734), params: updated_trip_form_data
+      }.wont_change "Trip.count"
+      
+      must_respond_with :not_found
+    end
+  end
   
   describe "destroy" do
     before do 

@@ -74,6 +74,11 @@ class TripsController < ApplicationController
     trip_id = params[:id]
     @trip = Trip.find_by(id: trip_id)
     
+    if @trip.nil?
+      head :not_found
+      return
+    end
+    
     if @trip.update(trip_params)
       @trip.driver.available = true
       @trip.driver.save
