@@ -16,7 +16,7 @@
         <h2>New Trip details</h2>
         <%= form_with model: @trip, class: "trip-from" do |f| %>
         <%= f.label :passenger %>
-        <%= f.text_field :passenger %>
+        <%= f.text_select :passenger %>
         <br>
         <%= f.submit "Create", class: "create-trip btn"  %>
     <% end %>

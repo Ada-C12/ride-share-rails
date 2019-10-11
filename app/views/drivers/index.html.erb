@@ -18,11 +18,17 @@
             <tr>
                 <th>Driver Name</th>
                 <th>VIN Number</th>
+                <th>Status</th>
             </tr>
             <% @drivers.each do |driver| %>
             <tr>
                 <td><%= link_to driver.name, driver_path(id: driver.id)%></td>
                 <td><%= link_to driver.vin, driver_path(id: driver.id)%></td>
+                <%if driver.available %>
+                <td>Available</td>
+                <%else%>
+                <td>Unavailable</td>
+                <% end %>
                 <td><%= link_to "Edit", edit_driver_path(driver.id), class: 'btn' %></td>
                 <td><%= button_to "Delete", driver_path(driver.id), class: 'btn', method: :delete, data: { confirm: "Are YOU sure?" } %></td>
             </tr>

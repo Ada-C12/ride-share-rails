@@ -18,7 +18,7 @@
 
         </article>
 
-        <%= link_to "Request Ride", new_passenger_trip_path(:passenger_id), class: 'btn' %>
+        <%= link_to "Request Ride", passenger_trips_path(@passenger), method: :post, class: 'btn' %>
 
         <article>
   <h1>Passenger Trips</h1>
@@ -41,8 +41,17 @@
                 <td><%= trip.date%></td>
                 <td><%= link_to trip.driver.name, driver_path(trip.driver_id)%></td>
                 <td><%= link_to trip.passenger.name, passenger_path(trip.passenger_id)%></td>
+                <% if trip.cost == nil%>
+                 <td>Pending</td>
+                 <% else %>
                 <td><%= sprintf('%.2f', trip.cost * 0.01)%></td>
+                <% end %>
+                <% if trip.rating == nil%>
+                 <td>Pending</td>
+                 <% else %>
                 <td><%= trip.rating%></td>
+                <% end %>
+                
                 <td><%= link_to "View", trip_path(trip.id), class: 'btn'%></td>
                 <td><%= button_to "Delete", trip_path(trip.id), class: 'btn', method: :delete, data: { confirm: "Are YOU sure?" } %></td>
             </tr>

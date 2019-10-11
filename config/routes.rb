@@ -4,11 +4,11 @@ Rails.application.routes.draw do
   root :to => "homepages#index"
 
   resources :passengers do
-    resources :trips, only: [:index, :new] #do i want to add create? can use shallow: true. what about destroy? usually best practice not to have create without destroy because otherwise you can't delete what you've made...
+    resources :trips, only: [:index, :new, :create] #do i want to add create? can use shallow: true. what about destroy? usually best practice not to have create without destroy because otherwise you can't delete what you've made...
   end
 
   resources :drivers do
-    resources :trips, only: [:index, :new, :create]
+    resources :trips, only: [:index, :new]
   end
 
   

@@ -34,13 +34,18 @@ class TripsController < ApplicationController
     @passenger = Passenger.find_by(id: params[:passenger_id])
     # @driver = Driver.first
     @trip = Trip.new
+    
+
+
   end
 
   def create
-    @trip = Trip.new(trip_params)
+   
+    @passenger = Passenger.find_by(id: params[:passenger_id])
+    @trip = @passenger.trips.new(driver: Driver.first, date: Date.today)
 
     if @trip.save
-      redirect_to trip_path(@trip.id)
+      redirect_to passenger_path(@passenger.id)
     else
       render new_trip_path
     end
@@ -64,7 +69,7 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: id)
     @trip[:name] = params[:trip][:name]
     @trip[:date] = params[:trip][:date]
-    @trip[:rateing] = params[:trip][:rating]
+    @trip[:rating] = params[:trip][:rating]
     @trip[:cost] = params[:trip][:cost]
     
     if @trip.save
