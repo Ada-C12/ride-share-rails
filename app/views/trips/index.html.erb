@@ -4,6 +4,7 @@
 
 <table>
   <tr>
+  <th>Trip #
     <th>Date</th>
     <th>Rating</th>
     <th>Cost</th>
@@ -13,6 +14,7 @@
   </tr>
   <%@trips.each do |trip|%>
   <tr>
+    <td><%= link_to trip.id, trip_path(trip.id) %></td>
     <td><%=trip.date%></td>
     <td><%=trip.rating%></td>
     <td>

@@ -1,7 +1,7 @@
 <header class="show-trip-header">
 
-  <p>Driven by: <%= @trip.driver.name %></p>
-  <p>Ridden by: <%= @trip.passenger.name %></p>
+  <p>Driven by: <%= link_to @trip.driver.name, driver_path(@trip.driver.id) %></p>
+  <p>Ridden by: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id) %></p>
   <p>Trip cost: $ <%= '%.02f' % @trip.price %></p>
   <p>Rating: <%= @trip.rating %></p>
   <p><%= link_to "Edit Trip Rating", edit_trip_path(@trip.id) %></p>
