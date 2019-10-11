@@ -23,8 +23,7 @@ class DriversController < ApplicationController
     if @driver.save
       redirect_to driver_path(@driver.id)
     else
-      # hey, they want us to render instead, and display error.messages
-      redirect_to nope_path
+      render new_driver_path
     end
   end
   
@@ -59,14 +58,14 @@ class DriversController < ApplicationController
       return
     else
       selected_driver.destroy
-      redirect_to driver_path
+      redirect_to drivers_path
       return
     end
   end 
-
+  
   def active
     @driver = Driver.find_by(id: params[:id])
-
+    
     if @driver.nil?
       redirect_to root_path
       return
