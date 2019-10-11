@@ -58,6 +58,21 @@ describe Passenger do
   end
   
   describe "total_charged" do
+    it "can calculate the total charged for a passenger" do
+      passenger = Passenger.create(name: "test person", phone_num: "1")
+      driver = Driver.create(name: "test driver", vin: "111")
+      
+      trip_one = Trip.create(date: Time.now, rating: nil, cost: 1, driver_id: driver.id, passenger_id: passenger.id)
+      trip_two = Trip.create(date: Time.now, rating: nil, cost: 2, driver_id: driver.id, passenger_id: passenger.id)
+      
+      expect(passenger.total_charged).must_equal 3
+    end
+    
+    it "returns 0 if there are no trips" do
+      passenger = Passenger.create(name: "test person", phone_num: "1")
+      
+      expect(passenger.total_charged).must_equal 0
+    end
   end
   
 end

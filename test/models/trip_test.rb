@@ -61,7 +61,4 @@ describe Trip do
     end
   end
   
-  describe "custom methods" do
-    # Your tests here
-  end
 end

@@ -10,8 +10,17 @@ class TripsController < ApplicationController
     end
   end
   
-  def create   
-    # call driver to get a driver
+  def create
+    passenger_trips = Trip.where(passenger_id: params[:passenger_id])
+    
+    passenger_trips.each do |trip|
+      if trip.rating == nil
+        flash[:notice] = "You may only request a trip after your previous one has completed and you rate it."
+        redirect_to passenger_path(params[:passenger_id])
+        return
+      end
+    end
+    
     driver = Driver.get_driver
     
     if driver == nil
@@ -22,9 +31,7 @@ class TripsController < ApplicationController
     
     date = DateTime.now
     
-    # generate random cost
-    # all costs are four digits
-    # effectively, $10.00-$99.99
+    # all costs are four digits ($10.00-$99.99)
     cost = rand(1000..9999).to_i
     
     data_hash = {

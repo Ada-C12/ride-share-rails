@@ -14,6 +14,7 @@
       <tr>
         <th>Driver Name</th>
         <th>VIN</th>
+        <th>Status</th>
       </tr>
     </thead>
     <tbody>
@@ -23,6 +24,11 @@
         <tr>
           <td> <%= link_to driver.name, driver_path(driver.id) %> </td>
           <td> <%= driver.vin %> </td>
+          <% if driver.active %>
+            <td class="available">Available</td>
+          <% elsif !driver.active %>
+            <td class="unavailable">Unavailable</td>
+          <% end %>
         </tr>
         <% end %>
         <% position += 1 %>

@@ -50,6 +50,14 @@ describe TripsController do
       must_redirect_to passenger_path(new_trip.passenger_id)
     end
     
+    it "will only create a trip for a passenger if they have no current ongoing/unrated trips" do
+      unavailable_driver = Driver.create(name: "I am unavailable", vin: "unavailable", active: false)
+      driver = Driver.create(name: "Bernardo Prosacco", vin: "WBWSS52P9NEYLVDE9", active: true)
+      passenger = Passenger.create(name: "test person", phone_num: "1234567")
+      
+      post passenger_trips_path(passenger.id)
+      expect {post passenger_trips_path(passenger.id)}.wont_change 'Trip.count'
+    end
   end
   
   describe "edit" do
@@ -110,7 +118,9 @@ describe TripsController do
     end
     
     it "does not update any trip if given an invalid id, and responds with a 404" do
+      expect{patch trip_path(-1)}.wont_change "Trip.count"
       
+      must_respond_with :not_found
     end
     
   end
