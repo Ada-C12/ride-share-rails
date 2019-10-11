@@ -25,7 +25,7 @@ class Driver < ApplicationRecord
     self.trips.each do |trip|
       total = total + trip.cost
     end
-    return total.round(2)
+    return '%.2f' % total
   end
   
   def avg_rating
@@ -34,6 +34,6 @@ class Driver < ApplicationRecord
       total_rating = total_rating + trip.rating
     end
     avg_rating = total_rating.to_f / self.trips.count
-    return avg_rating.round(2)
+    return '%.2f' % avg_rating
   end
 end
