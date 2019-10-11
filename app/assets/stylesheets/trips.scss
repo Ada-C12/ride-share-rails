@@ -1,3 +1,13 @@
 // Place all the styles related to the Trips controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.index-list li:nth-child(2n) {
+  background-color: rgb(226, 237, 226);
+}
+.index-list li {
+  padding: .5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  border-bottom: 2px solid rgb(217, 228, 217);
+}

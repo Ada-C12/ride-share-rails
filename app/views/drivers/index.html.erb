@@ -1,8 +1,25 @@
-<ul>
+<ul class="index-list">
   <h1>All the drivers</h1>
+  <li>
+  <span>Name</span>
+  <span>Rating</span>
+  <span>Edit</span>
+  <span>Delete</span>
+  </li>
   <% @drivers.all_in_alpha_order.each do |driver| %>
     <li>
+    <span>
     <%= link_to driver.name, driver_path(driver.id) %>
+  </span>
+  <span>
+  <%= driver.avg_rating %>
+  </span>
+  <span>
+  <%= link_to "Edit", edit_driver_path(driver.id) %>
+  </span>
+  <span>
+  <%= link_to "Delete", driver_path(driver.id), method: :delete %>
+  </span>
     </li>
   <% end %>
 </ul>

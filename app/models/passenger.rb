@@ -21,4 +21,6 @@ class Passenger < ApplicationRecord
       (pennies / 100.0).round(2)
     end
   end
+
+  
 end
