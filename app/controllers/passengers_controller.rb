@@ -57,14 +57,10 @@ class PassengersController < ApplicationController
   def destroy
     passenger = Passenger.find_by( id: params[:id] )
 
-    # Because find_by will give back nil if the book is not found...
-
     if passenger.nil?
-      # Then the book was not found!
       redirect_to passengers_path
       return
     else
-      # Then we did find it!
       passenger.destroy
       redirect_to root_path
       return

@@ -1,7 +1,7 @@
 class Driver < ApplicationRecord
   validates :name, presence: true
   validates :vin, presence: true
-  has_many :trips
+  has_many :trips, dependent: :destroy
 
   def self.find_available_driver
     all_drivers = self.all
@@ -21,13 +21,11 @@ class Driver < ApplicationRecord
   end
 
   def average_rating
-    ratings = self.trips.map do |trip|
-      if trip.rating != nil
-        trip.rating 
-      end
+    ratings = self.trips.where.not(rating: nil).map do |trip|
+      trip.rating 
     end
 
-    if ratings.include?(nil) || ratings.empty?
+    if ratings.empty?
       return nil
     else
       return ratings.sum / ratings.length

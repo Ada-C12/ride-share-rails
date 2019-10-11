@@ -14,7 +14,7 @@
       <% Driver.all_in_alpha_order.each do |driver| %>
           <tr>
             <td><%= link_to driver.name, driver_path(driver.id) %></td>
-            <td><%= driver.active %></td>
+            <td><%= link_to (driver.active).to_s, toggle_path(driver.id), method: :patch %></td>
             <td>$<%= sprintf("%.2f", driver.total_earnings) %></td>
             <td><%= (driver.average_rating).round(2) unless driver.average_rating.nil? %></td>
             <td><%= link_to "Edit", edit_driver_path(driver.id), class: "edit-link" %></td>
