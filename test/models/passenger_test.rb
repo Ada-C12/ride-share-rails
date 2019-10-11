@@ -1,9 +1,8 @@
 require "test_helper"
 
 describe Passenger do
-  let (:new_passenger) {
-    Passenger.new(name: "Kari", phone_num: "111-111-1211")
-  }
+  let (:new_passenger) { Passenger.new(name: "Kari", phone_num: "111-111-1211") }
+  
   it "can be instantiated" do
     # Assert
     expect(new_passenger.valid?).must_equal true
@@ -20,17 +19,30 @@ describe Passenger do
   end
   
   describe "relationships" do
-    # it "can have many trips" do
-    #   # Arrange
-    #   new_passenger.save
-    #   passenger = Passenger.first
-    #   ######## FAIL!!!  Maybe make a new Trip instance and link it to passenger first??
-    #   # Assert
-    #   expect(passenger.trips.count).must_be :>, 0
-    #   passenger.trips.each do |trip|
-    #     expect(trip).must_be_instance_of Trip
-    #   end
-    # end
+    it "can have many trips" do
+      ### IDK WHY THIS DOES NOT WORK!!!!!
+      assert(false)
+      # Arrange
+      new_passenger.save
+      passenger = Passenger.first
+      Driver.create(name: "some gal", vin: 123)
+      Driver.create(name: "some guy", vin: 789)
+      Trip.create(date: Time.now, passenger_id: passenger.id)
+      Trip.create(date: Time.now + 5.days, passenger_id: passenger.id)
+      updated_passenger = Passenger.first
+      puts "\n\n\n\n\n\n"
+      puts updated_passenger.trips.count
+      puts updated_passenger.trips
+      puts updated_passenger.attributes
+      
+      puts Trip.all
+      puts Driver.all
+      # Assert
+      expect(updated_passenger.trips.count).must_be :>, 0
+      updated_passenger.trips.each do |trip|
+        expect(trip).must_be_instance_of Trip
+      end
+    end
   end
   
   describe "validations" do
@@ -56,19 +68,4 @@ describe Passenger do
   end
   
   # Tests for methods you create should go here
-  describe "custom methods" do
-    let (:new_passenger) { Passenger.create( passenger: { name: "Kari", phone_num: "111-111-1211" }) }
-    
-    it "standardize_phone works?" do
-      ### IMPLEMENT IN FUTURE ### 
-    end
-    
-    describe "request a ride" do
-      # Your code here
-    end
-    
-    describe "complete trip" do
-      # Your code here
-    end
-  end
 end
