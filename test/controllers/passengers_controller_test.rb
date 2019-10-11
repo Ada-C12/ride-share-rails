@@ -230,12 +230,14 @@ describe PassengersController do
       must_redirect_to passengers_path
     end
   end
+
   describe "rate_trip" do
     it "saves an integer value as a rating" do
       driver = Driver.create(name: "sample driver", vin: "VH1234SD234F0909", active: true, car_make: "Fiat", car_model: "POP")
       passenger = Passenger.create(name: "Jon Snow", phone_num: "123.345.6789")
+
       trip = Trip.create(date: 2019 - 10 - 10, driver_id: driver.id, passenger_id: passenger.id, cost: 123.0)
-      Passenger.rate_trip
+      passenger.rate_trip
     end
 
     it "updates a driver's status to inactive" do
