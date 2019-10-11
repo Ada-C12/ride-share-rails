@@ -1,10 +1,9 @@
 require "test_helper"
-require "pry"
 
 describe Driver do
-  # let (:new_driver) {
-  #   Driver.new(name: "Kari", vin: "123", available: true)
-  # }
+  let (:new_driver) {
+    Driver.new(name: "Kari", vin: "123", available: true)
+  }
   it "can be instantiated" do
     new_driver = Driver.new(name: "Kari", vin: "xxxxxxxxxxxxxxxxx", available: true)  
     expect(new_driver.valid?).must_equal true
@@ -63,12 +62,11 @@ describe Driver do
   describe "custom methods" do
     describe "average rating" do
       it "can calculate average rating for a driver" do
-        binding.pry
         test_driver = Driver.create(name: "driver test", vin: "xxxxxxxxxxxxxxxxx", available: true)
         trip_1 = Trip.create(passenger_id: 1, driver_id: test_driver.id, date: 10/10/10, rating: 5, cost: 0.00)
         trip_2 = Trip.create(passenger_id: 2, driver_id: test_driver.id, date: 10/12/10, rating: 4, cost: 0.00)
         trip_3 = Trip.create(passenger_id: 3, driver_id: test_driver.id, date: 10/13/10, rating: 3, cost: 0.00)
-        test_driver.trips << trip_1
+        
         rating = test_driver.average_rating
         
         expect(rating).must_equal 4
@@ -83,7 +81,7 @@ describe Driver do
         trip_1 = Trip.create(passenger_id: 1, driver_id: test_driver.id, date: 10/10/10, rating: 5, cost: 5.00)
         trip_2 = Trip.create(passenger_id: 2, driver_id: test_driver.id, date: 10/12/10, rating: 0, cost: 5.00)
         
-        test_driver.trips << trip_1
+        
         earnings = test_driver.total_earned
         
         expect(earnings).must_equal 10.00
