@@ -2,3 +2,7 @@
 <h3>Phone number: <%= @passenger.phone_num%><h3>
 
 <p><%= link_to "Return to Passenger List", passengers_path %></p>
+<p><%= link_to "Call a ride",  passenger_trips_path(@passenger.id), method: :post   %></p>
+
+
+

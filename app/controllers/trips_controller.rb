@@ -11,19 +11,34 @@ class TripsController < ApplicationController
   end
   
   def new
-    @trip = trip.new
+    @trip = Trip.new
   end
   
   def create
-    @trip = Trip.new(Trip_params) 
+    @trip = Trip.new() 
     # Assign passenger from params
+    @passenger = Passenger.find_by(id: params[:passenger_id])
+    @trip.passenger = @passenger
+    
+    if @passenger.nil?
+      head :not_found
+      return
+    end
+    
+    # TODO: Change to a driver without a trip in progress
     # Assign a driver
+    @driver = Driver.first
+    @trip.driver = @driver
+    
+    @trip.cost = 36
+    @trip.date = Date.today
+    
     if @trip.save
-      redirect_to root_path 
+      redirect_back fallback_location: passenger_path(params[:passenger_id]) 
       return
     else
-      render :new 
-      return
+      head :server_error
+      # render :new 
     end
   end
   
@@ -65,8 +80,7 @@ class TripsController < ApplicationController
   
   def trip_params
     return params.require(:trip).permit( :rating, :cost)
-  end
-  
+  end  
 end 
 
 
