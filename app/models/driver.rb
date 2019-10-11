@@ -5,30 +5,14 @@ class Driver < ApplicationRecord
   validates :vin, uniqueness: true, presence: true
   
   def earnings
-    ### my version ###
     trips = self.trips
     total_revenue = 0
     trips.each do |trip|
       earned = (trip.cost - 1.65)*0.8
       total_revenue += earned
     end
+    total_revenue = total_revenue.round(2)
     return total_revenue
-    
-    ### your version ###
-    # trips = self.trips
-    # revenue_per_trip = []
-    # trips.each do |trip|
-    #   if trip.rating != nil
-    #     revenue_per_trip << (trip.cost - 1.65)*0.8
-    #   end
-    # end  
-    
-    # if revenue_per_trip.length > 0
-    #   total_revenue = revenue_per_trip.sum.round(2)
-    # else
-    #   return 0
-    # end
-    # return total_revenue
   end 
   
   def average_rating
@@ -49,17 +33,17 @@ class Driver < ApplicationRecord
     return avg_rating
   end 
   
-  def go_offline
-    if self.active == true
-      self.active = false
-      self.save
-    end 
-  end 
+  # def go_offline
+  #   if self.active == true
+  #     self.active = false
+  #     self.save
+  #   end 
+  # end 
   
-  def go_online
-    if self.active == false
-      self.active = true
-      self.save
-    end 
-  end 
+  # def go_online
+  #   if self.active == false
+  #     self.active = true
+  #     self.save
+  #   end 
+  # end 
 end

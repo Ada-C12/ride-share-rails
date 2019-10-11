@@ -63,6 +63,20 @@ class DriversController < ApplicationController
       return
     end
   end 
+
+  def active
+    @driver = Driver.find_by(id: params[:id])
+
+    if @driver.nil?
+      redirect_to root_path
+      return
+    else
+      @driver.active = !@driver.active
+      @driver.save
+      redirect_to driver_path(@driver.id)
+      return
+    end
+  end 
   
   private
   

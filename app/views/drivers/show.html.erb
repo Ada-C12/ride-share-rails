@@ -22,7 +22,7 @@
   <section><%= @driver.vin%></section>
   <section><%= @driver.active%></section>
 
-  <%= link_to "SWITCH", edit_driver_path(@driver.id), method: :get %>
+  <%= link_to (@driver.active ? "GO OFFLINE" : "GO ONLINE"), driver_active_path(@driver.id), method: :patch %>
   <%= link_to "EDIT", edit_driver_path(@driver.id), method: :get %>
   <%= link_to "DELETE", driver_path(@driver.id), method: :delete, data: {confirm: "YOU SURE???"}  %>
 </section>
