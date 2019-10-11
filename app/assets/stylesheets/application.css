@@ -14,6 +14,10 @@
  *= require_self
  */
 
+.page-container {
+  padding: 30px;
+}
+
 .nav-bar {
   background-color: lightgrey;
 }
