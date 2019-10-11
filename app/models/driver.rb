@@ -12,7 +12,7 @@ class Driver < ApplicationRecord
   end 
   
   def self.find_available
-    return rand(Driver.all.select { |driver| 
-    driver.active == false} )
+    return Driver.all.select { |driver| 
+    driver.active == false}.sample
   end 
 end

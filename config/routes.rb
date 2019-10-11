@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :trips, only: [:create, :edit]
   end 
   
+  resources :passengers
   resources :drivers
   resources :trips
   
