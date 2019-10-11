@@ -50,7 +50,7 @@ class PassengersController < ApplicationController
 
     @passenger = Passenger.find_by(id: id)
 
-    @passenger[:name]= params[:passenger][:name]
+    @passenger[:name]= params[:passenger][:name] 
     @passenger[:phone_num] = params[:passenger][:phone_num]
 
     if @passenger.save

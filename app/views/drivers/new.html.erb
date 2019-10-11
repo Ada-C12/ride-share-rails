@@ -4,6 +4,16 @@
     <a href="/passengers">Passengers</a>
 </nav>
 
+<% if @driver.errors.any? %>
+  <ul class="errors">
+    <% @driver.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
 <main>
     <section class="card">
       <%= link_to "Add driver", new_driver_path, class: 'btn' %>

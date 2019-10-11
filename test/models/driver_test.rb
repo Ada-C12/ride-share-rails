@@ -1,12 +1,13 @@
 require "test_helper"
 
 describe Driver do
-  let (:test_driver) {
-    Driver.new(name: "Kari", vin: "123", available: true)
+
+  let (:driver_test) {
+    Driver.new(name: "Test Driver", vin: "123", available: true)
   }
   it "can be instantiated" do
     # Assert
-    expect(test_driver.valid?).must_equal true
+    expect(driver_test.valid?).must_equal true
   end
 
 
