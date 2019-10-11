@@ -4,7 +4,7 @@
     <h1>Passenger Details</h1>
     <ul class="details">
       <li>
-        <img src="https://i.pravatar.cc/300" />
+      <%= image_tag "http://api.adorable.io/avatars/285/#{@passenger.id}.png", alt: "User photo" %>
       </li>
 
       <li>
@@ -33,7 +33,11 @@
       <tr>
         <td><%= link_to trip.id, trip_path(trip) %></td>
         <td><%= trip.date %></td>
-        <td><%= trip.driver.name %></td>
+        <% if trip.driver.nil? %>
+          <td><%= "Unknown"%></td>
+        <% else %>
+          <td> <%= link_to trip.driver.name, driver_path(trip.driver.id) %></td>
+        <% end %>
         <td><%= sprintf('%.2f', trip.cost / 10) %></td>
       <tr>
       <% end %>
