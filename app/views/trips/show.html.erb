@@ -16,6 +16,13 @@
  </ul>
 
  <h2> Options: </h2>
+ <%= form_with model: @trip do |f| %>
+  <fieldset>
+    <%= f.label :rating %>
+    <%= f.select :rating, (1..5).to_a.prepend(nil) %> 
+    <%= f.submit "add rating" %>
+  </fieldset>
+ <% end %>
  <ul>
   <li> <%= link_to "edit", edit_trip_path(@trip.id) %> </li>
   <li> <%= link_to "delete", trip_path(@trip.id), method: :delete %> </li>
