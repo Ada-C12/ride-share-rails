@@ -87,7 +87,7 @@ class TripsController < ApplicationController
     end
 
     trip_to_delete.destroy
-    redirect_to drivers_path(driver_id: params[:driver_id])
+    redirect_to trips_path
     #how to redirect to same drivers page? this redirects to list of drivers
   end
   
