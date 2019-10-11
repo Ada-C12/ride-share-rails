@@ -15,7 +15,13 @@
   <tr>
     <td><%=trip.date%></td>
     <td><%=trip.rating%></td>
-    <td><%=trip.cost%></td>
+    <td>
+    <% if trip.cost != nil %>
+      $<%= sprintf('%.2f', trip.cost / 100)%>
+    <% else %>
+      0
+    <% end %>
+    </td>
     <td><%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></td>
     <td><%= link_to trip.driver.name, driver_path(trip.driver.id) %></td>
     <th><%= link_to "Edit Trip", edit_trip_path(trip.id) %></th>

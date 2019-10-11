@@ -26,7 +26,13 @@
   <tr>
     <td><%=trip.date%></td>
     <td><%=trip.rating%></td>
-    <td><%=trip.cost%></td>
+    <td>
+    <% if trip.cost != nil %>
+      $<%= sprintf('%.2f', trip.cost / 100)%>
+    <% else %>
+      0
+    <% end %>
+    </td>
     <td><%=trip.passenger.name%></td>
   </tr>
   <% end %>
