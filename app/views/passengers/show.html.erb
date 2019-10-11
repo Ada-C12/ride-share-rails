@@ -7,32 +7,4 @@
 <%= link_to "delete", passenger_path(@passenger.id), method: :delete %>
 <%= link_to "add trip", new_trip_path(@passenger.id), method: :post %>
 
-<table>
-  <p>trips</p>
-  <theader>
-   <tr>
-    <td>id</td>
-    <td>date</td>
-    <td>driver</td>
-    <td>passenger</td>
-    <td>cost</td>
-    <td>rating</td>
-    <td>delete</td>
-   </tr>
-  </theader>
-  <tbody>
-    <% @passenger.trips.each do |trip| %>
-      <tr>
-        <td><%= link_to trip.id, trip_path(trip.id) %></td>
-        <td><%= trip.date %></td>
-        <td><%= trip.driver.id %></td>
-        <td><%= trip.passenger.id %></td>
-        <% price = trip.cost.to_s%>
-        <% price.insert(-3, ".")%>
-        <td><%= price.insert(0, "$")%></td>
-        <td><%= trip.rating %></td>
-        <td><%= link_to "delete", trip_path(trip.id), method: :delete %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render :partial => "shared/triptable", :locals => { :object => @passenger } %>
