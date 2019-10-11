@@ -1,1 +1,8 @@
 <h2>Create New Trip</h2>
+
+<%= form_with model: @trip, class: "edit_trip_form" do |f| %>
+  <%= f.label :passenger %>
+  <%= f.select :passenger_id, @passengers.map{ |passenger| [passenger.name, passenger.id] } %>
+  <%= f.submit "Submit", class: "trip-form-button" %>
+<% end %>
+
