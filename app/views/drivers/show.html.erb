@@ -1,4 +1,17 @@
 <h2>Driver: <%= @driver.name %></h2>
 <h3>Vin: <%= @driver.vin %></h3>
+<%# <h4>Total earnings: <% @driver.total_earnings %> </h4>
+<%# <h4>Average Rating: <% @driver.avg_rating %> </h4>
 
 <p><%=link_to "Return to Driver List", drivers_path %></p>
+
+<h3>Trips made by this driver:<h3>
+
+<% @driver.trips.each do |trip|%>
+<li> Trip ID: <%= link_to "#{trip.id}", trip_path(trip) %></li>
+<li> Date: <%= trip.date %></li>
+<li> Passenger: <%= trip.passenger.name %></li>
+<li> Cost: $<%= (trip.cost)/100.0 %></li>
+<li> Rating: <%= trip.rating %></li>
+</br>
+<% end %>
