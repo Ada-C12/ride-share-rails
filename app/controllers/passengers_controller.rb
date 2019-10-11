@@ -16,7 +16,6 @@ class PassengersController < ApplicationController
   
   def new
     @passenger = Passenger.new
-    
   end
   
   def edit
@@ -34,10 +33,8 @@ class PassengersController < ApplicationController
     respond_to do |format|
       if @passenger.save
         format.html { redirect_to @passenger, notice: 'Passenger was successfully created.' }
-        format.json { render :show, status: :created, location: @passenger }
       else
         format.html { render :new }
-        format.json { render json: @passenger.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -52,10 +49,8 @@ class PassengersController < ApplicationController
     respond_to do |format|
       if @passenger.update(passenger_params)
         format.html { redirect_to @passenger, notice: 'Passenger was successfully updated.' }
-        format.json { render :show, status: :ok, location: @passenger }
       else
         format.html { render :edit }
-        format.json { render json: @passenger.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -69,7 +64,6 @@ class PassengersController < ApplicationController
     @passenger.destroy
     respond_to do |format|
       format.html { redirect_to passengers_url, notice: 'Passenger was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
   

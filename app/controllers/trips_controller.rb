@@ -1,83 +1,67 @@
 class TripsController < ApplicationController
-  before_action :set_trip, only: [:show, :edit, :update, :destroy]
   
-  # GET /trips
-  # GET /trips.json
   def index
     @trips = Trip.all
   end
   
-  # GET /trips/1
-  # GET /trips/1.json
   def show
+    trip_id = params[:id]
+    @trip = Trip.find_by(id: trip_id)
+    
+    if @trip.nil?
+      head :not_found
+      return
+    end
   end
   
-  # GET /trips/new
   def new
     if params[:passenger_id]
-      # this is the nested route
-      #  passengers/:passenger_id/trips/new
       @passenger = Passenger.find_by(id: params[:passenger_id])
       @trip = @passenger.trips.new
     else
-      # this is the regular route
-      # trips/new
       @trip = Trip.new
     end 
-    
   end
   
-  # GET /trips/1/edit
   def edit
+    @trip = Trip.find_by(id: params[:id])
+
+    if @trip.nil?
+      head :not_found
+      return
+    end
   end
   
-  # POST /trips
-  # POST /trips.json
-  # def create
-  #   @passenger 
-  
-  #   @trip = Trip.new(trip_params)
-  
-  #   respond_to do |format|
-  #     if @trip.save
-  #       format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
-  #     else
-  #       format.html { render :new }
-  #       format.json { render json: @trip.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-  
-  # PATCH/PUT /trips/1
-  # PATCH/PUT /trips/1.json
   def update
+    @trip = Trip.find_by(id: params[:id])
+    if @trip.nil?
+      head :not_found
+      return
+    end
+    
     respond_to do |format|
       if @trip.update(trip_params)
         format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
-        format.json { render :show, status: :ok, location: @trip }
-      else
-        format.html { render :edit }
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
       end
     end
   end
   
-  # DELETE /trips/1
-  # DELETE /trips/1.json
   def destroy
+    @trip = Trip.find_by(id: params[:id])
+    
+    if @trip.nil?
+      head :not_found
+      return
+    end
+  
     @trip.destroy
     respond_to do |format|
       format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
   
   private
-  
-  def set_trip
-    @trip = Trip.find(params[:id])
-  end
-  
+
   def trip_params
     params.require(:trip).permit(:driver_id, :passenger_id, :date, :rating, :cost)
   end
