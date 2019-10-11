@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     resources :trips, only: [:new, :create]
   end
   
+  resources :drivers do
+    resources :trips, only: [:new, :create]
+  end
+  
   resources :trips
   
 end

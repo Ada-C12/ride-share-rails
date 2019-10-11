@@ -28,5 +28,5 @@
 <section class="action-container">
 <%= link_to "Delete #{@driver.name}", driver_path, method: :delete, data: { confirm: "Are you sure?" }, class: 'link-to-btn' %>
 <%= link_to "Edit #{@driver.name}", edit_driver_path, class: 'link-to-btn' %>
-  <%= link_to "Add New Trip", new_trip_path, class: 'link-to-btn' %>
+  <%= link_to "Add New Trip", new_driver_trip_path(@driver.id), class: 'link-to-btn' %>
 </section>

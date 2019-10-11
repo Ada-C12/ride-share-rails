@@ -17,8 +17,12 @@ class TripsController < ApplicationController
     if params[:passenger_id]
       @passenger = Passenger.find_by(id: params[:passenger_id])
       @trip = @passenger.trips.new
+    elsif params[:driver_id]
+      @driver = Driver.find_by(id: params[:driver_id])
+      @trip = @driver.trips.new
+    else
+      @trip = Trip.new
     end
-    @trip = Trip.new
   end
   
   def create 
@@ -29,10 +33,13 @@ class TripsController < ApplicationController
     if @trip.cost.nil?
       @trip.cost = rand(500...9999)
     end
-    
-    @drivers = Driver.where(active: false)
-    @selected_driver = @drivers[rand(0...@drivers.length)]
-    @trip.driver_id = @selected_driver.id
+    if @trip.driver_id == params[:driver_id]
+      @selected_driver = Driver.find_by(id: @trip.driver_id)
+    else
+      @drivers = Driver.where(active: false)
+      @selected_driver = @drivers[rand(0...@drivers.length)]
+      @trip.driver_id = @selected_driver.id
+    end
     
     if @trip.save
       @selected_driver.update(active: true)
