@@ -14,16 +14,32 @@
  *= require_self
  */
 
+/* 
+
+font-family: 'Bubblegum Sans', cursive;
+font-family: 'Knewave', cursive;
+font-family: 'Merienda One', cursive;
+font-family: 'Sriracha', cursive; 
+
+*/
+
  * {
-  border: 1px dashed rgb(169, 190, 211);
+  font-family: 'Sriracha', cursive; 
+  /* border: 0.51px dashed rgb(169, 190, 211); */
+  background-color: yellow;
  }
 
  h1 {
-   background-color: aqua;
+  font-family: 'Knewave', cursive;
+  font-size: 4em;
+  padding: 1em 1em;
+  text-align: center;
  }
 
- nav {
-   background-color: rgba(93, 188, 243, 0.897);
+ nav * {
+  font-size: 1.2em;
+  background-color: rgb(49, 144, 228);
+  color: black;
  }
 
  nav ul {
@@ -35,19 +51,15 @@
 }
 
 nav ul a {
-
   text-decoration: none;
 }
 
+
  footer {
-  background-color: burlywood;
+  background-color: rgb(7, 92, 27);
+  color: whitesmoke;
   text-align: center;
   margin: 1.5rem 0;
- }
-
- .msg {
-  font-size: 5em;
-  background-color: red;
  }
 
  .trips_grid {
@@ -59,7 +71,6 @@ nav ul a {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr 2fr 1fr 2fr 1fr 1fr 1fr;
 }
-
 
 .ratings_section {
   margin-top: 2em;
@@ -74,4 +85,17 @@ nav ul a {
 
 .go_back {
   background-color: pink;
+}
+
+
+.add-button {
+  color: black;
+  background-color: rgb(49, 144, 228);
+  margin: 1rem;
+}
+
+.add-button a {
+  text-decoration: none;
+  background-color: rgb(49, 144, 228);
+  font-size: 1.5rem;
 }
