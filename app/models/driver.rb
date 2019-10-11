@@ -26,6 +26,7 @@ class Driver < ApplicationRecord
     return avg_rating
   end 
   
+  # Change driver to other kind of Driver... this is testing...
   def self.find_a_driver
     driver = Driver.first.id
     return driver
