@@ -1,2 +1,11 @@
+<h1>Rideshare Rails</h1>
+
+<div id="nav" class="flex">
+  <%= link_to "All Passengers", passengers_path %>
+  <%= link_to "Add a new passenger", new_passenger_path %>
+  <%= link_to "All Drivers", drivers_path %>
+  <%= link_to "Add a new driver", new_driver_path %>
+  <%= link_to "Homepage", root_path %>
+</div>
+
 <%= render partial: "form", locals: { action_name: "Create New Driver", verb_name: "create" } %>
-<%= link_to "Back to Homepage", root_path %>

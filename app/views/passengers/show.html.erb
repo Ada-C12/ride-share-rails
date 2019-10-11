@@ -1,4 +1,14 @@
-<h1>Passenger Details: <%= @passenger.name%></h1>
+<h1>Rideshare Rails</h1>
+
+<div id="nav" class="grid">
+  <%= link_to "All Passengers", passengers_path %>
+  <%= link_to "Add a new passenger", new_passenger_path %>
+  <%= link_to "All Drivers", drivers_path %>
+  <%= link_to "Add a new driver", new_driver_path %>
+  <%= link_to "Homepage", root_path %>
+<div>
+
+<h2>Passenger Details: <%= @passenger.name%></h2>
 
 <h4>Total spent from trips: $<%= @passenger.total_spent %></h4>
 <h3>Trips Taken</h3>

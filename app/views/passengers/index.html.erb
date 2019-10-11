@@ -1,13 +1,25 @@
-<h1>All Passengers</h1>
-<%= link_to "Back to Homepage", root_path %>
+<h1>Rideshare Rails</h1>
 
-<p><%= link_to "Create a new passenger", new_passenger_path %>
-<div id="index-container">
-  <% @passengers.alpha_passengers.each do |passenger| %>
-  <section>
-    <%= link_to passenger.name, passenger_path(passenger) %>, 
-    <%= passenger.phone_num %>
- </section>
+<div id="nav" class="flex">
+  <%= link_to "All Passengers", passengers_path %>
+  <%= link_to "Add a new passenger", new_passenger_path %>
+  <%= link_to "All Drivers", drivers_path %>
+  <%= link_to "Add a new driver", new_driver_path %>
+  <%= link_to "Homepage", root_path %>
+</div>
+
+<h2>All Passengers</h2>
+
+<ul id="index-container">
+  <% @passengers.alpha_passengers.each do |passenger|  %>
+    <li>
+      Name: <%= link_to passenger.name, passenger_path(passenger) %>
+      <ul>
+        <li>Phone Number: <%= passenger.phone_num %></li>
+
+        <%= link_to "Edit", edit_passenger_path(passenger) %> 
+        <%= link_to "Delete", passenger_path(passenger), method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
+      </ul>
+    </li>
   <% end %>
-  </div>
 </ul>
