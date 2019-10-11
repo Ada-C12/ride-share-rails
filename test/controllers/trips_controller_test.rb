@@ -1,21 +1,6 @@
 require "test_helper"
 
 describe TripsController do
-  
-  describe "show" do
-    it "responds with a success when id given exists" do 
-      example_pass = Passenger.create(name: "Snoopy", phone_num: "4")
-      example_driver = Driver.create(name: "Charlie Brown", vin: "22", car_make: "doghouse", car_model: "backyard")
-      example_trip = Trip.create(passenger_id: example_pass.id, driver_id: example_driver.id, rating: nil, date: Date.today, cost: 250)
-      get trip_path(example_trip.id)
-      must_respond_with :success
-    end
-    it "responds with a not_found when id given doesn't exist" do
-      get trip_path(-5938)
-      must_respond_with :not_found
-    end 
-  end
-  
   describe "create" do
     it "creates a new trip successfully with valid data, and redirects to the passenger's page" do 
       example_pass = Passenger.create(name: "Snoopy", phone_num: "4")
@@ -49,18 +34,18 @@ describe TripsController do
       must_respond_with :not_found 
     end 
   end 
-
+  
   describe "destroy" do
     it "successfully destroys an existing trip" do
-    example_pass = Passenger.create(name: "Snoopy", phone_num: "4")
-    example_driver = Driver.create(name: "Charlie Brown", vin: "22", car_make: "doghouse", car_model: "backyard")
-    example_trip = Trip.create(passenger_id: example_pass.id, driver_id: example_driver.id, rating: nil, date: Date.today, cost: 250)
-    expect { delete trip_path(example_trip.id) }.must_change 'Trip.count', -1
-    must_respond_with :redirect
-    must_redirect_to passenger_path(example_pass.id)
-
-    get trip_path(example_trip.id)
-    must_respond_with :missing
+      example_pass = Passenger.create(name: "Snoopy", phone_num: "4")
+      example_driver = Driver.create(name: "Charlie Brown", vin: "22", car_make: "doghouse", car_model: "backyard")
+      example_trip = Trip.create(passenger_id: example_pass.id, driver_id: example_driver.id, rating: nil, date: Date.today, cost: 250)
+      example_trip_id = example_trip.id
+      expect { delete trip_path(example_trip.id) }.must_change 'Trip.count', -1
+      must_respond_with :redirect
+      must_redirect_to passenger_path(example_pass.id)
+      
+      assert_nil(Trip.find_by(id: example_trip_id))
     end 
   end
 end 
