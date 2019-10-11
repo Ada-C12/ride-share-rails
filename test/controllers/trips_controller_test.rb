@@ -3,7 +3,7 @@ require "test_helper"
 describe TripsController do
   let (:driver1) { Driver.create(name: "Kari", vin: "123") }
   let (:passenger1) { Passenger.create( name: "Ned Flanders", phone_num: "206-123-1234") }
-  let (:trip_hash) { {date: Time.now, rating: nil, driver_id: driver1.id, passenger_id: passenger1.id, cost: 1000} }
+  let (:trip_hash) { {date: Time.now, rating: nil, driver_id: driver1.id, passenger_id: passenger1.id, cost: 1165} }
   let (:trip_hash_bad_driver) { {date: Time.now, rating: 5, driver_id: -666, passenger_id: passenger1.id, cost: 1000} }
   let (:trip_hash_no_driver) { {date: Time.now, rating: 5, driver_id: nil, passenger_id: passenger1.id, cost: 1000} }
   let (:trip_hash_bad_passenger) { {date: Time.now, rating: 5, driver_id: driver1.id, passenger_id: -666, cost: 1000} }
@@ -186,7 +186,8 @@ describe TripsController do
     end
     
     it "deleted trips must NOT affect total $ earned/spent per user!" do
-      ######## TODO
+      ### manually checked via website, it works!  I just dunno how to write test codes for this...
+      ### USE PATHS!!!
       assert(false)
     end
     

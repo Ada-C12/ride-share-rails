@@ -127,15 +127,37 @@ describe Driver do
           cost: 12
         )
 
+        expect(new_driver.earnings).must_equal 14.96
+      end 
+
+      it "should return average of trips with in-progress trips" do
+        new_driver.save
+        passenger = Passenger.create(name:"Coolio Foolio", phone_num: "206-800-5000")
+
+        Trip.create(
+          date: "2019-09-01",
+          driver_id: new_driver.id,
+          passenger_id: passenger.id,
+          rating: 5,
+          cost: 1000
+        )
+
         Trip.create(
           date: "2019-09-02",
           driver_id: 67,
           passenger_id: passenger.id,
           rating: 3,
-          cost: 12
+          cost: 1200
         )
 
-        expect(new_driver.earnings).must_equal 14.96
+        Trip.create(
+          date: "2019-09-02",
+          driver_id: new_driver.id,
+          passenger_id: passenger.id,
+          rating: nil,
+          cost: 1200
+        )
+        expect(new_driver.total_earned).must_equal 1496
       end 
     end 
 
