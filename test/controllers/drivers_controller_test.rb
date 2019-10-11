@@ -109,25 +109,13 @@ describe DriversController do
       input_driver.reload
       expect(input_driver.name).must_equal "Updated driver"
 
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
-      # Assert
-      # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
-      # Check that the controller redirected the user
 
     end
 
     it "does not update any driver if given an invalid id, and responds with a 404" do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
-      # Set up the form data
+
       get driver_path(-1)
       must_respond_with :not_found
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
-
-      # Assert
-      # Check that the controller gave back a 404
 
     end
 
