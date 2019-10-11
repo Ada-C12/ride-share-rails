@@ -21,6 +21,11 @@
 
 a {
   text-decoration: none;
+  color: black;
+}
+
+a:hover  {
+  color: #A3007A;
 }
 
 /* nav */
@@ -190,32 +195,30 @@ section h2 {
   margin: 1em;
 }
 
-.driver-form label{
+.driver-form label, .passenger-form label{
   display: block;
   width: 100%;
   padding: .2em;
 }
 
-.driver-form input{
+.driver-form input, .passenger-form input{
   display: block;
   width: 15rem;
   padding: .5em;
 }
 
-.submit-button {
+.submit-button{
   background-color: rgb(255,0,191);
   margin-top: .7em;
-  float: left;
   color: white;
   font-size: 1.2em;
-  /* css ignores this b/c of the float property */
-  /* display: inline-block; */
+  display: block;
   text-align: center;
   border-radius: 15px;
   height: 3rem;
 }
 
-.submit-button:hover {
+.submit-button:hover , .trip-options div:hover{
   background-color: rgb(196, 4, 148);
 }
 
@@ -264,7 +267,7 @@ main section {
   margin: 0.5rem;
 }
 
-.modify-options {
+.modify-options, .trip-options {
   width: auto;
 
   display: flex;
@@ -274,6 +277,21 @@ main section {
 
 .modify-options > * {
   margin: 0 4rem 0 1rem;
+}
+
+.trip-options div{
+  background-color: rgb(255,0,191);
+  color: white;
+  font-size: 1.2em;
+  display: block;
+  text-align: center;
+  border-radius: 15px;
+  padding:.7em;
+  margin: 1rem;
+}
+
+.trip-options a {
+  color: white;
 }
 
 .car-details {
@@ -300,7 +318,8 @@ main section {
 /* pagination */
 
 .pagination-container {
-  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
   text-align: center;
 }
 
@@ -308,10 +327,23 @@ main section {
   border: 1px solid pink;
   background-color: #FFACEA;
   padding: 0.5rem;
+  border-radius: .5em;
 }
 
 .pagination a {
   color: #820062
+}
+
+.pagination:hover {
+  background-color: #820062;
+}
+
+.pagination:hover a {
+  color: #FFBDEE;
+}
+
+.pagination a:active {
+  border-radius: 5px;
 }
 
 .disabled_link {
