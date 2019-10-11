@@ -25,10 +25,11 @@ describe DriversController do
       # Ensure that there are zero drivers saved
 
       # Act
+      get drivers_path
       
 
       # Assert
-
+      must_respond_with :success
     end
   end
 
@@ -155,7 +156,7 @@ describe DriversController do
 
     end
 
-    it "responds with redirect when getting the edit page for a non-existing driver" do
+    it "responds with not found when getting the edit page for a non-existing driver" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
 
@@ -163,8 +164,7 @@ describe DriversController do
       get edit_driver_path(-1)
 
       # Assert
-      must_respond_with :redirect
-      must_redirect_to drivers_path
+      must_respond_with :not_found
 
     end
   end
@@ -225,7 +225,7 @@ describe DriversController do
 
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a render" do
+    it "does not update a driver if the form data violates Driver validations, and responds with a render" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Ensure there is an existing driver saved
