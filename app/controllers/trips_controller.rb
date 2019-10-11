@@ -1,3 +1,5 @@
+require 'pry'
+
 class TripsController < ApplicationController
   
   def index
@@ -25,16 +27,16 @@ class TripsController < ApplicationController
   
   def show
     @trip = Trip.find_by(id: params[:id])
-
+    
     if @trip.nil?
-      redirect_to tasks_path
+      redirect_to trips_path
       return
     end
   end
-
+  
   def new
     passenger_id = params[:passenger_id]
-
+    
     @trip = Trip.new
     
     if passenger_id.nil?
@@ -43,16 +45,16 @@ class TripsController < ApplicationController
       @passengers = [Passenger.find_by(id: passenger_id)]
     end
     
-      # @drivers = Driver.all
-      @drivers = Driver.where(active: nil)
+    # @drivers = Driver.all
+    @drivers = Driver.where(active: nil)
   end
   
   def create 
     new_passenger_id = params[:trip][:passenger_id]
     new_driver_id = params[:trip][:driver_id]
-
+    
     @trip = Trip.new( passenger_id: new_passenger_id,driver_id: new_driver_id)
- 
+    
     if @trip.save
       @trip.driver.active = true
       @trip.driver.save
@@ -63,25 +65,27 @@ class TripsController < ApplicationController
       return
     end
   end
-
+  
   def edit
     @trip = Trip.find_by(id: params[:id])
   end
-
+  
   def update
     @trip = Trip.find_by(id: params[:id])
-
-
+    
+    
     if @trip.nil?
       redirect_to root_path
       return
     else
       @trip.update(rating: params[:trip][:rating] )
+      @trip.driver.active = nil
+      @trip.driver.save
       redirect_to trip_path(@trip.id)
       return
     end
   end
-
+  
   private
   def trip_params
     return params.require(:trip).permit(:date, :cost, :rating, :driver_id, :passenger_id)

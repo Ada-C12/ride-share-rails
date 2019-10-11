@@ -150,10 +150,6 @@ describe DriversController do
     }
     
     it "can update an existing driver with valid information accurately, and redirect" do
-      # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      # Set up the form data
       id = Driver.first.id
       
       # Act-Assert
