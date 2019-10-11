@@ -59,22 +59,38 @@ describe Driver do
 
   # Tests for methods you create should go here
   describe "custom methods" do
-    describe "average rating" do
-      # Your code here
+    describe "find_driver_trips" do
+      # Arrange
+
+      # Act
+
+      # Assert
     end
 
-    describe "total earnings" do
-      # Your code here
+    describe "calculate_total_earnings" do
+      # Arrange
+
+      # Act
+
+      # Assert
     end
 
-    describe "can go online" do
-      # Your code here
+
+    describe "calculate_average_rating" do
+      # Arrange
+
+      # Act
+
+      # Assert
     end
 
-    describe "can go offline" do
-      # Your code here
-    end
 
-    # You may have additional methods to test
+    describe "find_available_driver" do
+      # Arrange
+
+      # Act
+
+      # Assert
+    end
   end
 end
