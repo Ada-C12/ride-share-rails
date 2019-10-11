@@ -2,18 +2,6 @@
   <h1><%=@driver.name%></h1>
 </header>
 
-<section class="details">
-  <h3>Details</h3>
-  <p>Average Rating: <%= @driver.average_rating %></p>
-  <p>Earnings: 
-    <% if @driver.total_earned %>
-      <%= usd(@driver.total_earned) %>
-    <% else %>
-      <%= usd(0.00) %>
-    <% end %>
-  </p>
-</section>
-
 <section class="driver_grid_show">
   <section class="header_row"><%= "ID" %></section>
   <section class="header_row"><%= "NAME" %></section>
@@ -33,5 +21,21 @@
   <%= link_to "DELETE", driver_path(@driver.id), method: :delete, data: {confirm: "YOU SURE???"}  %>
 </section>
 
-<%= link_to "SHOW TRIP HISTORY", trips_path(driver_id: @driver.id) %><br>
-<%= link_to "GO BACK", drivers_path, class:"go_back"%>
+
+<section class="details">
+  <h3>Details</h3>
+  <p>Average Rating: <%= @driver.average_rating %></p>
+  <p>Total Earned: 
+    <% if @driver.total_earned %>
+      <%= usd(@driver.total_earned) %>
+    <% else %>
+      <%= usd(0.00) %>
+    <% end %>
+  </p>
+</section>
+
+<section class="details">
+<h3>Links</h3>
+<p><%= link_to "SHOW TRIP HISTORY", trips_path(driver_id: @driver.id) %></p>
+<p><%= link_to "GO BACK", drivers_path, class:"go_back"%></p>
+</section>
