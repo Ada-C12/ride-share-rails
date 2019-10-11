@@ -258,9 +258,25 @@ describe PassengersController do
     end
 
     it "updates a driver's status to inactive" do
-    end
+      passenger_hash = {
+        passenger: {
+          name: "Tyrion Lannister",
+          phone_num: "(908) 987-2345",
+        },
+      }
 
-    it "does not create a rating for a non-existent trip" do
+      passenger = Passenger.create(name: "Jon Snow", phone_num: "123.345.6789")
+      driver = Driver.create(name: "sample driver", vin: "VH1234SD234F0909", active: true, car_make: "Fiat", car_model: "POP")
+      trip = Trip.create(date: Date.today, driver_id: driver.id, passenger_id: passenger.id, cost: 123.0, rating: nil)
+
+      ratings_hash = {
+        trip_id: trip.id,
+        rating: 5,
+      }
+
+      post rate_trip_path(trip.id), params: ratings_hash
+
+      expect(Driver.find_by(id: driver.id).active).must_equal false
     end
   end
 end
