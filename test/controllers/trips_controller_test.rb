@@ -71,13 +71,17 @@ describe TripsController do
           cost: 0.00
         }
       }
-      p @passenger.id
+     
       # Act-Assert
       expect {
-        post trips_path, params: trip_hash
+        post passenger_trips_path(@passenger.id), params: trip_hash
       }.must_change "Trip.count", 1
       
-      new_trip = Trip.find_by(name: trip_hash[:trip][:name])
+      new_trip = Trip.find_by(id: trip_hash[:trip][:id])
+
+      p "========="
+      p trip_hash[:trip][:id]
+
       expect(new_trip.driver_id).must_equal trip_hash[:trip][:driver_id]
       expect(new_trip.passenger_id).must_equal trip_hash[:trip][:passenger_id]
       expect(new_trip.date).must_equal trip_hash[:trip][:date]
