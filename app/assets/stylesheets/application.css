@@ -40,6 +40,10 @@ nav > * {
   color: white;
 }
 
+section h2 {
+  text-align: center;
+}
+
 /* css dropdown on hover: https://www.w3schools.com/css/css_dropdowns.asp */
 .dropdown-container {
   position: relative;
@@ -297,6 +301,7 @@ main section {
 
 .pagination-container {
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .pagination {
