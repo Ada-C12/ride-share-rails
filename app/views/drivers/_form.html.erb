@@ -1,8 +1,8 @@
 <%= form_with model: @driver, class: "driver-form" do |f| %>
-  <h3>Please enter information to <%= message %> driver</h3>
+  <h3>Please enter information to <%= message %> driver: </h3>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= f.label :name, class: 'label' %>
+  <%= f.text_field :name, class: 'name'%>
 
   <%= f.label :vin %>
   <%= f.text_field :vin %>
