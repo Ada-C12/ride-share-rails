@@ -10,24 +10,25 @@
   </head>
 
   <body>
-<div class="navbar">
-  <span id="home-nav"><%= link_to "Goober Ride Share", root_path %></span>
-  <div class="dropdown">
-      <button class="dropbtn">Drivers
-      <i class="fa fa-caret-down"></i>
-  <div class="dropdown-content">
-    <span><%=link_to "View Drivers", drivers_path %></span>
-    <span><%=link_to "Add Driver", new_driver_path %></span>
-  </div>
+  <div class="navbar">
+    <span class="home"><%= link_to "Home", root_path %></span>
+
     <div class="dropdown">
-      <button class="dropbtn">Passengers
-      <i class="fa fa-caret-down"></i>
-  <div class="dropdown-content">
-    <span><%=link_to "View Passengers", passengers_path %></span>
-    <span><%=link_to "Add Passengers", new_passenger_path %></span>
+      <button class="dropbtn">Drivers</button>
+      <div class="dropdown-content">
+        <span><%=link_to "View Drivers", drivers_path %></span>
+        <span><%=link_to "Add Driver", new_driver_path %></span>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropbtn">Passengers</button>
+      <div class="dropdown-content">
+          <span><%=link_to "View Passengers", passengers_path %></span>
+          <span><%=link_to "Add Passengers", new_passenger_path %></span>
+      </div>
+    </div>
   </div>
-  </div>
-</div>
-    <%= yield %>
+  <%= yield %>
   </body>
 </html>
