@@ -1,45 +1,49 @@
-<header class="show-header">
-  <h1><%=@driver.name%></h1>
-  <%= link_to "Edit this driver!", edit_driver_path(@driver.id) %>
-  <%= link_to "(Delete this driver!)", driver_path(@driver.id), method: :delete, data: { confirm: "Are YOU sure?" }, class: "index-delete-link" %>
+<h1><%=@driver.name%> Details</h1>
 
-</header>
-
-<section class="show-details">
-
-  <p>
-    VIN number: <%=@driver.vin%>
-
-    <% if @driver.car_make %>
-        -- Car make: <%= @driver.car_make %>
+<section class="details-section">
+  <div>
+    <%= link_to "Edit Driver", edit_driver_path(@driver.id), class: "small-button" %>
+    <%= link_to "Delete Driver", driver_path(@driver.id), method: :delete, data: { confirm: "Are you sure you want to delete this driver?" }, class: "small-button" %>
+  </div>
+  <p> 
+    <% if @driver.car_make && @driver.car_make != "" %>
+        <strong>Car make:</strong> <%= @driver.car_make %> --
     <% end %>
 
-    <% if @driver.car_model %>
-        -- Car model: <%= @driver.car_model %>
+    <% if @driver.car_model && @driver.car_model != ""%>
+        <strong>Car model:</strong> <%= @driver.car_model %> --
     <% end %>
-    
-    -- Average rating: <%=@driver.average_rating%>
-    -- Total earnings: $<%=@driver.total_earnings%>
+      <strong>VIN:</strong> <%=@driver.vin%>
   </p>
+  <p><strong>Average rating:</strong> <%=@driver.average_rating%></p>
+  <p><strong>Total earnings:</strong> $<%=@driver.total_earnings%></p>
+</section>
 
-
-  <p>List of trips</p>
-  <table>                         
+<section class="trips-section">
+  <h2>Trips Driven</h2>
+  <table class="trip-details-table">                         
     <tr>                          
       <th>Trip ID</th>
-      <th>Trip Date</th>
-      <th>Trip Cost</th>
+      <th>Date</th>
+      <th>Passenger</th>
+      <th>Cost</th>
       <th>Rating</th>
     </tr>
 
-    <%@driver.trips.each do |trip|%>
+    <%@driver.trips.order(date: :desc).each do |trip|%>
       <tr>
         <td><%= link_to trip.id, trip_path(trip.id) %></td>
         <td><%= trip.date %></td>
+        <td>
+          <% if trip.passenger.nil? %>
+            Unknown
+          <% else %>
+            <%= link_to trip.passenger.name, passenger_path(trip.passenger) %>
+          <% end %>
+        </td>
         <td>$<%= sprintf('%.2f', trip.cost_to_dollars) %></td>
         <td><%= trip.rating %></td>
       </tr>
     <% end %>                    
   </table> 
-
 </section>
