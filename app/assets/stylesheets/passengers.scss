@@ -22,11 +22,11 @@
  text-align: center;
 }
 
-.show-header{
+.show-header {
   text-align: center;
   padding-top: 1em;
 }
-.show-details{
+.show-details {
   text-align: center;
   padding-left: 1em;
 }
@@ -42,9 +42,40 @@
   font-size: 1.5em;
 }
 
+.passenger-heading li {
+  width: 30%;
+}
+
 .passenger-trips {
   display: flex;
   justify-content: space-between;
   align-items: center;
   list-style: none;
+}
+
+.passenger-trips li {
+  width: 30%;
+}
+
+.passengers-index {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding-right: 3em;
+}
+
+.passengers-index li {
+  width: 30%;
+  padding-bottom: 1.3em;
+}
+
+.passenger-stats {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: plum 0.2em solid;
+  border-top: plum 0.2em solid;
+  margin-top: 1em;
+  padding: 1em 0 1em 0
 }

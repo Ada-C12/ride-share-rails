@@ -58,20 +58,16 @@ nav a:hover{
  color: white;
 }
 
-nav a::before {
-  content: '';
-  display: block;
-  height: 5px;
-  background-color: #444;
-  
-  position: absolute;
-  top: 0;
-  width: 0%
-}
-
 nav a:hover::before{
   transition: all ease-in-out 100%;
   width: 100%;
 } 
 
+a:hover {
+  color: pink;
+}
 
+.name {
+  font-family: 'Mansalva', cursive;
+  font-size: 3em;
+}

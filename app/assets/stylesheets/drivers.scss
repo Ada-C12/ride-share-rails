@@ -40,6 +40,11 @@
   align-items: center;
   list-style: none;
   font-size: 1.5em;
+  padding-bottom: 1.5em;
+}
+
+.driver-heading li {
+  width: 30%;
 }
 
 .driver-trips {
@@ -49,3 +54,27 @@
   list-style: none;
 }
 
+.driver-trips li {
+  width: 30%;
+}
+
+.driver-index {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding-right: 3em;
+}
+
+.driver-index li {
+  width: 30%;
+}
+
+.driver-stats {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: plum 0.2em solid;
+  border-top: plum 0.2em solid;
+  margin-top: 1em;
+}
