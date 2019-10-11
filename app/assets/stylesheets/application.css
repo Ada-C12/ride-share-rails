@@ -108,13 +108,19 @@ main {
   border-radius: 20px;
   background-color: #282a2b;
   color: white;
+  text-decoration: none;
+  font-size: 1.1rem
+}
+
+.homepage-links a:hover {
+  color: #5b687d;
 }
 
 .homepage-links {
   margin: 1%;
-  margin-left: 10%;
-  width: 15%;
-  text-align: center;
+  margin-left: 5%;
+  width: 40%;
+  padding: 3%
 }
 
 #homepage-links-container {
@@ -136,8 +142,10 @@ table {
 
 .edit-passenger-form, .new-passenger-form, .edit-driver-form, .new-driver-form, .edit_form_class {
   padding-left: 5%;
-}
-.new-passenger-form, .new-driver-form, .edit_form_class  {
-  padding-top: 5%;
+  font-size: 1.25rem;
+  font-weight: bolder;
 }
 
+header, h2, h1, .request-trip {
+  margin-left: 2%
+}

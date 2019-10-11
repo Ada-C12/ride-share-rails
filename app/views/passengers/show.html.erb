@@ -3,15 +3,16 @@
     <h1><%=@passenger.name%></h1>
     <%= link_to "Edit this passenger", edit_passenger_path(@passenger.id) %>
     <%= link_to "Delete this passenger", passenger_path(@passenger.id), method: :delete, data: { confirm: "Are you sure?" }, class: "show-delete-link" %>
-    <%= link_to "Request a Trip", passenger_trips_path(@passenger.id), method: :post %>
   </header>
+
+  <section class="request-trip"><%= link_to "Request a Trip", passenger_trips_path(@passenger.id), method: :post %></section>
 
   <section class="show-details">
     <ul>
-      <li> ID:<%= @passenger.id %></li>
-      <li> PHONE NUMBER: <%= @passenger.phone_num %></li>
-      <li> PASSENGER SINCE: <%= @passenger.created_at %></li>
-      <li> TOTAL SPENT: $<%= sprintf("%.2f", @passenger.total_spent) %></li>
+      <li> <strong>ID: </strong><%= @passenger.id %></li>
+      <li> <strong>PHONE NUMBER: </strong><%= @passenger.phone_num %></li>
+      <li> <strong>PASSENGER SINCE: </strong><%= @passenger.created_at %></li>
+      <li> <strong>TOTAL SPENT: </strong>$<%= sprintf("%.2f", @passenger.total_spent) %></li>
     </ul>
   </section>
 
