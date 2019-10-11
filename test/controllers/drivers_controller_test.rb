@@ -126,14 +126,20 @@ describe DriversController do
       # Assign the existing driver's id to a local variable
       # Set up the form data so that it violates Driver validations
      
+      old_driver = driver
+      updated_driver = {
+        driver: {
+          name: "",
+          vin: ""
+        },
+      }
 
+      expect {
+        patch driver_path(old_driver.id), params: updated_driver
+      }.must_differ "Driver.count", 0
 
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
-
-      # Assert
-      # Check that the controller redirects
-
+      must_respond_with :success
+      #  driver_path(old_driver.id)
     end
   end
 
