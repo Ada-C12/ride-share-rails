@@ -2,7 +2,7 @@ class TripsController < ApplicationController
   def index
     @trips = Trip.all.order(:id)
   end
-
+  
   def show
     trip_id = params[:id].to_i
     @trip = Trip.find_by(id:trip_id)
@@ -11,28 +11,33 @@ class TripsController < ApplicationController
       return
     end
   end
-
+  
   def new
-    @trip = Trip.new
+    # @trip = Trip.new
+    # @passenger = @trip.passenger_id
+    @passenger = Passenger.find_by(id: params[:passenger_id])
+    @trip = Trip.new(passenger_id: @passenger.id)
   end
-
+  
   def create
     @trip = Trip.new(trip_params)
+    @trip.date = Date.today
+    @trip.cost = rand(5..500).to_f
     if @trip.save
-      redirect_to trip_path(@trip.id)
+      redirect_to passenger_trips_path(@trip.passenger.id)
     else
-      redirect_to trip_path(@trip.id)
-
+      new_passenger_trip_path(id: trip_params[:passenger_id])
+      
     end
   end
-
+  
   def edit
     @trip = Trip.find_by(id: params[:id])
     if !@trip
       redirect_to trips_path
     end
   end
-
+  
   def update
     @trip = Trip.find_by(id: params[:id])
     if !@trip
@@ -45,7 +50,7 @@ class TripsController < ApplicationController
       render new_trip_path
     end
   end
-
+  
   def destroy
     trip_to_delete = Trip.find_by(id: params[:id])
     if trip_to_delete.nil?
@@ -57,7 +62,7 @@ class TripsController < ApplicationController
       return
     end
   end
-
+  
   # def completed
   #   completed_task = Task.find_by(id: params[:id])
   #   if completed_task.nil?
@@ -74,9 +79,9 @@ class TripsController < ApplicationController
   #     redirect_to tasks_path
   #   end
   # end
-
+  
   private
-
+  
   def trip_params
     return params.require(:trip).permit(:date, :driver_id, :passenger_id, :cost, :rating)
   end
