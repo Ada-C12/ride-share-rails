@@ -1,7 +1,12 @@
 <header class="show-header">
   <h1><%=@driver.name%></h1>
-  <%= link_to "Edit this driver!", edit_driver_path(@driver.id) %>
-  <%= link_to "(Delete this driver!)", driver_path(@driver.id), method: :delete, data: { confirm: "Are YOU sure?" }, class: "index-delete-link" %>
+  <% status = @driver.active ? " active" : " inactive" %>
+  <% label = (@driver.active) ? "Set inactive" : "Set active" %> 
+  <p> <%=@driver.name%> is now <%=status%> |
+    <%= link_to(label, toggle_active_path(@driver.id), method: :patch, class: "toggle-action-link") %> 
+  </p>
+  <p> <%= link_to "Edit this driver!", edit_driver_path(@driver.id) %></p>
+  <p><%= link_to "(Delete this driver!)", driver_path(@driver.id), method: :delete, data: { confirm: "Are YOU sure?" }, class: "index-delete-link" %></p>
 
 </header>
 
