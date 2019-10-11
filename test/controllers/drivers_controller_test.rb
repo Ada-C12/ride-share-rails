@@ -136,16 +136,14 @@ describe DriversController do
           active: false,
         }
       }
-    
-      expect {
-        patch driver_path(id: existing_driver.id), params: updated_driver_data
-      }.must_differ 'Driver.count', 0
       
       patch driver_path(id: existing_driver.id), params: updated_driver_data
 
       updated_driver = Driver.find_by(id: existing_driver.id)
-      # binding.pry
-      expect(updated_driver.valid?).must_equal false 
+
+      expect(updated_driver.name).must_equal existing_driver.name
+      expect(updated_driver.vin).must_equal existing_driver.vin
+      expect(updated_driver.active).must_equal existing_driver.active
       
       must_redirect_to nope_path
     end

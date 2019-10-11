@@ -37,6 +37,7 @@ class DriversController < ApplicationController
   end 
   
   def update
+    # binding.pry
     @driver = Driver.find_by(id: params[:id])
     
     if @driver.nil?
