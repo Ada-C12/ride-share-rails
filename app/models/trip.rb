@@ -1,4 +1,5 @@
 class Trip < ApplicationRecord
+  validates :rating, inclusion: { in: [1, 2, 3, 4, 5], allow_nil: true}
   belongs_to :driver
   belongs_to :passenger
   

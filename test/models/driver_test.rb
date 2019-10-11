@@ -62,7 +62,7 @@ describe Driver do
       @passenger = Passenger.create(name: "test_passenger", phone_num: "4385902")
       @cost = "422.80"
       @trips = Array.new(10) do |n|
-        Trip.create(cost: (n+50)*100, driver_id: @driver.id, passenger_id: @passenger.id, rating: (n%5))
+        Trip.create(cost: (n+50)*100, driver_id: @driver.id, passenger_id: @passenger.id, rating: ((n%5)+1))
       end
     end
     
@@ -80,7 +80,7 @@ describe Driver do
       end
       
       it "returns an accurately valued average rating" do
-        test_value = "2.0"
+        test_value = "3.0"
         expect(@driver.average_rating).must_equal test_value
         
       end

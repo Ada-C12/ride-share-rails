@@ -61,7 +61,7 @@ describe "update" do
     pass = Passenger.create(name: "test_passenger", phone_num: "4385902")
     driver = Driver.create(name: "Popeye Sailor", vin: "8FH204KDLFURNM385")
     trip = Trip.create(driver_id: driver.id, passenger_id: pass.id)
-    params = { trip: { rating: -1 } }
+    params = { trip: { rating: 1 } }
     
     expect{ patch trip_path(trip.id), params: params }.wont_change "Trip.count"
     expect(Trip.find(trip.id).rating.to_i).must_equal params.dig(:trip, :rating)
