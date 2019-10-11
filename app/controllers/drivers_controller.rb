@@ -29,6 +29,7 @@ class DriversController < ApplicationController
   
   def create
     @driver = Driver.new(driver_params)
+    @driver.active = false
     
     respond_to do |format|
       if @driver.save
@@ -76,12 +77,16 @@ class DriversController < ApplicationController
   def toggle_status
     driver_id = params[:id]
     @driver= Driver.find_by(id: driver_id)
+    p "CAT BOMB"
+    p @driver
+    p @driver.errors
     if @driver.active == true
       @driver.active = false
+      @driver.save
     elsif @driver.active == false
       @driver.active = true
+      @driver.save
     end
-    @driver.save
     redirect_to drivers_path
   end 
 

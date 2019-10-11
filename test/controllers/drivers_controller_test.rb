@@ -4,13 +4,11 @@ describe DriversController do
   describe "index" do
     it "gives back a successful response" do
       get drivers_path
-
       must_respond_with :success
     end
 
     it "can get the root path" do
       get root_path
-
       must_respond_with :success
     end
   end
@@ -127,9 +125,34 @@ describe DriversController do
   end
 
   describe "toggle_status" do
+    # before do
+    #   @driver = Driver.create(name: "Kim Possible", vin: "425449888")
+    #   # driver.active by default = false
+      
+    #   @driver_info = {
+    #     driver: {
+    #       active: true,
+    #     }
+    #   }
+    # end
+    
+    it "will set the driver status to active if inactive" do
+      driver = Driver.create(name: "Kim Possible", vin: "425449888")
+      driver_info = {
+        driver: {
+          active: true,
+        }
+      }
 
+      patch "/drivers/#{driver.id}/toggle_status", params: driver_info
+    
+      expect(driver.toggle_status)
+    end
+
+    it "will set the driver status to inactive if active" do
+
+    end
 
   end
 
-  # write method to test toggle status
 end
