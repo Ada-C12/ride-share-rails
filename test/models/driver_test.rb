@@ -124,15 +124,6 @@ describe Driver do
       end
     end
 
-    describe "can go online" do
-      # Your code here
-    end
-
-    describe "can go offline" do
-      # Your code here
-    end
-
-    # You may have additional methods to test
     describe "find_available_driver" do
       it "successfully returns the id of an available driver" do
         driver_1 = Driver.create(name: "Jane Doe", vin: "1234567", active: true)
@@ -152,4 +143,17 @@ describe Driver do
 
     end
   end
+
+  # We instead put these methods in the controller and is being tested in controller tests
+  describe "can go online" do
+    # Your code here
+  end
+
+  describe "can go offline" do
+    # Your code here
+  end
+
+
+
+
 end

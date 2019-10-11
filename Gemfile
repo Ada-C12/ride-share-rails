@@ -73,3 +73,7 @@ group :test do
   gem 'minitest-reporters'
   gem 'minitest-skip'
 end
+
+group :test do
+  gem 'simplecov', require: false
+end

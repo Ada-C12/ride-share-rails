@@ -5,6 +5,7 @@
     <table>
       <tr class='table-header'>
         <td>DRIVER</td>
+        <td>ACTIVE?</td>
         <td>TOTAL EARNINGS</td>
         <td>AVG RATING</td>
         <td>EDIT</td>
@@ -13,10 +14,11 @@
       <% Driver.all_in_alpha_order.each do |driver| %>
           <tr>
             <td><%= link_to driver.name, driver_path(driver.id) %></td>
+            <td><%= driver.active %></td>
             <td>$<%= sprintf("%.2f", driver.total_earnings) %></td>
             <td><%= (driver.average_rating).round(2) unless driver.average_rating.nil? %></td>
-            <td><%= link_to "Edit", edit_driver_path(driver.id) %></td>
-            <td><%= link_to "Delete", driver_path(driver.id), method: :delete, data: { confirm: "Are you sure?" }, class: "index-delete-link" %></td>
+            <td><%= link_to "Edit", edit_driver_path(driver.id), class: "edit-link" %></td>
+            <td><%= link_to "Delete", driver_path(driver.id), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-link" %></td>
           </tr>
       <% end %>
     </table>

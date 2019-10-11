@@ -56,17 +56,6 @@ describe Passenger do
       expect(new_passenger.errors.messages[:phone_num]).must_equal ["can't be blank"]
     end
   end
-  
-  # Tests for methods you create should go here
-  describe "custom methods" do
-    describe "request a ride" do
-      # Your code here
-    end
-    
-    describe "complete trip" do
-      # Your code here
-    end
-    # You may have additional methods to test here
     
     describe 'total_spent' do
       it 'accurately calcuates and returns total spent' do
@@ -85,6 +74,17 @@ describe Passenger do
 
   end
 
+  # We instead put these methods in the controller and is being tested in controller tests
+  # Tests for methods you create should go here
+  describe "custom methods" do
+    describe "request a ride" do
+      # Your code here
+    end
+    
+    describe "complete trip" do
+      # Your code here
+    end
+    # You may have additional methods to test here
 
   
 end

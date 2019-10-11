@@ -149,3 +149,21 @@ table {
 header, h2, h1, .request-trip {
   margin-left: 2%
 }
+
+.edit-link, .delete-link, .request-link {
+  border: black 1px solid;
+  border-radius: 10px;
+  margin: 1%;
+  background-color: #5b687d;
+  color: white;
+  text-decoration: none;
+  padding: 2px
+}
+
+.request-trip {
+  margin: 2%
+}
+.request-trip a {
+  background-color: #663a37
+}
+

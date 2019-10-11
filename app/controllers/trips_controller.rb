@@ -58,12 +58,20 @@ class TripsController < ApplicationController
     end
 
     if @trip.update(trip_params)
+      if @trip.rating
+        if @trip.driver.update({active: false})
+        else
+          raise ArgumentError.new("Trip saved, but Driver status not updated to active")
+          return
+        end
+      end
       redirect_to trip_path(@trip.id)
       return
     else
       redirect_to edit_trip_path
       return
     end
+    
   end
 
   def destroy
@@ -84,27 +92,12 @@ class TripsController < ApplicationController
   end
 
   def add_rating
-    trip = Trip.find_by(id: params[:id])
-
-    if trip.nil?
-      # Then the book was not found!
+    @trip = Trip.find_by(id: params[:id])
+    
+    if @trip.nil?
       redirect_to trips_path
       return
     end
-
-    driver = trip.driver
-
-    if trip.update(trip_params)
-    else
-      raise ArgumentError.new("Error! The submitted rating did not save sucessfully.")
-    end
-      
-    if driver.update({active: false})
-      redirect_to trip_path(trip.id)
-    else
-      raise ArgumentError.new("Error! The driver's status did not update to inactive.")
-    end
-
   end
   
   private

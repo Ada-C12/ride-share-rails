@@ -1,8 +1,8 @@
 <main>
   <header class="show-header">
     <h1>Trip <%=@trip.id%></h1>
-    <%= link_to "Edit this trip", edit_trip_path(@trip.id) %>
-    <%= link_to "Delete this trip", trip_path(@trip.id), method: :delete, data: { confirm: "Are you sure?" }, class: "show-delete-link" %>
+    <%= link_to "Edit this trip", edit_trip_path(@trip.id), class: "edit-link" %>
+    <%= link_to "Delete this trip", trip_path(@trip.id), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-link" %>
   </header>
 
   <section class="show-details">

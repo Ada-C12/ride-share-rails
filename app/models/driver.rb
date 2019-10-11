@@ -22,7 +22,9 @@ class Driver < ApplicationRecord
 
   def average_rating
     ratings = self.trips.map do |trip|
-      trip.rating
+      if trip.rating != nil
+        trip.rating 
+      end
     end
 
     if ratings.include?(nil) || ratings.empty?

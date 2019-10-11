@@ -15,8 +15,8 @@
             <td><%= link_to passenger.name, passenger_path(passenger.id) %></td>
             <td><%= passenger.phone_num %> </td>
             <td>$<%= sprintf("%.2f", passenger.total_spent) %></td>
-            <td><%= link_to "Edit", edit_passenger_path(passenger.id) %></td>
-            <td><%= link_to "Delete", passenger_path(passenger.id), method: :delete, data: { confirm: "Are you sure?" }, class: "index-delete-link" %></td>
+            <td><%= link_to "Edit", edit_passenger_path(passenger.id), class: "edit-link" %></td>
+            <td><%= link_to "Delete", passenger_path(passenger.id), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-link" %></td>
           </tr>
       <% end %>
     </table>

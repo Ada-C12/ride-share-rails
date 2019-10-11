@@ -1,8 +1,8 @@
 <main>
   <header class="show-header">
     <h1><%=@driver.name%></h1>
-    <%= link_to "Edit this driver", edit_driver_path(@driver.id) %>
-    <%= link_to "Delete this driver", driver_path(@driver.id), method: :delete, data: { confirm: "Are you sure?" }, class: "show-delete-link" %>
+    <%= link_to "Edit driver", edit_driver_path(@driver.id), class: "edit-link" %>
+    <%= link_to "Delete driver", driver_path(@driver.id), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-link" %>
   </header>
 
   <section class="show-details">
@@ -12,6 +12,7 @@
       <li> Driver Since: <%= @driver.created_at %></li>   
       <li> TOTAL EARNINGS: $<%=  sprintf("%.2f", @driver.total_earnings) %></li>
       <li> AVERAGE RATING: <%= (@driver.average_rating).round(2) unless @driver.average_rating.nil?  %></li>
+      <li> ACTIVE: <%= @driver.active %></li>
     </ul>
   </section>
 
@@ -36,9 +37,13 @@
                 <td><%= trip.date%></td>
                 <td><%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></td>
                 <td>$<%=sprintf("%.2f", trip.cost)%></td>
-                <td><%= (trip.rating).round(2) unless @driver.average_rating.nil? %></td>
-                <td><%= link_to "Edit", edit_trip_path(trip.id) %></td>
-                <td><%= link_to "Delete", trip_path(trip.id), method: :delete, data: { confirm: "Are you sure?" }, class: "show-delete-link" %></td>
+                <td><% if trip.rating == nil %>
+                  <%= link_to "Add Rating", add_rating_path(trip.id) %>
+                <% else %>
+                  <%= (trip.rating).round(2) unless trip.rating.nil? %></td>
+                <% end %>
+                <td><%= link_to "Edit", edit_trip_path(trip.id) , class: "edit-link" %></td>
+                <td><%= link_to "Delete", trip_path(trip.id), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-link" %></td>
               </tr>
           <% end %>
         </table>
