@@ -13,11 +13,45 @@
  *= require_tree .
  *= require_self
  */
+ *{
+  font-family: 'Nunito', sans-serif;
+ }
 nav {
-  padding-bottom: 40px;
+  text-align: right;
+ 
+  
 }
- /* Dropdown Button */
-.dropbtn {
+
+.grid-container{
+  display: grid;
+  grid-template-columns: 80% auto auto auto;
+  align-items: center;
+
+}
+
+.nav_img {
+  grid-column: 1;
+  display: inline;
+  float: left;
+
+}
+
+.dropdown_p {
+  grid-column: 2;
+}
+.dropdown_d {
+  grid-column: 3;
+}
+.dropdown_t {
+  grid-column: 4;
+}
+
+nav section {
+    width: 20%;
+  }
+
+ /*Dropdown Button */
+button {
   background-color: #4CAF50;
   color: white;
   padding: 16px;
@@ -36,7 +70,6 @@ nav {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
-  min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
@@ -44,16 +77,51 @@ nav {
 /* Links inside the dropdown */
 .dropdown-content a {
   color: black;
-  padding: 12px 16px;
   text-decoration: none;
   display: block;
+  
 }
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #ddd;}
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
-
+.dropdown_p:hover .dropdown-content {display: block; max-width: 75px;}
+.dropdown_t:hover .dropdown-content {display: block; max-width: 75px;}
+.dropdown_d:hover .dropdown-content {display: block; max-width: 75px;}
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.dropdown_p:hover .dropbtn {background-color: #3e8e41;}
+
+
+
+.wrapper_trips {
+  width: 90%;
+  margin-left: 5%;
+
+  justify-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  grid-auto-rows: 20px;
+}
+
+.wrapper_people {
+  width: 90%;
+  margin-left: 5%;
+  justify-items: left;
+  display: flex;
+  max-height: 1600px;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.heading {
+  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  text-align: left;
+  margin-left: 5%;
+
+  align-items: center;
+
+}

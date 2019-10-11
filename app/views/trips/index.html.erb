@@ -1,16 +1,23 @@
-<h1>Trips</h1>
-<p><%= link_to "Add New Trip", new_trip_path %></p>
-<ul>
+<section class="heading">
+<h1>Trips</h1> <%= button_to "Add Trip", new_trip_path, :method => "get" %>
+</section>
+<div class="wrapper_trips">
+  <div>TRIP #</div>
+  <div>DATE</div>
+  <div>PASSENGER ID</div>
+  <div>DRIVER ID</div>
+  <div>RATING</div>
+  <div>COST</div>
+  <div>EDIT</div>
+  <div>DELETE</div>
   <% @trips.each do |trip|  %>
-    <li>
-      Trip #: <%= link_to trip.id, trip_path(trip.id) %>
-      Date: <%= trip.date %>
-       Passenger ID:<%= link_to trip.passenger_id, passenger_path(trip.passenger_id) %>
-       Driver ID: <%= link_to trip.driver_id, driver_path(trip.driver_id) %>
-       Rating: <%= trip.rating %>
-       Cost: $<%= trip.cost %>
-       <%= link_to "Edit Trip", edit_trip_path(trip.id) %>
-       <%= link_to "Delete", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure?"}%>
-    </li>
+      <div><%= link_to trip.id, trip_path(trip.id) %></div>
+      <div><%= trip.date %></div>
+       <div><%= link_to trip.passenger_id, passenger_path(trip.passenger_id) %></div>
+       <div><%= link_to trip.driver_id, driver_path(trip.driver_id) %></div>
+       <div><%= trip.rating %></div>
+       <div>$ <%= trip.cost %></div>
+       <div><%= link_to "Edit Trip", edit_trip_path(trip.id) %></div>
+       <div><%= link_to "Delete", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure?"}%></div>
   <% end %>
-</ul>
+  </div>

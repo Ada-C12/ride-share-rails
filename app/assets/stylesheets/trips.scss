@@ -1,3 +1,29 @@
 // Place all the styles related to the Trips controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.wrapper {
+  width: 90%;
+  margin-left: 5%;
+
+  justify-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  grid-auto-rows: 20px;
+}
+
+.heading {
+  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  text-align: left;
+  margin-left: 5%;
+
+  align-items: center;
+
+}
+
+
+
+
