@@ -10,6 +10,6 @@ class Passenger < ApplicationRecord
       sum += trip.cost
     end
     return sum
-  end
+  end  
 end 
 

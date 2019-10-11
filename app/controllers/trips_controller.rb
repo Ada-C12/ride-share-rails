@@ -1,5 +1,4 @@
 class TripsController < ApplicationController
-  
   def show
     trip_id = params[:id]
     @trip = Trip.find_by(id: trip_id)
@@ -74,6 +73,22 @@ class TripsController < ApplicationController
     @trip.destroy
     redirect_to root_path
     return
+  end
+  
+  # Check route path and check find_a_driver method before working on tests...
+  def create
+    trip = Trip.create(
+      date: Date.today,
+      passenger_id: params[:id],
+      driver_id: Driver.find_a_driver,
+      cost: 5
+    )
+    
+    if trip.id
+      redirect_to root_path
+    else
+      head :server_error
+    end
   end
   
   private

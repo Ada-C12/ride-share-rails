@@ -1,33 +1,41 @@
   require "test_helper"
-require "date"
-
-describe Driver do
-  let (:new_driver) {
-    Driver.new(name: "Kari", vin: "123")
-    # Driver.new(name: "Kari", vin: "123", active: true,
-    # car_make: "Cherry", car_model: "DR5")
-  }
-  it "can be instantiated" do
-    # Assert
-    expect(new_driver.valid?).must_equal true
-  end
+  require "date"
   
-  it "will have the required fields" do
-    # Arrange
-    new_driver.save
-    driver = Driver.first
-    [:name, :vin, :active, :car_make, :car_model].each do |field|
-      
+  describe Driver do
+    let (:new_driver) {
+      Driver.new(name: "Kari", vin: "123", active: true)
+    }
+    it "can be instantiated" do
       # Assert
-      expect(driver).must_respond_to field
+      expect(new_driver.valid?).must_equal true
     end
-  end
-  
-  describe "relationships" do
-    it "can have many trips" do
+    
+    it "will have the required fields" do
       # Arrange
       new_driver.save
       driver = Driver.first
+      [:name, :vin, :active].each do |field|
+        
+        # Assert
+        expect(driver).must_respond_to field
+      end
+    end
+    
+    describe "relationships" do
+      it "can have many trips" do
+        # Arrange
+        new_driver.save
+        
+        new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+        trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
+        ​
+        # Assert
+        expect(new_passenger.trips.count).must_equal 2
+        new_passenger.trips.each do |trip|
+          expect(trip).must_be_instance_of Trip
+        end
+      end
       
       # Assert
       expect(driver.trips.count).must_be :>=, 0

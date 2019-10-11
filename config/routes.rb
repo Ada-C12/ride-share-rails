@@ -3,9 +3,22 @@ Rails.application.routes.draw do
   
   # RESTful routes:
   root 'homepages#index'
+
   #root 'passengers#index'
   resources :drivers
   resources :passengers do
   resources :trips, only: [:create, :new]  
   end
+
+  
+  # # this route works, but is not following rails conventions -- fix this... Make it nested.
+  # post 'passengers/:id/trips', to: 'trips#create', as: 'passenger_trips'
+  
+  # #root 'passengers#index'
+  # resources :drivers
+  # resources :passengers
+  # resources :trip 
+
 end
+
+# 'author/:id', to: 'author#show', as: 'author'
