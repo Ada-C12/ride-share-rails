@@ -21,6 +21,9 @@ body {
   margin: 20px;
   min-width: 1000px;
 }
+main {
+  margin-left: 2vw;
+}
 
 a, a:visited {
   color: inherit;
@@ -148,7 +151,7 @@ th {
 }
 
 tr:nth-child(even) {
-  background-color: #8BB5AC;
+  background-color: #c5d9d5;
 }
 
 .trip-details-table {
