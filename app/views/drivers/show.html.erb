@@ -1,3 +1,4 @@
+<article class='show'>
 <h2> Details for Driver: <%= @driver.name %> </h2>
 
 <p>Driver ID: <%= @driver.id %></p>
@@ -13,33 +14,48 @@
 <p>Total Earnings: $<%= sprintf "%.2f",@driver.total_earnings %></p>
 <p>Average Rating: <%= sprintf "%.2f",@driver.total_earnings %></p>
 
+<div class='button-container'>
+<%= button_to "Edit Driver", edit_driver_path(@driver), class:"button", method: :get %>
 
+<%= button_to "Delete Driver", driver_path(@driver), class:"button", method: :delete, data: {confirm: "Please confirm!"} %>
 
+<%= button_to 'Change Active Status', toggle_active_path(@driver), class:"button", method: :put  %>
+</div>
 
-<h2> Details for Driver: <%= @driver.name %> </h2>
-<ul>
-  <li> Total earnings: $<%= sprintf "%.2f",@driver.total_earnings %> </li>
-  <li> Average rating: <%= sprintf "%.2f",@driver.total_earnings %></li>
-  <li> Driver's trips:
+<div class='row heading'>
+  <p>Trip ID</p>
+  <p>Date</p>
+  <p>Passenger ID</p>
+  <p>Passenger Name</p>
+  <p>Driver ID</p>
+  <p>Driver Name</p>
+  <p>Cost</p>
+  <p>Rating</p>
+</div>
 
-<ul>
-    <% @driver.trips.each do |trip| %>
-    <li> <%= link_to trip.id, trip_path(trip), class:"link" %> </li>
-    <% end %>
-</ul>
-</li>
-  <li> <% if @driver.active == true %>
-     Driver status: ACTIVE. (Driver is unavailable.)
-     <% elsif @driver.active == false %>
-     Driver status: INACTIVE. (Driver is available.)
-     <% end %>
-     </li>
-</ul>
+<% @driver.trips.each do |trip| %>
+  <div class='row'>
+    <p><%= link_to trip.id, trip_path(trip) %></p>
+    <p><%= trip.date %></p>
+    <p>
+      <% if trip.passenger_id.nil? %>
+        [deleted]
+      <% else %>
+        <%= link_to trip.passenger_id, passenger_path(id: trip.passenger_id) %>
+      <% end %>
+    </p>
+    <p>
+      <% if trip.passenger_id.nil? %>
+        [deleted]
+      <% else %>
+        <%= link_to trip.passenger.name, passenger_path(id: trip.passenger_id) %>
+      <% end %>
+    </p>
+    <p><%= trip.driver_id %></p>
+    <p><%= trip.driver.name %></p>
+    <p>$<%= number_with_precision(trip.cost, :precision => 2) %></p>
+    <p><%= trip.rating %></p>
+  </div>
+<% end %>
 
-<%= button_to "Edit Driver", edit_driver_path(@driver), class:"link", method: :get %>
-<br><br>
-<%= button_to "Delete Driver", driver_path(@driver), class:"link", method: :delete, data: {confirm: "Please confirm!"} %>
-<br><br>
-<%= button_to 'Change Active Status', toggle_active_path(@driver), method: :put  %>
-<br><br>
-<%= button_to "See All Drivers", drivers_path, class:"link", method: :get %>
+</article>
