@@ -9,18 +9,8 @@ class TripsController < ApplicationController
     end
   end
   
-  def new
-    passenger_id = params[:passenger_id]
-    @trip = Trip.new
-    if passenger_id.nil?
-      @pasengers = Passenger.all
-    else
-      @passengers = [Passenger.find_by(id: passenger_id)]
-    end
-  end
-  
   def create
-    passenger_id = params[:trip][:passenger_id]
+    passenger_id = params[:passenger_id]
     passenger = Passenger.find_by(id: passenger_id)
     if passenger
       @trip = passenger.request_trip
