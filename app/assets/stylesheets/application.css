@@ -132,6 +132,22 @@ section h2 {
 }
 
 /* triptable */
+.triptable-container h3 {
+  text-align: center;
+}
+
+.triptable-container h3 {
+  text-align: center;
+}
+
+.triptable-container > div {
+  background-color: #FFACEA;
+  border-radius: 15px;
+  width: max-content;
+  padding: 1rem;
+  margin: auto;
+}
+
 .trip-table{
   margin-top: 1.5rem;
   margin-left:auto; 
