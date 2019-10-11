@@ -110,7 +110,7 @@ describe PassengersController do
         patch passenger_path(old_passenger.id), params: updated_passenger
       }.must_differ "Passenger.count", 0
 
-      must_redirect_to edit_passenger_path(old_passenger.id)
+      must_redirect_to passenger_path(old_passenger.id)
     end
   end
 
