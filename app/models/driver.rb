@@ -8,7 +8,7 @@ class Driver < ApplicationRecord
     all_trips = self.trips
     total = 0
     all_trips.each do |trip|
-      total += trip.rating
+      total += trip.rating unless trip.rating.nil?
     end
 
     return total / all_trips.length
@@ -18,9 +18,15 @@ class Driver < ApplicationRecord
     all_trips = self.trips
     total = 0
     all_trips.each do |trip|
-      total += trip.cost
+      total += trip.cost unless trip.cost.nil?
     end
-    
-    return total
+
+    # convert cents to dollars
+    return total / 100
+  end
+
+  def toggle
+    self.active = self.active ? false : true
+    self.save
   end
 end

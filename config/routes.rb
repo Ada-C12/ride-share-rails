@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   end
   
   resources :trips, except: [:index, :new]
+
+  patch 'drivers/:id/toggle_active', to: 'drivers#toggle_active', as: 'toggle_active'
 end

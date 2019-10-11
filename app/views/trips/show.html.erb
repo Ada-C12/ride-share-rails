@@ -23,7 +23,8 @@
       <%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id) %>
     </li>
     <li>
-      <%= @trip.cost %>
+      <% trip_cost = @trip.cost / 100%>
+      <%= '%.2f' % trip_cost %>
     </li>
     <li>
       <%= @trip.rating %>

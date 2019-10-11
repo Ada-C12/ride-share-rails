@@ -28,7 +28,8 @@
         <% @passenger.trips.each do |trip| %>
           <li><%=link_to trip.date, trip_path(trip.id)%></li>
           <li><%=link_to trip.driver.name, driver_path(trip.driver.id)%></li>
-          <li><%=trip.cost%></li>
+          <% trip_cost = trip.cost / 100 %>
+          <li><%= '%.2f' % trip_cost %></li>
           <li><%=trip.rating%></li>
         <% end %>
       </ul>

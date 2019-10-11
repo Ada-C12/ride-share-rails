@@ -61,7 +61,7 @@ describe Driver do
     before do
       @test_driver = Driver.create(name: "Kari", vin: "123", active: true)
       @new_passenger = Passenger.create(name: "sample passenger", phone_num: "sample number")
-    
+      
       @trip1 = Trip.create(date: Date.today, rating: 4, cost: 23.00, driver_id: @test_driver.id, passenger_id: @new_passenger.id)
       @trip2 = Trip.create(date: Date.today, rating: 2, cost: 13.00, driver_id: @test_driver.id, passenger_id: @new_passenger.id)
     end
@@ -74,18 +74,24 @@ describe Driver do
     describe "total earnings" do
       it "calculates accurate cost total" do
         expect(@test_driver.total_earnings).must_equal 36.00
-        
       end
     end
     
-    describe "can go online" do
-      # Your code here
+    describe "toggle_active" do
+      it "can go online - available (active:false)" do
+        inactive_driver = Driver.create(name: "Kari", vin: "123", active: true)
+        
+        patch toggle_active_path(inactive_driver.id)
+        
+        completed_ = Driver.find_by(name: "An incomplete task")
+        
+        expect (completed_task.completed).must_be_kind_of ActiveSupport::TimeWithZone
+        expect (completed_task.completed).must_be_close_to Time.now, 0.05
+      end
+      
+      it "can go offline - unavailable (active:true)" do
+        # Your code here
+      end
     end
-    
-    describe "can go offline" do
-      # Your code here
-    end
-    
-    # You may have additional methods to test
   end
 end
