@@ -62,7 +62,7 @@ class TripsController < ApplicationController
         return
       end 
       @trip.destroy 
-      redirect_to passenger_page(deleted_trip_passenger)
+      redirect_to passenger_path(deleted_trip_passenger)
       return 
     end 
     
