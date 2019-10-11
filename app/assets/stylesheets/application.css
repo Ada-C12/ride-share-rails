@@ -13,3 +13,106 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+   height: 90vh;
+   margin: 1rem;
+   margin-left: 2rem;
+   margin-right: 2rem;
+ }
+
+ ul {
+   list-style-type: none;
+ }
+
+ a {
+   color: black;
+   text-decoration: none;
+ }
+
+  .nav-links {
+   display: grid;
+   grid-column: 3fr 1fr 1fr 1fr 1fr;
+   border: solid 2px black;
+   background-color: cornflowerblue;
+ }
+
+  .nav-links a:hover {
+    background-color: white;
+    color: cornflowerblue;
+  }
+
+ .home-link {
+   grid-column-start: 1;
+ }
+
+ .drivers-link {
+   grid-column-start: 2;
+   text-align: right;
+ }
+
+ .add-driver {
+   grid-column-start: 3;
+   text-align: right;
+ }
+
+ .passengers-link {
+   grid-column-start: 4;
+   text-align: right;
+ }
+
+ .add-passenger {
+   grid-column-start: 5;
+   text-align: right;
+ }
+
+ .homepage{
+  display: grid;
+  grid-row: 1fr 1fr;
+  min-height: 80vh;
+  background-image: url("https://i.pinimg.com/originals/d9/91/b0/d991b00a5da4c0206f838b2db5b06c16.png");
+  background-attachment: fixed;
+  background-size: 400px;
+  background-position: right;
+  background-repeat: no-repeat;
+  text-align: center
+ }
+
+ .greeting {
+   grid-row-start: 2;
+ }
+
+ .drivers-border {
+   background-image: url("http://coloringhome.com/coloring/9TR/a5G/9TRa5GEdc.gif");
+   background-size: 50px;
+   background-repeat: no-repeat;
+   background-position: 25%;
+   padding-left: 2rem;
+ }
+
+ .drivers-passengers-list li {
+   padding-bottom: 1rem;
+ }
+
+ .drivers-passengers-list a:hover {
+   background-color: gray;
+   color: white;
+ }
+
+ .passengers-border {
+  background-image: url("https://66.media.tumblr.com/a7cdaff0981e8f1ceb8c475f5d8fa3ec/tumblr_owt4j7x8zJ1tyxd5fo3_250.png");
+  background-size: 40px;
+  background-repeat: no-repeat;
+  background-position: 25%;
+  padding-left: 2rem;
+}
+
+.driver-form {
+  min-height: 80vh;
+  background-image: url("https://66.media.tumblr.com/9f568642105dac4ba1aa9dc9057cd912/tumblr_owt4j7x8zJ1tyxd5fo2_250.png");
+  background-attachment: fixed;
+  background-size: 400px;
+  background-position: right;
+  background-repeat: no-repeat;
+ }
+}

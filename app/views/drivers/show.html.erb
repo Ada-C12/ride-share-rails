@@ -3,10 +3,10 @@
 
 <% if @driver.active %>
 <p><%= link_to '<button type="button">Switch to inactive</button>'.html_safe, driver_path(@driver.id) + "/toggle", method: :post%></p>
-  <p>X</p>
+  <p>Not Available</p>
 <% else %>
 <p><%= link_to '<button type="button">Switch to active</button>'.html_safe, driver_path(@driver.id) + "/toggle", method: :post%></p>
-<p>Y</p>
+<p>Available</p>
 <%end%>
 <h3> Driver Details</h3>
 

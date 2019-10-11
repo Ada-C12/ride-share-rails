@@ -13,8 +13,6 @@ class TripsController < ApplicationController
   end
   
   def new
-    # @trip = Trip.new
-    # @passenger = @trip.passenger_id
     @passenger = Passenger.find_by(id: params[:passenger_id])
     @trip = Trip.new(passenger_id: @passenger.id)
   end
@@ -62,23 +60,7 @@ class TripsController < ApplicationController
       return
     end
   end
-  
-  # def completed
-  #   completed_task = Task.find_by(id: params[:id])
-  #   if completed_task.nil?
-  #     redirect_to task_path
-  #     return
-  #   end
-  #   if completed_task.completed == nil
-  #     completed_task.completed = Date.today
-  #     completed_task.save
-  #     redirect_to tasks_path
-  #   else
-  #     completed_task.completed = nil
-  #     completed_task.save
-  #     redirect_to tasks_path
-  #   end
-  # end
+
   
   private
   
