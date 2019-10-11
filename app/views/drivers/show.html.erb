@@ -7,11 +7,10 @@
   <li>Vin #: <%= @driver.vin %></li>
   <li>Car Make: <%= @driver.make %></li>
   <li>Car Model: <%= @driver.model %></li>
-  <li>Active: <% @driver.active? %></li> 
-                  Available
-            <% else %>
-                  Unavailable
-            <% end %>   
+  <li>Availability: <%= @driver.active %></li>
+
+   
+
   </p>
 
   <%= link_to "Edit", edit_driver_path(@driver) %>
@@ -26,6 +25,7 @@
 <div>COST</div>
 <div>EDIT</div>
 <div>DELETE</div>
+
 <% @driver.trips.each do |trip| %>
 <div><%= trip.id %></div>
 <div><%= trip.date %></div>
@@ -35,3 +35,4 @@
 <div><%= link_to "Edit Trip", edit_trip_path(trip.id) %></div>
 <div><%= link_to "Delete Trip", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure?"}%></div>
 <% end %>
+</div>

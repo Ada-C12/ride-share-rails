@@ -26,14 +26,18 @@ class Driver < ApplicationRecord
     return total
   end
   
-  def active? #to see available drivers
+  def toggle_active? #to see available drivers
     self.trips.each do |trip|
-      if trip.rating == nil
-        @driver.active == true
+      if trip.rating != nil
+        @driver.toggle(:active).save #stack overflow
+        # @driver.active = true
+        # return true
       else
         @driver.active = false
       end
-      @driver.save
+      # @driver.save
+      return 
+      
     end
   end
   
