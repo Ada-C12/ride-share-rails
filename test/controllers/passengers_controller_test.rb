@@ -2,7 +2,7 @@ require "test_helper"
 
 describe PassengersController do
   let (:passenger) {
-    Passenger.create name: "sample passenger", phone_number: "123456789"
+    Passenger.create(name: "sample passenger", phone_number: "123456789")
   }
   
   let (:no_phone_num_hash) {
@@ -33,6 +33,7 @@ describe PassengersController do
       end
       
       expect(Passenger.count).must_equal 3
+      
       
       get "/passengers"
       must_respond_with :success
