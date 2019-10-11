@@ -25,6 +25,14 @@
       <%= button_to "Add Driver", new_driver_path, :method => "get" %>
     </section>
   </section>
+
+    <section class="dropdown">
+    <%= button_to "Trip", trips_path, :method => "get" %>
+      <section class="dropdown-content">
+        <%= button_to "Add Trip", new_trip_path, :method => "get" %>
+      </section>
+  </section>
+
   
   </nav>
     <%= yield %>

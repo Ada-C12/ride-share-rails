@@ -13,16 +13,16 @@
 
 <%= form_with model: @trip, class: 'create-trip' do |f| %>
 
-<% if @trip.date.nil? %>
+<% if @trip.date.nil?  %>
   <%= f.label :date %>
-  <%= f.date_field :date %>
+  <%= f.date_field :date, :value => Time.now.strftime('%Y-%m-%d') %>
 <% else %>
 <%= hidden_field_tag 'date', @trip.date%>
 <%= f.hidden_field :date %>
 Date: <%= @trip.date %>
 <% end %>
 
-<% if @trip.passenger.nil? %>
+<% if @trip.passenger.nil?  %>
   <%= f.label :passenger_id %>
   <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
 <% else %>
@@ -31,7 +31,7 @@ Date: <%= @trip.date %>
   Passenger: <%= @trip.passenger.name %>
 <% end %>
 
-<% if @trip.driver.nil? %>
+<% if @trip.driver.nil?  %>
   <%= f.label :driver_id %>
   <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id] } %>
 <% else %>
@@ -43,10 +43,13 @@ Date: <%= @trip.date %>
 <%= f.label :rating, "Rating: " %>
 <%= f.select :rating, [' ', '1', '2', '3', '4', '5']%>
 
-<% if @trip.cost.nil?%>
-  <% random_cost = @trip.trip_cost %>
+<% random_cost = @trip.trip_cost %>
+<% if @trip.cost.nil? %>
   <%= f.hidden_field :cost, :value => random_cost %></p> 
   <%= hidden_field_tag 'cost', @trip.cost %>
+<% elsif @user == "trip" %>
+  <% f.label :cost %>
+  <% f.text_field :cost, :value => @trip.cost %>
   Cost: $<%= random_cost %>
 <% else %>
   <%= f.hidden_field :cost %>
