@@ -31,6 +31,7 @@ class Driver < ApplicationRecord
         earnings_sum -= 1.65
       end
       total_earning = (earnings_sum * 0.8)
+      return total_earning.round(2)
     end
   end
 
