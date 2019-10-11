@@ -7,7 +7,7 @@
         <span class='id'>ID  <%= driver.id%></span>
         <span class='name'>NAME:  <%= link_to driver.name, driver_path(driver), class:"link" %></span>
         <span class='index-toggle'>
-          <%= button_to 'Change Active Status', toggle_active_path(driver), method: :put %>
+          <%= button_to 'Change Status', toggle_active_path(driver), method: :put %>
         </span>
       </li>
     <% end %>
