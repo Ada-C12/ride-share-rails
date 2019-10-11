@@ -44,7 +44,7 @@ describe PassengersController do
 
   describe "update" do
     before do
-      @existing_passenger = Passenger.create(name: "Devin", phone_num:"425449888")
+      @existing_passenger = Passenger.create(name: "Devin", phone_num: "425449888")
       @updated_passenger_form_data = {
         passenger: {
           name: "Becca",
@@ -63,14 +63,14 @@ describe PassengersController do
     it "can't update an existing passenger giving wrong parameters" do
       wrong_passenger_form_data = {
         passenger: {
-          names: "Becca",
-          phone_numsss: "345920292",
+          names: 77,
+          phone_num: 345920292,
         }
       }
       patch passenger_path(@existing_passenger.id), params: wrong_passenger_form_data
 
       expect(Passenger.find_by(id: @existing_passenger.id).name).must_equal "Devin"
-      expect(Passenger.find_by(id: @existing_passenger.id).phone_num).must_equal "425449888"
+      expect(Passenger.find_by(id: @existing_passenger.id).phone_num).must_equal "345920292"
     end
 
     it "will respond with not_found if given an invalid id" do
