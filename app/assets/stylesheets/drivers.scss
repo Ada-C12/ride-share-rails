@@ -1,3 +1,53 @@
 // Place all the styles related to the Drivers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.newDriver{
+  padding-top: 6rem;
+  padding-bottom: 1rem;
+
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+
+  text-align: center;
+  
+  color: black;
+}
+
+.driver_form_class{
+  color: black;
+
+}
+.new-driver-form{
+ text-align: center;
+}
+
+.driversIndex ul li{
+  text-align: left;
+  list-style: none;
+  padding-left: 5em;
+}
+.index-header{
+  text-align: left;
+  padding-top: 2em;
+  padding-left: 5em;
+  margin-left: 2em;
+}
+
+
+.show-header{
+  text-align: center;
+  padding-top: 1em;
+}
+.show-details{
+  text-align: center;
+  padding-left: 1em;
+}
+.buttons{
+  text-align: center;
+}
+
+.drivertrips{
+  text-align: left;
+  padding: 2em;
+}

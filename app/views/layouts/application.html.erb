@@ -5,13 +5,17 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%=stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+     <style>
+      @import url('https://fonts.googleapis.com/css?family=Sawarabi+Gothic&display=swap');
+     </style>
   </head>
+ 
 
   <body>
 
-    <nav>
+    <nav class = "navheader">
       <ul>
         <li>
           <%= link_to "Rideshare Rails!", root_path %>
