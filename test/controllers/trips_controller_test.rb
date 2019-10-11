@@ -79,14 +79,14 @@ describe TripsController do
       }
     end
 
-    it "can update an existing trip" do
+    it "can update an existing trip giving an invalid rating" do
       new_trip = Trip.new(@trip_info[:trip])
       new_trip.save
 
       patch "/trips/#{(new_trip.id)}", params: @updated_trip_info
 
-      expect(Trip.find_by(id: new_trip.id).rating).must_equal 9
-      expect(Trip.find_by(id: new_trip.id).cost).must_equal 200
+      expect(Trip.find_by(id: new_trip.id).rating).must_equal 4
+      expect(Trip.find_by(id: new_trip.id).cost).must_equal 100
     end
     
   end
@@ -114,7 +114,7 @@ describe TripsController do
     end
 
     it "will respond with not_found if given an invalid id" do
-      patch trip_path(-1)
+      delete "/trips/-1"
       must_respond_with :not_found
     end
   end
