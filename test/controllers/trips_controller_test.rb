@@ -56,39 +56,23 @@ describe TripsController do
   
   
   describe "create" do
-    before do 
-      @passenger = Passenger.create(name: "Emmanlle Breiterg", phone_num: "(707) 341-7157")
-      @driver = Driver.create(name: "Dr. Ken Berge", vin: "SXMMLZX8XGDN7L7TM", available: true)
-    end
+    
     it "can create a new trip" do
-      
+
+      passenger = Passenger.create(name: "test passenger", phone_num: "1111111")
+      driver = Driver.create(name: "test driver", vin: "xxxxxxxxxxxxxxxx", available: true)
+
       trip_hash = {
-        trip: {
-          driver_id: @driver.id, 
-          passenger_id: @passenger.id, 
-          date: Date.current, 
-          rating: nil, 
-          cost: 0.00
-        }
+          driver_id: driver.id,
+          passenger_id: passenger.id,
+          date: Date.current,
+          rating: nil,
+          cost: 0
       }
-     
-      # Act-Assert
       expect {
-        post passenger_trips_path(@passenger.id), params: trip_hash
+        post passenger_trips_path(passenger.id), params: trip_hash
       }.must_change "Trip.count", 1
-      
-      new_trip = Trip.find_by(id: trip_hash[:trip][:id])
 
-      p "========="
-      p trip_hash[:trip][:id]
-
-      expect(new_trip.driver_id).must_equal trip_hash[:trip][:driver_id]
-      expect(new_trip.passenger_id).must_equal trip_hash[:trip][:passenger_id]
-      expect(new_trip.date).must_equal trip_hash[:trip][:date]
-      expect(new_trip.rating).must_equal trip_hash[:trip][:rating]
-      expect(new_trip.cost).must_equal trip_hash[:trip][:cost]
-      
-      must_respond_with :redirect
     end
   end
   
