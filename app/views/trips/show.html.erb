@@ -2,6 +2,16 @@
 
   <%= link_to "Edit Trip Info", edit_trip_path(@trip.id) %>
 
+  <% unless @trip.rating %>
+  <section id="add-rating">
+  <%= form_with model: @trip do |f| %>
+    <%= f.label :rating %>
+    <%= f.select :rating, [1,2,3,4,5] %>
+    <%= f.submit "Save Rating", class: "button" %>
+  <% end %>
+  </section>
+  <% end %>
+
 
   <table class='trips-table'>
     <tr>
