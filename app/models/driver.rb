@@ -1,3 +1,5 @@
+require 'pry'
+
 class Driver < ApplicationRecord
   has_many :trips
   
@@ -16,6 +18,7 @@ class Driver < ApplicationRecord
   end
   
   def average_rating
+    binding.pry
     ratings = []
     self.trips.each do |trip|
       ratings << trip.rating
