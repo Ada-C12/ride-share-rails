@@ -14,23 +14,62 @@
  *= require_self
  */
 
- nav {
-   display: grid;
-   grid-template-columns: 3fr, 1fr, 1fr;
-   background-color: grey;
-   color: white;
-   font-size: 3em;
-   font-family: 'Questrial', sans-serif;
+ body {
+  font-family: 'Questrial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
  }
 
-#drivers {
-  grid-column: 2 / 3;
-  font-size: .75em
+ nav {
+  background-color: grey;
+  color: white;
+  overflow: hidden;
+  padding: 0.4px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+ }
+
+ nav ul {
+  display: flex;
+  margin-block-start: 0.4em;
+  margin-block-end: 0.4em;
+  justify-content: space-around;
 }
 
-#passengers {
-  grid-column: 3 / 4;
-  font-size: .75em
+.subnav {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+nav li {
+  padding-left: 0.4em;
+  padding-right: 0.4em;
+}
+
+nav a {
+  padding-left: 0.4em;
+  padding-right: 0.4em;
+  text-align: center;
+  font-size: 1.25em;
+}
+
+.subnav ul {
+  display: none;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.subnav:hover ul {
+  display: block;
+  position: relative;
 }
 
 nav .link:visited {
@@ -48,16 +87,9 @@ nav .link:active {
    text-decoration: none
  }
 
- body {
-  font-family: 'Questrial', sans-serif;
- }
-
  ul {
   list-style: none;
- }
-
- li {
-   margin-bottom: 20px;
+  padding-inline-start: 2px;
  }
 
 .link {
@@ -72,12 +104,18 @@ nav .link:active {
   color: darkblue;
   text-decoration: underline
 }
+
 .link:active {
   color: darkgrey;
   text-decoration: none;
 }
- h1 {
 
- }
+main {
+  margin-top: 10em;
+}
 
-
+h1 {
+  font-size: 3em;
+  margin-block-start: 0.1em;
+  margin-block-end: 0.1em;
+}
