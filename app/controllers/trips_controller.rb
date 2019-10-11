@@ -49,17 +49,26 @@ class TripsController < ApplicationController
         redirect_to nope_path(params: {msg: "Unexpected error, please call customer service at 1-800-LOL-SORRY"})
         return
       end   
-      # puts "DOUBLE CHECK flipped to true? #{@driver.active}"
-      
-      
       
       # When do we flip it back to false? Normally we'd do that when GPS hits destination...
       # For this project, we'll flip it when passenger rates the trip.
     end   
     
     # make new trip
-    @trip = Trip.new(date: params[:date], rating: nil, cost: 1000, driver_id: @driver.id, passenger_id: params[:passenger_id])
+    default_cost = 1000
+    @trip = Trip.new(date: params[:date], rating: nil, cost: default_cost, driver_id: @driver.id, passenger_id: params[:passenger_id])
     if @trip.save
+      
+      # update passenger instance's total_spent
+      @passenger = Passenger.find_by(id: params[:passenger_id])
+      new_sum = @passenger[:total_spent] + @trip.cost
+      @passenger.update(total_spent: new_sum)
+      
+      # update driver instance's total_earned
+      prev_sum = @driver[:total_earned] 
+      new_sum = prev_sum + Driver.earnings(@trip.cost)
+      @driver.update(total_earned: new_sum)
+      
       redirect_to trip_path(@trip.id)
       return
     else

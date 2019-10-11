@@ -133,6 +133,9 @@ describe TripsController do
   describe "update" do
     describe "only passengers get to update" do
       it "will update rating AND switch driver back to active:false" do
+        ### MANUALLY VERIFIED that completing a trip does switch driver back to active:false
+        ### I just couldn't get the test code to work lol
+        
         # # verify starting conditions
         # assert(driver1.active == false)
         # puts "WTF..."
@@ -180,6 +183,11 @@ describe TripsController do
     it "can delete legit trips from legit passengers" do
       delete trip_path(id: trip1.id)
       must_redirect_to passenger_path(id: trip1.passenger_id)
+    end
+    
+    it "deleted trips must NOT affect total $ earned/spent per user!" do
+      ######## TODO
+      assert(false)
     end
     
     it "if deleting nonexistent trip id, send to nope path" do
