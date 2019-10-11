@@ -186,6 +186,7 @@ describe TripsController do
     end
     
     it "deleted trips must NOT affect total $ earned/spent per user!" do
+      ### manually checked via website, it works!  I just dunno how to write test codes for this...
       ### USE PATHS!!!
       assert(false)
     end
