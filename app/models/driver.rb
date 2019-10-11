@@ -1,3 +1,4 @@
+
 class Driver < ApplicationRecord
   has_many :trips
   
@@ -21,8 +22,12 @@ class Driver < ApplicationRecord
       ratings << trip.rating
       ratings = ratings.compact
     end
-    average = ratings.sum / ratings.count.to_f
-    return average.round(2)
+    if ratings.count == 0
+      return 0
+    else
+      average = ratings.sum / ratings.count.to_f
+      return average.round(2)
+    end
   end
   
   def self.assign_driver
