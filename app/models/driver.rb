@@ -15,4 +15,8 @@ class Driver < ApplicationRecord
     return rand(Driver.all.select { |driver| 
     driver.active == false} )
   end 
+  
+  def toggle_status
+    self.update(active: !self.active)
+  end
 end

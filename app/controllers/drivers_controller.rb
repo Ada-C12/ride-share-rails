@@ -67,6 +67,20 @@ class DriversController < ApplicationController
     end
   end
   
+  def toggle_status
+    @driver = Driver.find_by(id: params[:id])
+    
+    if @driver.nil?
+      redirect_to root_path
+      return
+    else 
+      @driver.toggle_status
+      redirect_back(fallback_location: driver_path(@driver.id))
+      return
+    end
+    
+  end
+  
   private
   
   def driver_params

@@ -69,11 +69,27 @@ describe "custom methods" do
   end
   
   describe "can go online" do
-    # Your code here
+    it "can turn active status from true to false" do
+      # Your code here
+      @driver = Driver.create(name: "Kari", vin: "123", active: true,
+      car_make: "Cherry", car_model: "DR5")
+      
+      @driver.toggle_status
+      
+      expect(@driver.active).must_equal false
+    end
   end
   
   describe "can go offline" do
-    # Your code here
+    it "can turn active status from false to true" do
+      # Your code here
+      @driver = Driver.create(name: "Kari", vin: "123", active: false,
+      car_make: "Cherry", car_model: "DR5")
+      
+      @driver.toggle_status
+      
+      expect(@driver.active).must_equal true
+    end
   end
   
   # You may have additional methods to test
