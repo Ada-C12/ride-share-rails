@@ -37,8 +37,8 @@ class TripsController < ApplicationController
   end
   
   def update
-    if (params[:trip][:rating]).to_i > 5
-      flash[:error] = "The rating can't be higher than 5"
+    if (params[:trip][:rating]).to_i > 5 || (params[:trip][:rating]).to_i < 1
+      flash[:error] = "The rating must be between 1-5"
     else
       @trip = Trip.find_by(id: params[:id])
       if @trip.nil?
