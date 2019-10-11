@@ -9,10 +9,10 @@
 
   <section class="show-details">
     <ul>
-      <li> <strong>ID: </strong><%= @passenger.id %></li>
-      <li> <strong>PHONE NUMBER: </strong><%= @passenger.phone_num %></li>
-      <li> <strong>PASSENGER SINCE: </strong><%= @passenger.created_at %></li>
-      <li> <strong>TOTAL SPENT: </strong>$<%= sprintf("%.2f", @passenger.total_spent) %></li>
+      <li> <strong class ="details-title">ID: </strong><%= @passenger.id %></li>
+      <li> <strong class ="details-title">PHONE NUMBER: </strong><%= @passenger.phone_num %></li>
+      <li> <strong class ="details-title">PASSENGER SINCE: </strong><%= @passenger.created_at %></li>
+      <li> <strong class ="details-title">TOTAL SPENT: </strong>$<%= sprintf("%.2f", @passenger.total_spent) %></li>
     </ul>
   </section>
 

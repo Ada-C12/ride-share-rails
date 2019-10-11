@@ -154,7 +154,7 @@ header, h2, h1, .request-trip {
   border: black 1px solid;
   border-radius: 10px;
   margin: 1%;
-  background-color: #5b687d;
+  background-color: #663a37;
   color: white;
   text-decoration: none;
   padding: 2px
@@ -167,3 +167,20 @@ header, h2, h1, .request-trip {
   background-color: #663a37
 }
 
+table {
+  border-collapse: collapse;
+  width: 90vw;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+th, td {
+  height: 5vh
+}
+
+
+.details-title {
+  color: #5b687d
+}
