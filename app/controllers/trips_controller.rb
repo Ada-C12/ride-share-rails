@@ -31,7 +31,7 @@ class TripsController < ApplicationController
   end
   
   def new
-    @time = Date.today
+    @date = Date.today
     @cost = rand(1000..3000)
     @driver = Driver.available_driver.id
     @trip = Trip.new
@@ -48,9 +48,7 @@ class TripsController < ApplicationController
     passenger_id = params[:trip][:passenger_id]
     @passenger = Passenger.find_by(id: passenger_id)
     
-    @trip = Trip.create(trip_params) 
-    
-    
+    @trip = @passenger.trips.create(trip_params)   
     
     if @trip.id?
       @trip.driver.toggle_active
