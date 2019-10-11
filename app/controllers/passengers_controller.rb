@@ -46,12 +46,14 @@ class PassengersController < ApplicationController
   end
   
   def destroy
-    garbage = Passenger.find_by(id: params[:id])
-    if garbage
-      garbage.destroy
+    quitter = Passenger.find_by(id: params[:id])
+    if quitter
+      quitter.destroy
       redirect_to passengers_path
+      return
     else
       redirect_to nope_path(params: {msg: "Cannot destroy a non-existent passenger record"})
+      return
     end
   end
   
