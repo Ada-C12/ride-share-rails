@@ -62,10 +62,18 @@ end
 describe "custom methods" do
   describe "average rating" do
     # Your code here
+    @driver = Driver.create(name: "Kari", vin: "123", active: false, car_make: "Cherry", car_model: "DR5")
+    # @driver.add_trip 
+    # add a few trips, calculate avg rating
+    # expect(@driver.avg_rating).must_equal 
   end
   
   describe "total earnings" do
     # Your code here
+    @driver = Driver.create(name: "Kari", vin: "123", active: false, car_make: "Cherry", car_model: "DR5")
+    # @driver.add_trip
+    # add a few trips, calculate total earnings
+    # expect(@driver.total_earnings).must_equal
   end
   
   describe "can go online" do

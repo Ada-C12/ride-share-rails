@@ -19,4 +19,21 @@ class Driver < ApplicationRecord
   def toggle_status
     self.update(active: !self.active)
   end
+  
+  def total_earnings
+    total = 0
+    self.trips.each do |trip|
+      total = total + trip.cost
+    end
+    return total.round(2)
+  end
+  
+  def avg_rating
+    total_rating = 0
+    self.trips.each do |trip|
+      total_rating = total_rating + trip.rating
+    end
+    avg_rating = total_rating.to_f / self.trips.count
+    return avg_rating.round(2)
+  end
 end

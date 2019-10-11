@@ -14,6 +14,8 @@
         <% end %>
         <li>Car Make: <%= @driver.car_make %></li>
         <li>Car Model: <%= @driver.car_model %></li>
+        <li>Total Earnings from trips: $<%= @driver.total_earnings %></li>
+        <li>Average Rating: <%= @driver.avg_rating %></li>
         <li>Trips: </li>
 
         <% @driver.trips.each do |trip| %>
@@ -21,7 +23,7 @@
           <li> ID: <%= trip.id %> </li>
 
           <ul>
-            <li> Driver: <%= trip.driver.name %> </li>
+            <%# <li> Driver: <%= trip.driver.name </li> %>
             <li> Date: <%= trip.date %> </li>
             <li> Rating: <%= trip.rating %> </li>
             <li> Cost: <%= trip.cost %> </li>
