@@ -15,7 +15,8 @@ class DriversController < ApplicationController
     end
 
     if @driver.nil?
-        redirect_to new_driver_path
+        head :not_found
+        return
     end
   end
 

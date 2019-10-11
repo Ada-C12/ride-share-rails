@@ -29,7 +29,7 @@ describe Passenger do
       # Assert
       expect(passenger.trips.count).must_be :>, 0
       passenger.trips.each do |trip|
-        expect(trip).must_be_instance_of Trip
+        expect(trips).must_be_instance_of Trip
       end
     end
   end
