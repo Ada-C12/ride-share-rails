@@ -1,5 +1,6 @@
 <h1>Rideshare Rails</h1>
 
+<<<<<<< HEAD
 <div id="nav" class="grid">
   <%= link_to "All Passengers", passengers_path %>
   <%= link_to "Add a new passenger", new_passenger_path %>
@@ -13,13 +14,15 @@
 <% if @passenger.trips.length > 0 %>
   <h4>Total spent on trips: $<%= @passenger.total_spent %></h4>
   <h3>Trips Taken</h3>
-  <% @passenger.trips.each do |trip| %>
-    Date: <%= trip.date %>, Rating: <%= "⭐" * trip.rating.to_i %> Cost: $<%= '%.2f' % trip.cost %>, Driver: <%= trip.driver.name %> 
-      <% if trip.rating.nil? %>
-        <%= link_to "Complete Trip", complete_trip_path(trip), method: :patch %>
+<% @passenger.trips.chrono_trips.each do |trip| %>
+  Date: <%= trip.date %>, Rating: <%= "⭐" * trip.rating.to_i %> Cost: $<%= '%.2f' % trip.cost %>, Driver: <%= trip.driver.name %> 
+    <% if trip.rating.nil? %>
+      <%= form_with model: trip, url: complete_trip_path(trip), method: :patch do |f| %>
+      <%= f.label :rating, "Rating" %>
+      <%= f.select :rating, [1,2,3,4,5] %>
+      <%= f.submit "Complete Trip" %>
       <% end %>
-    <br>
-  <% end %>
+<% end %>
 <% else %>
   <h3>This passenger has not taken any trips. </h3>
 <% end %>
@@ -31,3 +34,4 @@
 <%= link_to "Delete Passenger", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"} %>
 <%= link_to "Passenger List", passengers_path %>
 </div>
+
