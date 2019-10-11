@@ -21,13 +21,12 @@ class Driver < ApplicationRecord
     rating = completed_trips.sum {|trip| trip.cost} 
     
     completed_trips = trips.select {|trip| !trip.rating.nil?}
-    rating = completed_trips.sum {|tipr| trip.cost} 
+    rating = completed_trips.sum {|trip| trip.cost} 
     avg_rating = rating / completed_trips.length
     return avg_rating
   end 
   
-  # Update the database for available driver...
-  # I'm stil working on this logic (Sam) 
+
   def self.find_a_driver
     driver = Driver.find_by(available: true)
     return driver.id
