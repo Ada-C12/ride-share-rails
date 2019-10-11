@@ -23,10 +23,13 @@ describe Driver do
   describe "relationships" do
     it "can have many trips" do
       new_driver.save
-      driver = Driver.first
-      
-      expect(driver.trips.count).must_be :>=, 0
-      driver.trips.each do |trip|
+      new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+
+      trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+      trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
+
+      expect(new_passenger.trips.count).must_equal 2
+      new_passenger.trips.each do |trip|
         expect(trip).must_be_instance_of Trip
       end
     end
@@ -160,15 +163,19 @@ describe Driver do
 
     describe "can go online" do
       it "should go online and active status is true" do
-        expect(new_driver.go_online).must_equal true
+        new_driver.save
+        new_driver.go_online
+        expect(new_driver.active).must_equal true
       end 
-      
     end
   
     describe "can go offline" do
       it "should go offline and active status is false" do
-        undecided_driver = new_driver.go_online
-        expect(undecided_driver.go_offline).must_equal false
+        new_driver.save
+        # binding.pry
+        new_driver.go_online
+        new_driver.go_offline
+        expect(new_driver.active).must_equal false
       end 
     end
   end
