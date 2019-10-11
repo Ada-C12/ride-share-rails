@@ -23,7 +23,7 @@ class DriversController < ApplicationController
     if @driver.save
       redirect_to driver_path(@driver.id)
     else
-      render new_driver_path
+      redirect_to nope_path
     end
   end
   
@@ -37,7 +37,6 @@ class DriversController < ApplicationController
   end 
   
   def update
-    # binding.pry
     @driver = Driver.find_by(id: params[:id])
     
     if @driver.nil?

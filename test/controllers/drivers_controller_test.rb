@@ -61,8 +61,6 @@ describe DriversController do
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      driver1 = Driver.create(name: "Kari", vin: "123")
-      driver2 = Driver.create(name: "", vin: "123")
 
       new_driver_hash = {
         driver: {
@@ -70,10 +68,7 @@ describe DriversController do
           vin: "123"
         }
       }
-
-      expect(driver1.valid?).must_equal true
-      expect(driver2.valid?).must_equal false 
-
+      
       expect {
         post drivers_path, params: new_driver_hash
       }.must_differ 'Driver.count', 0

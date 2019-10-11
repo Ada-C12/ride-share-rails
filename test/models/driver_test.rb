@@ -119,7 +119,7 @@ describe Driver do
           rating: 5,
           cost: 1000
         )
-        # binding.pry
+        
         trip_cost = Trip.find_by(driver_id: new_driver.id).cost
 
         expect(new_driver.net_earning(trip_cost)).must_equal 668

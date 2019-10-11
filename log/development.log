@@ -34215,3 +34215,42 @@ Processing by DriversController#index as HTML
 Completed 200 OK in 52ms (Views: 47.8ms | ActiveRecord: 0.6ms)
 
 
+Started GET "/drivers" for ::1 at 2019-10-11 12:11:06 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.8ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" ORDER BY "drivers"."id" ASC[0m
+  ↳ app/views/drivers/index.html.erb:14
+  Rendered drivers/index.html.erb within layouts/application (24.2ms)
+Completed 200 OK in 64ms (Views: 53.7ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/drivers" for ::1 at 2019-10-11 12:11:06 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.6ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" ORDER BY "drivers"."id" ASC[0m
+  ↳ app/views/drivers/index.html.erb:14
+  Rendered drivers/index.html.erb within layouts/application (16.6ms)
+Completed 200 OK in 50ms (Views: 47.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/drivers" for ::1 at 2019-10-11 12:11:08 -0700
+Processing by DriversController#index as HTML
+  Rendering drivers/index.html.erb within layouts/application
+  [1m[36mDriver Load (0.4ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" ORDER BY "drivers"."id" ASC[0m
+  ↳ app/views/drivers/index.html.erb:14
+  Rendered drivers/index.html.erb within layouts/application (20.2ms)
+Completed 200 OK in 54ms (Views: 52.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/drivers/1" for ::1 at 2019-10-11 12:11:11 -0700
+Processing by DriversController#show as HTML
+  Parameters: {"authenticity_token"=>"Q2NxKqIe1HytGYp5aGcZYG1U4J7NOcZ8f/MO5sFhdz5Almyul+GH8Qt9oa9bjXaT4lXjEWv3KaaebaWETHuSFA==", "id"=>"1"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT  "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/drivers_controller.rb:13
+  Rendering drivers/show.html.erb within layouts/application
+  [1m[36mTrip Load (0.5ms)[0m  [1m[34mSELECT "trips".* FROM "trips" WHERE "trips"."driver_id" = $1[0m  [["driver_id", 1]]
+  ↳ app/models/driver.rb:15
+  Rendered drivers/show.html.erb within layouts/application (22.8ms)
+Completed 200 OK in 54ms (Views: 44.1ms | ActiveRecord: 5.5ms)
+
+
