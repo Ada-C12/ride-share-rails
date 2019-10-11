@@ -24,9 +24,9 @@ class DriversController < ApplicationController
     elsif @driver.update(
       name: params[:driver][:name], 
       vin: params[:driver][:vin],
+      active: params[:driver][:active],
       car_make: nil,
-      car_model: nil
-    )
+      car_model: nil)
     redirect_to drivers_path 
     return
   else 
@@ -67,6 +67,7 @@ end
 
 def active
   @driver = Driver.find_by(id: params[:id])
+  
   if @driver.active == false || @driver.active == nil
     @driver.update(active: true)
   else
@@ -74,4 +75,5 @@ def active
   end
   redirect_to drivers_path
 end
+
 end

@@ -14,8 +14,8 @@ class TripsController < ApplicationController
     long_date = DateTime.now.to_s
     date = long_date[0..9]
     
-    @trip = Trip.new(driver_id: assign_driver.id, passenger_id: params[:passenger_id], rating: nil, cost: cost, date: date)
-    @trip.save
+    trip = Trip.new(driver_id: assign_driver.id, passenger_id: params[:passenger_id], rating: nil, cost: cost, date: date)
+    trip.save
     assign_driver.update(active: true) 
     
     redirect_to root_path
@@ -25,9 +25,17 @@ class TripsController < ApplicationController
     return
   end
 
+  def edit
+    @trip = Trip.find_by(id: params[:id])
+
+    if @trip.nil?
+      redirect_to root_path
+      return
+    end
+  end
+
   def update
-    # @trip = Trip.find_by(id: params[:trip_id])
-    
+    @trip = Trip.find_by(id: params[:id])    
     if @trip.rating == nil
       @trip.update(rating: params[:trip][:rating])
       redirect_to trip_path 
