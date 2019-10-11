@@ -9,7 +9,7 @@ module ApplicationHelper
   
   def usd(cents_float)
     # cents is coming from database as a float...
-    return format("$%.2f", cents_float/100)
+    return format("$%.2f", cents_float/100.0)
   end
   
   def get_passenger_from_id(int)
