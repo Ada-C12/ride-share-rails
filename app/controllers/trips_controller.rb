@@ -61,12 +61,20 @@ class TripsController < ApplicationController
       
       # update passenger instance's total_spent
       @passenger = Passenger.find_by(id: params[:passenger_id])
-      new_sum = @passenger[:total_spent] + @trip.cost
+      if @passenger[:total_spent]
+        new_sum = @passenger[:total_spent] + @trip.cost
+      else
+        new_sum = @trip.cost
+      end
       @passenger.update(total_spent: new_sum)
       
       # update driver instance's total_earned
-      prev_sum = @driver[:total_earned] 
-      new_sum = prev_sum + @driver.net_earning(@trip.cost)
+      if @driver[:total_earned]
+        prev_sum = @driver[:total_earned]
+        new_sum = prev_sum + @driver.net_earning(@trip.cost)
+      else
+        new_sum = @driver.net_earning(@trip.cost)
+      end
       @driver.update(total_earned: new_sum)
       
       redirect_to trip_path(@trip.id)
