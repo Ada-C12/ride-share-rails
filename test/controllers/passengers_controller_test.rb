@@ -1,6 +1,7 @@
 require "test_helper"
 
 describe PassengersController do
+  # creates a placeholder instance of Passenger that will be used in trip records in place of deleted Passengers. 
   before do
     deleted_passenger = Passenger.new(id: 0, name: "previously deleted", phone_num: "000-000-0000")
     deleted_passenger.save
@@ -9,9 +10,11 @@ describe PassengersController do
   describe "index" do
     it "responds with success when there are many drivers saved" do
       test_passenger = Passenger.create(name: "test_passenger", phone_num: "4385902")
+      other_test_passenger = Passenger.create(name: "muahaha", phone_num: "756658494")
       get passengers_path
       must_respond_with :success
     end
+    
     it "responds with success when there are no passengers saved" do
       get passengers_path
       must_respond_with :success
@@ -84,14 +87,9 @@ describe PassengersController do
       expect(Passenger.find_by(id: id).name).must_equal updated_name
       
     end
-    
-    it "if passenger id is invalid, does not update anything and responds with 404" do
-      #this test makes no sense as this page could only be accessed through the edit action, which already accounts for an invalid ID being passed in. 
-    end
   end
   
   describe "destroy" do
-    
     it "destroys passenger and redirects" do
       other_passenger = Passenger.create(name: "test_passenger", phone_num: "4385902")
       passenger = Passenger.create(name: "test_passenger", phone_num: "4385902")

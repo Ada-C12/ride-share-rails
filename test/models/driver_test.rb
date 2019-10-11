@@ -5,32 +5,27 @@ describe Driver do
     Driver.new(name: "Kari", vin: "123", active: true)
   }
   it "can be instantiated" do
-    
     expect(new_driver.valid?).must_equal true
+    expect{Driver.create(name: "Kari", vin: "123", active: true)}.must_change "Driver.count", 1
   end
   
   it "will have the required fields" do
-    
     new_driver.save
     driver = Driver.first
     [:name, :vin, :active].each do |field|
-      
-      
       expect(driver).must_respond_to field
     end
   end
   
   describe "relationships" do
     it "can have many trips" do
-      
       new_driver.save
       new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
       trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
       trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
       
-      
-      expect(new_passenger.trips.count).must_equal 2
-      new_passenger.trips.each do |trip|
+      expect(new_driver.trips.count).must_equal 2
+      new_driver.trips.each do |trip|
         expect(trip).must_be_instance_of Trip
       end
     end
@@ -39,23 +34,19 @@ describe Driver do
   describe "validations" do
     it "must have a name" do
       new_driver.name = nil
-      
       expect(new_driver.valid?).must_equal false
       expect(new_driver.errors.messages).must_include :name
       expect(new_driver.errors.messages[:name]).must_equal ["can't be blank"]
     end
     
     it "must have a VIN number" do
-      
       new_driver.vin = nil
-      
       expect(new_driver.valid?).must_equal false
       expect(new_driver.errors.messages).must_include :vin
       expect(new_driver.errors.messages[:vin]).must_equal ["can't be blank"]
     end
   end
   
-  # Tests for methods you create should go here
   describe "custom methods" do
     before do
       @driver = Driver.create(name: "Popeye Sailor", vin: "8FH204KDLFURNM385")
@@ -69,9 +60,7 @@ describe Driver do
     #before do to create driver, passengers, trips
     describe "average rating" do
       it "returns an average rating which is a string" do
-        
         expect(@driver.average_rating).must_be_instance_of String
-        
       end
       
       it "returns an average rating which has 1 digit after the decimal" do
@@ -82,13 +71,19 @@ describe Driver do
       it "returns an accurately valued average rating" do
         test_value = "3.0"
         expect(@driver.average_rating).must_equal test_value
-        
       end
       
       it "ignores nil values for ratings in the calculations, will happen with ongoing trips" do
+        @trips.each do |trip|
+          trip.rating = nil
+          trip.save
+        end
+        expect(@driver.average_rating).must_equal "0.0"
       end
       
       it "returns 0.0 for drivers that have no trips" do
+        driver = Driver.create(name: "Boo Sailor", vin: "8FH204KDLFURNM385")
+        expect(driver.average_rating).must_equal "0.0"
       end
       
     end 
@@ -107,15 +102,5 @@ describe Driver do
         expect(@driver.total_earnings).must_equal "0.00"
       end
     end
-    
-    describe "can go online" do
-      # Your code here
-    end
-    
-    describe "can go offline" do
-      # Your code here
-    end
-    
-    # You may have additional methods to test
   end
 end

@@ -14,12 +14,9 @@ class Driver < ApplicationRecord
   
   
   def average_rating
-    return "0.0" if trips.empty?
-    
     ratings = trips.map(&:rating).compact
-    
+    return "0.0" if ratings.empty?
     ((ratings.sum)/ratings.length.to_f).round(1).to_s
-    
   end
   
   # Method to convert cents to dollars. Brute force. Returns a string with appropriate decimal point. No rounding, just string shuffling. 

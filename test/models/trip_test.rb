@@ -9,6 +9,7 @@ describe Trip do
   it "can be instantiated" do
     test_trip = Trip.create(driver_id: @driver.id, passenger_id: @passenger.id)
     expect(test_trip).must_be_instance_of Trip
+    expect{Trip.create(driver_id: @driver.id, passenger_id: @passenger.id)}.must_change "Trip.count", 1
   end
   
   it "will have the required fields" do
@@ -19,16 +20,4 @@ describe Trip do
     end
   end
   
-  describe "relationships" do
-    # Relationships are tested through driver and passenger model tests. 
-  end
-  
-  describe "validations" do
-    # Your tests go here
-  end
-  
-  # Tests for methods you create should go here
-  describe "custom methods" do
-    # Your tests here
-  end
 end
