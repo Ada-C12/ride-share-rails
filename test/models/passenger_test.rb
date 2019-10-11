@@ -39,6 +39,16 @@ describe Passenger do
 
   # Tests for methods you create should go here
   describe "custom methods" do
+    let (:passenger_test) {
+      Passenger.create(name: "Test Passenger!", phone_num: "555-555-5555")
+    }
+    let (:driver_test) {
+      Driver.create(name: "Test Driver!", vin: "FSD34534SLDK", available: true)
+    }
+    let (:trip) {
+      Trip.create(date: Date.today, rating: 5, cost: 1050, passenger_id: passenger_test.id, driver_id: driver_test.id)
+    }
+    
     describe "total_money_spent" do
       # Your code here
     end
