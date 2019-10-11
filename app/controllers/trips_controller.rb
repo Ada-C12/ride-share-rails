@@ -10,7 +10,7 @@ class TripsController < ApplicationController
   end
   
   def new
-    @trip = trip.new
+    @trip = Trip.new
   end
   
   def edit
