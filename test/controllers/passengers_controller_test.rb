@@ -64,7 +64,7 @@ describe PassengersController do
   
   describe "edit" do
     it "can get the edit page for an existing passenger" do
-      
+      p passenger
       get edit_passenger_path(passenger.id)
       
       must_respond_with :success
