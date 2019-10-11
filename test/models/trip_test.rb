@@ -92,7 +92,7 @@ describe Trip do
     it "sorts dates correctly" do
       
       trips = Trip.all_in_alpha_order
-      expect(trips.first.date < trips.last.date).must_equal true
+      expect(trips.first.date <= trips.last.date).must_equal true
       
     end
     
