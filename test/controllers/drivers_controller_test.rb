@@ -193,7 +193,7 @@ describe DriversController do
       # Act-Assert
       # Ensure that there is no change in Driver.count
       expect {
-      path driver_path(-1), params: @updated_driver_hash}.wont_change "Driver.count"
+      patch driver_path(-1), params: @updated_driver_hash}.wont_change "Driver.count"
       
       # Assert
       # Check that the controller gave back a 404

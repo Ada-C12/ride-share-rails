@@ -43,6 +43,10 @@ class PassengersController < ApplicationController
   
   def update 
     @passenger = Passenger.find_by(id: params[:id])
+    if @passenger.nil?
+      head :not_found
+      return 
+    end 
     if @passenger.update(passenger_params)
       #experiment
       redirect_to passengers_path
