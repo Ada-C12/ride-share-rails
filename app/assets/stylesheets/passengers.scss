@@ -1,3 +1,35 @@
 // Place all the styles related to the Passengers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.newPassenger{
+  padding-top: 6rem;
+  padding-bottom: 1rem;
+
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+
+  text-align: center;
+  
+  color: black;
+}
+
+.passenger_form_class{
+  color: black;
+
+}
+.new-passenger-form{
+ text-align: center;
+}
+
+.show-header{
+  text-align: center;
+  padding-top: 1em;
+}
+.show-details{
+  text-align: center;
+  padding-left: 1em;
+}
+.buttons{
+  text-align: center;
+}

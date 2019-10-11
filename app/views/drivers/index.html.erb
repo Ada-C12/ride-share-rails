@@ -1,17 +1,15 @@
-<h1 class="index-header">Rideshare Drivers</h1>
+<h1>Rideshare Drivers</h1>
 
 <section class = driversIndex>
-  <section class = 'information'>
-    <% @drivers.each do |driver| %>
-      <%# <li> %>
-        <section id = 'link'><%= link_to driver.name, driver_path(driver.id) %> </section><br>
-      <%# </li>
-      <li> %>
-       <section id = 'link'><%= link_to "Edit", edit_driver_path(driver.id) %> </section> <br>
-      <%# </li>
-      <li> %>
-       <section id = 'link'> <%= link_to "Delete", driver_path(driver.id), method: :delete, data: { confirm: "Are you sure you want to delete this driver?" }, class: "index-delete-link" %> </section><br>
-      <%# </li> %>
-    <% end %>
-  </section>
+  <% @drivers.each do |driver| %>
+    <li>
+      <section id = 'link'><%= link_to driver.name, driver_path(driver.id) %> </section><br>
+    </li>
+    <li>
+      <section id = 'link'><%= link_to "Edit", edit_driver_path(driver.id) %> </section> <br>
+    </li>
+    <li>
+      <section id = 'link'> <%= link_to "Delete", driver_path(driver.id), method: :delete, data: { confirm: "Are you sure you want to delete this driver?" }, class: "index-delete-link" %> </section><br>
+    </li> 
+  <% end %>
 </section>
