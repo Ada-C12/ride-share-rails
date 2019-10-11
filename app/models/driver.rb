@@ -1,5 +1,5 @@
 class Driver < ApplicationRecord
-  has_many :trips
+  has_many :trips, dependent: :restrict_with_error
   validates :name, presence: true
   validates :vin, presence: true
   def average_rating

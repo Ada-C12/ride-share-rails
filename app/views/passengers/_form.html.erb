@@ -1,5 +1,4 @@
 
-
 <% if @passenger.errors.any? %>
   <ul class="errors">
     <% @passenger.errors.each do |column, message| %>
@@ -10,11 +9,8 @@
   </ul>
 <% end %>
 
-
-
 <%= form_with model: @passenger, class: passenger_form_class do |f| %>
 
-  <%# f.text_field :somenameofsomeattributeonbook ... in this case, :title %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.label :phone_num %>

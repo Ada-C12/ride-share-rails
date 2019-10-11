@@ -1,15 +1,98 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+* vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+* files in this directory. Styles in this file should be added after the last require_* statement.
+* It is generally better to create a new file per style scope.
+*
+*= require_tree .
+*= require_self
+*/
+
+body {
+  padding: 50px;
+  text-align: center;
+  background-color: rgba(189, 215, 207, 0.838);
+  font-family: 'Literata', serif;
+}
+
+section {
+  margin: 20px;
+  padding: 50px;
+  padding-bottom: 200px;
+}
+
+nav {
+  background-color: rgb(30, 85, 72);
+  border-radius: 10px;
+  padding: 2px;
+  font-size: 1.5em;
+  font-family: 'Chau Philomene One', sans-serif;
+}
+
+nav ul {
+  padding-left: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(30, 85, 72);
+  text-decoration-line: underline;
+}
+
+nav a {
+  color: rgba(189, 215, 207, 0.838);
+}
+
+nav a:hover {
+  color: aliceblue;
+  text-decoration: none;
+}
+
+nav li {
+  list-style: none;
+  display: inline-block;
+}
+
+.homepage_title {
+  margin: 50px;
+  font-size: 8em; 
+  font-family: 'Barriecito', cursive;
+}
+
+.homepage {
+  margin: 20px;
+  padding: 100px;
+}
+
+.homepage h2 {
+  font-family: 'Kranky', cursive;
+  font-size: 2em;
+}
+
+footer {
+  border-top: 2px solid rgb(30, 85, 72);
+  padding-top: 50px;
+}
+
+.table {
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+}
+
+.table ul {
+  list-style: none;
+}
