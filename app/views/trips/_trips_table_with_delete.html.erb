@@ -13,9 +13,9 @@
     <section><%= link_to trip.id, trip_path(id: trip.id) %></section>
     <section><%= display_date(trip.date.getlocal)%></section>
     <section><%= trip.driver_id%></section>
-    <section><%= get_driver_name_from_id(trip.driver_id)%></section>
+    <section><%= link_to get_driver_name_from_id(trip.driver_id), driver_path(id: trip.driver_id) %></section>
     <section><%= trip.passenger_id%></section>
-    <section><%= get_passenger_name_from_id(trip.passenger_id)%></section>
+    <section><%= link_to get_passenger_name_from_id(trip.passenger_id), passenger_path(id: trip.passenger_id)%></section>
     <section><%= usd(trip.cost)%></section>
     <section>
       <% if trip.rating %>
