@@ -16,6 +16,8 @@
 </section>
 
 <br><hr><br>
+<h1>TOTAL SPENT = <%= usd(@total_spent) %></h1>
 <h1>LINKS</h1>
 <%= link_to "REQUEST TRIP", passenger_trips_path(passenger_id: @passenger.id, date: Time.now), method: :post %><br><br>
-<%= link_to "SHOW TRIP HISTORY", trips_path(passenger_id: @passenger.id) %>
+<%= link_to "SHOW TRIP HISTORY", trips_path(passenger_id: @passenger.id) %><br><br>
+<%= link_to "GO BACK", passengers_path, class:"go_back"%>

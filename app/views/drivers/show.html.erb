@@ -5,7 +5,7 @@
 <section class="details">
   <h1>Details</h1>
   <p>Average Rating: <%= @driver.average_rating %></p>
-  <p>Earnings: $<%= @driver.earnings%></p>
+  <p>Earnings: <%= usd(@driver.earnings) %></p>
 </section>
 
 <section class="driver_grid">
@@ -23,5 +23,5 @@
   <%= link_to "DELETE", driver_path(@driver.id), method: :delete, data: {confirm: "YOU SURE???"}  %>
 </section>
 
-<%= link_to "SHOW TRIP HISTORY", trips_path(driver_id: @driver.id) %>
-  
+<%= link_to "SHOW TRIP HISTORY", trips_path(driver_id: @driver.id) %><br>
+<%= link_to "GO BACK", drivers_path, class:"go_back"%>

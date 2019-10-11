@@ -125,4 +125,5 @@ describe PassengersController do
       must_redirect_to nope_path(msg: "Cannot destroy a non-existent passenger record")
     end
   end
+  
 end
