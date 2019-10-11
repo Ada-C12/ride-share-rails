@@ -10,10 +10,10 @@
 </ul>
 </li>
 <br>
-<%= button_to "Edit Passenger".html_safe, edit_passenger_path(@passenger.id), class:"link" %>
+<%= button_to "Edit Passenger".html_safe, edit_passenger_path(@passenger.id), class:"link", method: :get %>
 <br>
 <%= button_to "Delete Passenger".html_safe, passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure you want to delete this passenger?"}, class:"link" %>
 
 <p><%= button_to "Add Trip", passenger_trips_path(@passenger.id), method: :post, class:"link" %></p>
 
-<p><%= button_to "See All Passengers", passengers_path, class:"link" %></p>
+<p><%= button_to "See All Passengers", passengers_path, class:"link", method: :get %></p>
