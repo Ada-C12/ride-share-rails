@@ -143,16 +143,17 @@ describe DriversController do
       must_redirect_to drivers_path
     end
     
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not update a driver if the form data violates Driver validations" do
       # Arrange
       driver_fred.save
-      driver_hash = { driver: { name: "Dino" } }
+      driver_hash = { driver: { name: nil } }
       
       # Act-Assert
       expect { patch driver_path(driver_fred.id), params: driver_hash }.wont_change "Driver.count"
       
       # Assert
-      must_respond_with :redirect
+      updated_driver = Driver.first
+      expect(updated_driver.name).must_equal driver_fred.name
     end
   end
   

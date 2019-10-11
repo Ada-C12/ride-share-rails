@@ -4,10 +4,6 @@ class Passenger < ApplicationRecord
   validates :name, presence: true
   validates :phone_num, presence: true
   
-  # Request a ride
-  
-  # Complete trip
-  
   def total_money_spent
     trips = self.trips
     

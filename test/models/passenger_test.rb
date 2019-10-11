@@ -66,15 +66,7 @@ describe Passenger do
     end
   end
   
-  describe "custom methods" do
-    describe "request a ride" do
-      # Your code here
-    end
-    
-    describe "complete trip" do
-      # Your code here
-    end
-    
+  describe "custom methods" do    
     describe "total money spent" do
       it "returns 0 if there are no trips" do
         new_passenger.save
