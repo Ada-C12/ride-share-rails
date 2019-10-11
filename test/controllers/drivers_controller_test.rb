@@ -95,7 +95,6 @@ describe DriversController do
     it "responds with success when getting the edit page for an existing, valid driver" do
       new_driver
       
-      expect(Driver.count).must_equal 1
       
       get edit_driver_path(new_driver.id)
       must_respond_with :success      

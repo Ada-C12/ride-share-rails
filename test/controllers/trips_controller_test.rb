@@ -1,18 +1,20 @@
 require "test_helper"
 
 describe TripsController do
+
   describe "show" do
-    it "can get the index path" do
-      get trips_path
-      
-      must_respond_with :success
-    end
-    
-    it "can get the root path" do
-      get root_path
-      
-      must_respond_with :success
-    end
+
+
+
+
+
+
+
+
+
+
+
+
   end
   
   #To-do test to create with passenger

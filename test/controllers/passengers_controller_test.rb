@@ -126,11 +126,14 @@ describe PassengersController do
     end
     
     it "redirects if passenger has already been deleted" do
-      Passenger.destroy_all
+      expect {
+        delete passenger_path( passenger.id )
+      }.must_differ "Passenger.count", -1
+      
       expect {
         delete passenger_path( passenger.id )
       }.must_differ "Passenger.count", 0
-      
+
       must_redirect_to passengers_path
     end
   end
