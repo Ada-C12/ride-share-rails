@@ -33,7 +33,7 @@
       <td><%= trip.rating %></td>
       <td><%= trip.cost %></td>
       <td><%= trip.driver.id %></td>
-      <td><%= trip.passenger.name %></td>
+      <td><%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></td>
     </tr>
     <% end %>
     </table>
