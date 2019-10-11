@@ -6,13 +6,9 @@
 
 <section class="show-details">
 
-  <p>
-    Phone number: <%=@passenger.phone_num%>
-  </p>
-
-
+  <p>Phone number: <%=@passenger.phone_num%></p>
+  <p>Total expense: $<%= sprintf('%.2f', @passenger.total_expense_to_dollars)%></p>
   <p>List of trips</p>
-
   <table>                         
     <tr>                          
       <th>Trip ID</th>
