@@ -34,5 +34,12 @@ class Driver < ApplicationRecord
   def busy
     self.update(status: true)
   end 
+  
+  
+  # look into this
+  #  def toggle
+  #   self.active = self.active ? false : true
+  #   self.save
+  #  end
   # When a user deletes a driver associated with a trip, it is up to you and your team on how to deal with "validations"/consequences surrounding the deleted driver and the associated trip
 end

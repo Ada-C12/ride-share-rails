@@ -27,10 +27,11 @@ Click a link to delete the trip %>
     <% end %>
     
     <% if @trip.rating 
-        @trip.rating.times do |star| %> 
+      @trip.driver.active
+      @trip.rating.times do |star| %> 
         <span>✰</span>
-        <%end%>
       <%end%>
+    <%end%>
     </li>
     <li>Cost: $<%= @trip.cost%> </li>
   </ul>
