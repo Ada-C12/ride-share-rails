@@ -81,3 +81,46 @@ ActiveRecord::Base.connection.tables.each do |t|
 end
 
 puts "done"
+
+puts "\n\n ###########################\nCAROLINE ADDING... calculating total_spent per passenger and total_earned per driver, to keep as running total as new trips come up"
+### PASSENGERS' turn ###
+failed_tally = 0
+Trip.all.each do |trip|
+  passenger = Passenger.find_by(id: trip.passenger_id)
+  if passenger.total_spent == nil 
+    new_sum = trip.cost
+  else
+    new_sum = passenger.total_spent + trip.cost
+  end
+  
+  unless passenger.update(total_spent: new_sum)
+    failed_tally += 1
+  end
+end
+
+if failed_tally > 0
+  puts "INVESTIGATE!!!!!!!!!!"
+else
+  puts "All trips' costs are added to total_spent of each affected passenger\n"
+end
+
+### DRIVERS' turn ###
+failed_tally = 0
+Trip.all.each do |trip|
+  driver = Driver.find_by(id: trip.driver)
+  if driver.total_earned == nil 
+    new_sum = Driver.earnings(trip.cost)
+  else
+    new_sum = driver.total_earned + Driver.earnings(trip.cost)
+  end
+  
+  unless driver.update(total_earned: new_sum)
+    failed_tally += 1
+  end
+end
+
+if failed_tally > 0
+  puts "INVESTIGATE!!!!!!!!!!"
+else
+  puts "All trips' costs are added to total_earned of each affected driver\n"
+end

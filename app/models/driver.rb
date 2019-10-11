@@ -1,51 +1,61 @@
 class Driver < ApplicationRecord
   has_many :trips
-
+  
   validates :name, presence: true
   validates :vin, uniqueness: true, presence: true
-
+  
   def earnings
+    ### my version ###
     trips = self.trips
-    revenue_per_trip = []
-      trips.each do |trip|
-        if trip.rating != nil
-          revenue_per_trip << (trip.cost - 1.65)*0.8
-        end
-      end  
-
-      if revenue_per_trip.length > 0
-        total_revenue = revenue_per_trip.sum.round(2)
-      else
-        return 0
-      end
-      return total_revenue
+    total_revenue = 0
+    trips.each do |trip|
+      earned = (trip.cost - 1.65)*0.8
+      total_revenue += earned
+    end
+    return total_revenue
+    
+    ### your version ###
+    # trips = self.trips
+    # revenue_per_trip = []
+    # trips.each do |trip|
+    #   if trip.rating != nil
+    #     revenue_per_trip << (trip.cost - 1.65)*0.8
+    #   end
+    # end  
+    
+    # if revenue_per_trip.length > 0
+    #   total_revenue = revenue_per_trip.sum.round(2)
+    # else
+    #   return 0
+    # end
+    # return total_revenue
   end 
-
+  
   def average_rating
     trips = self.trips
     filtered_ratings = []
-      trips.each do |trip|
-        if trip.rating != nil
-          filtered_ratings << trip.rating
-        end
+    trips.each do |trip|
+      if trip.rating != nil
+        filtered_ratings << trip.rating
       end
-      if filtered_ratings.length > 0
-        ratings_total = filtered_ratings.sum
-        avg_rating = ((ratings_total + 0.0) / filtered_ratings.length)
-      else
-        return 0
-      end
-      avg_rating = avg_rating.round(2)
-      return avg_rating
+    end
+    if filtered_ratings.length > 0
+      ratings_total = filtered_ratings.sum
+      avg_rating = ((ratings_total + 0.0) / filtered_ratings.length)
+    else
+      return 0
+    end
+    avg_rating = avg_rating.round(2)
+    return avg_rating
   end 
-
+  
   def go_offline
     if self.active == true
       self.active = false
       self.save
     end 
   end 
-
+  
   def go_online
     if self.active == false
       self.active = true

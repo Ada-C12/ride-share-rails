@@ -25,7 +25,6 @@ class PassengersController < ApplicationController
       redirect_to nope_path(params: {msg: "No such passenger exists!"})
       return
     end
-    @total_spent = @passenger.total_spent_model
   end
   
   def edit
