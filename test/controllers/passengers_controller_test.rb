@@ -136,6 +136,8 @@ describe PassengersController do
       
       expect(updated_passenger.name).must_equal "Monica Geller"
       expect(updated_passenger.phone_number).must_equal "9103222610"
+      
+      must_respond_with :redirect
     end
     
     it "does not update any passenger if given an invalid id, and responds with a 404" do
