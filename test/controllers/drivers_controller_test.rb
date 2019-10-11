@@ -76,7 +76,6 @@ describe DriversController do
       # Assert
       number_one = Driver.find_by(name: driver_hash[:driver][:name])
       expect(number_one.vin).must_equal driver_hash[:driver][:vin]
-      expect(number_one.active).must_equal driver_hash[:driver][:active]
       expect(number_one.car_make).must_equal driver_hash[:driver][:car_make]
       expect(number_one.car_model).must_equal driver_hash[:driver][:car_model]
       must_respond_with :redirect
@@ -142,7 +141,6 @@ describe DriversController do
 
       expect(bb.name).must_equal driver_hash[:driver][:name]
       expect(bb.vin).must_equal driver_hash[:driver][:vin]
-      expect(bb.active).must_equal driver_hash[:driver][:active]
       expect(bb.car_make).must_equal driver_hash[:driver][:car_make]
       expect(bb.car_model).must_equal driver_hash[:driver][:car_model]
 
