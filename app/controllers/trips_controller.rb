@@ -107,8 +107,14 @@ class TripsController < ApplicationController
         redirect_to nope_path(params: {msg: "Unable to switch driver.active back to false, please call customer service at 1-800-LOL-SORRY"})
       end
     else
-      redirect_to nope_path(params: {msg: "Unable to update rating, please call customer service at 1-800-LOL-SORRY"})
-      return
+      # this happens when Trip model validation fails
+      # such as when user presses submit w/o rating the trip first
+      if rating == 0
+        redirect_to nope_path(params: {msg: "You must select a rating from 1 to 5.  Please try again"})
+      else
+        redirect_to nope_path(params: {msg: "Unable to update rating, please call customer service at 1-800-LOL-SORRY"})
+        return
+      end
     end
   end 
   

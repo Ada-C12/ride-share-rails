@@ -1,23 +1,36 @@
 <h1>RATING TRIP</h1>
 <%= render partial: "trips_table" %>
 
-after rating, remember to flip driver.active back to false!!!<br>
-
-<%= form_with url: trip_path(id: @trip.id), method: :patch do |f| %>
+<section class="ratings_section">
+<%= form_with url: trip_path(id: @trip.id), method: :patch, class:"ratings" do |f| %>
+  <section>
   <%= radio_button_tag(:rating, 1) %>
   <%= label_tag(:rating, "1 star") %>
+  </section>
 
+  <section>
   <%= radio_button_tag(:rating, 2) %>
   <%= label_tag(:rating, "2 stars") %>
+  </section>
 
+  <section>
   <%= radio_button_tag(:rating, 3) %>
   <%= label_tag(:rating, "3 stars") %>
+  </section>
 
+  <section>
   <%= radio_button_tag(:rating, 4) %>
   <%= label_tag(:rating, "4 stars") %>
+  </section>
 
+  <section>
   <%= radio_button_tag(:rating, 5) %>
   <%= label_tag(:rating, "5 stars") %>
+  </section>
 
-  <%= f.submit "Done rating" %>
+  <section>
+  <%= f.submit "Submit rating" %>
+  </section>
 <% end %>
+</section>
+

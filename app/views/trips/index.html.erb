@@ -1,13 +1,17 @@
 <% if @passenger %>
   <h1>TRIPS for <%= @passenger.name.titleize %></h1>
   <%= render partial: "trips_table_with_delete" %>
-<% else %>
-  <% if @driver %>
+  <%= link_to "Go Back", passenger_path(id: @passenger.id), class:"go_back" %>
+
+<% elsif @driver %>
   <h1>TRIPS for <%= @driver.name.titleize %></h1>
-  <% else %>
-  <h1>ALL TRIPS</h1>
-  <% end %>
   <%= render partial: "trips_table" %>
+  <%= link_to "Go Back", driver_path(id: @driver.id), class:"go_back" %>
+
+<% else %>
+  <h1>ALL TRIPS</h1>
+  <%= render partial: "trips_table" %>
+
 <% end %>
 
 

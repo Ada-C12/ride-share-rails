@@ -59,3 +59,19 @@ nav ul a {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr 2fr 1fr 2fr 1fr 1fr 1fr;
 }
+
+
+.ratings_section {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+.ratings {
+  display: flex;
+  align-content: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.go_back {
+  background-color: pink;
+}
