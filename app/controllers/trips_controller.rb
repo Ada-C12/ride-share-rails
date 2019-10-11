@@ -36,7 +36,7 @@ class TripsController < ApplicationController
     # @tripdriver = (Driver_params)
     
     if @trip
-      redirect_to trip_path(@trip.id), notice: 'Trip was successfully created.'
+      redirect_to trip_path(@trip.id)
     else 
       render new_trip_path
     end 

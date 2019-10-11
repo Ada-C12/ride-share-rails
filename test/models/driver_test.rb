@@ -14,7 +14,6 @@ describe Driver do
     new_driver.save
     driver = Driver.first
     [:name, :vin, :status].each do |field|
-      
       # Assert
       expect(driver).must_respond_to field
     end

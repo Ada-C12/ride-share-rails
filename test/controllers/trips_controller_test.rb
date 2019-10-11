@@ -1,8 +1,13 @@
 require "test_helper"
 
 describe TripsController do
+  #Does each trip need me to create a new instance of driver and passenger?
+  let (:trip) {
+   Trip.create driver_id: , passenger_id: , date: Date.today}
+
   describe "show" do
-    # Your tests go here
+    get trip_path
+    must_respond_with :success
   end
 
   describe "create" do
