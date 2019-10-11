@@ -4,10 +4,13 @@ Rails.application.routes.draw do
   # RESTful routes:
   root 'homepages#index'
   
-  #root 'passengers#index'
-  resources :drivers
-  resources :passengers
-  resources :trips
+  resources :drivers do
+    resources :trip, only: [:new]
+  end 
   
-  # 'author/:id', to: 'author#show', as: 'author'
+  resources :passengers do 
+    resources :trips, only: [:create]
+  end
+  
+  resources :trips
 end 

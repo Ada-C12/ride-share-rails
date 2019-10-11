@@ -70,4 +70,3 @@ private
 def trip_params
   return params.require(:trip).permit( :rating, :cost)
 end  
-end
