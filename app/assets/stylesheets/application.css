@@ -18,3 +18,23 @@
   border: 2px solid black;
 
 }
+
+.list-all {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.list-all li {
+  border-style: dashed
+} 
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+#maintitle {
+
+}
