@@ -8,21 +8,29 @@ table {
     width: 100%;
   }
   
-  table, th, td {
-    border: 1px solid grey;
-    height: 50px;
-    text-align: center
+table, th, td {
+  border: 1px solid grey;
+  height: 50px;
+  text-align: center
+}
+
+tr:nth-child(even) {
+    background-color: salmon;
   }
 
-  tr:nth-child(even) {
-      background-color: salmon;
-    }
+tr:nth-child(odd) {
+    background-color: rgb(250, 181, 174);
+  }
 
-    tr:nth-child(odd) {
-        background-color: rgb(250, 181, 174);
-      }
+th {
+  background-color: #4CAF50;
+  color: white;
+}
 
-      th {
-        background-color: #4CAF50;
-        color: white;
-      }
+.drivers-border {
+  background-image: url("http://coloringhome.com/coloring/9TR/a5G/9TRa5GEdc.gif");
+  background-size: 50px;
+  background-repeat: no-repeat;
+  background-position: 25%;
+  padding-left: 2rem;
+}

@@ -21,6 +21,7 @@ class TripsController < ApplicationController
     @trip = Trip.new(trip_params)
     @trip.date = Date.today
     @trip.cost = rand(5..500).to_f
+    @trip.rating = nil
     if @trip.save
       redirect_to passenger_trips_path(@trip.passenger.id)
     else
