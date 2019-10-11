@@ -1,3 +1,82 @@
 // Place all the styles related to the Homepages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body, html {
+  font-family: Helvetica, san-serif;
+}
+
+nav {
+  margin: 0;
+  padding: 0;
+  background-color: #7f95db;
+  border-radius: 25px;
+  height: 3em;
+  font-size: 1.25em;
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr 1fr;
+  padding-right: 2%;
+  vertical-align: middle
+}
+
+#drivers-menu {
+  grid-column: 3;
+}
+
+nav ul li {
+  list-style: none;
+  float: left;
+  background-color: #7f95db;
+  height: 2em;
+  line-height: 2em;
+}
+
+/* change color of main menu item on hover */
+nav ul li:hover {
+  background-color: #6679e9;
+  position: relative;
+}
+
+nav ul li a {
+  padding: 0px 15px;
+  color: #ffffff;
+  display: inline-block;
+  text-decoration: none;
+}
+
+/******* SECOND LEVEL MENU *******/
+
+nav ul li ul {
+  position: absolute;
+  display: none;
+}
+
+nav ul li:hover ul {
+  left: 0;
+  top: 2em;
+  display: block;
+}
+
+nav ul li ul li {
+  float: none;
+  width: 10em;
+  background-color: #cae25a;
+}
+
+/* Change background color for sub-menu on hover */
+nav ul li:hover ul li:hover {
+  background-color: #b1b536;
+}
+
+nav ul li ul li a {
+  color: #454444;
+  display: inline-block;
+  width: 10em;
+}
+
+.clear {
+  clear: both;
+}
