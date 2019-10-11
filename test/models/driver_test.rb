@@ -63,13 +63,13 @@ describe Driver do
       # Arrange
       new_driver = Driver.create(name: "Kari", vin: "123", active: true)
       new_driver_id = new_driver.id
-      puts new_driver_id
+      # puts new_driver_id
       new_trip_1 = Trip.create(date: Time.now, cost: 1234, rating: 5, driver_id: new_driver_id, passenger_id: 1)
-      puts new_trip_1.driver_id
+      # puts new_trip_1.driver_id
       new_trip_2 = Trip.create(date: Time.now, cost: 1234, rating: 1, driver_id: new_driver_id, passenger_id: 1)
-      puts new_trip_2.driver_id
-      binding.pry
-      puts new_driver.trips
+      # puts new_trip_2.driver_id
+      # puts new_driver.trips
+
       # Act
 
       # Assert
@@ -80,13 +80,13 @@ describe Driver do
       # Arrange
       new_driver = Driver.create(name: "Kari", vin: "123", active: true)
       new_driver_id = new_driver.id
-      puts new_driver_id
+      # puts new_driver_id
       new_trip_1 = Trip.create(date: Time.now, cost: 1234, rating: 5, driver_id: new_driver_id, passenger_id: 1)
-      puts new_trip_1.driver_id
+      # puts new_trip_1.driver_id
       new_trip_2 = Trip.create(date: Time.now, cost: 1234, rating: 1, driver_id: new_driver_id, passenger_id: 1)
-      puts new_trip_2.driver_id
-      binding.pry
-      puts new_driver.trips
+      # puts new_trip_2.driver_id
+      # puts new_driver.trips
+
       # Act
 
       # Assert
@@ -98,6 +98,7 @@ describe Driver do
       new_driver = Driver.create(name: "Kari", vin: "123", active: true)
       
       # Act
+      
       # Assert
       # expect(new_driver.active)
     end
