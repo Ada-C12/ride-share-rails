@@ -48,14 +48,13 @@ def destroy
   return
 end
 
-# Creates a trip for a specific passenger with an available driver...
-# Sam - Update path and check find_a_driver method before working on tests...
 def create
   trip = Trip.create(
   date: Date.today,
   passenger_id: params[:id],
   driver_id: Driver.find_a_driver,
-  cost: (Trip.first.cost)
+  cost: rand(500...1000),
+  rating: nil
   )
   
   if trip.id
