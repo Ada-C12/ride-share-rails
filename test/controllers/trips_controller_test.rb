@@ -132,35 +132,31 @@ describe TripsController do
   end
   
   describe "update" do
-    describe "only passengers get to update" do
+    describe "only passengers get to update trips (b/c ratings)" do
       it "will update rating AND switch driver back to active:false" do
-        ### MANUALLY VERIFIED that completing a trip does switch driver back to active:false
-        ### I just couldn't get the test code to work lol
         
-        # # verify starting conditions
-        # assert(driver1.active == false)
-        # puts "WTF..."
-        # trip1
-        # updated_driver1 = Driver.find_by(id: driver1.id)
-        # puts trip1.attributes
-        # puts updated_driver1.attributes
-        # puts "WTF!!!"
-        # assert(updated_driver1.active)
-        # # assert(trip1.rating == nil)
+        # verify starting conditions, from creating new trip
+        passenger1
+        assert(driver1.active == false)
+        post trips_path, params:{ date: Time.now, passenger_id: passenger1.id}
+        db_trip = Trip.first
+        db_driver = Driver.find_by(id: db_trip.driver_id)
+        assert(db_driver.active)
+        assert(db_trip.rating == nil)
         
-        # ratings = [1,2,3,4,5]
-        # ratings.each do |num|
-        #   patch trip_path(id: trip1.id), params: {rating: num}
-        #   updated_trip1 = Trip.find_by(id: trip1.id)
-        #   assert(updated_trip1.rating == num) 
-        
-        #   updated_driver1 = Driver.find_by(id: driver1.id)
-        #   puts updated_driver1.attributes
-        #   # assert(updated_driver1.active)
-        # end
+        # now update trip, which should update rating & switch driver.active to false
+        ratings = [1,2,3,4,5]
+        ratings.each do |num|
+          patch trip_path(id: db_trip.id), params: {rating: num}
+          rated_trip = Trip.find_by(id: db_trip.id)
+          assert(rated_trip.rating == num) 
+          
+          updated_driver = Driver.find_by(id: db_driver.id)
+          refute(updated_driver.active)
+        end
       end
       
-      it "edge case" do
+      it "edge case: attempting to update trip with invalid passenger_id" do
         ###########
       end
     end

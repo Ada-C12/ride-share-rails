@@ -5,6 +5,7 @@ describe PassengersController do
   let (:passenger_hash) {{ passenger: { name: "Homer Simpson", phone_num: "425-123-1234" } }}
   let (:bad_phone_nums) { [nil, "", "    "] }
   let (:bad_names) { [nil, "", "    "] }
+  
   describe "index" do
     it "can go to Passengers/index" do
       get passengers_path
@@ -113,11 +114,9 @@ describe PassengersController do
     end
     
     it "will destroy passenger obj (if has trips linked) and redirect to passengers index pg" do
-      # passenger1
-      # expect {delete passenger_path(id: passenger1.id)}.must_differ "Passenger.count", -1
-      # puts "\n\nI'M NOT SURE WHAT'S SUPPOSED OT HAPPEN HERE"
-      # assert(false)
-      ############## WHY??########
+      passenger1
+      expect {delete passenger_path(id: passenger1.id)}.must_differ "Passenger.count", -1
+      must_redirect_to passengers_path
     end
     
     it "will redirect to nope_path if bad id given" do

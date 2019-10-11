@@ -44,13 +44,11 @@ class TripsController < ApplicationController
       redirect_to nope_path(params: {msg: "No drivers available, maybe you should walk"})
       return
     else
-      puts "MAKING trip, FLIPPING driver.active from false to TRUE"
       # flip @driver.active to true.  
       unless @driver.update(active: true)
         redirect_to nope_path(params: {msg: "Unexpected error, please call customer service at 1-800-LOL-SORRY"})
         return
       end   
-      
       
       # When do we flip it back to false? Normally we'd do that when GPS hits destination...
       # For this project, we'll flip it when passenger rates the trip.
