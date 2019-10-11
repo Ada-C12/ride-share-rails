@@ -1,8 +1,4 @@
-<h1>Trip Details</h1>
 
-Date: <%= @trip.date %><br>
-Rating: <%= @trip.rating %><br>
-Cost: $<%= sprintf('%.2f', @trip.cost/100.0) %><br>
 Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver.id) %><br>
 Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id) %><br>
 

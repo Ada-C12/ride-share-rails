@@ -1,3 +1,19 @@
 // Place all the styles related to the Drivers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.form-outline {
+  text-align: center;
+  font-size: 1.1em;
+  grid-row-start: 2;
+  grid-column: 2 / 4;
+  display: inline-block
+}
+
+.form {
+  text-align: left;
+  margin-left: 20%;
+  font-size: 1.1em;
+}
+
+

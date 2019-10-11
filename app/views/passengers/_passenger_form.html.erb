@@ -8,14 +8,16 @@
   </ul>
 <% end %>
 
-<%= form_with model: @passenger, class: "passenger-form" do |f| %>
-  <p>Please complete the fields below to <%= action_name.downcase %> passenger. </p>
+<div class=form>
+  <%= form_with model: @passenger, class: "passenger-form" do |f| %>
+    <p>Please complete the fields below to <%= action_name.downcase %> passenger. </p>
 
-  <%= f.label :name %>
-  <%= f.text_field :name%>
-  <br>
-  <%= f.label :phone_number %>
-  <%= f.text_field :phone_num %>
-  <br><br>
-  <%= f.submit "#{action_name} Passenger", class: "passenger-button" %>
-<% end %>
+    <%= f.label :name %>
+    <%= f.text_field :name%>
+    <br>
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_num %>
+    <br><br>
+    <%= f.submit "#{action_name} Passenger", class: "passenger-button" %>
+  <% end %>
+</div>
