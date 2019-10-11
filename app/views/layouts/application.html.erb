@@ -10,7 +10,7 @@
   </head>
 
   <body>
-  <section>
+  <nav>
       <h1 id='maintitle'><%= link_to "RideShare", root_path %></h1>
       <ul class="buttons">
         <li>
@@ -20,7 +20,9 @@
           <%= link_to "Add Passenger", new_passenger_path%>
         </li>
       </ul>
-    </section>
+    </nav>
+
+    <section>
     <%= yield %>
   </body>
 </html>
