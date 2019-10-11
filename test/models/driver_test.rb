@@ -63,8 +63,7 @@ describe Driver do
     end
   end
   
-  # Tests for methods you create should go here
-  describe "custom methods" do
+  describe "get available driver" do
     it "gets an available driver" do
       unavailable_driver.save
       new_driver.save 
@@ -74,13 +73,31 @@ describe Driver do
       expect(first_driver).must_be_instance_of Driver
       expect(first_driver.available).must_equal true
     end
+    
+    it "returns nil if no drivers are available" do
+      unavailable_driver.save
+      
+      first_driver = Driver.get_available_driver
+      
+      assert_nil(first_driver)
+    end
   end
   
   describe "average rating" do
     it "calculates the correct average rating for multiple trips" do
+      new_driver.save
+      trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+      trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
+      trip_3 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 2, cost: 100)
+      
+      expect(new_driver.average_rating).must_equal 3.33
     end
     
     it "returns the same rating if there is only one trip" do
+      new_driver.save
+      trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+      
+      expect(new_driver.average_rating).must_equal 5
     end
   end
   

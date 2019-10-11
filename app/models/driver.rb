@@ -9,7 +9,18 @@ class Driver < ApplicationRecord
     return first_available
   end
   
-  # Average rating
+  def average_rating
+    ratings = []
+    
+    self.trips.each do |trip|
+      ratings.push(trip.rating) if trip.rating
+    end
+    
+    return nil if ratings.length == 0
+    
+    average_rating = ratings.sum / ratings.length.to_f
+    return average_rating.round(2)
+  end
   
   def total_earnings
     total_revenue = 0
