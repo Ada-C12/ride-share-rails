@@ -1,5 +1,5 @@
 <%= form_with model: @driver do |f| %>
-
+<h2><%= action_name.capitalize %> Driver </h2>
 <%= f.label 'Name:' %>
 <%= f.text_field :name %>
 <br><br>
@@ -12,7 +12,7 @@
 <%= f.label 'Car Model: '%>
 <%= f.text_field :car_model%>
 
- <%= f.submit "#{action_name} Driver" %>
+ <%= f.submit "#{action_name}" %>
 
  <% if @driver.errors.any? %>
   <ul class="errors">

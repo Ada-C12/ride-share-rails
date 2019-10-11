@@ -10,14 +10,14 @@
 <% end %>
 
 <%= form_with model: @trip do |f| %>
-  <h2><%= action_name %> Trip</h2>
+  <h2><%= action_name.capitalize %> Trip</h2>
 
   <%= f.label :date %>
   <%= f.text_field :date %>
 
   <%= f.label :passenger_id %>
   <%= f.collection_select :passenger_id, Passenger.order(:id), :id, :id, include_blank: true %>
-  
+
   <%# Source: https://stackoverflow.com/questions/14113057/how-to-have-a-drop-down-select-field-in-a-rails-form %>
   <%= f.label :driver_id %>
   <%= f.collection_select :driver_id, Driver.order(:id), :id, :id, include_blank: true %>
@@ -32,7 +32,7 @@
 
   <%= f.radio_button :rating, "2"%>
   <%= f.label :rating, "2", :value => "2" %>
-  
+
   <%= f.radio_button :rating, "3"%>
   <%= f.label :rating, "3", :value => "3" %>
 
