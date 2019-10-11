@@ -1,6 +1,6 @@
 <header class="show-header">
   <h1><%=@passenger.name%></h1>
-  <%= link_to "Add trip!", new_passenger_trip_path(@passenger.id)%>
+  <%= link_to "Request new trip!", new_passenger_trip_path(@passenger.id)%>
   <%= link_to "Edit this passenger!", edit_passenger_path(@passenger.id) %>
   <%= link_to "(Delete this passenger!)", passenger_path(@passenger.id), method: :delete, data: { confirm: "Are YOU sure?" }, class: "index-delete-link" %>
 </header>
@@ -20,7 +20,7 @@
       <th>Trip Date</th>
       <th>Trip Cost</th>
       <th>Rating</th>
-    </tr>
+    </tr>   
     <%@passenger.trips.each do |trip|%>
       <tr>
         <td><%= link_to trip.id, trip_path(trip.id) %></td>

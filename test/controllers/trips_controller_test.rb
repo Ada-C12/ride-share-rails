@@ -209,4 +209,31 @@ describe TripsController do
 
   end
 
+  describe "complete" do
+    it "can complete a trip" do
+      new_passenger = Passenger.create(
+        name: "Jane The Second",
+        phone_num: "118675309"
+      )
+
+      trip_hash = {
+        trip: {
+          passenger_id: new_passenger.id
+        }
+      } 
+      expect(@driver.active).must_equal false
+      expect(new_passenger.trips.length).must_equal 0
+
+      # Request a trip and verify there's a trip added to new_passenger and a driver status becomes active
+      post trips_path, params: trip_hash
+      updated_passenger = Passenger.find_by(id: new_passenger.id)
+
+      expect(updated_passenger.trips.length).must_equal 1
+      expect(Driver.find_by(id: @driver.id).active).must_equal true
+
+      # Complete a trip and verify driver status becomes false
+      patch complete_path(id: updated_passenger.trips.first.id)
+      expect(Driver.find_by(id: @driver.id).active).must_equal false
+    end
+  end
 end

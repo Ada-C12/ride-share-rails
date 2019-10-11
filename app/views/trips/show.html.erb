@@ -19,6 +19,16 @@
     Cost: $<%= sprintf('%.2f', @trip.cost_to_dollars)  %> 
     Rating: <%= @trip.rating %>
   </p>
-  <p><%= link_to "Edit", edit_trip_path(@trip.id) %></p>
-  <p><%= link_to "Delete", trip_path(@trip.id), method: :delete, data: { confirm: "Are you sure you want to delete this trip?" }%></p>
+
+  <% if @trip.driver%>
+    <% if @trip.driver.active == true %>
+      <p>This is an on going trip</p>
+      <%= link_to " Complete this trip!", complete_path(@trip.id), method: :patch, class: "action-link" %>
+    <% else %>  
+      <p>This trip has completed</p>
+      <p><%= link_to "Edit", edit_trip_path(@trip.id) %></p>
+      <p><%= link_to "Delete", trip_path(@trip.id), method: :delete, data: { confirm: "Are you sure you want to delete this trip?" }%></p>
+    <%end%>
+  <%end%>
+
 </section>

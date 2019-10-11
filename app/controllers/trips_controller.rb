@@ -42,22 +42,13 @@ class TripsController < ApplicationController
     if @trip.nil?
       redirect_to root_path
       return
-    else
-      driver_id = params[:driver_id]
-      passenger_id = params[:passenger_id]
-      
-      if driver_id.nil?
-        @drivers = Driver.all
-      else
-        @drivers = [Driver.find_by(id: driver_id)]
-      end
-      
-      if passenger_id.nil?
-        @passengers = Passenger.all
-      else
-        @passengers = [Passenger.find_by(id: passenger_id)]
-      end
     end
+    
+    driver_id = params[:driver_id]
+    passenger_id = params[:passenger_id]
+    
+    @drivers = driver_id.nil? ? Driver.all : [Driver.find_by(id: driver_id)]  
+    @passengers = passenger_id.nil? ? Passenger.all : [Passenger.find_by(id: passenger_id)]  
   end
   
   def update
@@ -66,28 +57,18 @@ class TripsController < ApplicationController
       head :not_found
       return
     else
-      driver_id = params[:driver_id]
-      passenger_id = params[:passenger_id]
-      
       if @trip.update(trip_params)
         redirect_to trip_path(@trip.id)
         return
-      else
-        if driver_id.nil?
-          @drivers = Driver.all
-        else
-          @drivers = [Driver.find_by(id: driver_id)]
-        end
-        
-        if passenger_id.nil?
-          @passengers = Passenger.all
-        else
-          @passengers = [Passenger.find_by(id: passenger_id)]
-        end
-        
-        render :edit
-        return
       end
+      
+      driver_id = params[:driver_id]
+      passenger_id = params[:passenger_id]
+      @drivers = driver_id.nil? ? Driver.all : [Driver.find_by(id: driver_id)]
+      @passengers = passenger_id.nil? ? Passenger.all : [Passenger.find_by(id: passenger_id)]  
+      
+      render :edit
+      return   
     end
   end
   
@@ -100,6 +81,17 @@ class TripsController < ApplicationController
       trip.destroy
       redirect_to root_path
       return
+    end
+  end
+  
+  def complete
+    @trip = Trip.find_by(id: params[:id])
+    if @trip
+      passenger = @trip.passenger
+      if passenger.complete_trip(@trip)
+        redirect_to trip_path(params[:id])
+        return
+      end
     end
   end
   

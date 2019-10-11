@@ -15,4 +15,8 @@ class Passenger < ApplicationRecord
             driver_id: first_available_driver.id
         )
     end
+
+    def complete_trip(trip)
+        trip.driver.toggle_active
+    end
 end
