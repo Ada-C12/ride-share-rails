@@ -229,6 +229,11 @@ main section {
   margin-bottom: 4rem;
 }
 
+.details-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 .details {
   width: 100%;
   display: flex;
