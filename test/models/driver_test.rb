@@ -107,31 +107,8 @@ describe Driver do
       end
     end
     
-    describe "total earnings" do
-      it "returns total revenue of driver" do 
-        new_driver.save
-        passenger = Passenger.create(name:"Coolio Foolio", phone_num: "206-800-5000")
-
-        Trip.create(
-          date: "2019-09-01",
-          driver_id: new_driver.id,
-          passenger_id: passenger.id,
-          rating: 5,
-          cost: 10
-        )
-
-        Trip.create(
-          date: "2019-09-02",
-          driver_id: new_driver.id,
-          passenger_id: passenger.id,
-          rating: 3,
-          cost: 12
-        )
-
-        expect(new_driver.earnings).must_equal 14.96
-      end 
-
-      it "should return average of trips with in-progress trips" do
+    describe "net_earning" do
+      it "returns cost for one trip" do 
         new_driver.save
         passenger = Passenger.create(name:"Coolio Foolio", phone_num: "206-800-5000")
 
@@ -142,23 +119,10 @@ describe Driver do
           rating: 5,
           cost: 1000
         )
+        # binding.pry
+        trip_cost = Trip.find_by(driver_id: new_driver.id).cost
 
-        Trip.create(
-          date: "2019-09-02",
-          driver_id: 67,
-          passenger_id: passenger.id,
-          rating: 3,
-          cost: 1200
-        )
-
-        Trip.create(
-          date: "2019-09-02",
-          driver_id: new_driver.id,
-          passenger_id: passenger.id,
-          rating: nil,
-          cost: 1200
-        )
-        expect(new_driver.total_earned).must_equal 1496
+        expect(new_driver.net_earning(trip_cost)).must_equal 668
       end 
     end 
   end
