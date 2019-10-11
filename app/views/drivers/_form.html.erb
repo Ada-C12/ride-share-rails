@@ -1,3 +1,12 @@
+<% if @driver.errors.any? %>
+  <h3>Please fix the following...</h3>
+  <ul>
+  <% @driver.errors.each do |error, msg|%>
+    <li><%= error %>: <%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @driver do |f| %>
 
   <%= f.label :name %>
@@ -5,10 +14,8 @@
 
   <%= f.label :vin %>
   <%= f.text_field :vin %>
-  
-  <%= f.submit submit_button_label, class: "driver-form-button" %>
-  
-  <%# <%= f.submit "GET IT!" %> 
+    
+  <%= f.submit "SIGN ME UP!" %> 
   <%= button_tag "RESET", type: :reset %>
 
 

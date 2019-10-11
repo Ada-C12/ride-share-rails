@@ -89,13 +89,19 @@ nav ul a {
 
 
 .add-button {
+  display: flex;
+  justify-content: center;
   color: black;
+  margin-bottom: 1em;
+}
+
+.add-button button {
   background-color: rgb(49, 144, 228);
-  margin: 1rem;
 }
 
 .add-button a {
   text-decoration: none;
+  color: black;
   background-color: rgb(49, 144, 228);
   font-size: 1.5rem;
 }
