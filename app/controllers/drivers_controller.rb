@@ -49,7 +49,7 @@ class DriversController < ApplicationController
       redirect_to driver_path(@driver.id)
       return
     else
-      redirect_to :edit
+      render :edit
       return
     end
   end
