@@ -62,15 +62,15 @@ describe TripsController do
     end
     it "can create a new trip" do
       
-      # trip_hash = {
-      #   trip: {
-      #     driver_id: @driver.id, 
-      #     passenger_id: @passenger.id, 
-      #     date: Date.current, 
-      #     rating: nil, 
-      #     cost: 0.00
-      #   }
-      # }
+      trip_hash = {
+        trip: {
+          driver_id: @driver.id, 
+          passenger_id: @passenger.id, 
+          date: Date.current, 
+          rating: nil, 
+          cost: 0.00
+        }
+      }
       p @passenger.id
       # Act-Assert
       expect {
