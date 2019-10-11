@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   #root 'passengers#index'
   resources :drivers
   resources :passengers
-  resources :trip 
+  resources :trips
 end
 
 # 'author/:id', to: 'author#show', as: 'author'

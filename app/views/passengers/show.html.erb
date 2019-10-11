@@ -1,6 +1,6 @@
 <h2>Passenger: <%= @passenger.name %></h2>
 <h3>Phone number: <%= @passenger.phone_num%><h3>
-<h4>Total expenses: $<%= @passenger.total_amount_charged %></h4>
+<h3>Total expenses: $<%= @passenger.total_amount_charged %></h3>
 
 <h3>Trips made by this passenger:<h3>
 
@@ -10,7 +10,14 @@
   <li> Driver: <%= trip.driver.name %></li>
   <li> Cost: $<%= (trip.cost)/100.0 %></li>
   <li> Rating: <%= trip.rating %></li>
-  </br>
+
+<%# Fix link to Edit %>
+<%= link_to "Edit", edit_trip_path(trip.id) %> 
+<%= link_to "Delete", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure?"} %>
+
+</br>
+</br>
 <% end %>
+
 
 <p><%= link_to "Return to Passenger List", passengers_path %></p>

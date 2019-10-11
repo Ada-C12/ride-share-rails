@@ -43,7 +43,7 @@ class TripsController < ApplicationController
     end
     
     @trip.destroy
-    redirect_to root_path
+    redirect_to passenger_path
     return
   end
   
