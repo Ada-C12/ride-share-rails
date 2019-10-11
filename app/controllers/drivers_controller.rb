@@ -65,27 +65,18 @@ class DriversController < ApplicationController
     end
   end
   
-  def toggle_active
+  def make_active
     @driver = Driver.find_by(id: params[:id])
 
-    @driver.toggle_active
+    @driver.make_active
     redirect_to driver_path(@driver.id)
-    
-    # if @driver.nil?
-    #   puts "NO DRIVER FOUND"
-    #   redirect_to drivers_path
-    #   return
-    # elsif @driver.active == true
-    #   puts "DRIVER CHANGED TO FALSE"
-    #   @driver.update(active: false)
-    #   redirect_to driver_path(@driver.id)
-    #   return
-    # else
-    #   puts "DRIVER CHANGED TO TRUE"
-    #   @driver.update(active: true)
-    #   redirect_to driver_path(@driver.id)
-    #   return
-    # end
+  end
+
+  def make_inactive
+    @driver = Driver.find_by(id: params[:id])
+
+    @driver.make_inactive
+    redirect_to driver_path(@driver.id)
   end
   
   private

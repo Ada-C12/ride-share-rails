@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   
   resources :trips, except: [:index, :new]
 
-  patch 'drivers/:id/toggle_active', to: 'drivers#toggle_active', as: 'toggle_active'
+  patch 'drivers/:id/make_active', to: 'drivers#make_active', as: 'make_active'
+  patch 'drivers/:id/make_inactive', to: 'drivers#make_inactive', as: 'make_inactive'
 end

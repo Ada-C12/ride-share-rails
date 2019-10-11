@@ -35,7 +35,7 @@ describe TripsController do
       new_trip = Trip.first
       expect(new_trip.date).must_equal Date.today
       expect(new_trip.rating).must_be_nil
-      expect(new_trip.cost).must_equal 1300
+      expect(new_trip.cost).must_be_instance_of Float
       expect(new_trip.driver_id).must_equal available_driver.id
       expect(new_trip.passenger_id).must_equal passenger.id
       

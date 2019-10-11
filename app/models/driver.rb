@@ -22,15 +22,21 @@ class Driver < ApplicationRecord
     all_trips = self.trips
     total = 0
     all_trips.each do |trip|
-      total += trip.cost unless trip.cost.nil?
+      trip_cost = (trip.cost - 165) * 0.80
+      total += trip_cost unless trip.cost.nil?
     end
     
     # convert cents to dollars
     return total / 100
   end
   
-  def toggle_active
-    self.active = self.active ? false : true
+  def make_active
+    self.active = true
+    self.save
+  end
+
+  def make_inactive
+    self.active = false
     self.save
   end
 end
