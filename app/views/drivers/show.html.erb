@@ -10,9 +10,9 @@
     <% end %>
 </ul>
 </li>
-  <li> <% if @driver.active == false %>
+  <li> <% if @driver.active == true %>
      Driver status: ACTIVE. (Driver is unavailable.)
-     <% elsif @driver.active == true %>
+     <% elsif @driver.active == false %>
      Driver status: INACTIVE. (Driver is available.)
      <% end %>
      </li>
