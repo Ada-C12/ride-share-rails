@@ -32,14 +32,12 @@ describe TripsController do
     it "can't update an existing trip given the wrong parameters" do
       wrong_trip_form_data = {
         trip: {
-          ratinsg: 2,
-          costs: 89000,
+          rating: 10,
         }
       }
       patch trip_path(@existing_trip.id), params: wrong_trip_form_data
-
+      
       expect(Trip.find_by(id: @existing_trip.id).rating).must_equal 4
-      expect(Trip.find_by(id: @existing_trip.id).cost).must_equal 100
     end
 
     it "will respond with not_found if given an invalid id" do
