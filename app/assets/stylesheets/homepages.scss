@@ -2,80 +2,66 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body, html {
-  font-family: Helvetica, san-serif;
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-nav {
-  margin: 0;
-  padding: 0;
-  background-color: #7f95db;
-  height: 3em;
-  font-size: 1.1em;
+.navbar {
+  overflow: hidden;
+  background-color: #333;
 }
 
-.nav {
-  display: grid;
-  grid-template-columns: 1fr 3fr 1fr 1fr;
-  padding-right: 2%;
-  vertical-align: middle
-}
-
-#drivers-menu {
-  grid-column: 3;
-}
-
-nav ul li {
-  list-style: none;
+.navbar a {
   float: left;
-  background-color: #7f95db;
-  height: 2em;
-  line-height: 2em;
-}
-
-/* change color of main menu item on hover */
-nav ul li:hover {
-  background-color: #6679e9;
-  position: relative;
-}
-
-nav ul li a {
-  padding: 0px 15px;
-  color: #ffffff;
-  display: inline-block;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
   text-decoration: none;
 }
 
-/******* SECOND LEVEL MENU *******/
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
 
-nav ul li ul {
-  position: absolute;
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+.dropdown-content {
   display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
 }
 
-nav ul li:hover ul {
-  left: 0;
-  top: 2em;
-  display: block;
-}
-
-nav ul li ul li {
+.dropdown-content a {
   float: none;
-  width: 10em;
-  background-color: #cae25a;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
 }
 
-/* Change background color for sub-menu on hover */
-nav ul li:hover ul li:hover {
-  background-color: #b1b536;
+.dropdown-content a:hover {
+  background-color: #ddd;
 }
 
-nav ul li ul li a {
-  color: #454444;
-  display: inline-block;
-  width: 10em;
-}
-
-.clear {
-  clear: both;
+.dropdown:hover .dropdown-content {
+  display: block;
 }

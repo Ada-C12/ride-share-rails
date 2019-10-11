@@ -17,8 +17,10 @@
 }
 
 .index-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly
 }
 
 .index-container h1 {
@@ -26,10 +28,21 @@
 }
 
 .view-all {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   font-size: .8em;
   font-weight: lighter;
   list-style: none;
   text-align: left;
-  margin-left: 25%;
 }
 
+.individual {
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border-color: gray;
+  width: min-content;
+  margin: 1.5vmin;
+}
