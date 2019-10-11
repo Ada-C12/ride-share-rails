@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   
   resources :drivers
   
-  
   patch '/drivers/:id/toggle_status', to: 'drivers#toggle_status', as: 'toggle_status_driver'
+  patch '/trip/:id/complete_trip', to: 'trips#complete_trip', as: 'complete_trip'
   
   # get '/drivers', to: 'drivers#index', as: 'drivers'
   # get '/drivers/new', to: 'drivers#new', as: 'new_driver'
