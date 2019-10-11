@@ -139,21 +139,22 @@ describe Driver do
       end 
     end 
 
-    describe "can go online" do
-      it "should go online and active status is true" do
-        new_driver.save
-        new_driver.go_online
-        expect(new_driver.active).must_equal true
-      end 
-    end
+    # MADE THIS BEFORE CREATED CUSTOM ROUTE TO CHANGE ACTIVE STATUS ON VIEW FREELY
+    # describe "can go online" do
+    #   it "should go online and active status is true" do
+    #     new_driver.save
+    #     new_driver.go_online
+    #     expect(new_driver.active).must_equal true
+    #   end 
+    # end
   
-    describe "can go offline" do
-      it "should go offline and active status is false" do
-        new_driver.save
-        new_driver.go_online
-        new_driver.go_offline
-        expect(new_driver.active).must_equal false
-      end 
-    end
+    # describe "can go offline" do
+    #   it "should go offline and active status is false" do
+    #     new_driver.save
+    #     new_driver.go_online
+    #     new_driver.go_offline
+    #     expect(new_driver.active).must_equal false
+    #   end 
+    # end
   end
 end

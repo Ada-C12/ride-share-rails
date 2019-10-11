@@ -106,10 +106,11 @@ describe DriversController do
           vin: "987"
         }
       }
-
+      binding.pry
       expect {
         patch driver_path(id: existing_driver.id), params: updated_driver_data
       }.must_differ 'Driver.count', 0
+      
       
       patch driver_path(id: existing_driver.id), params: updated_driver_data
       updated_driver = Driver.find_by(id: existing_driver.id)
@@ -124,26 +125,26 @@ describe DriversController do
       must_redirect_to nope_path
     end
 
-    # it "does not update a driver if the form data violates Driver validations, and responds with a redirect" do
-    #   existing_driver = Driver.create(name: "Kari", vin: "123")
-    #   updated_driver_data = {
-    #     driver: {
-    #       name: "",
-    #       vin: "123"
-    #     }
-    #   }
+    it "does not update a driver if the form data violates Driver validations, and responds with a redirect" do
+      existing_driver = Driver.create(name: "Kari", vin: "123")
+      updated_driver_data = {
+        driver: {
+          name: "",
+          vin: "123"
+        }
+      }
     
-    #   expect {
-    #     patch driver_path(id: existing_driver.id), params: updated_driver_data
-    #   }.must_differ 'Driver.count', 0
-    #   # binding.pry
-    #   patch driver_path(id: existing_driver.id), params: updated_driver_data
+      expect {
+        patch driver_path(id: existing_driver.id), params: updated_driver_data
+      }.must_differ 'Driver.count', 0
+      # binding.pry
+      patch driver_path(id: existing_driver.id), params: updated_driver_data
 
-    #   updated_driver = Driver.find_by(id: existing_driver.id)
-    #   expect(updated_driver.valid?).must_equal false 
+      updated_driver = Driver.find_by(id: existing_driver.id)
+      expect(updated_driver.valid?).must_equal false 
       
-    #   must_redirect_to nope_path
-    # end
+      must_redirect_to nope_path
+    end
   end
 
   describe "destroy" do
@@ -166,4 +167,24 @@ describe DriversController do
       must_redirect_to nope_path
     end
   end
+
+  describe "active" do
+    it "should mark driver.active to true or false" do
+      existing_driver = Driver.create(name: "Kari", vin: "123")
+
+      updated_active_status = {
+        driver: {
+          active: true
+        }
+      }
+      patch driver_active_path(existing_driver.id), params: updated_active_status
+      
+      updated_driver = Driver.find_by(id:driver.id)
+      
+      expect(updated_driver.active).must_equal true
+      expect(updated_driver.active).must_be_kind_of Boolean 
+      must_redirect_to driver_path(@driver.id)
+    end 
+  end
+
 end

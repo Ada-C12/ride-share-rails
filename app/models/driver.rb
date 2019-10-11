@@ -33,6 +33,7 @@ class Driver < ApplicationRecord
     return avg_rating
   end 
   
+  # MADE THIS BEFORE CREATED CUSTOM ROUTE TO CHANGE ACTIVE STATUS ON VIEW FREELY
   # def go_offline
   #   if self.active == true
   #     self.active = false
