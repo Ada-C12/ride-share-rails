@@ -64,8 +64,18 @@ describe Passenger do
       # Your code here
     end
     describe "count_rides" do
-      it "returns nil if the driver has no rides" do
+      it "returns nil if the passenger has no rides" do
+        new_passenger.save
         expect(new_passenger.count_rides).must_equal 0
+      end
+      it "returns the correct total for the number of rides a passenger has taken" do
+        new_passenger.save
+        new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234.00)
+        trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334.00)
+
+        expect(new_passenger.count_rides).must_equal 2
+        expect(new_passenger.count_rides).must_be_instance_of Integer
       end
     end
 
