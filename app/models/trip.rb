@@ -9,7 +9,7 @@ class Trip < ApplicationRecord
     Trip.where(passenger_id: passenger_id).each do |trip|
       subtotal += trip.cost
     end
-    total_price_trips = '%.2f' % (subtotal / 100).round(2)
+    total_price_trips = (subtotal / 100).round(2)
     return total_price_trips
   end
   
@@ -31,7 +31,7 @@ class Trip < ApplicationRecord
     Trip.where(driver_id: driver_id).each do |trip|
       earnings << (trip.cost - 165) * 0.8
     end
-    total_earnings = '%.2f' % (earnings.sum / 100).round(2)
+    total_earnings = (earnings.sum / 100).round(2)
     return total_earnings
   end
 

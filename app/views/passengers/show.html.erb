@@ -25,7 +25,7 @@
         <li>Name: <%=@passenger[:name]%></li>
         <li>Phone number: <%= @passenger[:phone_number]%></li>
         <li>Passenger ID: <%= (@passenger[:id])%></li>
-        </li>Total cost of all trips: $<%= Trip.trips_total(@passenger.id) %></li>
+        </li>Total cost of all trips: $<%= '%.2f' % (Trip.trips_total(@passenger.id)) %></li>
     </section>
 
     <section>
