@@ -135,7 +135,6 @@ describe DriversController do
           car_model: "Tacoma"
         },
       }
-<<<<<<< HEAD
       
       expect {patch driver_path(mb.id), params: driver_hash}.wont_change 'Driver.count'
       
@@ -148,17 +147,6 @@ describe DriversController do
       expect(bb.car_model).must_equal driver_hash[:driver][:car_model]
       
       must_respond_with :redirect
-=======
-      expect {patch driver_path(@mb.id), params: driver_hash}.wont_change Driver.count
-      must_respond_with :redirect
-
-      expect {patch driver_path(@mb.id), params: driver_hash}.wont_change Driver.count
-      expect(@mb.name).must_equal driver_hash[:driver][:name]
-      expect(@mb.vin).must_equal driver_hash[:driver][:vin]
-      expect(@mb.active).must_equal driver_hash[:driver][:active]
-      expect(@mb.car_make).must_equal driver_hash[:driver][:car_make]
-      expect(@mb.car_model).must_equal driver_hash[:driver][:car_model]
->>>>>>> 50da77d5ddf6c571cc96266e90ee24cd1585f4e3
     end
   end
   
