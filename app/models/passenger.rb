@@ -8,11 +8,15 @@ class Passenger < ApplicationRecord
   end
 
   def total_charges
-    trip_array = self.trips
-    charge_sum = 0
-    trip_array.each do |trip|
-      charge_sum += trip[:cost]
+    if self.count_rides == 0
+      return 0
+    else
+      trip_array = self.trips
+      charge_sum = 0
+      trip_array.each do |trip|
+        charge_sum += trip[:cost]
+      end
+      return charge_sum.to_f
     end
-    return "%.2f" % charge_sum
   end
 end

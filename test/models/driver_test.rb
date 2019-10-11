@@ -77,6 +77,11 @@ describe Driver do
     end
 
     describe "total earnings" do
+      it "returns 0 if the driver has no rides" do
+        new_driver.update(active: false)
+        expect(new_driver.total_earnings).must_equal 0
+      end
+
       it "must return the total cost of the driver's trips" do
         new_driver.update(active: false)
         passenger = Passenger.create(name: "Mac Do", phone_num: "253.394.8901")
@@ -98,16 +103,17 @@ describe Driver do
     end
 
     describe "toggle_active" do
-      it "can toggle the active status of a driver when a ride is requested" do
+      it "can toggle the active status of a driver when a ride is requested to inactive (available to be assigned)" do
         new_driver.update(active: false)
         passenger = Passenger.create(name: "Mac Do", phone_num: "253.394.8901")
         trip = Trip.create(driver_id: new_driver.id, passenger_id: passenger.id, rating: 5, cost: 1000.00, date: Date.new(2019, 3, 4))
         expect(new_driver.toggle_active).must_equal true
       end
-    end
 
-    describe "can go offline" do
-      # Your code here
+      it "can toggle the active status of a driver to active (unavailable) " do
+        new_driver.update(active: true)
+        expect(new_driver.toggle_active).must_equal false
+      end
     end
 
     # You may have additional methods to test

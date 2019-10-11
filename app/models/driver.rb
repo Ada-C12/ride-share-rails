@@ -22,7 +22,7 @@ class Driver < ApplicationRecord
 
   def total_earnings
     if self.count_rides == 0
-      return nil
+      return 0
     else
       trip_array = self.trips
       earnings_sum = 0
