@@ -33,3 +33,18 @@
 .buttons{
   text-align: center;
 }
+
+.passenger-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  font-size: 1.5em;
+}
+
+.passenger-trips {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}

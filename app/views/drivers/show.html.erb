@@ -5,42 +5,42 @@
   <%else%>
     <h2>Available</h2>
   <%end%>
-</header>
-
-<section class="show-details">
-  <h3>Vin #<%=@driver.vin%></h2>
-  <h3>Average Rating:  <%=@driver.average_rating%></h3>
-  <h3>Total Earnings:  $<%='%.2f' % @driver.total_earnings%></h3>
-  <h3>Total Trips Given:  <%=@driver.trips.count%></h3>
-</section>
-<section class="buttons">
-  <%= link_to "Edit", edit_driver_path(@driver.id) %>
-  <%= link_to "Delete", driver_path(@driver.id), method: :delete, data: { confirm: "Are you sure you want to delete this driver?" }, class: "index-delete-link" %>
   <% if @driver.active %>
     <h3><%=link_to "Toggle Active", make_inactive_path(@driver.id), method: :patch%></h3>
   <% else %>
     <h3><%=link_to "Toggle Active", make_active_path(@driver.id), method: :patch%></h3>
   <% end %>
+</header>
+
+<section class="show-details">
+  <h3>Vin #<%=@driver.vin%></h2>
+  <section class="buttons">
+    <%= link_to "Edit", edit_driver_path(@driver.id) %>
+    <%= link_to "Delete", driver_path(@driver.id), method: :delete, data: { confirm: "Are you sure you want to delete this driver?" }, class: "index-delete-link" %>
+  </section>
+  <h3>Average Rating:  <%=@driver.average_rating%></h3>
+  <h3>Total Earnings:  $<%='%.2f' % @driver.total_earnings%></h3>
+  <h3>Total Trips Given:  <%=@driver.trips.count%></h3>
 </section>
-<section class = "drivertrips">
+<section>
   <% if @driver.trips.empty? %>
     <h3>Driver has 0 trips</h3>
   <% else %>
     <h2>Driver Trips: </h2>
-    <ul>
-      <li><h4>Date</h4></li>
-      <li><h4>Passenger</h4></li>
-      <li><h4>Cost</h4></li>
-      <li><h4>Rating</h4></li>
+    <ul class= "driver-heading">
+      <li><strong>Date</strong></li>
+      <li><strong>Passenger</strong></li>
+      <li><strong>Cost</strong></li>
+      <li><strong>Rating</strong></li>
     </ul>
-  <ul>
     <% @driver.trips.each do |trip| %>
+    <ul class= "driver-trips"> 
       <li><%=link_to trip.date, trip_path(trip.id)%></li>
       <li><%=link_to trip.passenger.name, passenger_path(trip.passenger.id)%></li>
       <% trip_cost = trip.cost / 100 %>
-      <li><%= '%.2f' % trip_cost %></li>
+      <li>$<%= '%.2f' % trip_cost %></li>
       <li><%=trip.rating%></li>
+    </ul>
     <% end %>
-  </ul>
   <% end %>
 </section>

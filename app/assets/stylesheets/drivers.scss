@@ -34,7 +34,18 @@
   text-align: center;
 }
 
-.drivertrips{
-  text-align: left;
-  padding: 2em;
+.driver-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  font-size: 1.5em;
 }
+
+.driver-trips {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+
