@@ -11,24 +11,27 @@
 
   <body>
     <nav>
-      <ul>
-        <li>
+      <ul class="nav-links">
+        <li class="home-link">
           <%= link_to "Rideshare Rails!", root_path %>
         </li>
-        <li>
+        <li class="drivers-link">
           <%= link_to "Drivers", drivers_path %>
         </li>
-        <li>
+        <li class="add-driver">
           <%= link_to "Add Drivers", new_driver_path %>
         </li>
-        <li>
+        <li class="passengers-link">
           <%= link_to "Passengers", passengers_path %>
         </li>
-        <li>
+        <li class="add-passenger">
           <%= link_to "Add Passengers", new_passenger_path %>
         </li>
       </ul>
     </nav>
     <%= yield %>
+    <footer>
+      &copy; 2019. All rights reserved.
+    </footer>
   </body>
 </html>

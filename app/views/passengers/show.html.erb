@@ -1,8 +1,8 @@
-<h1>
+<h1 class="passenger-name-border">
 <%= @passenger.name %>
 </h1>
 
-<p><%= link_to '<button type="button">Request New Trip</button>'.html_safe, passenger_path( @passenger.id ), method: :new%></p>
+<p><%= link_to '<button type="button">Request New Trip</button>'.html_safe, new_passenger_trip_path( passenger_id: @passenger.id )%></p>
 
 <h3> Passenger Details</h3>
 

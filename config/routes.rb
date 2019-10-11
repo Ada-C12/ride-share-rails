@@ -14,7 +14,11 @@ Rails.application.routes.draw do
   root to: "homepages#index"
   get "/homepages", to: "homepages#index"
 
-  resources :drivers, :passengers, :trips
+  resources :drivers
+  resources :passengers do
+    resources :trips, shallow:true
+  end
+  resources :trips
 
   get "/drivers/:id/toggle", to: "drivers#edit"
   post "/drivers/:id/toggle", to: "drivers#toggle_active"
