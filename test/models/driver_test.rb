@@ -139,7 +139,7 @@ describe Driver do
           driver_id: new_driver.id,
           passenger_id: passenger.id,
           rating: 5,
-          cost: 10
+          cost: 1000
         )
 
         Trip.create(
@@ -147,7 +147,7 @@ describe Driver do
           driver_id: new_driver.id,
           passenger_id: passenger.id,
           rating: 3,
-          cost: 12
+          cost: 1200
         )
 
         Trip.create(
@@ -155,9 +155,9 @@ describe Driver do
           driver_id: new_driver.id,
           passenger_id: passenger.id,
           rating: nil,
-          cost: 12
+          cost: 1200
         )
-        expect(new_driver.earnings).must_equal 14.96
+        expect(new_driver.total_earned).must_equal 1496
       end 
     end 
 
