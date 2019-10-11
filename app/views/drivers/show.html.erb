@@ -1,10 +1,16 @@
+
 <h1><%=@driver.name%> Details</h1>
 
 <section class="details-section">
+  <% status = @driver.active ? " active" : " inactive" %>
+  <% label = (@driver.active) ? "Set inactive" : "Set active" %> 
+
   <div>
+    <%= link_to label, toggle_active_path(@driver.id), method: :patch, class: "small-button" %>
     <%= link_to "Edit Driver", edit_driver_path(@driver.id), class: "small-button" %>
     <%= link_to "Delete Driver", driver_path(@driver.id), method: :delete, data: { confirm: "Are you sure you want to delete this driver?" }, class: "small-button" %>
   </div>
+
   <p> 
     <% if @driver.car_make && @driver.car_make != "" %>
         <strong>Car make:</strong> <%= @driver.car_make %> --
@@ -15,6 +21,7 @@
     <% end %>
       <strong>VIN:</strong> <%=@driver.vin%>
   </p>
+  <p> <%=@driver.name%> is now <strong><%=status%></strong></p>
   <p><strong>Average rating:</strong> <%=@driver.average_rating%></p>
   <p><strong>Total earnings:</strong> $<%=@driver.total_earnings%></p>
 </section>

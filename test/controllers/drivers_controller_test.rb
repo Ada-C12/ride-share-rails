@@ -3,7 +3,7 @@ require "test_helper"
 describe DriversController do
   # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
   before do
-    @driver = Driver.create(name: "Kari", vin: "123", active: true,
+    @driver = Driver.create(name: "Kari", vin: "123", active: false,
       car_make: "Cherry", car_model: "DR5")
   end
 
@@ -237,6 +237,35 @@ describe DriversController do
 
       must_respond_with :redirect
       must_redirect_to drivers_path
+    end
+  end
+
+  describe "toggle" do
+    it "can set driver status to active and redirect to driver show page" do
+      p @driver.active
+      expect(@driver.active).must_equal false
+      patch toggle_active_path(@driver.id)
+
+      expect(Driver.find_by(id: @driver.id).active).must_equal true
+      must_respond_with :redirect
+      must_redirect_to driver_path(@driver.id)
+    end
+
+    it "can set driver status to inactive and redirect to driver show page" do
+      patch toggle_active_path(@driver.id)
+      expect(Driver.find_by(id: @driver.id).active).must_equal true
+
+      patch toggle_active_path(@driver.id)
+
+      expect(Driver.find_by(id: @driver.id).active).must_equal false
+      must_respond_with :redirect
+      must_redirect_to driver_path(@driver.id)
+    end
+
+    it "respond with 404 if given an invalid driver id" do
+      patch toggle_active_path(-1)
+
+      must_respond_with :not_found
     end
   end
 end

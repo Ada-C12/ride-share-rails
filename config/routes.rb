@@ -6,9 +6,11 @@ Rails.application.routes.draw do
     resources :trips, only: :index
   end
 
+  patch "/drivers/:id/toggle", to: "drivers#toggle", as: "toggle_active"
+
   resources :passengers do 
     resources :trips, only: [:index, :new]
   end
- 
+  
   resources :trips
 end
