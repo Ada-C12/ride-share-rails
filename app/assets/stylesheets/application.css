@@ -77,11 +77,11 @@ a {
 }
 
 
- .drivers-passengers-list li {
+ .trips-drivers-passengers-list li {
    padding-bottom: 2rem;
  }
 
- .drivers-passengers-list a:hover {
+ .trips-drivers-passengers-list a:hover {
    background-color: gray;
    color: white;
  }

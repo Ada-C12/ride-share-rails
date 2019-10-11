@@ -1,3 +1,24 @@
 // Place all the styles related to the Trips controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.trips-border {
+    padding-left: 2rem;
+  }
+
+.trips-container {
+    background-image: url("https://66.media.tumblr.com/4e96687a7515aef8eb3e3a8edef03b63/tumblr_owt4j7x8zJ1tyxd5fo4_250.png");
+    background-attachment: fixed;
+    background-size: 400px;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.trips-edit-button, .trips-delete-button {
+    font-size: smaller;
+    background-color: white;
+    color: black;
+    padding: 2px 6px 2px 6px;
+    border: solid 1px black;
+    border-radius: 5px;
+  }
