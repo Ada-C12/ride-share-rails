@@ -87,7 +87,7 @@ table, th, td {
 }
 
 .welcome-background {
-  background-image: url("https://images.pexels.com/photos/336948/pexels-photo-336948.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=624&w=390")
+  background-image: url("http://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=624&w=390")
 }
 
 .button a {
@@ -109,12 +109,12 @@ table, th, td {
 
 .text-block {
   position: absolute;
-  top: 270px;
-  left: 80%;
+  top: 285px;
+  left: 73%;
   justify-content: center;
   background-color: black;
   color: white;
-  padding-left: 20px;
-  padding-right: 20px;
-  opacity: 0.8;
+  padding-left: 30px;
+  padding-right: 30px;
+  opacity: 0.9
 }
