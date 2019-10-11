@@ -1,13 +1,19 @@
 <%= form_with model: @driver, class: "driver_form" do |f| %>
-
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :vin %>
-  <%= f.text_field :vin %>
-  <%= f.label :car_make %>
-  <%= f.text_field :car_make %>
-  <%= f.label :car_model %>
-  <%= f.text_field :car_model %>
-  
-  <%= f.submit submit_button_label, class: "driver-form-button" %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :vin %>
+    <%= f.text_field :vin %>
+  </p>
+  <p>
+    <%= f.label :car_make %>
+    <%= f.text_field :car_make %>
+  <p>
+  <p>
+    <%= f.label :car_model %>
+    <%= f.text_field :car_model %>
+  </p>
+  <%= f.submit submit_button_label, class: "small-button" %>
 <% end %>

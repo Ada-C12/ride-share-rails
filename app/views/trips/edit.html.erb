@@ -1,4 +1,4 @@
-<h2>Edit Trip #<%= @trip.id %></h2>
+<h1>Edit Trip #<%= @trip.id %></h1>
 
 <% if @trip.errors.any? %>
   <ul class="errors">
@@ -11,22 +11,30 @@
 <% end %>
 
 <%= form_with model: @trip, class: "edit_trip_form" do |f| %>
-
-  <%= f.label :date %>
-  <%= f.text_field :date %>
-  <%= f.label :driver %>
-  <%= f.select :driver_id, @drivers.map{ |driver| [driver.name, driver.id] } %>
-  <%= f.label :passenger %>
-  <%= f.select :passenger_id, @passengers.map{ |passenger| [passenger.name, passenger.id] } %>
-  <%= f.label :cost %>
-  <%= f.text_field :cost %>
-  <%= f.label :rating %>
+  <p>
+    <%= f.label :date %>
+    <%= f.text_field :date %>
+  </p>
+  <p>
+    <%= f.label :driver %>
+    <%= f.select :driver_id, @drivers.map{ |driver| [driver.name, driver.id] } %>
+  </p>
+  <p>
+    <%= f.label :passenger %>
+    <%= f.select :passenger_id, @passengers.map{ |passenger| [passenger.name, passenger.id] } %>
+  </p>
+  <p>
+    <%= f.label :cost %>
+    <%= f.text_field :cost %> / 100
+  </p>
+  <p>
+    <%= f.label :rating %>
     <% if @trip.rating.nil? %>
       <%= f.select :rating, ['1', '2', '3', '4', '5']%>
     <% else %>
       <%= @trip.rating %>
     <% end %>
-  
-  <%= f.submit "Submit", class: "trip-form-button" %>
+  </p>
+  <%= f.submit "Update Trip", class: "small-button" %>
 <% end %>
 

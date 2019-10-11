@@ -5,9 +5,20 @@ class Driver < ApplicationRecord
   validates :vin, presence: true, uniqueness: true
   
   def average_rating
-    total_rating = self.trips.map{|trip| trip.rating }.sum
-    if self.trips.length != 0
-      return (total_rating.to_f / self.trips.length).round(1)
+    ratings = []
+    rated_trips = 0
+
+    self.trips.map do |trip| 
+      if trip.rating
+        ratings << trip.rating
+        rated_trips += 1
+      end
+    end
+    
+    total_rating = ratings.sum
+
+    if rated_trips != 0
+      return (total_rating.to_f / rated_trips).round(1)
     end
     return nil
   end

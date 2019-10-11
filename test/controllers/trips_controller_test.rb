@@ -62,30 +62,23 @@ describe TripsController do
       must_redirect_to passenger_path(@passenger.id)
     end
 
-    it "does not create a trip if the form data violates Trip validations, and responds with a redirect to homepage" do
+    it "does not create a trip if the form data violates Trip validations" do
       invalid_trip_hashes = [
         {
           trip: {
             date: "",
-            rating: 7,
+            rating: 3,
             cost: 1040,
             driver_id: @driver.id
-          },
+          }
         },
         {
           trip: {
             date: "10-04-2019",
             rating: 7,
             cost: 1040,
-            driver_id: nil
-          },
-        },
-        {
-          trip: {
-            date: nil,
-            rating: nil,
-            cost: nil,
-            driver_id: nil
+            driver_id: @driver.id,
+            passenger_id: -1
           }
         }
       ]
@@ -96,9 +89,7 @@ describe TripsController do
         }.must_differ "Trip.count", 0
       end
 
-      # Test that edit page will render, per Jared's slack msg
-      must_respond_with :redirect
-      must_redirect_to root_path
+      must_respond_with :success
     end
   end
 

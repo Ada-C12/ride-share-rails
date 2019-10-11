@@ -1,3 +1,12 @@
-<h2>Our Homepage!</h2>
 
-<p>Maybe add an image if we want to get fancy?</p>
+<main class="homepage">
+  <h1 id="homepage-title">Tofu's Rideshare App</h1>
+  <img class="main-picture" src="/assets/samoyed_driver.jpeg" alt="Image of samoyed dog in the diver's seat of a car"/>
+  <p>
+    <%= link_to "Manage Drivers", drivers_path, class: "button" %>
+  </p>
+  <p>
+    <%= link_to "Manage Passengers", passengers_path, class: "button" %>
+  </p>
+</main>
+

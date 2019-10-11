@@ -83,11 +83,65 @@ describe Passenger do
   # Tests for methods you create should go here
   describe "custom methods" do
     describe "request a ride" do
-      # Your code here
+      before do
+        Driver.create(
+          name: "Shakira Stamm2",
+          vin: "12345"
+        )
+      end
+
+      it "can create a trip for a passenger" do
+        new_passenger.save
+        expect(new_passenger.request_trip).must_be_instance_of Trip
+      end
+
+      it "return nil if there's no driver available" do
+        expect(Driver.count).must_equal 1
+        Driver.first.update(active: true)
+        new_passenger.save
+        
+        assert_nil(new_passenger.request_trip)
+      end
     end
 
     describe "complete trip" do
       # Your code here
+    end
+
+    describe "total expense to dollars" do
+      before do
+        new_passenger.save
+        @passenger = Passenger.first
+  
+        driver = Driver.create(
+          name: "Sarah",
+          vin: "848485859",
+          car_make: "Ford",
+          car_model: "Escape",
+          active: true
+        )
+    
+        trip_1 = Trip.create(
+          date: "10-09-2019",
+          rating: 3,
+          cost: 2040,
+          passenger_id: @passenger.id,
+          driver_id: driver.id
+        )
+  
+        trip_2 = Trip.create(
+          date: "10-19-2019",
+          rating: 4,
+          cost: 1140,
+          passenger_id: @passenger.id,
+          driver_id: driver.id
+        )
+      end
+
+      it "can calculate the correct amount of total expense for a passenger" do
+        total_expense = @passenger.trips.map{|trip| trip.cost }.sum
+        expect(@passenger.total_expense_to_dollars).must_equal total_expense / 100.0
+      end
     end
     # You may have additional methods to test here
   end
