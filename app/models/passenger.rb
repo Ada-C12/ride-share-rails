@@ -31,7 +31,7 @@ class Passenger < ApplicationRecord
     trip_cost = rand(1000..3000)
     trip_driver_id = Driver.available_driver.id
 
-    trip_params = {date: trip_date, cost: trip_cost, driver_id: trip_driver_id }
+    trip_params = {date: trip_date, cost: trip_cost, driver_id: trip_driver_id, passenger_id: self.id }
     return trip_params
   end
   
