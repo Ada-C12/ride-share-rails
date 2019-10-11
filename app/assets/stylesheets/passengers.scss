@@ -3,10 +3,14 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.passengers-border {
-  background-image: url("https://66.media.tumblr.com/a7cdaff0981e8f1ceb8c475f5d8fa3ec/tumblr_owt4j7x8zJ1tyxd5fo3_250.png");
-  background-size: 40px;
+.passengers-container {
+  background-image: url("https://66.media.tumblr.com/256b399e71722bc56146bea5f201d586/tumblr_o56qe4DFOV1u1nuzeo1_1280.png");
+  background-attachment: fixed;
+  background-size: 400px;
   background-repeat: no-repeat;
-  background-position: 25%;
+  background-position: right;
+}
+
+.passengers-border {
   padding-left: 2rem;
 }
