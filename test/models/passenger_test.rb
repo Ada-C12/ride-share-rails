@@ -42,5 +42,6 @@ describe Passenger do
     describe "total_money_spent" do
       # Your code here
     end
+    # You may have additional methods to test here
   end
 end

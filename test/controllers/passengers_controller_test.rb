@@ -112,6 +112,16 @@ describe PassengersController do
       must_redirect_to passengers_path
     end
 
+    it "does not change the db when the passenger does not exist, then responds with 404" do
+      passenger.save
+
+      expect {
+        delete passenger_path(-1)
+    }.must_differ "Passenger.count", 0
+    
+    must_respond_with :redirect
+    end
+
     # it "redirects to passenger index page and deletes no books if no books exist" do
     #   Book.destroy_all
     #   invalid_book_id = 1
