@@ -16,17 +16,14 @@ class Driver < ApplicationRecord
   end
   
   def avg_rating
-    trips = self.trips
-    count = 0
-    completed_trips = trips.select {|trip| !trip.rating.nil?}
-    rating = completed_trips.sum {|trip| trip.cost} 
+    avg_rating = []
+    self.trips.all.each do |trip|
+      avg_rating << (trip.rating)
+    end
     
-    completed_trips = trips.select {|trip| !trip.rating.nil?}
-    rating = completed_trips.sum {|trip| trip.cost} 
-    avg_rating = rating / completed_trips.length
+    avg_rating = (avg_rating.sum)/avg_rating.length
     return avg_rating
   end 
-  
   
   def self.find_a_driver
     driver = Driver.find_by(available: true)
