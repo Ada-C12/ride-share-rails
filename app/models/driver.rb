@@ -6,9 +6,9 @@ class Driver < ApplicationRecord
   
   def total_earnings
     trips = self.trips
-    completed_trips = trips.select {|t| !t.trip.nil?}
+    completed_trips = trips.select {|trip| !trip.trip.nil?}
     completed_trips.map do |t|
-      trip_cost =  (t - 1.65) * 0.80
+      trip_cost =  (trip - 1.65) * 0.80
     end
     total_earning = completed_trips.sum
     return total_earning
@@ -20,8 +20,8 @@ class Driver < ApplicationRecord
     completed_trips = trips.select {|trip| !trip.rating.nil?}
     rating = completed_trips.sum {|trip| trip.cost} 
     
-    completed_trips = trips.select {|t| !t.rating.nil?}
-    rating = completed_trips.sum {|t| t.cost} 
+    completed_trips = trips.select {|trip| !trip.rating.nil?}
+    rating = completed_trips.sum {|tipr| trip.cost} 
     avg_rating = rating / completed_trips.length
     return avg_rating
   end 

@@ -12,61 +12,62 @@ class TripsController < ApplicationController
   def new
     @trip = Trip.new
   end
+end
+
+def edit
+  @trip = Trip.find_by(id: params[:id])
   
-  def edit
-    @trip = Trip.find_by(id: params[:id])
-    
-    if @trip.nil?
-      head :not_found
-      return
-    end
+  if @trip.nil?
+    head :not_found
+    return
   end
-  
-  def update
-    @trip = Trip.find_by(id: params[:id])
-    if @trip.update(trip_params)
-      redirect_to root_path 
-      return
-    else 
-      render :edit 
-      return
-    end
+end
+
+def update
+  @trip = Trip.find_by(id: params[:id])
+  if @trip.update(trip_params)
+    redirect_to root_path 
+    return
+  else 
+    render :edit 
+    return
   end
+end
+
+def destroy
+  trip_id = params[:id]
+  @trip = Trip.find_by(id: trip_id)
   
-  def destroy
-    trip_id = params[:id]
-    @trip = Trip.find_by(id: trip_id)
-    
-    if @trip.nil?
-      head :not_found
-      return
-    end
-    
-    @trip.destroy
-    redirect_to passenger_path
+  if @trip.nil?
+    head :not_found
     return
   end
   
-  # Creates a trip for a specific passenger with an available driver...
-  # Sam - Update path and check find_a_driver method before working on tests...
-  def create
-    trip = Trip.create(
-      date: Date.today,
-      passenger_id: params[:id],
-      driver_id: Driver.find_a_driver,
-      cost: (Trip.first.cost)
-    )
-    
-    if trip.id
-      redirect_to passenger_path
-    else
-      render :new
-    end
-  end
+  @trip.destroy
+  redirect_to passenger_path
+  return
+end
+
+# Creates a trip for a specific passenger with an available driver...
+# Sam - Update path and check find_a_driver method before working on tests...
+def create
+  trip = Trip.create(
+  date: Date.today,
+  passenger_id: params[:id],
+  driver_id: Driver.find_a_driver,
+  cost: (Trip.first.cost)
+  )
   
-  private
-  
-  def trip_params
-    return params.require(:trip).permit( :rating, :cost)
+  if trip.id
+    redirect_to passenger_path
+  else
+    render :new
   end
+end
+
+private
+
+def trip_params
+  return params.require(:trip).permit( :rating, :cost)
+end  
 end
