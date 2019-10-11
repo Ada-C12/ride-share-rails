@@ -137,7 +137,7 @@ describe DriversController do
       
     end
     
-    it "does not update any driver if given an invalid id, and responds with a 404" do
+    it "responds with a redirect for an invalid update" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
       # Set up the form data
@@ -147,10 +147,19 @@ describe DriversController do
       
       # Assert
       # Check that the controller gave back a 404
+      driver = Driver.create(name: "Tommy Salami", vin: "123cat")
+      bad_driver = {
+        driver: {
+          name: 100,
+          vin: "cool500"
+        }
+      }
 
-      patch driver_path(id: 789)
-      must_redirect_to drivers_path
 
+      patch driver_path(id: driver.id), params: bad_driver
+      updated_driver = Driver.find_by(id: driver.id)
+      expect(updated_driver.name).must_equal "Tommy Salami"
+      expect(updated_driver.vin).must_equal "123cat"
       
     end
     
@@ -180,6 +189,8 @@ describe DriversController do
       
       # Assert
       # Check that the controller redirects
+
+      
       
     end
     

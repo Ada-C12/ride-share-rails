@@ -42,7 +42,7 @@ describe Driver do
       # Assert
       expect(new_driver.valid?).must_equal false
       expect(new_driver.errors.messages).must_include :name
-      expect(new_driver.errors.messages[:name]).must_equal ["can't be blank"]
+      expect(new_driver.errors.messages[:name]).must_equal ["can't be blank", "is invalid"]
     end
 
     it "must have a VIN number" do
