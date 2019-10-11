@@ -36,7 +36,7 @@ describe PassengersController do
       must_respond_with :success
     end
 
-    it "will respond with not_found when attempting to edit a nonexistant task" do
+    it "will respond with not_found when attempting to edit a nonexistant passenger" do
       get edit_passenger_path(-1)
       must_respond_with :not_found
     end
