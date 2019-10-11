@@ -1,0 +1,15 @@
+<strong><%= @driver.inspect %></strong>
+<%= form_with model: @driver, class: 'create-driver' do |f| %>
+<p>Please provide the following information to save your book to our database:</p>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :vin %>
+  <%= f.text_field :vin %>
+
+  <%= f.submit "Save Driver", class: "driver-button" %>
+<% end %>
+
+<%= link_to "Manage Drivers", drivers_path()%>
+<%= link_to "Home", root_path() %>

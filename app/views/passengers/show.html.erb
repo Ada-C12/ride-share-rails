@@ -1,0 +1,15 @@
+<p>Name: <%= @passenger.name%></p>
+<p>Total Amount Spent: <%= @passenger.total_spent%> </p>
+<%= link_to "Request a Trip", passenger_trips_path(@passenger.id), method: :post%>
+
+<h2>Passenger's Trips</h2>
+<p><% @passenger.trips.each do |trip|%> 
+<p>
+  Trip Id:<%=link_to trip.id, trip_path(trip)%>
+</p>
+
+<%end%>
+
+
+<%= link_to "Manage Passengers", passengers_path()%>
+<%= link_to "Home", root_path() %>

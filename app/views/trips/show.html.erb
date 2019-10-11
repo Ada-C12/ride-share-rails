@@ -1,0 +1,39 @@
+<h1>Trip</h1>
+
+ <% unless @trip.rating.nil? %>
+    <%=link_to "Edit This Trip", edit_trip_path(@trip)%>
+  <% end %>
+
+</p> Date:
+<%=@trip.date%>
+</p>
+
+</p> Rating: 
+<% if @trip.rating.nil?%>
+  <%= form_with model: @trip, class: 'edit-trip' do |f| %>
+  <%= f.select :rating, options_for_select(1..5) %>
+  <%= f.submit "Submit Rating", class: "trip-button"%>
+  <% end %>
+<% else %>
+  <%=@trip.rating%>
+<% end%>
+</p>
+
+</p> Cost:
+<%=@trip.cost%>
+</p>
+
+
+</p> Passenger Id:
+<%=@trip.passenger_id%>
+</p>
+
+</p> Driver Id:
+<%=@trip.driver_id%>
+</p>
+
+
+
+<%= link_to "Manage Drivers", drivers_path() %>
+<%= link_to "Manage Passengers", passengers_path() %>
+<%= link_to "Home", root_path() %>

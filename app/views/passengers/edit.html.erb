@@ -1,0 +1,15 @@
+<%= form_with model: @passenger, class: 'edit-passenger' do |f| %>
+<p>Please provide the following information to update your book to our database:</p>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :phone_num %>
+  <%= f.text_field :phone_num %>
+
+  <%= f.submit "Update Passenger", class: "passenger-button" %>
+
+<% end %>
+
+<%= link_to "Manage Passengers", passengers_path()%>
+<%= link_to "Home", root_path() %>
