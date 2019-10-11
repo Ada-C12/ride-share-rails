@@ -1,12 +1,14 @@
-<h1 class="home-header">The Driver Index</h1>
-
-<section>
-  <h2> List of all Drivers </h2>
-  <ul>
-    <% @drivers.each do |driver| %>
-      <li>
-        <%= link_to driver.name, driver_path(driver.id)%>
-      </li>
-    <% end %>
-  </ul>
-</section>
+<body>
+  <section>
+    <table style=width100%>
+    <tr>
+      <th><h2> List of all Drivers </h2></th>
+    </tr>
+      <% @drivers.each do |driver| %>
+        <tr>
+          <th><%= link_to driver.name, driver_path(driver.id)%></th>
+        </tr>
+      <% end %>
+    </table>
+  </section>
+</body>

@@ -11,4 +11,7 @@ class Passenger < ApplicationRecord
     trip_params = {date: date, driver_id: driver_id , passenger_id: passenger_id}  
     return trip_params
   end
+
+  def self.total_charged
+    end 
 end
