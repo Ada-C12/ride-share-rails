@@ -8,13 +8,7 @@
 <h2>Trips</h2>
 
 <%@driver.trips.each do |trip|%>
-<%= link_to "Trip Details", trip_path(trip)%>
-<p>Trip_id: <%=trip.id%>
-<p>Date: <%=trip.date%></p>
-<p>Driver_id: <%=trip.driver_id%></p>
-<p>Passenger: <%=trip.passenger_id%></p>
-<p>Cost: <%=trip.cost%></p>
-<p>Rating: <%=trip.rating%></p>
+<p>Trip_id: <%=trip.id%>  (<%= link_to "Details", trip_path(trip)%>)</p>
 <br>
 <%end%>
 </p>

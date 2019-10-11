@@ -117,5 +117,14 @@ describe PassengersController do
         delete passenger_path(id: passenger.id) 
       }.must_differ 'Passenger.count', -1
     end
+
+    it "will redirect to the root page once a task is destroyed" do
+
+
+      delete passenger_path(passenger.id)
+
+      # Assert
+      must_redirect_to passengers_path
+    end
   end
 end

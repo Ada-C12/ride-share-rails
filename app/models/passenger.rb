@@ -13,4 +13,6 @@ class Passenger < ApplicationRecord
 
     return total_charge
   end 
+
+  
 end
