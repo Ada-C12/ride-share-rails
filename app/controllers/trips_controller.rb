@@ -33,16 +33,15 @@ class TripsController < ApplicationController
     if @trip.cost.nil?
       @trip.cost = rand(500...9999)
     end
-    if @trip.driver_id == params[:driver_id]
-      @selected_driver = Driver.find_by(id: @trip.driver_id)
-    else
+    
+    if !@trip.driver_id 
       @drivers = Driver.where(active: false)
       @selected_driver = @drivers[rand(0...@drivers.length)]
       @trip.driver_id = @selected_driver.id
     end
     
     if @trip.save
-      @selected_driver.update(active: true)
+      @trip.driver.update(active: true)
       redirect_to trip_path(@trip.id)
       return
     else

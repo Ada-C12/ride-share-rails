@@ -12,6 +12,9 @@
 
   <%= f.label :date %>
   <%= f.text_field :date %>
+  <% if @driver %>
+  <%= f.select :driver_id, [[@driver.name, @driver.id]] %>
+  <% end %>
   <%= f.label :passenger_id %>
   <% if @passenger %>
   <%= f.select :passenger_id, [[@passenger.name, @passenger.id]] %>
