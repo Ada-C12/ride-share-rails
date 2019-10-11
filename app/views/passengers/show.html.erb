@@ -46,13 +46,13 @@
  <% if trip.rating %>
 <td><%= trip.rating %></td>
 <% else %>
-<td><%= form_with model: @driver, class: "driver_form_class" do |f| %>
+<td><%= form_with model: @trip, :url => {:action => "rate_trip", :trip_id => trip.id} , class: "trip_form_class" do |f| %>
 <%= f.select(:rating, options_for_select(['5', '4', '3', '2', '1']), 
                         {}, 
                         class: "chzn-select")
 
                         %>
-                                                      <%= f.submit button: "Submit", class: "driver-form-button" %>
+                                                      <%= f.submit button: "Submit", class: "trip-form-button" %>
 <%end%></td>
                         
 <%end%>

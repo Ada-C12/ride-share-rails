@@ -60,6 +60,15 @@ class PassengersController < ApplicationController
     end
   end
 
+  def rate_trip
+    trip_to_rate = Trip.find_by(id: params[:trip_id])
+    trip_to_rate.rating = params[:rating]
+    trip_to_rate.save
+    trip_to_rate.driver.update(active: false)
+
+    redirect_to passenger_trips_path(trip_to_rate.passenger_id)
+  end
+
   private
 
   def passenger_params

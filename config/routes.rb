@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   post "passengers/:id/trips/new", to: "trips#create"
   # Attempting to write a path to submit a rating for a trip from passenger show
-  # post "passengers/:id", to: "passengers#"
+  post "passengers/:trip_id/rate", to: "passengers#rate_trip"
 
   get "/drivers/:id/toggle", to: "drivers#edit"
   post "/drivers/:id/toggle", to: "drivers#toggle_active"
