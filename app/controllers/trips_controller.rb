@@ -58,9 +58,9 @@ class TripsController < ApplicationController
     )
     
     if trip.id
-      redirect_to root_path
+      redirect_to passenger_path
     else
-      head :server_error
+      render :new
     end
   end
   
