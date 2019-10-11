@@ -65,6 +65,19 @@ class DriversController < ApplicationController
     return
   end
   
+  def toggle
+    @driver = Driver.find_by(id: params[:id])
+    if @driver
+      @driver.toggle_active
+      @driver.save
+      redirect_to driver_path(@driver.id)
+      return
+    end   
+    
+    head :not_found
+    return
+  end
+
   private
   def driver_params
     return params.require(:driver).permit(:name, :vin, :active, :car_make, :car_model)

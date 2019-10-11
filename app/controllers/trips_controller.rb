@@ -9,9 +9,21 @@ class TripsController < ApplicationController
     end
   end
   
-  def create
+  def new
     passenger_id = params[:passenger_id]
+    @passenger = Passenger.find_by(id: passenger_id)
+    @trip = @passenger.request_trip
+    if passenger_id.nil?
+      @pasengers = Passenger.all
+    else
+      @passengers = [Passenger.find_by(id: passenger_id)]
+    end
+  end
+  
+  def create
+    passenger_id = params[:trip][:passenger_id]
     passenger = Passenger.find_by(id: passenger_id)
+
     if passenger
       @trip = passenger.request_trip
       
@@ -19,11 +31,13 @@ class TripsController < ApplicationController
         @trip.driver.toggle_active
         redirect_to passenger_path(@trip.passenger_id)
         return
+      else
+        # need code to render new form again for save fails
+        render :new
+        return
       end
     end
     
-    redirect_to root_path
-    return
   end
   
   def edit
@@ -79,7 +93,7 @@ class TripsController < ApplicationController
     if @trip
       passenger = @trip.passenger
       if passenger.complete_trip(@trip)
-        redirect_to trip_path(params[:id])
+        redirect_to trip_path(Trip.find_by(id: @trip.id))
         return
       end
     end

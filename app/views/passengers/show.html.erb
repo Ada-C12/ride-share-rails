@@ -1,30 +1,37 @@
-<header class="show-header">
-  <h1><%=@passenger.name%></h1>
-  <%= link_to "Request new trip!", passenger_trips_path(@passenger.id),  method: :post%>
-  <%= link_to "Edit this passenger!", edit_passenger_path(@passenger.id) %>
-  <%= link_to "(Delete this passenger!)", passenger_path(@passenger.id), method: :delete, data: { confirm: "Are YOU sure?" }, class: "index-delete-link" %>
-</header>
+<h1><%=@passenger.name%> Details</h1>
 
-<section class="show-details">
+<section class="details-section">
+  <div>
+    <%= link_to "Create New Trip", new_passenger_trip_path(@passenger.id), class: "small-button" %>
+    <%= link_to "Edit Passenger", edit_passenger_path(@passenger.id), class: "small-button" %>
+    <%= link_to "Delete Passenger", passenger_path(@passenger.id), method: :delete, data: { confirm: "Are you sure you want to delete this passenger?" }, class: "small-button" %>
+  </div>
+  <p>Phone number: <%=@passenger.phone_num%></p>
+  <p>Total expense: $<%= sprintf('%.2f', @passenger.total_expense_to_dollars)%></p>
+</section>
 
-  <p>
-    Phone number: <%=@passenger.phone_num%>
-  </p>
-
-
-  <p>List of trips</p>
-
-  <table>                         
+<section class="trips-section">
+  <h2>Trips Taken</h2>
+  <table class="trip-details-table">                         
     <tr>                          
       <th>Trip ID</th>
-      <th>Trip Date</th>
-      <th>Trip Cost</th>
+      <th>Date</th>
+      <th>Driver</th>
+      <th>Cost</th>
       <th>Rating</th>
-    </tr>   
-    <%@passenger.trips.each do |trip|%>
+    </tr>
+
+    <%@passenger.trips.order(date: :desc).each do |trip|%>
       <tr>
         <td><%= link_to trip.id, trip_path(trip.id) %></td>
         <td><%= trip.date %></td>
+        <td>
+          <% if trip.driver.nil? %>
+            Unknown
+          <% else %>
+            <%= link_to trip.driver.name, driver_path(trip.driver) %>
+          <% end %> 
+        </td>
         <td>$<%= sprintf('%.2f', trip.cost_to_dollars) %></td>
         <td><%= trip.rating %></td>
       </tr>

@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RideShareRails</title>
+    <title>Tofu's RideShare App</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" media='all', href="/assets/stylesheets/normalize.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
   </head>
 
   <body>
-      <nav>
+    <nav>
       <ul>
-        <li>
-          <%= link_to "Home!", root_path %>
+        <li class="navigation-link" id="home-link">
+          <%= link_to "Tofu's Rideshare App", root_path %>
         </li>
-        <li>
-          <%= link_to "Go to the Drivers Index Page", drivers_path %>
+        <li class="navigation-link">
+          <%= link_to "Drivers", drivers_path %>
         </li>
-        <li>
-          <%= link_to "Add new driver", new_driver_path %>
+        <li class="navigation-link">
+          <%= link_to "Add New Driver", new_driver_path %>
         </li>
-        <li>
-          <%= link_to "Go to the Passengers Index Page", passengers_path %>
+        <li class="navigation-link">
+          <%= link_to "Passengers", passengers_path %>
         </li>
-        <li>
-          <%= link_to "Add new passenger", new_passenger_path %>
+        <li class="navigation-link">
+          <%= link_to "Add New Passenger", new_passenger_path %>
         </li>
       </ul>
     </nav>
