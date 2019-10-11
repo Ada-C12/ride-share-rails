@@ -66,7 +66,7 @@ class TripsController < ApplicationController
       
       # update driver instance's total_earned
       prev_sum = @driver[:total_earned] 
-      new_sum = prev_sum + Driver.earnings(@trip.cost)
+      new_sum = prev_sum + @driver.net_earning(@trip.cost)
       @driver.update(total_earned: new_sum)
       
       redirect_to trip_path(@trip.id)

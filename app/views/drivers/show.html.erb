@@ -5,7 +5,13 @@
 <section class="details">
   <h1>Details</h1>
   <p>Average Rating: <%= @driver.average_rating %></p>
-  <p>Earnings: <%= usd(@driver.earnings) %></p>
+  <p>Earnings: 
+    <% if @driver.total_earned %>
+      <%= usd(@driver.total_earned) %>
+    <% else %>
+      <%= usd(0.00) %>
+    <% end %>
+  </p>
 </section>
 
 <section class="driver_grid">

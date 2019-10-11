@@ -109,9 +109,9 @@ failed_tally = 0
 Trip.all.each do |trip|
   driver = Driver.find_by(id: trip.driver)
   if driver.total_earned == nil 
-    new_sum = Driver.earnings(trip.cost)
+    new_sum = driver.net_earning(trip.cost)    
   else
-    new_sum = driver.total_earned + Driver.earnings(trip.cost)
+    new_sum = driver.total_earned + driver.net_earning(trip.cost)
   end
   
   unless driver.update(total_earned: new_sum)
