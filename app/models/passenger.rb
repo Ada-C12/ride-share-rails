@@ -13,13 +13,15 @@ class Passenger < ApplicationRecord
         first_available_driver = Driver.find_by(active: false)
         if first_available_driver
             passenger_id = self.id
-            return Trip.new(
-                date: Date.today,
-                rating: nil,
-                cost: rand(165..4000),
-                passenger_id: passenger_id,
-                driver_id: first_available_driver.id
-            )
+            return {
+                trip: {
+                    date: Date.today,
+                    rating: nil,
+                    cost: rand(165..4000),
+                    passenger_id: passenger_id,
+                    driver_id: first_available_driver.id
+                }
+            }
         else
             return nil
         end

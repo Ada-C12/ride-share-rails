@@ -23,6 +23,13 @@ describe TripsController do
       driver_id: @driver.id
     )
   end
+
+  describe "new" do
+    it "responds with success" do
+      get new_passenger_trip_path(@passenger.id)
+      must_respond_with :success
+    end
+  end
   
   describe "show" do
     it "responds with success when showing an existing valid trip" do
@@ -46,7 +53,11 @@ describe TripsController do
       
       trip_hash = {
         trip: {
+          date: Date.today,
+          rating: nil,
+          cost: rand(165..4000),
           passenger_id: @passenger.id,
+          driver_id: @driver.id 
         }
       }
       
@@ -202,17 +213,23 @@ describe TripsController do
         name: "Jane The Second",
         phone_num: "118675309"
       )
+
+      driver = Driver.first
       
-      trip_hash = {
+      trip_data = {
         trip: {
-          passenger_id: new_passenger.id
-        } 
+          date: Date.today,
+          rating: nil,
+          cost: rand(165..4000),
+          passenger_id: new_passenger.id,
+          driver_id: driver.id 
+        }
       }
       expect(@driver.active).must_equal false
       expect(new_passenger.trips.length).must_equal 0
       
       # Request a trip and verify there's a trip added to new_passenger and a driver status becomes active
-      post trips_path, params: trip_hash
+      post trips_path, params: trip_data
       updated_passenger = Passenger.find_by(id: new_passenger.id)
       
       expect(updated_passenger.trips.length).must_equal 1
