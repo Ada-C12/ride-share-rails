@@ -58,22 +58,37 @@ describe DriversController do
       }.must_differ "Driver.count", 1
       
       expect(Driver.count).must_equal(drivers_count + 1 )
+      
       must_respond_with :redirect
-      must_redirect_to  root_path
+      must_redirect_to  drivers_path
     end
     
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Set up the form data so that it violates Driver validations
+    it "cannot create a new driver with invalid name" do
+      invalid_driver_hash= {
+        driver:{
+          name: nil,
+          vin: "43c56"
+        }
+      }
       
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
-      
-      # Assert
-      # Check that the controller redirects
-      
+      expect {
+        post drivers_path, params: invalid_driver_hash
+      }.must_differ "Driver.count", 0
     end
+    
+    it "cannot create a new driver with invalid name" do
+      invalid_driver_hash= {
+        driver:{
+          name: "george",
+          vin: nil
+        }
+      }
+      
+      expect {
+        post drivers_path, params: invalid_driver_hash
+      }.must_differ "Driver.count", 0
+    end
+    
   end
   
   describe "edit" do
@@ -95,11 +110,9 @@ describe DriversController do
   
   describe "update" do
     before do
-      @new_driver = Driver.create(name: "Hyuo")
+      @new_driver = Driver.create(name: "Hyuo", vin: "8888888")
     end
     
-    it "can update an existing driver with valid information accurately, and redirect" do
-    end
     
     it "updates an existing driver successfully" do
       existing_driver = Driver.first
@@ -115,31 +128,27 @@ describe DriversController do
       }.wont_change 'Driver.count'
       
       # Assert
-      expect( Drtiver.find_by(id: existing_driver.id).name ).must_equal "yoo"
-      expect( Drtiver.find_by(id: existing_driver.id).vin ).must_equal "gft6rt"
+      expect( Driver.find_by(id: existing_driver.id).name).must_equal "yoo"
+      expect( Driver.find_by(id: existing_driver.id).vin).must_equal "gft6rt"
     end
     
     it "will redirect to the root page if given an invalid id" do
-      must_respond_with :redirect
-      must_redirect_to  root_path
-    end
-    
-    
-    it "does not update any driver if given an invalid id, and responds with a 404" do
-      get drivers_path
       
-      # Assert
-      must_respond_with :missing
+      updated_driver_form_data = {
+        driver: {
+          name: "yoo",
+          vin: "657g56"
+        }
+      }
+      
+      expect {
+        patch driver_path(6574689), params: updated_driver_form_data
+      }.wont_change 'Driver.count', -1
+      
+      must_respond_with :redirect
+      must_redirect_to root_path
     end
-    # Arrange
-    # Ensure there is an invalid id that points to no driver
-    # Set up the form data
     
-    # Act-Assert
-    # Ensure that there is no change in Driver.count
-    
-    # Assert
-    # Check that the controller gave back a 404
     
     
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
