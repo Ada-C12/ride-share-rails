@@ -19,7 +19,6 @@ class Driver < ApplicationRecord
   end
   
   def calculate_average_rating
-    
     trip_ratings = []
     
     self.trips.all.each do |trip|
@@ -43,5 +42,4 @@ class Driver < ApplicationRecord
     driver = Driver.find_by(active: true)
     return driver.id
   end
-  
 end
