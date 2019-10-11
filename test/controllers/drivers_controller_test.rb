@@ -113,16 +113,6 @@ describe DriversController do
     end
 
     it "does not update any driver if given an invalid id, and responds with a 404" do
-<<<<<<< HEAD
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
-      # Set up the form data
-      get driver_path(-1)
-      must_respond_with :not_found
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
-=======
->>>>>>> c8c93bf3fc5b4f2dc2eecc0ec963cab6c6241d1e
 
       get driver_path(-1)
       must_respond_with :not_found
