@@ -135,7 +135,7 @@ class TripsController < ApplicationController
     end
   end 
   
-  def destroy
+  def destroy######### FIX A BUG HERE!!! SEE TRELLO!!!!
     # Only passengers can delete their own trips via links
     selected_trip = Trip.find_by(id: params[:id])
     
