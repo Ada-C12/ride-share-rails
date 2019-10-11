@@ -60,47 +60,58 @@ describe Driver do
   describe "custom methods" do
 
     describe "average rating" do
-      # Arrange
-      new_driver = Driver.create(name: "Kari", vin: "123", active: true)
-      new_driver_id = new_driver.id
-      # puts new_driver_id
-      new_trip_1 = Trip.create(date: Time.now, cost: 1234, rating: 5, driver_id: new_driver_id, passenger_id: 1)
-      # puts new_trip_1.driver_id
-      new_trip_2 = Trip.create(date: Time.now, cost: 1234, rating: 1, driver_id: new_driver_id, passenger_id: 1)
-      # puts new_trip_2.driver_id
-      # puts new_driver.trips
 
-      # Act
+      it "correctly calculates average rating" do
+        # Arrange
+        new_driver = Driver.create(name: "Kari", vin: "123", active: true)
+        new_driver_id = new_driver.id
+        new_passenger = Passenger.create(name:"Pass", phone_num: "1234567")
+        new_passenger_id = new_passenger.id
+        
+        new_trip_1 = Trip.create(date: Time.now, cost: 1234, rating: 5, driver_id: new_driver_id, passenger_id: new_passenger_id)
+        
+        new_trip_2 = Trip.create(date: Time.now, cost: 1234, rating: 1, driver_id: new_driver_id, passenger_id: new_passenger_id)
 
-      # Assert
-      # expect(new_driver.average_rating).must_equal 3
+        # Act
+
+        # Assert
+        expect(new_driver.average_rating).must_equal 3
+        expect(new_driver.average_rating).must_be_instance_of Integer
+      end
+
     end
 
     describe "total earnings" do
-      # Arrange
-      new_driver = Driver.create(name: "Kari", vin: "123", active: true)
-      new_driver_id = new_driver.id
-      # puts new_driver_id
-      new_trip_1 = Trip.create(date: Time.now, cost: 1234, rating: 5, driver_id: new_driver_id, passenger_id: 1)
-      # puts new_trip_1.driver_id
-      new_trip_2 = Trip.create(date: Time.now, cost: 1234, rating: 1, driver_id: new_driver_id, passenger_id: 1)
-      # puts new_trip_2.driver_id
-      # puts new_driver.trips
+      it "total correctly calculates earnings" do
+        # Arrange
+        new_driver = Driver.create(name: "Kari", vin: "123", active: true)
+        new_driver_id = new_driver.id
+        
+        new_passenger = Passenger.create(name:"Pass", phone_num: "1234567")
+        new_passenger_id = new_passenger.id
+        
+        new_trip_1 = Trip.create(date: Time.now, cost: 1234, rating: 5, driver_id: new_driver_id, passenger_id: new_passenger_id)
 
-      # Act
+        new_trip_2 = Trip.create(date: Time.now, cost: 1234, rating: 1, driver_id: new_driver_id, passenger_id: new_passenger_id)
 
-      # Assert
-      # expect(new_driver.total_earnings).must_equal 2468
+        # Act-Assert
+        expect(new_driver.total_earnings).must_equal 17.104
+        expect(new_driver.total_earnings).must_be_instance_of Float
+      end
     end
 
     describe "can go online" do
-      # Arrange
-      new_driver = Driver.create(name: "Kari", vin: "123", active: true)
+    
+      it "can show a driver is active" do
+        # Arrange
+        # new_driver = Driver.create(name: "Kari", vin: "123", active: true)
+        
+        # Act
+        
+        # Assert
+        # expect(new_driver.active)
+      end
       
-      # Act
-      
-      # Assert
-      # expect(new_driver.active)
     end
 
     describe "can go offline" do
