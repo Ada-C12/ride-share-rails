@@ -5,13 +5,13 @@
 <h3>Trips made by this passenger:<h3>
 
 <% @passenger.trips.each do |trip|%>
-  <li> Trip ID: <%= trip.id %> 
+  <li> Trip ID: <%= link_to "#{trip.id}", trip_path(trip) %></li>
   <li> Date: <%= trip.date %></li>
   <li> Driver: <%= trip.driver.name %></li>
   <li> Cost: $<%= (trip.cost)/100.0 %></li>
   <li> Rating: <%= trip.rating %></li>
 
-<%# Fix link to Edit %>
+<%# Fix link to Edit or ger rid of link?%>
 <%= link_to "Edit", edit_trip_path(trip.id) %> 
 <%= link_to "Delete", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure?"} %>
 </br>
