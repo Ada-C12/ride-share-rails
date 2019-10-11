@@ -105,6 +105,16 @@ button {
   grid-auto-rows: 20px;
 }
 
+.wrapper_pd_trips {
+  width: 90%;
+  margin-left: 5%;
+  justify-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  grid-auto-rows: 20px;
+}
+
 .wrapper_people {
   width: 90%;
   margin-left: 5%;
