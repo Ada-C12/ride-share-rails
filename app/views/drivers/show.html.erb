@@ -22,9 +22,10 @@
     <section>
       <h1>Driver Information:</h1>
       <ul>
-        <li>ID: <%= @driver[:id]%></li>
         <li>Name: <%=@driver[:name]%></li>
+        <li>Driver ID: <%= @driver[:id]%></li>
         <li>Vin: <%= @driver[:vin]%></li>
+        <li>Average rating: <%= Trip.driver_avg_rating(@driver.id) %> </li>
         <li>Active: <%= @driver[:active]%></li>
     </section>
     
@@ -38,7 +39,7 @@
       <ul>
         <% Trip.where(driver_id: params[:id]).each do |trip|%>
           <li>ID: <%= link_to trip.id, trip_path(trip.id), method: :get %></li> 
-          <li>Driver: <%= trip.driver_id %></li>
+          <%# <li>Driver: <%= trip.driver_id %>
           <li>Passenger: <%= trip.passenger_id %></li>
           <li>Date: <%= trip.date %></li>
           <li>Rating: <%= trip.rating %></li>

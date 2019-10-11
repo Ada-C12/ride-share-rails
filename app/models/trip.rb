@@ -1,3 +1,5 @@
+require 'pry'
+
 class Trip < ApplicationRecord
   belongs_to :driver
   belongs_to :passenger
@@ -9,5 +11,17 @@ class Trip < ApplicationRecord
     end
     return sum
   end
-
+  
+  def self.driver_avg_rating(driver_id)
+    ratings = []
+    
+    Trip.where(driver_id: driver_id).each do |trip|
+      ratings << trip.rating
+      
+    end
+    
+    average_rating = ratings.sum.to_f / ratings.length
+    return average_rating.round(2)
+  end
+  
 end

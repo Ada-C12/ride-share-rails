@@ -33,7 +33,7 @@
 
     <section>
       <h1>Trips:</h1>
-      <h2> Total cost of all trips: <%=Trip.trips_total(@passenger.id) %> </h2>
+      <h2> Total cost of all trips: <%= Trip.trips_total(@passenger.id) %> </h2>
       <ul>
         <% Trip.where(passenger_id: params[:id]).each do |trip|%>
           <li>Trip ID: <%= link_to trip.id, trip_path(trip.id), method: :get %> </li> 
