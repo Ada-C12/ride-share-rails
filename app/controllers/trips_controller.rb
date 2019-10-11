@@ -59,6 +59,32 @@ class TripsController < ApplicationController
       return
     end
   end
+
+  def edit
+    @trip = Trip.find_by(id: params[:id])
+    if @trip.nil?
+      flash[:error] = "Could not find trip"
+      redirect_to trips_path
+      return
+    end
+  end
+  
+  def update
+    @trip = Trip.find_by(id: params[:id])
+    if @trip.nil?
+      flash[:error] = "Could not find trip"
+      redirect_to trips_path
+      return
+    end
+    
+    if @trip.update(trip_params)
+      redirect_to trip_path(@trip.id)
+      return
+    else
+      render :edit
+      return
+    end
+  end
   
   def destroy
     @trip = Trip.find_by(id: params[:id])
