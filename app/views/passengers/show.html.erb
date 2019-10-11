@@ -10,14 +10,18 @@
 
 <h2>Passenger Details: <%= @passenger.name%></h2>
 
-<h4>Total spent from trips: $<%= @passenger.total_spent %></h4>
-<h3>Trips Taken</h3>
-<% @passenger.trips.each do |trip| %>
-  Date: <%= trip.date %>, Rating: <%= "⭐" * trip.rating.to_i %> Cost: $<%= '%.2f' % trip.cost %>, Driver: <%= trip.driver.name %> 
-    <% if trip.rating.nil? %>
-      <%= link_to "Complete Trip", complete_trip_path(trip), method: :patch %>
-    <% end %>
-  <br>
+<% if @passenger.trips.length > 0 %>
+  <h4>Total spent on trips: $<%= @passenger.total_spent %></h4>
+  <h3>Trips Taken</h3>
+  <% @passenger.trips.each do |trip| %>
+    Date: <%= trip.date %>, Rating: <%= "⭐" * trip.rating.to_i %> Cost: $<%= '%.2f' % trip.cost %>, Driver: <%= trip.driver.name %> 
+      <% if trip.rating.nil? %>
+        <%= link_to "Complete Trip", complete_trip_path(trip), method: :patch %>
+      <% end %>
+    <br>
+  <% end %>
+<% else %>
+  <h3>This passenger has not taken any trips. </h3>
 <% end %>
 
 <%= link_to "Create a New Trip", passenger_trips_path(@passenger), method: :post %>
