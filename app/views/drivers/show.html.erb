@@ -1,9 +1,12 @@
 <section>
   <%# name %>
-  <h2><%= @driver.name %></h2>
+  <!-- <h2><%= @driver.name %></h2> -->
 
   <div class="details-container">
-    <%= image_tag @driver.avatar_image %>
+    <section class="person">
+      <h2><%= @driver.name %></h2>
+      <%= image_tag @driver.avatar_image %>
+    </section>
 
     <div class="details">
       <%# car details %>

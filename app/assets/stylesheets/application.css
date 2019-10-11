@@ -230,8 +230,20 @@ main section {
 }
 
 .details-container {
+  margin-top: 2rem;
+
   display: grid;
   grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.details-container > *:first-child {
+  text-align: center;
+  justify-self: center;
+}
+
+.details-container > *:first-child > img {
+  border-radius: 2rem;
 }
 
 .details {
