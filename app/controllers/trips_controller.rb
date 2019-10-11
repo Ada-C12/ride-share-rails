@@ -34,15 +34,21 @@ class TripsController < ApplicationController
     @passenger = Passenger.find_by(id: params[:passenger_id])
     # @driver = Driver.first
     @trip = Trip.new
-    
-
 
   end
 
   def create
-   
+    trip_cost = rand(100...10000) #random cost between $1 and $100 generated
+    driver_chosen = Driver.find_by(available: true)
+
+    if driver_chosen == nil
+      redirect_to new_trip_path
+    end
+
+    driver_chosen.become_unavailable
+
     @passenger = Passenger.find_by(id: params[:passenger_id])
-    @trip = @passenger.trips.new(driver: Driver.first, date: Date.today)
+    @trip = @passenger.trips.new(driver_id: driver_chosen.id, date: Date.today, cost: trip_cost)
 
     if @trip.save
       redirect_to passenger_path(@passenger.id)
@@ -95,5 +101,4 @@ class TripsController < ApplicationController
   def trip_params
     return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
   end
-
 end

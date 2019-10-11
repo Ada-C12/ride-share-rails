@@ -14,7 +14,7 @@
             <article>
                 <h3>Name: <%= @passenger.name %></h3>
                 <h3>Passenger Number: <%= @passenger.phone_num %></h3>
-                <h3>Total Money Spent : <%=  @passenger.total_money_spent %></h3>
+                <h3>Total Money Spent: $<%= @passenger.total_money_spent %></h3>
 
         </article>
 
@@ -30,7 +30,7 @@
                 <th>Passenger</th>
                 <th>Cost</th>
                 <th>Rating</th>
-                <th>View</th>
+                <th>View Trip</th>
                 <th>Delete</th>
              
             </tr>
@@ -42,9 +42,9 @@
                 <td><%= link_to trip.driver.name, driver_path(trip.driver_id)%></td>
                 <td><%= link_to trip.passenger.name, passenger_path(trip.passenger_id)%></td>
                 <% if trip.cost == nil%>
-                 <td>Pending</td>
+                  <td>Pending</td>
                  <% else %>
-                <td><%= sprintf('%.2f', trip.cost * 0.01)%></td>
+                  <td>$<%= sprintf('%.2f', trip.cost * 0.01)%></td>
                 <% end %>
                 <% if trip.rating == nil%>
                  <td>Pending</td>

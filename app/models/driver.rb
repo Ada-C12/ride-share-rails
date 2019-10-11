@@ -10,11 +10,13 @@ class Driver < ApplicationRecord
   end
 
   def total_earnings
-    total_earnings = 0
-    if self.trips != []
-      total_earnings = (self.trips.sum(:cost) * 0.01)
-    end
+    total_earnings = self.trips.sum{ |trip| (trip.cost - 165) * 0.8 }
     return total_earnings
+  end
+
+  def become_unavailable
+    self.available = false
+    self.save
   end
 
 end

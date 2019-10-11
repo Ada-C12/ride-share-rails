@@ -45,7 +45,7 @@ class PassengersController < ApplicationController
 
     id = params[:id].to_i
     if id < 0
-        redirect_to root_path
+      redirect_to root_path
     end
 
     @passenger = Passenger.find_by(id: id)

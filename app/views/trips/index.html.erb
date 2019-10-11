@@ -13,7 +13,6 @@
     </section>
 
     <section class="card">
-        <h1>Model</h1>
         <h1>Total</h1>
         <h1>Earnings</h1>
         <table>
@@ -22,20 +21,20 @@
                 <th>Date</th>
                 <th>Drivers</th>
                 <th>Passenger</th>
-                <th>Price</th>
+                <th>Cost</th>
                 <th>Rating</th>
                 <th>Delete</th>
           
             </tr>
             <% @trips.each do |trip| %>
             <tr>
-                <td><%= trip.id%></td>
-                <td><%= trip.date%></td>
-                <td><%= trip.driver_id%></td>
-                <td><%= trip.passenger_id%></td>
-                <td><%= trip.cost%></td>
-                <td><%= trip.rating%></td>
-                <td><%= button_to "Delete", trip_path(trip.id), class: 'btn', method: :delete, data: { confirm: "Are YOU sure?" } %></td>
+                <td><%= @trip.id%></td>
+                <td><%= @trip.date%></td>
+                <td><%= @trip.driver_id%></td>
+                <td><%= @trip.passenger_id%></td>
+                <td><%= @trip.cost%></td>
+                <td><%= @trip.rating%></td>
+                <td><%= button_to "Delete", trip_path(@trip.id), class: 'btn', method: :delete, data: { confirm: "Are YOU sure?" } %></td>
             </tr>
             
             <% end %>

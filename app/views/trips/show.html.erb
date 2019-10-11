@@ -17,10 +17,11 @@
             <tr>
                 <th>ID</th>
                 <th>Date</th>
-                <th>Drivers</th>
+                <th>Driver</th>
                 <th>Passenger</th>
-                <th>Price</th>
+                <th>Cost</th>
                 <th>Rating</th>
+                <th>Edit</th>
                 <th>Delete</th>
              
             </tr>
@@ -28,17 +29,17 @@
             <tr>
                 <td><%= @trip.id%></td>
                 <td><%= @trip.date%></td>
-                <td><%= @trip.driver_id%></td>
-                <td><%= @trip.passenger_id%></td>
+                <td><%= link_to @trip.driver.name, driver_path(@trip.driver_id)%></td>
+                <td><%= link_to @trip.passenger.name, passenger_path(@trip.passenger_id)%></td>
                 <% if @trip.cost == nil%>
-                 <td>Pending</td>
+                    <td>Pending</td>
                  <% else %>
-                <td><%= sprintf('%.2f', @trip.cost * 0.01)%></td>
+                    <td><%= sprintf('%.2f', @trip.cost * 0.01)%></td>
                 <% end %>
                 <% if @trip.rating == nil%>
-                 <td>Pending</td>
+                    <td>Pending</td>
                  <% else %>
-                <td><%= @trip.rating%></td>
+                    <td><%= @trip.rating%></td>
                 <% end %>
                 <td><%= link_to "Edit", edit_trip_path(@trip.id), class: 'btn' %></td>
                 <td><%= button_to "Delete", trip_path(@trip.id), class: 'btn', method: :delete, data: { confirm: "Are YOU sure?" } %></td>
