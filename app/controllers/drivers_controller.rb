@@ -54,8 +54,7 @@ end
 
 def create
   @driver = Driver.new(name: params[:driver][:name], vin: params[:driver][:vin], car_make: nil, car_model: nil, active: false) 
-  if @driver.name != ""
-    @driver.save
+  if @driver.save
     redirect_to driver_path(@driver.id) 
     return
   else 

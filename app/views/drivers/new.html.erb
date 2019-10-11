@@ -19,6 +19,16 @@
       </nav>
     </header>
 
+    <% if @driver.errors.any? %>
+      <ul class="errors">
+      <% @driver.errors.each do |column, message| %>
+        <li>
+          <strong><%= column.capitalize %></strong> <%= message %>
+        </li>
+      <% end %>
+    </ul>
+    <% end %>
+
     <section>
       <h1>Add Driver</h1>
     <%= form_with model: @driver do |f| %>

@@ -4,6 +4,8 @@ class Driver < ApplicationRecord
   def self.alpha_drivers
     return Driver.order(name: :asc)
   end
+  validates :name, presence: true
+  validates :vin, presence: true
 end
 
 
