@@ -56,7 +56,7 @@ class PassengersController < ApplicationController
     if @passenger.save
       redirect_to passenger_path(@passenger.id)
     else
-      render new_passenger_path
+      render edit_passenger_path
     end
   end
 
@@ -71,9 +71,6 @@ class PassengersController < ApplicationController
       redirect_to passengers_path
       return
     end
-  end
-
-  def total_money_spent
   end
 
   private

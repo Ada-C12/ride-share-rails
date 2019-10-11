@@ -2,20 +2,11 @@ require "test_helper"
 
 describe PassengersController do
   let (:passenger) {
-    Passenger.create name: "A Passenger Name", phone_num: "555-555-5555"}
+    Passenger.create(name: "A Passenger Name", phone_num: "555-555-5555")}
 
   describe "index" do
     it "can get the index path" do
       # Act
-      get passengers_path
-
-      # Assert
-      must_respond_with :success
-    end
-
-    it "can get the root path" do
-      # Act
-      get root_path
 
       # Assert
       must_respond_with :success
@@ -68,7 +59,7 @@ describe PassengersController do
       }.must_change "Passenger.count", 1
 
       new_passenger = Passenger.find_by(name: passenger_hash[:passenger][:name])
-      expect(new_passenger.phone_num).must_equal task_hash[:task][:phone_num]
+      expect(new_passenger.phone_num).must_equal passenger_hash[:passenger][:phone_num]
 
       must_respond_with :redirect
       must_redirect_to passenger_path(new_passenger.id)
@@ -88,20 +79,60 @@ describe PassengersController do
     it "will respond with redirect when attempting to edit a nonexistant passenger" do
       # Your code here
       invalid_id = -500
-      
+
       get edit_passenger_path(invalid_id)
-
-      must_respond_with :redirect
-
-      must_redirect_to passengers_path
+      
+      must_redirect_to passenger_path
     end
   end
 
   describe "update" do
     # Your tests go here
+    it "updates an existing passengers successfully and reloads page" do
+      input_passenger = Passenger.create(name: "Input Passenger", phone_num: "1111111111")
+      input_updates = {passenger: {name: "Updated Passenger", phone_num: "2222222222"}}
+
+      patch passenger_path(input_passenger), params: input_updates
+
+      input_passenger.reload
+      expect(input_passenger.name).must_equal "Updated Passenger"
+    end
   end
 
   describe "destroy" do
     # Your tests go here
+    it "successfully deletes an existing Passenger and then redirects to list of passengers at passengers index" do
+      Passenger.create(name: "Input Passenger", phone_num: "1111111111")
+      existing_passenger_id = Passenger.find_by(name: "Input Passenger").id
+
+      expect {
+        delete passenger_path( existing_passenger_id )
+      }.must_differ "Passenger.count", -1
+
+      must_redirect_to passengers_path
+    end
+
+    # it "redirects to passenger index page and deletes no books if no books exist" do
+    #   Book.destroy_all
+    #   invalid_book_id = 1
+
+    #   expect {
+    #     delete book_path( invalid_book_id )
+    #   }.must_differ "Book.count", 0
+
+    #   must_redirect_to books_path
+    # end
+
+    # it "redirects to books index page and deletes no books if deleting a book with an id that has already been deleted" do
+    #   Book.create(title: "Valid Book", author: valid_author, description: "Valid Description")
+    #   book_id = Book.find_by(title: "Valid Book").id
+    #   Book.destroy_all
+
+    #   expect {
+    #     delete book_path( book_id )
+    #   }.must_differ "Book.count", 0
+
+    #   must_redirect_to books_path
+    # end
   end
 end

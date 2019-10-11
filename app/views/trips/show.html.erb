@@ -5,47 +5,44 @@
 </nav>
 
 <main>
-    <section class="card">
-        <%= link_to "Add driver", new_driver_path, class: 'btn' %>
-        <%= link_to "Add passenger", new_driver_path, class: 'btn' %>
-    </section>
+  <section class="card">
+    <%= link_to "Add driver", new_driver_path, class: 'btn' %>
+    <%= link_to "Add passenger", new_driver_path, class: 'btn' %>
+  </section>
 
-    <section class="card">
-        <article>
-        <h1>Trip Details</h1>
-           <table>
-            <tr>
-                <th>ID</th>
-                <th>Date</th>
-                <th>Driver</th>
-                <th>Passenger</th>
-                <th>Cost</th>
-                <th>Rating</th>
-                <th>Edit</th>
-                <th>Delete</th>
-             
-            </tr>
 
-            <tr>
-                <td><%= @trip.id%></td>
-                <td><%= @trip.date%></td>
-                <td><%= link_to @trip.driver.name, driver_path(@trip.driver_id)%></td>
-                <td><%= link_to @trip.passenger.name, passenger_path(@trip.passenger_id)%></td>
-                <% if @trip.cost == nil%>
-                    <td>Pending</td>
-                 <% else %>
-                    <td><%= sprintf('%.2f', @trip.cost * 0.01)%></td>
-                <% end %>
-                <% if @trip.rating == nil%>
-                    <td>Pending</td>
-                 <% else %>
-                    <td><%= @trip.rating%></td>
-                <% end %>
-                <td><%= link_to "Edit", edit_trip_path(@trip.id), class: 'btn' %></td>
-                <td><%= button_to "Delete", trip_path(@trip.id), class: 'btn', method: :delete, data: { confirm: "Are YOU sure?" } %></td>
-            </tr>
-            
-        </table>
-        </article>
-    </section>
+  <section class="card">
+    <article>
+    <h1>Trip #<%=@trip.id%></h1>
+    <br>
+      <table>
+      <tr>
+          <th>Date</th>
+          <th>Driver</th>
+        <th>Passenger</th>
+          <th>Cost</th>
+          <th>Rating</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        
+      </tr>
+
+      <tr>
+        <td><%= @trip.date%></td>
+        <td><%= link_to @trip.driver.name, driver_path(@trip.driver_id)%></td>
+        <td><%= link_to @trip.passenger.name, passenger_path(@trip.passenger_id)%></td>
+        <td>$<%= sprintf('%.2f', @trip.cost * 0.01)%></td>
+        <% if @trip.rating == nil%>
+          <td>Pending</td>
+        <% else %>
+          <td><%= @trip.rating%></td>
+        <% end %>
+
+        <td><%= link_to "Edit", edit_trip_path(@trip.id), class: 'btn' %></td>
+        <td><%= button_to "Delete", trip_path(@trip.id), class: 'btn', method: :delete, data: { confirm: "Are YOU sure?" } %></td>
+      </tr>
+        
+    </table>
+    </article>
+  </section>
 </main>

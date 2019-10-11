@@ -30,13 +30,6 @@ class TripsController < ApplicationController
     end
   end
 
-  def new
-    @passenger = Passenger.find_by(id: params[:passenger_id])
-    # @driver = Driver.first
-    @trip = Trip.new
-
-  end
-
   def create
     trip_cost = rand(100...10000) #random cost between $1 and $100 generated
     driver_chosen = Driver.find_by(available: true)
@@ -45,10 +38,12 @@ class TripsController < ApplicationController
       redirect_to new_trip_path
     end
 
-    driver_chosen.become_unavailable
+    driver_chosen.go_offline
 
     @passenger = Passenger.find_by(id: params[:passenger_id])
-    @trip = @passenger.trips.new(driver_id: driver_chosen.id, date: Date.today, cost: trip_cost)
+    @trip = Trip.new(passenger_id: params[:passenger_id], driver_id: driver_chosen.id, date: Date.today, cost: trip_cost)
+
+    # @trip = @passenger.trips.new(driver_id: driver_chosen.id, date: Date.today, cost: trip_cost)
 
     if @trip.save
       redirect_to passenger_path(@passenger.id)
@@ -59,41 +54,41 @@ class TripsController < ApplicationController
 
   def edit
     @trip = Trip.find_by(id: params[:id])
-    if @trip == nil
-      redirect_to trip_path
+
+    unless @trip
+      redirect_to trips_path
     end
   end
 
   def update
+
     @trip = Trip.find_by(id: params[:id])
 
-    if @trip == nil
-      redirect_to trips_path
+    unless @trip
+      head :not_found
       return
     end
 
-    @trip = Trip.find_by(id: params[:id])
-    @trip[:date] = params[:trip][:date]
-    @trip[:rating] = params[:trip][:rating]
-    @trip[:cost] = params[:trip][:cost]
-    
-    if @trip.save
-        redirect_to trip_path(@trip.id)
+    if @trip.update(trip_params)
+      redirect_to trip_path(@trip)
     else
-        render new_trip_path
+      render :edit, status: :bad_request
     end
+
   end
+
 
   def destroy
     trip_to_delete = Trip.find_by(id: params[:id])
-    if trip_to_delete.nil?
-        redirect_to trip_path
-        return
-    else
-        trip_to_delete.destroy
-        redirect_to trips_path
-        return
+
+    unless trip_to_delete
+      head :not_found
+      return
     end
+
+    trip_to_delete.destroy
+    redirect_to drivers_path(driver_id: params[:driver_id])
+    #how to redirect to same drivers page? this redirects to list of drivers
   end
   
   private

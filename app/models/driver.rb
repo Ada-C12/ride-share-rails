@@ -1,5 +1,8 @@
 class Driver < ApplicationRecord
   has_many :trips
+
+  validates :name, presence: true
+  validates :vin, presence: true
   
   def average_rating
     avg_rating = 0
@@ -14,7 +17,7 @@ class Driver < ApplicationRecord
     return total_earnings
   end
 
-  def become_unavailable
+  def go_offline
     self.available = false
     self.save
   end
