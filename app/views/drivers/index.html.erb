@@ -1,5 +1,10 @@
-<h1>All Drivers<h1>
-
-<% @drivers.each do |driver| %>
-  <li><%= link_to driver.name, driver_path(driver) %>
-<% end %>
+<div class="index-container">
+  <h1>All Drivers<h1>
+<div class="view-all">
+  <% @drivers.each do |driver| %>
+    <li><%= link_to driver.name, driver_path(driver) %></li>
+  <% end %>
+</div>
+  <br>
+  <%= will_paginate @drivers %>
+</div>

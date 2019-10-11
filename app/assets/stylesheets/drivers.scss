@@ -16,4 +16,20 @@
   font-size: 1.1em;
 }
 
+.index-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.index-container h1 {
+  grid-column: 2;
+}
+
+.view-all {
+  font-size: .8em;
+  font-weight: lighter;
+  list-style: none;
+  text-align: left;
+  margin-left: 25%;
+}
 
