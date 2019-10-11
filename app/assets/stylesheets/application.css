@@ -164,8 +164,9 @@ nav > * {
 .unavailable {
   color: red;
 }
+
 .unavailable:before {
-  content: "🚫 "
+  content: "🚫 ";
 }
 
 .errors {
@@ -202,14 +203,15 @@ nav > * {
   float: left;
   color: white;
   font-size: 1.2em;
-  display: inline-block;
+  /* css ignores this b/c of the float property */
+  /* display: inline-block; */
   text-align: center;
   border-radius: 15px;
   height: 3rem;
 }
 
 .submit-button:hover {
-  background-color: rgb(196, 4, 148)
+  background-color: rgb(196, 4, 148);
 }
 
 .submit-button:active {
@@ -225,8 +227,6 @@ main section {
   height: max-content;
   margin-bottom: 4rem;
 }
-
-$pink: rgb(255,0,191);
 
 .details {
   width: 100%;
