@@ -22,7 +22,7 @@ class TripsController < ApplicationController
   end
   
   def show
-    @trip = Trip.find_by(passenger_id: params[:passenger_id])
+    @trip = Trip.find_by(id: params[:id])
     if @trip.nil?
       flash[:error] = "Could not find trip"
       redirect_to trips_path, status: :not_found

@@ -5,15 +5,15 @@
       <th>Date</th>
       <th>Rating</th>
       <th>Cost</th>
-      <th>Driver ID</th>
+      <th>Driver Name</th>
       <th>Passenger Name</th>
     </tr>
     <tr>
       <td><%= @trip.date %></td>
       <td><%= @trip.rating %></td>
       <td><%= @trip.cost %></td>
-      <td><%= @trip.driver.id %></td>
-      <td><%= @trip.passenger.id %></td>
+      <td><%= link_to @trip.driver.name, driver_path(@trip.driver.id) %></td>
+      <td><%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id) %></td>
     </tr>
     </table>
 
