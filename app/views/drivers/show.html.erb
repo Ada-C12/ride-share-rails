@@ -29,7 +29,7 @@
     </tr>
     <% @driver.all_trips.each do |trip|%>
     <tr>
-      <td><%= trip.date %></td>
+      <td><%= link_to trip.date, trip_path(trip.id) %></td>
       <td><%= trip.rating %></td>
       <td><%= trip.cost %></td>
       <td><%= trip.driver.id %></td>
