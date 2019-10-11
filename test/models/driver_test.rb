@@ -2,8 +2,7 @@ require "test_helper"
 
 describe Driver do
   let (:new_driver) {
-    Driver.new(name: "Kari", vin: "123", active: true,
-               car_make: "Cherry", car_model: "DR5")
+    Driver.new(name: "Kari", vin: "123", status: "available")
   }
   it "can be instantiated" do
     # Assert
@@ -14,7 +13,7 @@ describe Driver do
     # Arrange
     new_driver.save
     driver = Driver.first
-    [:name, :vin, :active, :car_make, :car_model].each do |field|
+    [:name, :vin, :status].each do |field|
 
       # Assert
       expect(driver).must_respond_to field
