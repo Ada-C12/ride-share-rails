@@ -13,3 +13,52 @@
  *= require_tree .
  *= require_self
  */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+th, td {
+  padding: 2px;
+}
+
+html {
+  font-family: 'Underdog', cursive;
+}
+
+h1{
+  font-family: 'Monoton', cursive;
+  padding: 2rem;
+}
+
+html ul {
+  list-style:none;
+  padding-inline-start: none;
+  padding: 1rem;
+}
+
+html a:link, html a:visited {
+  color:black;
+  text-decoration: none;
+}
+
+html a:hover, html a:active {
+  color:orange;
+  background-color:black;
+  text-decoration:underline;
+}
+
+nav ul{
+  display:flex;
+  justify-content: space-around;
+}
+nav ul li {
+  padding:1rem;
+  border: black solid 1px;
+  background: orange; 
+}
