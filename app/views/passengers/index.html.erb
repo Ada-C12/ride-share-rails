@@ -1,20 +1,35 @@
 <section>
   <h2>Passengers</h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Passenger Name</th>
-      <th>Phone Number</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @passengers.each do |passenger| %>
+  <% @DEFAULT_PAGE_SIZE = 10 %>
+  <%# if there is no page number in params, use zero %>
+  <% page_num = (request.params["page"].nil? ? 0 : request.params["page"].to_i) %>
+  <%# if the page size is unspecified in the params, use the default %>
+  <% page_size = request.params["page_size"].nil? ? @DEFAULT_PAGE_SIZE : request.params["page_size"].to_i %>
+
+  <%= render partial: "shared/tablenav", locals: { list_path: method(:passengers_path), page_size: page_size, page_num: page_num, count: @passengers.count } %>
+
+  <table class="table">
+    <thead>
       <tr>
-        <td> <%= link_to passenger.name, passenger_path(passenger.id) %> </td>
-        <td> <%= passenger.phone_num %> </td>
+        <th>Passenger Name</th>
+        <th>Phone Number</th>
       </tr>
-    <% end %>
-  </tbody>
+    </thead>
+    
+
+    <tbody>
+      <% position = 0 %>
+      <% @passengers.each do |passenger| %>
+        <% if position >= (page_num * page_size) && position < ((page_num+1) * page_size) %>
+        <tr>
+          <td> <%= link_to passenger.name, passenger_path(passenger.id) %> </td>
+          <td> <%= passenger.phone_num %> </td>
+        </tr>
+        <% end %>
+        <% position += 1 %>
+      <% end %>
+    </tbody>
+  </table>
 
 </section>

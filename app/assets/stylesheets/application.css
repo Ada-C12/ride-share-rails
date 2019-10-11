@@ -107,3 +107,24 @@ nav > * {
   text-align: left;
   width: 15rem;
 }
+
+/* pagination */
+
+.pagination-container {
+  margin-bottom: 1rem;
+}
+
+.pagination {
+  border: 1px solid pink;
+  background-color: #FFACEA;
+  padding: 0.5rem;
+}
+
+.pagination a {
+  color: #820062
+}
+
+.disabled_link {
+  background-color: #FFDDF6;
+  color: #FF7DDE;
+}

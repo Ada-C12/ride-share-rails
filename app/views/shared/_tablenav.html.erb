@@ -1,0 +1,39 @@
+<div class="pagination-container">
+  <%# display previous page links if there is a previous page %>
+  <% if page_num > 0 %>
+    <span class="pagination"><%= link_to "<< First", list_path.call(page: 0) %></span>
+    <span class="pagination"><%= link_to "< Prev", list_path.call(page: page_num - 1) %></span>
+  <% else %>
+    <span class="pagination disabled_link"><< First</span>
+    <span class="pagination disabled_link">< Prev</span>
+  <% end %>
+
+  <%# find the number of the last page %>
+  <% last_page = (count / page_size).ceil %>
+
+  <%# display direct links to adjacent page numbers %>
+  <% @DISPLAY_PAGE_COUNT = 2 %>
+  <%# calculates @DISPLAY_PAGE_COUNT number of pages adjacent to current page %>
+  <%# first page displayed can't be less than zero %>
+  <% first_page_disp = [0, page_num - @DISPLAY_PAGE_COUNT].max %>
+  <%# last page displayed can't be greater than number of total pages %>
+  <% last_page_disp = [(page_num + @DISPLAY_PAGE_COUNT), last_page].min %>
+  <%# for each page in the range, %>
+  <%# make a link unless it's the current page %>
+  <% for p in first_page_disp..last_page_disp %>
+    <% if p != page_num %>
+      <span class="pagination"><%= link_to p+1, list_path.call(page: p) %></span>
+    <% else %>
+      <span class="pagination disabled_link"><%= p+1 %></span>
+    <% end %>
+  <% end %>
+
+  <%# display next page links if there is a next page %>
+  <% if page_num < last_page %>
+    <span class="pagination"><%= link_to "Next >", list_path.call(page: page_num + 1) %></span>
+    <span class="pagination"><%= link_to "Last >>", list_path.call(page: last_page) %></span>
+  <% else %>
+    <span class="pagination disabled_link">Next ></span>
+    <span class="pagination disabled_link">Last >></span>
+  <% end %>
+</div>
