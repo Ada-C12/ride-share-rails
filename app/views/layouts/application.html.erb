@@ -11,13 +11,19 @@
 
   <body>
     <nav>
-      <%= link_to "home", root_path %>
-      <%= link_to "all drivers", drivers_path %>
-      <%= link_to "add a driver", new_driver_path %>
-      <%= link_to "all passengers", passengers_path %>
-      <%= link_to "add a new passenger", new_passenger_path %>
+      <ul>
+        <li><%= link_to "home", root_path %></li>
+        <li><%= link_to "all drivers", drivers_path %></li>
+        <li><%= link_to "add a driver", new_driver_path %></li>
+        <li><%= link_to "all passengers", passengers_path %></li>
+        <li><%= link_to "add a new passenger", new_passenger_path %></li>
+      </ul>
     </nav>
 
     <%= yield %>
+
+    <footer>
+      © Copyright 2019 C. Gutierrez et al.
+    </footer>
   </body>
 </html>
