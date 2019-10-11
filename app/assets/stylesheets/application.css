@@ -92,20 +92,20 @@ nav .link:active {
   padding-inline-start: 2px;
  }
 
-.link {
-  color:black;
+a, a:visited {
+  color:darkolivegreen;
   text-decoration: none;
 }
-.link:visited {
-  color: black;
+a:visited {
+  color: darkolivegreen;
   text-decoration: none;
 }
-.link:hover {
+a:hover {
   color: darkblue;
   text-decoration: underline
 }
 
-.link:active {
+a:active {
   color: darkgrey;
   text-decoration: none;
 }
@@ -165,4 +165,35 @@ h1 {
 #index .index-toggle {
   grid-column-start: 3;
   grid-column-end: 4;
+}
+
+.show {
+  display: flex;
+  flex-direction: column;
+}
+
+.show > .row {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  border-bottom: 1px solid black;
+  grid-gap: 0px;
+}
+
+.show > .row > p {
+  display: inline-block;
+  text-align: center;
+}
+
+.button-container {
+  display: inline-flex;
+  justify-content: center
+}
+
+.button {
+  padding: 10px;
+  margin: 10px;
+}
+
+.heading {
+  font-size: 1.1em;
 }

@@ -1,32 +1,62 @@
+<article class='show'>
+
 <h2>Trip ID: <%= @trip.id %></h2>
 
-<p>Date: <%= @trip.date %></p>
+<div class='row heading'>
+  <p>Trip ID</p>
+  <p>Date</p>
+  <p>Passenger ID</p>
+  <p>Passenger Name</p>
+  <p>Driver ID</p>
+  <p>Driver Name</p>
+  <p>Cost</p>
+  <p>Rating</p>
+</div>
 
-<% if @trip.passenger_id.nil? %>
-  <p>Passenger ID: [deleted]</p>
-  <p>Passenger Name: [deleted]</p>
-<% else %>
-  <p>Passenger ID: <%= link_to @trip.passenger_id, passenger_path(id: @trip.passenger_id) %></p>
-  <p>Passenger Name: <%= link_to @trip.passenger.name, passenger_path(id: @trip.passenger_id) %></p>
-<% end %>
+<div class='row'>
+  <p><%= @trip.id %></p>
+  <p><%= @trip.date %></p>
+  <p>
+    <% if @trip.passenger_id.nil? %>
+      [deleted]
+    <% else %>
+      <%= link_to @trip.passenger_id, passenger_path(id: @trip.passenger_id) %>
+    <% end %>
+  </p>
+  <p>
+    <% if @trip.passenger_id.nil? %>
+      [deleted]
+    <% else %>
+      <%= link_to @trip.passenger.name, passenger_path(id: @trip.passenger_id) %>
+    <% end %>
+  </p>
+  <p>
+    <% if @trip.driver_id.nil? %>
+      [deleted]
+    <% else %>
+      <%= link_to @trip.driver_id, driver_path(id: @trip.driver_id) %>
+    <% end %>
+  </p>
+  <p>
+    <% if @trip.driver_id.nil? %>
+      [deleted]
+    <% else %>
+      <%= link_to @trip.driver.name, driver_path(id: @trip.driver_id) %>
+    <% end %>
+  </p>
+  <p>$<%= number_with_precision(@trip.cost, :precision => 2) %></p>
+  <p>
+    <% if @trip.rating == nil%>
+      <%= link_to 'Assign Rating', assign_rating_edit_path, class:"link" %>
+    <% else %>
+      <%= @trip.rating %>
+    <% end %>
+  </p>
+</div>
 
-<% if @trip.driver_id.nil? %>
-  <p>Driver ID: [deleted]</p>
-  <p>Driver Name: [deleted]</p>
-<% else %>
-  <p>Driver ID: <%= link_to @trip.driver_id, driver_path(id: @trip.driver_id) %></p>
-  <p>Driver Name: <%= link_to @trip.driver.name, driver_path(id: @trip.driver_id) %></p>
-<% end %>
+<div class='button-container'>
+  <%= button_to 'Edit', edit_trip_path, class:"button", method: :get %>
+  <%= button_to 'Delete', trip_path, method: :delete, data: {confirm: "Delete trip"}, class:"button" %>
+</div>
 
-<p>Trip Cost: $<%= number_with_precision(@trip.cost, :precision => 2) %></p>
-
-<p>Rating:
-  <% if @trip.rating == nil%>
-    <%= link_to 'Assign Rating', assign_rating_edit_path, class:"link" %>
-  <% else %>
-    <%= @trip.rating %>
-  <% end %>
-</p>
-
-<p><%= button_to 'Edit', edit_trip_path, class:"link", method: :get %></p>
-<p><%= button_to 'Delete', trip_path, method: :delete, data: {confirm: "Delete trip"}, class:"link" %></p>
+</article>
