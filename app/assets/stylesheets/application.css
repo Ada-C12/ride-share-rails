@@ -15,6 +15,7 @@
  */
 
  body {
+  background-color: whitesmoke;
   font-family: 'Questrial', sans-serif;
   display: flex;
   flex-direction: column;
@@ -23,7 +24,7 @@
 
  nav {
   background-color: grey;
-  color: white;
+  color: whitesmoke;
   overflow: hidden;
   padding: 0.4px;
   position: fixed;
@@ -73,12 +74,12 @@ nav a {
 }
 
 nav .link:visited {
-   color: white;
+   color: whitesmoke;
    text-decoration: none
  }
 
 nav .link:hover {
-   color: green;
+   color: rgb(83, 29, 83);
    text-decoration: underline
  }
 
@@ -101,7 +102,7 @@ a:visited {
   text-decoration: none;
 }
 a:hover {
-  color: darkblue;
+  color: rgb(19, 89, 114);
   text-decoration: underline
 }
 
