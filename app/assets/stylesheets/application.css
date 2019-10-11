@@ -117,6 +117,10 @@ table, th, td {
   margin-bottom: 0;
 }
 
+.button a:hover {
+  text-decoration: none;
+}
+
 .container {
   position: relative;
 }
