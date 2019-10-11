@@ -10,7 +10,17 @@ class TripsController < ApplicationController
     end
   end
   
-  def create   
+  def create
+    passenger_trips = Trip.where(passenger_id: params[:passenger_id])
+    
+    passenger_trips.each do |trip|
+      if trip.rating == nil
+        flash[:notice] = "You may only request a trip after your previous one has completed and you rate it."
+        redirect_to passenger_path(params[:passenger_id])
+        return
+      end
+    end
+    
     driver = Driver.get_driver
     
     if driver == nil
