@@ -172,7 +172,6 @@ describe Driver do
     describe "can go offline" do
       it "should go offline and active status is false" do
         new_driver.save
-        # binding.pry
         new_driver.go_online
         new_driver.go_offline
         expect(new_driver.active).must_equal false
