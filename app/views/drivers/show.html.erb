@@ -1,21 +1,18 @@
 <section class = "table">
-<ul>
-  <li>Name: <%= @driver.name %></li>
+<h2><%= @driver.name %>'s Information</h2>
+<ul class = "list">
   <li>VIN: <%= @driver.vin %></li>
-  <li>Active:
+  <li>Active: 
   <% if @driver.active.nil? %>
-     <%= link_to '<button type="button">Deactivate</button>'.html_safe, deactivate_path( @driver.id ), method: :patch %>
+     Available <%= link_to '<button type="button">Deactivate</button>'.html_safe, deactivate_path( @driver.id ), method: :patch %>
   <% else%>
-    <%= link_to '<button type="button">Activate</button>'.html_safe, activate_path( @driver.id ), method: :patch %>
+    Unavailble <%= link_to '<button type="button">Activate</button>'.html_safe, activate_path( @driver.id ), method: :patch %>
   <% end %> 
- 
   </li>
-  <li>Car Make: <%= @driver.car_make %></li>
-  <li>Car Model: <%= @driver.car_model %></li>
-  <li>Total Earning: <%=@driver.total_earning%></li>
+  <li>Total Earning: $<%=@driver.total_earning%></li>
   <li>Average Rating: <%= @driver.average_rating %></li>
-  <li><%= link_to "Edit", edit_driver_path( @driver.id ) %></li>
-  <li><%= link_to "Delete", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure? It will be gone forever."} %></li>
+  <li><%= link_to '<button type="button">Edit Driver</button>'.html_safe, edit_driver_path( @driver.id ) %></li>
+  <li><%= link_to '<button type="button">Delete Driver</button>'.html_safe, driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure? It will be gone forever."} %></li>
 </ul>
 
 <table>

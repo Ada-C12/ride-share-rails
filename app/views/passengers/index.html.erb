@@ -1,4 +1,5 @@
 <section class = "table">
+<h2>Passengers List</h2>
 <table>
   <tr>
     <th>Passenger_id</th>
@@ -6,7 +7,7 @@
     <th>Phone Number</th>
     <th>Function</th>
   </tr>
-
+  
    <% @passengers.each do |passenger| %>
   <tr>
     <td><%= link_to passenger.id, passenger_path( passenger.id ) %> </td>
