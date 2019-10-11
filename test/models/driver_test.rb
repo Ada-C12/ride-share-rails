@@ -43,7 +43,39 @@ describe Driver do
   describe "custom methods" do
     describe "average rating" do
       # Your code here
+      let (:driver) {
+        Driver.create(name: "Driver", vin: "123", active: nil)
+      }
+      let(:passenger) {
+        Passenger.create(name: "Haha Me", phone_num: "Nonono")
+      }
+      let(:trip_1) {
+        Trip.create(passenger_id: passenger.id, driver_id: driver.id, date: Date.today, cost: "1000", rating: "5")
+      }
+      let(:trip_2) {
+        Trip.create(passenger_id: passenger.id, driver_id: driver.id, date: Date.today, cost: "2000", rating: "4")
+      }
+
+    describe "average rating" do
+      # Your code here
+      # it "can calculate the average rating of this driver when the driver made at least one trip" do
+      #   average_rating = ((trip_1.rating.to_i + trip_2.rating.to_i).to_f / 2).round(2)
+      #   driver.save
+      #   passenger.save
+      #   expect(driver.average_rating).must_equal average_rating
+      # end
+
+      # it "will return 0 if the driver did not take any trip" do
+      #   driver.save
+      #   passenger.save
+      #   Trip.destroy
+      #   expect(driver.average_rating).must_equal 0
+      # end
+
+
+
     end
+  end
 
     describe "total earnings" do
       # Your code here
@@ -54,3 +86,5 @@ describe Driver do
     end
   end
 end
+
+

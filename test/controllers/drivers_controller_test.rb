@@ -120,17 +120,26 @@ describe DriversController do
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      input_driver = Driver.create(name: "Input driver", vin: "1111111111")
-      input_updates = {driver: {name: "", vin: "", available: true}}
+      # Note: This will not pass until ActiveRecord Validations lesson
+      # Arrange
+      # Ensure there is an existing driver saved
+      # Assign the existing driver's id to a local variable
+      # Set up the form data so that it violates Driver validations
+     
+      old_driver = driver
+      updated_driver = {
+        driver: {
+          name: "",
+          vin: ""
+        },
+      }
 
       expect {
-        patch driver_path(id:input_driver.id), params: input_updates
+        patch driver_path(old_driver.id), params: updated_driver
       }.must_differ "Driver.count", 0
 
-      new_driver_updated = Driver.find_by(id: input_driver.id)
-
-      must_redirect_to driver_path(new_driver_updated.id)
-
+      must_respond_with :success
+      #  driver_path(old_driver.id)
     end
   end
 
