@@ -5,7 +5,6 @@
 <li>
 <%= link_to driver.name, driver_path(driver), class:"link" %>
 <%= button_to 'Change Active Status', toggle_active_path(driver), method: :put, data: {confirm: "Are you sure?"} %>
-<br>
 </li>
 <% end %>
 </ul>
