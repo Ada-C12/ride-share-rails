@@ -52,16 +52,17 @@ describe TripsController do
       must_respond_with :redirect
     end
     
-    # it "does not create a driver if the form data violates Driver validations, and responds with success" do
-    #   # Arrange
-    #   driver_hash = { driver: { name: "Dino" } }
-    
-    #   # Act-Assert
-    #   expect { post drivers_path, params: driver_hash }.wont_change "Driver.count"
-    
-    #   # Assert
-    #   must_respond_with :success
-    # end  
+    it "does not create a trip with invalid passenger, and responds with redirect" do
+      # Arrange
+      driver.save
+      invalid_passenger_id = -1
+      
+      # Act-Assert
+      expect { post passenger_trips_path(invalid_passenger_id) }.wont_change "Driver.count"
+      
+      # Assert
+      must_respond_with :redirect
+    end  
   end
   
   describe "edit" do

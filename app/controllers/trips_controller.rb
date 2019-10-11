@@ -7,9 +7,9 @@ class TripsController < ApplicationController
         redirect_to passengers_path
       end
       
-      @trips = passenger.trips
+      @trips = passenger.trips.order(:date)
     else
-      @trips = Trip.all
+      @trips = Trip.order(:date)
       return
     end
   end
