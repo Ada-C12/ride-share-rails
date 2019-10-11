@@ -112,7 +112,6 @@ nav .link:active {
 
 main {
   margin-top: 10em;
-  display: flex;
 }
 
 h1 {
@@ -133,16 +132,19 @@ h1 {
 
 #index {
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
 }
 
-#index li { 
+#p-index li { 
   display: grid;
   max-width: 50vw;
   grid-template-columns: 1fr 3fr;
-  /* margin-top: 0.1em;
-  margin-bottom: 0.1em; */
+  line-height: 2;
+}
+
+#d-index li { 
+  display: grid;
+  max-width: 80vw;
+  grid-template-columns: 1fr 3fr 1fr;
   line-height: 2;
 }
 
@@ -154,4 +156,13 @@ h1 {
 #index .name {
   grid-column-start: 2;
   grid-column-end: 3;
+}
+
+#index .name a {
+  font-size: 1.25em;
+}
+
+#index .index-toggle {
+  grid-column-start: 3;
+  grid-column-end: 4;
 }
