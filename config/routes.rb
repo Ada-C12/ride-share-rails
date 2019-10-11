@@ -9,11 +9,11 @@ Rails.application.routes.draw do
   resources :drivers do
     resources :trips, only: :index
   end
-
-  patch 'drivers/:id/toggle_active', to: 'drivers#toggle_active', as: 'toggle_active'
-
   
-  resources :trips, except: :delete
-
+  patch 'drivers/:id/toggle_active', to: 'drivers#toggle_active', as: 'toggle_active'
+  
+  
+  resources :trips
+  
   
 end

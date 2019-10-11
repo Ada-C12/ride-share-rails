@@ -63,7 +63,7 @@ class TripsController < ApplicationController
   def destroy
     @trip = Trip.find_by(id: params[:id])
     if @trip.nil?
-      flash[:error] = "Could not find passenger"
+      flash[:error] = "Could not find trip"
       redirect_to passengers_path
       return
     end
