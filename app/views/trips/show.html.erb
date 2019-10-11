@@ -17,6 +17,14 @@ Click a link to delete the trip %>
     <li>Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id)%> </li>
     <li>Date: <%= @trip.date%> </li>
     <li>Rating: 
+    <% if @trip.rating.nil? %>
+    <%= form_with model: @trip do |f| %>
+
+  <%= f.label :rating %>
+  <%= f.select :rating, [1,2,3,4,5] %>
+  <%= f.submit "Submit Rating", class: "rating-form-button" %>
+<% end%>
+<% end %>
     <% if @trip.rating 
     @trip.rating.times do |star| %> 
     <span>✰</span>
