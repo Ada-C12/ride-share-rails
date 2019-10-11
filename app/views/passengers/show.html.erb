@@ -3,13 +3,12 @@
 <h3>Trips made by this passenger:<h3>
 
 <% @passenger.trips.each do |trip|%>
-
-<li> ID: <%= link_to "#{trip.id}", trip_path(trip) %></li>
+<li> Trip ID: <%= link_to "#{trip.id}", trip_path(trip) %></li>
 <li> Date: <%= trip.date %></li>
 <li> Driver: <%= trip.driver.name %></li>
-<li> Cost: <%= trip.cost %></li>
+<li> Cost: $<%= (trip.cost)/100.0 %></li>
 <li> Rating: <%= trip.rating %></li>
-
+</br>
 <% end %>
 
 <p><%= link_to "Return to Passenger List", passengers_path %></p>

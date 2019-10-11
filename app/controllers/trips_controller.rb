@@ -66,7 +66,7 @@ class TripsController < ApplicationController
       date: Date.today,
       passenger_id: params[:id],
       driver_id: Driver.find_a_driver,
-      cost: 5
+      cost: (Trip.first.cost)
     )
     
     if trip.id

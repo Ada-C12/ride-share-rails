@@ -26,18 +26,18 @@ class Driver < ApplicationRecord
     return avg_rating
   end 
   
-  # Change driver to other kind of Driver... this is testing...
-  # Update the database for available driver!
-  # I'm stil, working on this logic...
+  # Update the database for available driver...
+  # I'm stil, working on this logic (Sam) 
   def self.find_a_driver
     # driver = nil
-    # driver = Driver.find_by(available: true)
+    driver = Driver.find_by(available: true)
+    return driver.id
     
     # if driver = nil
-    #   return "error"
+    #   return "Error"
     # else 
-    driver = Driver.first.id
-    return driver
+    #   # driver = Driver.first.id
+    #   return driver.id
+    # end
   end
-end
-
+end 
