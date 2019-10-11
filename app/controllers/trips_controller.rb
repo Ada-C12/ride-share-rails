@@ -13,19 +13,6 @@ class TripsController < ApplicationController
     @trip = trip.new
   end
   
-  def create
-    @trip = Trip.new(Trip_params) 
-    # Assign passenger from params
-    # Assign a driver
-    if @trip.save
-      redirect_to root_path 
-      return
-    else
-      render :new 
-      return
-    end
-  end
-  
   def edit
     @trip = Trip.find_by(id: params[:id])
     
@@ -60,7 +47,8 @@ class TripsController < ApplicationController
     return
   end
   
-  # Check route path and check find_a_driver method before working on tests...
+  # Creates a trip for a specific passenger with an available driver...
+  # Sam - Update path and check find_a_driver method before working on tests...
   def create
     trip = Trip.create(
       date: Date.today,

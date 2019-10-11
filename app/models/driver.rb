@@ -27,17 +27,15 @@ class Driver < ApplicationRecord
   end 
   
   # Update the database for available driver...
-  # I'm stil, working on this logic (Sam) 
+  # I'm stil working on this logic (Sam) 
   def self.find_a_driver
-    # driver = nil
     driver = Driver.find_by(available: true)
     return driver.id
     
-    # if driver = nil
-    #   return "Error"
-    # else 
-    #   # driver = Driver.first.id
-    #   return driver.id
-    # end
+    if driver = nil
+      return "Error"
+    else 
+      return driver.id
+    end
   end
 end 
