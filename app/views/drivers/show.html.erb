@@ -22,6 +22,6 @@
 <br><br>
 <%= button_to "Delete Driver", driver_path(@driver), class:"link", method: :delete, data: {confirm: "Please confirm!"} %>
 <br><br>
-<%= button_to 'Change Active Status', toggle_active_path(@driver), method: :put, data: {confirm: "Are you sure?"} %>
+<%= button_to 'Change Active Status', toggle_active_path(@driver), method: :put  %>
 <br><br>
 <%= button_to "See All Drivers", drivers_path, class:"link", method: :get %>
