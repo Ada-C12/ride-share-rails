@@ -75,5 +75,19 @@ describe Passenger do
     end
   end
   
+  describe "avatar image" do
+    it "must return an image link" do
+      passenger = Passenger.create(name: "M. Random", phone_num: "111.555.111")
+      
+      avatar_url = passenger.avatar_image
+      
+      url_beginning = !!(avatar_url =~ /\Ahttps:\/\//)
+      url_ending = !!(avatar_url =~ /\.png\Z/)
+      
+      expect(url_beginning).must_equal true
+      expect(url_ending).must_equal true
+    end
+  end
+  
 end
 

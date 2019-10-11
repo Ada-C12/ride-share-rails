@@ -266,5 +266,20 @@ describe Driver do
         expect(selected_driver).must_be_nil
       end
     end
+    
+    describe "avatar image" do
+      it "must return an image link" do
+        driver = Driver.create(name: "M. Random", vin: "88888888", active: false)
+        
+        avatar_url = driver.avatar_image
+        
+        url_beginning = !!(avatar_url =~ /\Ahttps:\/\//)
+        url_ending = !!(avatar_url =~ /\.png\Z/)
+        
+        expect(url_beginning).must_equal true
+        expect(url_ending).must_equal true
+      end
+    end
+    
   end
 end

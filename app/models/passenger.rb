@@ -11,5 +11,12 @@ class Passenger < ApplicationRecord
     return total
   end
   
+  def avatar_image
+    passenger_id = self.id
+    avatar_link = "https://api.adorable.io/avatars/200/" << passenger_id.to_s << ".png"
+    
+    return avatar_link
+  end
+  
 end
 

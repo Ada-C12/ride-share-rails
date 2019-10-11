@@ -70,6 +70,13 @@ class Driver < ApplicationRecord
     end
   end
   
+  def avatar_image
+    driver_id = self.id
+    avatar_link = "https://api.adorable.io/avatars/200/" << driver_id.to_s << ".png"
+    
+    return avatar_link
+  end
+  
   # select active driver, set status to inactive
   def self.get_driver
     available_driver = Driver.find_by(active: true)

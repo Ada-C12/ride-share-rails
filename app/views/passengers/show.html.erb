@@ -3,6 +3,8 @@
   <%# name %>
   <h2><%= @passenger.name %></h2>
 
+  <%= image_tag @passenger.avatar_image %>
+
   <% if flash[:notice] %>
     <div class="notice"><%= flash[:notice] %></div>
   <% end %>
