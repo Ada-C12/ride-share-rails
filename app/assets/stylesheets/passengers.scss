@@ -14,3 +14,19 @@
 .passengers-border {
   padding-left: 2rem;
 }
+
+.passengers-edit-button, .passengers-delete-button {
+  font-size: smaller;
+  background-color: white;
+  color: black;
+  padding: 2px 6px 2px 6px;
+  border: solid 1px black;
+  border-radius: 5px;
+}
+
+.passenger-name-border {
+  background-image: url("https://i.pinimg.com/originals/52/59/af/5259af51cc38f004cdfe5136e04b95d0.jpg");
+  background-size: 50px;
+  background-repeat: no-repeat;
+  background-position: 30%;
+}

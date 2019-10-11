@@ -13,26 +13,69 @@
  *= require_tree .
  *= require_self
  */
+ @import url('https://fonts.googleapis.com/css?family=Kalam:700|Merienda:700&display=swap');
+
+
+ body {
+  height: 90vh;
+  margin: 1rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+ .nav-links {
+  display: grid;
+  grid-column: 3fr 1fr 1fr 1fr 1fr;
+  border: solid 2px black;
+  background-color: cornflowerblue;
+  font-size: larger;
+}
+
+ .nav-links a:hover {
+   background-color: white;
+   color: cornflowerblue;
+ }
+
+.home-link {
+  grid-column-start: 1;
+  font-family: 'Merienda', cursive;
+}
 
  .passengers-link {
   grid-column-start: 4;
   text-align: right;
+  font-family: 'Kalam', cursive;
 }
 
 .add-passenger {
   grid-column-start: 5;
   text-align: right;
+  font-family: 'Kalam', cursive;
+  padding-right: 1rem;
 }
 
  .drivers-link {
   grid-column-start: 2;
   text-align: right;
+  font-family: 'Kalam', cursive;
+  padding-left: 20rem;
 }
 
 .add-driver {
   grid-column-start: 3;
   text-align: right;
+  font-family: 'Kalam', cursive;
 }
+
 
  .drivers-passengers-list li {
    padding-bottom: 1rem;
@@ -43,8 +86,6 @@
    color: white;
  }
 
-
-
 .driver-passenger-form {
   min-height: 80vh;
   background-image: url("https://66.media.tumblr.com/9f568642105dac4ba1aa9dc9057cd912/tumblr_owt4j7x8zJ1tyxd5fo2_250.png");
@@ -54,3 +95,6 @@
   background-repeat: no-repeat;
  }
 
+footer {
+  margin-top: 1rem;
+}

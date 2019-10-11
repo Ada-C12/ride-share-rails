@@ -4,37 +4,7 @@
 
 @import url('https://fonts.googleapis.com/css?family=Caveat|Niconne&display=swap');
 
-body {
-  height: 90vh;
-  margin: 1rem;
-  margin-left: 2rem;
-  margin-right: 2rem;
-}
 
-ul {
-  list-style-type: none;
-}
-
-a {
-  color: black;
-  text-decoration: none;
-}
-
- .nav-links {
-  display: grid;
-  grid-column: 3fr 1fr 1fr 1fr 1fr;
-  border: solid 2px black;
-  background-color: cornflowerblue;
-}
-
- .nav-links a:hover {
-   background-color: white;
-   color: cornflowerblue;
- }
-
-.home-link {
-  grid-column-start: 1;
-}
 
 .homepage{
   display: grid;
