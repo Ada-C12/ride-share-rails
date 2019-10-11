@@ -128,19 +128,21 @@ describe PassengersController do
   end
 
   describe "create_new_trip" do
-    passenger = Passenger.create(name: "Georgina", phone_num: "111-111-1211")
-    driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
-    trip_info = {
-      trip: {   
-        driver_id: Driver.find_available_driver,
-        passenger_id: passenger.id,
-        date: Time.now,
-        rating: nil,
-        cost: 100,}
-      }
+    it "will create a new trip" do
+      passenger = Passenger.create(name: "Georgina", phone_num: "111-111-1211")
+      driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+      trip_info = {
+        trip: {   
+          driver_id: Driver.find_available_driver,
+          passenger_id: passenger.id,
+          date: Time.now,
+          rating: nil,
+          cost: 100,}
+        }
 
-      post "/passengers/#{passenger.id}/create_new_trip", params: trip_info
+        post "/passengers/#{passenger.id}/create_new_trip", params: trip_info
 
-      expect(passenger.find_passenger_trips.count).must_equal 1
+        expect(passenger.find_passenger_trips.count).must_equal 1
+    end
   end
 end

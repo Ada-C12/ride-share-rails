@@ -77,9 +77,6 @@ class DriversController < ApplicationController
   def toggle_status
     driver_id = params[:id]
     @driver= Driver.find_by(id: driver_id)
-    p "CAT BOMB"
-    p @driver
-    p @driver.errors
     if @driver.active == true
       @driver.active = false
       @driver.save

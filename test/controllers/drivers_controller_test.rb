@@ -137,16 +137,19 @@ describe DriversController do
     # end
     
     it "will set the driver status to active if inactive" do
-      driver = Driver.create(name: "Kim Possible", vin: "425449888")
-      driver_info = {
+      driver = Driver.create(name: "Kim Possible", vin: "425449888", active: false)
+      # driver.active = false
+      params = {
         driver: {
           active: true,
         }
       }
-
-      patch "/drivers/#{driver.id}/toggle_status", params: driver_info
-    
-      expect(driver.toggle_status)
+      
+      patch "/drivers/#{driver.id}/toggle_status", params: params
+      
+      driver.reload
+      
+      expect(driver.active).must_equal true
     end
 
     it "will set the driver status to inactive if active" do
