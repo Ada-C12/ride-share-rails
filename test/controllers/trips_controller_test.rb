@@ -22,23 +22,23 @@ describe TripsController do
   
   describe "create" do
     it "can create a new trip" do
-      driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9") 
-      passenger = Passenger.create(name: "George", phone_num: "111-111-1111") 
+      passenger = Passenger.create(name: "Kelsey", phone_num: "222-222-2222")
+      driver = Driver.create(name: "Brianna", vin: "1234567890")
       trip_hash = {
         trip: {
-          date: "2019-05-10",
+          date: "2019-10-5",
           rating: 2,
-          cost: 4564,
-          driver_id: driver.id,
-          passenger_id: passenger.id
+          cost: 4,
+          passenger_id: passenger.id,
+          driver_id: driver.id
         }
       }
       
       expect {
         post trips_path, params: trip_hash
-      }.must_differ "Trip.count", 1
+      }.must_change "Trip.count", 1
       
-      new_trip = Trip.find_by(driver_id: driver.id)
+      new_trip = Trip.find_by(date: trip_hash[:trip][:date])
       expect(new_trip.rating).must_equal trip_hash[:trip][:rating]
       expect(new_trip.cost).must_equal trip_hash[:trip][:cost]
       
@@ -139,4 +139,5 @@ describe TripsController do
       must_redirect_to trips_path
     end
   end
+  
 end

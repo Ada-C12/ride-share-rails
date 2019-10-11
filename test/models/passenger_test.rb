@@ -62,6 +62,7 @@ describe Passenger do
   describe "custom methods" do
     describe "request a ride" do
       # Your code here
+      # Please enjoy the tests for this code in the Passengers Controller Test, where we have decided to keep our code for requesting a ride.
     end
     
     describe "complete trip" do
