@@ -22,8 +22,10 @@ class DriversController < ApplicationController
     
     if @driver.save
       redirect_to driver_path(@driver.id)
+      return
     else
       render new_driver_path
+      return
     end
   end
   
@@ -47,6 +49,7 @@ class DriversController < ApplicationController
       return
     else
       redirect_to nope_path
+      return
     end
   end 
   

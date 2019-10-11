@@ -31,6 +31,7 @@ class PassengersController < ApplicationController
     @passenger = Passenger.find_by(id: params[:id])
     if @passenger.nil?
       redirect_to nope_path(params: {msg: "Cannot edit a non-existent passenger!"})
+      return
     end
   end
   
