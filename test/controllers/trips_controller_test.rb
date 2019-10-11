@@ -51,16 +51,45 @@ describe TripsController do
   
   
   describe "edit" do
-    # Your tests go here
+    it "can get the edit page for an existing trip" do
+      get edit_trip_path(@trip.id)
+      
+      must_respond_with :success
+    end
+    
+    it "will respond with redirect when attempting to find a nonexistant trip" do
+      get edit_trip_path(-13)
+      
+      must_respond_with :redirect
+      expect(flash[:error]).must_equal "Could not find trip"
+    end
   end
   
   describe "update" do
-    # Your tests go here
+    it "can update an existing trip" do
+      old_trip = Trip.find(@trip.id)
+      
+      trip_hash = {
+        trip: {
+          date: "10-15-2019",
+          rating: 4,
+          cost: 2040,
+          passenger_id: @passenger.id,
+          driver_id: @driver.id
+        }
+      }
+      expect {
+        patch trip_path(@trip.id), params: trip_hash
+      }.wont_change "Trip.count"
+      
+      expect(Trip.find(@trip.id).date).wont_equal old_trip.date
+      
+    end
   end
   
   describe "destroy" do
     it "can destroy an existing trip" do
-      old_trip =Passenger.find(@trip.id)
+      old_trip =Trip.find(@trip.id)
       
       expect {delete trip_path(@trip.id)}.must_change "Trip.count", -1
     end
