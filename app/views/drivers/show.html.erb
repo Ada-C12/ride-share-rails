@@ -26,6 +26,7 @@
         <li>Driver ID: <%= @driver[:id]%></li>
         <li>Vin: <%= @driver[:vin]%></li>
         <li>Average rating: <%= Trip.driver_avg_rating(@driver.id) %> </li>
+        <li>Total earnings: $<%= Trip.driver_total_earnings(@driver.id) %>
         <li>Active: <%= @driver[:active]%></li>
     </section>
     
@@ -43,7 +44,7 @@
           <li>Passenger: <%= trip.passenger_id %></li>
           <li>Date: <%= trip.date %></li>
           <li>Rating: <%= trip.rating %></li>
-          <li>Cost: <%= trip.cost %></li>
+          <li>Cost: $<%= '%.2f' % (trip.cost / 100) %></li>
           <hr>
         <%end%>
       </ul>

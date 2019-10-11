@@ -25,6 +25,7 @@
         <li>Name: <%=@passenger[:name]%></li>
         <li>Phone number: <%= @passenger[:phone_number]%></li>
         <li>Passenger ID: <%= (@passenger[:id])%></li>
+        </li>Total cost of all trips: $<%= Trip.trips_total(@passenger.id) %></li>
     </section>
 
     <section>
@@ -33,7 +34,6 @@
 
     <section>
       <h1>Trips:</h1>
-      <h2> Total cost of all trips: <%= Trip.trips_total(@passenger.id) %> </h2>
       <ul>
         <% Trip.where(passenger_id: params[:id]).each do |trip|%>
           <li>Trip ID: <%= link_to trip.id, trip_path(trip.id), method: :get %> </li> 
@@ -41,7 +41,7 @@
           <%# <li>Passenger: <%= trip.passenger_id %> 
           <li>Date: <%= trip.date %></li>
           <li>Rating: <%= trip.rating %></li>
-          <li>Cost: <%= trip.cost %></li>
+          <li>Cost: $<%= '%.2f' % (trip.cost / 100) %></li>
           <hr>
         <%end%>
       </ul>
