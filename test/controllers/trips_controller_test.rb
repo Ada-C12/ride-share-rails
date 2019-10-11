@@ -8,17 +8,17 @@ describe TripsController do
     Passenger.create name: "Jon Snow", phone_num: "123.345.6789"
   }
   let (:trip) {
-    Trip.create date: 2019-10-10, driver_id: driver.id, passenger_id: passenger.id, cost: 123.0, rating: 4.0
+    Trip.create date: 2019 - 10 - 10, driver_id: driver.id, passenger_id: passenger.id, cost: 123.0, rating: 4.0
   }
-  
+
   describe "index" do
     it "can get the index path" do
       get trips_path
-      
+
       must_respond_with :success
     end
   end
-  
+
   describe "show" do
     # Your tests go here
     it "responds with success when showing an existing valid trip" do
@@ -26,9 +26,8 @@ describe TripsController do
       get trip_path(trip.id)
       # # Assert
       must_respond_with :success
-      
     end
-    
+
     it "will redirect with an invalid trip id" do
       id = -1
       # # Act
@@ -37,16 +36,7 @@ describe TripsController do
       must_respond_with :redirect
     end
   end
-  
-  # ADDED TEST
-  describe "new" do
-    # Your tests go here
-    it "responds with success" do
-      get new_trip_path
-      must_respond_with :success
-    end
-  end
-  
+
   describe "create" do
     # Your tests go here
     it "can create a new trip with valid information accurately, and redirect" do
@@ -73,7 +63,7 @@ describe TripsController do
           driver_id: driver.id,
           passenger_id: passenger.id,
           cost: 123.0,
-          rating: 4.0
+          rating: 4.0,
         },
       }
       # Act-Assert
@@ -89,24 +79,23 @@ describe TripsController do
       expect(new_trip.passenger_id).must_equal trip_hash[:trip][:passenger_id]
       expect(new_trip.cost).must_equal trip_hash[:trip][:cost]
       expect(new_trip.rating).must_equal trip_hash[:trip][:rating]
-      
+
       must_respond_with :redirect
       must_redirect_to trip_path(new_trip.id)
     end
-    
   end
-  
+
   describe "edit" do
     # Your tests go here
     # get edit_trip_path(trip.id)
-    
+
     # must_respond_with :success
   end
-  
+
   describe "update" do
     # Your tests go here
   end
-  
+
   describe "destroy" do
     # Your tests go here
   end

@@ -12,16 +12,16 @@ class TripsController < ApplicationController
     end
   end
   
-  def new
-    @passenger = Passenger.find_by(id: params[:passenger_id])
-    @trip = Trip.new(passenger_id: @passenger.id)
-  end
+  # def new
+  #   @passenger = Passenger.find_by(id: params[:passenger_id])
+  #   @trip = Trip.new(passenger_id: @passenger.id)
+  # end
   
   def create
     @trip = Trip.new(passenger_id: params[:id])
     driver = Driver.where(:active => false).first
     @trip.date = Date.today
-    @trip.cost = rand(5..500).to_f
+    @trip.cost = rand(1000..3000).to_f
     @trip.rating = nil
     @trip.driver_id = driver.id
     if @trip.save

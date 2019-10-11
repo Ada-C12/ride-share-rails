@@ -60,9 +60,6 @@ describe Passenger do
 
   # Tests for methods you create should go here
   describe "custom methods" do
-    describe "request a ride" do
-      # Your code here
-    end
     describe "count_rides" do
       it "returns nil if the passenger has no rides" do
         new_passenger.save

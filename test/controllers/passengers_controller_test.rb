@@ -232,12 +232,29 @@ describe PassengersController do
   end
 
   describe "rate_trip" do
-    it "saves an integer value as a rating" do
-      driver = Driver.create(name: "sample driver", vin: "VH1234SD234F0909", active: true, car_make: "Fiat", car_model: "POP")
-      passenger = Passenger.create(name: "Jon Snow", phone_num: "123.345.6789")
+    # Your tests go here
+    it "can rate a passenger's trip and redirect" do
+      passenger_hash = {
+        passenger: {
+          name: "Tyrion Lannister",
+          phone_num: "(908) 987-2345",
+        },
+      }
 
-      trip = Trip.create(date: 2019 - 10 - 10, driver_id: driver.id, passenger_id: passenger.id, cost: 123.0)
-      passenger.rate_trip
+      passenger = Passenger.create(name: "Jon Snow", phone_num: "123.345.6789")
+      driver = Driver.create(name: "sample driver", vin: "VH1234SD234F0909", active: false, car_make: "Fiat", car_model: "POP")
+      trip = Trip.create(date: Date.today, driver_id: driver.id, passenger_id: passenger.id, cost: 123.0, rating: nil)
+
+      ratings_hash = {
+        trip_id: trip.id,
+        rating: 5,
+      }
+
+      post rate_trip_path(trip.id), params: ratings_hash
+
+      expect(Trip.find_by(id: trip.id).rating).must_equal 5
+      must_respond_with :redirect
+      must_redirect_to passenger_trips_path(passenger.id)
     end
 
     it "updates a driver's status to inactive" do
