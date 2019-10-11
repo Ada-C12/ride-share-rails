@@ -70,22 +70,6 @@ class DriversController < ApplicationController
 
     @driver.toggle_active
     redirect_to driver_path(@driver.id)
-    
-    # if @driver.nil?
-    #   puts "NO DRIVER FOUND"
-    #   redirect_to drivers_path
-    #   return
-    # elsif @driver.active == true
-    #   puts "DRIVER CHANGED TO FALSE"
-    #   @driver.update(active: false)
-    #   redirect_to driver_path(@driver.id)
-    #   return
-    # else
-    #   puts "DRIVER CHANGED TO TRUE"
-    #   @driver.update(active: true)
-    #   redirect_to driver_path(@driver.id)
-    #   return
-    # end
   end
   
   private

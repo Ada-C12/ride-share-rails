@@ -67,6 +67,16 @@ class TripsController < ApplicationController
     end
   end
   
+  def complete_trip
+    @trip = Trip.find_by(id: params[:id])
+    
+    unless @trip.driver
+      @trip.driver.toggle_active
+      redirect_to trip_path(@trip.id)
+      return
+    end
+  end
+  
   private
   
   def trip_params
