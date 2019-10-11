@@ -77,7 +77,7 @@ describe DriversController do
     it "responds with success when getting the edit page for an existing, valid driver" do
       # Arrange
       # Ensure there is an existing driver saved
-        edit_driver_path(driver.id)
+        get edit_driver_path(driver.id)
       # Act
         must_respond_with :success
       # Assert
@@ -122,7 +122,7 @@ describe DriversController do
       # Ensure there is an invalid id that points to no driver
       # Set up the form data
       get driver_path(-1)
-      must_respond_with :redirect
+      must_respond_with :not_found
       # Act-Assert
       # Ensure that there is no change in Driver.count
 
@@ -170,7 +170,5 @@ describe DriversController do
     }.must_differ "Driver.count", 0
 
     must_respond_with :redirect
- end
-  
-    end
   end
+end
