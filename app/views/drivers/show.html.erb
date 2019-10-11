@@ -44,7 +44,11 @@
         <tr>
         <td><%= link_to trip.id, trip_path(trip) %></td>
         <td><%= trip.date %></td>
-        <td><%= trip.passenger.name %></td>
+                <% if trip.passenger.nil? %>
+          <td><%= "Unknown"%></td>
+        <% else %>
+          <td> <%= link_to trip.passenger.name, driver_path(trip.driver.id) %></td>
+        <% end %>
         <td>$<%= sprintf('%.2f', trip.cost / 10) %></td>
         </tr>
       <% end %>
