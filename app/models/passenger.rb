@@ -5,8 +5,7 @@ class Passenger < ApplicationRecord
   
   def request_a_ride
     drivers = Driver.all
-    driver = drivers.find { |driver| driver.active == nil}
-    driver.go_offline
+    driver = drivers.find { |driver| driver.active == nil }
     date = Date.today
     trip_params = {
       driver_id: driver.id,
@@ -15,7 +14,6 @@ class Passenger < ApplicationRecord
     }
     return trip_params
   end
-  
   
   def total_charge
     total_charge = 0
@@ -29,5 +27,4 @@ class Passenger < ApplicationRecord
     driver = Trip.find_by(id: trip_id).driver
     driver.go_online
   end
-  
 end

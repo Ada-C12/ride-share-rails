@@ -10,12 +10,12 @@ class TripsController < ApplicationController
   def create
     passenger = Passenger.find_by(id: params[:passenger_id])
     trip_params = passenger.request_a_ride
-    @trip = Trip.new(trip_params)
+    trip = Trip.new(trip_params)
     
-    if @trip.save
-      driver = Driver.find_by(id: trip_params[:driver_id])
+    if trip.save
+      driver = Driver.find_by(id: trip.driver.id)
       driver.go_offline
-      redirect_to trip_path(@trip.id)
+      redirect_to trip_path(trip.id)
       return
     else
       render new_trip_path
@@ -56,12 +56,9 @@ class TripsController < ApplicationController
     end
   end
   
-  
-  
   private
   
   def trip_edit_params
     return params.require(:trip).permit(:cost, :rating)
   end
-  
 end

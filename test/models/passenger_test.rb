@@ -59,14 +59,64 @@ describe Passenger do
 
   # Tests for methods you create should go here
   describe "custom methods" do
+    let (:driver) {
+      Driver.create(name: "Driver", vin: "123", active: nil)
+    }
+
+    let(:passenger) {
+      Passenger.create(name: "Haha Me", phone_num: "Nonono")
+    }
+
+    let(:trip_1) {
+      Trip.create(passenger_id: passenger.id, driver_id: driver.id, date: Date.today, cost: "1000", rating: "5")
+    }
+
+    let(:trip_2) {
+      Trip.create(passenger_id: passenger.id, driver_id: driver.id, date: Date.today, cost: "2000", rating: "4")
+    }
+
     describe "request a ride" do
       # Your code here
-      
+      it "will return a hash with all required information to create a trip when passenger request a trip" do
+        driver.save
+        trip_hash = passenger.request_a_ride
+        
+        expect(trip_hash).must_be_instance_of Hash
+        expect(trip_hash[:passenger_id]).must_equal passenger.id
+        expect(trip_hash[:driver_id]).must_equal driver.id
+        expect(trip_hash[:date]).must_be_instance_of Date
+      end
+    end
+
+    describe "total charge" do
+      # Your code here
+      it "can calculate the total expense of this passenger when the passenger took at least one trip" do
+        driver.save
+        passenger.save
+        total_expense = (trip_1.cost.to_i + trip_2.cost.to_i)
+        
+        expect(passenger.total_charge).must_equal total_expense
+      end
+
+      it "will return 0 if the driver did not take any trip" do
+        driver.save
+        passenger.save
+        Trip.destroy_all
+
+        expect(passenger.total_charge).must_equal 0
+      end
     end
 
     describe "complete trip" do
       # Your code here
+      it "changes the driver active status to true after clicking submit botton for rating and cost which means that the driver is available to accept a trip" do 
+        passenger.save
+        trip = Trip.create(driver_id: driver.id, passenger_id: passenger.id, date: Date.today)
+        driver.go_online
+
+        passenger.complete_trip(trip.id)
+        expect(Driver.find(driver.id).active).must_be_nil
+      end
     end
-    # You may have additional methods to test here
   end
 end
