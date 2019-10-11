@@ -32,6 +32,8 @@
       <%= usd(0.00) %>
     <% end %>
   </p>
+  <%# When trip gets deleted, count is also affected. We don't want this but ran out of time to fix this. To fix, we can add a column in the schema to keep an ongoing tally %>
+  <p>Total trips driven: <%= Trip.where(driver_id: @driver.id).count %></p>
 </section>
 
 <section class="details">
