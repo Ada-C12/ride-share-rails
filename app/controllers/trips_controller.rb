@@ -32,6 +32,9 @@ class TripsController < ApplicationController
     trip_params = passenger.request_trip
     @trip = Trip.create(trip_params)
     
+    # @trip.passenger = (Passenger_params)
+    # @tripdriver = (Driver_params)
+    
     if @trip
       redirect_to trip_path(@trip.id), notice: 'Trip was successfully created.'
     else 

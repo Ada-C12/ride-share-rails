@@ -11,25 +11,12 @@
   </head>
 
   <body>
-    <nav>
-      <ul>
-        <li>
-          <%# This is the syntax for defining a link in HTML (More in depth in View Helpers lesson) %>
-          <%= link_to "Home!", root_path %>
-        </li>
-        <li>
-          <%= link_to "Go to the Drivers Index Page", drivers_path %>
-        </li>
-        <li>
-          <%= link_to "Add a new driver", new_driver_path %>
-        </li>
-         <li>
-          <%= link_to "Go to the Passengers Index Page", passengers_path %>
-        </li>
-        <li>
-          <%= link_to "Add a new passenger", new_passenger_path %>
-        </li>
-      </ul>
+      <nav>
+          <%= link_to "Home!", root_path, class: "a"%>
+          <%= link_to "Go to the Drivers Index Page", drivers_path, class: "b" %>
+          <%= link_to "Add a new driver", new_driver_path, class: "c"%>
+          <%= link_to "Go to the Passengers Index Page", passengers_path, class: "d" %>
+          <%= link_to "Add a new passenger", new_passenger_path, class: "e" %>
     </nav>
 
     <%= yield %>

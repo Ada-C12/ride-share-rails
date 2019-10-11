@@ -4,8 +4,8 @@
 </header>
 <ul>
   <li><strong>VIN:</strong><%=@driver.vin%>
-  <li><strong>total earnings:</strong></li>
-  <li><strong>average rating:</strong></li>
+  <li><strong>total earnings:  $</strong><%= @driver.total_earnings %></li>
+  <li><strong>average rating:  </strong></li>
 
   <li> <%= link_to "Edit driver!", edit_driver_path(@driver.id)%></li>
   <li> <%= link_to "Delete driver!", driver_path(@driver.id), method: :delete, data: {confirm: "are you sure???"}, class: "driver-delete-link" %></li>
@@ -22,7 +22,7 @@
   <tr>
       <td><%= link_to trip.date, trip_path(trip.id)%></td>
       <td><%= trip.rating %>
-      <td><%= trip.cost %>
+      <td> $<%= trip.cost * 0.01 %>
   </tr>
   <%end%>
 </table>

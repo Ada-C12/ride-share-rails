@@ -41,11 +41,66 @@ nav a:hover {
 }
 
 body {
+  margin: 0;
   background-color: rgb(237, 205, 193);
   font-family: 'Dosis', sans-serif;
   font-weight: bold;
 }
 
+nav {
+  border: 0;
+  margin: 0;
+  padding: 1em;
+  color: white;
+  background-color: black; 
+  display: grid;
+  justify-items: end;
+  grid-template-columns: repeat(6 1fr);
+  grid-template-rows: 1;
+  grid-template-areas:
+  "a b c d e f";
+  
+}
+.a {
+  grid-area: a;
+}
+.b {
+  grid-area: b;
+}
+
+.c {
+  grid-area: c;
+}
+
+.d {
+  grid-area: d;
+}
+
+.e {
+  grid-area: e;
+}
+
+nav a {
+  color: lightgray;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: white
+}
+
 table, th, td {
   border: 1px solid black;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: #440178;
+}
+
+a:hover {
+  color: #895BAC;
 }
