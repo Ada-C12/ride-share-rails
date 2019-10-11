@@ -1,5 +1,7 @@
 <h2>Passenger: <%= @passenger.name %></h2>
 <h3>Phone number: <%= @passenger.phone_num%><h3>
+<h4>Total expenses: $<%= @passenger.total_amount_charged %></h4>
+
 <h3>Trips made by this passenger:<h3>
 
 <% @passenger.trips.each do |trip|%>
