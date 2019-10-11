@@ -65,83 +65,85 @@ describe Driver do
     end
   end
   
-  describe "get available driver" do
-    it "gets an available driver" do
-      unavailable_driver.save
-      new_driver.save 
+  describe "custom methods" do
+    describe "get available driver" do
+      it "gets an available driver" do
+        unavailable_driver.save
+        new_driver.save 
+        
+        first_available_driver = Driver.get_available_driver
+        
+        expect(first_available_driver).must_be_instance_of Driver
+        expect(first_available_driver.available).must_equal true
+      end
       
-      first_available_driver = Driver.get_available_driver
-      
-      expect(first_available_driver).must_be_instance_of Driver
-      expect(first_available_driver.available).must_equal true
+      it "returns nil if no drivers are available" do
+        unavailable_driver.save
+        
+        first_available_driver = Driver.get_available_driver
+        
+        assert_nil(first_available_driver)
+      end
     end
     
-    it "returns nil if no drivers are available" do
-      unavailable_driver.save
+    describe "average rating" do
+      it "calculates the correct average rating for multiple trips" do
+        new_driver.save
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+        trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
+        trip_3 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 2, cost: 100)
+        
+        expect(new_driver.average_rating).must_equal 3.33
+      end
       
-      first_available_driver = Driver.get_available_driver
-      
-      assert_nil(first_available_driver)
-    end
-  end
-  
-  describe "average rating" do
-    it "calculates the correct average rating for multiple trips" do
-      new_driver.save
-      trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
-      trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
-      trip_3 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 2, cost: 100)
-      
-      expect(new_driver.average_rating).must_equal 3.33
-    end
-    
-    it "returns the same rating if there is only one trip" do
-      new_driver.save
-      trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
-      
-      expect(new_driver.average_rating).must_equal 5
-    end
-  end
-  
-  describe "total earnings" do
-    it "calculates the correct earnings for multiple trips" do
-      new_driver.save
-      
-      trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
-      trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
-      trip_3 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 1, cost: 100)
-      
-      expect(new_driver.total_earnings).must_equal 57.90
+      it "returns the same rating if there is only one trip" do
+        new_driver.save
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+        
+        expect(new_driver.average_rating).must_equal 5
+      end
     end
     
-    it "returns the correct price if there is only one trip" do
-      new_driver.save
+    describe "total earnings" do
+      it "calculates the correct earnings for multiple trips" do
+        new_driver.save
+        
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+        trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
+        trip_3 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 1, cost: 100)
+        
+        expect(new_driver.total_earnings).must_equal 57.90
+      end
       
-      trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
-      
-      expect(new_driver.total_earnings).must_equal 8.55
-    end
-  end
-  
-  describe "toggle availability" do
-    it "can turn a driver from available to unavailable" do
-      new_driver.save
-      
-      new_driver.toggle_available
-      
-      updated_driver = Driver.find_by(id: new_driver.id)
-      
-      expect(updated_driver.available).must_equal false
+      it "returns the correct price if there is only one trip" do
+        new_driver.save
+        
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+        
+        expect(new_driver.total_earnings).must_equal 8.55
+      end
     end
     
-    it "can turn a driver from unavailable to available" do
-      unavailable_driver.save
+    describe "toggle availability" do
+      it "can turn a driver from available to unavailable" do
+        new_driver.save
+        
+        new_driver.toggle_available
+        
+        updated_driver = Driver.find_by(id: new_driver.id)
+        
+        expect(updated_driver.available).must_equal false
+      end
       
-      unavailable_driver.toggle_available
-      
-      updated_driver = Driver.find_by(id: unavailable_driver.id)
-      
-      expect(updated_driver.available).must_equal true
+      it "can turn a driver from unavailable to available" do
+        unavailable_driver.save
+        
+        unavailable_driver.toggle_available
+        
+        updated_driver = Driver.find_by(id: unavailable_driver.id)
+        
+        expect(updated_driver.available).must_equal true
+      end
     end
   end
 end

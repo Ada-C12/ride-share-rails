@@ -7,6 +7,9 @@ describe Passenger do
   let (:second_trip) { Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: "2016-04-10", rating: 5, cost: 500 ) }
   
   it "can be instantiated" do
+    # Arrange
+    new_passenger.save
+    
     # Assert
     expect(new_passenger.valid?).must_equal true
   end
@@ -43,6 +46,7 @@ describe Passenger do
     it "must have a name" do
       # Arrange
       new_passenger.name = nil
+      new_passenger.save
       
       # Assert
       expect(new_passenger.valid?).must_equal false
@@ -53,6 +57,7 @@ describe Passenger do
     it "must have a phone number" do
       # Arrange
       new_passenger.phone_num = nil
+      new_passenger.save
       
       # Assert
       expect(new_passenger.valid?).must_equal false
@@ -61,7 +66,6 @@ describe Passenger do
     end
   end
   
-  # Tests for methods you create should go here
   describe "custom methods" do
     describe "request a ride" do
       # Your code here
@@ -80,15 +84,15 @@ describe Passenger do
       
       it "returns the correct float if there is one trip" do
         new_passenger.save
-        test_trip = new_trip
+        new_trip.save
         
         expect(new_passenger.total_money_spent).must_equal 12.50
       end
       
       it "returns the correct float if there are mutliple trips" do
         new_passenger.save
-        test_trip = new_trip
-        second_test_trip = second_trip
+        new_trip.save
+        second_trip.save
         
         expect(new_passenger.total_money_spent).must_equal 17.50
       end

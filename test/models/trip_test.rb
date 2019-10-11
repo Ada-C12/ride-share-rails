@@ -3,7 +3,7 @@ require "test_helper"
 describe Trip do
   let (:new_driver) { Driver.create(name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", available: true) }
   let (:new_passenger) { Passenger.create(name: "Barney Rubble", phone_num: "123-456-7890") }
-  let (:new_trip) {Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: "2016-04-05", rating: 3, cost: 1250 ) }
+  let (:new_trip) { Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: "2016-04-05", rating: 3, cost: 1250 ) }
   
   it "can be instantiated" do
     expect(new_trip.valid?).must_equal true
@@ -81,10 +81,5 @@ describe Trip do
       expect(bad_driver.errors.messages).must_include :cost
       expect(bad_driver.errors.messages[:cost]).must_equal ["can't be blank"]
     end
-  end
-  
-  # Tests for methods you create should go here
-  describe "custom methods" do
-    # Your tests here
   end
 end

@@ -1,20 +1,13 @@
 require "test_helper"
 
 describe TripsController do
-  let (:driver) {
-    Driver.create(name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", available: true) 
-  }
-  let (:passenger) {
-    Passenger.create(name: "Barney Rubble", phone_num: "123-456-7890") 
-  }
-  let (:trip) {
-    Trip.create(driver_id: driver.id, passenger_id: passenger.id, date: "2016-04-05", rating: 3, cost: 1250 ) 
-  }
+  let (:driver) { Driver.create(name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", available: true) }
+  let (:passenger) { Passenger.create(name: "Barney Rubble", phone_num: "123-456-7890") }
+  let (:trip) { Trip.create(driver_id: driver.id, passenger_id: passenger.id, date: "2016-04-05", rating: 3, cost: 1250 ) }
   
   describe "show" do
     it "responds with success when showing an existing valid trip" do
       # Arrange
-      # Ensure that there is a trip saved
       test_driver = driver
       test_passenger = passenger
       test_trip = trip
@@ -28,7 +21,6 @@ describe TripsController do
     
     it "responds with redirect if given invalid trip id" do
       # Arrange
-      # Ensure that there is an id that points to no trip
       invalid_id = (-1)
       
       # Act
@@ -40,11 +32,57 @@ describe TripsController do
   end
   
   describe "create" do
-    # Your tests go here
+    it "can create a new trip with a valid passenger, and redirect" do
+      # Arrange
+      driver.save
+      passenger.save
+      
+      # Act-Assert
+      expect { post passenger_trips_path(passenger.id)}.must_change "Trip.count", 1
+      
+      # Assert
+      new_trip = Trip.first
+      
+      expect(new_trip.driver).must_be_instance_of Driver
+      expect(new_trip.passenger).must_be_instance_of Passenger
+      expect(new_trip.date).must_be_kind_of String
+      expect(new_trip.cost).must_be_kind_of Integer
+      assert_nil(new_trip.rating)
+      
+      must_respond_with :redirect
+    end
+    
+    # it "does not create a driver if the form data violates Driver validations, and responds with success" do
+    #   # Arrange
+    #   driver_hash = { driver: { name: "Dino" } }
+    
+    #   # Act-Assert
+    #   expect { post drivers_path, params: driver_hash }.wont_change "Driver.count"
+    
+    #   # Assert
+    #   must_respond_with :success
+    # end  
   end
   
   describe "edit" do
-    # Your tests go here
+    it "responds with success when getting the edit page for an existing, valid trip" do
+      # Act
+      get edit_trip_path(trip.id)
+      
+      # Assert
+      must_respond_with :success
+    end
+    
+    it "responds with redirect when getting the edit page for a non-existing trip" do
+      # Arrange
+      invalid_id = -1
+      
+      # Act
+      get edit_trip_path(invalid_id)
+      
+      # Assert
+      must_respond_with :redirect
+    end
   end
   
   describe "update" do
@@ -54,29 +92,23 @@ describe TripsController do
   describe "destroy" do
     it "destroys the trip instance in db when trip exists, then redirects" do
       # Arrange
-      # Ensure there is an existing trip saved
       test_trip = trip
       
       # Act-Assert
-      # Ensure that there is a change of -1 in Driver.count
       expect{ delete trip_path(test_trip.id)}.must_differ "Trip.count", -1
       
       # Assert
-      # Check that the controller redirects
       must_respond_with :redirect
-      
     end
     
     it "does not change the db when the trip does not exist, then responds with " do
       # Arrange
-      # Ensure there is an invalid id that points to no trip
+      invalid_id = -1
       
       # Act-Assert
-      # Ensure that there is no change in Driver.count
       expect{ delete trip_path(-1)}.wont_change "Trip.count"
       
       # Assert
-      # Check that the controller responds or redirects with whatever your group decides
       must_respond_with :redirect
     end
   end
