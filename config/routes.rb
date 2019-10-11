@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   end
   
   resources :trips
+  patch "/trips/:id/complete", to: "trips#complete", as: "complete"
 end
