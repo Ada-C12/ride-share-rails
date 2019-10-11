@@ -1,10 +1,12 @@
 <div class="container">
+
   <div class="detail-card">
     <h1>Passenger Details</h1>
     <ul class="details">
       <li>
         <img src="https://i.pravatar.cc/300" />
       </li>
+
       <li>
       Name: <%= @passenger.name %><br>
       Phone Number: <%= @passenger.phone_num %><br>
@@ -32,7 +34,7 @@
         <td><%= link_to trip.id, trip_path(trip) %></td>
         <td><%= trip.date %></td>
         <td><%= trip.driver.name %></td>
-        <td><%= trip.cost %></td>
+        <td><%= sprintf('%.2f', trip.cost / 10) %></td>
       <tr>
       <% end %>
   </table>
