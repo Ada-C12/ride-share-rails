@@ -18,7 +18,8 @@ class TripsController < ApplicationController
     trip.save
     assign_driver.update(active: true) 
     
-    redirect_to root_path
+    redirect_to passenger_path(params[:passenger_id])
+      
     return
   else 
     render :new 
