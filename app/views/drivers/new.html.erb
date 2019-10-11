@@ -1,5 +1,3 @@
-<div class="form-input">
-<h3>Add a New Driver</h3>
 
 <% if @driver.errors.any? %>
   <ul class="errors">
@@ -11,21 +9,5 @@
   </ul>
 <% end %>
 
-<%= form_with model: @driver do |f| %>
-  <%= f.label "Name:"%>
-  <%= f.text_field :name %>
-  <br>
-  <%= f.label "VIN:" %>
-  <%= f.text_field :vin %>
-  <br>
-  <%# <%= f.label "Car Make:" %>
-  <%# <%= f.text_field :car_make %> 
-  <br>
-  <%# <%= f.label "Car Model:" %> 
-  <%# <%= f.text_field :car_model %> 
-  <br>
-  <%= f.submit "Create New Driver"%>
-<% end %>
-<br>
-<%= link_to "Back to Driver List", drivers_path%>
-</div>
+
+<%= render(partial: "form", locals: { action_name: "Create", verb_name: "add" }) %>

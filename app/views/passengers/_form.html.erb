@@ -1,0 +1,16 @@
+
+<p>Please provide the following information to <%= verb_name %> a passenger in our database:</p>
+
+<%= form_with model: @passenger do |f| %>
+  <%= f.label "Name:"%>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label "Phone Number:" %>
+  <%= f.text_field :phone_num %>
+  <br>
+  <%= f.submit "#{action_name} Passenger"%>
+<% end %>
+
+
+
+<%= link_to "Back to Passenger List", passengers_path%>

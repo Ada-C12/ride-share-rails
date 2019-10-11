@@ -18,11 +18,69 @@
   font-family: helvetica
 } */
 
-/* body {
-  background: #FEAC5E;  /* fallback for old browsers */
-  /* background: -webkit-linear-gradient(to right, #4BC0C8, #C779D0, #FEAC5E);  /* Chrome 10-25, Safari 5.1-6 */
-  /* background: linear-gradient(to right, #4BC0C8, #C779D0, #FEAC5E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  /* font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  font-size: 150%;
-  color: #344ceb; */ 
-/* } */
+body {
+  /* background: #1A1a14;  fallback for old browsers */
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 120%;
+  text-align: center;
+  font-family: Optima;
+  background-color: rgb(231, 228, 228)
+ }
+
+
+
+  ul {
+    max-width: 1fr;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    text-align: center;
+    grid-gap: 15px;
+    font-size: 150%;
+    list-style-type: none;
+    margin: 0;
+    padding: 30px;
+    color: #07889B;
+  } 
+
+  li {
+    padding: 10px 0px 0px 10px
+  }
+  
+  section 
+  {
+    font-size: 75%
+  }
+
+  div {
+    font-size: 150%
+  }
+  
+
+h2 {
+  color: #07889B;
+  font-size: 300%
+}
+
+h3 {
+  color: #07889B;
+  font-size: 350%
+}
+
+h4{
+  color: #66b9bf;
+  font-size: 300%
+}
+
+
+a:link {
+  color: #07889B;
+} 
+
+a:hover {
+  color: white;
+}
+
+.passenger-show ul {
+  padding: 0px 0px 0px 100px;
+}

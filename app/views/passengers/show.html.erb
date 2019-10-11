@@ -27,7 +27,7 @@ Trip Needs Rating:
 <%# </ul>
 </p> %> 
 
-<p>
+<p class="passenger-show">
 
    
   <br>
@@ -35,9 +35,8 @@ Trip Needs Rating:
     <% i = 1 %>
     <% @passenger.trips.each do |trip| %>
       <% if trip.rating.nil? %>
-        Needs Rating:
         <li>
-          <%= link_to "Trip #{i}", trip_path(trip) %>
+          <%= link_to "Needs Rating: Trip #{i}", trip_path(trip) %>
         </li>
       <% else %> 
         <li>

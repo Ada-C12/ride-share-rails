@@ -4,16 +4,14 @@
 <br>
 <%= link_to "Back to list of drivers", drivers_path %>
 
-
 <p>Name: <%= @driver.name %></p>
 <p>VIN: <%= @driver.vin %></p>
 <p>ID: <%= @driver.id %></p>
-<p>Total Earned: $ <%= @driver.total_earned %></p>
-<p>Status: 
-  <% if @driver.available%> 
-    <p>Available</p>
+<p>Total Earned: $<%= @driver.total_earned %></p> 
+ <% if @driver.available %> 
+  <p class="status-available"> Status: Available
   <% else %>                          
-    <p>Unavailable</p>
+    <p class="status-unavailable"> Status: Unavailable
   <% end %>
 </p>
  
@@ -25,6 +23,7 @@
 <p>Average Rating: <%= @driver.average_rating%></p>
 <p>
 
+<section>
   Trips: 
   <br>
   <ul>
@@ -39,3 +38,4 @@
   </ul>
 
 </p>
+</section>
