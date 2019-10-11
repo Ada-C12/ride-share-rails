@@ -51,6 +51,9 @@ class DriversController < ApplicationController
       redirect_to drivers_path
       return
     else
+      driver.trips.each do |trip|
+        trip.destroy
+      end
       driver.destroy
       redirect_to drivers_path
       return

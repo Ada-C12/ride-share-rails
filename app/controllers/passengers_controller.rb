@@ -55,6 +55,9 @@ class PassengersController < ApplicationController
       redirect_to passengers_path
       return
     else
+      passenger.trips.each do |trip|
+        trip.destroy
+      end
       passenger.destroy
       redirect_to passengers_path
       return
