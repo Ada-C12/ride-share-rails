@@ -22,10 +22,10 @@ class DriversController < ApplicationController
   end
   
   def destroy
-    driver = Driver.find_by(id: params[:id])
-    return redirect_to drivers_path unless driver
-    
-    driver.destroy
+    @driver = Driver.find_by(id: params[:id])
+    return redirect_to drivers_path unless @driver
+    update_trips
+    @driver.destroy
     redirect_to drivers_path
   end
   
@@ -35,15 +35,24 @@ class DriversController < ApplicationController
   end
   
   def update
-    driver = Driver.find_by(id: params[:id])
-    return head :not_found unless driver
+    @driver = Driver.find_by(id: params[:id])
+    return head :not_found unless @driver
     
-    if driver.update(driver_params)
+    if @driver.update(driver_params)
       redirect_to drivers_path
     else
-      redirect_to edit_driver_path(driver.id)
+      render "edit"
     end
   end
+  
+  def update_trips
+    @trips = Trip.where(driver_id: @driver.id)
+    @trips.each do |trip|
+      trip.driver_id = 101
+      trip.save
+    end
+  end
+  
   
   private
   def driver_params

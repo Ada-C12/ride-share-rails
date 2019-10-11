@@ -23,10 +23,10 @@ class PassengersController < ApplicationController
   end
   
   def destroy
-    passenger = Passenger.find_by(id: params[:id])
-    
-    return head :not_found unless passenger
-    passenger.destroy
+    @passenger = Passenger.find_by(id: params[:id])
+    return head :not_found unless @passenger
+    update_trips
+    @passenger.destroy
     redirect_to root_path
   end
   
@@ -42,9 +42,18 @@ class PassengersController < ApplicationController
     if @passenger.update(passenger_params)
       redirect_to passengers_path
     else
-      redirect_to edit_passenger_path
+      render "edit"
     end
   end
+  
+  def update_trips
+    @trips = Trip.where(passenger_id: @passenger.id)
+    @trips.each do |trip|
+      trip.passenger_id = 301
+      trip.save
+    end
+  end
+  
   
   private
   def passenger_params
