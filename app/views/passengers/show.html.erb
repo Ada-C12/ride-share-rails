@@ -1,5 +1,15 @@
 <h2>Details for Passenger: <%= @passenger.name %></h2>
 
+<p>Passenger ID: <%= @passenger.id %></p>
+<p>Name: <%= @passenger.name %></p>
+<p>Phone Number: <%= @passenger.phone_number %></p>
+<p>Total Amount Charged: $<%= number_with_precision(@passenger.total_charged, :precision => 2) %></p>
+
+
+
+
+<h2>Details for Passenger: <%= @passenger.name %></h2>
+
 <ul>
   <li>Contact: <%= @passenger.phone_number %></li>
 <li>Total Amount Charged: $<%= number_with_precision(@passenger.total_charged, :precision => 2) %></li>
