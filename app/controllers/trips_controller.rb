@@ -20,7 +20,7 @@ class TripsController < ApplicationController
     @trip = Trip.new(date: Date.today, rating: nil, cost: rand(500..5000), driver_id: driver.id, passenger_id: passenger.id)
     
     if @trip.save
-      @trip.driver.active
+      @trip.driver.toggle_active unless @trip.driver.active
       redirect_to trip_path(@trip.id)
       return
     else
@@ -65,15 +65,15 @@ class TripsController < ApplicationController
     end
   end
   
-  def complete_trip
-    @trip = Trip.find_by(id: params[:id])
+  # def complete_trip
+  #   @trip = Trip.find_by(id: params[:id])
     
-    unless @trip.driver
-      @trip.driver.inactive
-      redirect_to trip_path(@trip.id)
-      return
-    end
-  end
+  #   unless @trip.driver
+  #     @trip.driver.toggle_active if @trip.driver.active
+  #     redirect_to trip_path(@trip.id)
+  #     return
+  #   end
+  # end
   
   private
   

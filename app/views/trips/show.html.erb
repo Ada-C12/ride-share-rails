@@ -9,14 +9,14 @@
   <% if @trip.rating.nil? %>
     <%= form_with model: @trip do |f| %>
       <%= f.label :rating %>
-      <%= f.select :rating, [1, 2, 3, 4, 5] %>
+      <%= f.select :rating, [5, 4, 3, 2, 1] %>
       <%= f.submit "Submit Rating", class: "form-button" %>
     <% end %>
   <% end %>
-  <% if @trip.rating && @trip.driver.active %>
-    <% @trip.driver.toggle_active %>
-  <% end %>
   </h3>
+  <% if @trip.driver.active && @trip.rating %>
+    <h3><%= link_to "Complete Trip", toggle_active_path(@trip.driver.id), method: :patch %></h3>
+  <% end %>
 <ul class="trip-header">
     <li><h4>Date</h4></li>
     <li><h4>Driver</h4></li>
