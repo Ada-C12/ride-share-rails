@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+.trip-table {
+  width: 75%;
+  border: 2px solid black;
+
+}

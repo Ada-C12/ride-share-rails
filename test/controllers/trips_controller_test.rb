@@ -43,8 +43,10 @@ describe TripsController do
         post trips_path, params: trip_hash
       }.must_change "Trip.count", 1
       
+      trip = Trip.find_by(passenger_id: trip_hash[:trip][:passenger_id])
+      
       must_respond_with :redirect
-      must_redirect_to passenger_path(@passenger.id)
+      must_redirect_to trip_path(trip.id)
     end
     
   end
