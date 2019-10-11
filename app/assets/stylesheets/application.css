@@ -21,13 +21,17 @@
 body {
   /* background: #1A1a14;  fallback for old browsers */
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  font-size: 120%;
+  font-size: 125%;
   text-align: center;
   font-family: Optima;
-  background-color: rgb(231, 228, 228)
+  background-color: black;
+  color: white;
+
  }
 
-
+p {
+  font-size: 200%
+}
 
   ul {
     max-width: 1fr;
@@ -44,7 +48,7 @@ body {
   } 
 
   li {
-    padding: 10px 0px 0px 10px
+    padding: 10px 10px 10px 10px;
   }
   
   section 
@@ -72,15 +76,63 @@ h4{
   font-size: 300%
 }
 
+a:visited {
+  color: #66b9bf;
+}
 
 a:link {
-  color: #07889B;
-} 
+  color: #66b9bf;} 
 
 a:hover {
   color: white;
 }
 
-.passenger-show ul {
-  padding: 0px 0px 0px 100px;
-}
+
+/* 
+.passengers ul {
+  max-width: 1fr;
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: auto auto;
+  text-align: center;
+  grid-gap: 15px;
+  font-size: 150%;
+  list-style-type: none;
+  margin: 0;
+  padding: 30px;
+  color: #07889B;
+} 
+
+.drivers ul{
+  max-width: 1fr;
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: auto auto;
+  text-align: center;
+  grid-gap: 15px;
+  font-size: 150%;
+  list-style-type: none;
+  margin: 0;
+  padding: 30px;
+  color: #07889B;
+} 
+
+  
+
+.trips ul{
+    max-width: 1fr;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    text-align: center;
+    grid-gap: 15px;
+    font-size: 150%;
+    list-style-type: none;
+    margin: 0;
+    padding: 30px;
+    color: #07889B;
+  }  */
+
+  .drivers {
+    font-size: 80%
+  }

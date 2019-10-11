@@ -87,82 +87,82 @@ describe TripsController do
       #     must_redirect_to root_path
       #   end
       # end
-      
-      describe "edit" do
-        before do 
-          @passenger = Passenger.create(name: "Emmanlle Breiterg", phone_num: "(707) 341-7157")
-          @driver = Driver.create(name: "Dr. Ken Berge", vin: "SXMMLZX8XGDN7L7TM", available: true)
-          @trip = Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, date: Date.today, cost: 10.00)
-        end
-        
-        it "can get the edit page for an existing trip" do
-          
-          get edit_trip_path(@trip.id)
-          
-          must_respond_with :success
-        end
-        
-        it "will respond with redirect when attempting to edit a nonexistant trip" do
-          
-          get edit_trip_path(8923749234)
-          
-          must_respond_with :not_found
-        end
-      end
-      
-      describe "update" do
-        before do 
-          @new_passenger = Passenger.create(name: "Emmanlle Breiterg", phone_num: "(707) 341-7157")
-          @new_driver = Driver.create(name: "Dr. Ken Berge", vin: "SXMMLZX8XGDN7L7TM", available: true)
-          @new_trip = Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, date: Date.today, cost: 10.00)
-        end
-        
-        updated_trip_form_data = {
-          trip: {
-            driver_id: "A driver", 
-            passenger_id: "A passenger", 
-            date: Date.today, 
-            rating: 3, 
-            cost: 10.00
-          }
-        }
-        it "can update an existing trip" do
-          expect {
-            patch trip_path(@new_trip.id), params: updated_trip_form_data
-          }.wont_change "Trip.count"
-          
-          @new_trip.reload
-          
-          expect(@new_trip.rating).must_equal 3
-        end
-        
-        it "will redirect to the root page if given an invalid id" do
-          
-          patch trip_path(2348734)
-          must_respond_with :redirect
-          must_redirect_to root_path
-        end
-      end
-      
-      describe "destroy" do
-        before do 
-          @passenger = Passenger.create(name: "Emmanlle Breiterg", phone_num: "(707) 341-7157")
-          @driver = Driver.create(name: "Dr. Ken Berge", vin: "SXMMLZX8XGDN7L7TM", available: true)
-          @trip_to_be_destroyed = Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, date: Date.today, cost: 10.00)
-        end
-        
-        it "can destroy a trip" do
-          
-          trip_to_be_destroyed_id = @trip_to_be_destroyed.id
-          
-          expect {
-            delete trip_path(trip_to_be_destroyed_id)
-          }.must_differ 'Trip.count', -1        
-          # get task_path(@task_to_be_destroyed.id)
-          # must_respond_with :redirect
-          must_redirect_to trips_path
-        end 
-      end
+    end 
+  end
+  
+  describe "edit" do
+    before do 
+      @passenger = Passenger.create(name: "Emmanlle Breiterg", phone_num: "(707) 341-7157")
+      @driver = Driver.create(name: "Dr. Ken Berge", vin: "SXMMLZX8XGDN7L7TM", available: true)
+      @trip = Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, date: Date.today, cost: 10.00)
     end
     
+    it "can get the edit page for an existing trip" do
+      
+      get edit_trip_path(@trip.id)
+      
+      must_respond_with :success
+    end
     
+    it "will respond with redirect when attempting to edit a nonexistant trip" do
+      
+      get edit_trip_path(8923749234)
+      
+      must_respond_with :not_found
+    end
+  end
+  
+  # describe "update" do
+  #   before do 
+  #     @new_passenger = Passenger.create(name: "Emmanlle Breiterg", phone_num: "(707) 341-7157")
+  #     @new_driver = Driver.create(name: "Dr. Ken Berge", vin: "SXMMLZX8XGDN7L7TM", available: true)
+  #     @new_trip = Trip.create(driver_id: @new_driver.id, passenger_id: @new_passenger.id, date: Date.today, cost: 10.00)
+  #   end
+  
+  #   updated_trip_form_data = {
+  #     trip: {
+  #       driver_id: @driver.id, 
+  #       passenger_id: @passenger.id, 
+  #       date: Date.today, 
+  #       rating: 3, 
+  #       cost: 10.00
+  #     }
+  #   }
+  #   it "can update an existing trip" do
+  #     expect {
+  #       patch trip_path(@new_trip.id), params: updated_trip_form_data
+  #     }.wont_change "Trip.count"
+  
+  #     @new_trip.reload
+  
+  #     expect(@new_trip.rating).must_equal 3
+  #   end
+  
+  #   it "will redirect to the root page if given an invalid id" do
+  
+  #     patch trip_path(2348734)
+  #     must_respond_with :redirect
+  #     must_redirect_to root_path
+  #   end
+  # end
+  
+  describe "destroy" do
+    before do 
+      @passenger = Passenger.create(name: "Emmanlle Breiterg", phone_num: "(707) 341-7157")
+      @driver = Driver.create(name: "Dr. Ken Berge", vin: "SXMMLZX8XGDN7L7TM", available: true)
+      @trip_to_be_destroyed = Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, date: Date.today, cost: 10.00)
+    end
+    
+    it "can destroy a trip" do
+      
+      trip_to_be_destroyed_id = @trip_to_be_destroyed.id
+      
+      expect {
+        delete trip_path(trip_to_be_destroyed_id)
+      }.must_differ 'Trip.count', -1        
+      # get task_path(@task_to_be_destroyed.id)
+      # must_respond_with :redirect
+      must_redirect_to trips_path
+    end 
+  end
+end
