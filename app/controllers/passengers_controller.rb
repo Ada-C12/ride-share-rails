@@ -9,8 +9,7 @@ class PassengersController < ApplicationController
   
   def create
     @passenger = Passenger.new(name: params[:passenger][:name], phone_number: params[:passenger][:phone_number]) 
-    if @passenger.name != ""
-      @passenger.save
+    if @passenger.save
       redirect_to passenger_path(@passenger.id) 
       return
     else 
