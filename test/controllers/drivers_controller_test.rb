@@ -151,7 +151,7 @@ describe DriversController do
         delete driver_path(existing_driver.id)
       }.must_differ "Driver.count", -1
 
-      must_redirect_to driver_path
+      must_redirect_to drivers_path
 
     end
 
