@@ -1,5 +1,7 @@
 <h1> Passenger: <%= @passenger.name %> </h1>
 
+<%= render :partial => "shared/validation", :locals => { :object => @passenger } %>
+
 <%= form_with model: @passenger do |f| %>
  <fieldset>
   <%= f.label :name %>
