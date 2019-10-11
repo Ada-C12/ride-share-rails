@@ -1,10 +1,9 @@
 class PassengersController < ApplicationController
-  # GET /passengers
+
   def index
     @passengers = Passenger.all
   end
   
-  # GET /passengers/1
   def show
     passenger_id = params[:id]
     @passenger = Passenger.find_by(id: passenger_id)
@@ -15,13 +14,11 @@ class PassengersController < ApplicationController
     end
   end
   
-  # GET /passengers/new
   def new
     @passenger = Passenger.new
     
   end
   
-  # GET /passengers/1/edit
   def edit
     @passenger = Passenger.find_by(id: params[:id])
 
@@ -31,8 +28,6 @@ class PassengersController < ApplicationController
     end
   end
   
-  # POST /passengers
-  # POST /passengers.json
   def create
     @passenger = Passenger.new(passenger_params)
     
@@ -47,8 +42,6 @@ class PassengersController < ApplicationController
     end
   end
   
-  # PATCH/PUT /passengers/1
-  # PATCH/PUT /passengers/1.json
   def update
     @passenger = Passenger.find_by(id: params[:id])
     if @passenger.nil?
@@ -67,8 +60,6 @@ class PassengersController < ApplicationController
     end
   end
   
-  # DELETE /passengers/1
-  # DELETE /passengers/1.json
   def destroy
     @passenger = Passenger.find_by(id: params[:id])
     if @passenger.nil?
@@ -98,8 +89,6 @@ class PassengersController < ApplicationController
         cost: 100,}
       }
       new_trip = Trip.new(trip_info[:trip])
-      # set the status of the driver as true 
-      # then save the trip
       new_trip.save
       
       if new_trip.save == true

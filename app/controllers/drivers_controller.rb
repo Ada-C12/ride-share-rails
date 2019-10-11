@@ -6,7 +6,7 @@ class DriversController < ApplicationController
   
   def show
     driver_id = params[:id]
-    @pdriver = Driver.find_by(id: driver_id)
+    @driver = Driver.find_by(id: driver_id)
     
     if @driver.nil?
       head :not_found
@@ -19,6 +19,12 @@ class DriversController < ApplicationController
   end
   
   def edit
+    @driver = Driver.find_by(id: params[:id])
+
+    if @driver.nil?
+      head :not_found
+      return
+    end
   end
   
   def create
@@ -36,10 +42,16 @@ class DriversController < ApplicationController
   end
   
   def update
+    @driver = Driver.find_by(id: params[:id])
+    if @driver.nil?
+      head :not_found
+      return
+    end
+    
     respond_to do |format|
       if @driver.update(driver_params)
         format.html { redirect_to @driver, notice: 'Driver was successfully updated.' }
-        format.json { render :show, status: :ok, location: @driver }
+        # format.json { render :show, status: :ok, location: @driver }
       else
         format.html { render :edit }
         format.json { render json: @driver.errors, status: :unprocessable_entity }
@@ -48,6 +60,12 @@ class DriversController < ApplicationController
   end
   
   def destroy
+    @driver = Driver.find_by(id: params[:id])
+    if @driver.nil?
+      head :not_found
+      return
+    end
+    
     @driver.destroy
     respond_to do |format|
       format.html { redirect_to drivers_url, notice: 'Driver was successfully destroyed.' }
@@ -66,22 +84,7 @@ class DriversController < ApplicationController
     @driver.save
     redirect_to drivers_path
   end 
-  
-  # def active
-  #   if @driver.update_attribute(:active, true)
-  #     flash[:success] = "Driver has successfully set as active!" 
-  #   else 
-  #     flash[:error] = "Uh Oh! Something went wrong."
-  #   end
-  
-  #   redirect_to driver_path(@driver)
-  # end
-  
-  # def inactive
-  #   if 
-  
-  # end 
-  
+
   private
   
   def driver_params
