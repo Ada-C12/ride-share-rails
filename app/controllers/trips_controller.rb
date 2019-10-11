@@ -72,7 +72,7 @@ class TripsController < ApplicationController
     
     if params[:trip][:driver_name].blank? || params[:trip][:passenger_name].blank? || params[:trip][:cost].blank?
       prev = Rails.application.routes.recognize_path(request.referrer)
-      if prev[:action] == "rate"
+      if prev[:action] == "rate" || prev[:action] == "show"
         @trip.rating = params[:trip][:rating]
         if @trip.save
           redirect_to trip_path(@trip.id)
