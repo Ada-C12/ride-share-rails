@@ -48,7 +48,7 @@
                 <% if trip.passenger.nil? %>
           <td><%= "Unknown"%></td>
         <% else %>
-          <td> <%= link_to trip.passenger.name, driver_path(trip.driver.id) %></td>
+          <td> <%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></td>
         <% end %>
         <% if !trip.rating.nil? %>
           <td><%= trip.rating %>

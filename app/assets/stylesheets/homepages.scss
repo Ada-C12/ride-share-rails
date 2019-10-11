@@ -10,13 +10,15 @@ body {
   background-color: #4CAF50;
   color: white;
   padding: 16px;
-  font-size: 16px;
+  font-size: 1.5em;
   border: none;
+  width: 300px;
 }
 
 .dropdown {
   position: relative;
   display: inline-block;
+  text-align: center;
 }
 
 .dropdown-content {
@@ -26,6 +28,7 @@ body {
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  width: 300px;
 }
 
 .dropdown-content a {
@@ -51,9 +54,20 @@ a {
 }
 
 .home * {
-  font-size: black;
   font-size: 1.5em;
-  vertical-align: middle;
+  padding-right: 30px;
+}
+
+.home a:visited {
+  color: white;
+  font-size: 1.5em;
+  padding-right: 30px;
+}
+
+.home a:hover {
+  color: grey;
+  font-size: 1.5em;
+  padding-right: 30px;
 }
 
 .vw {
@@ -87,3 +101,5 @@ a {
   margin-top: 15px;
   display: inline-block;  
 }
+
+
