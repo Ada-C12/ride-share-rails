@@ -2,8 +2,7 @@ require "test_helper"
 
 describe Driver do
   let (:new_driver) {
-    Driver.new(name: "Kari", vin: "123", active: true,
-               car_make: "Cherry", car_model: "DR5")
+    Driver.new(name: "Kari", vin: "123", active: true)
   }
   it "can be instantiated" do
     # Assert
@@ -14,7 +13,7 @@ describe Driver do
     # Arrange
     new_driver.save
     driver = Driver.first
-    [:name, :vin, :active, :car_make, :car_model].each do |field|
+    [:name, :vin, :active].each do |field|
 
       # Assert
       expect(driver).must_respond_to field
@@ -59,20 +58,54 @@ describe Driver do
 
   # Tests for methods you create should go here
   describe "custom methods" do
+
     describe "average rating" do
-      # Your code here
+      # Arrange
+      new_driver = Driver.create(name: "Kari", vin: "123", active: true)
+      new_driver_id = new_driver.id
+      puts new_driver_id
+      new_trip_1 = Trip.create(date: Time.now, cost: 1234, rating: 5, driver_id: new_driver_id, passenger_id: 1)
+      puts new_trip_1.driver_id
+      new_trip_2 = Trip.create(date: Time.now, cost: 1234, rating: 1, driver_id: new_driver_id, passenger_id: 1)
+      puts new_trip_2.driver_id
+      binding.pry
+      puts new_driver.trips
+      # Act
+
+      # Assert
+      # expect(new_driver.average_rating).must_equal 3
     end
 
     describe "total earnings" do
-      # Your code here
+      # Arrange
+      new_driver = Driver.create(name: "Kari", vin: "123", active: true)
+      new_driver_id = new_driver.id
+      puts new_driver_id
+      new_trip_1 = Trip.create(date: Time.now, cost: 1234, rating: 5, driver_id: new_driver_id, passenger_id: 1)
+      puts new_trip_1.driver_id
+      new_trip_2 = Trip.create(date: Time.now, cost: 1234, rating: 1, driver_id: new_driver_id, passenger_id: 1)
+      puts new_trip_2.driver_id
+      binding.pry
+      puts new_driver.trips
+      # Act
+
+      # Assert
+      # expect(new_driver.total_earnings).must_equal 2468
     end
 
     describe "can go online" do
-      # Your code here
+      # Arrange
+      new_driver = Driver.create(name: "Kari", vin: "123", active: true)
+      
+      # Act
+      # Assert
+      # expect(new_driver.active)
     end
 
     describe "can go offline" do
-      # Your code here
+      # Arrange
+      # Act
+      # Assert
     end
 
     # You may have additional methods to test
