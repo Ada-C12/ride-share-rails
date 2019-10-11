@@ -41,7 +41,7 @@ class DriversController < ApplicationController
       redirect_to drivers_path
       return
     end
-    result = @driver.update(params)
+    result = @driver.update(driver_params)
     if result
       redirect_to driver_path(@driver.id)
     else

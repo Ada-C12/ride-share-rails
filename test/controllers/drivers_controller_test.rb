@@ -135,9 +135,7 @@ describe DriversController do
         }
       }
       expect {patch driver_path(@mb.id), params: driver_hash}.wont_change Driver.count
-      expect {
-        patch driver_path(@mb.id), params: driver_hash
-      }.must_respond_with :redirect
+      must_respond_with :redirect
 
       expect {patch driver_path(@mb.id), params: driver_hash}.wont_change Driver.count
       expect(@mb.name).must_equal driver_hash[:driver][:name]
