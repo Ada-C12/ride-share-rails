@@ -10,7 +10,31 @@ describe Driver do
     expect(driver_test.valid?).must_equal true
   end
 
-  it "will have the required fields"
+  it "will have the required fields" do
+     # Arrange
+     driver_test.save
+     driver = Driver.first
+     [:name, :vin].each do |field|
+ 
+     # Assert
+       expect(driver).must_respond_to field
+     end
+   end
+ 
+   describe "relationships" do
+     it "can have many trips" do
+       # Arrange
+       driver_test.save
+       driver = Driver.first
+ 
+       # Assert
+       expect(driver.trips.count).must_be :>, 0
+       driver.trips.each do |trip|
+         expect(trip).must_be_instance_of Trip
+       end
+     end
+   end
+ 
 
 
 

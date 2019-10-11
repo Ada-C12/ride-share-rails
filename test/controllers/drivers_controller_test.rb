@@ -28,7 +28,7 @@ describe DriversController do
 
     it "responds with 404 with an invalid driver id" do
       get driver_path(-1)
-      must_respond_with :redirect
+      must_respond_with :not_found
       # Assert
     end
   end
@@ -121,7 +121,8 @@ describe DriversController do
       # Arrange
       # Ensure there is an invalid id that points to no driver
       # Set up the form data
-
+      get driver_path(-1)
+      must_respond_with :redirect
       # Act-Assert
       # Ensure that there is no change in Driver.count
 
@@ -148,7 +149,7 @@ describe DriversController do
 
   describe "destroy" do
     it "successfully deletes an existing driver and then redirects to list of drivers at drivers index" do
-        Driver.create(name: "Input driver", phone_num: "1111111111")
+        Driver.create(name: "Input driver", vin: "1111111111")
         existing_driver_id = Driver.find_by(name: "Input driver").id
   
         expect {
@@ -162,16 +163,14 @@ describe DriversController do
     it "does not change the db when the driver does not exist, then responds with " do
     #   # Arrange
     #   # Ensure there is an invalid id that points to no driver
-      
+    driver.save
 
+    expect {
+      delete driver_path(-1)
+    }.must_differ "Driver.count", 0
 
-    #   # Act-Assert
-    #   # Ensure that there is no change in Driver.count
-
-    #   # Assert
-    #   # Check that the controller responds or redirects with whatever your group decides
-
-    # end
+    must_respond_with :redirect
+ end
   
     end
   end
