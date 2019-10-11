@@ -11,7 +11,8 @@ class TripsController < ApplicationController
   
   def new
     passenger_id = params[:passenger_id]
-    @trip = Passenger.find_by(id: passenger_id).request_trip
+    @passenger = Passenger.find_by(id: passenger_id)
+    @trip = @passenger.request_trip
     if passenger_id.nil?
       @pasengers = Passenger.all
     else
@@ -20,11 +21,11 @@ class TripsController < ApplicationController
   end
   
   def create
-    # passenger_id = params[:trip][:passenger_id]
-    # passenger = Passenger.find_by(id: passenger_id)
-    @trip = Trip.new(trip_params)
-    # if passenger
-    #   @trip = passenger.request_trip
+    passenger_id = params[:trip][:passenger_id]
+    passenger = Passenger.find_by(id: passenger_id)
+
+    if passenger
+      @trip = passenger.request_trip
       
       if @trip.save
         @trip.driver.toggle_active
@@ -35,7 +36,7 @@ class TripsController < ApplicationController
         render :new
         return
       end
-    # end
+    end
     
   end
   

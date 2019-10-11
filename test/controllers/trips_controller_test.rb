@@ -69,26 +69,18 @@ describe TripsController do
             date: "",
             rating: 3,
             cost: 1040,
-            driver_id: @driver.id,
-            passenger_id: @passenger.id
-          },
+            driver_id: @driver.id
+          }
         },
-        # {
-        #   trip: {
-        #     date: "10-04-2019",
-        #     rating: 7,
-        #     cost: 1040,
-        #     driver_id: @driver.id
-        #   },
-        # },
-        # {
-        #   trip: {
-        #     date: nil,
-        #     rating: nil,
-        #     cost: nil,
-        #     driver_id: nil
-        #   }
-        # }
+        {
+          trip: {
+            date: "10-04-2019",
+            rating: 7,
+            cost: 1040,
+            driver_id: @driver.id,
+            passenger_id: -1
+          }
+        }
       ]
 
       invalid_trip_hashes.each do |trip_data|

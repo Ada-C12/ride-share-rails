@@ -1,4 +1,4 @@
-<h1>Create Trip for <%= Passenger.find_by(id: params[:passenger_id]).name %></h1>
+<h1>Create Trip for <%=@passenger.name%></h1>
 
 <%= form_with model: @trip, class: "create_trip_form" do |f| %>
   <p>
@@ -12,8 +12,8 @@
     <%= f.select :passenger_id, @passengers.map{ |passenger| [passenger.name, passenger.id] } %>
   </p>
   <p>
-    <%= f.label :cost %>
-    <%= f.text_field :cost, value: @trip.cost %> / 100
+    <%= f.label :cost_in_cent %>
+    <%= f.text_field :cost, value: @trip.cost %>
   </p>
   <%= f.submit "Add Trip", class: "small-button" %>
 <% end %>
