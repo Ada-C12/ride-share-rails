@@ -1,8 +1,8 @@
 require "test_helper"
 
 describe Driver do
-  let (:unavailable_driver) { Driver.new(name: "Ben", vin: "456", available: false, car_make: "Honda", car_model: "Fit") }
   let (:new_driver) { Driver.new(name: "Kari", vin: "123", available: true, car_make: "Cherry", car_model: "DR5") }
+  let (:unavailable_driver) { Driver.new(name: "Ben", vin: "456", available: false, car_make: "Honda", car_model: "Fit") }
   let (:new_passenger) { Passenger.create(name: "Kari", phone_num: "111-111-1211") }
   
   describe "initialize" do
@@ -45,6 +45,7 @@ describe Driver do
     it "must have a name" do
       # Arrange
       new_driver.name = nil
+      new_driver.save
       
       # Assert
       expect(new_driver.valid?).must_equal false
@@ -55,6 +56,7 @@ describe Driver do
     it "must have a VIN number" do
       # Arrange
       new_driver.vin = nil
+      new_driver.save
       
       # Assert
       expect(new_driver.valid?).must_equal false
@@ -68,18 +70,18 @@ describe Driver do
       unavailable_driver.save
       new_driver.save 
       
-      first_driver = Driver.get_available_driver
+      first_available_driver = Driver.get_available_driver
       
-      expect(first_driver).must_be_instance_of Driver
-      expect(first_driver.available).must_equal true
+      expect(first_available_driver).must_be_instance_of Driver
+      expect(first_available_driver.available).must_equal true
     end
     
     it "returns nil if no drivers are available" do
       unavailable_driver.save
       
-      first_driver = Driver.get_available_driver
+      first_available_driver = Driver.get_available_driver
       
-      assert_nil(first_driver)
+      assert_nil(first_available_driver)
     end
   end
   
