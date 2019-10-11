@@ -77,5 +77,23 @@ describe Driver do
     end
 
     # You may have additional methods to test
+    describe "find_available_driver" do
+      it "successfully returns the id of an available driver" do
+        driver_1 = Driver.create(name: "Jane Doe", vin: "1234567", active: true)
+        driver_2 = Driver.create(name: "John Deere", vin: "7654321", active: false)
+
+        expect(Driver.find_available_driver).must_equal driver_2.id
+      end
+
+      it "returns nil if no drivers are available or no drivers exist" do
+        expect(Driver.find_available_driver).must_be_nil
+        
+        driver_1 = Driver.create(name: "Jane Doe", vin: "1234567", active: true)
+        driver_2 = Driver.create(name: "John Deere", vin: "7654321", active: true)
+
+        expect(Driver.find_available_driver).must_be_nil
+      end
+
+    end
   end
 end

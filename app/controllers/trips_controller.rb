@@ -16,7 +16,7 @@ class TripsController < ApplicationController
     if params[:passenger_id]
       default_trip_details = {
         passenger_id: params[:passenger_id],
-        driver_id: 1,
+        driver_id: Driver.find_available_driver,
         date: Date.current,
         cost: rand(1..1000)
       }
