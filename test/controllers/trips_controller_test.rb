@@ -38,13 +38,14 @@ describe TripsController do
       example_driver = Driver.create(name: "Charlie Brown", vin: "22", car_make: "doghouse", car_model: "backyard")
       bad_trip = { 
         trip: { 
-          passenger_id: example_pass.id, 
+          passenger_id: nil, 
           driver_id: example_driver.id, 
           rating: nil, 
+          date: nil,
           cost: 225
         }
       }
-      expect { post passenger_trips_path(example_pass), params: bad_trip }.wont_change "Trip.count"
+      expect { post passenger_trips_path(294738), params: bad_trip }.wont_change "Trip.count"
       must_respond_with :not_found 
     end 
   end 

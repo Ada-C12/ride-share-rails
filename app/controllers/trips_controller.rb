@@ -10,6 +10,10 @@ class TripsController < ApplicationController
   end 
   
   def create 
+    if Passenger.find_by(id: params[:passenger_id]).nil?
+      head :not_found
+      return
+    end 
     @trip = Trip.create(
       passenger_id: params[:passenger_id],
       driver_id: Driver.find_available.id,
