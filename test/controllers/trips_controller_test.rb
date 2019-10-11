@@ -86,12 +86,7 @@ describe TripsController do
             rating: nil,
             cost: nil,
             driver_id: nil
-          },
-        },
-        {
-          trip: {
-            driver_id: @driver.id
-          },
+          }
         }
       ]
 
