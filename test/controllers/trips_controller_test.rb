@@ -2,7 +2,9 @@ require "test_helper"
 
 describe TripsController do
   let (:driver) { Driver.create(name: "Fred Flintstone", vin: "123", car_make: "dinosaur", car_model: "t-rex", available: true) }
+  let (:second_driver) { Driver.create(name: "Wilma Flintstone", vin: "456", car_make: "bird", car_model: "robin", available: false) }
   let (:passenger) { Passenger.create(name: "Barney Rubble", phone_num: "123-456-7890") }
+  let (:second_passenger) { Passenger.create(name: "Betty Rubble", phone_num: "555-456-7890") }
   let (:trip) { Trip.create(driver_id: driver.id, passenger_id: passenger.id, date: "2016-04-05", rating: 3, cost: 1250 ) }
   
   describe "show" do
@@ -87,7 +89,55 @@ describe TripsController do
   end
   
   describe "update" do
-    # Your tests go here
+    it "can update an existing trip with valid information accurately, and redirect" do
+      # Arrange
+      driver.save
+      passenger.save
+      trip.save
+      
+      changes_hash = { trip: { driver_id: second_driver.id, passenger_id: second_passenger.id, date: "2019-10-11", cost: 500, rating: 4 } }
+      
+      # Act-Assert
+      expect { patch trip_path(trip.id), params: changes_hash }.wont_change "Trip.count"
+      
+      # Assert
+      updated_trip = Trip.find_by(id: trip.id)
+      
+      expect(updated_trip.driver_id).must_equal changes_hash[:trip][:driver_id]
+      expect(updated_trip.passenger_id).must_equal changes_hash[:trip][:passenger_id]
+      expect(updated_trip.date).must_equal changes_hash[:trip][:date]
+      expect(updated_trip.cost).must_equal changes_hash[:trip][:cost]
+      expect(updated_trip.rating).must_equal changes_hash[:trip][:rating]
+      
+      must_respond_with :redirect
+    end
+    
+    it "does not update trip if given an invalid id, and responds with a redirect" do
+      # Arrange      
+      changes_hash = { trip: { driver_id: second_driver.id, passenger_id: second_passenger.id, date: "2019-10-11", cost: 500, rating: 4 } }
+      invalid_id = -1
+      
+      # Act-Assert
+      expect { patch trip_path(invalid_id), params: changes_hash }.wont_change "Trip.count"
+      
+      # Assert
+      must_respond_with :redirect
+    end
+    
+    it "does not update a trip if the form data violates Trip validations" do
+      # Arrange
+      driver.save
+      passenger.save
+      trip.save
+      trip_hash = { trip: { date: nil } }
+      
+      # Act-Assert
+      expect { patch trip_path(driver.id), params: trip_hash }.wont_change "Driver.count"
+      
+      # Assert
+      updated_trip = Trip.first
+      expect(updated_trip.date).wont_equal nil
+    end
   end
   
   describe "destroy" do

@@ -68,10 +68,12 @@ describe Passenger do
   
   describe "custom methods" do
     describe "request a ride" do
+      # TODO
       # Your code here
     end
     
     describe "complete trip" do
+      # TODO
       # Your code here
     end
     
