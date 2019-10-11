@@ -12,6 +12,7 @@ module ApplicationHelper
     return format("$%.2f", cents_float/100.0)
   end
   
+  
   def get_passenger_from_id(int)
     @passenger = Passenger.find_by(id: int)
     if @passenger 
@@ -23,7 +24,11 @@ module ApplicationHelper
   
   def get_passenger_name_from_id(int)
     @passenger = get_passenger_from_id(int)
-    return @passenger.name 
+    if @passenger
+      return @passenger.name 
+    else
+      return nil
+    end
   end
   
   def get_driver_from_id(int)
@@ -37,7 +42,11 @@ module ApplicationHelper
   
   def get_driver_name_from_id(int)
     @driver = get_driver_from_id(int)
-    return @driver.name 
+    if @driver
+      return @driver.name 
+    else
+      return nil
+    end
   end
   
 end
