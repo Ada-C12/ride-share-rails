@@ -23,8 +23,8 @@
 
       <br>
       <div class="buttons">
-        <%= link_to "Edit", edit_driver_path %>
-        <%= link_to "Delete", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure you want to delete this driver?"} %><br>
+        <div class="button"><%= link_to "Edit", edit_driver_path %></div>
+        <div class="button"><%= link_to "Delete", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure you want to delete this driver?"} %></div><br>
       </div>
       </li>
       
@@ -38,6 +38,7 @@
           <th>Trip ID</th>
           <th>Date</th>
           <th>Passenger</th>
+          <th>Rating</th>
           <th>Cost</th>
         </tr>
       <% @driver.trips.each do |trip| %>
@@ -48,6 +49,11 @@
           <td><%= "Unknown"%></td>
         <% else %>
           <td> <%= link_to trip.passenger.name, driver_path(trip.driver.id) %></td>
+        <% end %>
+        <% if !trip.rating.nil? %>
+          <td><%= trip.rating %>
+        <% else %>
+          <td><%= link_to "Rate Trip", edit_trip_path(trip.id) %></td>
         <% end %>
         <td>$<%= sprintf('%.2f', trip.cost / 10) %></td>
         </tr>
