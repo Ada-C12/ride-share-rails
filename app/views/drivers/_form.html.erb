@@ -26,7 +26,7 @@
   <%= f.text_area :model %>
 
   <%= f.label :active %>
-  <%= check_box 'available', 'active', {}, 'true', 'false' %>
+  <%= f. check_box :active, { onChange: 'this.form.submit();' , checked: @driver.active != nil} %>
 
   <%= f.submit "#{action_name} Driver", class: "driver-button" %>
 
