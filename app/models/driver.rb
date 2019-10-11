@@ -22,8 +22,7 @@ class Driver < ApplicationRecord
   def total_ratings
     total_trips = self.trips.where.not(rating: nil)
     total_rating = total_trips.map { |trip| trip[:rating] }.sum
-    return total_rating
-    
+    return total_rating / self.trips.length
   end
   
   def self.available
