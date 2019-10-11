@@ -3,12 +3,14 @@ Rails.application.routes.draw do
   root 'homepages#index'
   get '/homepage', to: 'homepages#index', as: 'homepages'
   
+  resources :trips, only: [:show, :update, :destroy]
   resources :passengers
   resources :passengers, only: [:show] do
     resources :trips, only: [:create, :edit]
   end 
+  
   resources :drivers
-  resources :trips
+  
   
   patch '/drivers/:id/toggle_status', to: 'drivers#toggle_status', as: 'toggle_status_driver'
   

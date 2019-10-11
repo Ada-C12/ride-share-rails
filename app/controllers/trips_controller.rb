@@ -1,12 +1,4 @@
 class TripsController < ApplicationController
-  def index
-    @trips = Trip.all
-    if @trips.nil?
-      head :not_found
-      return
-    end 
-  end 
-  
   def show
     trip_id = params[:id]
     @trip = Trip.find_by(id: trip_id)
@@ -21,14 +13,14 @@ class TripsController < ApplicationController
     @trip = Trip.create(
       passenger_id: params[:passenger_id],
       driver_id: Driver.find_available.id,
-      date: Time.now,
+      date: Date.new,
       rating: nil,
       cost: rand(1...5000))
       if @trip.save 
-        redirect_to passenger_path(params[:passenger_id])
+        redirect_to passenger_path(@trip.passenger_id)
         return 
       else 
-        redirect_to passenger_path(params[:passenger_id])
+        head :not_found
         return
       end 
     end 
