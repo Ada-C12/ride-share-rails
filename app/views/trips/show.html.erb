@@ -2,8 +2,27 @@
   <h2>Trip #<%= @trip.id %></h2>
   <p>
     Date: <%= @trip.date %> <br>
-    Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver.id) %> <br>
-    Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id) %> <br>
+
+    <div>
+      Driver:
+      <% if @trip.driver %>
+        <%= link_to @trip.driver.name, driver_path(@trip.driver.id) %>
+      <% else %>
+          deleted
+      <% end%>
+      <br>
+    </div>
+
+    <div>
+      Passenger:
+      <% if @trip.passenger %>
+        <%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id) %>
+      <% else %>
+          deleted
+      <% end%>
+      <br>
+    </div>
+    
     <% if @trip.rating %>
       Rating: <%= @trip.rating %> <br>
     <% else %>
