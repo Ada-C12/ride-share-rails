@@ -75,6 +75,13 @@ nav div {
   background-color: #4CAF50;
   color: white;
 }
+#home a {
+  background-color: transparent;
+}
+#home:hover {
+  background-color: #3e8e41;
+
+}
 
 .index-headers {
   line-height: 3em;
@@ -85,4 +92,24 @@ nav div {
 .homepage {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+}
+
+input[type=text] {
+  font-size: 1rem;
+  padding: 1rem;
+}
+input[type=submit], .link-to-btn {
+  text-decoration: none;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 1rem;
+  padding: 1rem;
+}
+input[type=submit]:hover, .link-to-btn:hover {
+  background-color: #3e8e41;
+}
+
+.action-container {
+  position: fixed;
+  bottom: 5rem;
 }

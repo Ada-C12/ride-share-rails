@@ -17,16 +17,16 @@
 
 <p>List of trips:</p>
 
-<ul>
+<ul class="index-list drivers">
   <% @driver.trips.each do |t| %>
     <li> Trip on <%= t.date %> 
       <%= link_to "View Trip", trip_path(t.id) %> 
     </li>
   <% end %>
-  <li>
-  <%= link_to "Add New Trip", new_trip_path %>
-  </li>
 </ul>
 
-<%= link_to "Delete #{@driver.name}", driver_path, method: :delete, data: { confirm: "Are you sure?" } %>
-<%= link_to "Edit #{@driver.name}", edit_driver_path %>
+<section class="action-container">
+<%= link_to "Delete #{@driver.name}", driver_path, method: :delete, data: { confirm: "Are you sure?" }, class: 'link-to-btn' %>
+<%= link_to "Edit #{@driver.name}", edit_driver_path, class: 'link-to-btn' %>
+  <%= link_to "Add New Trip", new_trip_path, class: 'link-to-btn' %>
+</section>

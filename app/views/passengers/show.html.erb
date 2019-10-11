@@ -4,16 +4,16 @@
 <p>Total charges to date: $<%= @passenger.total_charges %> </p>
 <p>List of trips:</p>
 
-<ul>
+<ul class="index-list passengers">
   <% @passenger.trips.each do |t| %>
     <li> Trip on <%= t.date %> 
       <%= link_to "View Trip", trip_path(t.id) %> 
     </li>
   <% end %>
-  <li>
-  <%= link_to "Request A Trip", new_passenger_trip_path(@passenger.id) %>
-  </li>
 </ul>
 
-<%= link_to "Delete #{@passenger.name}", passenger_path, method: :delete, data: { confirm: "Are you sure?" } %>
-<%= link_to "Edit #{@passenger.name}", edit_passenger_path %>
+<section class="action-container">
+<%= link_to "Delete #{@passenger.name}", passenger_path, method: :delete, data: { confirm: "Are you sure?" }, class: 'link-to-btn' %>
+<%= link_to "Edit #{@passenger.name}", edit_passenger_path, class: 'link-to-btn' %>
+  <%= link_to "Request A Trip", new_passenger_trip_path(@passenger.id), class: 'link-to-btn' %>
+</section>
