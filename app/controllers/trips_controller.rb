@@ -27,7 +27,7 @@ class TripsController < ApplicationController
       @trip.date = Date.today
     end
     if @trip.cost.nil?
-      @trip.cost = 0
+      @trip.cost = rand(500...9999)
     end
     
     @drivers = Driver.where(active: false)
