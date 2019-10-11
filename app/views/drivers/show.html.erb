@@ -5,7 +5,13 @@
       Name: <%= @driver.name %>
       <ul>
         <li>VIN: <%= @driver.vin %></li>
-        <li>Active: <%= @driver.active %></li>
+        <% if @driver.active == false %>
+        <li> Status: available </li>
+        <%= link_to "Mark as unavailable", toggle_status_driver_path(@driver), method: :patch %>
+        <% else %>
+        <li> Status: not available </li>
+        <%= link_to "Mark as available", toggle_status_driver_path(@driver), method: :patch %>
+        <% end %>
         <li>Car Make: <%= @driver.car_make %></li>
         <li>Car Model: <%= @driver.car_model %></li>
         <li>Trips: </li>

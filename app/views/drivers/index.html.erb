@@ -8,7 +8,11 @@
       Name: <%= link_to driver.name, driver_path(driver) %>
       <ul>
         <li>VIN: <%= driver.vin %></li>
-        <li>Active: <%= driver.active %></li>
+        <% if driver.active == false %>
+        <li> Status: available </li>
+        <% else %>
+        <li> Status: not available </li>
+        <% end %>
         <li>Car Make: <%= driver.car_make %></li>
         <li>Car Model: <%= driver.car_model %></li>
       </ul>

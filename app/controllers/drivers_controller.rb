@@ -42,13 +42,13 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: params[:id])
     
     if @driver.nil?
-      redirect_to :not_found
+      redirect_to root_path
       return
     elsif @driver.update(driver_params)
       redirect_to driver_path(@driver.id)
       return
     else 
-      redirect_to :edit
+      render :edit
       return
     end
   end
@@ -65,6 +65,20 @@ class DriversController < ApplicationController
     else
       render :show
     end
+  end
+  
+  def toggle_status
+    @driver = Driver.find_by(id: params[:id])
+    
+    if @driver.nil?
+      redirect_to root_path
+      return
+    else 
+      @driver.toggle_status
+      redirect_back(fallback_location: driver_path(@driver.id))
+      return
+    end
+    
   end
   
   private
