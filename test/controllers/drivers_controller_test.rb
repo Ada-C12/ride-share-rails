@@ -65,7 +65,7 @@ describe DriversController do
       
       expect{ post drivers_path, params: driver_params }.must_differ "Driver.count", 1
       
-      bad_driver = Driver.first
+      bad_driver = Driver.find_by(name: "Bad Driver")
       expect(bad_driver.name).must_equal driver_params[:driver][:name]
       expect(bad_driver.vin).must_equal driver_params[:driver][:vin]
       
@@ -116,7 +116,7 @@ describe DriversController do
     
     it "can update an existing driver with valid information accurately, and redirect" do
       new_driver
-      expect(Driver.first).must_equal new_driver
+      expect(Driver.find_by(name: "Kari")).must_equal new_driver
       id = new_driver.id
       updates = { name: "Vin Diesel" }
       

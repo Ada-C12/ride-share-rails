@@ -64,7 +64,7 @@ describe PassengersController do
   
   describe "edit" do
     it "can get the edit page for an existing passenger" do
-      
+      p passenger
       get edit_passenger_path(passenger.id)
       
       must_respond_with :success
@@ -137,39 +137,38 @@ describe PassengersController do
       must_redirect_to passengers_path
     end
   end
-
+  
   describe "request a ride" do
-
-    let (:passenger) {
+    
+    let (:current_passenger) {
       Passenger.create(name: "Dr. Passenger", phone_num: "no phone")
     }
     it "instantiates a trip with the current passenger as the passenger" do 
       
-      get new_passenger_trip_path(passenger.id)
+      get new_passenger_trip_path(current_passenger.id)
       
       must_respond_with :success
     end
-
+    
     it "creates a trip assigned to the current passenger" do
-
       driver = Driver.create(name: "M. Driver", vin: "1234567890")
       trip_hash = {
-      trip: {
-      date: "2019-10-10",
-      rating: 5,
-      cost: 4622,
-      passenger_id: passenger.id,
-      driver_id: driver.id
-    }
-  }
-  
-        expect { post trips_path, params: trip_hash }.must_change "Trip.count", 1
-      trip = Trip.first
-      expect(trip.passenger_id).must_equal passenger.id
-      expect(passenger.trips).must_include trip
+        trip: {
+          date: "2019-10-10",
+          rating: 5,
+          cost: 4622,
+          passenger_id: current_passenger.id,
+          driver_id: driver.id
+        }
+      }
+      
+      expect { post trips_path, params: trip_hash }.must_change "Trip.count", 1
+      trip = Trip.find_by(passenger_id: current_passenger.id)
+      expect(trip.passenger_id).must_equal current_passenger.id
+      expect(current_passenger.trips).must_include trip
       must_respond_with :redirect
     end
-
+    
   end
-
+  
 end
