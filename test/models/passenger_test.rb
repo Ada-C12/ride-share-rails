@@ -5,20 +5,18 @@ describe Passenger do
   Passenger.new(name: "Kari", phone_num: "111-111-1211")
 }
 
-describe "index" do 
-  it "can be instantiated" do
-    expect(new_passenger.valid?).must_equal true
+it "can be instantiated" do
+  expect(new_passenger.valid?).must_equal true
+end
+
+it "will have the required fields" do
+  new_passenger.save
+  passenger = Passenger.first
+  [:name, :phone_num].each do |field|
+    
+    expect(passenger).must_respond_to field
   end
-  
-  it "will have the required fields" do
-    new_passenger.save
-    passenger = Passenger.first
-    [:name, :phone_num].each do |field|
-      
-      expect(passenger).must_respond_to field
-    end
-  end
-end 
+end
 
 describe "relationships" do
   it "can have many trips" do
