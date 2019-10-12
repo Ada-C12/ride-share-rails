@@ -97,7 +97,5 @@ describe Driver do
       
       expect(new_driver.reload.status).must_equal "unavailable"
     end
-
-    # You may have additional methods to test
   end
 end
