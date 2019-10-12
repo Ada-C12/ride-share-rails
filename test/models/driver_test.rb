@@ -84,7 +84,7 @@ describe "custom methods" do
       Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, rating: 4, date: Date.today, cost: 300)
       Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, rating: 5, date: Date.today, cost: 200.25)
       
-      expect(@driver.total_earnings).must_equal "750.25"
+      expect(@driver.total_earnings).must_equal "596.24"
     end
   end
   

@@ -20,8 +20,9 @@
       <%= f.label :rating, "Rating" %>
       <%= f.select :rating, [1,2,3,4,5] %>
       <%= f.submit "Complete Trip" %>
-      <% end %>
+      <% end %> 
     <% end %>
+    <%= link_to "Delete Trip", trip_path(trip), method: :delete, data: {confirm: "Are you sure?"} %>
     <br>
   <% end %>
 <% else %>
