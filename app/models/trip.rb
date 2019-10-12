@@ -1,7 +1,8 @@
+
 class Trip < ApplicationRecord
   belongs_to :driver
   belongs_to :passenger
-
+  
   validates :date, presence: true
   validates :cost, numericality: true
   validates :cost, presence: true
@@ -20,11 +21,14 @@ class Trip < ApplicationRecord
     
     Trip.where(driver_id: driver_id).each do |trip|
       ratings << trip.rating
-      
     end
-    
-    average_rating = ratings.sum.to_f / ratings.length
-    return average_rating.round(2)
+
+    if ratings.empty?
+      return "This driver doesn't have any ratings"
+    else
+      average_rating = (ratings.sum.to_f / ratings.length).round(2)
+      return average_rating  
+    end
   end
   
   def self.driver_total_earnings(driver_id)

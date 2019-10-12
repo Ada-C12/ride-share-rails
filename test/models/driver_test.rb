@@ -60,9 +60,28 @@ describe Driver do
   
   # Tests for methods you create should go here
   describe "custom methods" do
+    
     describe "average rating" do
-      # Your code here
+      it "can calculate an average given multiple numbers" do
+        new_driver = Driver.create(name: "Mary", vin: "123", active: true)
+        new_passenger = Passenger.create(name: "Berry", phone_number: "111-111-1211")
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+        trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 4, cost: 6334)
+        
+        # Assert
+        expect (Trip.driver_avg_rating(new_driver.id)).must_equal 4.5
+      end
+      
+      it "returns a message if the driver doesn't have any ratings" do
+        new_driver = Driver.create(name: "Paul", vin: "123", active: true)
+        new_passenger = Passenger.create(name: "Hollywood", phone_number: "111-111-1211")
+                
+        # Assert
+        expect (Trip.driver_avg_rating(new_driver.id)).must_be_instance_of String
+      end
+      
     end
+    
     
     describe "total earnings" do
       # Your code here
@@ -77,5 +96,6 @@ describe Driver do
     end
     
     # You may have additional methods to test
+    
   end
 end
