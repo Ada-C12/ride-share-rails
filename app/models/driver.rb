@@ -34,6 +34,7 @@ class Driver < ApplicationRecord
       driver_earnings = fee * 0.8
       earnings += driver_earnings
     end
-    return earnings
+
+    return earnings.round(2)
   end
 end
