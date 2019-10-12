@@ -42,17 +42,17 @@ describe Passenger do
     let (:passenger_test) {
       Passenger.create(name: "Test Passenger!", phone_num: "555-555-5555")
     }
-    let (:driver_test) {
-      Driver.create(name: "Test Driver!", vin: "FSD34534SLDK", available: true)
-    }
-    let (:trip) {
-      Trip.create(date: Date.today, rating: 5, cost: 1050, passenger_id: passenger_test.id, driver_id: driver_test.id)
-    }
 
     describe "total_money_spent" do
       # Your code here
       it "calculates the total money spent per passenger" do
+        driver_test = Driver.create(name: "Test Driver!", vin: "FSD34534SLDK", available: true)
+        Trip.create(date: Date.today, rating: 5, cost: 1050, passenger_id: passenger_test.id, driver_id: driver_test.id)
+        Trip.create(date: Date.today, rating: 5, cost: 2050, passenger_id: passenger_test.id, driver_id: driver_test.id)
+
+        driver_test.reload
         
+        expect(passenger_test.total_money_spent).must_equal 31.00
       end
     end
   end
