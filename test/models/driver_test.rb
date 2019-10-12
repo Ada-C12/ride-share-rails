@@ -86,16 +86,6 @@ describe Driver do
 
     it "can go online" do
       expect(new_driver.status).must_equal "available" 
-
-    
-    end
-
-    it "can go offline" do
-  
-      passenger = Passenger.create(name: "Jessica", phone_num: 334-876-2345)
-      trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: passenger.id, date: Date.parse("Feb 25, 2019"), rating: nil, cost: 2344)
-      
-      expect(new_driver.reload.status).must_equal "unavailable"
     end
   end
 end
