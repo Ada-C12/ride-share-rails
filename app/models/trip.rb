@@ -1,8 +1,10 @@
-require 'pry'
-
 class Trip < ApplicationRecord
   belongs_to :driver
   belongs_to :passenger
+
+  validates :date, presence: true
+  validates :cost, numericality: true
+  validates :cost, presence: true
   
   def self.trips_total(passenger_id)
     subtotal = 0

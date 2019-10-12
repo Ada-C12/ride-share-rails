@@ -2,12 +2,8 @@ require "test_helper"
 
 describe Driver do
   let (:new_driver) {
-<<<<<<< HEAD
     Driver.new(name: "Kari", vin: "123", active: true)
   }
-=======
-    Driver.new(name: "Kari", vin: "123", active: true)}
->>>>>>> Fixed driver showing active:  and finished edit for trip
   it "can be instantiated" do
     # Assert
     expect(new_driver.valid?).must_equal true

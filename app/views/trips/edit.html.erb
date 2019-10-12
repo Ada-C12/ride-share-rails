@@ -20,6 +20,15 @@
       </nav>
     </header>
 
+    <% if @trip.errors.any? %>
+      <% @trip.errors.each do |column, message| %>
+        <li>
+          <strong><%= column.capitalize %></strong> <%= message %>
+        </li>
+      <% end %>
+    </ul>
+    <% end %>
+
     <%= form_with model: @trip do |f| %>
       <p>Please provide the following information to update the trip to our database:</p>
 
@@ -35,8 +44,8 @@
       <%= f.label :cost %>
       <%= f.text_field :cost %>
 
-      <%= f.label :date %>
-      <%= f.text_field :date %>
+      <%= f.label :date, "Date: " %>
+      <%= @trip.date %>
     
       <%= f.submit "Update Trip" %>
     <% end %>

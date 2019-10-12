@@ -38,9 +38,17 @@
         <% Trip.where(passenger_id: params[:id]).each do |trip|%>
           <li>Trip ID: <%= link_to trip.id, trip_path(trip.id), method: :get %> </li> 
           <li>Driver ID: <%= trip.driver_id %></li>
-          <%# <li>Passenger: <%= trip.passenger_id %> 
           <li>Date: <%= trip.date %></li>
-          <li>Rating: <%= trip.rating %></li>
+          <li>
+          <% if trip.rating == nil %>
+          <%= form_with model: trip do |f| %>
+          <%= f.label :rating, "Rating: " %>
+           <%= f.text_field :rating %>
+          <%= f.submit "Update Rating" %>
+          <% end %></li>
+           <% else %>
+           Rating: <%= trip.rating %></li>
+           <% end %>       
           <li>Cost: $<%= '%.2f' % (trip.cost / 100) %></li>
           <hr>
         <%end%>

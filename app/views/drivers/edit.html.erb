@@ -20,6 +20,15 @@
       </nav>
     </header>
 
+     <% if @driver.errors.any? %>
+      <% @driver.errors.each do |column, message| %>
+        <li>
+          <strong><%= column.capitalize %></strong> <%= message %>
+        </li>
+      <% end %>
+    </ul>
+    <% end %>
+
     <%= form_with model: @driver do |f| %>
       <p>Please provide the following information to update the driver to our database:</p>
 

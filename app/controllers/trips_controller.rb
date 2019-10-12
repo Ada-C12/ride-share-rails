@@ -39,8 +39,13 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: params[:id])
     if @trip.nil?
       redirect_to root_path
-    elsif @trip.update(date: params[:trip][:date], rating: params[:trip][:rating], cost: params[:trip][:cost])
-      redirect_to root_path
+    elsif 
+      if @trip.rating == nil
+      @trip.update(rating: params[:trip][:rating])
+      else
+      @trip.update(rating: params[:trip][:rating], cost: params[:trip][:cost])
+      end
+      redirect_to trip_path
     else 
       render :edit 
     end
