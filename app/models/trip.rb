@@ -36,12 +36,4 @@ class Trip < ApplicationRecord
     total_earnings = (earnings.sum / 100).round(2)
     return total_earnings
   end
-
-# trip.cost.cents_to_dollars
-
-#   def cents_to_dollars(penny_amount)
-#     .to_f / 100
-#     return amount_in_dollars
-#   end
-  
 end

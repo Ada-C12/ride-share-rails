@@ -42,10 +42,11 @@ class TripsController < ApplicationController
     elsif 
       if @trip.rating == nil
       @trip.update(rating: params[:trip][:rating])
+      redirect_to passenger_path(@trip.passenger_id)
       else
       @trip.update(rating: params[:trip][:rating], cost: params[:trip][:cost])
-      end
       redirect_to trip_path
+      end
     else 
       render :edit 
     end

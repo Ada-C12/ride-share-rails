@@ -41,14 +41,14 @@
           <li>Date: <%= trip.date %></li>
           <li>
           <% if trip.rating == nil %>
-          <%= form_with model: trip do |f| %>
-          <%= f.label :rating, "Rating: " %>
-           <%= f.text_field :rating %>
-          <%= f.submit "Update Rating" %>
-          <% end %></li>
-           <% else %>
-           Rating: <%= trip.rating %></li>
-           <% end %>       
+            <%= form_with model: trip do |f| %>
+              <%= f.label :rating, "Rating: " %>
+              <%= f.text_field :rating %>
+              <%= f.submit "Update Rating" %>
+            <% end %></li>
+          <% else %>
+            Rating: <%= trip.rating %></li>
+          <% end %>       
           <li>Cost: $<%= '%.2f' % (trip.cost / 100) %></li>
           <hr>
         <%end%>
