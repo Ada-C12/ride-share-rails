@@ -3,8 +3,13 @@ require "test_helper"
 describe Driver do
 
   let (:new_driver) {
-    Driver.new(name: "Kari", vin: "123", available: true)
+    Driver.new(name: "somthing", vin: "123", available: true)
   }
+
+  let(:new_passenger) {
+    Passenger.create(name: "Hhelloo", phone_num: "975980")
+  }
+
   it "can be instantiated" do
     # Assert
     expect(new_driver.valid?).must_equal true
@@ -79,10 +84,31 @@ describe Driver do
 
     describe "total earnings" do
       # Your code here
+      it "can calculate the total earning of this driver when the driver made at least one trip" do
+        total_earning = ((trip_1.cost.to_i - 1.65) * 0.8 + (trip_2.cost.to_i - 1.65) * 0.8).round(2)
+        new_driver.save
+        new_passenger.save
+        expect(new_driver.total_earning).must_equal total_earning
+      end
+      it "will return 0 if the driver did not take any trip" do
+        new_driver.save
+        new_passenger.save
+        Trip.destroy_all
+        expect(new_driver.total_earning).must_equal 0
+      end
     end
 
     describe "can go offline" do
       # Your code here
+        it "can switch the active status of driver to true which means the driver is not available to accept a trip" do
+          new_driver.update(available: true)
+
+          expect(new_driver.available).must_equal true
+          new_driver.go_offline
+
+          find_driver = Driver.find_by(id: new_driver.id)
+          expect(find_driver.available).must_equal false
+        end
     end
   end
 end
