@@ -15,6 +15,7 @@ class Trip < ApplicationRecord
     total_price_trips = (subtotal / 100).round(2)
     return total_price_trips
   end
+<<<<<<< HEAD
   
   def self.driver_avg_rating(driver_id)
     ratings = []
@@ -40,4 +41,7 @@ class Trip < ApplicationRecord
     total_earnings = (earnings.sum / 100).round(2)
     return total_earnings
   end
+=======
+
+>>>>>>> Finished trip model tests. Moved Driver methods on trip class to driver class
 end
