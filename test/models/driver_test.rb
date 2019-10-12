@@ -71,16 +71,17 @@ describe Driver do
   end
 
     describe "total earnings" do
-      # Your code here
+      let (:driver_test) {
+        Driver.create(name: "Test Driver!", vin: "FSD34534SLDK", available: true)
+      }
       it "can calculate the total earning of this driver when the driver made at least one trip" do
-        it "calculates the total money spent per passenger" do
-          driver_test = Driver.create(name: "Test Driver!", vin: "FSD34534SLDK", available: true)
-          Trip.create(date: Date.today, rating: 5, cost: 1050, passenger_id: passenger_test.id, driver_id: driver_test.id)
-          Trip.create(date: Date.today, rating: 5, cost: 2050, passenger_id: passenger_test.id, driver_id: driver_test.id)
-  
-          driver_test.reload
-          
-          expect(passenger_test.total_money_spent).must_equal 31.00
+        passenger_test = Passenger.create(name: "Test Passenger!", phone_num: "555-555-5555")
+        Trip.create(date: Date.today, rating: 5, cost: 1050, passenger_id: passenger_test.id, driver_id: driver_test.id)
+        Trip.create(date: Date.today, rating: 5, cost: 2050, passenger_id: passenger_test.id, driver_id: driver_test.id)
+
+        passenger_test.reload
+        
+        expect(driver_test.total_earnings).must_be_close_to 2216, 0.01
       end
     end
 
