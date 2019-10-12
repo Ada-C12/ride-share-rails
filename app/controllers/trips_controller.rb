@@ -44,13 +44,19 @@ class TripsController < ApplicationController
   
   def edit
     @trip = Trip.find_by(id: params[:id])
+    @passengers = Passenger.all 
+
+    if @trip.nil?
+      head :not_found
+      return 
+    end 
   end 
   
   def update
     @trip = Trip.find_by(id: params[:id])
     
     if @trip.update(trip_params)
-      redirect_to trip_path(@trip.id)
+      redirect_to trip_path(trip.id)
     else 
       render new_trip_path
     end 

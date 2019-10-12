@@ -27,7 +27,6 @@ Click a link to delete the trip %>
     <% end %>
     
     <% if @trip.rating 
-      @trip.driver.active
       @trip.rating.times do |star| %> 
         <span>✰</span>
       <%end%>
