@@ -43,7 +43,7 @@
           <% if trip.rating == nil %>
             <%= form_with model: trip do |f| %>
               <%= f.label :rating, "Rating: " %>
-              <%= f.text_field :rating %>
+              <%= f.text_field :rating, placeholder: '1-5' %>
               <%= f.submit "Update Rating" %>
             <% end %></li>
           <% else %>
