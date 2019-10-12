@@ -8,8 +8,9 @@
 }
 
 .form {
-  text-align: left;
-  margin-left: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 1.1em;
 }
 
@@ -17,7 +18,8 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: space-evenly
+  justify-content: space-evenly;
+  font-size: 1.5em;
 }
 
 .index-container h1 {
@@ -45,4 +47,29 @@
   margin-bottom: 2em;
   text-align: center;
   border: none;
+  font-size: 1.2em;
+}
+
+.pagination {
+  text-align: center;
+  font-weight: bold;
+}
+
+.driver-form {
+  font-size: 1.5em;
+  text-align: left;
+
+  input {
+    font-size: .8em;
+    width: 15em;
+  }
+
+  select {
+    font-size: .8em;
+  }
+
+  .driver-button {
+    width: 8em;
+    height: 5em;
+  }
 }

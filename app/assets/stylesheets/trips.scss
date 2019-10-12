@@ -5,3 +5,22 @@
 .trip-list {
   margin-top: 3em;
 }
+
+.trip-form {
+  font-size: 1.5em;
+  text-align: left;
+
+  input {
+    font-size: .8em;
+    width: 15em;
+  }
+
+  select {
+    font-size: .8em;
+  }
+
+  .trip-button {
+    width: 8em;
+    height: 5em;
+  }
+}

@@ -10,12 +10,12 @@
 
 <div class=form>
   <%= form_with model: @passenger, class: "passenger-form" do |f| %>
-    <p>Please complete the fields below to <%= action_name.downcase %> passenger. </p>
+    <p>Please complete the fields below to <%= action_name.downcase %> a passenger. </p>
 
     <%= f.label :name %>
     <%= f.text_field :name%>
     <br>
-    <%= f.label :phone_number %>
+    <%= f.label :phone_num %>
     <%= f.text_field :phone_num %>
     <br><br>
     <%= f.submit "#{action_name} Passenger", class: "passenger-button" %>

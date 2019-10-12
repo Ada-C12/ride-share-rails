@@ -66,3 +66,22 @@ th {
   background-color: #3e8e41;
   color: white;
 }
+
+.passenger-form {
+  font-size: 1.5em;
+  text-align: left;
+
+  input {
+    font-size: .8em;
+    width: 15em;
+  }
+
+  select {
+    font-size: .8em;
+  }
+
+  .passenger-button {
+    width: 8em;
+    height: 5em;
+  }
+}
