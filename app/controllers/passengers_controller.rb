@@ -47,7 +47,6 @@ class PassengersController < ApplicationController
       return 
     end 
     if @passenger.update(passenger_params)
-      #experiment
       redirect_to passengers_path
       return
     else 

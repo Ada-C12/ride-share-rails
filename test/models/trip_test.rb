@@ -41,7 +41,6 @@ describe Trip do
     end
   end
   
-  # Tests for methods you create should go here
   describe "custom methods" do
     it "will order trips chronologically" do
       trip_1 = Trip.create(passenger_id: @passenger.id, driver_id: @driver.id, date: "2017-5-3")
