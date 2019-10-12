@@ -20,5 +20,43 @@ body {
   background: #edf5da;
   margin-left: 15%;
   margin-right: 10%;
+  font-size: 1.25rem;
+}
+
+.button {
+  width: 30%;
+  margin: 0.25em;
   font-size: 1.5rem;
+  background:#F7E0DA;;
+}
+
+header h1 {
+  text-align: center;
+}
+
+.navbar {
+  display: flex;
+  width: 95%;
+  padding-left: 1.5em;
+  margin: 1em;
+  justify-content: space-between;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  flex-basis: 70%;
+}
+
+.nav-item a:link{
+  color: #3F8707;
+  text-decoration: none;
+}
+
+.nav-item a:visited{
+  color: #786A7B;  text-decoration: none;
+}
+
+.nav-item:hover a {
+  color: darkgreen;
 }
