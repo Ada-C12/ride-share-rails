@@ -21,28 +21,23 @@
     </header>
 
     <%= form_with model: @trip do |f| %>
-      <p>Please provide the following information to update the passenger to our database:</p>
+      <p>Please provide the following information to update the trip to our database:</p>
 
-      <%= f.label :driver_id %>
-      <%= f.text_field :driver_id  %>
+      <%= f.label :driver_id, "Driver Id: " %>
+      <%= @trip.driver_id %>
 
-      <%= f.label :passenger_id %>
-      <%= f.text_field :pssenger_id  %>
-
+      <%= f.label :passenger_id, "Passenger Id: " %>
+       <%= @trip.passenger_id %>
+      
       <%= f.label :rating %>
-      <%= f.select :rating, [1..5].map{ |rating|} %>
-
+      <%= f.select :rating, (1..5) %>
 
       <%= f.label :cost %>
       <%= f.text_field :cost %>
 
       <%= f.label :date %>
       <%= f.text_field :date %>
-
     
-
-      <%= f.label :phone_number, "Phone Number" %>
-      <%= f.text_field :phone_number%>
       <%= f.submit "Update Trip" %>
     <% end %>
   </body>

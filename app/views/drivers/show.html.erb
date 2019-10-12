@@ -25,9 +25,12 @@
         <li>Name: <%=@driver[:name]%></li>
         <li>Driver ID: <%= @driver[:id]%></li>
         <li>Vin: <%= @driver[:vin]%></li>
-        <li>Average rating: <%= Trip.driver_avg_rating(@driver.id) %> </li>
-        <li>Total earnings: $<%= '%.2f' % Trip.driver_total_earnings(@driver.id) %>
-        <li>Active: <%= @driver[:active]%></li>
+        <li>Active: 
+          <%if @driver.active == true %>
+          <%= @driver.active %> 
+          <%else%>
+           false 
+          <%end %></li>
     </section>
     
     <section>

@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   root 'homepages#index'
   resources :passengers
   resources :drivers
-  resources :trips, except: [:new]
+  resources :trips, only: [:show, :edit, :update, :destroy]
 
   resources :passengers, only: [:show] do
-    resources :trips, only: [:create, :edit, :show]
+    resources :trips, only: [:create, :show]
   end
 
   put '/drivers/:id/active', to: 'drivers#active', as: 'active_driver'

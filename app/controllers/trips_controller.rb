@@ -32,20 +32,31 @@ class TripsController < ApplicationController
 
     if @trip.nil?
       redirect_to root_path
-      return
     end
   end
 
   def update
-    @trip = Trip.find_by(id: params[:id])    
-    if @trip.rating == nil
-      @trip.update(rating: params[:trip][:rating])
-      redirect_to trip_path 
-      return
+    @trip = Trip.find_by(id: params[:id])
+    if @trip.nil?
+      redirect_to root_path
+    elsif @trip.update(date: params[:trip][:date], rating: params[:trip][:rating], cost: params[:trip][:cost])
+      redirect_to root_path
     else 
       render :edit 
+    end
+  end
+
+  def destroy
+    @trip = Trip.find_by(id: params[:id])
+    
+    if @trip.nil?
+      head :not_found
       return
     end
+    
+    @trip.destroy
+    redirect_to root_path
+    return
   end
 end
 
