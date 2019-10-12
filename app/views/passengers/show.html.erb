@@ -12,17 +12,12 @@
 
 <% if @passenger.trips.length > 0 %>
   <h4>Total spent on trips: $<%= @passenger.total_spent %></h4>
-  <h3>Trips Taken</h3>
+  <h3>Trips Summary</h3>
   <% @passenger.trips.chrono_trips.each do |trip| %>
-    Date: <%= trip.date %>, Rating: <%= "⭐" * trip.rating.to_i %> Cost: $<%= '%.2f' % trip.cost %>, Driver: <%= trip.driver.name %> 
-    <% if trip.rating.nil? %>
-      <%= form_with model: trip, url: complete_trip_path(trip), method: :patch do |f| %>
-      <%= f.label :rating, "Rating" %>
-      <%= f.select :rating, [1,2,3,4,5] %>
-      <%= f.submit "Complete Trip" %>
-      <% end %> 
-    <% end %>
-    <%= link_to "Delete Trip", trip_path(trip), method: :delete, data: {confirm: "Are you sure?"} %>
+    Date: <%= trip.date %>, 
+    Rating: <%= "⭐" * trip.rating.to_i %> 
+    Cost: $<%= '%.2f' % trip.cost %>, Driver: <%= trip.driver.name %> 
+    <%= link_to "Trip Details", trip_path(trip) %>
     <br>
   <% end %>
 <% else %>
@@ -30,8 +25,8 @@
 <% end %>
 
 <%= link_to "Create a New Trip", passenger_trips_path(@passenger), method: :post %>
-<%= link_to "Edit Passenger", edit_passenger_path(@passenger) %>
-<%= link_to "Delete Passenger", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"} %>
-<%= link_to "Passenger List", passengers_path %>
+<%= link_to "Edit This Passenger", edit_passenger_path(@passenger) %>
+<%= link_to "Delete This Passenger", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"} %>
+
 
 

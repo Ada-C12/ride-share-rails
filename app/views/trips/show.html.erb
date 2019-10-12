@@ -1,0 +1,30 @@
+<h1>Rideshare Rails</h1>
+
+<div id="nav" class="flex">
+  <%= link_to "All Passengers", passengers_path %>
+  <%= link_to "Add a new passenger", new_passenger_path %>
+  <%= link_to "All Drivers", drivers_path %>
+  <%= link_to "Add a new driver", new_driver_path %>
+  <%= link_to "Homepage", root_path %>
+</div>
+
+<h2>Trip Details: <%= @trip.id%></h2>
+
+  <div>
+  <ul>
+    <li>Date: <%= @trip.date %> </li>
+    <li>Rating: <%= "⭐" * @trip.rating.to_i %></li>
+    <li>Cost: $<%= '%.2f' % @trip.cost %></li> 
+    <li>Driver: <%= @trip.driver.name %></li>
+      <% if @trip.rating.nil? %>
+        <%= form_with model: @trip, url: complete_trip_path(@trip), method: :patch do |f| %>
+        <%= f.label :rating, "Rating" %>
+        <%= f.select :rating, [1,2,3,4,5] %>
+        <%= f.submit "Complete Trip" %>
+        <% end %> 
+      <% end %>
+  </ul>
+  </div>
+  <br>
+  <%= link_to "Delete This Trip", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"} %>
+  <%= link_to "Back to #{@trip.passenger.name}'s trips", passenger_path(@trip.passenger) %>
