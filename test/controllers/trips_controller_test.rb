@@ -105,7 +105,7 @@ describe TripsController do
         delete trip_path( trip.id )
       }.must_differ "Trip.count", -1
 
-      must_redirect_to trips_path
+      must_redirect_to root_path
     end
   end
 end

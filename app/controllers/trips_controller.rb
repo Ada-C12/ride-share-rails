@@ -1,25 +1,25 @@
 class TripsController < ApplicationController
-  # def index
-  #   # if params[:driver_id]
-  #   #   @driver = Driver.find_by(id: driver_id)
-  #   #   if @driver
-  #   #     @trips = @driver.trips
-  #   #   else
-  #   #     head :not_found
-  #   #     return
-  #   #   end
-  #   # elsif param[:passenger_id]
-  #   #   @passenger = Passenger.find_by(id: passenger_id)
-  #   #   if @passenger
-  #   #     @trips = @passenger.trips
-  #   #   else
-  #   #     head :not_found
-  #   #     return
-  #   #   end
-  #   # else
-  #   #   @trips = Trip.all
-  #   # end
-  # end
+  def index
+    # if params[:driver_id]
+    #   @driver = Driver.find_by(id: driver_id)
+    #   if @driver
+    #     @trips = @driver.trips
+    #   else
+    #     head :not_found
+    #     return
+    #   end
+    # elsif param[:passenger_id]
+    #   @passenger = Passenger.find_by(id: passenger_id)
+    #   if @passenger
+    #     @trips = @passenger.trips
+    #   else
+    #     head :not_found
+    #     return
+    #   end
+    # else
+    #   @trips = Trip.all
+    # end
+  end
 
   def show
     trip_id = params[:id]
@@ -87,7 +87,7 @@ class TripsController < ApplicationController
     end
 
     trip_to_delete.destroy
-    redirect_to trips_path
+    redirect_to root_path
     #how to redirect to same drivers page? this redirects to list of drivers
   end
   
