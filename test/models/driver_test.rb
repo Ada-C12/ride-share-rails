@@ -63,19 +63,7 @@ describe Driver do
 
     describe "average rating" do
       # Your code here
-      # it "can calculate the average rating of this driver when the driver made at least one trip" do
-      #   average_rating = ((trip_1.rating.to_i + trip_2.rating.to_i).to_f / 2).round(2)
-      #   driver.save
-      #   passenger.save
-      #   expect(driver.average_rating).must_equal average_rating
-      # end
 
-      # it "will return 0 if the driver did not take any trip" do
-      #   driver.save
-      #   passenger.save
-      #   Trip.destroy
-      #   expect(driver.average_rating).must_equal 0
-      # end
 
 
 
@@ -85,16 +73,14 @@ describe Driver do
     describe "total earnings" do
       # Your code here
       it "can calculate the total earning of this driver when the driver made at least one trip" do
-        total_earning = ((trip_1.cost.to_i - 1.65) * 0.8 + (trip_2.cost.to_i - 1.65) * 0.8).round(2)
-        new_driver.save
-        new_passenger.save
-        expect(new_driver.total_earning).must_equal total_earning
-      end
-      it "will return 0 if the driver did not take any trip" do
-        new_driver.save
-        new_passenger.save
-        Trip.destroy_all
-        expect(new_driver.total_earning).must_equal 0
+        it "calculates the total money spent per passenger" do
+          driver_test = Driver.create(name: "Test Driver!", vin: "FSD34534SLDK", available: true)
+          Trip.create(date: Date.today, rating: 5, cost: 1050, passenger_id: passenger_test.id, driver_id: driver_test.id)
+          Trip.create(date: Date.today, rating: 5, cost: 2050, passenger_id: passenger_test.id, driver_id: driver_test.id)
+  
+          driver_test.reload
+          
+          expect(passenger_test.total_money_spent).must_equal 31.00
       end
     end
 
