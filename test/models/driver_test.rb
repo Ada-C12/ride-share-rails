@@ -93,7 +93,7 @@ describe Driver do
         # Assert
         expect (Trip.driver_total_earnings(new_driver.id)).must_equal 57.9
       end
-
+      
       it "returns 0 if the driver doesn't have any trips" do
         new_driver = Driver.create(name: "Mary", vin: "123", active: false)
         
@@ -102,16 +102,24 @@ describe Driver do
       end
     end
     
-    
     describe "can go online" do
-      # Your code here
+      # assuming "go online" means "active: false" aka "available to drive"
+      it "driver status can be set to active:false" do
+        new_driver = Driver.create(name: "Mary", vin: "123", active: false)
+        
+        expect (Driver.find_by(id: new_driver.id).active).must_equal false
+      end
+      
+      
+      describe "can go offline" do
+        # assuming "go offline" means "active: true" aka "not available to drive"
+        it "driver status can be set to active:true" do
+          new_driver = Driver.create(name: "Mary", vin: "123", active: true)
+          
+          expect (Driver.find_by(id: new_driver.id).active).must_equal true
+        end
+      end
+      
     end
-    
-    describe "can go offline" do
-      # Your code here
-    end
-    
-    # You may have additional methods to test
-    
   end
 end
