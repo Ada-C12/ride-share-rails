@@ -7,7 +7,7 @@ class Driver < ApplicationRecord
   def total_earnings
     trip_costs = []
     self.trips.all.each do |trip|
-      trip_costs << (trip.cost - 1.65)
+      trip_costs << (trip.cost - 165)
     end 
     
     total_cost = trip_costs.sum
