@@ -13,10 +13,10 @@
   <%= f.text_field :cost %>
   <br>
   <%= f.label :passenger_id %>
-  <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
+  <%= f.select :passenger_id, Passenger.all.order(:name).map{ |passenger| [passenger.name, passenger.id] } %>
   <br>
   <%= f.label :driver %>
-  <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id] } %>
+  <%= f.select :driver_id, Driver.all.order(:name).map{ |driver| [driver.name, driver.id] } %>
   <br>
   <%= f.submit "Update Trip", class: "trip-button" %>
 <% end %>
