@@ -75,17 +75,33 @@ describe Driver do
       it "returns a message if the driver doesn't have any ratings" do
         new_driver = Driver.create(name: "Paul", vin: "123", active: true)
         new_passenger = Passenger.create(name: "Hollywood", phone_number: "111-111-1211")
-                
+        
         # Assert
         expect (Trip.driver_avg_rating(new_driver.id)).must_be_instance_of String
       end
       
     end
     
-    
     describe "total earnings" do
-      # Your code here
+      it "calculates total earnings correctly" do
+        
+        new_driver = Driver.create(name: "Mary", vin: "123", active: true)
+        new_passenger = Passenger.create(name: "Berry", phone_number: "111-111-1211")
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+        trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 4, cost: 6334)
+        
+        # Assert
+        expect (Trip.driver_total_earnings(new_driver.id)).must_equal 57.9
+      end
+
+      it "returns 0 if the driver doesn't have any trips" do
+        new_driver = Driver.create(name: "Mary", vin: "123", active: false)
+        
+        # Assert
+        expect (Trip.driver_total_earnings(new_driver.id)).must_equal 0
+      end
     end
+    
     
     describe "can go online" do
       # Your code here
