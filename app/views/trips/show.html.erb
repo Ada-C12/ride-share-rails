@@ -1,42 +1,40 @@
-<h1>Trip Details</h1>
+<h1>Trip</h1>
+
+ <% unless @trip.rating.nil? %>
+    <%=link_to "Edit This Trip", edit_trip_path(@trip)%>
+  <% end %>
+
+<%=link_to "Delete Trip", trip_path(@trip), method: :delete %>
+</p> Date:
+<%=@trip.date%>
+</p>
+
+</p> Rating: 
+<% if @trip.rating.nil?%>
+  <%= form_with model: @trip, class: 'edit-trip' do |f| %>
+  <%= f.select :rating, options_for_select(1..5) %>
+  <%= f.submit "Submit Rating", class: "trip-button"%>
+  <% end %>
+<% else %>
+  <%=@trip.rating%>
+<% end%>
+</p>
+
+</p> Cost:
+<%=@trip.cost%>
+</p>
+
+
+</p> Passenger Id:
+<%=@trip.passenger_id%>
+</p>
+
+</p> Driver Id:
+<%=@trip.driver_id%>
+</p>
 
 
 
-
-<p>Date: <%=@trip.date%></p>
-<p>Driver_id: <%=@trip.driver_id%></p>
-<p>Passenger: <%=@trip.passenger_id%></p>
-<p>Cost: <%=@trip.cost%></p>
-
-<%= form_with model: @trip do |f|%>
-
-  <%=f.label "Date:"%> 
-  <%=f.text_field :date, :readonly => true%>
-
-  <%=f.label "Driver_id:"%>
-  <%=f.text_field :driver_id, :readonly => true%>
-  
-
-  <%=f.label "Passenger_id:"%>
-  <%=f.text_field :passenger_id, :readonly => true%>
-
-  <%=f.label "Cost:"%>
-  <%=f.text_field :cost, :readonly => true%>
-
-  <%if @trip.rating == nil %>
-    <%= f.label :rating %>
-    <%= f.select :rating, [1, 2, 3, 4, 5] %>
-  <%elsif @trip.rating != nil %>
-    <p>Rating: <%=@trip.rating%>
-  <%end%>
-<%end%>
-
-<%# <%= link_to "update", passenger_trips_path(@trip), method: :patch%> 
-
-
-
-
-
-
-
-
+<%= link_to "Manage Drivers", drivers_path() %>
+<%= link_to "Manage Passengers", passengers_path() %>
+<%= link_to "Home", root_path() %>

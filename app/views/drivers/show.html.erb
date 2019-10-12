@@ -1,14 +1,27 @@
-<h1>Driver's Trips</h1>
+<h1>Driver</h1>
 
+<%=link_to "Edit Driver", edit_driver_path(@driver) %>
 <p>Name: <%= @driver.name%></p>
+<p>Average Rating:
+ <% if @driver.avg_rating.nil?%>
+ <%= @driver.name %> has not provided any trips yet.
+ <% else%>
+ <%= @driver.avg_rating %>
+ <% end %>
+ </p>
+<p>Total Earnings: $<%= @driver.total_earnings%></p>
+<p>Driver Status: <%= @driver.status%></p>
+<h2>Driver's Trips</h2>
 
-<p>Average Rating: <%=@driver.average_rating%></p>
-<p>Total Earnings: $<%=@driver.total_earnings%></p>
-
-<h2>Trips</h2>
-
-<%@driver.trips.each do |trip|%>
-<p>Trip_id: <%=trip.id%>  (<%= link_to "Details", trip_path(trip)%>)</p>
+<% @driver.trips.each do |trip|%> 
+<%= link_to "Trip Details", trip_path(trip)%>
+<p>Date: <%=trip.date%></p>
+<p>Driver Id:<%=trip.driver_id%> </p>
+<p>Passenger Id: <%=trip.passenger_id%></p>
+<p>Cost: <%=trip.cost%></p>
+<p>Rating: <%=trip.rating%></p>
 <br>
 <%end%>
-</p>
+
+<%= link_to "Manage Drivers", drivers_path() %>
+<%= link_to "Home", root_path() %>

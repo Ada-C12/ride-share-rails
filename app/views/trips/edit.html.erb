@@ -1,0 +1,15 @@
+<%= form_with model: @trip, class: 'edit-trip' do |f| %>
+<p>Please provide the following information to update your trip</p>
+
+  <%= f.label :cost %>
+  <%= f.text_field :cost %>
+  <br>
+  <%= f.label :rating %>
+  <%= f.select :rating, options_for_select(1..5, @trip.rating) %>
+
+  <%= f.submit "Update Trip", class: "trip-button" %>
+
+<% end %>
+
+<%= link_to "Manage Passengers", passengers_path()%>
+<%= link_to "Home", root_path() %>

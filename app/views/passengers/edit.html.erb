@@ -1,19 +1,15 @@
-<% if @passenger.errors.any?%>
-  <ul>
-    <% @passenger.errors.each do |column, message| %>
-      <li>
-        <strong><%= column.capitalize %></strong> <%=message%>
-      </li>
-    <%end%>
-  </ul>
-<%end%>
+<%= form_with model: @passenger, class: 'edit-passenger' do |f| %>
+<p>Please provide the following information to update your book to our database:</p>
 
-<%=form_with model: @passenger do |passenger|%>
-  <p>Please provide the following information to edit the selected passenger.</p>
-  <%=passenger.label :name%>
-  <%=passenger.text_field :name%>
-  <%=passenger.label :phone%>
-  <%=passenger.text_field :phone_num%>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
 
-  <%= passenger.submit "Update"%>
-<%end%>
+  <%= f.label :phone_num %>
+  <%= f.text_field :phone_num %>
+
+  <%= f.submit "Update Passenger", class: "passenger-button" %>
+
+<% end %>
+
+<%= link_to "Manage Passengers", passengers_path()%>
+<%= link_to "Home", root_path() %>

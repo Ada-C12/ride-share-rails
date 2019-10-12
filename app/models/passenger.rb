@@ -1,18 +1,21 @@
 class Passenger < ApplicationRecord
   has_many :trips
-
   validates :name, presence: true
-
-  def total_amount
-
-    total_charge = 0
-
-    self.trips.each do |trip|
-      total_charge += trip.cost
-    end 
-
-    return total_charge
-  end 
-
+  validates :phone_num, presence: true
   
+  def total_spent
+    passenger_trips = self.trips 
+    
+    if passenger_trips.empty?
+      return nil
+    end
+    
+    amount_spent = 0
+    
+    passenger_trips.each do |trip|
+      amount_spent += trip.cost
+    end
+    
+    return amount_spent
+  end
 end

@@ -1,20 +1,15 @@
-<% if @driver.errors.any?%>
-  <ul>
-    <% @driver.errors.each do |column, message| %>
-      <li>
-        <strong><%= column.capitalize %></strong> <%=message%>
-      </li>
-    <%end%>
-  </ul>
-<%end%>
+<strong><%= @driver.inspect %></strong>
+<%= form_with model: @driver, class: 'create-driver' do |f| %>
+<p>Please provide the following information to save your book to our database:</p>
 
-<%=form_with model: @driver do |driver|%>
-  <p>Please provide the following information to add a new driver.</p>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
 
-  <%= driver.label :name%>
-  <%= driver.text_field :name%>
-  <%= driver.label :vin%>
-  <%= driver.text_field :vin%>
+  <%= f.label :vin %>
+  <%= f.text_field :vin %>
 
-  <%= driver.submit "Create"%>
-<%end%>
+  <%= f.submit "Save Driver", class: "driver-button" %>
+<% end %>
+
+<%= link_to "Manage Drivers", drivers_path()%>
+<%= link_to "Home", root_path() %>

@@ -1,19 +1,20 @@
-<% if @driver.errors.any?%>
-  <ul>
-    <% @driver.errors.each do |column, message| %>
-      <li>
-        <strong><%= column.capitalize %></strong> <%=message%>
-      </li>
-    <%end%>
-  </ul>
-<%end%>
+<%= form_with model: @driver, class: 'edit-driver' do |f| %>
+<p>Please provide the following information to update driver information:</p>
 
-<%=form_with model: @driver do |driver|%>
-  <p>Please provide the following information to edit the selected driver.</p>
-  <%=driver.label :name%>
-  <%=driver.text_field :name%>
-  <%=driver.label :vin%>
-  <%=driver.text_field :vin%>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
 
-  <%= driver.submit "Update"%>
-<%end%>
+  <%= f.label :vin %>
+  <%= f.text_field :vin %>
+
+  <%= f.label :status %>
+  <%= f.select :status, options_for_select(["available", "unavailable"], @driver.status) %>
+
+  
+
+  <%= f.submit "Update Driver", class: "driver-button" %>
+
+<% end %>
+
+<%= link_to "Manage Drivers", drivers_path() %>
+<%= link_to "Home", root_path() %>

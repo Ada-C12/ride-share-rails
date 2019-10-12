@@ -29,7 +29,7 @@ describe PassengersController do
       must_respond_with :success
     end 
 
-    it "will respond with an error for an invalid task" do
+    it "will respond with an error for an invalid passenger" do
       # Act
       get passenger_path(-1)
 
@@ -72,7 +72,7 @@ describe PassengersController do
       #Act
       get edit_passenger_path(passenger.id)
 
-      must_redirect_to passenger_path
+      must_respond_with :success
     end 
 
     it "will respond with a redirect when attempting to edit a non-existing passenger" do

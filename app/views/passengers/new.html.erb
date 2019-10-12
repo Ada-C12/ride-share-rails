@@ -1,20 +1,14 @@
-<% if @passenger.errors.any?%>
-  <ul>
-    <% @passenger.errors.each do |column, message| %>
-      <li>
-        <strong><%= column.capitalize %></strong> <%=message%>
-      </li>
-    <%end%>
-  </ul>
-<%end%>
+<%= form_with model: @passenger, class: 'create-passenger' do |f| %>
+<p>Please provide the following information to save your book to our database:</p>
 
+  <%= f.label :name %>
+  <%= f.text_field :name %>
 
-<%=form_with model: @passenger do |passenger|%>
-  <p>Please provide the following information to add a new passenger.</p>
-  <%=passenger.label :name%>
-  <%=passenger.text_field :name%>
-  <%=passenger.label :phone%>
-  <%=passenger.text_field :phone_num%>
+  <%= f.label :phone_num %>
+  <%= f.text_field :phone_num %>
 
-  <%= passenger.submit "Create"%>
-<%end%>
+  <%= f.submit "Save Passenger", class: "passenger-button" %>
+<% end %>
+
+<%= link_to "Manage Drivers", drivers_path()%>
+<%= link_to "Home", root_path() %>
