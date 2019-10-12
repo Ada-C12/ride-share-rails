@@ -15,33 +15,4 @@ class Trip < ApplicationRecord
     total_price_trips = (subtotal / 100).round(2)
     return total_price_trips
   end
-<<<<<<< HEAD
-  
-  def self.driver_avg_rating(driver_id)
-    ratings = []
-    
-    Trip.where(driver_id: driver_id).each do |trip|
-      ratings << trip.rating
-    end
-
-    if ratings.empty?
-      return "This driver doesn't have any ratings"
-    else
-      average_rating = (ratings.sum.to_f / ratings.length).round(2)
-      return average_rating  
-    end
-  end
-  
-  def self.driver_total_earnings(driver_id)
-    # Driver gets 80 percent of trip cost after fee of $1.65 is collected
-    earnings = []
-    Trip.where(driver_id: driver_id).each do |trip|
-      earnings << (trip.cost - 165) * 0.8
-    end
-    total_earnings = (earnings.sum / 100).round(2)
-    return total_earnings
-  end
-=======
-
->>>>>>> Finished trip model tests. Moved Driver methods on trip class to driver class
 end
