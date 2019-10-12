@@ -21,7 +21,9 @@ class Driver < ApplicationRecord
       avg_rating << (trip.rating)
     end
     
-    avg_rating = (avg_rating.sum)/avg_rating.length
+    if avg_rating.length > 0
+      avg_rating = (avg_rating.sum)/avg_rating.length
+    end 
     return avg_rating
   end 
   
@@ -29,7 +31,7 @@ class Driver < ApplicationRecord
     driver = Driver.find_by(available: true)
     return driver.id
     
-    if driver = nil
+    if driver == nil
       return "Error"
     else 
       return driver.id

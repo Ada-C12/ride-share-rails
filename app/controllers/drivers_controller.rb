@@ -14,7 +14,7 @@ class DriversController < ApplicationController
       return
     end     
   end
-
+  
   def new
     @driver = Driver.new
   end
@@ -25,11 +25,11 @@ class DriversController < ApplicationController
       redirect_to drivers_path 
       return
     else
-      render :new 
+      render new_driver
       return
     end
   end
-
+  
   def edit
     @driver = Driver.find_by(id: params[:id])
     
@@ -69,5 +69,5 @@ class DriversController < ApplicationController
   def driver_params
     return params.require(:driver).permit(:name, :vin)
   end
-
+  
 end 
