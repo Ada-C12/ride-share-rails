@@ -13,16 +13,15 @@ describe Trip do
   end
   
   it "will have the required fields" do
-    trip = Trip.first
     [:passenger_id, :driver_id, :date, :rating, :cost].each do |field|
-      expect(trip).must_respond_to field
+      expect(@trip).must_respond_to field
     end
   end
   
   describe "relationships" do
     it "can have only one driver" do
       trip = Trip.first
-      expect(trip.driver).must_be_instance_of Driver
+      expect(@trip.driver).must_be_instance_of Driver
     end
   end
   
