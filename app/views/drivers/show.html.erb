@@ -52,7 +52,7 @@
             <% else %>
               <td><%= link_to "Rate Trip", edit_trip_path(trip.id) %></td>
             <% end %>
-          <td>$<%= sprintf('%.2f', trip.cost / 10) %></td>
+          <td>$<%= sprintf('%.2f', trip.cost / 100.0) %></td>
         </tr>
       <% end %>
     </table>
