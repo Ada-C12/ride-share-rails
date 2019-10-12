@@ -6,19 +6,8 @@
 </head>
 
   <body>
-    <header>
-      <h1>Welcome to Rideshare</h1>
-      <nav>
-        <ul>
-          <%= link_to "Rideshare Rails", root_path %>
-          <%= link_to "Passengers", passengers_path %>
-          <%= link_to "Drivers", drivers_path %>
-          <%= link_to "Add Driver", new_driver_path %>
-          <%= link_to "Add Passenger", new_passenger_path %>
-        </ul>
-      </nav>
-    </header>
-    
+   <%= render partial: "shared/header+nav" %>
+       
     <section>
       <h1>Driver Information:</h1>
       <ul>
