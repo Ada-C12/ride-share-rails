@@ -187,7 +187,7 @@ describe PassengersController do
       
     end
     
-    it "does not remove passenger from database when given an invalid id and redirects to passengers path" do
+    it "does not remove passenger from database when given an invalid id and responds with 'not found'" do
       
       expect {
         delete passenger_path(0)

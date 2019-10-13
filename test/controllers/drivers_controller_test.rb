@@ -116,110 +116,113 @@ describe DriversController do
           post drivers_path, params: driver
         }
         .must_differ "Driver.count", 0
-        end
-
+      end
+      
       must_respond_with :success      
-  
-  end
-end
-
-describe "edit" do
-  it "responds with success when getting the edit page for an existing, valid driver" do
-    driver_id = Driver.last.id
-    
-    get edit_driver_path(driver_id)
-    
-    must_respond_with :success    
+      
+    end
   end
   
-  it "responds with redirect when getting the edit page for a non-existing driver" do
-    get edit_driver_path(-5)
-    must_respond_with :redirect
-    must_redirect_to drivers_path    
+  describe "edit" do
+    it "responds with success when getting the edit page for an existing, valid driver" do
+      driver_id = Driver.last.id
+      
+      get edit_driver_path(driver_id)
+      
+      must_respond_with :success    
+    end
+    
+    it "responds with redirect when getting the edit page for a non-existing driver" do
+      get edit_driver_path(-5)
+      must_respond_with :redirect
+      must_redirect_to drivers_path    
+    end
+    
   end
-
-end
-
-describe "update" do
-
-  before do
-    @to_update = {
-      driver: {
-        name: "Zaphod Beeblebrox",
-        vin: "CoolGuy1"
+  
+  describe "update" do
+    
+    before do
+      @to_update = {
+        driver: {
+          name: "Zaphod Beeblebrox",
+          vin: "CoolGuy1"
+        }
       }
-    }
-  end
-
-  it "can update an existing driver with valid information accurately, and redirects to updated driver page" do
-
-    existing_driver = Driver.find_by(id: @driver.id)
+    end
     
-    expect {
-      patch driver_path(@driver.id), params: @to_update
-    }.must_differ "Driver.count", 0
+    it "can update an existing driver with valid information accurately, and redirects to updated driver page" do
+      
+      existing_driver = Driver.find_by(id: @driver.id)
+      
+      expect {
+        patch driver_path(@driver.id), params: @to_update
+      }.must_differ "Driver.count", 0
+      
+      updated_driver = Driver.find_by(id: @driver.id)
+      expect(updated_driver.name).must_equal @to_update[:driver][:name]
+      expect(updated_driver.vin).must_equal @to_update[:driver][:vin]
+      
+      must_respond_with :redirect
+      must_redirect_to driver_path(@driver.id)
+      
+    end
     
-    updated_driver = Driver.find_by(id: @driver.id)
-    expect(updated_driver.name).must_equal @to_update[:driver][:name]
-    expect(updated_driver.vin).must_equal @to_update[:driver][:vin]
+    it "does not update driver if given an invalid id, and redirects to drivers list" do
+      
+      expect {
+        patch driver_path(0), params: @to_update
+      }.must_differ "Driver.count", 0
+      must_redirect_to drivers_path
+      
+    end
     
-    must_respond_with :redirect
-    must_redirect_to driver_path(@driver.id)
-        
-  end
-  
-  it "does not update driver if given an invalid id, and redirects to drivers list" do
-
-    expect {
-      patch driver_path(0), params: @to_update
-    }.must_differ "Driver.count", 0
-    must_redirect_to drivers_path
-    
-  end
-  
-  it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-
-    driver_id = @driver.id
-    invalid_driver = {
-      driver: {
-        name: "", 
-        vin: ""
-         },
-    }
-
-    expect {
-      patch driver_path(driver_id), params: invalid_driver
-    }.must_differ "Driver.count", 0
-
-    must_respond_with :success
-    
-  end
-
-end
-
-describe "destroy" do
-  it "destroys the driver instance in db when driver exists, then redirects" do
-    # Arrange
-    # Ensure there is an existing driver saved
-    
-    # Act-Assert
-    # Ensure that there is a change of -1 in Driver.count
-    
-    # Assert
-    # Check that the controller redirects
+    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+      
+      driver_id = @driver.id
+      invalid_driver = {
+        driver: {
+          name: "", 
+          vin: ""
+        },
+      }
+      
+      expect {
+        patch driver_path(driver_id), params: invalid_driver
+      }.must_differ "Driver.count", 0
+      
+      must_respond_with :success
+      
+    end
     
   end
   
-  it "does not change the db when the driver does not exist, then responds with " do
-    # Arrange
-    # Ensure there is an invalid id that points to no driver
+  describe "destroy" do
+    it "destroys the driver instance in db when driver exists, then redirects to driver list" do
+      
+      driver_to_remove = Driver.last
+      
+      expect {
+        delete driver_path(driver_to_remove.id)
+      }.must_differ "Driver.count", -1
+      
+      assert_nil (Driver.find_by(id: driver_to_remove.id))
+      must_respond_with :redirect
+      must_redirect_to drivers_path
+      
+    end
     
-    # Act-Assert
-    # Ensure that there is no change in Driver.count
-    
-    # Assert
-    # Check that the controller responds or redirects with whatever your group decides
-    
+    it "does not change the db when the driver does not exist and respond with 'not found'" do
+      
+      expect {
+        delete driver_path(0)
+      }.must_differ "Driver.count", 0
+      
+      assert_nil (Driver.find_by(id: -99))
+      must_respond_with :not_found
+      
+    end
+  
   end
 end
-end
+
