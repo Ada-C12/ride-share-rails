@@ -5,4 +5,3 @@ class Trip < ApplicationRecord
   validates :driver, presence: true
   validates :passenger, presence: true
 end
-
