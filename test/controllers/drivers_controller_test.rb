@@ -125,69 +125,76 @@ end
 
 describe "edit" do
   it "responds with success when getting the edit page for an existing, valid driver" do
-    # Arrange
-    # Ensure there is an existing driver saved
+    driver_id = Driver.last.id
     
-    # Act
+    get edit_driver_path(driver_id)
     
-    # Assert
-    
+    must_respond_with :success    
   end
   
   it "responds with redirect when getting the edit page for a non-existing driver" do
-    # Arrange
-    # Ensure there is an invalid id that points to no driver
-    
-    # Act
-    
-    # Assert
-    
+    get edit_driver_path(-5)
+    must_respond_with :redirect
+    must_redirect_to drivers_path    
   end
+
 end
 
 describe "update" do
-  it "can update an existing driver with valid information accurately, and redirect" do
-    # Arrange
-    # Ensure there is an existing driver saved
-    # Assign the existing driver's id to a local variable
-    # Set up the form data
+
+  before do
+    @to_update = {
+      driver: {
+        name: "Zaphod Beeblebrox",
+        vin: "CoolGuy1"
+      }
+    }
+  end
+
+  it "can update an existing driver with valid information accurately, and redirects to updated driver page" do
+
+    existing_driver = Driver.find_by(id: @driver.id)
     
-    # Act-Assert
-    # Ensure that there is no change in Driver.count
+    expect {
+      patch driver_path(@driver.id), params: @to_update
+    }.must_differ "Driver.count", 0
     
-    # Assert
-    # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
-    # Check that the controller redirected the user
+    updated_driver = Driver.find_by(id: @driver.id)
+    expect(updated_driver.name).must_equal @to_update[:driver][:name]
+    expect(updated_driver.vin).must_equal @to_update[:driver][:vin]
     
+    must_respond_with :redirect
+    must_redirect_to driver_path(@driver.id)
+        
   end
   
-  it "does not update any driver if given an invalid id, and responds with a 404" do
-    # Arrange
-    # Ensure there is an invalid id that points to no driver
-    # Set up the form data
-    
-    # Act-Assert
-    # Ensure that there is no change in Driver.count
-    
-    # Assert
-    # Check that the controller gave back a 404
+  it "does not update driver if given an invalid id, and redirects to drivers list" do
+
+    expect {
+      patch driver_path(0), params: @to_update
+    }.must_differ "Driver.count", 0
+    must_redirect_to drivers_path
     
   end
   
   it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-    # Note: This will not pass until ActiveRecord Validations lesson
-    # Arrange
-    # Ensure there is an existing driver saved
-    # Assign the existing driver's id to a local variable
-    # Set up the form data so that it violates Driver validations
-    
-    # Act-Assert
-    # Ensure that there is no change in Driver.count
-    
-    # Assert
-    # Check that the controller redirects
+
+    driver_id = @driver.id
+    invalid_driver = {
+      driver: {
+        name: "", 
+        vin: ""
+         },
+    }
+
+    expect {
+      patch driver_path(driver_id), params: invalid_driver
+    }.must_differ "Driver.count", 0
+
+    must_respond_with :success
     
   end
+
 end
 
 describe "destroy" do
