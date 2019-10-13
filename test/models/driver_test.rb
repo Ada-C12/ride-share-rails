@@ -1,8 +1,7 @@
-  require "test_helper"
-  require "date"
-  
-  describe Driver do
-    let (:new_driver) {
+require "test_helper"
+
+describe Driver do
+  let (:new_driver) {
     Driver.new(name: "Kari", vin: "123", available: true)
   }
   
@@ -32,7 +31,7 @@
         expect(trip).must_be_instance_of Trip
       end
     end
-  end
+  end 
   
   describe "validations" do
     it "must have a name" do
@@ -75,12 +74,4 @@
       expect(new_driver.total_earnings).must_equal(((2205 - 165) * 0.80)/100)
     end
   end
-end 
-
-#   describe "can go online" do
-#     # Your code here
-#   end
-
-#   describe "can go offline" do
-#     # Your code here
-#   end
+end
