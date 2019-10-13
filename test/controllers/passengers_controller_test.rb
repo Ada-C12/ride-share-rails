@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe PassengersController do
-
+  
   before do
     @passenger = Passenger.create(name: "Sue Perkins", phone_number: "917-223-1234")
   end
@@ -36,14 +36,14 @@ describe PassengersController do
   end
   
   describe "new" do
-    it "successfully loads the new passenger form" do
+    it "loads the new passenger form" do
       get new_passenger_path
       must_respond_with :success
     end
   end
   
   describe "create" do
-    it "can create a new passenger when provided with valid information and redirect to passenger show page" do
+    it "creates a new passenger when provided with valid information and redirect to passenger show page" do
       
       Passenger.destroy_all
       expect (Passenger.count).must_equal 0
@@ -121,7 +121,7 @@ describe PassengersController do
   end
   
   describe "edit" do
-    it "can successfully the edit page when provided with a valid id" do 
+    it "loads the edit page when provided with a valid id" do 
       passenger_id = Passenger.last.id
       
       get edit_passenger_path(passenger_id)
@@ -148,7 +148,7 @@ describe PassengersController do
       }
     end
     
-    it "can update existing passenger information when provided with a valid id and redirect to passenger show page" do
+    it "updates existing passenger information when provided with a valid id and redirect to passenger show page" do
       
       existing_passenger = Passenger.find_by(id: @passenger.id)
       
@@ -163,7 +163,7 @@ describe PassengersController do
       must_respond_with :redirect
       must_redirect_to passenger_path(@passenger.id)
     end
-
+    
     it "if given invalid id, will not update information and will redirect to passengers list" do
       expect {
         patch passenger_path(0), params: @to_update
@@ -173,7 +173,29 @@ describe PassengersController do
   end
   
   describe "destroy" do
-    # Your tests go here
+    it "removes passenger from database when provided with a valid id and redirects to passengers list" do
+      
+      passenger_to_remove = Passenger.last
+      
+      expect {
+        delete passenger_path(passenger_to_remove.id)
+      }.must_differ "Passenger.count", -1
+      
+      assert_nil (Passenger.find_by(id: passenger_to_remove.id))
+      must_respond_with :redirect
+      must_redirect_to passengers_path
+      
+    end
+    
+    it "does not remove passenger from database when given an invalid id and redirects to passengers path" do
+      
+      expect {
+        delete passenger_path(0)
+      }.must_differ "Passenger.count", 0
+      
+      assert_nil (Passenger.find_by(id: -99))
+      must_respond_with :not_found
+      
+    end
   end
-  
 end
