@@ -45,7 +45,9 @@ class PassengersController < ApplicationController
       name: params[:passenger][:name], 
       phone_number: params[:passenger][:phone_number]
     )
-    redirect_to passengers_path 
+    # redirect_to passengers_path 
+
+    redirect_to passenger_path(@passenger.id)
     return
   else 
     render :edit 
