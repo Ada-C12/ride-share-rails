@@ -48,7 +48,7 @@ class PassengersController < ApplicationController
     redirect_to passenger_path(@passenger.id)
     return
   else 
-    render :edit 
+    render :edit
     return
   end
 end
