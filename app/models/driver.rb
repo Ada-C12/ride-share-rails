@@ -31,13 +31,13 @@ class Driver < ApplicationRecord
   
   def self.find_a_driver
     driver = Driver.find_by(available: true)
-    return driver
+    return driver.id
     
     if driver == nil
       head :not_found
       return
     else 
-      return driver
+      return driver.id
     end
   end
 end

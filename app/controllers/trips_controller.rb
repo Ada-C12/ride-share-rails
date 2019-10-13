@@ -53,20 +53,19 @@ class TripsController < ApplicationController
     return
   end
   
-  def create
-    @new_driver = Driver.find_a_driver
-    
+  def create    
     trip = Trip.create(
       date: Date.today,
       passenger_id: params[:passenger_id],
-      driver_id: @new_driver.id,
+      driver_id: Driver.find_a_driver,
       cost: rand(500...1000),
       rating: nil
     )
     
     if trip.id
-      @new_driver.available = false
-      @new_driver.save
+      trip.driver.available = false
+      trip.driver.save
+      
       redirect_to passenger_path(params[:passenger_id])
     else
       redirect_to passenger_path(params[:passenger_id])
@@ -78,4 +77,4 @@ class TripsController < ApplicationController
   def trip_params
     return params.require(:trip).permit( :rating, :cost)
   end  
-end 
+end
