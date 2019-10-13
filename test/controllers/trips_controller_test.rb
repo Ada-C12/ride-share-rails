@@ -116,6 +116,22 @@ describe TripsController do
   end
 
   describe "destroy" do
-    # Your tests go here
+    it "will delete the trip from the database" do
+      # Act
+      trip
+      delete trip_path(trip.id)
+
+      # Assert
+      expect(Trip.count).must_equal 0
+    end
+
+    it "will redirect to main page if trip is deleted" do
+      # Act
+      trip
+      delete trip_path(trip.id)
+
+      # Assert
+      must_respond_with :redirect 
+    end
   end
 end
