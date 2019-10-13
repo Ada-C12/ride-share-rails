@@ -6,33 +6,125 @@ describe PassengersController do
   }
   
   describe "index" do
-    it "responds with success when asked to list all passengers" do
+    it "responds with success when there are many passengers saved" do
+      
+      get passengers_path
+      must_respond_with :success
+    end
+    
+    it "responds with success when there are no passengers saved" do
+      
+      Passenger.destroy_all
+      expect (Passenger.count).must_equal 0
+      
       get passengers_path
       must_respond_with :success
     end
   end
   
   describe "show" do
-    # Your tests go here
+    it "responds with success when provided with a valid passenger ID" do
+      get passenger_path(passenger.id)
+      must_respond_with :success
+    end
+    
+    it "responds with redirect when provided with an invalid passenger ID" do 
+      get passenger_path(0)
+      must_respond_with :redirect
+    end
   end
   
   describe "new" do
-    # Your tests go here
+    it "successfully loads the new passenger form" do
+      get new_passenger_path
+      must_respond_with :success
+    end
   end
   
   describe "create" do
-    # Your tests go here
+    it "can create a new passenger when provided with valid information and redirect to passenger show page" do
+      
+      Passenger.destroy_all
+      expect (Passenger.count).must_equal 0
+      
+      new_passenger = {
+        passenger: {
+          name: "Lloyd Dobler",
+          phone_number: "2061234567",
+        }
+      }
+      
+      expect {
+        post passengers_path, params: new_passenger
+      }.must_differ "Passenger.count", 1
+      created_passenger = Passenger.first 
+      expect (created_passenger.name).must_equal new_passenger[:passenger][:name]
+      expect (created_passenger.phone_number).must_equal new_passenger[:passenger][:phone_number]
+      
+      must_redirect_to passenger_path(created_passenger.id)
+      
+    end
+    
+    it "does not create a passenger if input is invalid" do
+      
+      invalid_passengers = [
+        {
+          passenger: {
+            name: nil, 
+            phone_number: "206-555-1234"
+          },
+        },
+        { 
+          passenger: {
+            name: "Quincy Jones", 
+            phone_number: nil  
+          },
+        },
+        {
+          passenger: {
+            name: "",
+            phone_number: "206-555-1234"
+          },
+        },
+        {
+          passenger: {
+            name: "Quincy Jones",
+            phone_number: ""
+          }
+        },
+        {
+          passenger: {
+            name: "       ",
+            phone_number: "206-555-1234"
+          },
+        },
+        {
+          passenger: {
+            name: "Quincy Jones",
+            phone_number: "      "
+          }
+        }
+      ]
+      
+      invalid_passengers.each do |passenger|
+        expect {
+          post passengers_path, params: passenger}.must_differ "Passenger.count", 0
+          must_respond_with :success
+          
+        end
+      end
+    end
+    
+    describe "edit" do
+      # Your tests go here
+    end
+    
+    describe "update" do
+      # Your tests go here
+    end
+    
+    describe "destroy" do
+      # Your tests go here
+    end
   end
   
-  describe "edit" do
-    # Your tests go here
-  end
-  
-  describe "update" do
-    # Your tests go here
-  end
-  
-  describe "destroy" do
-    # Your tests go here
-  end
-end
