@@ -25,7 +25,12 @@ class TripsController < ApplicationController
   
   def update
     @trip = Trip.find_by(id: params[:id])
+    
     if @trip.update(trip_params)
+      
+      @trip.driver.available = true
+      @trip.driver.save
+      
       redirect_to root_path 
       return
     else 
@@ -49,15 +54,19 @@ class TripsController < ApplicationController
   end
   
   def create
+    @new_driver = Driver.find_a_driver
+    
     trip = Trip.create(
-    date: Date.today,
-    passenger_id: params[:passenger_id],
-    driver_id: Driver.find_a_driver,
-    cost: rand(500...1000),
-    rating: nil
+      date: Date.today,
+      passenger_id: params[:passenger_id],
+      driver_id: @new_driver.id,
+      cost: rand(500...1000),
+      rating: nil
     )
     
     if trip.id
+      @new_driver.available = false
+      @new_driver.save
       redirect_to passenger_path(params[:passenger_id])
     else
       redirect_to passenger_path(params[:passenger_id])
