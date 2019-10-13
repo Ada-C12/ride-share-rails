@@ -26,15 +26,15 @@ class TripsController < ApplicationController
   def update
     @trip = Trip.find_by(id: params[:id])
     
-    if @trip.update(trip_params)
-      
+    if params[:trip][:rating].to_i >= 0 && params[:trip][:rating].to_i <=5
+      @trip.update(trip_params)
       @trip.driver.available = true
       @trip.driver.save
       
       redirect_to root_path 
       return
     else 
-      render :edit 
+      render :edit
       return
     end
   end

@@ -1,5 +1,5 @@
 class Driver < ApplicationRecord
-  has_many :trips
+  has_many :trips, dependent: :nullify
   
   validates :name, presence: true
   validates :vin, presence: true
@@ -17,17 +17,22 @@ class Driver < ApplicationRecord
   
   def avg_rating
     avg_rating_hash = []
+    avg_rating_on_going = []
     
     self.trips.all.each do |trip|
       if trip.rating.nil?
-        return
+        avg_rating_on_going << 0
       else
-        avg_rating_hash << (trip.rating)
+        avg_rating_hash << trip.rating
       end
     end 
-    return avg_rating = (avg_rating_hash.sum)/avg_rating_hash.length
-  end
-  
+    
+    if avg_rating_hash.length == 0
+      return
+    else
+      return avg_rating = (avg_rating_hash.sum)/avg_rating_hash.length
+    end
+  end 
   
   def self.find_a_driver
     driver = Driver.find_by(available: true)
