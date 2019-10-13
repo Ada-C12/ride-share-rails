@@ -16,32 +16,28 @@ class Driver < ApplicationRecord
   end
   
   def avg_rating
-    avg_rating = []
+    avg_rating_hash = []
     
     self.trips.all.each do |trip|
       if trip.rating.nil?
-        avg_rating << 0
-      else
-        avg_rating << (trip.rating)
-      end
-      
-      if avg_rating.nil?
         return
       else
-        total_avg_rating = (avg_rating.sum)/avg_rating.length
-      end 
-      return total_avg_rating
-    end
-  end 
+        avg_rating_hash << (trip.rating)
+      end
+    end 
+    return avg_rating = (avg_rating_hash.sum)/avg_rating_hash.length
+  end
+  
   
   def self.find_a_driver
     driver = Driver.find_by(available: true)
     return driver
     
     if driver == nil
-      return "Error"
+      head :not_found
+      return
     else 
       return driver
     end
   end
-end 
+end
