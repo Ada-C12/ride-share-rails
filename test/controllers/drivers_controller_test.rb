@@ -172,7 +172,7 @@ describe DriversController do
       }.must_differ "Driver.count", -1
       
       removed_driver = Driver.find_by(id: driver.id)
-      removed_driver.must_be_nil
+      expect(removed_driver).must_be_nil
       
       must_redirect_to drivers_path
     end
