@@ -3,6 +3,15 @@
 <h3>Total earnings: $<%= @driver.total_earnings %> </h3>
 <h3>Average Rating: <%= @driver.avg_rating %> </h3>
 
+<p>
+<h3>Status:</h3>
+<% if @driver.available ==  true %>
+<%= "AVAILABLE" %>
+<%else%>
+<%= "UNAVAILABLE" %>
+<%end%>
+</p>
+
 <h3>Trips made by this driver:<h3>
 
 <% @driver.trips.each do |trip|%>
