@@ -17,7 +17,7 @@ describe DriversController do
     it "responds with success when there are no drivers saved" do
       
       Driver.destroy_all
-      expect (Driver.count).must_equal 0
+      expect(Driver.count).must_equal 0
       
       get drivers_path
       must_respond_with :success
@@ -50,7 +50,7 @@ describe DriversController do
     it "can create a new driver with valid information accurately, and redirect" do
       
       Driver.destroy_all
-      expect (Driver.count).must_equal 0
+      expect(Driver.count).must_equal 0
       
       new_driver = {
         driver: {
@@ -64,8 +64,8 @@ describe DriversController do
       }
       .must_differ "Driver.count", 1
       created_driver = Driver.first 
-      expect (created_driver.name).must_equal new_driver[:driver][:name]
-      expect (created_driver.vin).must_equal new_driver[:driver][:vin]
+      expect(created_driver.name).must_equal new_driver[:driver][:name]
+      expect(created_driver.vin).must_equal new_driver[:driver][:vin]
       
       must_redirect_to driver_path(created_driver.id)
       

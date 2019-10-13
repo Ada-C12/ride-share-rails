@@ -16,7 +16,7 @@ describe PassengersController do
     it "responds with success when there are no passengers saved" do
       
       Passenger.destroy_all
-      expect (Passenger.count).must_equal 0
+      expect(Passenger.count).must_equal 0
       
       get passengers_path
       must_respond_with :success
@@ -46,7 +46,7 @@ describe PassengersController do
     it "creates a new passenger when provided with valid information and redirect to passenger show page" do
       
       Passenger.destroy_all
-      expect (Passenger.count).must_equal 0
+      expect(Passenger.count).must_equal 0
       
       new_passenger = {
         passenger: {
@@ -60,8 +60,8 @@ describe PassengersController do
       }
       .must_differ "Passenger.count", 1
       created_passenger = Passenger.first 
-      expect (created_passenger.name).must_equal new_passenger[:passenger][:name]
-      expect (created_passenger.phone_number).must_equal new_passenger[:passenger][:phone_number]
+      expect(created_passenger.name).must_equal new_passenger[:passenger][:name]
+      expect(created_passenger.phone_number).must_equal new_passenger[:passenger][:phone_number]
       
       must_redirect_to passenger_path(created_passenger.id)
       
