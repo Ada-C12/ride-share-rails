@@ -13,6 +13,3 @@ class Trip < ApplicationRecord
   end
   
 end
-
-# want method that takes in the driver_id of the associated trip and edit the rating of that trip with an if else
-# statement that will update rating if it is nil.
