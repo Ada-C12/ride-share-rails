@@ -142,7 +142,7 @@ describe PassengersController do
     before do
       @to_update = {
         passenger: {
-          name: "Tuesday Next",
+          name: "Thursday Next",
           phone_number: "4315543215"
         }
       }
@@ -162,6 +162,13 @@ describe PassengersController do
       
       must_respond_with :redirect
       must_redirect_to passenger_path(@passenger.id)
+    end
+
+    it "if given invalid id, will not update information and will redirect to passengers list" do
+      expect {
+        patch passenger_path(0), params: @to_update
+      }.must_differ "Passenger.count", 0
+      must_redirect_to passengers_path
     end
   end
   
