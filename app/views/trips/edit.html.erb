@@ -11,7 +11,8 @@
     <%= f.select :rating, [5, 4, 3, 2, 1]%>
     <br>
     <%= f.label :cost %>
-    <%= f.text_field :cost %>
+    <%= f.text_field :cost, :value => (sprintf('%.2f', @trip.cost / 100.0)) %>
+    <%= hidden_field_tag :special_form, true %>
     <br>
     <%= f.label :passenger_id %>
     <%= f.select :passenger_id, Passenger.all.order(:name).map{ |passenger| [passenger.name, passenger.id] } %>

@@ -39,12 +39,11 @@ class TripsController < ApplicationController
     date = Date.today
     cost = rand(1000..9999)
     
-    data_hash = {
-      driver_id: driver.id,
-      passenger_id: params[:passenger_id],
-      date: date,
-      cost: cost 
-    }  
+    data_hash = 
+    { driver_id: driver.id,
+    passenger_id: params[:passenger_id],
+    date: date,
+    cost: cost }  
     
     @trip = Trip.new(data_hash)
     
@@ -73,6 +72,9 @@ class TripsController < ApplicationController
       redirect_to root_path
       return
     elsif @trip.update(trip_params)
+      # https://stackoverflow.com/questions/31978482/how-to-process-text-input-data-before-form-submit-ruby-on-rails
+      @trip.cost = trip_params[:cost].to_f * 100.0 if params[:special_form].present?
+      @trip.save
       redirect_to trip_path
       return
     else
@@ -92,6 +94,6 @@ class TripsController < ApplicationController
   private
   
   def trip_params
-    return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
+    return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id, :special_form)
   end
 end
