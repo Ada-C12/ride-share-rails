@@ -116,7 +116,21 @@ describe PassengersController do
     end
     
     describe "edit" do
-      # Your tests go here
+      it "can successfully the edit page when provided with a valid id" do 
+        passenger_id = Passenger.last.id
+        
+        get edit_passenger_path(passenger_id)
+        
+        must_respond_with :success
+      end
+      
+      it "redirects to passengers page when provided with an invalid id" do
+        get edit_passenger_path(-5)
+        must_respond_with :redirect
+        must_redirect_to passengers_path
+        
+      end
+      
     end
     
     describe "update" do
