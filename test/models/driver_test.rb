@@ -58,18 +58,17 @@ describe Driver do
     end
   end
   
-  # Tests for methods you create should go here
+  # # Tests for methods you create should go here
   describe "custom methods" do
-    
     describe "average rating" do
-      it "can calculate an average given multiple numbers" do
+      it "can calculate an average given multiple ratings" do
         new_driver = Driver.create(name: "Mary", vin: "123", active: true)
         new_passenger = Passenger.create(name: "Berry", phone_number: "111-111-1211")
         trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
         trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 4, cost: 6334)
         
         # Assert
-        expect (Driver.driver_avg_rating(new_driver.id)).must_equal 4.5
+        expect(Driver.driver_avg_rating(new_driver.id)).must_equal 4.5
       end
       
       it "returns something else if the driver doesn't have any ratings" do
@@ -77,9 +76,8 @@ describe Driver do
         new_passenger = Passenger.create(name: "Hollywood", phone_number: "111-111-1211")
         
         # Assert
-        expect (Driver.driver_avg_rating(new_driver.id)).must_be_instance_of Float
-      end
-      
+        expect(Driver.driver_avg_rating(new_driver.id)).must_be_instance_of Float
+      end    
     end
     
     describe "total earnings" do
@@ -91,35 +89,48 @@ describe Driver do
         trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 4, cost: 6334)
         
         # Assert
-        expect (Driver.driver_total_earnings(new_driver.id)).must_equal 57.9
+        expect(Driver.driver_total_earnings(new_driver.id)).must_equal 57.9
       end
       
       it "returns 0 if the driver doesn't have any trips" do
         new_driver = Driver.create(name: "Mary", vin: "123", active: false)
         
         # Assert
-        expect (Driver.driver_total_earnings(new_driver.id)).must_equal 0
+        expect(Driver.driver_total_earnings(new_driver.id)).must_equal 0
       end
     end
     
-    describe "can go online" do
-      # assuming "go online" means "active: false" aka "available to drive"
-      it "driver status can be set to active:false" do
+    describe "Online/Offline status" do
+    # assuming "go online" means "active: false" aka "available to drive"
+      it "can go offline" do
         new_driver = Driver.create(name: "Mary", vin: "123", active: false)
-        
-        expect (Driver.find_by(id: new_driver.id).active).must_equal false
+        expect(Driver.find_by(id: new_driver.id).active).must_equal false
       end
       
-      
-      describe "can go offline" do
-        # assuming "go offline" means "active: true" aka "not available to drive"
-        it "driver status can be set to active:true" do
-          new_driver = Driver.create(name: "Mary", vin: "123", active: true)
-          
-          expect (Driver.find_by(id: new_driver.id).active).must_equal true
-        end
+      it "can go online" do
+        new_driver = Driver.create(name: "Mary", vin: "123", active: true)
+        expect(Driver.find_by(id: new_driver.id).active).must_equal true
       end
-      
+    end
+
+    describe "alphabetic order" do      
+      let (:new_driver2) {
+      Driver.new(name: "Ana", vin: "123", active: true)
+      }
+  
+      let (:new_driver3) {
+        Driver.new(name: "Zima", vin: "123", active: true)
+      }
+  
+      it "sorts the drivers alphabetically" do
+        # Arrange
+        new_driver.save
+        new_driver2.save
+        new_driver3.save
+  
+        # Assert
+        expect(Driver.alpha_drivers.first.name).must_equal "Ana"
+      end  
     end
   end
 end
