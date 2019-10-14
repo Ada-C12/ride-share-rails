@@ -21,16 +21,6 @@
 </p>
 
 <p>
-  <strong>Car Make:</strong>
-  <%= @driver.car_make %>
-</p>
-
-<p>
-  <strong>Car Model:</strong>
-  <%= @driver.car_model%>
-</p>
-
-<p>
   <strong>My trips:</strong>
   <% @driver.find_driver_trips.each do |trip| %>
     <%= link_to trip.id, trip_path(trip.id) %>

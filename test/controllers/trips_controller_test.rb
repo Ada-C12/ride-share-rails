@@ -4,7 +4,7 @@ describe TripsController do
   describe "show" do
     before do
       @passenger = Passenger.create(name: "Georgina", phone_num: "111-111-1211")
-      @driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+      @driver = Driver.create(name: "Lex", vin: "123", active: true)
       @trip_info = {
         trip: {
           driver_id: @driver.id,
@@ -32,7 +32,7 @@ describe TripsController do
   describe "edit" do
     before do
       @passenger = Passenger.create(name: "Georgina", phone_num: "111-111-1211")
-      @driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+      @driver = Driver.create(name: "Lex", vin: "123", active: true)
       @trip_info = {
         trip: {
           driver_id: @driver.id,
@@ -58,7 +58,7 @@ describe TripsController do
   describe "update" do
     before do
       @passenger = Passenger.create(name: "Georgina", phone_num: "111-111-1211")
-      @driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+      @driver = Driver.create(name: "Lex", vin: "123", active: true)
 
       @existing_trip = Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, date: Time.now, rating: 4, cost: 100)
       @updated_trip_form_data = {
@@ -94,7 +94,7 @@ describe TripsController do
   describe "destroy" do
     before do
       @passenger = Passenger.create(name: "Georgina", phone_num: "111-111-1211")
-      @driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+      @driver = Driver.create(name: "Lex", vin: "123", active: true)
       @trip_info = {
         trip: {
           driver_id: @driver.id,

@@ -25,7 +25,7 @@ describe Passenger do
       # Arrange
       new_passenger.save
       passenger = Passenger.first
-      driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+      driver = Driver.create(name: "Lex", vin: "123", active: true)
       trip = Trip.new(driver_id: driver.id, 
         passenger_id: passenger.id,
         date: Time.now,
@@ -69,7 +69,7 @@ describe Passenger do
     describe "find_passenger_trips" do
       it "returns all the trips from a specific passenger" do
         passenger = Passenger.create(name: "Georgina", phone_num: "111-111-1211")
-        driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+        driver = Driver.create(name: "Lex", vin: "123", active: true)
         trip = Trip.new(driver_id: driver.id, 
           passenger_id: passenger.id,
           date: Time.now,
@@ -85,7 +85,7 @@ describe Passenger do
     describe "amount_charged" do
       it "returns the total amount charged to a passenger" do
         passenger = Passenger.create(name: "Georgina", phone_num: "111-111-1211")
-        driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+        driver = Driver.create(name: "Lex", vin: "123", active: true)
         trip = Trip.new(driver_id: driver.id, 
           passenger_id: passenger.id,
           date: Time.now,

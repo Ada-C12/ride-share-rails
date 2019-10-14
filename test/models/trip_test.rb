@@ -3,7 +3,7 @@ require "test_helper"
 describe Trip do
   it "can be instantiated" do
     passenger = Passenger.create(name: "Georgina", phone_num: "111-111-1211")
-    driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+    driver = Driver.create(name: "Lex", vin: "123", active: true)
     trip_info = {
       trip: {   
         driver_id: driver.id,
@@ -19,7 +19,7 @@ describe Trip do
 
   it "will have the required fields" do
     passenger = Passenger.create(name: "Georgina", phone_num: "111-111-1211")
-    driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+    driver = Driver.create(name: "Lex", vin: "123", active: true)
     trip_info = {
       trip: {   
         driver_id: driver.id,
@@ -40,7 +40,7 @@ describe Trip do
   describe "relationships" do
     it "belongs to a passenger" do
       passenger = Passenger.create(name: "Georgina", phone_num: "111-111-1211")
-      driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+      driver = Driver.create(name: "Lex", vin: "123", active: true)
       trip_info = {
         trip: {   
           driver_id: driver.id,
@@ -57,7 +57,7 @@ describe Trip do
 
     it "belongs to a driver" do
       passenger = Passenger.create(name: "Georgina", phone_num: "111-111-1211")
-      driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+      driver = Driver.create(name: "Lex", vin: "123", active: true)
       trip_info = {
         trip: {   
           driver_id: driver.id,
@@ -76,7 +76,7 @@ describe Trip do
   describe "validations" do
     it "must have a passenger" do
       passenger = Passenger.create(name: "Georgina", phone_num: "111-111-1211")
-      driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+      driver = Driver.create(name: "Lex", vin: "123", active: true)
       trip_info = {
         trip: {   
           driver_id: driver.id,
@@ -93,7 +93,7 @@ describe Trip do
 
     it "must have a driver" do
       passenger = Passenger.create(name: "Georgina", phone_num: "111-111-1211")
-      driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+      driver = Driver.create(name: "Lex", vin: "123", active: true)
       trip_info = {
         trip: {   
           driver_id: driver.id,
@@ -110,7 +110,7 @@ describe Trip do
 
     it "must have a date" do
       passenger = Passenger.create(name: "Georgina", phone_num: "111-111-1211")
-      driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+      driver = Driver.create(name: "Lex", vin: "123", active: true)
       trip_info = {
         trip: {   
           driver_id: driver.id,

@@ -130,7 +130,7 @@ describe PassengersController do
   describe "create_new_trip" do
     it "can create a new trip" do
     passenger = Passenger.create(name: "Georgina", phone_num: "111-111-1211")
-    driver = Driver.create(name: "Lex", vin: "123", active: true, car_make: "Cherry", car_model: "DR5")
+    driver = Driver.create(name: "Lex", vin: "123", active: true)
     trip_info = {
       trip: {   
         driver_id: driver.id,
