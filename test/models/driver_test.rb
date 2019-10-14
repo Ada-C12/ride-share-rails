@@ -85,7 +85,8 @@ describe Driver do
           date: Time.now,
           rating: nil,
           cost: 100,)
-
+        p "CAT BOMB"
+        p driver.id.class
         trip.save
 
         expect(driver.calculate_total_earnings).must_equal 78.68
