@@ -8,14 +8,21 @@ class Driver < ApplicationRecord
   validates :vin, presence: true
 
   def self.driver_avg_rating(driver_id)
+    
     ratings = []
     
     Trip.where(driver_id: driver_id).each do |trip|
-      ratings << trip.rating
+      if trip.rating != nil
+        ratings << trip.rating
+      end
     end
-   
-    average_rating = ratings.sum.to_f / ratings.length
-    return average_rating.round(2)
+    
+    if ratings != []
+      average_rating = ratings.sum.to_f / ratings.length
+      return average_rating.round(2)
+    else
+      average_rating = nil
+    end
   end
   
   def self.driver_total_earnings(driver_id)
