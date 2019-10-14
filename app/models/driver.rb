@@ -21,7 +21,7 @@ class Driver < ApplicationRecord
       average_rating = ratings.sum.to_f / ratings.length
       return average_rating.round(2)
     else
-      average_rating = nil
+      average_rating = " "
     end
   end
   

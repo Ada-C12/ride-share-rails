@@ -71,12 +71,11 @@ describe Driver do
         expect(Driver.driver_avg_rating(new_driver.id)).must_equal 4.5
       end
       
-      it "returns something else if the driver doesn't have any ratings" do
+      it "shows nothing (nil) if the driver doesn't have any rating" do
         new_driver = Driver.create(name: "Paul", vin: "123", active: true)
-        new_passenger = Passenger.create(name: "Hollywood", phone_number: "111-111-1211")
         
         # Assert
-        expect(Driver.driver_avg_rating(new_driver.id)).must_be_instance_of Float
+        expect(Driver.driver_avg_rating(new_driver.id)).must_equal " "
       end    
     end
     
