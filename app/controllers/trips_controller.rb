@@ -58,7 +58,7 @@ class TripsController < ApplicationController
       date: Date.today,
       passenger_id: params[:passenger_id],
       driver_id: Driver.find_a_driver,
-      cost: rand(500...1000),
+      cost: rand(500...10000),
       rating: nil
     )
     

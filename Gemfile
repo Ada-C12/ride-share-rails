@@ -78,4 +78,5 @@ group :test do
   gem 'minitest-rails'
   gem 'minitest-reporters'
   gem 'minitest-skip'
+  gem 'minitest-spec-rails'
 end
