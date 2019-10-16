@@ -1,0 +1,14 @@
+<div class="page-container">
+  <%= form_with model: @trip, class: "edit-trip" do |f| %>
+    <%= f.label :date %>
+    <%= f.date_field :date, value: f.object.try(:strftime,"%Y-%m-%d") %> <br>
+
+    <%= f.label :cost %>
+    <%= f.text_field :cost %> <br>
+
+    <%= f.label :rating %>
+    <%= f.select :rating, [1, 2, 3, 4, 5] %> <br>
+
+    <%= f.submit "Edit Trip", class: "trip-button" %>
+  <% end %>
+</div>

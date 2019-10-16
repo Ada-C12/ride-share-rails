@@ -1,0 +1,36 @@
+<div class="page-container">
+  <h1>List of Drivers</h1>
+
+  <section class="button">
+    <%= link_to "Create a new Driver", new_driver_path %>
+  </section>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <table class="table table-sm">
+          <tr class = "table-header">
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">VIN</th>
+            <th scope="col">Status</th>
+          </tr>
+          <% @drivers.each do |driver| %>
+          <tr>
+            <td><%= driver.id %> </td>
+            <td><%= link_to driver.name, driver_path(driver) %> </td>
+            <td><%= driver.vin %></td>
+            <td>
+              <% if driver.available %>
+                Available
+              <% else %>
+                Unavailable
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
