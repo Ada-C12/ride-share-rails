@@ -1,0 +1,22 @@
+<h1> Edit a Trip </h1>
+
+<%= form_with model: @trip do |f| %>
+
+  <%= f.label "Date:" %>
+  <%= f.text_field :date %>
+
+  <%= f.label "Driver ID:" %>
+  <%= f.number_field :driver_id %>
+
+  <%= f.label "Passenger ID:" %>
+  <%= f.number_field :passenger_id %>
+
+  <%= f.label "Rating:" %>
+  <%= f.number_field :rating %>
+
+  <%= f.label "Cost:" %>
+  <%= f.text_field :cost %>
+
+  <%= f.submit "Edit Trip" %>
+
+<% end %>

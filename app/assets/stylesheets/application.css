@@ -1,0 +1,138 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ /* body {
+  background: slategray;
+  font-family: helvetica
+} */
+
+body {
+  /* background: #1A1a14;  fallback for old browsers */
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 125%;
+  text-align: center;
+  font-family: Optima;
+  background-color: black;
+  color: white;
+
+ }
+
+p {
+  font-size: 200%
+}
+
+  ul {
+    max-width: 1fr;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    text-align: center;
+    grid-gap: 15px;
+    font-size: 150%;
+    list-style-type: none;
+    margin: 0;
+    padding: 30px;
+    color: #07889B;
+  } 
+
+  li {
+    padding: 10px 10px 10px 10px;
+  }
+  
+  section 
+  {
+    font-size: 75%
+  }
+
+  div {
+    font-size: 150%
+  }
+  
+
+h2 {
+  color: #07889B;
+  font-size: 300%
+}
+
+h3 {
+  color: #07889B;
+  font-size: 350%
+}
+
+h4{
+  color: #66b9bf;
+  font-size: 300%
+}
+
+a:visited {
+  color: #66b9bf;
+}
+
+a:link {
+  color: #66b9bf;} 
+
+a:hover {
+  color: white;
+}
+
+
+/* 
+.passengers ul {
+  max-width: 1fr;
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: auto auto;
+  text-align: center;
+  grid-gap: 15px;
+  font-size: 150%;
+  list-style-type: none;
+  margin: 0;
+  padding: 30px;
+  color: #07889B;
+} 
+
+.drivers ul{
+  max-width: 1fr;
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: auto auto;
+  text-align: center;
+  grid-gap: 15px;
+  font-size: 150%;
+  list-style-type: none;
+  margin: 0;
+  padding: 30px;
+  color: #07889B;
+} 
+
+  
+
+.trips ul{
+    max-width: 1fr;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    text-align: center;
+    grid-gap: 15px;
+    font-size: 150%;
+    list-style-type: none;
+    margin: 0;
+    padding: 30px;
+    color: #07889B;
+  }  */
+
+  .drivers {
+    font-size: 80%
+  }

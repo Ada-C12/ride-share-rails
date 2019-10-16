@@ -1,0 +1,12 @@
+
+<% if @passenger.errors.any? %>
+  <ul class="errors">
+    <% @passenger.errors.each do |column, message| %>
+      <li>
+       <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render(partial: "form", locals: { action_name: "New", verb_name: "add" }) %>

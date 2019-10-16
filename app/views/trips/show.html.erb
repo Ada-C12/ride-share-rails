@@ -1,0 +1,35 @@
+<h1> Trip Details </h1>
+<%= link_to 'Edit', edit_trip_path %>
+<%= link_to 'Delete', trip_path, method: :delete, data: {confirm: "Are you sure?"}%>
+
+<ul>
+
+  <li>
+    <%= link_to "Driver ID:", driver_path(@trip.driver_id) %> <%= @trip.driver_id %>
+  </li>
+  <li>
+    <%= link_to "Passenger ID:", passenger_path(@trip.passenger_id) %> <%= @trip.passenger_id %>
+  </li>
+  <li>
+    Date: <%= @trip.date %>
+  </li>
+  <li>
+    Rating: 
+    <% if @trip.rating.nil? %>
+      <%= form_with model: @trip do |f| %>
+        <%= f.label :rating %>
+        <%= f.select :rating, [1, 2, 3, 4, 5]%>
+          <%# <% f.update(@trip) %>
+         <%= f.submit "Submit Rating" %>
+      <% end %> 
+    <% else %>
+    <%= @trip.rating %>
+    <%end%>
+  </li>
+
+  <li>
+    Cost: $<%= '%.2f' % @trip.cost %>
+  </li>
+
+</ul>
+<%= link_to 'Back to List of Trips', trips_path %>

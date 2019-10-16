@@ -1,0 +1,18 @@
+<section class="section">
+<p>Please provide the following information to <%= verb_name %> a driver in our database:</p>
+
+<%= form_with model: @driver do |f| %>
+  <%= f.label "Name:"%>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label "Vin:" %>
+  <%= f.text_field :vin %>
+  <br>
+  <%= f.submit "#{action_name} Driver"%>
+<% end %>
+
+
+
+<%= link_to "Back to Driver List", drivers_path%>
+
+</section>
