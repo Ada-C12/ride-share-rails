@@ -1,0 +1,24 @@
+<h3> All Trips </h3>
+
+<table class=lists>
+  <tr>
+    <th> ID </th>
+    <th> Date </th>
+    <th> Driver </th>
+    <th> Rating </th>
+    <th> Cost </th>
+  </tr>
+
+  <% @trips.each do |trip| %>
+    <tr>
+      <td> <%= link_to "#{trip.id}", trip_path(trip) %> </td>
+      <td> <%= trip.date %> </td>
+      <td> <%= trip.driver.name %> </td>
+      <td> <%= trip.rating %> </td>
+      <td> $<%= trip.cost %> </td>
+    </tr>
+   <% end %>
+</table>
+
+<br>
+<%= link_to "Back to Homepage", root_path %>

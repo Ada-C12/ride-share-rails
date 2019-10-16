@@ -1,0 +1,21 @@
+<% if @driver.errors.any? %>
+  <h1>Errors</h1>
+  <ul>
+    <% @driver.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class=submission_form>
+  <%= form_for @driver do |f| %>
+    Name: <br> 
+    <%= f.text_field :name %> <br/>
+    VIN: <br>
+    <%= f.text_field :vin %> <br/>
+
+    <%= f.submit action_name %>
+  <% end %>
+</div>

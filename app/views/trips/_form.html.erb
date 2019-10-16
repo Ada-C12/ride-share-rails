@@ -1,0 +1,13 @@
+<h1> <%= verb %> a new trip </h1>
+
+<div class=submission_form>
+  <%= form_for @trip do |f| %>
+    Date: <%= f.text_field :date %> <br/>
+    Rating: <%= f.text_field :rating %> <br/>
+    Cost: <%= f.text_field :cost %> <br/>
+    Passenger: <%= f.text_field :passenger_id %> <br/>
+    Driver: <%= f.text_field :driver_id %> <br/>
+
+    <%= f.submit action_name %>
+  <% end %>
+</div>

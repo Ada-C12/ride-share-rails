@@ -1,0 +1,26 @@
+<h3> All Drivers </h3>
+
+<table class=lists>
+  <tr>
+    <th> ID </th>
+    <th> Name </th>
+    <th> Average_Rating </th>
+    <th> Total_Earning </th>
+    <th> Edit </th>
+    <th> Delete </th>
+  </tr>
+
+  <% @drivers.each do |driver| %>
+    <tr>
+      <td> <%= link_to "#{driver.id}", driver_path(driver) %> </td>
+      <td> <%= driver.name %> </td>
+      <td> <%= driver.average_rating %> </td>
+      <td> $<%= driver.total_earning %> </td>
+      <td> <%= link_to "Edit", edit_driver_path(driver) %> </td>
+      <td> <%= link_to "Delete", driver_path(driver), method: :delete, data: { confirm: "Are you sure you want to delete #{driver.name}?"} %> </td>
+    </tr>
+  <% end %>
+</table>
+
+<br>
+<%= link_to "Back to Homepage", root_path %>

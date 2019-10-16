@@ -1,0 +1,24 @@
+<h3> All Passengers </h3>
+
+<table class=lists>
+  <tr>
+    <th> ID </th>
+    <th> Name </th>
+    <th> Phone_Number </th>
+    <th> Edit </th>
+    <th> Delete </th>
+  </tr>
+
+  <% @passengers.each do |passenger| %>
+    <tr>
+      <td> <%= link_to "#{passenger.id}", passenger_path(passenger) %> </td>
+      <td> <%= passenger.name %> </td>
+      <td> <%= passenger.phone_num %> </td>
+      <td> <%= link_to "Edit", edit_passenger_path(passenger) %> </td>
+      <td> <%= link_to "Delete", passenger_path(passenger), method: :delete, data: { confirm: "Are you sure you want to delete #{passenger.name}?"} %> </td>
+    </tr>
+  <% end %>
+</table>
+
+<br>
+<%= link_to "Back to Homepage", root_path %>

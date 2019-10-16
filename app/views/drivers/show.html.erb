@@ -1,0 +1,48 @@
+<h3> Driver Information </h3>
+
+<ul>
+  <li> ID: <%= @driver.id %> </li>
+  <li> Name: <%= @driver.name %> </li>
+  <li> VIN: <%= @driver.vin %> </li>
+  <li> Total_Earning: $<%= @driver.total_earning %> </li>
+  <li> Average_Rating: <%= @driver.average_rating %> </li>
+  <li> Active_in_Trip: <%= @driver.active %> </li>
+  <%= link_to "Edit", edit_driver_path(@driver) %> | 
+  <%= link_to "Delete", driver_path(@driver), method: :delete, data: { confirm: "Are you sure you want to delete #{@driver.name}?"} %>
+</ul>
+
+<p> 
+  <% if @driver.active == false %>
+    <%= link_to "Change Status to Offline", mark_offline_path(@driver.id), method: :patch %>
+  <% else %>
+    <%= link_to "Change Status to Online", mark_online_path(@driver.id), method: :patch %>
+  <% end %>
+</p>
+
+<br>
+
+<table class=lists>
+  <tr>
+    <th> ID </th>
+    <th> Date </th>
+    <th> Passenger </th>
+    <th> Rating </th>
+    <th> Cost </th>
+  </tr>
+
+  <% @driver.trips.each do |trip| %>
+    <tr>
+      <td> <%= link_to "#{trip.id}", trip_path(trip) %> </td>
+      <td> <%= trip.date %> </td>
+      <td> <%= trip.passenger.name %> </td>
+      <td> <%= trip.rating %> </td>
+      <td> $<%= trip.cost %> </td>
+    </tr>
+   <% end %>
+</table>
+
+<br>
+<br>
+<%= link_to "Back to Drivers List", drivers_path %>
+<br>
+<%= link_to "Back to Homepage", root_path %>

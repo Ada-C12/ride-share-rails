@@ -1,0 +1,9 @@
+<h3> Edit the Passenger </h3>
+
+<%= render partial: "form", locals: { action_name: "Edit Passenger", verb: "update" } %>
+
+<br>
+<br>
+<%= link_to "Back to the Passenger's Page", passenger_path(@passenger) %>
+<br>
+<%= link_to "Back to Homepage", root_path %>
