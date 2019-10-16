@@ -1,9 +1,10 @@
 require "test_helper"
 
+
+
 describe Driver do
   let (:new_driver) {
-    Driver.new(name: "Kari", vin: "123", active: true,
-               car_make: "Cherry", car_model: "DR5")
+    Driver.new(name: "Kari", vin: "123", status: "available")
   }
   it "can be instantiated" do
     # Assert
@@ -14,7 +15,7 @@ describe Driver do
     # Arrange
     new_driver.save
     driver = Driver.first
-    [:name, :vin, :active, :car_make, :car_model].each do |field|
+    [:name, :vin, :status].each do |field|
 
       # Assert
       expect(driver).must_respond_to field
@@ -43,7 +44,7 @@ describe Driver do
       # Assert
       expect(new_driver.valid?).must_equal false
       expect(new_driver.errors.messages).must_include :name
-      expect(new_driver.errors.messages[:name]).must_equal ["can't be blank"]
+      expect(new_driver.errors.messages[:name]).must_equal ["can't be blank", "is invalid"]
     end
 
     it "must have a VIN number" do
@@ -58,23 +59,33 @@ describe Driver do
   end
 
   # Tests for methods you create should go here
+  let (:new_driver) { Driver.create(name: "Kari", vin: "123")}
   describe "custom methods" do
-    describe "average rating" do
-      # Your code here
+
+
+    it "averages the ratings amongst completed trips" do
+      passenger = Passenger.create(name: "Jessica", phone_num: 334-876-2345)
+
+      trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: passenger.id, date: Date.parse("Feb 25, 2019"), rating: 3, cost: 2344)
+      trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: passenger.id, date: Date.parse("Jan 23, 2000"), rating: 3, cost: 2344)
+      trip_3 = Trip.create(driver_id: new_driver.id, passenger_id: passenger.id, date: Date.parse("Dec 12, 2014"), rating: 3, cost: 2344)
+
+      expect(new_driver.avg_rating).must_equal 3
+
+    end 
+
+    it "total earnings" do
+      passenger = Passenger.create(name: "Jessica", phone_num: 334-876-2345)
+
+      trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: passenger.id, date: Date.parse("Feb 25, 2019"), rating: 3, cost: 5)
+      trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: passenger.id, date: Date.parse("Jan 23, 2000"), rating: 3, cost: 5)
+      trip_3 = Trip.create(driver_id: new_driver.id, passenger_id: passenger.id, date: Date.parse("Dec 12, 2014"), rating: 3, cost: 5)
+
+      expect(new_driver.total_earnings).must_equal 8.04
     end
 
-    describe "total earnings" do
-      # Your code here
+    it "can go online" do
+      expect(new_driver.status).must_equal "available" 
     end
-
-    describe "can go online" do
-      # Your code here
-    end
-
-    describe "can go offline" do
-      # Your code here
-    end
-
-    # You may have additional methods to test
   end
 end
