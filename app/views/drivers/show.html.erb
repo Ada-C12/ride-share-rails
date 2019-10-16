@@ -1,0 +1,62 @@
+<section>
+  <%# name %>
+  <!-- <h2><%= @driver.name %></h2> -->
+
+  <div class="details-container">
+    <section class="person">
+      <h2><%= @driver.name %></h2>
+      <%= image_tag @driver.avatar_image %>
+    </section>
+
+    <div class="details">
+      <%# car details %>
+      <div class="car-details">
+        <%# vin %>
+        <div class="vin-label">Vin:</div>
+        <div class="vin"><%= @driver.vin %></div>
+        <%# car make %>
+        <% if !(@driver.car_make.empty?) %>
+          <div class="make-label">Make:</div>
+          <div class="make"><%= @driver.car_make %></div>
+        <% end %>
+        <%# car model %>
+        <% if !(@driver.car_model.empty?) %>
+          <div class="model-label">Model:</div>
+          <div class="model"><%= @driver.car_model %></div>
+        <% end %>
+      </div>
+
+      <%# average rating %>
+      <div>Average Rating: <%= @driver.average_rating.nil? ? "N/A" : @driver.average_rating %></div>
+
+      <%# driver status %>
+      <div class="status">
+        <div>
+          Status: 
+          <% if @driver.active %>
+            Available
+          <% else %>
+            Unavailable
+          <% end %>
+        </div>
+
+        <div>
+          <%= link_to "Toggle Status", toggle_active_path(@driver.id), method: :patch %>
+        </div>
+      </div>
+
+      <%# total earnings %>
+      <div>Total Earnings: <%= number_to_currency(@driver.driver_earnings / 100.0) %></div>
+
+      <%# edit/delete options %>
+      <div class="modify-options">
+        <div><%= link_to "Edit", edit_driver_path(@driver.id) %></div>
+        <div><%= link_to "Delete", driver_path(@driver.id), method: :delete %></div>
+      </div>
+    </div>
+  </div>
+
+  <%# trips list %>
+  <%= render partial: "shared/triptable", locals: { object: @driver } %>
+
+</section>

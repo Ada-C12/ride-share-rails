@@ -1,0 +1,39 @@
+<section>
+  <h2>Drivers</h2>
+
+  <% @DEFAULT_PAGE_SIZE = 10 %>
+  <%# if there is no page number in params, use zero %>
+  <% page_num = (request.params["page"].nil? ? 0 : request.params["page"].to_i) %>
+  <%# if the page size is unspecified in the params, use the default %>
+  <% page_size = request.params["page_size"].nil? ? @DEFAULT_PAGE_SIZE : request.params["page_size"].to_i %>
+
+  <%= render partial: "shared/tablenav", locals: { list_path: method(:drivers_path), page_size: page_size, page_num: page_num, count: @drivers.count } %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Driver Name</th>
+        <th>VIN</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% position = 0 %>
+      <% @drivers.each do |driver| %>
+        <% if position >= (page_num * page_size) && position < ((page_num+1) * page_size) %>
+        <tr>
+          <td> <%= link_to driver.name, driver_path(driver.id) %> </td>
+          <td> <%= driver.vin %> </td>
+          <% if driver.active %>
+            <td class="available">Available</td>
+          <% elsif !driver.active %>
+            <td class="unavailable">Unavailable</td>
+          <% end %>
+        </tr>
+        <% end %>
+        <% position += 1 %>
+      <% end %>
+    </tbody>
+  </table>
+
+</section>

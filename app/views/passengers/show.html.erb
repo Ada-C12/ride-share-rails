@@ -1,0 +1,46 @@
+<section>
+  <%# <h2>Passenger</h2> %>
+  <%# name %>
+  <!-- <h2><%= @passenger.name %></h2> -->
+
+    <% if flash[:notice] %>
+      <div class="notice"><%= flash[:notice] %></div>
+    <% end %>
+
+    <% if @passenger.errors.any? %>
+      <ul class="errors">
+        <% @passenger.errors.each do |column, message| %>
+          <li>
+            <strong><%= column.capitalize %></strong> <%= message %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
+  <div class="details-container">
+    <section class="person">
+      <h2><%= @passenger.name %></h2>
+      <%= image_tag @passenger.avatar_image %>
+    </section>
+
+    <div class="details">
+      <p>
+        <%# Name: <%= @passenger.name %> <%# <br> %>
+        Phone Number: <%= @passenger.phone_num %>
+      </p>
+
+      <div>Total Charged: <%= number_to_currency(@passenger.total_charged / 100.0) %></div>
+
+      <div><%= link_to "Request Trip", passenger_trips_path(@passenger.id), method: :post %></div>
+      
+      <div class="modify-options">
+        <div><%= link_to "Edit", edit_passenger_path(@passenger.id) %></div>
+        <div><%= link_to "Delete", passenger_path(@passenger.id), method: :delete %></div>
+      </div>
+    </div>
+  </div>
+
+  <%# trips list %>
+  <%= render partial: "shared/triptable", locals: { object: @passenger } %>
+
+</section>
