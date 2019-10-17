@@ -1,0 +1,21 @@
+<h2>Passenger: <%= @passenger.name %></h2>
+<h3>Phone number: <%= @passenger.phone_num%><h3>
+<h3>Total expenses: $<%= @passenger.total_amount_charged %></h3>
+
+<h3>Trips made by this passenger:<h3>
+
+<% @passenger.trips.each do |trip|%>
+  <li> Trip ID: <%= link_to "#{trip.id}", trip_path(trip) %></li>
+  <li> Date: <%= trip.date %></li>
+  <li> Driver: <%= trip.driver.name %></li>
+  <li> Cost: $<%= (trip.cost)/100.0 %></li>
+  <li> Rating: <%= trip.rating %></li>
+
+<%# Fix link to Edit or ger rid of link?%>
+<%= link_to "Edit", edit_trip_path(trip), method: :get %> 
+<%= link_to "Delete", trip_path(trip), method: :delete, data: {confirm: "Are you sure?"} %>
+</br>
+</br>
+<% end %>
+
+<p><%= link_to "Return to Passenger List", passengers_path %></p>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RideShareRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    
+      <%# <h1>Welcome to Ada RideShareRails</h1> %>
+      <header>
+      <div class= "nav">
+      <div class ="logo">RideShareRails!</div>
+      <div class= "menu">
+        <ul>
+           <button class= "top"><li><%=link_to"Manage Drivers", drivers_path %></li>
+           <li><%= link_to"Manage Passengers", passengers_path %></li></button>
+        </ul>
+      </div>
+      <div class= "list">
+        <ul>
+          <button class= "down"><li><%=link_to "Add New Driver", new_driver_path %></li>
+          <li><%=link_to "Add New Passenger", new_passenger_path %></li></button>
+        </ul>
+      </div>
+      </header> 
+      
+   
+    <%= yield %>
+    <footer>
+    <p>2019 Samantha & Yasmin</p>
+
+    <p>Contact: <a href="mailto:team@example.com">team@example.com</a></p>
+  </footer>
+  </body> 
+</html>
