@@ -1,0 +1,54 @@
+<article class='show'>
+<h2>Details for Passenger: <%= @passenger.name %></h2>
+
+<div class='summary'>
+<p>Passenger ID: <%= @passenger.id %></p>
+<p>Name: <%= @passenger.name %></p>
+<p>Phone Number: <%= @passenger.phone_number %></p>
+<p>Total Amount Charged: $<%= number_with_precision(@passenger.total_charged, :precision => 2) %></p>
+</div>
+
+<div class='button-container'>
+  <%= button_to "Edit Passenger".html_safe, edit_passenger_path(@passenger.id), class:"button", method: :get %>
+
+  <%= button_to "Delete Passenger".html_safe, passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure you want to delete this passenger?"}, class:"button" %>
+
+  <%= button_to "Add Trip", passenger_trips_path(@passenger.id), method: :post, class:"button" %>
+</div>
+
+<div class='row heading'>
+  <p>Trip ID</p>
+  <p>Date</p>
+  <p>Passenger ID</p>
+  <p>Passenger Name</p>
+  <p>Driver ID</p>
+  <p>Driver Name</p>
+  <p>Cost</p>
+  <p>Rating</p>
+</div>
+
+<% @passenger.trips.each do |trip| %>
+  <div class='row'>
+  <p><%= link_to trip.id, trip_path(id: trip.id) %></p>
+  <p><%= trip.date %></p>
+  <p><%= trip.passenger.id %></p>
+  <p><%= trip.passenger.name %></p>
+  <p>
+    <% if trip.driver_id.nil? %>
+      [deleted]
+    <% else %>
+      <%= link_to trip.driver_id, driver_path(id: trip.driver_id) %>
+    <% end %>
+  </p>
+  <p>
+    <% if trip.driver_id.nil? %>
+      [deleted]
+    <% else %>
+      <%= link_to trip.driver.name, driver_path(id: trip.driver_id) %>
+    <% end %>
+  </p>
+  <p>$<%= number_with_precision(trip.cost, :precision => 2) %></p>
+  <p><%= trip.rating %></p>
+  </div>
+<% end %>
+</article>

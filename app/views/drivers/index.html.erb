@@ -1,0 +1,15 @@
+<div id='index'>
+  <h2> Drivers </h2>
+
+  <ul id='d-index'>
+    <% @drivers.each do |driver| %>
+      <li>
+        <span class='id'>ID  <%= driver.id%></span>
+        <span class='name'>NAME:  <%= link_to driver.name, driver_path(driver), class:"link" %></span>
+        <span class='index-toggle'>
+          <%= button_to 'Change Status', toggle_active_path(driver), method: :put %>
+        </span>
+      </li>
+    <% end %>
+  </ul>
+</div>

@@ -1,0 +1,61 @@
+<article class='show'>
+<h2> Details for Driver: <%= @driver.name %> </h2>
+
+<p>Driver ID: <%= @driver.id %></p>
+<p>Name: <%= @driver.name %></p>
+<p>VIN: <%= @driver.vin %></p>
+<% if @driver.active == true %>
+  <p>Driver status: ACTIVE. (Driver is unavailable.)</p>
+<% else %>
+  <p>Driver status: INACTIVE. (Driver is available.)</p>
+<% end %>
+<p>Car Make: <%= @driver.car_make %></p>
+<p>Car Model: <%= @driver.car_model %></p>
+<p>Total Earnings: $<%= sprintf "%.2f",@driver.total_earnings %></p>
+<p>Average Rating: <%= sprintf "%.2f",@driver.avg_rating %></p>
+
+<div class='button-container'>
+<%= button_to "Edit Driver", edit_driver_path(@driver), class:"button", method: :get %>
+
+<%= button_to "Delete Driver", driver_path(@driver), class:"button", method: :delete, data: {confirm: "Please confirm!"} %>
+
+<%= button_to 'Change Status', toggle_active_path(@driver), class:"button", method: :put  %>
+</div>
+
+<div class='row heading'>
+  <p>Trip ID</p>
+  <p>Date</p>
+  <p>Passenger ID</p>
+  <p>Passenger Name</p>
+  <p>Driver ID</p>
+  <p>Driver Name</p>
+  <p>Cost</p>
+  <p>Rating</p>
+</div>
+
+<% @driver.trips.each do |trip| %>
+  <div class='row'>
+    <p><%= link_to trip.id, trip_path(trip) %></p>
+    <p><%= trip.date %></p>
+    <p>
+      <% if trip.passenger_id.nil? %>
+        [deleted]
+      <% else %>
+        <%= link_to trip.passenger_id, passenger_path(id: trip.passenger_id) %>
+      <% end %>
+    </p>
+    <p>
+      <% if trip.passenger_id.nil? %>
+        [deleted]
+      <% else %>
+        <%= link_to trip.passenger.name, passenger_path(id: trip.passenger_id) %>
+      <% end %>
+    </p>
+    <p><%= trip.driver_id %></p>
+    <p><%= trip.driver.name %></p>
+    <p>$<%= number_with_precision(trip.cost, :precision => 2) %></p>
+    <p><%= trip.rating %></p>
+  </div>
+<% end %>
+
+</article>
