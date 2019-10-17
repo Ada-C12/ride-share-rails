@@ -1,0 +1,10 @@
+<h2>New Driver Form</h2>
+
+<%= form_with model: @driver, class: "new-driver-form" do |f|%>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :vin %>
+  <%= f.text_field :vin %>
+
+  <%= f.submit "Create a Driver", class: "driver-form-button" %>
+<% end %>

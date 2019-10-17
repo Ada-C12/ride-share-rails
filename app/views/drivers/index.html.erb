@@ -1,0 +1,9 @@
+<h1>Driver Index Page</h1>
+
+<ol>
+  <% @drivers.each do |driver| %>
+  <li>
+    <%= link_to driver.name, driver_path(driver.id) %> <%= link_to "(Delete)", driver_path(driver.id), method: :delete, data: {confirm: "Confirm delete this driver?" }%>
+  </li>
+  <% end %>
+</ol>

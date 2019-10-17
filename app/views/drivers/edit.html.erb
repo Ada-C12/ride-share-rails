@@ -1,0 +1,10 @@
+<h2>Edit Driver Form</h2>
+
+<%= form_with model: @driver, class:"edit-driver-form" do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :vin %>
+  <%= f.text_field :vin %>
+
+  <%= f.submit "Edit Driver", class: "task-form-buttom "%>
+<% end %>

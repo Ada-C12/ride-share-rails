@@ -1,0 +1,13 @@
+<h1>You can add a rating to a trip here!</h1>
+
+<p>Driven by: <%= @trip.driver.name %></p>
+<p>Ridden by: <%= @trip.passenger.name %></p>
+<p>Trip cost: $ <%= '%.02f' % @trip.cost %></p>
+
+<%= form_with model: @trip,class:"edit-trip-form" do |f| %>
+  <%= f.label :rating %>
+  <%= f.select :rating, [["★",1],["★★",2],["★★★",3],["★★★★",4],["★★★★★",5]] %>
+
+
+  <%= f.submit "Add a rating", class: "trip-form-buttom "%>
+<% end %>
