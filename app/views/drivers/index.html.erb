@@ -1,0 +1,21 @@
+<main>
+  <h1>All Drivers</h1>
+  <section>
+      <table class="index-table">                         
+      <tr class="column-heading">                          
+        <th>Driver Name</th>
+        <th></th>
+      </tr>
+      <% @drivers.order(:name).each do |driver| %>
+        <tr>
+          <td> 
+            <%= link_to driver.name, driver_path(driver.id) %>
+          </td>
+          <td>
+            <%= link_to "Delete", driver_path(driver.id), method: :delete, data: { confirm: "Are you sure you want to delete this driver?" }%>
+          </td>       
+        </tr>
+      <% end %>                    
+    </table> 
+  </section>
+</main>

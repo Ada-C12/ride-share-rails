@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tofu's RideShare App</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav>
+      <ul>
+        <li class="navigation-link" id="home-link">
+          <%= link_to "Tofu's Rideshare App", root_path %>
+        </li>
+        <li class="navigation-link">
+          <%= link_to "Drivers", drivers_path %>
+        </li>
+        <li class="navigation-link">
+          <%= link_to "Add New Driver", new_driver_path %>
+        </li>
+        <li class="navigation-link">
+          <%= link_to "Passengers", passengers_path %>
+        </li>
+        <li class="navigation-link">
+          <%= link_to "Add New Passenger", new_passenger_path %>
+        </li>
+      </ul>
+    </nav>
+    <%= yield %>
+  </body>
+</html>
