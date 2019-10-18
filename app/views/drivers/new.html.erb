@@ -1,0 +1,25 @@
+<nav>
+    <a id="logo"href="/">RideShare Rails!</a>
+    <a href="/drivers/">Drivers</a>
+    <a href="/passengers">Passengers</a>
+</nav>
+
+<% if @driver.errors.any? %>
+  <ul class="errors">
+    <% @driver.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<main>
+    <section class="card">
+      <%= link_to "Add driver", new_driver_path, class: 'btn' %>
+      <%= link_to "Add passenger", new_passenger_path, class: 'btn' %>
+    </section>
+    <section class="card">
+    <%= render partial: "form", locals: { submit_button_label: "Create", driver_form_class: "Create-driver", task_submit_class: 'create-button' } %>
+    </section>
+</main>

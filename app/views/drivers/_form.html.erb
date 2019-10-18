@@ -1,0 +1,18 @@
+
+<main>
+  <section class="card">
+      <%= link_to "Add driver", new_driver_path, class: 'btn' %>
+      <%= link_to "Add passenger", new_passenger_path, class: 'btn' %>
+  </section>
+
+    <%= form_with model: @driver, class: "driver-form" do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <br>
+      <%= f.label :vin %>
+      <%= f.text_field :vin %>
+      <br>
+      <%= f.submit "Create", class: "create-driver btn" %>
+      <%= f.submit "Edit", class: "edit-driver btn" %>
+
+    <% end %>

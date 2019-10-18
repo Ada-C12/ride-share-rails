@@ -1,0 +1,16 @@
+
+<%# form_with is a view helper that will generate the proper form for us and will help us hook into the other controller actions %>
+<%= form_with model: @passenger, class: "passenger_form_class" do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label :phone_num %>
+  <%= f.text_field :phone_num %>
+   <br>
+  <%= f.submit "Create", class: "create-passenger btn" %>
+      <%= f.submit "Edit", class: "edit-passenger btn" %>
+
+
+    <% end %>
+</main>
