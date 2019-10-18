@@ -1,0 +1,81 @@
+// Place all the styles related to the Passengers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.newPassenger{
+  padding-top: 6rem;
+  padding-bottom: 1rem;
+
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+
+  text-align: center;
+  
+  color: black;
+}
+
+.passenger_form_class{
+  color: black;
+
+}
+.new-passenger-form{
+ text-align: center;
+}
+
+.show-header {
+  text-align: center;
+  padding-top: 1em;
+}
+.show-details {
+  text-align: center;
+  padding-left: 1em;
+}
+.buttons{
+  text-align: center;
+}
+
+.passenger-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  font-size: 1.5em;
+}
+
+.passenger-heading li {
+  width: 30%;
+}
+
+.passenger-trips {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+
+.passenger-trips li {
+  width: 30%;
+}
+
+.passengers-index {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding-right: 3em;
+}
+
+.passengers-index li {
+  width: 30%;
+  padding-bottom: 1.3em;
+}
+
+.passenger-stats {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: plum 0.2em solid;
+  border-top: plum 0.2em solid;
+  margin-top: 1em;
+  padding: 1em 0 1em 0
+}
