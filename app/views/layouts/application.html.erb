@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
+<html>
+  <head>
+    <title>RideShareRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+      <nav>
+          <%= link_to "Home!", root_path, class: "a"%>
+          <%= link_to "Go to the Drivers Index Page", drivers_path, class: "b" %>
+          <%= link_to "Add a new driver", new_driver_path, class: "c"%>
+          <%= link_to "Go to the Passengers Index Page", passengers_path, class: "d" %>
+          <%= link_to "Add a new passenger", new_passenger_path, class: "e" %>
+    </nav>
+
+    <%= yield %>
+  </body>
+</html>
