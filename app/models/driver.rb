@@ -1,8 +1,8 @@
 class Driver < ApplicationRecord
   has_many :trips, dependent: :nullify
   
-  validates :name, presence: true
-  validates :vin, presence: true
+  validates :name, presence: { message: "Name can't be blank"}
+  validates :vin, presence: { message: "VIN can't be blank" }
   
   def self.get_available_driver
     first_available = Driver.where(available: true).first

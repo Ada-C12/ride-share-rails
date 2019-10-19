@@ -1,8 +1,8 @@
 class Passenger < ApplicationRecord
   has_many :trips, dependent: :nullify
   
-  validates :name, presence: true
-  validates :phone_num, presence: true
+  validates :name, presence: { message: "Name can't be blank" }
+  validates :phone_num, presence: { message: "Phone number can't be blank" }
   
   def total_money_spent
     trips = self.trips
