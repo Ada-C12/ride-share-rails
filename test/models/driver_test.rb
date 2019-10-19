@@ -59,20 +59,77 @@ describe Driver do
 
   # Tests for methods you create should go here
   describe "custom methods" do
+    describe "count_rides" do
+      it "returns nil if the driver has no rides" do
+        new_driver.update(active: false)
+        expect(new_driver.count_rides).must_equal 0
+      end
+      it "returns the correct total for the number of rides a passenger has taken" do
+        new_driver.update(active: false)
+        new_passenger = Passenger.create(name: "Waldo", phone_num: "2533948901")
+        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234.00)
+        trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334.00)
+
+        expect(new_driver.count_rides).must_equal 2
+        expect(new_driver.count_rides).must_be_instance_of Integer
+      end
+    end
+
     describe "average rating" do
-      # Your code here
+      it "returns nil if the driver has no rides" do
+        new_driver.update(active: false)
+        expect(new_driver.average_rating).must_be_nil
+      end
+      it "can return the average rating of a driver's trips in the form of a float" do
+        new_driver.update(active: false)
+        passenger = Passenger.create(name: "Mac Do", phone_num: "253.394.8901")
+        trip = Trip.create(driver_id: new_driver.id, passenger_id: passenger.id, rating: 5, cost: 1000.00, date: Date.new(2019, 3, 4))
+        passenger2 = Passenger.create(name: "Do li", phone_num: "253.867.5309")
+        trip2 = Trip.create(driver_id: new_driver.id, passenger_id: passenger2.id, rating: 4, cost: 1000.00, date: Date.new(2019, 4, 4))
+
+        expect(new_driver.average_rating).must_equal 4.5
+        expect(new_driver.average_rating).must_be_instance_of Float
+      end
     end
 
     describe "total earnings" do
-      # Your code here
+      it "returns 0 if the driver has no rides" do
+        new_driver.update(active: false)
+        expect(new_driver.total_earnings).must_equal 0
+      end
+
+      it "must return the total cost of the driver's trips" do
+        new_driver.update(active: false)
+        passenger = Passenger.create(name: "Mac Do", phone_num: "253.394.8901")
+        trip = Trip.create(driver_id: new_driver.id, passenger_id: passenger.id, rating: 5, cost: 1000.00, date: Date.new(2019, 3, 4))
+        passenger2 = Passenger.create(name: "Do li", phone_num: "253.867.5309")
+        trip2 = Trip.create(driver_id: new_driver.id, passenger_id: passenger2.id, rating: 4, cost: 1000.00, date: Date.new(2019, 4, 4))
+
+        expect(new_driver.total_earnings).must_equal 1597.36
+      end
+      it "must return a float" do
+        new_driver.update(active: false)
+        passenger = Passenger.create(name: "Mac Do", phone_num: "253.394.8901")
+        trip = Trip.create(driver_id: new_driver.id, passenger_id: passenger.id, rating: 5, cost: 1000.00, date: Date.new(2019, 3, 4))
+        passenger2 = Passenger.create(name: "Do li", phone_num: "253.867.5309")
+        trip2 = Trip.create(driver_id: new_driver.id, passenger_id: passenger2.id, rating: 4, cost: 1000.00, date: Date.new(2019, 4, 4))
+
+        expect(new_driver.total_earnings).must_be_instance_of Float
+      end
     end
 
-    describe "can go online" do
-      # Your code here
-    end
+    describe "toggle_active" do
+      it "can toggle the active status of a driver when a ride is requested to inactive (available to be assigned)" do
+        new_driver.update(active: false)
+        passenger = Passenger.create(name: "Mac Do", phone_num: "253.394.8901")
+        trip = Trip.create(driver_id: new_driver.id, passenger_id: passenger.id, rating: 5, cost: 1000.00, date: Date.new(2019, 3, 4))
+        expect(new_driver.toggle_active).must_equal true
+      end
 
-    describe "can go offline" do
-      # Your code here
+      it "can toggle the active status of a driver to active (unavailable) " do
+        new_driver.update(active: true)
+        expect(new_driver.toggle_active).must_equal false
+      end
     end
 
     # You may have additional methods to test

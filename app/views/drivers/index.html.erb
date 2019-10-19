@@ -1,0 +1,12 @@
+<section class="drivers-container">
+  <h2 class="drivers-border">Drivers' Information</h2>
+  <ol class="trips-drivers-passengers-list">
+    <% @drivers.each do |driver| %>
+      <li>
+        <%= link_to driver.name, driver_path(driver.id) %>
+        <%= link_to "Edit this Driver", edit_driver_path( driver.id ), class: "drivers-edit-button" %>
+        <%= link_to"Delete", driver_path( driver.id ), method: :delete, data: { confirm: "Are you sure you want to delete this Driver?"}, class: "drivers-delete-button" %>
+      </li>
+    <% end %>
+  </ol>
+</section>

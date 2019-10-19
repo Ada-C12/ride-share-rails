@@ -1,0 +1,68 @@
+
+<h1 class="driver-name-border"><%= @driver.name%></h1>
+
+<% if @driver.active %>
+<p><%= link_to '<button type="button">Switch to inactive</button>'.html_safe, driver_path(@driver.id) + "/toggle", method: :post%></p>
+  <p>Not Available</p>
+<% else %>
+<p><%= link_to '<button type="button">Switch to active</button>'.html_safe, driver_path(@driver.id) + "/toggle", method: :post%></p>
+<p>Available</p>
+<%end%>
+<h3> Driver Details</h3>
+
+<table>
+<th> Driver ID </th>
+<th> VIN</th>
+<th> Car Make </th>
+<th> Car Model</th>
+<th> # of Rides Given </th>
+<th> Average Rating</th>
+<th> $Total $ Earnings $</th>
+<th> Status</th>
+
+
+
+
+<tr>
+<td><%= @driver.id %></td>
+<td><%= @driver.vin %></td>
+<td><%= @driver.car_make %></td>
+<td><%= @driver.car_model %></td>
+<td><%= @driver.count_rides %></td>
+<td><%= @driver.average_rating %></td>
+<td><%= @driver.total_earnings %></td>
+<td><%= @driver.active %></td>
+
+
+</tr>
+
+</table>
+
+<p>Rides given:</p>
+<%# Trip.where(driver_id = "#{@driver.id}")%>
+<table>
+<th> id </th>
+<th> Date</th>
+<th> Rider ID </th>
+<th>Price</th>
+<th>Rating</th>
+<th>Delete</th>
+
+
+
+<% @driver.trips.each do |trip| %>
+<tr>
+<td><%= link_to trip.id, trip_path( trip.id ) %></td>
+<td><%= trip.date %></td>
+<td><%= trip.passenger_id %></td>
+<td><%= trip.cost %></td>
+<td><%= trip.rating %></td>
+<td><%= link_to '<button type="button">Delete</button>'.html_safe, trip_path( trip.id ), method: :delete, data: { confirm: "Are you sure you want to delete this trip?"}%></td>
+
+
+
+</tr>
+
+<%end%>
+
+</table>

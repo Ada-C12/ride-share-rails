@@ -1,0 +1,56 @@
+// Place all the styles related to the Drivers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+table, th, td {
+  border: 1px solid black;
+  height: 50px;
+  text-align: center
+}
+
+tr:nth-child(even) {
+    background-color: aliceblue;
+  }
+
+tr:nth-child(odd) {
+    background-color: white;
+  }
+
+th {
+  background-color: lightslategray;
+  color: white;
+}
+
+.drivers-container {
+  background-image: url("https://i.pinimg.com/originals/d4/d7/d3/d4d7d31dc1d9ec45269e13635878fa7e.jpg");
+  background-attachment: fixed;
+  background-size: 500px;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+.drivers-border {
+  padding-left: 2rem;
+}
+
+.drivers-edit-button, .drivers-delete-button {
+  font-size: smaller;
+  background-color: white;
+  color: black;
+  padding: 2px 6px 2px 6px;
+  border: solid 1px black;
+  border-radius: 5px;
+}
+
+.driver-name-border {
+  background-image: url("https://i.pinimg.com/originals/52/59/af/5259af51cc38f004cdfe5136e04b95d0.jpg");
+  background-size: 50px;
+  background-repeat: no-repeat;
+  background-position: 30%;
+}

@@ -1,0 +1,41 @@
+// Place all the styles related to the Homepages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import url('https://fonts.googleapis.com/css?family=Caveat|Niconne&display=swap');
+
+
+
+.homepage{
+  display: grid;
+  grid-row: 1fr 1fr;
+  min-height: 80vh;
+  background-image: url("https://i.pinimg.com/originals/d9/91/b0/d991b00a5da4c0206f838b2db5b06c16.png");
+  background-attachment: fixed;
+  background-size: 400px;
+  background-position: right;
+  background-repeat: no-repeat;
+  text-align: center
+ }
+
+.greeting {
+   grid-row-start: 2;
+}
+
+.greeting h3 {
+  margin: 0;
+}
+
+.greeting p {
+  font-family: 'Caveat', cursive;
+  font-size: 130%;
+}
+
+.greeting span {
+  font-family: 'Niconne', cursive;
+  font-size: 150%;
+}
+
+.reasons {
+  margin-top: 2rem;
+}

@@ -1,0 +1,16 @@
+<section class="trips-container">
+  <h2 class="trips-border">All Trips</h2>
+  <ol class="trips-drivers-passengers-list">
+    <% @trips.each do |trip| %>
+      <li>
+        <%= link_to trip.date, trip_path(trip.id) %>
+        <%# link_to trip.driver_id, trip_path(trip.id) %>
+        <%# link_to trip.passenger_id, trip_path(trip.id) %>
+        <%# link_to trip.cost, trip_path(trip.id) %>
+        <%# link_to trip.rating, trip_path(trip.id) %>
+        <%= link_to "Edit this Trip", edit_trip_path( trip.id ), class: "trips-edit-button"%>
+        <%= link_to"Delete", trip_path( trip.id ), method: :delete, data: { confirm: "Are you sure you want to delete this trip?"} , class: "trips-delete-button" %>
+      </li>
+    <% end %>
+  </ol>
+</section>

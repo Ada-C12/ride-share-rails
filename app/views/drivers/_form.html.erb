@@ -1,0 +1,35 @@
+<section class="driver-passenger-form">
+  <%# validation %>
+  <% if @driver.errors.any? %>
+    <ul class="errors">
+      <% @driver.errors.each do |column, message| %>
+        <li>
+          <strong><%= column.capitalize %></strong> <%= message %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%# form %>
+  <%= form_with model: @driver, class: "driver-form-class" do |f| %>
+    <p>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :vin %>
+      <%= f.text_field :vin %>
+    </p>
+    <p>
+      <%= f.label :car_make %>
+      <%= f.text_field :car_make %>
+    </p>
+    <p>
+      <%= f.label :car_model %>
+      <%= f.text_field :car_model %>
+    </p>
+    <p>
+      <%= f.submit button, class: "driver-form-button" %>
+    </p>
+  <%end%>
+</section>
