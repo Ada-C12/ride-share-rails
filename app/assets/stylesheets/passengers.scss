@@ -71,6 +71,8 @@ th {
 .passenger-form {
   font-size: 1.5em;
   text-align: left;
+  width: auto;
+  line-height: 1.5em;
 
   input {
     font-size: .8em;
@@ -80,5 +82,9 @@ th {
   select {
     font-size: .8em;
   }
+}
 
+input.passenger-button {
+  width: 5em;
+  text-align: center;
 }

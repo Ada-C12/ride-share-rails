@@ -2,6 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.errors {
+  padding-inline-start: 0;
+}
+
+li {
+  list-style: none;
+}
+
 .form-outline {
   text-align: center;
   font-size: 1.1em;
@@ -24,6 +32,7 @@
 
 .index-container h1 {
   grid-column: 2;
+  font-size: 1.5em;
 }
 
 .view-all {
@@ -58,6 +67,8 @@
 .driver-form {
   font-size: 1.5em;
   text-align: left;
+  width: auto;
+  line-height: 1.5em;
 
   input {
     font-size: .8em;
@@ -67,5 +78,13 @@
   select {
     font-size: .8em;
   }
-  
+}
+
+input.driver-button {
+  width: 5em;
+  text-align: center;
+}
+
+div.field_with_errors {
+  display: inline
 }
