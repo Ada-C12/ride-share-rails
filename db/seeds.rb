@@ -1,4 +1,5 @@
 require 'csv'
+require 'faker'
 
 DRIVER_FILE = Rails.root.join('db', 'seed_data', 'drivers.csv')
 puts "Loading raw driver data from #{DRIVER_FILE}"
@@ -6,9 +7,11 @@ puts "Loading raw driver data from #{DRIVER_FILE}"
 driver_failures = []
 CSV.foreach(DRIVER_FILE, :headers => true) do |row|
   driver = Driver.new
-  driver.id = row['id']
+  # driver.id = row['id']
   driver.name = row['name']
   driver.vin = row['vin']
+  driver.car_make = Faker::Vehicle.make 
+  driver.car_model = Faker::Vehicle.model(make_of_model: driver.car_make)
   successful = driver.save
   if !successful
     driver_failures << driver
@@ -23,13 +26,14 @@ puts "#{driver_failures.length} drivers failed to save"
 
 
 
+
 PASSENGER_FILE = Rails.root.join('db', 'seed_data', 'passengers.csv')
 puts "Loading raw passenger data from #{PASSENGER_FILE}"
 
 passenger_failures = []
 CSV.foreach(PASSENGER_FILE, :headers => true) do |row|
   passenger = Passenger.new
-  passenger.id = row['id']
+  # passenger.id = row['id']
   passenger.name = row['name']
   passenger.phone_num = row['phone_num']
   successful = passenger.save
@@ -52,7 +56,7 @@ puts "Loading raw trip data from #{TRIP_FILE}"
 trip_failures = []
 CSV.foreach(TRIP_FILE, :headers => true) do |row|
   trip = Trip.new
-  trip.id = row['id']
+  # trip.id = row['id']
   trip.driver_id = row['driver_id']
   trip.passenger_id = row['passenger_id']
   trip.date = Date.strptime(row['date'], '%Y-%m-%d')

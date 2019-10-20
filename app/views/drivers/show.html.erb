@@ -1,0 +1,41 @@
+<h1>Rideshare Rails</h1>
+
+<div id="nav" class="flex">
+  <%= link_to "All Passengers", passengers_path %>
+  <%= link_to "Add a new passenger", new_passenger_path %>
+  <%= link_to "All Drivers", drivers_path %>
+  <%= link_to "Add a new driver", new_driver_path %>
+  <%= link_to "Homepage", root_path %>
+</div>
+<h2>Name: <%= @driver.name %></h2>
+
+<ul>
+  <li>Driver ID: <%= @driver.id %></li>
+  <li>VIN: <%= @driver.vin %></li>
+  <% if @driver.active == false %>
+  <li> Status: available </li>
+  <%= link_to "Mark as unavailable", toggle_status_driver_path(@driver), method: :patch %>
+  <% else %>
+  <li> Status: not available </li>
+  <%= link_to "Mark as available", toggle_status_driver_path(@driver), method: :patch %>
+  <% end %>
+  <li>Car Make: <%= @driver.car_make %></li>
+  <li>Car Model: <%= @driver.car_model %></li>
+  <li>Total Earnings from trips: $<%= @driver.total_earnings %></li>
+  <li>Average Rating: <%= @driver.avg_rating %></li>
+  <li>Trips: </li>
+
+  <% @driver.trips.each do |trip| %>
+  <ul>
+    <li> ID: <%= trip.id %> </li>
+
+    <ul>
+      <li> Date: <%= trip.date %> </li>
+      <li> Rating: <%= trip.rating %> </li>
+      <li> Cost: <%= trip.cost %> </li>
+    </ul>
+  </ul>
+  <% end %>
+</ul>
+
+</ul>
