@@ -1,0 +1,30 @@
+<%= link_to "Create New Trip", new_trip_path %>
+<ul class="index-list">
+  <h1>All the trips</h1>
+  <li>
+  <span>
+  Trip Date
+  </span>
+  <span>
+  Driver
+  </span>
+  <span>
+  Passenger
+  </span>
+</li>
+  <% @trips.all_in_alpha_order.each do |trip| %>
+    <li>
+    <span>
+    <%= link_to trip.date, trip_path(trip.id) %>
+</span>
+  <span>
+    <% driver = Driver.find_by(id: trip.driver_id) %>
+    <%= driver.name %>
+  </span>
+  <span>
+    <% passenger = Passenger.find_by(id: trip.passenger_id) %>
+    <%= passenger.name %>
+  </span>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,32 @@
+<h1>Driver Details</h1>
+<p>Name: <%= @driver.name %></p>
+<p>Vin: <%= @driver.vin %> </p>
+<p>Total earnings: $<%= @driver.earnings %> </p>
+<p>Average Rating: <%= @driver.avg_rating %> </p>
+<p>
+  Status: 
+  <% if @driver.active == true %>
+  <%= "Active"%>
+  <%= link_to "Change to Inactive", driver_status_path(@driver.id), method: :patch %>
+  <% else %>
+  <%= "Inactive"%>
+  <%= link_to "Change to Active", driver_status_path(@driver.id), method: :patch %>
+  <% end %>
+
+  </p>
+
+<p>List of trips:</p>
+
+<ul class="index-list drivers">
+  <% @driver.trips.each do |t| %>
+    <li> Trip on <%= t.date %> 
+      <%= link_to "View Trip", trip_path(t.id) %> 
+    </li>
+  <% end %>
+</ul>
+
+<section class="action-container">
+<%= link_to "Delete #{@driver.name}", driver_path, method: :delete, data: { confirm: "Are you sure?" }, class: 'link-to-btn' %>
+<%= link_to "Edit #{@driver.name}", edit_driver_path, class: 'link-to-btn' %>
+  <%= link_to "Add New Trip", new_driver_trip_path(@driver.id), class: 'link-to-btn' %>
+</section>
