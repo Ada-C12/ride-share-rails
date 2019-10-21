@@ -1,0 +1,33 @@
+<h1>Passenger Details</h1>
+
+<section>
+  <ul>
+    <li><%=@passenger.name%></li>
+    <li><%=@passenger.phone_num%></li>
+    <li><%= "Total Expenditures: $#{@passenger.net_expenditures}"%></li>
+  </ul>
+</section>
+
+<section>
+  <p><%= link_to "Request a Trip", new_passenger_trip_path(@passenger.id) %></p>
+</section>
+
+<section>
+  <h2>Trips</h2>
+  <table class="trip-table">
+    <tr>
+      <th>Date</th>
+      <th>Cost</th>
+      <th>Driver</th>
+      <th>Rating</th>
+    </tr>
+  <%@passenger.all_trips.each do |trip|%>
+    <tr>
+      <td><%= link_to trip.date, trip_path(trip.id) %></td>
+      <td><%=trip.cost%></td>
+      <td><%= link_to trip.driver.name, driver_path(trip.driver.id)%></td> 
+      <td><%=trip.rating%></td>  
+    </tr>
+  <%end%>
+  </table>
+</section>

@@ -1,0 +1,16 @@
+
+<fieldset>
+  <%= form_with model: @passenger, class: 'create' do |f| %>
+    <p>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :phone_num %>
+      <%= f.text_field :phone_num %>
+    </p>
+    <p>
+    <%= f.submit button, class: "button" %>
+    </p>
+  <% end %>
+</fieldset>

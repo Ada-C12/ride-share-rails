@@ -1,0 +1,13 @@
+<h1>Add A New Passenger</h1>
+
+<% if @passenger.errors.any? %>
+  <ul class="errors">
+    <% @passenger.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render partial: "form", locals: { button: "Create Passenger" }%>

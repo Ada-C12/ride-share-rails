@@ -1,0 +1,43 @@
+<h1>Driver Details</h1>
+
+<section>
+  <ul class='basic-details-list'>
+    <li>Name: <%=@driver.name%></li>
+    <li>VIN: <%=@driver.vin%></li>
+  </ul>
+</section>
+
+<section id="status">
+  <% status_text = @driver.active ? "Active" : "Inactive"  %>
+  <p><%= status_text %></p>
+  <% active_toggle_text = @driver.active ? "Set to Inactive" : "Set to Active"  %>
+  <%= link_to active_toggle_text, toggle_active_path(@driver.id), method: :patch %>
+</section>
+
+  <ul class='advanced-details-list'>
+    <li>Average Rating: NOT HERE YET </li>
+    <li>Total Earnings: NOT HERE YET </li>
+  </ul>
+
+  <table class='trip-table'>
+    <tr>
+      <th>Date</th>
+      <th>Rating</th>
+      <th>Cost</th>
+      <th>Driver ID</th>
+      <th>Passenger Name</th>
+    </tr>
+    <% @driver.all_trips.each do |trip|%>
+    <tr>
+      <td><%= link_to trip.date, trip_path(trip.id) %></td>
+      <td><%= trip.rating %></td>
+      <td><%= trip.cost %></td>
+      <td><%= trip.driver.id %></td>
+      <td><%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></td>
+    </tr>
+    <% end %>
+    </table>
+
+
+  </table>
+</section>
