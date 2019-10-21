@@ -1,0 +1,31 @@
+<h1> Trip Id: <%= @trip.id %> </h1>
+
+<h2> Information: </h2>
+ <ul>
+  <li> 
+   Passenger: <%= link_to (Passenger.find_by(id: @trip.passenger_id)).name, passenger_path(Passenger.find_by(id: @trip.passenger_id)) %>
+  </li>
+
+  <li> 
+   Driver: <%= link_to (Driver.find_by(id: @trip.driver_id)).name, driver_path(Driver.find_by(id: @trip.driver_id)) %>
+  </li>
+
+  <li>date: <%= @trip.date %></li>
+
+  <li>rating: <%= @trip.rating %></li>
+ </ul>
+
+ <h2> Options: </h2>
+ <%= form_with model: @trip do |f| %>
+  <fieldset>
+    <%= f.label :rating %>
+    <%= f.select :rating, (1..5).to_a.prepend(nil) %> 
+    <%= f.submit "add rating" %>
+  </fieldset>
+ <% end %>
+ <ul>
+  <li> <%= link_to "edit", edit_trip_path(@trip.id) %> </li>
+  <li> <%= link_to "delete", trip_path(@trip.id), method: :delete %> </li>
+ </ul>
+
+

@@ -4,6 +4,9 @@ DRIVER_FILE = Rails.root.join('db', 'seed_data', 'drivers.csv')
 puts "Loading raw driver data from #{DRIVER_FILE}"
 
 driver_failures = []
+deleted_driver = Driver.new(id: 0, name: "previously deleted", vin: "00000000000000000")
+deleted_driver.save
+
 CSV.foreach(DRIVER_FILE, :headers => true) do |row|
   driver = Driver.new
   driver.id = row['id']
@@ -27,6 +30,11 @@ PASSENGER_FILE = Rails.root.join('db', 'seed_data', 'passengers.csv')
 puts "Loading raw passenger data from #{PASSENGER_FILE}"
 
 passenger_failures = []
+
+
+deleted_passenger = Passenger.new(id: 0, name: "previously deleted", phone_num: "000-000-0000")
+deleted_passenger.save
+
 CSV.foreach(PASSENGER_FILE, :headers => true) do |row|
   passenger = Passenger.new
   passenger.id = row['id']

@@ -1,0 +1,10 @@
+<h1> All drivers</h1>
+
+
+<ul class = "index">
+ <% @drivers.each do |driver| %>
+  <% if driver.id != 0 %>
+   <li><%= link_to driver.name, driver_path(driver.id) %></li>
+  <% end %>
+ <% end %>
+</ul>

@@ -1,0 +1,8 @@
+<h1> Driver: <%= @driver.name %> </h1>
+<h2> total earnings: $<%= @driver.total_earnings %> </h2>
+<h2> average rating: <%= @driver.average_rating %> </h2>
+
+<%= link_to "edit", edit_driver_path(@driver.id) %>
+<%= link_to "delete", driver_path(@driver.id), method: :delete %>
+
+<%= render :partial => "shared/triptable", :locals => { :object => @driver } %>

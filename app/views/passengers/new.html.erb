@@ -1,0 +1,15 @@
+<h1> new passenger: </h1>
+
+<%= render :partial => "shared/validation", :locals => { :object => @passenger } %>
+
+<%= form_with model: @passenger do |f| %>
+ <fieldset>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :phone_num %>
+  <%= f.text_field :phone_num %>
+
+  <%= f.submit "create a new passener" %>
+ </fieldset>
+<% end %>

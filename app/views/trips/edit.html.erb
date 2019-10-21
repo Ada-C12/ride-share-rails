@@ -1,0 +1,16 @@
+<h1> Trip: <%= @trip.id %> </h1>
+
+<%= form_with model: @trip do |f| %>
+  <fieldset>
+    <%= f.label :date %>
+    <%= f.text_field :date %>
+
+    <%= f.label :rating %>
+    <%= f.text_field :rating %>
+
+    <%= f.label :cost %>
+    <%= f.text_field :cost %>
+
+    <%= f.submit "update trip" %>
+  </fieldset>
+<% end %>
