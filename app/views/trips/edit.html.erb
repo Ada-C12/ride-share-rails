@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Edit Trip</title>
+  </head>
+
+  <body>
+ <%= render partial: "shared/header+nav" %>
+ 
+    <% if @trip.errors.any? %>
+      <% @trip.errors.each do |column, message| %>
+        <li>
+          <strong><%= column.capitalize %></strong> <%= message %>
+        </li>
+      <% end %>
+    </ul>
+    <% end %>
+
+    <%= form_with model: @trip do |f| %>
+      <p>Please provide the following information to update the trip to our database:</p>
+
+      <%= f.label :driver_id, "Driver Id: " %>
+      <%= @trip.driver_id %>
+
+      <%= f.label :passenger_id, "Passenger Id: " %>
+       <%= @trip.passenger_id %>
+      
+      <%= f.label :rating %>
+      <%= f.select :rating, (1..5) %>
+
+      <%= f.label :cost %>
+      <%= f.text_field :cost %>
+
+      <%= f.label :date, "Date: " %>
+      <%= @trip.date %>
+    
+      <%= f.submit "Update Trip" %>
+    <% end %>
+  </body>
+</html>

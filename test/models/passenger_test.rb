@@ -24,11 +24,13 @@ describe Passenger do
     it "can have many trips" do
       # Arrange
       new_passenger.save
-      passenger = Passenger.first
+      new_driver = Driver.create(name: "Waldo", vin: "ALWSS52P9NEYLVDE9")
+      trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+      trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
 
       # Assert
-      expect(passenger.trips.count).must_be :>, 0
-      passenger.trips.each do |trip|
+      expect(new_passenger.trips.count).must_equal 2
+      new_passenger.trips.each do |trip|
         expect(trip).must_be_instance_of Trip
       end
     end
@@ -51,20 +53,38 @@ describe Passenger do
 
       # Assert
       expect(new_passenger.valid?).must_equal false
-      expect(new_passenger.errors.messages).must_include :new_passenger
-      expect(new_passenger.errors.messages[:new_passenger]).must_equal ["can't be blank"]
+      expect(new_passenger.errors.messages).must_include :phone_number
+      expect(new_passenger.errors.messages[:phone_number]).must_equal ["can't be blank"]
     end
   end
 
   # Tests for methods you create should go here
   describe "custom methods" do
-    describe "request a ride" do
-      # Your code here
+    #Removed as we didn't create a method in the passenger model for this action.
+    # describe "request a ride" do
+    # end
+
+    #Removed as we don't have complete trip functionality.
+    # describe "complete trip" do
+    # end
+
+    let (:new_passenger2) {
+    Passenger.new(name: "Ana", phone_number: "111-111-1211")
+    }
+
+    let (:new_passenger3) {
+    Passenger.new(name: "Zeneca", phone_number: "111-111-1211")
+    }
+
+    it "sorts the passengers alphabetically" do
+      # Arrange
+      new_passenger.save
+      new_passenger2.save
+      new_passenger3.save
+
+      # Assert
+      expect(Passenger.alpha_passengers.first.name).must_equal "Ana"
     end
 
-    describe "complete trip" do
-      # Your code here
-    end
-    # You may have additional methods to test here
   end
 end

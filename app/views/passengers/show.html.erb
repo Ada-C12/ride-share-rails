@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Passengers</title>
+</head>
+
+  <body>
+   <%= render partial: "shared/header+nav" %>
+    
+    <section>
+      <h1>Passenger Information</h1>
+      <ul>
+        <li>Name: <%=@passenger[:name]%></li>
+        <li>Phone number: <%= @passenger[:phone_number]%></li>
+        <li>Passenger ID: <%= (@passenger[:id])%></li>
+        <li>Total cost of all trips: $<%= '%.2f' % (Trip.trips_total(@passenger.id)) %></li>
+    </section>
+
+    <section>
+      <%= button_to 'Request Trip', passenger_trips_path(@passenger.id), method: :post %>
+    </section>
+
+    <section>
+      <h1>Passenger's Trips</h1>
+      <ul>
+        <% Trip.where(passenger_id: params[:id]).each do |trip|%>
+          <li>Trip ID: <%= link_to trip.id, trip_path(trip.id), method: :get %> </li> 
+          <li>Driver ID: <%= trip.driver_id %></li>
+          <li>Date: <%= trip.date %></li>
+          <li>
+          <% if trip.rating == nil %>
+            <%= form_with model: trip do |f| %>
+              <%= f.label :rating, "Rating: " %>
+              <%= f.text_field :rating, placeholder: '1-5' %>
+              <%= f.submit "Update Rating" %>
+            <% end %></li>
+          <% else %>
+            Rating: <%= trip.rating %></li>
+          <% end %>       
+          <li>Cost: $<%= '%.2f' % (trip.cost / 100) %></li>
+          <hr>
+        <%end%>
+      </ul>
+    </section>
+  </body>
+</html>

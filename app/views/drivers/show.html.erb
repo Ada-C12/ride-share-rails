@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Passengers</title>
+</head>
+
+  <body>
+   <%= render partial: "shared/header+nav" %>
+
+    <section>
+      <h1>Driver Information</h1>
+      <ul>
+        <li>Name: <%=@driver[:name]%></li>
+        <li>Driver ID: <%= @driver[:id]%></li>
+        <li>Vin: <%= @driver[:vin]%></li>
+        <li>Average rating: <%= Driver.driver_avg_rating(@driver.id) %></li>
+        <li>Total earnings: $<%= '%.2f' % (Driver.driver_total_earnings(@driver.id)) %></li>
+        <li>Active: 
+          <%if @driver.active == true %>
+          <%= @driver.active %> 
+          <%else%>
+           false 
+          <%end %></li>
+    </section>
+    
+    <section>
+      <%= button_to 'Delete', driver_path(@driver),method: :delete, data: {confirm: "Are you sure?"} %>
+      <%= button_to 'Edit', edit_driver_path(@driver.id), method: :get %>
+    </section>
+
+    <section>
+      <h1>Trips</h1>
+      <ul>
+        <% Trip.where(driver_id: params[:id]).each do |trip|%>
+          <li>ID: <%= link_to trip.id, trip_path(trip.id), method: :get %></li> 
+          <%# <li>Driver: <%= trip.driver_id %>
+          <li>Passenger: <%= trip.passenger_id %></li>
+          <li>Date: <%= trip.date %></li>
+          <li>Rating: <%= trip.rating %></li>
+          <li>Cost: $<%= '%.2f' % (trip.cost / 100) %></li>
+          <hr>
+        <%end%>
+      </ul>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Trip</title>
+</head>
+
+  <body>
+ <%= render partial: "shared/header+nav" %>
+   
+    <section>
+      <h1>Trip #:</h1>
+      <ul>
+          <li>ID: <%= @trip.id %></li> 
+          <li>Driver: <%= link_to @trip.driver_id, driver_path(@trip.driver_id), method: :get %></li>
+          <li>Passenger: <%= link_to @trip.passenger_id, passenger_path(@trip.passenger_id), method: :get %></li>
+          <li>Date: <%= @trip.date %></li>
+          <li>Rating: 
+          <%= @trip.rating %></li>
+          <li>Cost: $<%= '%.2f' % (@trip.cost / 100) %></li>
+      </ul>
+    </section>
+
+    <section>
+      <nav>
+        <%= button_to 'Delete', trip_path(@trip.id),method: :delete, data: {confirm: "Are you sure?"} %>
+        <%= button_to 'Edit', edit_trip_path(@trip.id), method: :get %>
+      </nav>
+    </section>
+
+  </body>
+</html>

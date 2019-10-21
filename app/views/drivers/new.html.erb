@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Add Driver</title>
+  </head>
+
+  <body>
+   <%= render partial: "shared/header+nav" %>
+
+    <% if @driver.errors.any? %>
+      <ul class="errors">
+      <% @driver.errors.each do |column, message| %>
+        <li>
+          <strong><%= column.capitalize %></strong> <%= message %>
+        </li>
+      <% end %>
+    </ul>
+    <% end %>
+
+    <section>
+      <h1>Add Driver</h1>
+    <%= form_with model: @driver do |f| %>
+    <p>Please provide the following information to save your driver to our database:</p>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :vin %>
+      <%= f.text_field :vin %>
+
+      <%= f.submit "Save Driver"%>
+    <% end %>
+  </body>
+</html>

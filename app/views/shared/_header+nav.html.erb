@@ -1,0 +1,20 @@
+    <header>
+      <h1>Welcome to D & J Rideshare Company</h1>
+      <nav class="navbar">
+        <ul class="nav-links">
+          <%= link_to "Home", root_path %>
+          <%= link_to "Passengers", passengers_path %>
+          <%= link_to "Drivers", drivers_path %>
+          <%= link_to "Add Driver", new_driver_path %>
+          <%= link_to "Add Passenger", new_passenger_path %>
+          <% if session[:user_id] %>
+          <%= link_to "Log out", logout_path, method: "delete" %>
+          Logged in as <%= User.find_by(id: session[:user_id]).email %>
+          <% else %>
+          <%= link_to "Login with Github", github_login_path %>
+          <% end %>
+        </ul>
+    </header>
+
+          
+

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Edit Passenger</title>
+  </head>
+
+  <body>
+   <%= render partial: "shared/header+nav" %>
+
+     <% if @passenger.errors.any? %>
+      <% @passenger.errors.each do |column, message| %>
+        <li>
+          <strong><%= column.capitalize %></strong> <%= message %>
+        </li>
+      <% end %>
+    </ul>
+    <% end %>
+
+    <%= form_with model: @passenger do |f| %>
+      <p>Please provide the following information to update the passenger to our database:</p>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :phone_number, "Phone Number" %>
+      <%= f.text_field :phone_number%>
+      <%= f.submit "Update Passenger" %>
+    <% end %>
+  </body>
+</html>

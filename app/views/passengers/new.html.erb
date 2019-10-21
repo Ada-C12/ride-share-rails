@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Add Passenger</title>
+  </head>
+
+  <body>
+   <%= render partial: "shared/header+nav" %>
+   
+    <% if @passenger.errors.any? %>
+      <ul class="errors">
+      <% @passenger.errors.each do |column, message| %>
+        <li>
+          <strong><%= column.capitalize %></strong> <%= message %>
+        </li>
+      <% end %>
+    </ul>
+    <% end %>
+
+    <section>
+      <h1>Add Passenger</h1>
+      <%= form_with model: @passenger do |f| %>
+      <p>Please provide the following information to save your passenger to our database:</p>
+
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+
+        <%= f.label :phone_num, "Phone Number" %>
+        <%= f.text_field :phone_number %>
+
+        <%= f.submit "Save Passenger"%>
+      <% end %>
+    </section>  
+  </body>
+</html>

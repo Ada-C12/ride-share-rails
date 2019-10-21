@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+  </head>
+
+  <body>
+
+   <%= render partial: "shared/header+nav" %>
+
+
+
+<section>
+          <%= button_to 'Manage Drivers', drivers_path, method: :get, class:"button" %>
+          <%= button_to 'Manage Passengers', passengers_path, method: :get, class:"button" %>
+</section>
+
+<%# , {:class => "buttonTo" } %>
+
+    
+  </body>
+
+</html>
+
+
