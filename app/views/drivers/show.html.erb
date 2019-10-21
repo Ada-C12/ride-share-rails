@@ -1,0 +1,41 @@
+<section class = "table">
+<h2><%= @driver.name %>'s Information</h2>
+<ul class = "list">
+  <li>VIN: <%= @driver.vin %></li>
+  <li>Active: 
+  <% if @driver.active.nil? %>
+     Available <%= link_to '<button type="button">Deactivate</button>'.html_safe, deactivate_path( @driver.id ), method: :patch %>
+  <% else%>
+    Unavailble <%= link_to '<button type="button">Activate</button>'.html_safe, activate_path( @driver.id ), method: :patch %>
+  <% end %> 
+  </li>
+  <li>Total Earning: $<%=@driver.total_earning%></li>
+  <li>Average Rating: <%= @driver.average_rating %></li>
+  <li><%= link_to '<button type="button">Edit Driver</button>'.html_safe, edit_driver_path( @driver.id ) %></li>
+  <li><%= link_to '<button type="button">Delete Driver</button>'.html_safe, driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure? It will be gone forever."} %></li>
+</ul>
+
+<table>
+  <tr>
+    <th>Trip ID</th>
+    <th>Date</th>
+    <th>Passenger</th>
+    <th>Rating</th>
+    <th>Cost</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+
+   <% @driver.trips.each do |trip| %>
+  <tr>
+    <td><%= link_to trip.id, trip_path( trip.id ) %></td>
+    <td><%= trip.date %></td>
+    <td><%= link_to trip.passenger.name, passenger_path(trip.passenger_id) %></td>
+    <td><%= trip.rating %></td>
+    <td><%= trip.cost %></td>
+    <td><%=link_to "Edit", edit_trip_path(trip.id) %></td>
+    <td><%= link_to "Delete", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure? It will be gone forever."} %></td>
+  </tr>
+  <% end %>
+</table>
+</section>

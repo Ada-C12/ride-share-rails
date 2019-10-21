@@ -1,0 +1,45 @@
+<section class = "table">
+<h2><%=@passenger.name%>'s Information</h2>
+<ul >
+    
+    <li>Phone Number: <%=@passenger.phone_num%></li>
+    <li>Total Amount Charged: $<%= @passenger.total_charge %></li>
+    <section class = "buttons">
+    <li><%= link_to '<button type="button">Request Trip</button>'.html_safe, passenger_trips_path(@passenger.id), method: :post %></li>
+    <li><%=link_to '<button type="button">Edit Passenger</button>'.html_safe, edit_passenger_path(@passenger.id) %></li>
+    <li><%= link_to '<button type="button">Delete Passenger</button>'.html_safe, passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure? It will be gone forever."} %></li>
+</section>
+</ul>
+
+<table>
+  <tr>
+    <th>trip_id</th>
+    <th>Date</th>
+    <th>Drivers</th>
+    <th>Rating</th>
+    <th>Cost</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    <th>Trip Status</th>
+  </tr>
+
+   <% @passenger.trips.each do |trip| %>
+  <tr>
+    <td><%= link_to trip.id, trip_path( trip.id ) %></td>
+    <td><%= trip.date%>
+    <td><%= link_to trip.driver.name, driver_path(trip.driver_id) %></td>
+    <td><%= trip.rating%> </td>
+    <td><%= trip.cost%></td>
+    <td><%= link_to "Edit", edit_trip_path(trip.id) %></td>
+    <td><%= link_to "Delete", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure? It will be gone forever."} %></td>
+    <td>
+    <% if trip.rating.nil? %>
+      <%= link_to '<button type="button">Complete</button>'.html_safe, edit_trip_path( trip.id ), method: :get %>
+    <% else %>
+      Completed
+    <% end %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+</section>

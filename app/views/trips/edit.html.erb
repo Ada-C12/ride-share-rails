@@ -1,0 +1,21 @@
+<section>
+<h1>Edit Trip Form</h1>
+
+<% if @trip.errors.any? %>
+  <ul class="errors">
+    <% @trip.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @trip, class: "edit_trip" do |f| %>
+  <%= f.label :rating%>
+  <%= f.text_field :rating %>
+  <%= f.label :cost %>
+  <%= f.text_field :cost %>
+  <%= f.submit "Submit", class: "trip-form-button" %>
+<% end %>
+</section>
