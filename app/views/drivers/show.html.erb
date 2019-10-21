@@ -1,0 +1,52 @@
+<main>
+  <header class="show-header">
+    <h1><%=@driver.name%></h1>
+    <%= link_to "Edit driver", edit_driver_path(@driver.id), class: "edit-link" %>
+    <%= link_to "Delete driver", driver_path(@driver.id), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-link" %>
+  </header>
+
+  <section class="show-details">
+    <ul>
+      <li> <strong class ="details-title">ID: </strong><%= @driver.id %></li>
+      <li> <strong class ="details-title">VIN: </strong><%= @driver.vin %></li>
+      <li> <strong class ="details-title">Driver Since: </strong><%= @driver.created_at %></li>   
+      <li> <strong class ="details-title">TOTAL EARNINGS: </strong>$<%=  sprintf("%.2f", @driver.total_earnings) %></li>
+      <li> <strong class ="details-title">AVERAGE RATING: </strong><%= (@driver.average_rating).round(2) unless @driver.average_rating.nil?  %></li>
+      <li><strong class ="details-title"> ACTIVE: </strong><%= link_to (@driver.active).to_s, toggle_path(@driver.id), method: :patch %></li>
+    </ul>
+  </section>
+
+  <h2>Drivers Trips</h2>
+  <section id="drivers-trips-list">
+    <% if @driver.trips == [] || @driver.trips == nil%>
+      <p><%=@driver.name%> has no trips yet!<p>
+      <%else%>
+        <table>
+          <tr class='table-header'>
+            <td>ID</td>
+            <td>DATE</td>
+            <td>PASSENGER</td>
+            <td>PRICE</td>
+            <td>RATING</td>
+            <td>EDIT</td>
+            <td>DELETE</td>
+          </tr>
+          <% @driver.trips.each do |trip| %>
+              <tr>
+                <td><%= link_to trip.id, trip_path(trip.id) %></td>
+                <td><%= trip.date%></td>
+                <td><%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></td>
+                <td>$<%=sprintf("%.2f", trip.cost)%></td>
+                <td><% if trip.rating == nil %>
+                  <%= link_to "Add Rating", add_rating_path(trip.id) %>
+                <% else %>
+                  <%= (trip.rating).round(2) unless trip.rating.nil? %></td>
+                <% end %>
+                <td><%= link_to "Edit", edit_trip_path(trip.id) , class: "edit-link" %></td>
+                <td><%= link_to "Delete", trip_path(trip.id), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-link" %></td>
+              </tr>
+          <% end %>
+        </table>
+      <%end%>
+  </section>
+</main>

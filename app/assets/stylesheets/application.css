@@ -1,0 +1,186 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+footer {
+  text-align: center;
+  background-color: #282a2b;
+  color: white;
+  padding: 3%;
+  font-family: 'Roboto', sans-serif;
+}
+
+ul {
+  list-style-type: none;
+}
+
+main {
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+/* https://www.w3schools.com/howto/howto_css_dropdown_navbar.asp */
+.navbar {
+  overflow: hidden;
+  background-color: #282a2b;
+  font-family: serif;
+  padding: 2%;
+  size: 1rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.navbar #homepage_link {
+  font-size: 2rem;
+  font-family: 'Pacifico', cursive;
+}
+
+.navbar #homepage_link a:hover {
+  color:#7287a8
+}  
+
+
+.navbar a {
+  float: left;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: white;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  border: none;
+  outline: none;
+  padding: 14px 16px;
+  margin: 0;
+  color: white;
+  background-color: inherit;
+  font-family: inherit;
+  font-size: 1rem
+}
+
+.dropdown a:hover, .dropbtn {
+  background-color: #7287a8;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  z-index: 1;
+  background-color: #282a2b;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+  float: none;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.homepage-links a {
+  padding: 5%;
+  border: 1px solid black;
+  border-radius: 20px;
+  background-color: #282a2b;
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem
+}
+
+.homepage-links a:hover {
+  color: #5b687d;
+}
+
+.homepage-links {
+  margin: 1%;
+  margin-left: 5%;
+  width: 40%;
+  padding: 3%
+}
+
+#homepage-links-container {
+  display: flex;
+  flex-direction: column
+}
+
+table {
+  margin-left: 5%;
+  margin-bottom: 5%;
+}
+
+.table-header {
+  font-weight: bolder;
+  background-color: #5b687d;
+  color:white;
+  font-size: 1.5rem
+}
+
+.edit-passenger-form, .new-passenger-form, .edit-driver-form, .new-driver-form, .edit_form_class {
+  padding-left: 5%;
+  font-size: 1.25rem;
+  font-weight: bolder;
+}
+
+header, h2, h1, .request-trip {
+  margin-left: 2%
+}
+
+.edit-link, .delete-link, .request-link {
+  border: black 1px solid;
+  border-radius: 10px;
+  margin: 1%;
+  background-color: #663a37;
+  color: white;
+  text-decoration: none;
+  padding: 2px
+}
+
+.request-trip {
+  margin: 2%
+}
+.request-trip a {
+  background-color: #663a37
+}
+
+table {
+  border-collapse: collapse;
+  width: 90vw;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+th, td {
+  height: 5vh
+}
+
+
+.details-title {
+  color: #5b687d
+}

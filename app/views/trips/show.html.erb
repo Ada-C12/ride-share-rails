@@ -1,0 +1,26 @@
+<main>
+  <header class="show-header">
+    <h1>Trip <%=@trip.id%></h1>
+      <h4> <%= "Trip is incomplete. Please add a trip rating!" if @trip.rating == nil %> <h4>
+    <%= link_to "Edit this trip", edit_trip_path(@trip.id), class: "edit-link" %>
+    <%= link_to "Delete this trip", trip_path(@trip.id), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-link" %>
+  </header>
+
+  <section class="show-details">
+    <ul>
+      <li> ID: <%= @trip.id %></li>
+      <li> DATE: <%= @trip.date %></li>
+      <li> DRIVER: <%= link_to @trip.driver.name, driver_path(@trip.driver.id) %></li>
+      <li> PASSENGER: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id) %></li>
+      <li> PRICE: $<%= sprintf("%.2f", @trip.cost) %></li>
+      <li> RATING: 
+        <% if @trip.rating == nil %>
+          <%= link_to "Add Rating", add_rating_path(@trip.id) %>
+        <% else %>
+          <%= (@trip.rating).round(2) unless @trip.rating.nil? %></td>
+        <% end %> </li>
+    </ul>
+  </section>
+
+  
+</main>

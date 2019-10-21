@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RideShareRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Roboto&display=swap" rel="stylesheet">
+    
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div id="homepage_link">
+      <%= link_to 'Rideshare Rails!', root_path %>
+      </div>
+      <div class ="dropdown">
+        <button class="dropbtn">Drivers
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <%= link_to 'All Drivers', drivers_path %>
+          <%= link_to 'New Driver', new_driver_path %>
+        </div>
+      </div>
+      <div class ="dropdown">
+        <button class="dropbtn">Passengers
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <%= link_to 'All Passengers', passengers_path %>
+          <%= link_to 'New Passenger', new_passenger_path %>
+        </div>
+      </div>
+    </nav>
+    <%= yield %>
+    <footer>
+      <p>©2019 Michaela & Emily Inc.</p>
+    </footer>
+  </body>
+</html>

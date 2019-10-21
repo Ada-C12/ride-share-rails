@@ -1,0 +1,14 @@
+<main>
+  <h1>Edit Trip Form</h1>
+  <%= form_with model: @trip, class: "edit_form_class" do |f| %>
+    <%= f.label :date %>
+    <%= f.text_field :date %>
+    <%= f.label :rating %>
+    <%= f.text_field :rating %>
+    <%= f.label :cost %>
+    <%= f.text_field :cost %>
+    
+    <%= f.submit "Submit" %>
+
+  <% end %>
+</main>
