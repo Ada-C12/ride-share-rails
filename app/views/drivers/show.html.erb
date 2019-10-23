@@ -1,0 +1,43 @@
+<header class="show-header">
+  <h1><%=@driver.name%></h1>
+</header>
+
+<section class="driver_grid_show">
+  <section class="header_row"><%= "ID" %></section>
+  <section class="header_row"><%= "NAME" %></section>
+  <section class="header_row"><%= "VIN" %></section>
+  <section class="header_row"><%= "ACTIVE STATUS" %></section>
+  <section class="header_row"><%= "SWITCH STATUS" %></section>
+  <section class="header_row"><%= "EDIT" %></section>
+  <section class="header_row"><%= "DELETE" %></section>
+
+  <section><%= @driver.id%></section>
+  <section><%= @driver.name%></section>
+  <section><%= @driver.vin%></section>
+  <section><%= @driver.active%></section>
+
+  <%= link_to (@driver.active ? "GO OFFLINE" : "GO ONLINE"), driver_active_path(@driver.id), method: :patch %>
+  <%= link_to "EDIT", edit_driver_path(@driver.id), method: :get %>
+  <%= link_to "DELETE", driver_path(@driver.id), method: :delete, data: {confirm: "YOU SURE???"}  %>
+</section>
+
+
+<section class="details">
+  <h3>Details</h3>
+  <p>Average Rating: <%= @driver.average_rating %></p>
+  <p>Total Earned: 
+    <% if @driver.total_earned %>
+      <%= usd(@driver.total_earned) %>
+    <% else %>
+      <%= usd(0.00) %>
+    <% end %>
+  </p>
+  <%# When trip gets deleted, count is also affected. We don't want this but ran out of time to fix this. To fix, we can add a column in the schema to keep an ongoing tally %>
+  <p>Total trips driven: <%= Trip.where(driver_id: @driver.id).count %></p>
+</section>
+
+<section class="details">
+<h3>Links</h3>
+<p><%= link_to "SHOW TRIP HISTORY", trips_path(driver_id: @driver.id) %></p>
+<p><%= link_to "GO BACK", drivers_path, class:"go_back"%></p>
+</section>

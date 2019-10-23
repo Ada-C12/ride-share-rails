@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RideShareRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Bubblegum+Sans|Knewave|Merienda+One|Sriracha&display=swap" rel="stylesheet">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <%= link_to "HOME", root_path %>
+        </li>
+        <li>
+          <%= link_to "DRIVERS", drivers_path %>
+        </li>
+        <li>
+          <%= link_to "PASSENGERS", passengers_path %>
+        </li>
+        <li>
+          <%= link_to "TRIPS", trips_path %>
+        </li>
+      </ul>
+    </nav>
+    <%= yield %>
+
+
+    <footer>
+    Copyright of Caroline and Monick, Ada Cohort 12
+    </footer>
+  </body>
+</html>

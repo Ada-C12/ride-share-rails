@@ -1,0 +1,21 @@
+<h1>ALL DRIVERS</h1>
+<section class="add-button"> 
+  <button ><%= link_to "ADD NEW DRIVER", new_driver_path %></button>
+</section>
+
+<section class="driver_grid">
+  <section class="header_row"><%= "ID" %></section>
+  <section class="header_row"><%= "NAME" %></section>
+  <section class="header_row"><%= "VIN" %></section>
+  <section class="header_row"><%= "EDIT" %></section>
+  <section class="header_row"><%= "DELETE" %></section>
+  
+
+  <% @drivers.each do |driver|  %>
+    <section><%= driver.id%></section>
+    <section><%= link_to driver.name, driver_path(driver.id), method: :get%></section>
+    <section><%= driver.vin%></section>
+    <%= link_to "EDIT", edit_driver_path(driver.id), method: :get %>
+    <%= link_to "DELETE", driver_path(driver.id), method: :delete, data: {confirm: "YOU SURE???"}  %>
+  <%end %>
+</section>

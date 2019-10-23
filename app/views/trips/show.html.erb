@@ -1,0 +1,11 @@
+<header class="show-header">
+  <h1>Trip date: <%=display_date(@trip.date.getlocal)%></h1>
+  <h2></h2>
+</header>
+
+
+
+<%= render partial: "trips_table" %>
+
+
+<%= link_to "Go Back", trips_path, class:"go_back"%>

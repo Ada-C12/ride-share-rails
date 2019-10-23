@@ -1,0 +1,115 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+/* 
+
+font-family: 'Bubblegum Sans', cursive;
+font-family: 'Knewave', cursive;
+font-family: 'Merienda One', cursive;
+font-family: 'Sriracha', cursive; 
+
+*/
+
+ * {
+  font-family: 'Sriracha', cursive; 
+  /* border: 0.51px dashed rgb(169, 190, 211); */
+  background-color: yellow;
+ }
+
+ h1 {
+  font-family: 'Knewave', cursive;
+  font-size: 4em;
+  padding: 1em 1em;
+  text-align: center;
+ }
+
+ nav * {
+  font-size: 1.2em;
+  background-color: rgb(49, 144, 228);
+  color: black;
+ }
+
+ nav ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 1rem;
+  text-align: center;
+}
+
+nav ul a {
+  text-decoration: none;
+}
+
+
+ footer {
+  background-color: rgb(7, 92, 27);
+  color: whitesmoke;
+  text-align: center;
+  margin: 1.5rem 0;
+ }
+
+ .trips_grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 2fr 1fr 2fr 1fr 1fr;
+ }
+ 
+ .trips_grid_with_delete {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 2fr 1fr 2fr 1fr 1fr 1fr;
+}
+
+.ratings_section {
+  margin-top: 2em;
+  margin-bottom: 2em;
+} 
+.ratings {
+  display: flex;
+  align-content: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.go_back {
+  background-color: lightpink;
+}
+
+
+.add-button {
+  display: flex;
+  justify-content: center;
+  color: black;
+  margin-bottom: 1em;
+}
+
+.add-button button {
+  background-color: rgb(49, 144, 228);
+}
+
+.add-button a {
+  text-decoration: none;
+  color: black;
+  background-color: rgb(49, 144, 228);
+  font-size: 1.5rem;
+}
+
+.details h3{
+  background-color: chartreuse;
+}
+
+.msg {
+  text-align: center;
+}

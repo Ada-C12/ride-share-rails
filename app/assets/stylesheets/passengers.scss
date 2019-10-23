@@ -1,0 +1,14 @@
+// Place all the styles related to the Passengers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.passenger_grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr 3fr 1fr 1fr;
+}
+
+.header_row {
+  background-color: chartreuse;
+  font-weight: bolder;
+}
