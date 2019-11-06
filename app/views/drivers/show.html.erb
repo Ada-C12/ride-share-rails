@@ -1,0 +1,40 @@
+  <h3>Name: <%= @driver.name %></h3>
+  <h3>Average Rating: <%= @driver.average_rating%></h3>
+  <h3>Average Earnings: <%= @driver.total_earnings%></h3>
+
+ <ul>
+  <p> Driver Info: </p>
+  <li>Vin #: <%= @driver.vin %></li>
+  <li>Car Make: <%= @driver.make %></li>
+  <li>Car Model: <%= @driver.model %></li>
+  <li>Availability: </li>
+  <% if @driver.active == true %>
+  <%= "active" %>
+  <% else %>
+  <%= "inactive" %>
+  <% end%>
+  </ul>
+
+  <%= link_to "Edit", edit_driver_path(@driver) %>
+  <%= link_to "Delete", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"}%>
+  <p><%= link_to "Return to Drivers List", drivers_path %></p>
+
+<div class="wrapper_pd_trips">
+<div>TRIP ID</div>
+<div>DATE</div>
+<div>PASSENGER</div>
+<div>RATING</div>
+<div>COST</div>
+<div>EDIT</div>
+<div>DELETE</div>
+
+<% @driver.trips.each do |trip| %>
+<div><%= trip.id %></div>
+<div><%= trip.date %></div>
+<div><%= trip.passenger.name %></div>
+<div><%= trip.rating %></div>
+<div>$<%= trip.cost%></div>
+<div><%= link_to "Edit Trip", edit_trip_path(trip.id) %></div>
+<div><%= link_to "Delete Trip", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure?"}%></div>
+<% end %>
+</div>

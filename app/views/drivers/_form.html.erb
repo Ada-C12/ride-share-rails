@@ -1,0 +1,33 @@
+<% if @driver.errors.any? %>
+  <h1>Errors</h1>
+  <ul class="errors">
+    <% @trip.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<p>Please provide the following information to <%= verb_name %> be a new drivers in our database:</p>
+
+<%= form_with model: @driver, class: "driver-input" do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :vin%>
+  <%= f.text_area :vin %>
+
+  <%= f.label :make %>
+  <%= f.text_area :make %>
+
+  <%= f.label :model %>
+  <%= f.text_area :model %>
+
+  <%= f.label :active %>
+  <%= f. check_box :active, { onChange: 'this.form.submit();' , checked: @driver.active != nil} %>
+
+  <%= f.submit "#{action_name} Driver", class: "driver-button" %>
+
+<% end %>

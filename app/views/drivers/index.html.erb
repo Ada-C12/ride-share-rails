@@ -1,0 +1,10 @@
+<section class="heading">
+<h1>Drivers</h1> <%= button_to "Add New Driver", new_driver_path, :method => "get" %>
+</section>
+<div class="wrapper_people">
+  <% @drivers.each do |driver|  %>
+      <div><%= driver.id %>:<%= link_to driver.name, driver_path(driver) %></div>
+  <% end %>
+
+  
+</div>

@@ -1,0 +1,62 @@
+<% if @trip.errors.any? %>
+  <h1>Errors</h1>
+  <ul class="errors">
+    <% @trip.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<p>Please provide the following information to <%= verb_name %> a trip to our database:</p>
+
+<%= form_with model: @trip, class: 'create-trip' do |f| %>
+
+<% if @trip.date.nil?  %>
+  <%= f.label :date %>
+  <%= f.date_field :date, :value => Time.now.strftime('%Y-%m-%d') %>
+<% else %>
+<%= hidden_field_tag 'date', @trip.date%>
+<%= f.hidden_field :date %>
+Date: <%= @trip.date %>
+<% end %>
+
+<% if @trip.passenger.nil?  %>
+  <%= f.label :passenger_id %>
+  <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
+<% else %>
+  <%= f.hidden_field :passenger_id %>
+  <%= hidden_field_tag 'passenger_id', @trip.passenger.id  %> 
+  Passenger: <%= @trip.passenger.name %>
+<% end %>
+
+<% if @trip.driver.nil?  %>
+  <%= f.label :driver_id %>
+  <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id] } %>
+<% else %>
+  <%= f.hidden_field :driver_id %>
+  <%= hidden_field_tag 'driver_id', @trip.driver.id  %>
+  Driver: <%= @trip.driver.name %>
+<% end %>
+
+<%= f.label :rating, "Rating: " %>
+<%= f.select :rating, [' ', '1', '2', '3', '4', '5']%>
+
+<% random_cost = @trip.trip_cost %>
+<% if @trip.cost.nil? %>
+  <%= f.hidden_field :cost, :value => random_cost %></p> 
+  <%= hidden_field_tag 'cost', @trip.cost %>
+<% elsif @user == "trip" %>
+  <% f.label :cost %>
+  <% f.text_field :cost, :value => @trip.cost %>
+  Cost: $<%= random_cost %>
+<% else %>
+  <%= f.hidden_field :cost %>
+  <%= hidden_field_tag 'cost', @trip.cost %>
+  Cost: $<%= @trip.cost %>
+<% end %>
+
+
+<%= f.submit "Save Trip", class: "trip-save" %>
+<% end %>

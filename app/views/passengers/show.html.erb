@@ -1,0 +1,29 @@
+<h2>Name: <%= @passenger.name %></h2>
+<h3>Phone Number: <%= @passenger.phone_num %></h3>
+<h3>Total Amount Spent: $<%= @passenger.total_spent %>
+
+<p><%= link_to "Edit Passenger", edit_passenger_path %></p>
+<p><%= link_to "Delete Passenger", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"}%></p>
+<div class="wrapper_pd_trips">
+<div>TRIP ID</div>
+<div>DATE</div>
+<div>DRIVER</div>
+<div>RATING</div>
+<div>COST</div>
+<div>EDIT</div>
+<div>DELETE</div>
+<% @passenger.trips.each do |trip| %>
+<div><%= trip.id %></div>
+<div><%= trip.date %></div>
+<div><%= trip.driver.name %></div>
+<div><%= trip.rating %></div>
+<div>$<%= trip.cost%></div>
+<div><%= link_to "Edit Trip Rating", edit_trip_path(trip.id) %></div>
+<div><%= link_to "Delete Trip", trip_path(trip.id), method: :delete, data: {confirm: "Are you sure?"}%></div>
+<% end %>
+</div>
+
+<p><%= link_to "Add New Trip", passenger_trips_path(@passenger.id), method: :post %></p>
+<p><%= link_to "Return to Passenger List", passengers_path %></p>
+
+
