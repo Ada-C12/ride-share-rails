@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Goober Ride Share</title>
+    <!-- Favicon tutorial: https://www.w3.org/2005/10/howto-favicon -->
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/hwkbelwau/image/upload/v1571501066/favicon.png">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+  <div class="navbar">
+    <span class="home"><%= link_to "Home", root_path %></span>
+
+    <div class="dropdown">
+      <button class="dropbtn">Drivers</button>
+      <div class="dropdown-content">
+        <span><%=link_to "View Drivers", drivers_path %></span>
+        <span><%=link_to "Add Driver", new_driver_path %></span>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropbtn" id="passengers">Passengers</button>
+      <div class="dropdown-content">
+          <span><%=link_to "View Passengers", passengers_path %></span>
+          <span><%=link_to "Add Passenger", new_passenger_path %></span>
+      </div>
+    </div>
+  </div>
+  <%= yield %>
+  <footer>Copyright &copy; 2019 Dianna and Hallie.  All rights reserved.</footer>
+  </body>
+</html>

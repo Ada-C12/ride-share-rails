@@ -1,0 +1,22 @@
+// Place all the styles related to the Trips controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.trip-list {
+  margin-top: 3em;
+}
+
+.trip-form {
+  font-size: 1.5em;
+  text-align: left;
+
+  input {
+    font-size: .8em;
+    width: 15em;
+  }
+
+  select {
+    font-size: .8em;
+  }
+
+}

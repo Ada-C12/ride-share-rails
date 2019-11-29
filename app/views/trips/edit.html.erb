@@ -1,0 +1,25 @@
+<h1>Edit Trip</h1>
+
+<div class="form">
+  <%= form_with model: @trip, class: "trip-form" do |f| %>
+    <p>Please complete the fields below to edit trip. </p>
+
+    <%= f.label :date %>
+    <%= f.text_field :date%>
+    <br>
+    <%= f.label :rating %>
+    <%= f.select :rating, [5, 4, 3, 2, 1]%>
+    <br>
+    <%= f.label :cost %>
+    <%= f.text_field :cost, :value => (sprintf('%.2f', @trip.cost / 100.0)) %>
+    <%= hidden_field_tag :special_form, true %>
+    <br>
+    <%= f.label :passenger_id %>
+    <%= f.select :passenger_id, Passenger.all.order(:name).map{ |passenger| [passenger.name, passenger.id] } %>
+    <br>
+    <%= f.label :driver %>
+    <%= f.select :driver_id, Driver.all.order(:name).map{ |driver| [driver.name, driver.id] } %>
+    <br><br>
+    <%= f.submit "Update Trip", class: "trip-button" %>
+  <% end %>
+</div>

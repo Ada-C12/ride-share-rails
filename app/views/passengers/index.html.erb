@@ -1,0 +1,13 @@
+<div class="index-container">
+  <h1>All Passengers</h1>
+    <%= will_paginate @passengers %><br>
+  <div class="view-all">
+    <% @passengers.each do |passenger| %>
+      <div class="individual">
+        <%= image_tag "http://api.adorable.io/avatars/285/#{passenger.id}.png", alt: "User photo" %>
+        <%= link_to passenger.name, passenger_path(passenger) %>
+      </div>
+    <% end %>
+  </div>
+  <br>
+</div>
